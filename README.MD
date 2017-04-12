@@ -25,7 +25,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import your library
-import { SampleModule } from 'smn-ui-v4';
+import { SMNUI4Module } from 'smn-ui-v4';
 
 @NgModule({
   declarations: [
