@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PerceptiveDirective } from './src/directives/perceptive.directive';
-export * from './src/directives/perceptive.directive';
+import { PerceptiveDirective } from './src/perceptive/perceptive.directive';
+export * from './src/perceptive/perceptive.directive';
 
 @NgModule({
   imports: [
