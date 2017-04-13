@@ -1,7 +1,8 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PerceptiveDirective } from './src/perceptive/perceptive.directive';
-export * from './src/perceptive/perceptive.directive';
+import { AutofocusDirective } from './src/utils/autofocus/autofocus.directive';
+export * from './src/utils/autofocus/autofocus.directive';
 
 @NgModule({
   imports: [
@@ -9,9 +10,11 @@ export * from './src/perceptive/perceptive.directive';
   ],
   declarations: [
     PerceptiveDirective,
+    AutofocusDirective
   ],
   exports: [
     PerceptiveDirective,
+    AutofocusDirective
   ]
 })
 export class SMNUI4Module {
