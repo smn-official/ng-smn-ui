@@ -1,0 +1,79 @@
+.ui-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+.ui-grid > .cell {
+    flex: 0 0 auto;
+}
+.ui-grid.g8,
+.ui-grid.g8 > .cell {
+    padding: 4px;
+}
+.ui-grid.gv8,
+.ui-grid.gv8 > .cell {
+    padding: 0 4px;
+}
+.ui-grid.g16,
+.ui-grid.g16 > .cell {
+    padding: 8px;
+}
+.ui-grid.gv16,
+.ui-grid.gv16 > .cell {
+    padding: 0 8px;
+}
+.ui-grid.g24,
+.ui-grid.g24 > .cell {
+    padding: 16px;
+}
+.ui-grid.gv24,
+.ui-grid.gv24 > .cell {
+    padding: 0 16px;
+}
+.ui-grid .cell.s1 {flex-basis: 8.333%;}
+.ui-grid .cell.s2 {flex-basis: 16.666%;}
+.ui-grid .cell.s3 {flex-basis: 25%;}
+.ui-grid .cell.s4 {flex-basis: 33.333%;}
+.ui-grid .cell.s5 {flex-basis: 41.666%;}
+.ui-grid .cell.s6 {flex-basis: 50%;}
+.ui-grid .cell.s7 {flex-basis: 58.333%;}
+.ui-grid .cell.s8 {flex-basis: 66.666%;}
+.ui-grid .cell.s9 {flex-basis: 75%;}
+.ui-grid .cell.s10 {flex-basis: 83.333%;}
+.ui-grid .cell.s11 {flex-basis: 91.666%;}
+.ui-grid .cell.s12 {flex-basis: 100%;}
+@media (min-width: 601px) {
+    .ui-grid .cell.m1 {flex-basis: 8.333%;}
+    .ui-grid .cell.m2 {flex-basis: 16.666%;}
+    .ui-grid .cell.m3 {flex-basis: 25%;}
+    .ui-grid .cell.m4 {flex-basis: 33.333%;}
+    .ui-grid .cell.m5 {flex-basis: 41.666%;}
+    .ui-grid .cell.m6 {flex-basis: 50%;}
+    .ui-grid .cell.m7 {flex-basis: 58.333%;}
+    .ui-grid .cell.m8 {flex-basis: 66.666%;}
+    .ui-grid .cell.m9 {flex-basis: 75%;}
+    .ui-grid .cell.m10 {flex-basis: 83.333%;}
+    .ui-grid .cell.m11 {flex-basis: 91.666%;}
+    .ui-grid .cell.m12 {flex-basis: 100%;}
+}
+@media (min-width: 961px) {
+    .ui-grid .cell.l1 {flex-basis: 8.333%;}
+    .ui-grid .cell.l2 {flex-basis: 16.666%;}
+    .ui-grid .cell.l3 {flex-basis: 25%;}
+    .ui-grid .cell.l4 {flex-basis: 33.333%;}
+    .ui-grid .cell.l5 {flex-basis: 41.666%;}
+    .ui-grid .cell.l6 {flex-basis: 50%;}
+    .ui-grid .cell.l7 {flex-basis: 58.333%;}
+    .ui-grid .cell.l8 {flex-basis: 66.666%;}
+    .ui-grid .cell.l9 {flex-basis: 75%;}
+    .ui-grid .cell.l10 {flex-basis: 83.333%;}
+    .ui-grid .cell.l11 {flex-basis: 91.666%;}
+    .ui-grid .cell.l12 {flex-basis: 100%;}
+}
+.ui-s360 {max-width: 100%; width: 360px;}
+.ui-s480 {max-width: 100%; width: 480px;}
+.ui-s600 {max-width: 100%; width: 600px;}
+.ui-s840 {max-width: 100%; width: 840px;}
+.ui-s960 {max-width: 100%; width: 960px;}
+.ui-s1280 {max-width: 100%; width: 1280px;}
+.ui-s1440 {max-width: 100%; width: 1440px;}
+.ui-s1600 {max-width: 100%; width: 1600px;}

@@ -1,0 +1,40 @@
+.ui-avatar-cover {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    width: 96px;
+    height: 96px;
+    background-position: center;
+    background-size: cover;
+    background-color: #EEE;
+    font-weight: 400;
+    color: rgba(0,0,0,.8);
+}
+.ui-avatar-cover.dark {color: white;}
+.ui-avatar-cover.rounded {border-radius: 8px;}
+.ui-avatar-cover.rounded {border-radius: 8px;}
+.ui-avatar-cover.circle {border-radius: 50%;}
+.ui-avatar-cover button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.ui-avatar-cover.s18 {width: 18px; height: 18px;}
+.ui-avatar-cover.s24 {width: 24px; height: 24px;}
+.ui-avatar-cover.s36 {width: 36px; height: 36px; font-size: 24px;}
+.ui-avatar-cover img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+}
+.ui-avatar-cover.circle img {
+    border-radius: 50%;
+}
