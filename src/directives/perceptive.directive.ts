@@ -1,17 +1,28 @@
 import { Directive, Attribute, ElementRef, Renderer } from '@angular/core';
 
 @Directive({
-    selector: '[perceptive]'
+    selector: '[ui-perceptive]'
 })
 export class PerceptiveDirective {
 
     // @param perceptive [Hex, porcentagem?]
     // Caso informado dois oaramêtros [isBright]
-    constructor( @Attribute('perceptive') perceptive: any,
+    constructor( @Attribute('ui-perceptive') perceptive: any,
         @Attribute('primarycolor') primarycolor: string,
         @Attribute('secondarycolor') secondarycolor: string,
         @Attribute('backcolor') backcolor: string,
+        @Attribute('help') help: string,
         private el: ElementRef, private render: Renderer) {
+        if (help != null) {
+            console.info(`########################################################################
+            \n(SMNUI4) Ajuda [ui-perceptive]
+            \nAtributos disponíveis: 
+            \n(primarycolor) - Cor primária
+            \n(secondarycolor) - Cor secundária
+            \n(backcolor) - Usar somente em caso de preenchimento de divs
+            \nConsulte a documentação detalhada em: http://smnui.smn.com.br
+            \n########################################################################`);
+        }
         if (perceptive == null) {
             console.error('(SMNUI4) Erro na quantidade de atributos - (Defina Hexadecimal, porcentagem [Opcional]) [Diretiva Perceptive]');
             return;
