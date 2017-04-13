@@ -8,5 +8,4 @@ export class AutofocusDirective {
     constructor(private el: ElementRef, private render: Renderer) {
         this.el.nativeElement.focus();
     }
-
 }

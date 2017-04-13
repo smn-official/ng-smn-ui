@@ -1,8 +1,20 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+/**
+ * Diretivas
+ */
 import { PerceptiveDirective } from './src/perceptive/perceptive.directive';
 import { AutofocusDirective } from './src/utils/autofocus/autofocus.directive';
+export * from './src/perceptive/perceptive.directive';
 export * from './src/utils/autofocus/autofocus.directive';
+
+/**
+ * Pipes
+ */
+
+import { UnaccentPipe } from './src/filters/unaccent.pipe';
+export * from './src/filters/unaccent.pipe';
 
 @NgModule({
   imports: [
@@ -10,11 +22,13 @@ export * from './src/utils/autofocus/autofocus.directive';
   ],
   declarations: [
     PerceptiveDirective,
-    AutofocusDirective
+    AutofocusDirective,
+    UnaccentPipe
   ],
   exports: [
     PerceptiveDirective,
-    AutofocusDirective
+    AutofocusDirective,
+    UnaccentPipe
   ]
 })
 export class SMNUI4Module {
