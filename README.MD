@@ -1,5 +1,13 @@
 # smn-ui-v4
 
+## Development
+
+To distribute the source use this following command:
+
+```bash
+$ npm run tsc
+```
+
 ## Installation
 
 To install this library, run:
