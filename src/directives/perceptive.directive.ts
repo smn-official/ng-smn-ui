@@ -10,6 +10,7 @@ export class PerceptiveDirective {
     constructor( @Attribute('perceptive') perceptive: any,
         @Attribute('primarycolor') primarycolor: string,
         @Attribute('secondarycolor') secondarycolor: string,
+        @Attribute('backcolor') backcolor: string,
         private el: ElementRef, private render: Renderer) {
         if (perceptive == null) {
             console.error('(SMNUI4) Erro na quantidade de atributos - (Defina Hexadecimal, porcentagem [Opcional]) [Diretiva Perceptive]');
@@ -20,8 +21,7 @@ export class PerceptiveDirective {
             console.error(`(SMNUI4) Erro na quantidade de atributos - (Defina Hexadecimal, porcentagem [Opcional]) (${split.length}) [Diretiva Perceptive]`);
             return;
         }
-        console.log("COR:", this.getColor(split[0], split[1], primarycolor, secondarycolor));
-        this.render.setElementStyle(this.el.nativeElement, 'color', this.getColor(split[0], split[1], primarycolor, secondarycolor));
+        this.render.setElementStyle(this.el.nativeElement, ((backcolor == null || backcolor == "false") ? 'color' : 'background-color'), this.getColor(split[0], split[1], primarycolor, secondarycolor));
     }
 
     private getColor(hex: any, minDarkPerc: any, primarycolor: string, secondarycolor: string): string {
