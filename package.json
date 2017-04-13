@@ -1,5 +1,5 @@
 {
-  "name": "smn-ui-v4",
+  "name": "smn-ui-4",
   "version": "0.1.0",
   "scripts": {
     "build": "ngc -p tsconfig.json",
