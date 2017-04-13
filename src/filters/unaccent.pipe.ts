@@ -10,12 +10,7 @@ export class UnaccentPipe implements PipeTransform {
         if (!data) {
             return data;
         }
-        return this.uiUnaccent(data);
-    }
-    private uiUnaccent(text: string): any {
-        if (!text)
-            return '';
-        var strAccents = text.split('');
+        var strAccents = data.split('');
         var strAccentsOut = [];
         var strAccentsLen = strAccents.length;
         var accents = 'ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž';
@@ -27,5 +22,5 @@ export class UnaccentPipe implements PipeTransform {
                 strAccentsOut[y] = strAccents[y];
         }
         return strAccentsOut.join('');
-    };
+    }
 }

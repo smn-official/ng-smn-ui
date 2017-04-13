@@ -6,13 +6,11 @@ import { Injectable, PipeTransform, Pipe } from '@angular/core';
 })
 
 export class DatePipe implements PipeTransform {
-    transform(data: Date) {
-        if (!data) {
-            return data;
+    transform(date: Date) {
+        if (!date) {
+            console.error('(SMNUI4) Data inválida - [Pipe uistringdate]');
+            return date;
         }
-        return this.uiFullDateFilter(data);
-    }
-    private uiFullDateFilter(date: Date): any {
         var today = new Date(),
             yesterday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1),
             months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
