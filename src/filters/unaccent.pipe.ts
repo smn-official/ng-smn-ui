@@ -1,7 +1,7 @@
 import { Injectable, PipeTransform, Pipe } from '@angular/core';
 
 @Pipe({
-    name: 'unaccent',
+    name: 'uiunaccent',
     pure: false
 })
 

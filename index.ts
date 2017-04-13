@@ -15,6 +15,8 @@ export * from './src/utils/autofocus/autofocus.directive';
 
 import { UnaccentPipe } from './src/filters/unaccent.pipe';
 export * from './src/filters/unaccent.pipe';
+import { DatePipe } from './src/filters/date.pipe';
+
 
 @NgModule({
   imports: [
@@ -23,12 +25,14 @@ export * from './src/filters/unaccent.pipe';
   declarations: [
     PerceptiveDirective,
     AutofocusDirective,
-    UnaccentPipe
+    UnaccentPipe,
+    DatePipe
   ],
   exports: [
     PerceptiveDirective,
     AutofocusDirective,
-    UnaccentPipe
+    UnaccentPipe,
+    DatePipe
   ]
 })
 export class SMNUI4Module {
