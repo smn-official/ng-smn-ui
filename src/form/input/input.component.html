@@ -1,5 +1,6 @@
 <div class="ui-input-container">
-	<input placeholder="{{ placeholder }}" class="ui-control">
+	<input [attr.maxlength]="maxlength" [placeholder]="placeholder" [readonly]="readonly" [required]="required"
+	[disabled]="disabled" [type]="type" [value]="value" [name]="name" class="ui-control">
 	<label>{{ label }}</label>
 	<div class="line"></div>
 </div>
