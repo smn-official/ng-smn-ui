@@ -1,0 +1,216 @@
+.ui-input-container {
+	position: relative;
+	display: block;
+	padding-top: 16px;
+	margin-bottom: 24px;
+	max-width: 100%;
+}
+.ui-input-container.no-pad,
+.ui-input-container.no-space {
+	padding-top: 0;
+}
+.ui-input-container.no-margin,
+.ui-input-container.no-space {
+	margin-bottom: 0;
+}
+.ui-input-container.item {
+	display: flex;
+	align-items: center;
+	min-height: 48px;
+}
+.ui-input-container > .info {
+	flex: 1;
+}
+.ui-input-container > .action {
+	flex: 0 0 auto;
+}
+.ui-input-container > .ui-control,
+.ui-input-container > ui-chips input {
+	background-color: transparent;
+	color: rgba(0,0,0,0.9);
+	font-family: Roboto, sans-serif;
+	font-size: 16px;
+}
+.ui-input-container > .ui-control {
+	display: block;
+	border-bottom: 1px solid rgba(0,0,0,0.3);
+	min-height: 32px;
+	width: 100%;
+}
+.ui-input-container > .ui-control.center {
+	text-align: center;
+}
+.ui-input-container > .ui-control.right {
+	text-align: right;
+}
+.ui-input-container > input.ui-control:read-only,
+.ui-input-container > .ui-control:disabled {
+	border-bottom-style: dotted;
+}
+.ui-input-container > .ui-control:disabled {
+	color: rgba(0,0,0,.6);
+}
+.ui-input-container > textarea.ui-control {
+	padding: 6px 0;
+	max-width: 100%;
+	max-height: 100px;
+}
+.ui-input-container > textarea.ui-control.resize-horizontal {
+	resize: horizontal;
+}
+.ui-input-container > textarea.ui-control.resize-vertical {
+	resize: vertical;
+}
+.ui-input-container > .ui-control:focus,
+.ui-control.ui-focused {
+	border-color: #2196F3;
+}
+.ui-input-container > label {
+	position: absolute;
+	right: 0;
+	color: rgba(0,0,0,0.4);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	pointer-events: none;
+	transition: 100ms ease-in-out;
+}
+.ui-input-container > .ui-control ~ label {
+	top: 16px;
+	left: 0;
+	font-size: 16px;
+	line-height: 32px;
+}
+.ui-input-container > [required] ~ label::after {
+	content: '*';
+	margin-left: 2px;
+}
+.ui-input-container > [required]:focus ~ label::after {
+	color: #F44336;
+}
+.ui-input-container > label,
+.ui-input-container > .ui-control:focus ~ label,
+.ui-control.ui-focused ~ label,
+.ui-input-container > .ui-control.ng-not-empty ~ label,
+.ui-input-container > label.keep-float,
+.ui-input-container > ui-option-container ~ label,
+.ui-input-container > ui-chips ~ label {
+	top: 0;
+	left: 0;
+	font-size: 12px;
+	line-height: 16px;
+}
+.ui-input-container > .ui-control:focus ~ label,
+.ui-control.ui-focused ~ label {
+	color: #2196F3;
+}
+.ui-input-container > label.required:after {
+	content: '*';
+	margin-left: 2px;
+}
+.ui-input-container > .ui-control:focus ~ label.required:after,
+.ui-control.gr-focused ~ label.required:after {
+	color: #F44336;
+}
+.ui-input-container .line {
+	position: absolute;
+	height: 2px;
+	background-color: #2196F3;
+	left: 0;
+	right: 0;
+	margin-top: -1px;
+	transform: scaleY(0);
+	transition: 100ms ease-in-out;
+}
+.ui-input-container > .ui-control:not(:disabled):not(:read-only):focus ~ .line,
+.ui-control.ui-focused:not(:disabled):not(:read-only) ~ .line {
+	transform: scaleY(1);
+}
+.ui-input-container .hint {
+	font-size: 12px;
+	color: rgba(0,0,0,.5);
+	margin-bottom: -16px;
+	margin-top: 2px;
+}
+.ui-input-container ng-messages,
+.ui-input-container .messages {
+	display: block;
+	font-size: 12px;
+	color: rgba(0,0,0,0.5);
+}
+.ui-input-container .ta-right {
+	text-align: right;
+}
+.ui-input-container ng-messages.error,
+.ui-input-container .messages.error {
+	color: #F44336;
+}
+.ui-input-container:not(.no-margin):not(.no-space) ng-messages > ng-message:first-child,
+.ui-input-container:not(.no-margin):not(.no-space) .messages > .message:first-child {
+	display: block;
+	margin-bottom: -16px;
+}
+.ui-input-container .ui-control:not(:focus) ~ .focus-show,
+.ui-input-container .ui-control:not(:focus) ~ * .focus-show {
+	display: none;
+}
+.ui-input-container .messages.ng-enter-prepare,
+.ui-input-container .messages .message.ng-enter-prepare,
+.ui-input-container ng-messages ng-message.ng-enter-prepare {
+	opacity: 0;
+	transform: translateY(-2px);
+	transition: 200ms ease-in-out;
+}
+.ui-input-container .messages.ng-enter,
+.ui-input-container .messages .message.ng-enter,
+.ui-input-container ng-messages ng-message.ng-enter {
+	opacity: 0;
+	transform: translateY(-2px);
+	transition: 200ms ease-in-out;
+}
+.ui-input-container .messages.ng-enter-active,
+.ui-input-container .messages .message.ng-enter-active,
+.ui-input-container ng-messages ng-message.ng-enter-active {
+	opacity: 1;
+	transform: translateY(0);
+}
+.ui-input-container .messages.ng-leave,
+.ui-input-container .messages .message.ng-leave,
+.ui-input-container ng-messages ng-message.ng-leave {
+	transition: 200ms ease-in-out;
+}
+.ui-input-container .messages.ng-leave-active,
+.ui-input-container .messages .message.ng-leave-active,
+.ui-input-container ng-messages ng-message.ng-leave-active {
+	opacity: 0;
+	transform: translateY(-2px);
+}
+.ui-input-container > .ui-control.teal {
+	border-color: #009688;
+}
+.ui-input-container > .ui-control.teal ~ label {
+	color: #009688;
+}
+.ui-input-container > .ui-control.teal ~ .line {
+	background-color: #009688;
+}
+.ui-input-container .picker {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+	z-index: 2000;
+}
+.ui-input-container .overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+}
+.ui-input-container:not(.overlay-active) .overlay {
+	display: none;
+}
+.ui-input-container.overlay-active {
+	z-index: 2000;
+}

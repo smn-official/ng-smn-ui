@@ -1,6 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
 /**
  * Diretivas
  */
@@ -21,6 +22,8 @@ export * from './src/filters/date.pipe';
 /**
  * Component
  */
+import { inputComponent } from './src/form/input/input.component';
+export * from './src/form/input/input.component';
 import { ProfileFloatComponent } from './src/components/profile-float/profile-float.component';
 export * from './src/components/profile-float/profile-float.component';
 
@@ -33,14 +36,16 @@ export * from './src/components/profile-float/profile-float.component';
     AutofocusDirective,
     UnaccentPipe,
     DatePipe,
-    ProfileFloatComponent
+    ProfileFloatComponent,
+    inputComponent
   ],
   exports: [
     PerceptiveDirective,
     AutofocusDirective,
     UnaccentPipe,
     DatePipe,
-    ProfileFloatComponent
+    ProfileFloatComponent,
+    inputComponent
   ]
 })
 export class SMNUI4Module {
