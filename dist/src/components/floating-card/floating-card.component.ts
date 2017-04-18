@@ -4,7 +4,7 @@ import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
     selector: 'ui-floating-card-container',
     exportAs: "ui-floating-card-container",
     template: require('./floating-card.component.html'),
-    styles: [require('./floating-card.component.scss')]
+    styles: [require('./floating-card.component.scss'), require('./card.scss')]
 })
 export class FloatingCardComponent implements OnInit, OnDestroy {
     constructor(private ref: ElementRef) {

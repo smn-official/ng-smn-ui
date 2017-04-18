@@ -1,6 +1,8 @@
-<ui-floating-card>
+<ui-floating-card (click)="close()">
     <ui-floating-card-background></ui-floating-card-background>
-    <ui-floating-card-content>
-        <ng-content></ng-content>
-    </ui-floating-card-content>
+    <ui-card>
+        <ui-floating-card-content>
+            <ng-content></ng-content>
+        </ui-floating-card-content>
+    </ui-card>
 </ui-floating-card>
