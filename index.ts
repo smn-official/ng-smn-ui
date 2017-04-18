@@ -1,6 +1,5 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule, ModuleWithProviders, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 
 /**
  * Diretivas
@@ -26,6 +25,8 @@ import { inputComponent } from './src/form/input/input.component';
 export * from './src/form/input/input.component';
 import { ProfileFloatComponent } from './src/components/profile-float/profile-float.component';
 export * from './src/components/profile-float/profile-float.component';
+import { FloatingCardComponent } from './src/components/floating-card/floating-card.component';
+export * from './src/components/floating-card/floating-card.component';
 
 @NgModule({
   imports: [
@@ -37,15 +38,18 @@ export * from './src/components/profile-float/profile-float.component';
     UnaccentPipe,
     DatePipe,
     ProfileFloatComponent,
-    inputComponent
+    inputComponent,
+    FloatingCardComponent
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
     PerceptiveDirective,
     AutofocusDirective,
     UnaccentPipe,
     DatePipe,
     ProfileFloatComponent,
-    inputComponent
+    inputComponent,
+    FloatingCardComponent
   ]
 })
 export class SMNUI4Module {
