@@ -1,0 +1,31 @@
+var inject = require('gulp-inject');
+
+gulp.task('inject', function () {
+    var target = gulp.src('./front/views/layout.html');
+
+    /**
+     * Java Script
+     */
+    var angular = inject(gulp.src('./front/src/js/angular/app.js', { read: false }), { relative: true, name: 'angular' });
+    var angularServices = inject(gulp.src('./front/src/js/angular/services/*.js', { read: false }), { relative: true, name: 'angularservices' });
+    var angularControllers = inject(gulp.src('./front/src/js/angular/controllers/*.js', { read: false }), { relative: true, name: 'angularcontrollers' });
+    var angularFilter = inject(gulp.src('./front/src/js/angular/filters/*.js', { read: false }), { relative: true, name: 'angularfilters' });
+    var others = inject(gulp.src(['./front/src/js/others/*.js', '!./front/src/js/others/login.js', './front/src/css/others/*.css', '!./front/src/css/others/login.css', './front/src/css/others/jquery.dataTables.min.css'], { read: false }), { relative: true, name: 'others' });
+    var angularDirectives = inject(gulp.src('./front/src/js/angular/diretivas/*.js', { read: false }), { relative: true, name: 'angulardiretivas' });
+    var angularHelper = inject(gulp.src('./front/src/js/angular/helper/*.js', { read: false }), { relative: true, name: 'angularHelper' });
+    var angularConfig = inject(gulp.src('./front/src/js/angular/config/*.js', { read: false }), { relative: true, name: 'angularConfig' });
+
+    /**
+     * CSS
+     */
+
+    target.pipe(angular)
+        .pipe(angularServices)
+        .pipe(angularControllers)
+        .pipe(angularFilter)
+        .pipe(angularConfig)
+        .pipe(angularHelper)
+        .pipe(angularDirectives)
+        .pipe(others)
+        .pipe(gulp.dest('./front/views/'));
+});
