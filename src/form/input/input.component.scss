@@ -24,23 +24,23 @@
 .ui-input-container > .action {
 	flex: 0 0 auto;
 }
-.ui-input-container > .ui-control,
+.ui-input-container .ui-control,
 .ui-input-container > ui-chips input {
 	background-color: transparent;
 	color: rgba(0,0,0,0.9);
 	font-family: Roboto, sans-serif;
 	font-size: 16px;
 }
-.ui-input-container > .ui-control {
+.ui-input-container .ui-control {
 	display: block;
 	border-bottom: 1px solid rgba(0,0,0,0.3);
 	min-height: 32px;
 	width: 100%;
 }
-.ui-input-container > .ui-control.center {
+.ui-input-container .ui-control.center {
 	text-align: center;
 }
-.ui-input-container > .ui-control.right {
+.ui-input-container .ui-control.right {
 	text-align: right;
 }
 .ui-input-container > input.ui-control:read-only,

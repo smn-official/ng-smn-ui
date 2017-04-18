@@ -1,6 +1,5 @@
 <div class="ui-input-container">
-	<input [attr.maxlength]="maxlength" [placeholder]="placeholder" [readonly]="readonly" [required]="required"
-	[disabled]="disabled" [type]="type" [value]="value" [name]="name" class="ui-control">
+	<ng-content></ng-content>
 	<label>{{ label }}</label>
 	<div class="line"></div>
 </div>
