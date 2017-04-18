@@ -18,54 +18,54 @@
 	align-items: center;
 	min-height: 48px;
 }
-.ui-input-container > .info {
+.ui-input-container .info {
 	flex: 1;
 }
-.ui-input-container > .action {
+.ui-input-container .action {
 	flex: 0 0 auto;
 }
-.ui-input-container > .ui-control,
-.ui-input-container > ui-chips input {
+.ui-input-container .ui-control,
+.ui-input-container ui-chips input {
 	background-color: transparent;
 	color: rgba(0,0,0,0.9);
 	font-family: Roboto, sans-serif;
 	font-size: 16px;
 }
-.ui-input-container > .ui-control {
+.ui-input-container .ui-control {
 	display: block;
 	border-bottom: 1px solid rgba(0,0,0,0.3);
 	min-height: 32px;
 	width: 100%;
 }
-.ui-input-container > .ui-control.center {
+.ui-input-container .ui-control.center {
 	text-align: center;
 }
-.ui-input-container > .ui-control.right {
+.ui-input-container .ui-control.right {
 	text-align: right;
 }
-.ui-input-container > input.ui-control:read-only,
-.ui-input-container > .ui-control:disabled {
+.ui-input-container input.ui-control:read-only,
+.ui-input-container .ui-control:disabled {
 	border-bottom-style: dotted;
 }
-.ui-input-container > .ui-control:disabled {
+.ui-input-container .ui-control:disabled {
 	color: rgba(0,0,0,.6);
 }
-.ui-input-container > textarea.ui-control {
+.ui-input-container textarea.ui-control {
 	padding: 6px 0;
 	max-width: 100%;
 	max-height: 100px;
 }
-.ui-input-container > textarea.ui-control.resize-horizontal {
+.ui-input-container textarea.ui-control.resize-horizontal {
 	resize: horizontal;
 }
-.ui-input-container > textarea.ui-control.resize-vertical {
+.ui-input-container textarea.ui-control.resize-vertical {
 	resize: vertical;
 }
-.ui-input-container > .ui-control:focus,
+.ui-input-container .ui-control:focus,
 .ui-control.ui-focused {
 	border-color: #2196F3;
 }
-.ui-input-container > label {
+.ui-input-container label {
 	position: absolute;
 	right: 0;
 	color: rgba(0,0,0,0.4);
@@ -75,40 +75,40 @@
 	pointer-events: none;
 	transition: 100ms ease-in-out;
 }
-.ui-input-container > .ui-control ~ label {
+.ui-input-container .ui-control ~ label {
 	top: 16px;
 	left: 0;
 	font-size: 16px;
 	line-height: 32px;
 }
-.ui-input-container > [required] ~ label::after {
+.ui-input-container [required] ~ label::after {
 	content: '*';
 	margin-left: 2px;
 }
-.ui-input-container > [required]:focus ~ label::after {
+.ui-input-container [required]:focus ~ label::after {
 	color: #F44336;
 }
-.ui-input-container > label,
-.ui-input-container > .ui-control:focus ~ label,
+.ui-input-container label,
+.ui-input-container .ui-control:focus ~ label,
 .ui-control.ui-focused ~ label,
-.ui-input-container > .ui-control.ng-not-empty ~ label,
-.ui-input-container > label.keep-float,
-.ui-input-container > ui-option-container ~ label,
-.ui-input-container > ui-chips ~ label {
+.ui-input-container .ui-control.ng-not-empty ~ label,
+.ui-input-container label.keep-float,
+.ui-input-container ui-option-container ~ label,
+.ui-input-container ui-chips ~ label {
 	top: 0;
 	left: 0;
 	font-size: 12px;
 	line-height: 16px;
 }
-.ui-input-container > .ui-control:focus ~ label,
+.ui-input-container .ui-control:focus ~ label,
 .ui-control.ui-focused ~ label {
 	color: #2196F3;
 }
-.ui-input-container > label.required:after {
+.ui-input-container label.required:after {
 	content: '*';
 	margin-left: 2px;
 }
-.ui-input-container > .ui-control:focus ~ label.required:after,
+.ui-input-container .ui-control:focus ~ label.required:after,
 .ui-control.gr-focused ~ label.required:after {
 	color: #F44336;
 }
@@ -122,7 +122,7 @@
 	transform: scaleY(0);
 	transition: 100ms ease-in-out;
 }
-.ui-input-container > .ui-control:not(:disabled):not(:read-only):focus ~ .line,
+.ui-input-container .ui-control:not(:disabled):not(:read-only):focus ~ .line,
 .ui-control.ui-focused:not(:disabled):not(:read-only) ~ .line {
 	transform: scaleY(1);
 }
@@ -185,13 +185,13 @@
 	opacity: 0;
 	transform: translateY(-2px);
 }
-.ui-input-container > .ui-control.teal {
+.ui-input-container .ui-control.teal {
 	border-color: #009688;
 }
-.ui-input-container > .ui-control.teal ~ label {
+.ui-input-container .ui-control.teal ~ label {
 	color: #009688;
 }
-.ui-input-container > .ui-control.teal ~ .line {
+.ui-input-container .ui-control.teal ~ .line {
 	background-color: #009688;
 }
 .ui-input-container .picker {
