@@ -1,0 +1,63 @@
+.ui-fade-translate.ng-enter-prepare,
+.ui-fade-translate.ng-enter {
+    opacity: 0;
+    transform: translate(0,100px);
+    transition: 300ms cubic-bezier(0.18, 0.79, 0.7, 0.97);
+}
+.ui-fade-translate.ng-enter-active {
+    opacity: 1;
+    transform: translate(0,0);
+}
+.ui-animation-container > .ui-fade-translate.ng-enter:not(:only-child) {
+    transition-delay: 300ms;
+}
+.ui-fade-translate.ng-leave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    transform: translate(0,0);
+    transition: 300ms cubic-bezier(0.34, 0.07, 0.9, 0.53);
+}
+.ui-fade-translate.ng-leave-active {
+    opacity: 0;
+    transform: translate(0,100px);
+}
+
+.ui-fade-translate.vertical.ng-enter-prepare,
+.ui-fade-translate.vertical.ng-enter {
+    opacity: 0;
+    transform: translate(-100px,0);
+    transition: 300ms cubic-bezier(0.18, 0.79, 0.7, 0.97);
+}
+.ui-fade-translate.enter-right.ng-enter-prepare,
+.ui-fade-translate.enter-right.ng-enter {
+    transform: translate(100px,0);
+}
+.ui-fade-translate.vertical.ng-enter-active {
+    opacity: 1;
+    transform: translate(0,0);
+}
+.ui-fade-translate.vertical.ng-leave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    transform: translate(0,0);
+    transition: 300ms cubic-bezier(0.34, 0.07, 0.9, 0.53);
+}
+.ui-fade-translate.vertical.ng-leave-active {
+    opacity: 0;
+    transform: translate(-100px,0);
+}
+.ui-fade-translate.leave-right.ng-leave-active {
+    transform: translate(100px,0);
+}
+.ui-fade-translate.ng-enter-prepare .ui-float-container button.float,
+.ui-fade-translate.ng-enter .ui-float-container button.float,
+.ui-fade-translate.ng-leave .ui-float-container button.float{
+    transform: scale(0);
+    transition: none;
+}
