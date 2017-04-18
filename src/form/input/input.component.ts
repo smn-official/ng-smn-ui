@@ -1,22 +1,18 @@
-import { Component, Attribute, ViewChild, ElementRef } from '@angular/core'
+import { Component, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core'
 
 @Component({
 	selector: 'ui-input',
 	template: require('./input.component.html'),
-	styles: [require('./input.component.scss')]
+	styles: [require('./input.component.scss')],
+	encapsulation: ViewEncapsulation.None
 })
 export class inputComponent {
 	@ViewChild('inputContainer') inputContainer: ElementRef;
-	
-	label: string;
 
-	constructor(@Attribute('label') label: string) {
-		this.label = label;
-	}
+	constructor() {}
 	
 	ngAfterViewInit(){
 		let elements = this.inputContainer.nativeElement.querySelectorAll('input, select, textarea')[0];
-		elements.setAttribute('_ngcontent-c1','');
 		elements.setAttribute('class','ui-control');
 	}
 }
