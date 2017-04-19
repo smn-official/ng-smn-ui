@@ -91,7 +91,7 @@
 .ui-input-container label,
 .ui-input-container .ui-control:focus ~ label,
 .ui-control.ui-focused ~ label,
-.ui-input-container .ui-control.ng-not-empty ~ label,
+.ui-input-container .ui-control:not([ng-reflect-model='']) ~ label,
 .ui-input-container label.keep-float,
 .ui-input-container ui-option-container ~ label,
 .ui-input-container ui-chips ~ label {
