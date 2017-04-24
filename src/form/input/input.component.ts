@@ -12,7 +12,6 @@ export class inputComponent {
 	constructor() {}
 	
 	ngAfterViewInit(){
-		let elements = this.inputContainer.nativeElement.querySelectorAll('input, select, textarea')[0];
-		elements.setAttribute('class','ui-control');
+		this.inputContainer.nativeElement.querySelectorAll('input, select, textarea')[0].setAttribute('class','ui-control');
 	}
 }
