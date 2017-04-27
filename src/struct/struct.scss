@@ -1,0 +1,49 @@
+ui-struct {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+ui-struct > .ui-header-placeholder {
+    flex: 0 0 auto;
+}
+ui-pages {
+    position: relative;
+    display: block;
+    flex: 1 0 auto;
+}
+ui-page-cover {
+    display: block;
+    flex: 1 0 auto;
+}
+ui-page {
+    display: block;
+    transition: 300ms ease-in-out;
+}
+ui-page.spaced {
+    padding: 10px;
+}
+ui-page.v-spaced {
+    padding: 10px 0;
+}
+ui-page.h-spaced {
+    padding: 0 10px;
+}
+ui-container {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+ui-container.small {
+    width: 480px;
+}
+@media (min-width: 601px) {
+    ui-page.spaced {
+        padding: 20px;
+    }
+    ui-page.v-spaced {
+        padding: 20px 0;
+    }
+    ui-page.h-spaced {
+        padding: 0 20px;
+    }
+}

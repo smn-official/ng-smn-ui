@@ -55,9 +55,9 @@ ui-card-title {
 	.if-slide.enter-right.ng-enter-active {
 		transform: translateX(0);
 	}
-.if-slide.leave-left.ng-leave {
-	/*transform: translateX(0);*/
-}
+// .if-slide.leave-left.ng-leave {
+// 	/*transform: translateX(0);*/
+// }
 	.if-slide.leave-left.ng-leave-active {
 		transform: translateX(-100vw);
 	}
