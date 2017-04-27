@@ -1,6 +1,6 @@
 {
   "name": "smn-ui-4",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "scripts": {
     "build": "ngc -p tsconfig.json",
     "lint": "tslint --type-check --project tsconfig.json src/**/**/*.ts",
@@ -10,11 +10,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/username/repo"
+    "url": "https://github.com/smn-official/smn-ui-4"
   },
   "author": {
-    "name": "keven silva",
-    "email": "kevenx97ferreira@gmail.com"
+    "name": "kevensilva",
+    "email": "keven@engsolutions.com.br"
   },
   "keywords": [
     "angular"

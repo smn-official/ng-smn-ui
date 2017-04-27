@@ -1,4 +1,4 @@
-# smn-ui-v4
+# smn-ui-4
 
 ## Development
 
@@ -13,7 +13,7 @@ $ npm run tsc
 To install this library, run:
 
 ```bash
-$ npm install smn-ui-v4 --save
+$ npm install smn-ui-4 --save
 ```
 
 ## Consuming your library
@@ -21,7 +21,7 @@ $ npm install smn-ui-v4 --save
 Once you have published your library to npm, you can import your library in any Angular application by running:
 
 ```bash
-$ npm install smn-ui-v4
+$ npm install smn-ui-4
 ```
 
 and then from your Angular `AppModule`:
@@ -33,7 +33,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import your library
-import { SMNUI4Module } from 'smn-ui-v4';
+import { SMNUI4Module } from 'smn-ui-4';
 
 @NgModule({
   declarations: [

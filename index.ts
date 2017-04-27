@@ -23,10 +23,10 @@ export * from './src/filters/date.pipe';
  */
 import { inputComponent } from './src/form/input/input.component';
 export * from './src/form/input/input.component';
-import { ProfileFloatComponent } from './src/components/profile-float/profile-float.component';
-export * from './src/components/profile-float/profile-float.component';
-import { FloatingCardComponent } from './src/components/floating-card/floating-card.component';
-export * from './src/components/floating-card/floating-card.component';
+// import { ProfileFloatComponent } from './src/components/profile-float/profile-float.component';
+// export * from './src/components/profile-float/profile-float.component';
+// import { FloatingCardComponent } from './src/components/floating-card/floating-card.component';
+// export * from './src/components/floating-card/floating-card.component';
 
 @NgModule({
   imports: [
@@ -37,9 +37,9 @@ export * from './src/components/floating-card/floating-card.component';
     AutofocusDirective,
     UnaccentPipe,
     DatePipe,
-    ProfileFloatComponent,
     inputComponent,
-    FloatingCardComponent
+    // ProfileFloatComponent,
+    // FloatingCardComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
@@ -47,9 +47,9 @@ export * from './src/components/floating-card/floating-card.component';
     AutofocusDirective,
     UnaccentPipe,
     DatePipe,
-    ProfileFloatComponent,
     inputComponent,
-    FloatingCardComponent
+    // ProfileFloatComponent,
+    // FloatingCardComponent
   ]
 })
 export class SMNUI4Module {

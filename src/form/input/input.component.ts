@@ -2,8 +2,13 @@ import { Component, ViewChild, ElementRef, ViewEncapsulation } from '@angular/co
 
 @Component({
 	selector: 'ui-input',
-	template: require('./input.component.html'),
-	styles: [require('./input.component.scss')],
+	template: `
+		<div #inputContainer class="ui-input-container">
+			<ng-content></ng-content>
+			<div class="line"></div>
+		</div>
+	`,
+	styles: [require('./input.component.scss').toString()],
 	encapsulation: ViewEncapsulation.None
 })
 export class inputComponent {
