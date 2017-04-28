@@ -28,7 +28,8 @@ and then from your Angular `AppModule`:
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+//sAdd CUSTOM_ELEMENTS_SCHEMA
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
@@ -45,11 +46,46 @@ import { SMNUI4Module } from 'smn-ui-4';
     // Specify your library as an import
     LibraryModule
   ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 ```
+
+<!--package.json:-->
+{
+  "scripts": {
+    ...
+    "install": "typings install"
+  }
+...
+  dependencies: {
+...
+    "typings": "^2.1.0",
+...
+  }
+}
+
+<!--typings.json:-->
+{
+  "globalDependencies": {
+    "typings": "github:t4deon/FHIR-STU3-TS-Typings/typings.d.ts#e36b4cf4bb07734b97ea8d14893f7747fd990438"
+  }
+}
+
+<!--src/tsconfig.app.json:-->
+...
+{
+  "files": [
+    "../typings/index.d.ts"
+  ]
+}
+
+<!--after-->
+npm install
 
 Once your library is imported, you can use its components, directives and pipes in your Angular application:
 
