@@ -95,7 +95,8 @@
 .ui-input-container .ui-control:not([ng-reflect-model='']) ~ label,
 .ui-input-container label.keep-float,
 .ui-input-container ui-option-container ~ label,
-.ui-input-container ui-chips ~ label {
+.ui-input-container ui-chips ~ label,
+.ui-input-container select.ui-control ~ label{
 	top: 0;
 	left: 0;
 	font-size: 12px;
