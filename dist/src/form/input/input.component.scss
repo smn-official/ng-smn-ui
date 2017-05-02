@@ -95,7 +95,8 @@
 .ui-input-container .ui-control:not([ng-reflect-model='']) ~ label,
 .ui-input-container label.keep-float,
 .ui-input-container ui-option-container ~ label,
-.ui-input-container ui-chips ~ label {
+.ui-input-container ui-chips ~ label,
+.ui-input-container select.ui-control ~ label{
 	top: 0;
 	left: 0;
 	font-size: 12px;
@@ -142,49 +143,9 @@
 .ui-input-container .ta-right {
 	text-align: right;
 }
-.ui-input-container ng-messages.error,
-.ui-input-container .messages.error {
+.ui-input-container .error {
 	color: #F44336;
-}
-.ui-input-container:not(.no-margin):not(.no-space) ng-messages > ng-message:first-child,
-.ui-input-container:not(.no-margin):not(.no-space) .messages > .message:first-child {
-	display: block;
-	margin-bottom: -16px;
-}
-.ui-input-container .ui-control:not(:focus) ~ .focus-show,
-.ui-input-container .ui-control:not(:focus) ~ * .focus-show {
-	display: none;
-}
-.ui-input-container .messages.ng-enter-prepare,
-.ui-input-container .messages .message.ng-enter-prepare,
-.ui-input-container ng-messages ng-message.ng-enter-prepare {
-	opacity: 0;
-	transform: translateY(-2px);
-	transition: 200ms ease-in-out;
-}
-.ui-input-container .messages.ng-enter,
-.ui-input-container .messages .message.ng-enter,
-.ui-input-container ng-messages ng-message.ng-enter {
-	opacity: 0;
-	transform: translateY(-2px);
-	transition: 200ms ease-in-out;
-}
-.ui-input-container .messages.ng-enter-active,
-.ui-input-container .messages .message.ng-enter-active,
-.ui-input-container ng-messages ng-message.ng-enter-active {
-	opacity: 1;
-	transform: translateY(0);
-}
-.ui-input-container .messages.ng-leave,
-.ui-input-container .messages .message.ng-leave,
-.ui-input-container ng-messages ng-message.ng-leave {
-	transition: 200ms ease-in-out;
-}
-.ui-input-container .messages.ng-leave-active,
-.ui-input-container .messages .message.ng-leave-active,
-.ui-input-container ng-messages ng-message.ng-leave-active {
-	opacity: 0;
-	transform: translateY(-2px);
+	position: absolute;
 }
 .ui-input-container .ui-control.teal {
 	border-color: #009688;

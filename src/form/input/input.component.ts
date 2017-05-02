@@ -13,10 +13,14 @@ import { Component, ViewChild, ElementRef, ViewEncapsulation } from '@angular/co
 })
 export class inputComponent {
 	@ViewChild('inputContainer') inputContainer: ElementRef;
-
 	constructor() {}
 	
 	ngAfterViewInit(){
-		this.inputContainer.nativeElement.querySelectorAll('input, select, textarea')[0].setAttribute('class','ui-control');
+		let nativeElem = this.inputContainer.nativeElement;
+		let elements = nativeElem.querySelectorAll('input, select, textarea')[0];
+		let elementHas = elements.hasAttribute('ng-reflect-model');
+
+		elements.setAttribute('class','ui-control');
+		elementHas == true ? false : nativeElem.querySelector('.ui-control:not([ng-reflect-model])').setAttribute('ng-reflect-model','');
 	}
 }
