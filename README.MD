@@ -53,7 +53,6 @@ import { SMNUI4Module } from 'smn-ui-4';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-```
 
 <!--package.json:-->
 {
@@ -83,9 +82,9 @@ export class AppModule { }
     "../typings/index.d.ts"
   ]
 }
+```
 
-<!--after-->
-npm install
+After: npm install
 
 Once your library is imported, you can use its components, directives and pipes in your Angular application:
 
