@@ -1,3 +1,5 @@
+$blue: #2196F3;
+
 .ui-input-container {
 	position: relative;
 	display: block;
@@ -63,7 +65,7 @@
 }
 .ui-input-container .ui-control:focus,
 .ui-control.ui-focused {
-	border-color: #2196F3;
+	border-color: $blue;
 }
 .ui-input-container label {
 	position: absolute;
@@ -104,7 +106,7 @@
 }
 .ui-input-container .ui-control:focus ~ label,
 .ui-control.ui-focused ~ label {
-	color: #2196F3;
+	color: $blue;
 }
 .ui-input-container label.required:after {
 	content: '*';
@@ -117,7 +119,7 @@
 .ui-input-container .line {
 	position: absolute;
 	height: 2px;
-	background-color: #2196F3;
+	background-color: $blue;
 	left: 0;
 	right: 0;
 	margin-top: -1px;
@@ -146,9 +148,19 @@
 .ui-input-container .error {
 	color: #F44336;
 	position: absolute;
+	font-size: 14px;
+}
+.ui-input-container .ui-control.ng-invalid.ng-touched{
+	border-color: #F44336;
 }
 .ui-input-container .ui-control.teal {
 	border-color: #009688;
+}
+.ui-control.ng-invalid.ng-dirty  ~ label, .ui-control.ng-touched.ng-invalid ~ label{
+	color: #F44336!important;
+}
+.ui-control.ng-invalid.ng-dirty ~ .line, .ui-control.ng-touched.ng-invalid ~ .line{
+	background-color: #F44336!important;
 }
 .ui-input-container .ui-control.teal ~ label {
 	color: #009688;

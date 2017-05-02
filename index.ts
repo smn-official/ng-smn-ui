@@ -23,6 +23,8 @@ export * from './src/filters/date.pipe';
  */
 import { inputComponent } from './src/form/input/input.component';
 export * from './src/form/input/input.component';
+import { optionComponent } from './src/form/option/option.component';
+export * from './src/form//option/option.component';
 // import { ProfileFloatComponent } from './src/components/profile-float/profile-float.component';
 // export * from './src/components/profile-float/profile-float.component';
 // import { FloatingCardComponent } from './src/components/floating-card/floating-card.component';
@@ -38,6 +40,7 @@ export * from './src/form/input/input.component';
     UnaccentPipe,
     DatePipe,
     inputComponent,
+    optionComponent
     // ProfileFloatComponent,
     // FloatingCardComponent
   ],
@@ -48,6 +51,7 @@ export * from './src/form/input/input.component';
     UnaccentPipe,
     DatePipe,
     inputComponent,
+    optionComponent
     // ProfileFloatComponent,
     // FloatingCardComponent
   ]
