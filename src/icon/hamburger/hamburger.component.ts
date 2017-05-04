@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-	selector: 'ui-hamburguer',
+	selector: 'ui-hamburger',
 	template: `
 		<button [class.dark]='!animated' (click)="animate()" class="xsmall icon ui-button">
 			<div [class.back]='animated' class="ui-hamburger-icon">

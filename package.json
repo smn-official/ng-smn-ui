@@ -1,6 +1,6 @@
 {
   "name": "smn-ui-4",
-  "version": "0.2.7",
+  "version": "0.2.9",
   "scripts": {
     "build": "ngc -p tsconfig.json",
     "lint": "tslint --type-check --project tsconfig.json src/**/**/*.ts",
