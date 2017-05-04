@@ -34,10 +34,6 @@ button.dark .ui-hamburger-icon .bar,
 	transform: translateY(12px);
 }
 
-.ui-hamburger-icon.back{
-	transform: rotate(180deg)
-}
-
 .ui-hamburger-icon.back .bar:nth-child(1) {
 	width: 80%;
 	transform: translateY(7.5px) rotate(45deg);
