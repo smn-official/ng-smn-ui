@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
 	template: `
 		<ui-menu-item
 			[item]="item"
-			[list]="item.opcoesFilhas"
+			[list]="item"
 			[level]="level"
 			[is-open]="isOpen"
 			[class.is-open]="isOpen"
@@ -24,6 +24,5 @@ export class menuListComponent {
 
 	ngOnInit() {
 		this.level = this.parentLevel + 1;
-		console.log(this.list.nomeOpcao)
 	}
 }
