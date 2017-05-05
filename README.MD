@@ -5,7 +5,7 @@
 ## What is SMN UI 4?
 
 ![Logo](http://i.imgur.com/ivOg3Us.jpg "Exemplo UI")  
-It´s not only a beautiful framework CSS for Angular 4 + like Materialize.  
+It´s not only a beautiful framework CSS for Angular 4 + based on Material Design.  
 Contains too so many components, directives and more.  
 
 ### Code Example:
