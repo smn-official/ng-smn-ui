@@ -1,5 +1,44 @@
 # smn-ui-4
 
+## What is SMN UI 4?
+
+![Logo](http://i.imgur.com/ivOg3Us.jpg "Exemplo UI")  
+It´s not only a beautiful framework CSS for Angular 2+ like Materialize.  
+Contains too so many components, directives and more.  
+
+### Code Example:
+``` Example code to do this:  
+<ui-page class="ui-flex center">
+	<ui-translate-x>
+		<ui-container class="flex-none">
+			<img src="your logo here" alt="logo">
+			<ui-card>
+				<ui-card-title class="ui-title card dense">Efetue seu login</ui-card-title>
+				<ui-card-content>
+					<form (ngSubmit)="login(usuario)" #registerLogin="ngForm">
+						<ui-input>
+							<input ui-autofocus id="nome" [(ngModel)]="usuario.nome" type="text" name="nome" required>
+							<label>Usuário</label>
+						</ui-input>
+						<ui-input>
+							<input id="senha" [(ngModel)]="usuario.senha" type="password" name="senha" required>
+							<label>Senha</label>
+						</ui-input>
+						<div class="ui-button-container">
+							<button [disabled]="!usuario.nome || !usuario.senha" class="ui-button fill full primary raised">Conectar</button>
+						</div>
+					</form>
+				</ui-card-content>
+			</ui-card>
+		</ui-container>
+	</ui-translate-x>
+</ui-page>
+``` 
+
+## Documentation
+
+Work in progress...
+
 ## Development
 
 To distribute the source use this following command:
