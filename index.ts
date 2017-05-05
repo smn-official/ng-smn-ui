@@ -20,7 +20,6 @@ import { DatePipe } from './src/filters/date.pipe';
 export * from './src/filters/date.pipe';
 
 
-
 /**
  * Component
  */
@@ -29,8 +28,10 @@ export * from './src/form/input/input.component';
 import { optionComponent } from './src/form/option/option.component';
 export * from './src/form//option/option.component';
 import { translateComponent } from './src/animations/translate.component';
-// export * from './src/animations/translate.component';
 import { hamburgerComponent } from './src/icon/hamburger/hamburger.component';
+import { mainMenuComponent } from './src/struct/main-menu/main-menu.component';
+import { menuListComponent } from './src/struct/main-menu/menu-list/menu-list.component';
+import { menuItemComponent } from './src/struct/main-menu/menu-item/menu-item.component';
 // export * from './src/icon/hamburger/hamburger.component';
 // import { ProfileFloatComponent } from './src/components/profile-float/profile-float.component';
 // export * from './src/components/profile-float/profile-float.component';
@@ -50,7 +51,10 @@ import { hamburgerComponent } from './src/icon/hamburger/hamburger.component';
     inputComponent,
     optionComponent,
     translateComponent,
-    hamburgerComponent
+    hamburgerComponent,
+    mainMenuComponent,
+    menuListComponent,
+    menuItemComponent
     // ProfileFloatComponent,
     // FloatingCardComponent
   ],
@@ -63,7 +67,10 @@ import { hamburgerComponent } from './src/icon/hamburger/hamburger.component';
     inputComponent,
     optionComponent,
     translateComponent,
-    hamburgerComponent
+    hamburgerComponent,
+    mainMenuComponent,
+    menuListComponent,
+    menuItemComponent
     // ProfileFloatComponent,
     // FloatingCardComponent
   ]
