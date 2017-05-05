@@ -1,8 +1,8 @@
-# SMN UI 4  
 <img src="https://david-dm.org/smn-official/smn-ui-4.svg" alt="Dependency Status">
-<img src="https://david-dm.org/smn-official/smn-ui-4/dev-status.svg" alt="Dev Dependency Status">  
--------------------------------------
-## What is SMN UI 4?
+<img src="https://david-dm.org/smn-official/smn-ui-4/dev-status.svg" alt="Dev Dependency Status">   
+
+# SMN UI 4   
+## What is SMN UI 4? 
 
 ![Logo](http://i.imgur.com/ivOg3Us.jpg "Exemplo UI")  
 It´s not only a beautiful framework CSS for Angular 4 + based on Material Design.  
