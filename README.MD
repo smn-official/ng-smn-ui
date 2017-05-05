@@ -1,7 +1,7 @@
+# SMN UI 4  
 <img src="https://david-dm.org/smn-official/smn-ui-4.svg" alt="Dependency Status"></a>
-<img src="https://david-dm.org/smn-official/smn-ui-4/dev-status.svg" alt="Dev Dependency Status">   
-# SMN UI 4
-
+<img src="https://david-dm.org/smn-official/smn-ui-4/dev-status.svg" alt="Dev Dependency Status">  
+-------------------------------------
 ## What is SMN UI 4?
 
 ![Logo](http://i.imgur.com/ivOg3Us.jpg "Exemplo UI")  
