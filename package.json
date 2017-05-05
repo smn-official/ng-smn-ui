@@ -1,6 +1,6 @@
 {
   "name": "smn-ui-4",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "An angular 4 + module with CSS framework like Material Design, components, directives and more",
   "scripts": {
     "build": "ngc -p tsconfig.json",
