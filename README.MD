@@ -5,8 +5,8 @@
 ## What is SMN UI 4? 
 
 ![Logo](http://i.imgur.com/ivOg3Us.jpg "Exemplo UI")  
-It´s not only a beautiful framework CSS for Angular 4 + based on Material Design.  
-Contains too so many components, directives and more.  
+It´s not only a beautiful Material Design CSS framework based for Angular 4 +   
+Contains so many components too, like directives and more.  
 
 ### Code Example:
 ``` Example code to do this:  
@@ -43,7 +43,7 @@ Work in progress...
 
 ## Development
 
-To distribute the source use this following command:
+To distribute the source type the following command::
 
 ```bash
 $ npm run tsc
