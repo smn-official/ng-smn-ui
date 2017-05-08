@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 
 @Component({
 	selector: 'ui-main-menu',
@@ -9,16 +9,21 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 			[parent-level]="level">
 		</ui-menu-list>
 	`,
-	styles: [require('./main-menu.component.scss').toString()]
+	styles: [require('./main-menu.component.scss').toString()],
+	encapsulation: ViewEncapsulation.None
 })
 
 export class mainMenuComponent {
 	@Input('menu-list') menuList: any = '';
-	@Output() menuClick = new EventEmitter();
 
 	level: any = 0;
 
 	constructor() {}
+
+	ngOnInit() {
+		this.menuList = this.iteratePristineMenu(this.menuList);
+		console.log(this.menuList);
+	}
 
 	public iteratePristineMenu(allItems: any): any {
 		allItems.sort((a: any, b: any) => {
@@ -51,10 +56,5 @@ export class mainMenuComponent {
 		return [list, remainingList];
 	}
 
-	ngOnInit() {
-		console.log(this.menuList, "ERROU");
-		this.menuList = this.iteratePristineMenu(this.menuList);
-		console.log(this.menuList, "ORDENOU");
-	}
 
 }

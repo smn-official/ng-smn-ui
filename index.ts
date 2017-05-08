@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -41,7 +42,8 @@ import { menuItemComponent } from './src/struct/main-menu/menu-item/menu-item.co
 @NgModule({
   imports: [
     CommonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule
   ],
   declarations: [
     PerceptiveDirective,

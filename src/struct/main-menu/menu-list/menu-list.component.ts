@@ -1,28 +1,34 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
 	selector: 'ui-menu-list',
 	template: `
-		<ui-menu-item
+		<ui-menu-item (isOpen)="MenuEvent($event)"
 			[item]="item"
-			[list]="item"
+			[list]="item.opcoesFilhas"
 			[level]="level"
-			[is-open]="isOpen"
-			[class.is-open]="isOpen"
-			*ngFor="let item of list">{{item.nomeOpcao}}</ui-menu-item>
+			[class.is-open]="isOpened"
+			*ngFor="let item of list"></ui-menu-item>
 	`,
 	styles: [require('./menu-list.component.scss').toString()],
+	encapsulation: ViewEncapsulation.None
 })
 
 export class menuListComponent {
 	@Input() list: any = '';
-	@Input() parentLevel: any = '';;
+	@Input() parentLevel: any = '';
 
 	level: any;
+	item: any;
+	isOpened: boolean;
 
-	constructor() { }
+	constructor() {}
 
 	ngOnInit() {
 		this.level = this.parentLevel + 1;
+	}
+
+	MenuEvent(event: any){
+		this.isOpened = event.menuOpened;
 	}
 }

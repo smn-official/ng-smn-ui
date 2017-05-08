@@ -1,31 +1,40 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'ui-menu-item',
 	template: `
 		<div class="item-wrap">
+			<a [ngClass]="{'has-submenu': item.opcoesFilhas}" (click)="item.opcoesFilhas ? openMenu() : openLink()">
+				<i class="material-icons option-icon"
+					[ngClass]="{'arrow-drop': item.opcoesFilhas}"
+					*ngIf="item.opcoesFilhas">
+					arrow_drop_down
+				</i>
+				{{item.nomeOpcao}}
+			</a>
 		</div>
+		<ui-menu-list *ngIf="list && isOpened" class="drawer-slide-vertical" [list]="list" [parent-level]="level"></ui-menu-list>
 	`,
-	styles: [require('./menu-item.component.scss').toString()]
+	styles: [require('./menu-item.component.scss').toString()],
+	encapsulation: ViewEncapsulation.None,
 })
-			// <a [href]="{{item[config.href] || ''}}" [ngClass]="{'has-submenu': item[config.submenu]}" (click)="item[config.submenu] ? openMenu() : (item[config.href] && menuClick())">
-			// 	<i class="material-icons option-icon"
-			// 		[ngClass]="{'arrow-drop': item[config.submenu]}"
-			// 		*ngIf="item[config.submenu] || item[config.icon]">
-			// 		{{item[config.icon] || 'arrow_drop_down'}}
-			// 	</i>
-			// 	{{item[config.name]}}
-			// </a>
 
-export class menuItemComponent{
+export class menuItemComponent {
 	@Input() item: any;
 	@Input() list: any;
 	@Input() level: any;
-	@Input() isOpen: any;
+	@Output() isOpen = new EventEmitter();
 
-	constructor(){}
+	isOpened: boolean = false;
 
-	ngOnInit(){
-		this.isOpen = false
+	constructor(private router: Router) { }
+
+	openMenu() {
+		if (this.item.opcoesFilhas) this.isOpened = !this.isOpened;
+		this.isOpen.emit({ menuOpened: this.isOpened });
+	}
+	openLink(){
+		this.router.navigate(['/', this.item.url]);
 	}
 }

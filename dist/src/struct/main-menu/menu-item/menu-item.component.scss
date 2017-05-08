@@ -29,16 +29,13 @@ ui-menu-item {
         color: rgba(0,0,0,0.9);
         opacity: 0.7;
         transition: 200ms ease-in-out;
+		opacity: 1;
+		cursor: pointer;
     }
     ui-menu-item > .item-wrap a:link {
         text-decoration: none;
     }
-		ui-menu-item > .item-wrap a:link,
-		ui-menu-item > .item-wrap a.has-submenu {
-			opacity: 1;
-			cursor: pointer;
-		}
-	ui-menu-item:not(.is-open) > .item-wrap a:link:hover,
+	ui-menu-item:not(.is-open) > .item-wrap a:hover,
 	ui-menu-item:not(.is-open) > .item-wrap a.has-submenu:hover {
 		background-color: rgba(0,0,0,0.05);
 	}
@@ -58,9 +55,9 @@ ui-menu-item {
 	ui-menu-item > .item-wrap .arrow-drop {
 		transform: rotate(-90deg);
 	}
-		ui-menu-item.is-open > .item-wrap .arrow-drop {
-			transform: rotate(0);
-		}
+	ui-menu-item.is-open > .item-wrap .arrow-drop {
+		transform: rotate(0);
+	}
 ui-menu-item.is-open {
 	margin: 5px 10px 10px;
 	border-radius: 2px;
