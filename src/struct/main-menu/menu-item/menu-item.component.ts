@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 				{{item.nomeOpcao}}
 			</a>
 		</div>
-		<ui-menu-list *ngIf="list && isOpened" class="drawer-slide-vertical" [list]="list" [parent-level]="level"></ui-menu-list>
+		<ui-menu-list [style.height]="list && isOpened ? 'auto' : '0'"  class="drawer-slide-vertical" [list]="list" [parent-level]="level"></ui-menu-list>
 	`,
 	styles: [require('./menu-item.component.scss').toString()],
 	encapsulation: ViewEncapsulation.None,
@@ -30,7 +30,7 @@ export class menuItemComponent {
 
 	constructor(private router: Router) { }
 
-	openMenu() {
+	openMenu(event: any) {
 		if (this.item.opcoesFilhas) this.isOpened = !this.isOpened;
 		this.isOpen.emit({ menuOpened: this.isOpened });
 	}

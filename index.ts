@@ -29,7 +29,6 @@ export * from './src/form/input/input.component';
 import { optionComponent } from './src/form/option/option.component';
 export * from './src/form//option/option.component';
 import { translateComponent } from './src/animations/translate.component';
-import { hamburgerComponent } from './src/icon/hamburger/hamburger.component';
 import { mainMenuComponent } from './src/struct/main-menu/main-menu.component';
 import { menuListComponent } from './src/struct/main-menu/menu-list/menu-list.component';
 import { menuItemComponent } from './src/struct/main-menu/menu-item/menu-item.component';
@@ -53,7 +52,6 @@ import { menuItemComponent } from './src/struct/main-menu/menu-item/menu-item.co
     inputComponent,
     optionComponent,
     translateComponent,
-    hamburgerComponent,
     mainMenuComponent,
     menuListComponent,
     menuItemComponent
@@ -69,7 +67,6 @@ import { menuItemComponent } from './src/struct/main-menu/menu-item/menu-item.co
     inputComponent,
     optionComponent,
     translateComponent,
-    hamburgerComponent,
     mainMenuComponent,
     menuListComponent,
     menuItemComponent

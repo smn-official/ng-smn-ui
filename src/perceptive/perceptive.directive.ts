@@ -17,9 +17,10 @@ export class PerceptiveDirective {
             console.info(`########################################################################
             \n(SMNUI4) Ajuda [ui-perceptive]
             \nAtributos disponíveis: 
-            \n(primarycolor) - Cor primária
-            \n(secondarycolor) - Cor secundária
-            \n(backcolor) - Usar somente em caso de preenchimento de divs
+            \n(ui-perceptive): color[hexadecimal], float - Cor do background [Comparação] | Porcentagem
+            \n(primarycolor): color[name] - Cor primária
+            \n(secondarycolor): color[name] - Cor secundária
+            \n(backcolor): boolean - Usar somente em caso de preenchimento de divs
             \nConsulte a documentação detalhada em: http://smnui.smn.com.br
             \n########################################################################`);
         }
@@ -32,11 +33,13 @@ export class PerceptiveDirective {
             console.error(`(SMNUI4) Erro na quantidade de atributos - (Defina Hexadecimal, porcentagem [Opcional]) (${split.length}) [Diretiva Perceptive]`);
             return;
         }
-        this.render.setElementStyle(this.el.nativeElement, ((backcolor == null || backcolor == "false") ? 'color' : 'background-color'), this.getColor(split[0], split[1], primarycolor, secondarycolor));
+        this.render.setElementStyle(this.el.nativeElement, 'color', this.getColor(split[0], split[1], secondarycolor, primarycolor));
+        if (backcolor)
+            this.render.setElementStyle(this.el.nativeElement, 'background-color', split[0]);
     }
 
     private getColor(hex: any, minDarkPerc: any, primarycolor: string, secondarycolor: string): string {
-        return this.isBright(hex, minDarkPerc) ? (primarycolor || 'white') : (secondarycolor || 'black');
+        return this.isBright(hex, minDarkPerc) ? (primarycolor || 'black') : (secondarycolor || 'white');
     }
     private isBright(hex: any, minDarkPerc: any): any {
         let color = this.hexToRgb(hex);
