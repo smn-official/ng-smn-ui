@@ -20,9 +20,8 @@ export class mainMenuComponent {
 
 	constructor() {}
 
-	ngOnInit() {
+	ngOnInit(){
 		this.menuList = this.iteratePristineMenu(this.menuList);
-		console.log(this.menuList);
 	}
 
 	public iteratePristineMenu(allItems: any): any {

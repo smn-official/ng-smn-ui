@@ -1,0 +1,119 @@
+ui-menu-context {
+	position: absolute;
+	display: block;
+	width: 0;
+	height: 0;
+    top: 7px;
+    right: 7px;
+	font-size: 14px;
+	background-color: white;
+	box-shadow: 0 8px 16px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.15);
+	border-radius: 2px;
+	overflow: hidden;
+	transition: 200ms ease-in-out;
+	user-select: none;
+	z-index: 2000;
+	transform-origin: top right;
+}
+ui-menu-context.open{
+	width: 220px;
+	height: 98px;
+}
+ui-menu-context.open .ui-menu-wrapper{
+	transform: translate(0px, 0px);
+}
+	.user-image{
+		position: absolute;
+		top: 10px;
+		right: 15px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 20px;
+		color: #37474F;
+		width: 36px;
+		height: 36px;
+		background-color: white;
+		border-radius: 50%;
+		background-size: cover;
+		background-position: center;
+	}
+
+	.background-context{
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1999;
+	}
+
+	ui-menu-context .info{
+		padding: 11px 60px 7px 12px;
+	}
+
+	ui-menu-context ul {
+		flex: 1;
+		padding: 5px 0;
+	}
+		ui-menu-context ul + ul {
+			border-top: 1px solid rgba(0,0,0,0.1);
+		}
+	ui-menu-context li, ui-menu-context a {
+		display: flex;
+		align-items: center;
+	}
+	ui-menu-context a {
+		flex: 1;
+		padding-right: 12px;
+		color: rgba(0,0,0,0.4);
+		transition: 300ms ease-in-out;
+	}
+        ui-menu-context .ui-menu-wrapper a {
+			display: flex;
+			justify-content: flex-end;
+            text-decoration: none;
+            cursor: default;
+        }
+		ui-menu-context a, ui-menu-context a.action {
+			cursor: pointer;
+		}
+		ui-menu-context a:link:hover, ui-menu-context a.action:hover {
+			background-color: rgba(0,0,0,0.1);
+			text-decoration: none;
+		}
+		ui-menu-context a, ui-menu-context a:visited, ui-menu-context a.action {
+			color: rgba(0,0,0,0.8);
+			text-decoration: none;
+		}
+		ui-menu-context a > i {
+			margin: 6px;
+		}
+	ui-menu-context li > div {
+		color: rgba(0,0,0,0.7);
+		flex: 1 0 auto;
+		display: flex;
+		padding: 2px;
+		align-items: center;
+		cursor: default;
+	}
+        ui-menu-context.clickable li > div:hover,
+        ui-menu-context li.clickable > div:hover {
+			background-color: rgba(0,0,0,0.1);
+		}
+	ui-menu-context i {
+		display: flex;
+		margin: 4px;
+		margin-right: 8px;
+	}
+	ui-menu-context .ui-menu-wrapper {
+		width: 100%;
+		text-align: right;
+		white-space: nowrap;
+		transform: translate(150px, -80px);
+		transition: 200ms ease;
+	}
+    ui-menu-context .title {
+        color: rgba(0,0,0,0.7);
+        padding: 10px;
+    }

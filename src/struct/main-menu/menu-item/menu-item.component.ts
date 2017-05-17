@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 	encapsulation: ViewEncapsulation.None,
 })
 
-export class menuItemComponent {
+export class MenuItemComponent {
 	@Input() item: any;
 	@Input() list: any;
 	@Input() level: any;
@@ -30,11 +30,34 @@ export class menuItemComponent {
 
 	constructor(private router: Router) { }
 
+	ngAfterContentChecked() {
+		document.getElementById('menuActive').addEventListener('click', this.renderMenu);
+		document.getElementsByTagName('ui-drawer-background')[0].addEventListener('click', this.renderMenu);
+	}
+
+	renderMenu(){
+		let uiDrawer = document.getElementsByTagName('ui-drawer')[0];
+
+		if(uiDrawer.classList.contains('open')){
+			uiDrawer.classList.remove('open');
+			document.getElementById('menuActive').classList.add('dark');
+			document.querySelector('#menuActive div').classList.remove('back');
+			document.getElementsByTagName('ui-drawer-background')[0].classList.remove('show');
+		}
+		else{
+			uiDrawer.classList.add('open');
+			document.getElementById('menuActive').classList.remove('dark');
+			document.querySelector('#menuActive div').classList.add('back');
+			document.getElementsByTagName('ui-drawer-background')[0].classList.add('show');
+		}
+	}
+
 	openMenu(event: any) {
 		if (this.item.opcoesFilhas) this.isOpened = !this.isOpened;
 		this.isOpen.emit({ menuOpened: this.isOpened });
 	}
 	openLink(){
-		this.router.navigate(['/', this.item.url]);
+		// this.router.navigate(['/', this.item.url]);
+		this.renderMenu();
 	}
 }

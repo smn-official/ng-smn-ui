@@ -65,6 +65,22 @@ Once you have published your library to npm, you can import your library in any 
 $ npm install smn-ui-4
 ```
 
+```bash
+$ npm install @types/node --save
+```
+
+```bash
+$ npm install typings --global
+```
+
+```bash
+$ typings install
+```
+
+```bash
+npm install
+```
+
 and then from your Angular `AppModule`:
 
 ```typescript
@@ -124,8 +140,6 @@ export class AppModule { }
   ]
 }
 ```
-
-After: npm install
 
 Once your library is imported, you can use its components, directives and pipes in your Angular application:
 
