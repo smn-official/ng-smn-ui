@@ -1,27 +1,17 @@
-import { Component, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core'
+import { Component, ViewChild, ElementRef, ViewEncapsulation, AfterViewInit } from '@angular/core';
 
 @Component({
 	selector: 'ui-option',
-	template: `
-        <label #labelOptions>
-            <ng-content select="input"></ng-content>
-            <div class="ui-option-shell">
-                <div class="ui-option-fill"></div>
-                <div class="ui-option-mark"></div>
-            </div>
-            <ng-content select="span"></ng-content>
-        </label>
-	`,
-	styles: [require('./option.component.scss').toString()],
+	templateUrl: './option.component.html',
+	styleUrls: ['./option.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class optionComponent {
+export class optionComponent implements AfterViewInit {
 	@ViewChild('labelOptions') labelOptions: ElementRef;
 
 	constructor() {}
-	
-	ngAfterViewInit(){
-		this.labelOptions.nativeElement.querySelector('input').setAttribute('class','ui-control');
-	}
 
+	ngAfterViewInit() {
+		this.labelOptions.nativeElement.querySelector('input').setAttribute('class' , 'ui-control');
+	}
 }

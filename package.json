@@ -1,64 +1,47 @@
 {
   "name": "smn-ui-4",
-  "version": "0.4.3",
-  "description": "An angular 4 + module with Material Design CSS framework based, components, directives and more",
+  "version": "0.4.5",
   "scripts": {
-    "build": "ngc -p tsconfig.json",
-    "lint": "tslint --type-check --project tsconfig.json src/**/**/*.ts",
-    "test": "tsc && karma start",
-    "prepublish": "tsc",
-    "tsc": "tsc"
+    "build": "gulp build",
+    "build:watch": "gulp",
+    "docs": "npm run docs:build",
+    "docs:build": "compodoc -p tsconfig.json -n new-smn-ui-4 -d docs --hideGenerator",
+    "docs:serve": "npm run docs:build -- -s",
+    "docs:watch": "npm run docs:build -- -s -w",
+    "lint": "tslint --type-check --project tsconfig.json src/**/*.ts",
+    "test": "tsc && karma start"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/smn-official/smn-ui-4"
   },
   "author": {
-    "name": "kevensilva",
-    "email": "keven@engsolutions.com.br"
+    "name": "keven",
+    "email": "kevenx97ferreira@gmail.com"
   },
   "keywords": [
-    "angular",
-    "angular2",
-    "angular4",
-    "angularjs",
-    "material design",
-    "angular-4",
-    "angular 4",
-    "angular js",
-    "angular module",
-    "smn",
-    "smn-ui"
+    "angular"
   ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/smn-official/smn-ui-4/issues"
   },
-  "main": "./dist/index.js",
-  "dependencies": {
-    "@angular/animations": "^4.1.0",
-    "@angular/router": "^4.1.1"
-  },
   "devDependencies": {
-    "@angular/cli": "^1.0.0",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
     "@angular/compiler-cli": "^4.0.0",
     "@angular/core": "^4.0.0",
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
+    "@compodoc/compodoc": "^1.0.0-beta.7",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
-    "babel-core": "^6.24.1",
-    "babel-loader": "^7.0.0",
-    "babel-preset-es2015": "^6.24.1",
     "codelyzer": "~2.0.0",
     "core-js": "^2.4.1",
-    "css-loader": "^0.28.0",
-    "css-to-string-loader": "^0.1.2",
-    "extract-text-webpack-plugin": "^2.1.0",
-    "gulp-sass": "^3.1.0",
-    "gulp-uglify": "^2.1.2",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-rollup": "^2.11.0",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
     "karma": "~1.4.1",
@@ -68,11 +51,11 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "node-sass": "^4.5.2",
+    "node-watch": "^0.5.2",
     "protractor": "~5.1.0",
-    "raw-loader": "^0.5.1",
+    "rollup": "^0.41.6",
+    "run-sequence": "^1.2.2",
     "rxjs": "^5.1.0",
-    "sass-loader": "^6.0.3",
-    "style-loader": "^0.16.1",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
     "typescript": "~2.2.0",

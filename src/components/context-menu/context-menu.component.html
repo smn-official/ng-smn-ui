@@ -1,0 +1,16 @@
+<div class="ui-menu-wrapper">
+	<div class="menu-user">
+		<div *ngIf="imgContext.length > 0" [ui-perceptive]="imgContextColor" backcolor="true" class="user-image">{{ imgContext }}</div>
+		<div *ngIf="usuarioContext.length > 0 || emailContext.length > 0" class="info">
+			<div class="primary">{{ usuarioContext }}</div>
+			<div class="secondary">{{ emailContext }}</div>
+		</div>
+		<ul class="content">
+			<li ng-click="vm.logoff()">
+				<a (click)="removeContext()" routerLink="login">
+					Sair <i class="material-icons">power_settings_new</i>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

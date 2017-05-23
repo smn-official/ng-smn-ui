@@ -1,0 +1,26 @@
+{
+  "name": "smn-ui-4",
+  "version": "0.4.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smn-official/smn-ui-4"
+  },
+  "author": {
+    "name": "keven",
+    "email": "kevenx97ferreira@gmail.com"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smn-official/smn-ui-4/issues"
+  },
+  "module": "new-smn-ui-4.js",
+  "typings": "new-smn-ui-4.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^4.0.0",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  }
+}

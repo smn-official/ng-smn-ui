@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
@@ -21,12 +21,12 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 	]
 })
 
-export class translateComponent{
+export class translateComponent implements AfterViewInit{
 	state: string = 'hide';
 
 	constructor() {}
 
-	ngAfterViewInit(){
+	ngAfterViewInit() {
 		this.state = 'show';
 	}
 }

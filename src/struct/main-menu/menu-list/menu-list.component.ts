@@ -1,20 +1,13 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'ui-menu-list',
-	template: `
-		<ui-menu-item (isOpen)="MenuEvent($event)"
-			[item]="item"
-			[list]="item.opcoesFilhas"
-			[level]="level"
-			[class.is-open]="isOpened"
-			*ngFor="let item of list"></ui-menu-item>
-	`,
-	styles: [require('./menu-list.component.scss').toString()],
+	templateUrl: 'menu-list.component.html',
+	styleUrls: ['./menu-list.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
 
-export class menuListComponent {
+export class MenuListComponent implements OnInit {
 	@Input() list: any = '';
 	@Input() parentLevel: any = '';
 

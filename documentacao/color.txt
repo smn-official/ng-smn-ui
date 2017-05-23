@@ -1,8 +1,0 @@
-Diretiva - >
-     /**
-     * @param appColor [Hex, porcentagem?]
-     * Caso informado um paramêtro [hexToRgb]
-     * Caso informado dois oaramêtros [isBright] 
-     */
-
-selector: '[appColor]'
