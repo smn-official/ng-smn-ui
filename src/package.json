@@ -1,23 +1,34 @@
 {
-  "name": "smn-ui-4",
-  "version": "0.4.3",
+  "name": "ng-smn-ui",
+  "version": "0.2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/smn-official/smn-ui-4"
+    "url": "https://github.com/smn-official/ng-smn-ui"
   },
   "author": {
     "name": "keven",
-    "email": "kevenx97ferreira@gmail.com"
+    "email": "keven@smn.com.br"
   },
   "keywords": [
-    "angular"
+    "angular",
+    "angular2",
+    "angular4",
+    "angularjs",
+    "material design",
+    "angular-4",
+    "angular 4",
+    "angular js",
+    "angular module",
+    "smn",
+    "smn-ui",
+    "ng-smn-ui"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/smn-official/smn-ui-4/issues"
+    "url": "https://github.com/smn-official/ng-smn-ui/issues"
   },
-  "module": "new-smn-ui-4.js",
-  "typings": "new-smn-ui-4.d.ts",
+  "module": "ng-smn-ui.js",
+  "typings": "ng-smn-ui.d.ts",
   "peerDependencies": {
     "@angular/core": "^4.0.0",
     "rxjs": "^5.1.0",

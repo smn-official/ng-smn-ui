@@ -1,31 +1,26 @@
-# new-smn-ui-4
+# ng-smn-ui
 
 ## Installation
 
 To install this library, run:
 
-```bash
-$ npm install new-smn-ui-4 --save
-```
-
-## Consuming your library
-
-Once you have published your library to npm, you can import your library in any Angular application by running:
+![imagem](https://media.giphy.com/media/xUPGcFIDwBKquFBSgw/giphy.gif)
 
 ```bash
-$ npm install new-smn-ui-4
+$ npm install ng-smn-ui --save
 ```
 
 and then from your Angular `AppModule`:
 
-```typescript
+```javascript
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+// Import CUSTOM_ELEMENTS_SCHEMA
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
 // Import your library
-import { SampleModule } from 'new-smn-ui-4';
+import { SMNUIModule } from 'ng-smn-ui';
 
 @NgModule({
   declarations: [
@@ -35,12 +30,29 @@ import { SampleModule } from 'new-smn-ui-4';
     BrowserModule,
 
     // Specify your library as an import
+    SMNUIModule
+    //
     LibraryModule
+  ],
+  // Add schemas
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+```
+and then from your Angular `angular-cli.json`:
+
+```javascript
+
+"styles": [
+  "styles.scss",
+  //Import style here
+  "../node_modules/ng-smn-ui/style.min.scss"
+],
+
 ```
 
 Once your library is imported, you can use its components, directives and pipes in your Angular application:
@@ -50,7 +62,11 @@ Once your library is imported, you can use its components, directives and pipes 
 <h1>
   {{title}}
 </h1>
-<sampleComponent></sampleComponent>
+
+<ui-input>
+  <input type="text">
+  <label>SMN-UI</label>
+</ui-input>
 ```
 
 ## Development
@@ -69,4 +85,4 @@ $ npm run lint
 
 ## License
 
-MIT © [keven](mailto:kevenx97ferreira@gmail.com)
+MIT © [keven](mailto:keven@smn.com.br)

@@ -21,7 +21,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 	]
 })
 
-export class translateComponent implements AfterViewInit{
+export class TranslateComponent implements AfterViewInit{
 	state: string = 'hide';
 
 	constructor() {}

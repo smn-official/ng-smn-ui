@@ -21,8 +21,8 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
-    "flatModuleOutFile": "new-smn-ui-4.js",
-    "flatModuleId": "new-smn-ui-4"
+    "flatModuleOutFile": "ng-smn-ui.js",
+    "flatModuleId": "ng-smn-ui"
   },
   "files": [
     "./index.ts"

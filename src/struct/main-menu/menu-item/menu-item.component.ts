@@ -5,8 +5,7 @@ import { MainMenuComponent } from './../main-menu.component';
 
 @Component({
 	selector: 'ui-menu-item',
-	templateUrl: 'menu-item.component.html',
-	styleUrls: ['./menu-item.component.scss'],
+	templateUrl: './menu-item.component.html',
 	encapsulation: ViewEncapsulation.None,
 })
 

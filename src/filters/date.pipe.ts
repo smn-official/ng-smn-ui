@@ -8,7 +8,7 @@ import { Injectable, PipeTransform, Pipe } from '@angular/core';
 export class DatePipe implements PipeTransform {
 	transform(date: Date) {
 		if (!date) {
-			console.error('(SMNUI4) Data inválida - [Pipe uistringdate]');
+			console.error('(SMNUI) Data inválida - [Pipe uistringdate]');
 			return date;
 		}
 		const today = new Date(),

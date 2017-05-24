@@ -3,10 +3,9 @@ import { Component, ViewChild, ElementRef, ViewEncapsulation, AfterViewInit } fr
 @Component({
 	selector: 'ui-option',
 	templateUrl: './option.component.html',
-	styleUrls: ['./option.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class optionComponent implements AfterViewInit {
+export class OptionComponent implements AfterViewInit {
 	@ViewChild('labelOptions') labelOptions: ElementRef;
 
 	constructor() {}

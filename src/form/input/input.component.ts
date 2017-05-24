@@ -3,11 +3,10 @@ import { Component, ViewChild, ElementRef, ViewEncapsulation, AfterViewInit } fr
 @Component({
 	selector: 'ui-input',
 	templateUrl: './input.component.html',
-	styleUrls: ['./input.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
 
-export class inputComponent implements AfterViewInit {
+export class InputComponent implements AfterViewInit {
 	@ViewChild('inputContainer') inputContainer: ElementRef;
 
 	constructor() {}
@@ -15,9 +14,15 @@ export class inputComponent implements AfterViewInit {
 	ngAfterViewInit() {
 		let nativeElem = this.inputContainer.nativeElement;
 		let elements = nativeElem.querySelectorAll('input, select, textarea')[0];
-		let elementHas = elements.hasAttribute('ng-reflect-model');
+		elements.classList.add(' ui-control');
 
-		elements.setAttribute('class' , 'ui-control');
-		elementHas === true ? false : nativeElem.querySelector('.ui-control:not([ng-reflect-model])').setAttribute('ng-reflect-model' , '');
+		elements.addEventListener('blur', () => {
+			if (this.inputContainer.nativeElement.getElementsByClassName('ui-control')[0].value.length === 0) {
+				this.inputContainer.nativeElement.getElementsByClassName('ui-control')[0].classList.remove('active');
+			}
+		});
+		elements.addEventListener('focus', () => {
+			this.inputContainer.nativeElement.getElementsByClassName('ui-control')[0].classList.add('active');
+		});
 	}
 }

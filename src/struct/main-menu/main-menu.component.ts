@@ -2,8 +2,7 @@ import { Component, Input, EventEmitter, Output, ViewEncapsulation, OnInit } fro
 
 @Component({
 	selector: 'ui-main-menu',
-	templateUrl: 'main-menu.component.html',
-	styleUrls: ['./main-menu.component.scss'],
+	templateUrl: './main-menu.component.html',
 	encapsulation: ViewEncapsulation.None
 })
 

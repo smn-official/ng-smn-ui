@@ -78,7 +78,7 @@ ui-menu-context.open .ui-menu-wrapper{
 		ui-menu-context a, ui-menu-context a.action {
 			cursor: pointer;
 		}
-		ui-menu-context a:link:hover, ui-menu-context a.action:hover {
+		ui-menu-context a:hover, ui-menu-context a.action:hover {
 			background-color: rgba(0,0,0,0.1);
 			text-decoration: none;
 		}

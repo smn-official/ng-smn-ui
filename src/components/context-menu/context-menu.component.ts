@@ -3,7 +3,6 @@ import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
 @Component({
 	selector: 'ui-menu-context',
 	templateUrl: './context-menu.component.html',
-	styleUrls: ['./context-menu.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
 

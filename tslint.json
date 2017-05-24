@@ -3,7 +3,7 @@
     "node_modules/codelyzer"
   ],
   "rules": {
-    "class-name": false,
+    "class-name": true,
     "comment-format": [
       true,
       "check-space"
@@ -41,7 +41,7 @@
     "no-duplicate-variable": true,
     "no-empty": false,
     "no-eval": true,
-    "no-inferrable-types": false,
+    "no-inferrable-types": true,
     "no-shadowed-variable": true,
     "no-string-literal": false,
     "no-switch-case-fall-through": true,

@@ -6,7 +6,11 @@ var gulp = require('gulp'),
   rename = require('gulp-rename'),
   del = require('del'),
   runSequence = require('run-sequence'),
-  inlineResources = require('./tools/gulp/inline-resources');
+  inlineResources = require('./tools/gulp/inline-resources'),
+  concat = require('gulp-concat'),
+  minifyCSS = require('gulp-minify-css'),
+  autoprefixer = require('gulp-autoprefixer'),
+  rename = require('gulp-rename');
 
 const rootFolder = path.join(__dirname);
 const srcFolder = path.join(rootFolder, 'src');
@@ -116,7 +120,7 @@ gulp.task('rollup:umd', function () {
       // The name to use for the module for UMD/IIFE bundles
       // (required for bundles with exports)
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#modulename
-      moduleName: 'new-smn-ui-4',
+      moduleName: 'ng-smn-ui',
 
       // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals
       globals: {
@@ -124,7 +128,7 @@ gulp.task('rollup:umd', function () {
       }
 
     }))
-    .pipe(rename('new-smn-ui-4.umd.js'))
+    .pipe(rename('ng-smn-ui.umd.js'))
     .pipe(gulp.dest(distFolder));
 });
 
@@ -168,6 +172,14 @@ gulp.task('clean:build', function () {
   return deleteFolders([buildFolder]);
 });
 
+gulp.task('scss', function(){
+  gulp.src('src/**/*.scss')
+      .pipe(minifyCSS())
+      .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
+      .pipe(concat('style.min.scss'))
+      .pipe(gulp.dest('dist/'))
+});
+
 gulp.task('compile', function () {
   runSequence(
     'clean:dist',
@@ -181,6 +193,7 @@ gulp.task('compile', function () {
     'copy:readme',
     'clean:build',
     'clean:tmp',
+    'scss',
     function (err) {
       if (err) {
         console.log('ERROR:', err.message);
