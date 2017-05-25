@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 // Components
 import { InputComponent } from './form/input/input.component';
@@ -28,7 +29,8 @@ export * from './components/context-menu/context-menu.component';
 
 @NgModule({
 	imports: [
-		CommonModule
+		CommonModule,
+		RouterModule
 	],
 	declarations: [
 		InputComponent,

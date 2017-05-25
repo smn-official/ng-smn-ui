@@ -14,7 +14,7 @@ export class InputComponent implements AfterViewInit {
 	ngAfterViewInit() {
 		let nativeElem = this.inputContainer.nativeElement;
 		let elements = nativeElem.querySelectorAll('input, select, textarea')[0];
-		elements.classList.add(' ui-control');
+		elements.classList.add('ui-control');
 
 		elements.addEventListener('blur', () => {
 			if (this.inputContainer.nativeElement.getElementsByClassName('ui-control')[0].value.length === 0) {

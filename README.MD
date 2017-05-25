@@ -4,10 +4,10 @@
 
 To install this library, run:
 
-![imagem](https://media.giphy.com/media/xUPGcFIDwBKquFBSgw/giphy.gif)
-
 ```bash
 $ npm install ng-smn-ui --save
+
+$ npm install @angular/animations
 ```
 
 and then from your Angular `AppModule`:
