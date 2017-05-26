@@ -61,6 +61,8 @@ and then from your Angular `angular-cli.json`:
 
 Once your library is imported, you can use its components, directives and pipes in your Angular application:
 
+![ng serve](https://media.giphy.com/media/3ohzdEzjq3a8mCJmPm/giphy.gif)
+
 ```xml
 <!-- You can now use your library component in app.component.html -->
 <h1>
