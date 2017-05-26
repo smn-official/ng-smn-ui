@@ -4,8 +4,7 @@
 
 To install this library, run:
 
-![npm install](https://media.giphy.com/media/3oKIPoNsIZjSw2UENy/giphy.gif)
-
+![npm install](https://media.giphy.com/media/3o7bujlOTUe0SXB3lm/giphy.gif)
 ```bash
 $ npm install ng-smn-ui --save
 
@@ -13,6 +12,8 @@ $ npm install @angular/animations
 ```
 
 and then from your Angular `AppModule`:
+
+![npm install](https://media.giphy.com/media/3ohzdETreGQfzK7W8w/giphy.gif)
 
 ```javascript
 import { BrowserModule } from '@angular/platform-browser';
@@ -46,6 +47,7 @@ import { SMNUIModule } from 'ng-smn-ui';
 export class AppModule { }
 ```
 and then from your Angular `angular-cli.json`:
+
 
 ```javascript
 
