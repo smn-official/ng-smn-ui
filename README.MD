@@ -3,7 +3,9 @@
 ## Installation
 
 To install this library, run:
-<img src = "https://media.giphy.com/media/3oKIPoNsIZjSw2UENy/giphy.gif">
+
+![npm install](https://media.giphy.com/media/3oKIPoNsIZjSw2UENy/giphy.gif)
+
 ```bash
 $ npm install ng-smn-ui --save
 
