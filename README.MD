@@ -13,7 +13,7 @@ $ npm install @angular/animations
 
 and then from your Angular `AppModule`:
 
-![npm install](https://media.giphy.com/media/3ohzdETreGQfzK7W8w/giphy.gif)
+![import module](https://media.giphy.com/media/3ohzdETreGQfzK7W8w/giphy.gif)
 
 ```javascript
 import { BrowserModule } from '@angular/platform-browser';
@@ -47,6 +47,8 @@ import { SMNUIModule } from 'ng-smn-ui';
 export class AppModule { }
 ```
 and then from your Angular `angular-cli.json`:
+
+![import style](https://media.giphy.com/media/xUPGcrZU9oe6HE90M8/giphy.gif)
 
 
 ```javascript
