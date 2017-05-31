@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, ViewEncapsulation, AfterViewInit } from '@angular/core';
 
 @Component({
-	selector: 'ui-input',
+	selector: 'ui-input-container',
 	templateUrl: './input.component.html',
 	encapsulation: ViewEncapsulation.None
 })

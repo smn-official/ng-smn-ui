@@ -11,6 +11,6 @@ export class OptionComponent implements AfterViewInit {
 	constructor() {}
 
 	ngAfterViewInit() {
-		this.labelOptions.nativeElement.querySelector('input').setAttribute('class' , 'ui-control');
+		this.labelOptions.nativeElement.querySelector('input').setAttribute('class' , 'ui-option');
 	}
 }

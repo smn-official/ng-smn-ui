@@ -71,10 +71,10 @@ Once your library is imported, you can use its components, directives and pipes 
   {{title}}
 </h1>
 
-<ui-input>
+<ui-input-container>
   <input type="text">
   <label>SMN-UI</label>
-</ui-input>
+</ui-input-container>
 ```
 
 ## Development
