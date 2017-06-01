@@ -14,15 +14,9 @@ export class InputComponent implements AfterViewInit {
 	ngAfterViewInit() {
 		let nativeElem = this.inputContainer.nativeElement;
 		let elements = nativeElem.querySelectorAll('input, select, textarea')[0];
-		elements.classList.add('ui-control');
+		let elementHas = elements.hasAttribute('ng-reflect-model');
 
-		elements.addEventListener('blur', () => {
-			if (this.inputContainer.nativeElement.getElementsByClassName('ui-control')[0].value.length === 0) {
-				this.inputContainer.nativeElement.getElementsByClassName('ui-control')[0].classList.remove('active');
-			}
-		});
-		elements.addEventListener('focus', () => {
-			this.inputContainer.nativeElement.getElementsByClassName('ui-control')[0].classList.add('active');
-		});
+		elements.setAttribute('class' , 'ui-control');
+		elementHas === true ? false : nativeElem.querySelector('.ui-control:not([ng-reflect-model])').setAttribute('ng-reflect-model' , '');
 	}
 }
