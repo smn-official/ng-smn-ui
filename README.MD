@@ -93,4 +93,4 @@ $ npm run lint
 
 ## License
 
-MIT © [keven](mailto:keven@smn.com.br)
+[MIT](LICENSE) © [SMN](https://github.com/smn-official)

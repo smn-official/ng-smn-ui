@@ -1,9 +1,7 @@
-/* eslint-disable */
 var gulp = require('gulp'),
   path = require('path'),
   ngc = require('@angular/compiler-cli/src/main').main,
   rollup = require('gulp-rollup'),
-  rename = require('gulp-rename'),
   del = require('del'),
   runSequence = require('run-sequence'),
   inlineResources = require('./tools/gulp/inline-resources'),
@@ -14,6 +12,7 @@ var gulp = require('gulp'),
 
 const rootFolder = path.join(__dirname);
 const srcFolder = path.join(rootFolder, 'src');
+const moduleFolder = path.join(rootFolder, 'node_modules/ng-smn-ui');
 const tmpFolder = path.join(rootFolder, '.tmp');
 const buildFolder = path.join(rootFolder, 'build');
 const distFolder = path.join(rootFolder, 'dist');
@@ -216,6 +215,44 @@ gulp.task('clean', ['clean:dist', 'clean:tmp', 'clean:build']);
 gulp.task('build', ['clean', 'compile']);
 gulp.task('build:watch', ['build', 'watch']);
 gulp.task('default', ['build:watch']);
+
+
+/**
+ * Task for docs
+ * */
+gulp.task('copy:module', function () {
+    return gulp.src(tmpFolder + '/**/*')
+        .pipe(gulp.dest(moduleFolder));
+});
+
+gulp.task('clean:module', function () {
+    return deleteFolders([moduleFolder]);
+});
+
+gulp.task('scss:docs', function(){
+    gulp.src('src/**/*.scss')
+        .pipe(minifyCSS())
+        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
+        .pipe(concat('style.min.scss'))
+        .pipe(gulp.dest(moduleFolder))
+});
+
+gulp.task('compile:docs', function () {
+    runSequence(
+        'copy:source',
+        'inline-resources',
+        'ngc',
+        'rollup:fesm',
+        'rollup:umd',
+        'copy:module',
+        'clean:build',
+        'clean:tmp',
+        'scss:docs')
+});
+
+gulp.task('watch:docs', function () {
+    gulp.watch(`${srcFolder}/**/*`, ['compile:docs']);
+});
 
 /**
  * Deletes the specified folder
