@@ -163,9 +163,19 @@ ui-input-wrap.space-20 > * + * {
 .ui-input-container .ta-right {
 	text-align: right;
 }
-.ui-input-container ng-messages.error,
-.ui-input-container .messages.error {
+.ui-input-container .error {
 	color: #F44336;
+	position: absolute;
+	font-size: 14px;
+}
+.ui-input-container .ui-control.ng-invalid.ng-touched{
+	border-color: #F44336;
+}
+.ui-control.ng-invalid.ng-dirty  ~ label, .ui-control.ng-touched.ng-invalid ~ label{
+	color: #F44336!important;
+}
+.ui-control.ng-invalid.ng-dirty ~ .line, .ui-control.ng-touched.ng-invalid ~ .line{
+	background-color: #F44336!important;
 }
 .ui-input-container:not(.no-margin):not(.no-space) ng-messages > ng-message:first-child,
 .ui-input-container:not(.no-margin):not(.no-space) .messages > .message:first-child {
