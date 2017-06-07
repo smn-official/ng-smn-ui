@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 // Components
-import { InputComponent } from './form/input/input.component';
+import { UiInputContainerComponent } from './form/input/input-container.component';
+import { UiInputDirective } from './form/input/input.directive';
 import { OptionComponent } from './form/option/option.component';
 import { MainMenuComponent } from './struct/main-menu/main-menu.component';
 import { MenuListComponent } from './struct/main-menu/menu-list/menu-list.component';
@@ -19,7 +20,8 @@ import { ContextMenuComponent } from './components/context-menu/context-menu.com
 import { AutofocusDirective } from './utils/autofocus/autofocus.directive';
 import { PerceptiveDirective } from './perceptive/perceptive.directive';
 
-export * from './form/input/input.component';
+export * from './form/input/input-container.component';
+export * from './form/input/input.directive';
 export * from './form/option/option.component';
 export * from './struct/main-menu/main-menu.component';
 export * from './struct/main-menu/menu-list/menu-list.component';
@@ -33,7 +35,8 @@ export * from './components/context-menu/context-menu.component';
 		RouterModule
 	],
 	declarations: [
-		InputComponent,
+		UiInputContainerComponent,
+		UiInputDirective,
 		OptionComponent,
 		MainMenuComponent,
 		MenuListComponent,
@@ -46,7 +49,8 @@ export * from './components/context-menu/context-menu.component';
 		// DatePipe
 	],
 	exports: [
-		InputComponent,
+		UiInputContainerComponent,
+		UiInputDirective,
 		OptionComponent,
 		MainMenuComponent,
 		MenuListComponent,

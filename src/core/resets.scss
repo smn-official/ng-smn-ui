@@ -44,3 +44,19 @@ textarea {
 :visited {
     color: #1E88E5;
 }
+
+/* Icons*/
+
+/* Rules for sizing the icon. */
+.material-icons.s-18 { font-size: 18px; }
+.material-icons.s-24 { font-size: 24px; }
+.material-icons.s-36 { font-size: 36px; }
+.material-icons.s-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons { color: rgba(0, 0, 0, 0.54); }
+.material-icons.inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.dark { color: rgba(255, 255, 255, 1); }
+.material-icons.dark.inactive { color: rgba(255, 255, 255, 0.3); }
