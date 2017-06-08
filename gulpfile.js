@@ -231,8 +231,8 @@ gulp.task('clean:module', function () {
 
 gulp.task('scss:docs', function () {
     gulp.src('src/**/*.scss')
-        // .pipe(minifyCSS({ processImport: false }))
-        // .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
+        .pipe(minifyCSS({ processImport: false }))
+        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
         .pipe(concat('style.min.scss'))
         .pipe(gulp.dest(moduleFolder))
 });

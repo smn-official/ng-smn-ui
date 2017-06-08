@@ -18,3 +18,7 @@ $mq-mobile-landscape: 600px !default;
         @content;
     }
 }
+
+@function teste () {
+    @return #000
+}
