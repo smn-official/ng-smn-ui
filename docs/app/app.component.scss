@@ -1,14 +1,1 @@
 @import "docs/variables";
-
-input {
-  background-color: $primary-color;
-  @if $theme == 'dark'{
-    border-bottom: 10px solid white;
-  } @else {
-    border-bottom: 10px solid black
-  }
-}
-
-button {
-  background-color: ui-color($theme-primary-color, '200');
-}
