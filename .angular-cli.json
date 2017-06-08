@@ -19,7 +19,6 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/ng-smn-ui/style.min.scss",
         "styles.scss"
       ],
       "scripts": [],

@@ -302,5 +302,5 @@ $material-colors: (
 );
 
 @function ui-color($color: 'white', $hue: '500') {
-    @return map_get($material-colors, $color, $hue);
+    @return map_get(map_get($material-colors, $color), $hue);
 }
