@@ -6,6 +6,8 @@
     $border-color: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.7), rgba(0,0,0,.42));
     $placeholder-color: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.5), rgba(0,0,0,.42));
     $message-color: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.7), rgba(0,0,0,.54));
+    $disabled: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.5), rgba(0,0,0, .42));
+    $disabled-line: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.7), rgba(0,0,0, .42));
 
     ui-input-container {
         label {
@@ -36,6 +38,20 @@
                 &:focus ~ .line {
                     background-color: map-get($theme, accent-color);
                 }
+            }
+
+            &:disabled {
+                color: $disabled;
+                border-color: $disabled;
+            }
+
+            &:disabled ~ label {
+                color: $disabled;
+            }
+
+            &:disabled ~ .line {
+                background-color: #FFF;
+                border-color: $disabled-line;
             }
         }
 

@@ -16,6 +16,13 @@ ui-input-container {
         margin-left: 16px;
     }
 
+    .ui-input-wrap {
+        position: relative;
+        flex: 1;
+        padding-top: 16px;
+        margin-bottom: 26px;
+    }
+
     label {
         position: absolute;
         left: 0;
@@ -41,153 +48,110 @@ ui-input-container {
         color: rgba(0,0,0,.87); // Value default
         border-bottom: 1px solid rgba(0,0,0,.42); // Value default
 
+        &:disabled,
+        &:read-only {
+            border-style: dotted;
+        }
+
+        &::placeholder {
+            color: rgba(0,0,0,.42); // Value default
+        }
+
+        // Label
+
         &:focus ~ label,
         &:not(.ui-empty) ~ label {
             top: 4px;
             font-size: 12px;
         }
 
-        &:disabled,
-        &:read-only {
-            border-style: dotted;
+        &[required] ~ label::after {
+            content: '*';
+            margin-left: 2px;
         }
 
+        &[required]:focus ~ label::after {
+            color: ui-color('red');
+        }
 
+        &.ng-invalid.ng-dirty ~ label {
+            animation: shake 360ms ui-easing();
+        }
+
+        // Line
+        &:focus ~ .line {
+            opacity: 1;
+            left: 0;
+            width: 100%;
+        }
     }
-}
 
-ui-input-container .ui-control:disabled,
-ui-input-container .ui-control:read-only {
-	border-style: dotted;
-}
+    .line {
+        position: absolute;
+        bottom: -1px;
+        height: 2px;
+        left: 50%;
+        width: 0;
+        transition: all 225ms ui-easing();
+        background-color: rgba(0,0,0,.42); // Value default
+        opacity: 0;
+    }
 
-ui-input-container .ui-control::placeholder {
-	color: rgba(0,0,0,.42); // Value default
-}
+    .ui-messages {
+        display: block;
+        position: relative;
+        top: 6px;
 
-ui-input-container [required] ~ label::after {
-	content: '*';
-	margin-left: 2px;
-}
+        .ui-message {
+            font-size: 12px;
+            position: absolute;
+            left: 0;
+            right: 0;
 
-ui-input-container [required]:focus ~ label::after {
-	color: ui-color('red');
-}
+            &.helper,
+            &.counter {
+                color: rgba(0,0,0,.54); // Value default
+            }
 
+            &.counter {
+                text-align: right;
+            }
 
-ui-input-container .ui-control.ng-invalid.ng-dirty ~ label {
-	animation: shake 360ms ui-easing();
-}
+            &.error {
+                color: ui-color('red');
+            }
+        }
+    }
 
-ui-input-container .ui-input-wrap {
-	position: relative;
-	flex: 1;
-	padding-top: 16px;
-	margin-bottom: 26px;
-}
+    .suffix {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        right: 0;
+        top: 50%;
+        margin-top: -4px;
+        cursor: default;
+        user-select: none;
 
-ui-input-container .line {
-	position: absolute;
-	bottom: -1px;
-	height: 2px;
-	left: 50%;
-	width: 0;
-	transition: all 225ms ui-easing();
-	background-color: rgba(0,0,0,.42); // Value default
-	opacity: 0;
-}
+        & ~ .ui-control {
+            padding-right: 32px;
+        }
+    }
 
-ui-input-container .ui-control:focus ~ .line {
-	opacity: 1;
-	left: 0;
-	width: 100%;
-}
-
-ui-input-container .ui-messages {
-	display: block;
-	position: relative;
-	top: 6px;
-}
-
-ui-input-container .ui-messages .ui-message {
-	font-size: 12px;
-	position: absolute;
-	left: 0;
-	right: 0;
-}
-
-ui-input-container .ui-messages .ui-message.helper,
-ui-input-container .ui-messages .ui-message.counter {
-	color: rgba(0,0,0,.54); // Value default
-}
-
-ui-input-container .ui-messages .ui-message.counter {
-	text-align: right;
-}
-
-ui-input-container .ui-messages .ui-message.error {
-	color: ui-color('red');
-}
-
-ui-input-container .suffix {
-	position: absolute;
-	width: 24px;
-	height: 24px;
-	right: 0;
-	top: 50%;
-	margin-top: -4px;
-	cursor: default;
-	user-select: none;
-}
-
-ui-input-container .suffix ~ .ui-control {
-	padding-right: 32px;
-}
-
-/* Disabled */
-ui-input-container .ui-control:disabled {
-	color: rgba(0,0,0, .42);
-	border-color: rgba(0,0,0,.42);
-}
-
-ui-input-container .ui-control:disabled ~ label {
-	color: rgba(0,0,0, .42);
-}
-
-ui-input-container .ui-control:disabled ~ .line {
-	background-color: #FFF;
-	border-color: rgba(0,0,0,.42);
-}
-
-/* Dark Disabled */
-.dark ui-input-container .ui-control:disabled {
-	color: rgba(255,255,255,.50);
-	border-color: rgba(255,255,255,.50);
-}
-
-.dark ui-input-container .ui-control:disabled ~ label {
-	color: rgba(255,255,255,.50);
-}
-
-.dark ui-input-container .ui-control:disabled ~ .line {
-	background-color: #FFF;
-	border-color: rgba(255,255,255,.7);
-}
-
-/* Utils */
-ui-input-container .no-pad,
-ui-input-container .no-space {
-	padding-top: 0;
-}
-ui-input-container .no-margin,
-ui-input-container .no-space {
-	margin-bottom: 0;
-}
-ui-input-container .ui-control.center {
-	text-align: center;
-}
-ui-input-container .ui-control.right {
-	text-align: right;
+    .no-pad,
+    .no-space {
+        padding-top: 0;
+    }
+    .no-margin,
+    .no-space {
+        margin-bottom: 0;
+    }
+    .ui-control.center {
+        text-align: center;
+    }
+    .ui-control.right {
+        text-align: right;
+    }
 }
 
 /* Validate */
