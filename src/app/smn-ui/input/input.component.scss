@@ -38,6 +38,7 @@ ui-input-container {
     }
 
     .ui-control {
+        display: block;
         font-size: 16px;
         font-family: Roboto;
         font-weight: 400;
@@ -117,7 +118,7 @@ ui-input-container {
                 text-align: right;
             }
 
-            &.error {
+            &.counter.error, &.error {
                 color: ui-color('red');
             }
         }

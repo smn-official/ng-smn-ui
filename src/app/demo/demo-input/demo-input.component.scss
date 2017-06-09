@@ -3,4 +3,10 @@
 .card {
     box-shadow: ui-shadow('1dp');
     padding: 16px;
+    width: 600px;
+    margin: 20px auto;
+
+    &.dark {
+        background-color: #424242;
+    }
 }

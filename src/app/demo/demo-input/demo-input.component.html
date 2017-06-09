@@ -1,17 +1,76 @@
-<div class="light">
-    <ui-input-container>
-        <input type="text" [(ngModel)]="teste" uiInput>
-        <label>teste</label>
-    </ui-input-container>
-    <ui-input-container>
-        <input type="text" [(ngModel)]="teste" uiInput>
-        <label>teste</label>
-    </ui-input-container>
+<div class="card">
+    <div class="light">
+        <ui-input-container>
+            <input type="text" [(ngModel)]="simple" uiInput>
+            <label>Simple</label>
+        </ui-input-container>
+        <ui-input-container>
+            <input type="text" [(ngModel)]="accent" uiInput class="accent">
+            <label>Accent</label>
+        </ui-input-container>
+        <ui-input-container>
+            <input type="text" [(ngModel)]="hero" uiInput placeholder="Ex: Arrow">
+            <label>Hero</label>
+            <div class="ui-messages">
+                <div class="ui-message helper">Only DC's Heroes</div>
+            </div>
+        </ui-input-container>
+        <ui-input-container>
+            <div class="icon">
+                <i class="material-icons light">today</i>
+            </div>
+            <input type="text" [(ngModel)]="date" uiInput placeholder="09/06/2017">
+            <label>Date</label>
+        </ui-input-container>
+        <ui-input-container>
+            <input type="text" [(ngModel)]="dateReverse" uiInput placeholder="09/06/2017">
+            <label>Date</label>
+            <div class="icon">
+                <i class="material-icons light">today</i>
+            </div>
+        </ui-input-container>
+        <ui-input-container>
+            <input [type]="type ? 'text' : 'password'" [(ngModel)]="password" uiInput>
+            <label>Password</label>
+            <div class="suffix" (click)="type = !type">
+                <i class="material-icons light">{{type ? 'visibility_off' : 'visibility'}}</i>
+            </div>
+        </ui-input-container>
+        <form #newTask="ngForm" class="ui-validate on-dirty on-submit">
+            <ui-input-container>
+                <input type="text" [(ngModel)]="validation" name="validation" uiInput required #fieldDescription="ngModel" uiMaxlength="20">
+                <label>Validation</label>
+                <div class="ui-messages">
+                    <div *ngIf="fieldDescription.errors && fieldDescription.dirty">
+                        <div class="ui-message error" [hidden]="!fieldDescription.pristine && !fieldDescription.errors.required">Validation is required</div>
+                        <div class="ui-message error" [hidden]="!fieldDescription.errors.uiMaxlength">Validation cannot be more than 20 characters long.</div>
+                    </div>
+                    <div class="ui-message counter" [ngClass]="{'error': validation && validation.length > 20}">{{validation ? validation.length : 0}}/20</div>
+                    <div class="ui-message helper" *ngIf="fieldDescription.pristine || !fieldDescription.errors">Text helper</div>
+                </div>
+            </ui-input-container>
+            <ui-input-container>
+                <textarea [(ngModel)]="textarea" name="textarea" rows="2" uiInput required uiMaxlength="250" #fieldTextarea="ngModel"></textarea>
+                <label>Textarea</label>
+                <div class="ui-messages">
+                    <div *ngIf="fieldTextarea.errors && fieldTextarea.dirty">
+                        <div class="ui-message error" [hidden]="!fieldTextarea.pristine && !fieldTextarea.errors.required">Textarea is required</div>
+                        <div class="ui-message error" [hidden]="!fieldTextarea.errors.uiMaxlength">Textarea cannot be more than 250 characters long.</div>
+                    </div>
+                    <div class="ui-message counter" [ngClass]="{'error': textarea && textarea.length > 250}">{{textarea ? textarea.length : 0}}/250</div>
+                </div>
+            </ui-input-container>
+        </form>
+    </div>
 </div>
 
-<div class="dark">
+<div class="card dark">
     <ui-input-container>
-        <input type="text" [(ngModel)]="teste" uiInput>
-        <label>teste</label>
+        <input type="text" [(ngModel)]="primaryDark" uiInput>
+        <label>Primary dark</label>
+    </ui-input-container>
+    <ui-input-container>
+        <input type="text" [(ngModel)]="accentDark" uiInput class="accent">
+        <label>Accent dark</label>
     </ui-input-container>
 </div>
