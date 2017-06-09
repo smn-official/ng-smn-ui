@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { UiInputContainerComponent } from './input/input-container.component';
 import { UiInputDirective } from './input/input.directive';
+import { UiToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   imports: [
@@ -13,11 +14,13 @@ import { UiInputDirective } from './input/input.directive';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     UiInputContainerComponent,
-    UiInputDirective
+    UiInputDirective,
+    UiToolbarComponent
   ],
   exports: [
     UiInputContainerComponent,
-    UiInputDirective
+    UiInputDirective,
+    UiToolbarComponent
   ]
 })
 export class SMNUIModule { }
