@@ -54,8 +54,8 @@ textarea {
 .material-icons.s-48 { font-size: 48px; }
 
 /* Rules for using icons as black on a light background. */
-.material-icons { color: rgba(0, 0, 0, 0.54); }
-.material-icons.inactive { color: rgba(0, 0, 0, 0.26); }
+.material-icons.light { color: rgba(0, 0, 0, 0.54); }
+.material-icons.light.inactive { color: rgba(0, 0, 0, 0.26); }
 
 /* Rules for using icons as white on a dark background. */
 .material-icons.dark { color: rgba(255, 255, 255, 1); }
