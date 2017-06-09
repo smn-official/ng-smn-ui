@@ -1,0 +1,71 @@
+@import "../core/device";
+@import "../core/easing";
+@import "../core/palette";
+
+.ui-button-cover {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    justify-content: flex-end;
+
+    button {
+        margin: 2px 0;
+    }
+
+    button:not(.full) + button:not(.full) {
+        margin-left: 4px;
+    }
+}
+
+.ui-button {
+    padding-left: 16px;
+    padding-right: 16px;
+    min-height: 36px;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+    transform: scale(1);
+    transition: scale 0.28s ui-easing(),
+    color 0.28s ui-easing(),
+    background-color 0.28s ui-easing();
+
+    i {
+        vertical-align: middle;
+    }
+
+    &.icon {
+        border-radius: 50%;
+        margin: 12px;
+        padding-left: 0;
+        padding-right: 0;
+        width: 36px;
+        height: 36px;
+    }
+
+    &.pointer {
+        cursor: pointer;
+    }
+
+    & > * + * {
+        margin-left: 8px;
+    }
+
+    &.flat {
+        background-color: transparent;
+
+        &:focus {
+            background-color: rgba(0, 0, 0, 0.06);
+        }
+
+        &:active {
+            background-color: rgba(0, 0, 0, 0.12);
+        }
+    }
+
+    &.success {
+        background-color: ui-color('green');
+        color: ui-text-color('green');
+    }
+}

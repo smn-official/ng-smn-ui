@@ -1,10 +1,21 @@
 @import "../core/palette";
 
 @mixin ui-button($theme) {
-  button {
-    background-color: ui-color(map_get($theme, primary), map_get($theme, primary-hue));
-    color: map-get($theme, primary-text-color);
-    border: 0;
-  }
+    .ui-button {
+        background-color: ui-color(map_get($theme, primary), map_get($theme, primary-hue));
+        color: ui-text-color(map_get($theme, primary));
+        border: 0;
+    }
 
+    .ui-button.primary {
+        background-color: ui-color(map_get($theme, primary), map_get($theme, primary-hue));
+        color: ui-text-color(map_get($theme, primary));
+        border: 0;
+    }
+
+    .ui-button.accent {
+        background-color: ui-color(map_get($theme, accent), map_get($theme, accent-hue));
+        color: ui-text-color(map_get($theme, accent));
+        border: 0;
+    }
 }
