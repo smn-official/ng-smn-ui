@@ -19,8 +19,12 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.scss"
       ],
+        "stylePreprocessorOptions": {
+            "includePaths": [
+                "../node_modules/ng-smn-ui"
+            ]
+        },
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {

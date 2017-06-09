@@ -12,3 +12,7 @@
 
 $primary-color: ui-color($theme-primary-color);
 $secondary-color: ui-color($theme-secondary-color);
+
+.teste {
+    transition: all 2s ui-easing();
+}

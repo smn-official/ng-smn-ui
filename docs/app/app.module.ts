@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {SMNUIModule} from 'ng-smn-ui';
@@ -10,6 +10,7 @@ import {AppComponent} from './app.component';
     declarations: [
         AppComponent
     ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
     imports: [
         BrowserModule,
         FormsModule,
@@ -19,5 +20,4 @@ import {AppComponent} from './app.component';
     providers: [],
     bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

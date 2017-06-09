@@ -230,12 +230,25 @@ gulp.task('clean:module', function () {
 });
 
 gulp.task('scss:docs', function () {
-    gulp.src('src/**/*.scss')
-        .pipe(minifyCSS({ processImport: false }))
+    gulp.src(['src/**/*.scss', '!src/core/**/*.scss'])
+        .pipe(minifyCSS())
         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
         .pipe(concat('style.min.scss'))
         .pipe(gulp.dest(moduleFolder))
 });
+
+gulp.task('scss:vars', function () {
+    gulp.src(['src/core/**/*.scss'])
+        .pipe(minifyCSS())
+        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
+        .pipe(concat('variables.min.scss'))
+        .pipe(gulp.dest(moduleFolder))
+});
+
+gulp.task('teste', function () {
+    gulp.src(['src/**/*.scss', '!src/core/**/*.scss'])
+        .pipe(gulp.dest('teste'))
+})
 
 gulp.task('compile:docs', function () {
     runSequence(
@@ -247,7 +260,8 @@ gulp.task('compile:docs', function () {
         'copy:module',
         'clean:build',
         'clean:tmp',
-        'scss:docs')
+        'scss:docs',
+        'scss:vars')
 });
 
 gulp.task('watch:docs', ['compile:docs'], function () {

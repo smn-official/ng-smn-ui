@@ -1,1 +1,4 @@
-@import "docs/variables";
+@import "variables.min.scss";
+p {
+    color: ui-color('red');
+}
