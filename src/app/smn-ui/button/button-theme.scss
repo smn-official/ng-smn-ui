@@ -1,0 +1,10 @@
+@import "../core/palette";
+
+@mixin ui-button($theme) {
+  button {
+    background-color: ui-color(map_get($theme, primary), map_get($theme, primary-hue));
+    color: map-get($theme, primary-text-color);
+    border: 0;
+  }
+
+}

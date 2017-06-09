@@ -1,96 +1,28 @@
-# ng-smn-ui
+# NgSmnUi
 
-## Installation
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.6.
 
-To install this library, run:
+## Development server
 
-![npm install](https://media.giphy.com/media/3o7bujlOTUe0SXB3lm/giphy.gif)
-```bash
-$ npm install ng-smn-ui --save
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-$ npm install @angular/animations
-```
+## Code scaffolding
 
-and then from your Angular `AppModule`:
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
 
-![import module](https://media.giphy.com/media/3ohzdETreGQfzK7W8w/giphy.gif)
+## Build
 
-```javascript
-import { BrowserModule } from '@angular/platform-browser';
-// Import CUSTOM_ELEMENTS_SCHEMA
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-import { AppComponent } from './app.component';
+## Running unit tests
 
-// Import your library
-import { SMNUIModule } from 'ng-smn-ui';
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
+## Running end-to-end tests
 
-    // Specify your library as an import
-    SMNUIModule
-    //
-    LibraryModule
-  ],
-  // Add schemas
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-```
-and then from your Angular `angular-cli.json`:
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Before running the tests make sure you are serving the app via `ng serve`.
 
-![import style](https://media.giphy.com/media/xUPGcrZU9oe6HE90M8/giphy.gif)
+## Further help
 
-
-```javascript
-
-"styles": [
-  "styles.scss",
-  //Import style here
-  "../node_modules/ng-smn-ui/style.min.scss"
-],
-
-```
-
-Once your library is imported, you can use its components, directives and pipes in your Angular application:
-
-![ng serve](https://media.giphy.com/media/xUPGcGR76PtQnF2hna/giphy.gif)
-
-```xml
-<!-- You can now use your library component in app.component.html -->
-<h1>
-  {{title}}
-</h1>
-
-<ui-input-container>
-  <input type="text">
-  <label>SMN-UI</label>
-</ui-input-container>
-```
-
-## Development
-
-To generate all `*.js`, `*.d.ts` and `*.metadata.json` files:
-
-```bash
-$ npm run build
-```
-
-To lint all `*.ts` files:
-
-```bash
-$ npm run lint
-```
-
-## License
-
-[MIT](LICENSE) © [SMN](https://github.com/smn-official)
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

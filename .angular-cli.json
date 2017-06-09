@@ -5,7 +5,7 @@
   },
   "apps": [
     {
-      "root": "docs",
+      "root": "src",
       "outDir": "dist",
       "assets": [
         "assets",
@@ -17,14 +17,10 @@
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
-      "prefix": "app",
+      "prefix": "",
       "styles": [
+        "styles.scss"
       ],
-        "stylePreprocessorOptions": {
-            "includePaths": [
-                "../node_modules/ng-smn-ui"
-            ]
-        },
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
@@ -40,10 +36,10 @@
   },
   "lint": [
     {
-      "project": "docs/tsconfig.app.json"
+      "project": "src/tsconfig.app.json"
     },
     {
-      "project": "docs/tsconfig.spec.json"
+      "project": "src/tsconfig.spec.json"
     },
     {
       "project": "e2e/tsconfig.e2e.json"
