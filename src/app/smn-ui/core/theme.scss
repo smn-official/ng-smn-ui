@@ -1,33 +1,38 @@
-@import "../button/button-theme";
+@import "palette";
+@import "../button/button.theme";
+@import "../input/input.theme";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
-  $primary-text-color: rgba(255, 255, 255, 1);
-  $secondary-text-color: rgba(255, 255, 255, 0.70);
-  $disabled-text-color: rgba(255, 255, 255, 0.50);
-  $hint-text-color: $disabled-text-color;
-
-  @if $is-dark == true {
     $primary-text-color: rgba(0, 0, 0, 0.87);
     $secondary-text-color: rgba(0, 0, 0, 0.54);
     $disabled-text-color: rgba(0, 0, 0, 0.38);
     $hint-text-color: $disabled-text-color;
-  }
 
-  $theme: (
-    primary: map_get($primary, color),
-    primary-hue: map_get($primary, hue),
-    accent: map_get($accent, color),
-    accent-hue: map_get($accent, hue),
-    is-dark: $is-dark,
-    primary-text-color: $primary-text-color,
-    secondary-text-color: $secondary-text-color,
-    disabled-text-color: $disabled-text-color,
-    hint-text-color: $hint-text-color,
-  );
+    @if $is-dark == true {
+        $primary-text-color: rgba(255, 255, 255, 1);
+        $secondary-text-color: rgba(255, 255, 255, 0.70);
+        $disabled-text-color: rgba(255, 255, 255, 0.50);
+        $hint-text-color: $disabled-text-color;
+    }
 
-  @return $theme;
+    $theme: (
+        primary: map_get($primary, color),
+        primary-hue: map_get($primary, hue),
+        primary-color: ui-color(map_get($primary, color),  map_get($primary, hue)),
+        accent: map_get($accent, color),
+        accent-hue: map_get($accent, hue),
+        accent-color: ui-color(map_get($accent, color),  map_get($accent, hue)),
+        is-dark: $is-dark,
+        primary-text-color: $primary-text-color,
+        secondary-text-color: $secondary-text-color,
+        disabled-text-color: $disabled-text-color,
+        hint-text-color: $hint-text-color,
+    );
+
+    @return $theme;
 }
 
 @mixin ui-build-theme($theme) {
-  @include ui-button($theme);
+    @include ui-button($theme);
+    @include ui-input($theme);
 }

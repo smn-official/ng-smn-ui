@@ -5,15 +5,23 @@
 <div class="light">
   <button>TESTE</button>
   <ui-input-container>
-    <input type="text" [(ngModel)]="teste" uiInput>
+    <input type="text" [(ngModel)]="teste" uiInput placeholder="Placeholder">
     <label>teste</label>
   </ui-input-container>
   <ui-input-container>
-    <input type="text" [(ngModel)]="teste" uiInput>
+    <input type="text" [(ngModel)]="teste" uiInput class="accent">
     <label>teste</label>
   </ui-input-container>
 </div>
 
 <div class="dark">
   <button>TESTE</button>
+    <ui-input-container>
+        <input type="text" [(ngModel)]="teste" uiInput placeholder="Placeholder" required>
+        <label>teste</label>
+    </ui-input-container>
+    <ui-input-container>
+        <input type="text" [(ngModel)]="teste" uiInput class="accent">
+        <label>teste</label>
+    </ui-input-container>
 </div>
