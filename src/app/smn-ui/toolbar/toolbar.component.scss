@@ -1,0 +1,58 @@
+@import "../core/device";
+@import "../core/shadows";
+@import "../core/palette";
+@import "../core/easing";
+
+:host {
+    .toolbar-space {
+        @include desktop {
+            height: 64px;
+        }
+        @include mobile-portrait {
+            height: 56px;
+        }
+        @include mobile-landscape {
+            height: 48px;
+        }
+        transition: height 0.28s ui-easing();
+    }
+
+    header {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        height: 48px;
+        @include desktop {
+            height: 64px;
+        }
+        @include mobile-portrait {
+            height: 56px;
+        }
+        @include mobile-landscape {
+            height: 48px;
+        }
+        box-shadow: ui-shadow('4dp');
+        background-color: ui-color('grey', '300');
+        transition: box-shadow 0.28s ui-easing(),
+        height 0.28s ui-easing();
+        display: flex;
+        align-items: center;
+        padding: 4px;
+    }
+
+    &.fixed header {
+        position: fixed;
+    }
+
+    &.flat header {
+        box-shadow: none;
+    }
+
+    /deep/ div {
+        &.align-right {
+            margin-left: auto;
+            display: flex;
+        }
+    }
+}
