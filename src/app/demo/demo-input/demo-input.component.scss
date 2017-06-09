@@ -1,0 +1,6 @@
+@import "../../smn-ui/core/shadows";
+
+.card {
+    box-shadow: ui-shadow('1dp');
+    padding: 16px;
+}

@@ -34,7 +34,7 @@ ui-input-container {
         text-overflow: ellipsis;
         font-size: 16px;
         color: rgba(0,0,0,.54);
-        transition: all 225ms ui-easing();
+        transition: 225ms ui-easing();
     }
 
     .ui-control {
