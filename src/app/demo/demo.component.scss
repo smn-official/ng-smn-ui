@@ -9,6 +9,8 @@ $theme-dark: ui-theme($primary, $accent, true);
 
 @include ui-core();
 
+@include ui-build-theme($theme);
+
 .dark {
     background-color: black;
     @include ui-build-theme($theme-dark);
