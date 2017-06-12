@@ -1,11 +1,13 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {SMNUIModule} from '../smn-ui/smn-ui.module';
 
 import {DemoComponent} from './demo.component';
-import { DemoInputComponent } from './demo-input/demo-input.component';
+import {DemoInputComponent} from './demo-input/demo-input.component';
+import {DemoButtonComponent} from './demo-button/demo-button.component';
+import {DemoCardComponent} from './demo-card/demo-card.component';
 
 
 @NgModule({
@@ -15,8 +17,14 @@ import { DemoInputComponent } from './demo-input/demo-input.component';
         RouterModule,
         SMNUIModule,
     ],
-    declarations: [DemoComponent, DemoInputComponent],
-    exports: [DemoComponent]
+    declarations: [
+        DemoComponent,
+        DemoInputComponent,
+        DemoButtonComponent,
+        DemoCardComponent
+    ],
+    exports: [DemoComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class DemoModule {
 }
