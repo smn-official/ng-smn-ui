@@ -1,6 +1,7 @@
 @import "palette";
 @import "../button/button.theme";
 @import "../input/input.theme";
+@import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
     $primary-text-color: rgba(0, 0, 0, 0.87);
@@ -33,6 +34,9 @@
 }
 
 @mixin ui-build-theme($theme) {
+    body {
+        background-color: ui-if(map_get($theme, is-dark), #303030, #FAFAFA);
+    }
     @include ui-button($theme);
     @include ui-input($theme);
 }
