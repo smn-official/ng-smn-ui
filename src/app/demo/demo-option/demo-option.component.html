@@ -1,0 +1,77 @@
+<ui-card>
+    <ui-card-title>Theme Light</ui-card-title>
+    <ui-card-content>
+        <ui-option-container class="v-space-4 b-space-16">
+            <ui-option>
+                <input type="checkbox" [(ngModel)]="checkboxTest" [checked]="checkboxTest">
+                <span>{{checkboxTest}}</span>
+            </ui-option>
+        </ui-option-container>
+
+        <ui-option-container class="v-space-4 b-space-16">
+            <ui-option>
+                <input type="radio" name="radioTest" [(ngModel)]="radioTest" [value]="1">
+                <span>Test 1</span>
+            </ui-option>
+            <ui-option>
+                <input type="radio" name="radioTest" [(ngModel)]="radioTest" [value]="2">
+                <span>Test 2</span>
+            </ui-option>
+            <ui-option>
+                <input type="radio" name="radioTest" [(ngModel)]="radioTest" [value]="3">
+                <span>Test 3</span>
+            </ui-option>
+            {{radioTest}}
+        </ui-option-container>
+
+        <ui-option-container class="v-space-4 b-space-16">
+            <ui-option class="primary">
+                <input type="checkbox" disabled checked>
+                <span>Disabled</span>
+            </ui-option>
+            <ui-option>
+                <input type="radio" name="radioTest" disabled>
+                <span>Disabled</span>
+            </ui-option>
+        </ui-option-container>
+    </ui-card-content>
+</ui-card>
+
+<ui-card class="dark">
+    <ui-card-title>Theme Dark</ui-card-title>
+    <ui-card-content>
+        <ui-option-container class="v-space-4 b-space-16">
+            <ui-option>
+                <input type="checkbox" [(ngModel)]="checkboxTest2" [checked]="checkboxTest2">
+                <span>{{checkboxTest2}}</span>
+            </ui-option>
+        </ui-option-container>
+
+        <ui-option-container class="v-space-4 b-space-16">
+            <ui-option>
+                <input type="radio" name="radioTest2" [(ngModel)]="radioTest2" [value]="1">
+                <span>Test 1</span>
+            </ui-option>
+            <ui-option>
+                <input type="radio" name="radioTest2" [(ngModel)]="radioTest2" [value]="2">
+                <span>Test 2</span>
+            </ui-option>
+            <ui-option>
+                <input type="radio" name="radioTest2" [(ngModel)]="radioTest2" [value]="3">
+                <span>Test 3</span>
+            </ui-option>
+            {{radioTest2}}
+        </ui-option-container>
+
+        <ui-option-container class="v-space-4 b-space-16">
+            <ui-option class="primary">
+                <input type="checkbox" disabled checked>
+                <span>Disabled</span>
+            </ui-option>
+            <ui-option>
+                <input type="radio" name="radioTest" disabled>
+                <span>Disabled</span>
+            </ui-option>
+        </ui-option-container>
+    </ui-card-content>
+</ui-card>

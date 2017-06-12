@@ -5,6 +5,7 @@ import {CommonModule} from '@angular/common';
 import {UiInputContainerComponent} from './input/input-container.component';
 import {UiInputDirective} from './input/input.directive';
 import {UiToolbarComponent} from './toolbar/toolbar.component';
+import {UiOptionComponent} from './option/option.component';
 
 import {UiMaxlengthDirective} from './format/validators/maxlength.directive';
 
@@ -12,7 +13,8 @@ const lib: any[] = [
     UiInputContainerComponent,
     UiInputDirective,
     UiToolbarComponent,
-    UiMaxlengthDirective
+    UiMaxlengthDirective,
+    UiOptionComponent
 ];
 
 @NgModule({
