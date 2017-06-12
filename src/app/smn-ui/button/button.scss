@@ -1,19 +1,46 @@
 @import "../core/device";
 @import "../core/easing";
 @import "../core/palette";
+@import "../core/shadows";
 
-.ui-button-cover {
+.ui-button-container {
     display: flex;
     flex-wrap: wrap;
-    padding: 12px 16px;
-    justify-content: flex-end;
 
     button {
         margin: 2px 0;
+        min-width: unset;
     }
 
-    button:not(.full) + button:not(.full) {
-        margin-left: 4px;
+    button:not(.full) {
+        margin-right: 4px;
+        margin-left: 0;
+    }
+
+    &.cover {
+        padding: 12px 16px;
+        justify-content: flex-end;
+
+        button:not(.full) + button:not(.full) {
+            margin-left: 4px;
+            margin-right: 0;
+        }
+    }
+}
+
+.ui-fab-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 60px;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+
+    .ui-button {
+        &.mini:not(:last-child) {
+            margin-right: 12px;
+        }
     }
 }
 
@@ -27,29 +54,100 @@
     text-transform: uppercase;
     text-align: center;
     transform: scale(1);
-    transition: scale 0.28s ui-easing(),
-    color 0.28s ui-easing(),
-    background-color 0.28s ui-easing();
+    transition: color 0.28s ui-easing(),
+    background-color 0.28s ui-easing(),
+    box-shadow 0.28s ui-easing();
+    font-family: inherit;
+    white-space: nowrap;
+    min-width: 88px;
+
+    &.full {
+        width: 100%;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #000;
+        opacity: 0;
+        transition: ui-easing();
+        border-radius: 2px;
+    }
+
+    &:focus::before {
+        opacity: 0.06;
+    }
+
+    &:active:not([ui-ripple])::before {
+        opacity: 0.12;
+    }
+
+    @include mobile {
+        &::after {
+            content: "";
+            position: absolute;
+            left: -6px;
+            top: -6px;
+            bottom: -6px;
+            right: -6px;
+        }
+
+        & > * + *::after {
+            right: 0;
+        }
+    }
 
     i {
         vertical-align: middle;
     }
 
-    &.icon {
+    &.icon,
+    &.fab {
         border-radius: 50%;
         margin: 12px;
         padding-left: 0;
         padding-right: 0;
         width: 36px;
         height: 36px;
+        min-width: unset;
+
+        &::before {
+            border-radius: 50%;
+        }
+    }
+
+    &.fab {
+        width: 56px;
+        height: 56px;
+        margin: 5px;
+
+        &.mini {
+            width: 40px;
+            height: 40px;
+        }
+
+        box-shadow: ui-shadow('1dp', true);
+
+        @include mobile {
+            box-shadow: ui-shadow('2dp', true);
+        }
+
+        &:hover {
+            box-shadow: ui-shadow('2dp', true);
+        }
+
+        &:active {
+            box-shadow: ui-shadow('8dp', true);
+        }
     }
 
     &.pointer {
         cursor: pointer;
-    }
-
-    & > * + * {
-        margin-left: 8px;
     }
 
     &.flat {
@@ -67,5 +165,68 @@
     &.success {
         background-color: ui-color('green');
         color: ui-text-color('green');
+
+        &::before {
+            background-color: ui-text-color('green');
+        }
+
+        &.flat {
+            background-color: transparent;
+            color: ui-color('green');
+        }
+    }
+
+    &.warning {
+        background-color: ui-color('orange');
+        color: ui-text-color('orange');
+
+        &::before {
+            background-color: ui-text-color('orange');
+        }
+
+        &.flat {
+            background-color: transparent;
+            color: ui-color('orange');
+        }
+    }
+
+    &.error {
+        background-color: ui-color('red');
+        color: ui-text-color('red');
+
+        &::before {
+            background-color: ui-text-color('red');
+        }
+
+        &.flat {
+            background-color: transparent;
+            color: ui-color('red');
+        }
+    }
+
+    &.raised {
+        box-shadow: ui-shadow('1dp');
+        @include mobile {
+            box-shadow: ui-shadow('2dp');
+        }
+
+        &:hover {
+            box-shadow: ui-shadow('2dp');
+        }
+
+        &:active {
+            box-shadow: ui-shadow('8dp');
+        }
+    }
+
+    &[disabled] {
+        background-color: rgba(0, 0, 0, 0.12);
+        color: rgba(0, 0, 0, 0.26);
+        box-shadow: none;
+        cursor: not-allowed;
+
+        &.flat {
+            background-color: transparent;
+        }
     }
 }

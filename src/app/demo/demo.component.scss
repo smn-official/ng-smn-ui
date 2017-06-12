@@ -12,10 +12,11 @@ $theme-dark: ui-theme($primary, $accent, true);
 @include ui-build-theme($theme);
 
 .dark {
-    background-color: black;
+    background-color: #303030;
     @include ui-build-theme($theme-dark);
 }
 
 .light {
+    background-color: #FAFAFA;
     @include ui-build-theme($theme);
 }

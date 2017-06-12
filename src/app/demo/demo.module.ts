@@ -5,7 +5,8 @@ import {RouterModule} from '@angular/router';
 import {SMNUIModule} from '../smn-ui/smn-ui.module';
 
 import {DemoComponent} from './demo.component';
-import { DemoInputComponent } from './demo-input/demo-input.component';
+import {DemoInputComponent} from './demo-input/demo-input.component';
+import {DemoButtonComponent} from './demo-button/demo-button.component';
 
 
 @NgModule({
@@ -15,7 +16,11 @@ import { DemoInputComponent } from './demo-input/demo-input.component';
         RouterModule,
         SMNUIModule,
     ],
-    declarations: [DemoComponent, DemoInputComponent],
+    declarations: [
+        DemoComponent,
+        DemoInputComponent,
+        DemoButtonComponent
+    ],
     exports: [DemoComponent]
 })
 export class DemoModule {
