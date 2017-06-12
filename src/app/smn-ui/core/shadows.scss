@@ -1,3 +1,5 @@
+@import 'variables';
+
 /* https://material.io/guidelines/resources/shadows.html */
 $shadows: (
     '1dp': '0 0 2px 0 rgba(0,0,0,.14), 0 2px 2px 0 rgba(0,0,0,.12), 0 1px 3px 0 rgba(0,0,0,.20)',
@@ -12,6 +14,6 @@ $shadows: (
     '24dp': '0 24px 38px 3px rgba(0,0,0,.14), 0 9px 49px 8px rgba(0,0,0,.12), 0 11px 15px 0 rgba(0,0,0,.20)'
 );
 
-@function ui-shadow($dp: '1dp') {
-    @return unquote(map_get($shadows, $dp));
+@function ui-shadow($dp: '1dp', $tint-shade: false) {
+    @return unquote(map_get($shadows, $dp) + ui-if($tint-shade, ', inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1)', ''));
 }
