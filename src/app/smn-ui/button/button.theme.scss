@@ -1,21 +1,90 @@
 @import "../core/palette";
+@import "../core/variables";
 
 @mixin ui-button($theme) {
+    $text-color: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.7), rgba(0,0,0,.54));
+    $hover-color: ui-if(map-get($theme, is-dark) == true, #FFF, #000);
+    $disabled-background-color: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.12));
+    $disabled-text-color: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, 0.30), rgba(0, 0, 0, 0.26));
+
     .ui-button {
-        background-color: ui-color(map_get($theme, primary), map_get($theme, primary-hue));
-        color: ui-text-color(map_get($theme, primary));
-        border: 0;
-    }
+        &.flat {
+            &::before {
+                background-color: $hover-color;
+            }
 
-    .ui-button.primary {
-        background-color: ui-color(map_get($theme, primary), map_get($theme, primary-hue));
-        color: ui-text-color(map_get($theme, primary));
-        border: 0;
-    }
+            &.icon {
+                &.primary::before {
+                    background-color: ui-color(map_get($theme, primary));
+                }
 
-    .ui-button.accent {
-        background-color: ui-color(map_get($theme, accent), map_get($theme, accent-hue));
-        color: ui-text-color(map_get($theme, accent));
-        border: 0;
+                &.accent::before {
+                    background-color: ui-color(map_get($theme, primary));
+                }
+            }
+        }
+
+        &[disabled] {
+            background-color: $disabled-background-color;
+            color: $disabled-text-color;
+
+            &.flat {
+                background-color: transparent;
+            }
+        }
+
+        &:not(.success):not(.warning):not(.error):not([disabled]) {
+            background-color: ui-color('grey', '300');
+            color: ui-text-color('grey', '300');
+
+            &::before {
+                background-color: ui-text-color('grey', '300');
+            }
+
+            &.flat {
+                background-color: transparent;
+                color: $text-color;
+
+                &::before {
+                    background-color: $hover-color;
+                }
+            }
+
+            &.primary {
+                background-color: ui-color(map_get($theme, primary), map_get($theme, primary-hue));
+                color: ui-text-color(map_get($theme, primary));
+
+                &::before {
+                    background-color: ui-text-color(map_get($theme, primary));
+                }
+
+                &.flat {
+                    background-color: transparent;
+                    color: ui-color(map_get($theme, primary));
+
+                    &::before {
+                        background-color: $hover-color;
+                    }
+                }
+            }
+
+            &.accent {
+                background-color: ui-color(map_get($theme, accent), map_get($theme, accent-hue));
+                color: ui-text-color(map_get($theme, accent));
+
+                &::before {
+                    background-color: ui-text-color(map_get($theme, accent));
+                }
+
+                &.flat {
+                    background-color: transparent;
+                    color: ui-color(map_get($theme, accent));
+
+                    &::before {
+                        background-color: $hover-color;
+                    }
+                }
+            }
+        }
     }
 }
