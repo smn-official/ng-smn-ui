@@ -21,6 +21,10 @@
         padding: 12px 16px;
         justify-content: flex-end;
 
+        &.align-left {
+            justify-content: flex-start;
+        }
+
         button:not(.full) + button:not(.full) {
             margin-left: 4px;
             margin-right: 0;
