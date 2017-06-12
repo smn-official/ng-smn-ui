@@ -1,6 +1,7 @@
 @import "palette";
 @import "../button/button.theme";
 @import "../input/input.theme";
+@import "../card/card.theme.scss";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -39,4 +40,5 @@
     }
     @include ui-button($theme);
     @include ui-input($theme);
+    @include ui-card($theme);
 }

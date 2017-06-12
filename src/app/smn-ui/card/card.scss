@@ -1,0 +1,57 @@
+@import '../core/easing.scss';
+@import '../core/shadows.scss';
+
+ui-card {
+    display: block;
+    box-shadow: ui-shadow('2dp');
+    background-color: #FFF;
+    max-width: 100%;
+    border-radius: 2px;
+    transition: box-shadow 0.28s ui-easing();
+
+    &.no-space {
+        margin: 0;
+    }
+    &.no-radius {
+        border-radius: 0;
+    }
+    &.pointer {
+        cursor: pointer;
+    }
+    &.raising {
+        box-shadow: ui-shadow('1dp');
+
+        @include mobile {
+            box-shadow: ui-shadow('2dp');
+        }
+
+        &:hover {
+            box-shadow: ui-shadow('2dp');
+        }
+
+        &:active {
+            box-shadow: ui-shadow('8dp');
+        }
+    }
+
+    img.responsive {
+        width: 100%;
+    }
+
+    ui-card-content {
+        display: block;
+        padding: 16px;
+        font-size: 14px;
+    }
+    ui-card-title {
+        display: block;
+        font-size: 24px;
+        padding: 16px 16px 0;
+    }
+    ui-card-subtitle {
+        display: block;
+        font-size: 12px;
+        padding: 12px 16px 0;
+        opacity: 0.65;
+    }
+}
