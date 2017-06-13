@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 @Component({
-  selector: 'demo-button',
-  templateUrl: './demo-button.component.html',
-  styleUrls: ['./demo-button.component.scss']
+    selector: 'demo-button',
+    templateUrl: './demo-button.component.html',
+    styleUrls: ['./demo-button.component.scss']
 })
 export class DemoButtonComponent implements OnInit {
 
-  constructor() { }
+    constructor(private titleService: Title) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.titleService.setTitle('Button - SMN UI Demos');
+    }
 
 }

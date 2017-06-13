@@ -1,16 +1,20 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import {Component, ViewEncapsulation, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 @Component({
-  selector: 'demo',
-  templateUrl: './demo.component.html',
-  styleUrls: ['./demo.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'demo',
+    templateUrl: './demo.component.html',
+    styleUrls: ['./demo.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class DemoComponent implements OnInit {
+    title: String;
 
-  constructor() { }
+    constructor(private titleService: Title) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.titleService.setTitle('SMN UI Demos');
+    }
 
 }

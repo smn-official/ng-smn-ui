@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 @Component({
     selector: 'demo-toolbar',
@@ -6,15 +7,11 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./demo-toolbar.component.scss']
 })
 export class DemoToolbarComponent implements OnInit {
-    checkboxTest = true;
-    checkboxTest2 = true;
-    radioTest = 2;
-    radioTest2 = 2;
-
-    constructor() {
+    constructor(private titleService: Title) {
     }
 
     ngOnInit() {
+        this.titleService.setTitle('Toolbar - SMN UI Demos');
     }
 
 }

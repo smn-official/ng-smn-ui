@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 @Component({
-  selector: 'demo-input',
-  templateUrl: './demo-input.component.html',
-  styleUrls: ['./demo-input.component.scss']
+    selector: 'demo-input',
+    templateUrl: './demo-input.component.html',
+    styleUrls: ['./demo-input.component.scss']
 })
 export class DemoInputComponent implements OnInit {
 
-  constructor() { }
+    constructor(private titleService: Title) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.titleService.setTitle('Input - SMN UI Demos');
+    }
 
 }

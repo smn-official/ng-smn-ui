@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 @Component({
     selector: 'demo-selection-control',
@@ -11,10 +12,11 @@ export class DemoSelectionControlComponent implements OnInit {
     radioTest = 2;
     radioTest2 = 2;
 
-    constructor() {
+    constructor(private titleService: Title) {
     }
 
     ngOnInit() {
+        this.titleService.setTitle('Selection Control - SMN UI Demos');
     }
 
 }
