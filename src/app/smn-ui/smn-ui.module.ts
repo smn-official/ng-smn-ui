@@ -7,12 +7,10 @@ import {UiInputDirective} from './input/input.directive';
 import {UiToolbarComponent} from './toolbar/toolbar.component';
 import {UiOptionComponent} from './selection-control/option/option.component';
 import {UiMaxlengthDirective} from './format/validators/maxlength.directive';
-import { DatepickerComponent } from './datepicker/datepicker.component';
-import { CalendarComponent } from './calendar/calendar.component';
-import { CalendarContentComponent } from './calendar/calendar-content.component';
-import { AddCalendarDirective } from './calendar/add-calendar.directive';
-
-import {ToolbarService} from './toolbar/toolbar.service';
+import {DatepickerComponent} from './datepicker/datepicker.component';
+import {CalendarComponent} from './calendar/calendar.component';
+import {CalendarContentComponent} from './calendar/calendar-content.component';
+import {AddCalendarDirective} from './calendar/add-calendar.directive';
 
 const lib: any[] = [
     UiInputContainerComponent,
@@ -23,8 +21,7 @@ const lib: any[] = [
     DatepickerComponent,
     UiOptionComponent,
     CalendarContentComponent,
-    AddCalendarDirective,
-    ToolbarService
+    AddCalendarDirective
 ];
 
 @NgModule({
