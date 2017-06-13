@@ -1,0 +1,26 @@
+<header>
+    <div>
+        <div class="year" ng-bind="$ctrl.choosenDate.getFullYear()"></div>
+        <div class="date">
+            <span ng-if="!$ctrl.choosenDate">Selecione uma data</span>
+            <span ng-if="$ctrl.choosenDate" ng-bind="$ctrl.choosenDate | date:'EEE, d \'de\' MMMM' | uiCapitalize">Selecione uma data</span>
+        </div>
+    </div>
+</header>
+<div class="content">
+    <div class="controls">
+        <button class="prev ui-button icon flat"
+                ng-click="$ctrl.prevMonth()"
+                ng-if="!$ctrl.uiMinDate || $ctrl.calendar.days[0].time > $ctrl.uiMinDate.getTime()"
+                tabindex="0"><i class="material-icons">keyboard_arrow_left</i></button>
+        <button class="next ui-button icon flat"
+                ng-click="$ctrl.nextMonth()"
+                ng-if="!$ctrl.uiMaxDate || $ctrl.calendar.days[$ctrl.calendar.days.length - 1].time < $ctrl.uiMaxDate.getTime()"
+                tabindex="2"><i class="material-icons">keyboard_arrow_right</i></button>
+    </div>
+    <div class="calendar-cover"></div>
+</div>
+<div class="actions" ng-if="$ctrl.uiConfirmSelection">
+    <button class="ui-button teal" ng-click="$ctrl.cancel()">Cancelar</button>
+    <button class="ui-button teal" ng-click="$ctrl.selectDate($ctrl.choosenDate)">Ok</button>
+</div>
