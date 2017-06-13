@@ -3,10 +3,12 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
-import { AppRoutingModule } from './app-routing.module';
+import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
 import {DemoModule} from './demo/demo.module';
+
+import {WindowRef} from './smn-ui/providers/window.provider';
 
 @NgModule({
     declarations: [
@@ -19,7 +21,7 @@ import {DemoModule} from './demo/demo.module';
         DemoModule,
         AppRoutingModule
     ],
-    providers: [],
+    providers: [WindowRef],
     bootstrap: [AppComponent]
 })
 export class AppModule {
