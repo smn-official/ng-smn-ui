@@ -1,8 +1,5 @@
-@function ui-if($condition, $true-value, $false-value) {
-  @if $condition {
-    @return $true-value;
-  }
-  @else {
-    @return $false-value;
-  }
-}
+@import 'device';
+@import 'easing';
+@import 'palette';
+@import 'shadows';
+@import 'if';

@@ -1,5 +1,4 @@
 @import "../core/variables";
-@import "../core/palette";
 
 @mixin ui-input($theme) {
     $label-color: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.7), rgba(0,0,0,.54));
