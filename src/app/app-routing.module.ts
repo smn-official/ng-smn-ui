@@ -6,6 +6,7 @@ import {DemoInputComponent} from './demo/demo-input/demo-input.component';
 import {DemoButtonComponent} from './demo/demo-button/demo-button.component';
 import {DemoCardComponent} from './demo/demo-card/demo-card.component';
 import {DemoOptionComponent} from './demo/demo-option/demo-option.component';
+import {DemoToolbarComponent} from './demo/demo-toolbar/demo-toolbar.component';
 
 const routes: Routes = [{
     path: '',
@@ -14,7 +15,8 @@ const routes: Routes = [{
         {path: 'input', component: DemoInputComponent},
         {path: 'button', component: DemoButtonComponent},
         {path: 'card', component: DemoCardComponent},
-        {path: 'option', component: DemoOptionComponent}
+        {path: 'option', component: DemoOptionComponent},
+        {path: 'toolbar', component: DemoToolbarComponent}
     ]
 }];
 

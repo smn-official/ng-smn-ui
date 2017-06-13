@@ -1,0 +1,36 @@
+@import '../core/variables';
+
+@mixin ui-toolbar($theme) {
+    ui-toolbar {
+        &.primary {
+            header {
+                background-color: map_get($theme, primary-color);
+                color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+
+                .logo ~ .title {
+                    border-left: 1px solid ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+                }
+
+                .ui-button .badge {
+                    background-color: map_get($theme, accent-color);
+                    color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+                }
+            }
+        }
+        &.accent {
+            header {
+                background-color: map_get($theme, accent-color);
+                color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+
+                .logo ~ .title {
+                    border-left: 1px solid ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+                }
+
+                .ui-button .badge {
+                    background-color: map_get($theme, primary-color);
+                    color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+                }
+            }
+        }
+    }
+}

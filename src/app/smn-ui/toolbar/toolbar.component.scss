@@ -1,9 +1,6 @@
-@import "../core/device";
-@import "../core/shadows";
-@import "../core/palette";
-@import "../core/easing";
+@import "../core/variables";
 
-:host {
+ui-toolbar {
     .toolbar-space {
         @include desktop {
             height: 64px;
@@ -14,12 +11,11 @@
         @include mobile-landscape {
             height: 48px;
         }
-        transition: height 0.28s ui-easing();
+        transition: height 0.28s ui-easing('deceleration');
         display: none;
     }
 
     header {
-        /*position: absolute;*/
         left: 0;
         top: 0;
         right: 0;
@@ -35,12 +31,39 @@
         }
         box-shadow: ui-shadow('4dp');
         background-color: ui-color('grey', '300');
-        transition: box-shadow 0.28s ui-easing(),
-        height 0.28s ui-easing();
+        transition: box-shadow 0.335s ui-easing('deceleration'),
+        height 0.28s ui-easing('deceleration'),
+        padding-bottom 0.28s ui-easing('deceleration');
         display: flex;
         align-items: center;
         padding: 4px;
         color: ui-text-color('grey', '300');
+
+        .ui-button {
+            margin: 12px;
+
+            &.flat:not(.success):not(.warning):not(.error):not([disabled]) {
+                color: inherit;
+
+                i {
+                    color: inherit;
+                }
+            }
+        }
+
+        .title {
+            padding: 0 16px;
+            font-weight: 500;
+        }
+
+        .logo {
+            max-height: 30px;
+            margin: 0 20px 0 10px;
+        }
+
+        .logo ~ .title {
+            border-left: 1px solid ui-text-color('grey', '300');
+        }
     }
 
     &.fixed {
@@ -53,14 +76,23 @@
         }
     }
 
-    &.flat header {
+    &.flat:not(.scrolled) header {
         box-shadow: none;
     }
 
-    /deep/ div {
-        &.align-right {
-            margin-left: auto;
-            display: flex;
+    .align-right {
+        margin-left: auto;
+        display: flex;
+    }
+
+    &.size-2x:not(.scrolled) {
+        header {
+            @include desktop {
+                box-shadow: none;
+
+                height: 128px;
+                padding-bottom: 68px;
+            }
         }
     }
 }

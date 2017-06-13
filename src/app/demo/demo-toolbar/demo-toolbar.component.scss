@@ -1,0 +1,21 @@
+:host {
+    margin: 20px;
+    display: block;
+
+    .example2 {
+        display: flex;
+
+        ui-card {
+            /*width: 50%;*/
+            margin-bottom: 10px;
+
+            &:first-child {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .example3 {
+        margin-bottom: 10px;
+    }
+}

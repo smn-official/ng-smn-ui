@@ -3,6 +3,7 @@
 @import "../input/input.theme";
 @import "../card/card.theme";
 @import "../option/option.theme";
+@import "../toolbar/toolbar.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -43,4 +44,5 @@
     @include ui-input($theme);
     @include ui-card($theme);
     @include ui-option($theme);
+    @include ui-toolbar($theme);
 }

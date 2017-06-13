@@ -9,6 +9,7 @@ import {DemoInputComponent} from './demo-input/demo-input.component';
 import {DemoButtonComponent} from './demo-button/demo-button.component';
 import {DemoCardComponent} from './demo-card/demo-card.component';
 import {DemoOptionComponent} from './demo-option/demo-option.component';
+import {DemoToolbarComponent} from './demo-toolbar/demo-toolbar.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {DemoOptionComponent} from './demo-option/demo-option.component';
         DemoInputComponent,
         DemoButtonComponent,
         DemoCardComponent,
-        DemoOptionComponent
+        DemoOptionComponent,
+        DemoToolbarComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
