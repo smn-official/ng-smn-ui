@@ -5,10 +5,10 @@ import {CommonModule} from '@angular/common';
 import {UiInputContainerComponent} from './input/input-container.component';
 import {UiInputDirective} from './input/input.directive';
 import {UiToolbarComponent} from './toolbar/toolbar.component';
-import {UiOptionComponent} from './option/option.component';
+import {UiOptionComponent} from './selection-control/option/option.component';
 import {UiMaxlengthDirective} from './format/validators/maxlength.directive';
-import { DatepickerComponent } from './datepicker/datepicker.component';
-import { CalendarComponent } from './calendar/calendar.component';
+import {DatepickerComponent} from './datepicker/datepicker.component';
+import {CalendarComponent} from './calendar/calendar.component';
 
 const lib: any[] = [
     UiInputContainerComponent,

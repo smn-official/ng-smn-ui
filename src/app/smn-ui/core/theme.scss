@@ -2,7 +2,7 @@
 @import "../button/button.theme";
 @import "../input/input.theme";
 @import "../card/card.theme";
-@import "../option/option.theme";
+@import "../selection-control/option/option.theme";
 @import "../toolbar/toolbar.theme";
 @import "variables";
 
@@ -22,10 +22,10 @@
     $theme: (
         primary: map_get($primary, color),
         primary-hue: map_get($primary, hue),
-        primary-color: ui-color(map_get($primary, color),  map_get($primary, hue)),
+        primary-color: ui-color(map_get($primary, color), map_get($primary, hue)),
         accent: map_get($accent, color),
         accent-hue: map_get($accent, hue),
-        accent-color: ui-color(map_get($accent, color),  map_get($accent, hue)),
+        accent-color: ui-color(map_get($accent, color), map_get($accent, hue)),
         is-dark: $is-dark,
         primary-text-color: $primary-text-color,
         secondary-text-color: $secondary-text-color,
@@ -39,6 +39,22 @@
 @mixin ui-build-theme($theme) {
     body {
         background-color: ui-if(map_get($theme, is-dark), #303030, #FAFAFA);
+    }
+    .selection-primary {
+        &::selection,
+        ::selection {
+            color: ui-text-color(map_get($theme, primary), '100');
+            background: ui-color(map_get($theme, primary), '100');
+            opacity: 0.5;
+        }
+    }
+    .selection-accent {
+        &::selection,
+        ::selection {
+            color: ui-text-color(map_get($theme, accent), '100');
+            background: ui-color(map_get($theme, accent), '100');
+            opacity: 0.5;
+        }
     }
     @include ui-button($theme);
     @include ui-input($theme);
