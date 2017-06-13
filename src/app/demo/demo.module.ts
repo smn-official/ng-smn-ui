@@ -12,13 +12,12 @@ import {DemoDatepickerComponent} from './demo-datepicker/demo-datepicker.compone
 import {DemoSelectionControlComponent} from './demo-selection-control/demo-selection-control.component';
 import {DemoToolbarComponent} from './demo-toolbar/demo-toolbar.component';
 
-
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         RouterModule,
-        SMNUIModule,
+        SMNUIModule
     ],
     declarations: [
         DemoComponent,

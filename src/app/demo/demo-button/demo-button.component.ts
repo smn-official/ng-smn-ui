@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
+import {ToolbarService} from '../../smn-ui/toolbar/toolbar.service';
+
 @Component({
     selector: 'demo-button',
     templateUrl: './demo-button.component.html',
@@ -8,11 +10,12 @@ import {Title} from '@angular/platform-browser';
 })
 export class DemoButtonComponent implements OnInit {
 
-    constructor(private titleService: Title) {
+    constructor(private titleService: Title, private toolbarService: ToolbarService) {
     }
 
     ngOnInit() {
         this.titleService.setTitle('Button - SMN UI Demos');
+        this.toolbarService.setTitle('Button');
     }
 
 }

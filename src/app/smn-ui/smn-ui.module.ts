@@ -10,6 +10,8 @@ import {UiMaxlengthDirective} from './format/validators/maxlength.directive';
 import {DatepickerComponent} from './datepicker/datepicker.component';
 import {CalendarComponent} from './calendar/calendar.component';
 
+import {ToolbarService} from './toolbar/toolbar.service';
+
 const lib: any[] = [
     UiInputContainerComponent,
     UiInputDirective,
@@ -17,7 +19,8 @@ const lib: any[] = [
     UiMaxlengthDirective,
     CalendarComponent,
     DatepickerComponent,
-    UiOptionComponent
+    UiOptionComponent,
+    ToolbarService
 ];
 
 @NgModule({

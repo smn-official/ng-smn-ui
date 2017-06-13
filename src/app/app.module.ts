@@ -21,7 +21,9 @@ import {WindowRef} from './smn-ui/providers/window.provider';
         DemoModule,
         AppRoutingModule
     ],
-    providers: [WindowRef],
+    providers: [
+        WindowRef
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
