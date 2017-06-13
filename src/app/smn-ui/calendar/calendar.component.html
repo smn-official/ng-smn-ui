@@ -10,15 +10,17 @@
 <div class="content">
     <div class="controls">
         <button class="prev ui-button icon flat"
-                ng-click="$ctrl.prevMonth()"
+                (click)="prevMonth()"
                 ng-if="!$ctrl.uiMinDate || $ctrl.calendar.days[0].time > $ctrl.uiMinDate.getTime()"
                 tabindex="0"><i class="material-icons">keyboard_arrow_left</i></button>
         <button class="next ui-button icon flat"
-                ng-click="$ctrl.nextMonth()"
+                (click)="nextMonth()"
                 ng-if="!$ctrl.uiMaxDate || $ctrl.calendar.days[$ctrl.calendar.days.length - 1].time < $ctrl.uiMaxDate.getTime()"
                 tabindex="2"><i class="material-icons">keyboard_arrow_right</i></button>
     </div>
-    <div class="calendar-cover"></div>
+    <div class="calendar-cover">
+        <div addCalendar></div>
+    </div>
 </div>
 <div class="actions" ng-if="$ctrl.uiConfirmSelection">
     <button class="ui-button teal" ng-click="$ctrl.cancel()">Cancelar</button>

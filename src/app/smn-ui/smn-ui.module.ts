@@ -7,8 +7,10 @@ import {UiInputDirective} from './input/input.directive';
 import {UiToolbarComponent} from './toolbar/toolbar.component';
 import {UiOptionComponent} from './selection-control/option/option.component';
 import {UiMaxlengthDirective} from './format/validators/maxlength.directive';
-import {DatepickerComponent} from './datepicker/datepicker.component';
-import {CalendarComponent} from './calendar/calendar.component';
+import { DatepickerComponent } from './datepicker/datepicker.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarContentComponent } from './calendar/calendar-content.component';
+import { AddCalendarDirective } from './calendar/add-calendar.directive';
 
 import {ToolbarService} from './toolbar/toolbar.service';
 
@@ -20,6 +22,8 @@ const lib: any[] = [
     CalendarComponent,
     DatepickerComponent,
     UiOptionComponent,
+    CalendarContentComponent,
+    AddCalendarDirective,
     ToolbarService
 ];
 
@@ -30,7 +34,8 @@ const lib: any[] = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [...lib],
-    exports: [...lib]
+    exports: [...lib],
+    entryComponents: [CalendarContentComponent]
 })
 export class SMNUIModule {
 }
