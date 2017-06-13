@@ -10,13 +10,15 @@ import {WindowRef} from '../providers/window.provider';
 export class UiToolbarComponent implements AfterViewInit {
 
     constructor(private winRef: WindowRef, private element: ElementRef) {
-        winRef.nativeWindow.addEventListener('scroll', () => {
+        const toolbarElevateOnScroll = () => {
             this.element.nativeElement.classList.remove('scrolled');
             if (this.element.nativeElement.classList.contains('elevate-on-scroll') && winRef.nativeWindow.scrollY > 1) {
-                /*console.log(this.element.nativeElement);*/
                 this.element.nativeElement.classList.add('scrolled');
             }
-        });
+        };
+
+        winRef.nativeWindow.addEventListener('scroll', toolbarElevateOnScroll);
+        winRef.nativeWindow.addEventListener('resize', toolbarElevateOnScroll);
     }
 
     ngAfterViewInit() {
