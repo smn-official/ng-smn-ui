@@ -229,4 +229,21 @@
             background-color: transparent;
         }
     }
+
+    .badge {
+        position: absolute;
+        right: 0;
+        top: 0;
+        background-color: ui-color('grey', '300');
+        color: ui-text-color('grey', '300');
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        border-radius: 11px;
+        font-size: 11px;
+        line-height: 21px;
+        z-index: 1;
+
+        transition: transform 0.28s ui-easing();
+    }
 }

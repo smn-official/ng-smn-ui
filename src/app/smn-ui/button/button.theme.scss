@@ -1,7 +1,7 @@
 @import "../core/variables";
 
 @mixin ui-button($theme) {
-    $text-color: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.7), rgba(0,0,0,.54));
+    $text-color: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, .7), rgba(0, 0, 0, .54));
     $hover-color: ui-if(map-get($theme, is-dark) == true, #FFF, #000);
     $disabled-background-color: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.12));
     $disabled-text-color: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, 0.30), rgba(0, 0, 0, 0.26));
