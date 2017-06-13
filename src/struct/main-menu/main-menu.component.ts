@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, Input, ViewEncapsulation, OnInit, Injectable, Output, EventEmitter, OnChanges } from '@angular/core';
 
 @Component({
 	selector: 'ui-main-menu',
@@ -8,14 +8,24 @@ import { Component, Input, EventEmitter, Output, ViewEncapsulation, OnInit } fro
 
 export class MainMenuComponent implements OnInit {
 	@Input('menu-list') menuList: any = '';
-	@Input('menu-click') menuClick: Function;
+	@Output('menu-click') menuClick = new EventEmitter();
 
 	level: any = 0;
 
-	constructor() {}
+	constructor() { }
 
 	ngOnInit() {
 		this.menuList = this.iteratePristineMenu(this.menuList);
+
+		setTimeout(() => {
+			let link = document.querySelectorAll('a[link="true"]');
+
+			for (let i = 0; i < link.length; i++) {
+				link[i].addEventListener('click', () => {
+					this.menuClick.emit(false);
+				});
+			}
+		}, 300);
 	}
 
 	iteratePristineMenu(allItems: any): any {

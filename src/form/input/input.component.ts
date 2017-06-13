@@ -1,22 +1,32 @@
-import { Component, ViewChild, ElementRef, ViewEncapsulation, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef } from '@angular/core';
 
 @Component({
 	selector: 'ui-input-container',
-	templateUrl: './input.component.html',
-	encapsulation: ViewEncapsulation.None
+	template: `
+    <div class="ui-input-wrap">
+      <ng-content></ng-content>
+    </div>
+  `
 })
 
-export class InputComponent implements AfterViewInit {
-	@ViewChild('inputContainer') inputContainer: ElementRef;
+export class UiInputContainerComponent implements AfterViewInit {
 
-	constructor() {}
+	constructor(private element: ElementRef) {
+	}
 
 	ngAfterViewInit() {
-		let nativeElem = this.inputContainer.nativeElement;
-		let elements = nativeElem.querySelectorAll('input, select, textarea')[0];
-		let elementHas = elements.hasAttribute('ng-reflect-model');
+		const nativeElement = this.element.nativeElement;
+		const inputWrap = nativeElement.getElementsByClassName('ui-input-wrap')[0];
 
-		elements.setAttribute('class' , 'ui-control');
-		elementHas === true ? false : nativeElem.querySelector('.ui-control:not([ng-reflect-model])').setAttribute('ng-reflect-model' , '');
+		const icon = nativeElement.getElementsByClassName('icon')[0];
+		const line = document.createElement('div');
+		line.className = 'line';
+		inputWrap.appendChild(line);
+
+		if (icon) {
+			const methodInsertIcon = icon === inputWrap.firstElementChild ? 'insertBefore' : 'appendChild';
+			inputWrap.removeChild(icon);
+			nativeElement[methodInsertIcon](icon, nativeElement.firstChild);
+		}
 	}
 }

@@ -72,7 +72,7 @@ Once your library is imported, you can use its components, directives and pipes 
 </h1>
 
 <ui-input-container>
-  <input type="text">
+  <input uiInput name="smnUi" type="text" [(ngModel)]="smnUi">
   <label>SMN-UI</label>
 </ui-input-container>
 ```

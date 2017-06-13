@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 // Components
-import { InputComponent } from './form/input/input.component';
+import { UiInputContainerComponent } from './form/input/input.component';
 import { OptionComponent } from './form/option/option.component';
 import { MainMenuComponent } from './struct/main-menu/main-menu.component';
 import { MenuListComponent } from './struct/main-menu/menu-list/menu-list.component';
@@ -18,6 +18,7 @@ import { ContextMenuComponent } from './components/context-menu/context-menu.com
 // Diretivas
 import { AutofocusDirective } from './utils/autofocus/autofocus.directive';
 import { PerceptiveDirective } from './perceptive/perceptive.directive';
+import { UiInputDirective } from './form/input/input.directive';
 
 export * from './form/input/input.component';
 export * from './form/option/option.component';
@@ -33,7 +34,7 @@ export * from './components/context-menu/context-menu.component';
 		RouterModule
 	],
 	declarations: [
-		InputComponent,
+		UiInputContainerComponent,
 		OptionComponent,
 		MainMenuComponent,
 		MenuListComponent,
@@ -41,12 +42,13 @@ export * from './components/context-menu/context-menu.component';
 		TranslateComponent,
 		ContextMenuComponent,
 		PerceptiveDirective,
-		AutofocusDirective
+		AutofocusDirective,
+		UiInputDirective
 		// UnaccentPipe,
 		// DatePipe
 	],
 	exports: [
-		InputComponent,
+		UiInputContainerComponent,
 		OptionComponent,
 		MainMenuComponent,
 		MenuListComponent,
@@ -54,13 +56,14 @@ export * from './components/context-menu/context-menu.component';
 		TranslateComponent,
 		ContextMenuComponent,
 		PerceptiveDirective,
-		AutofocusDirective
+		AutofocusDirective,
+		UiInputDirective
 		// UnaccentPipe,
 		// DatePipe
 	],
 	schemas: [
 		CUSTOM_ELEMENTS_SCHEMA
-	],
+	]
 })
 export class SMNUIModule {
 	static forRoot(): ModuleWithProviders {

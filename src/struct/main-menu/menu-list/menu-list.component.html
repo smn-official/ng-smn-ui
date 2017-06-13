@@ -1,4 +1,4 @@
-<ui-menu-item (clickEvent)="emitClickEvent($event)" (isOpen)="MenuEvent($event)"
+<ui-menu-item (menuStatus)="menuStatus($event)" (clickEvent)="emitClickEvent($event)" (isOpen)="menuEvent($event)"
 	[item]="item"
 	[list]="item.opcoesFilhas"
 	[level]="level"

@@ -1,7 +1,10 @@
 import { Component, Input, EventEmitter, Output, ViewEncapsulation, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MainMenuComponent } from './../main-menu.component';
+import { Observable } from 'rxjs/Observable';
+
 
 @Component({
 	selector: 'ui-menu-item',
@@ -16,9 +19,9 @@ export class MenuItemComponent{
 	@Output() isOpen = new EventEmitter();
 
 	isOpened = false;
-	menuClick: any;
 
-	constructor(private router: Router) { }
+	constructor(private router: Router, private mainMenu: MainMenuComponent) {
+	}
 
 	openMenu(event: any) {
 		if (this.item.opcoesFilhas) { this.isOpened = !this.isOpened; }
@@ -26,8 +29,6 @@ export class MenuItemComponent{
 	}
 
 	openLink() {
-		// this.router.navigate(['/', this.item.url]);
-		// let menu_click = "this.mainMenu.menuClick()";
-		// eval(menu_click);
+		this.router.navigate(['/', this.item.url]);
 	}
 }

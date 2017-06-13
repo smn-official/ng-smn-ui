@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ViewEncapsulation, OnInit, Output, EventEmitter, Injectable } from '@angular/core';
 
 @Component({
 	selector: 'ui-menu-list',
@@ -20,7 +20,7 @@ export class MenuListComponent implements OnInit {
 		this.level = this.parentLevel + 1;
 	}
 
-	MenuEvent(event: any){
+	menuEvent(event: any) {
 		this.isOpened = event.menuOpened;
 	}
 }
