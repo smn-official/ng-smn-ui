@@ -121,6 +121,13 @@
         }
     }
 
+    &.icon::before {
+        transition: transform 0.195s ui-easing();
+        transform: scale(0);
+    }
+    &.icon:focus::before {
+        transform: scale(1);
+    }
     &.fab {
         width: 56px;
         height: 56px;

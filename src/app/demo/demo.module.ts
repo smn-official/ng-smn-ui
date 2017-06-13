@@ -8,6 +8,7 @@ import {DemoComponent} from './demo.component';
 import {DemoInputComponent} from './demo-input/demo-input.component';
 import {DemoButtonComponent} from './demo-button/demo-button.component';
 import {DemoCardComponent} from './demo-card/demo-card.component';
+import { DemoDatepickerComponent } from './demo-datepicker/demo-datepicker.component';
 import {DemoOptionComponent} from './demo-option/demo-option.component';
 import {DemoToolbarComponent} from './demo-toolbar/demo-toolbar.component';
 
@@ -25,7 +26,8 @@ import {DemoToolbarComponent} from './demo-toolbar/demo-toolbar.component';
         DemoButtonComponent,
         DemoCardComponent,
         DemoOptionComponent,
-        DemoToolbarComponent
+        DemoToolbarComponent,
+        DemoDatepickerComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
