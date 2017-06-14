@@ -1,9 +1,9 @@
 <header>
     <div>
-        <div class="year" ng-bind="$ctrl.choosenDate.getFullYear()"></div>
+        <div class="year" >{{chosenDate && chosenDate.getFullYear()}}</div>
         <div class="date">
-            <span ng-if="!$ctrl.choosenDate">Selecione uma data</span>
-            <span ng-if="$ctrl.choosenDate" ng-bind="$ctrl.choosenDate | date:'EEE, d \'de\' MMMM' | uiCapitalize">Selecione uma data</span>
+            <span *ngIf="!chosenDate">Selecione uma data</span>
+            <span *ngIf="chosenDate" ng-bind="$ctrl.choosenDate | date:'EEE, d \'de\' MMMM' | uiCapitalize">{{formatDate(chosenDate)}}</span>
         </div>
     </div>
 </header>
@@ -22,7 +22,7 @@
         <div addCalendar></div>
     </div>
 </div>
-<div class="actions" ng-if="$ctrl.uiConfirmSelection">
-    <button class="ui-button teal" ng-click="$ctrl.cancel()">Cancelar</button>
-    <button class="ui-button teal" ng-click="$ctrl.selectDate($ctrl.choosenDate)">Ok</button>
+<div class="actions" *ngIf="confirmSelection">
+    <button class="ui-button" (click)="cancel()">Cancelar</button>
+    <button class="ui-button" (click)="selectDate(chosenDate)">Ok</button>
 </div>

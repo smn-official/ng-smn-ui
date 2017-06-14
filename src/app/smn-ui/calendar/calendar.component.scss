@@ -1,7 +1,7 @@
 @import "../core/theme";
 @import "../core/shadows";
 
-:host {
+ui-calendar {
     display: inline-flex;
     flex-direction: column;
     width: 280px;
@@ -92,34 +92,34 @@
     .calendar.ng-leave-active.leave-left {
         transform: translate(-25%);
     }
-
-    .label {
-        padding: 4px 40px;
-    }
-
-    .month-label {
-        font-size: 14px;
-        height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        border-radius: 2px;
-        background-color: transparent;
-        transition: 200ms ease-in-out;
-    }
-
-    .month-label:focus {
-        background-color: rgba(0, 0, 0, .1);
-    }
-
-    .month-label:hover {
-        background-color: rgba(0, 0, 0, .15);
-    }
-
-    .month-label:active {
-        background-color: rgba(0, 0, 0, .2);
-    }
+    //
+    //.label {
+    //    padding: 4px 40px;
+    //}
+    //
+    //.month-label {
+    //    font-size: 14px;
+    //    height: 32px;
+    //    display: flex;
+    //    align-items: center;
+    //    justify-content: center;
+    //    width: 100%;
+    //    border-radius: 2px;
+    //    background-color: transparent;
+    //    transition: 200ms ease-in-out;
+    //}
+    //
+    //.month-label:focus {
+    //    background-color: rgba(0, 0, 0, .1);
+    //}
+    //
+    //.month-label:hover {
+    //    background-color: rgba(0, 0, 0, .15);
+    //}
+    //
+    //.month-label:active {
+    //    background-color: rgba(0, 0, 0, .2);
+    //}
 
     .content button.round {
         position: relative;
