@@ -24,7 +24,7 @@ export class DemoComponent implements OnInit {
 				{
 					'idOpcao': 2,
 					'idOpcaoMae': 1,
-					'nomeOpcao': 'buttons',
+					'nomeOpcao': 'Buttons',
 					'url': 'button'
 				},
 				{
