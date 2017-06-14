@@ -3,6 +3,7 @@
 @import "../input/input.theme";
 @import "../card/card.theme";
 @import "../selection-control/option/option.theme";
+@import "../selection-control/selection/selection.theme";
 @import "../toolbar/toolbar.theme";
 @import "variables";
 
@@ -40,22 +41,7 @@
     body {
         background-color: ui-if(map_get($theme, is-dark), #303030, #FAFAFA);
     }
-    .selection-primary {
-        &::selection,
-        ::selection {
-            color: ui-text-color(map_get($theme, primary), '100');
-            background: ui-color(map_get($theme, primary), '100');
-            opacity: 0.5;
-        }
-    }
-    .selection-accent {
-        &::selection,
-        ::selection {
-            color: ui-text-color(map_get($theme, accent), '100');
-            background: ui-color(map_get($theme, accent), '100');
-            opacity: 0.5;
-        }
-    }
+    @include ui-selection($theme);
     @include ui-button($theme);
     @include ui-input($theme);
     @include ui-card($theme);

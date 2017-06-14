@@ -5,4 +5,16 @@
     ui-card {
         margin-bottom: 10px;
     }
+
+    .example2 {
+        display: flex;
+
+        ui-card {
+            width: 50%;
+
+            &:first-child {
+                margin-right: 10px;
+            }
+        }
+    }
 }
