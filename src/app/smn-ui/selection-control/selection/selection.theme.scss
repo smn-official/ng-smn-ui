@@ -1,0 +1,20 @@
+@import '../../core/variables';
+
+@mixin ui-selection($theme) {
+    .ui-selection-primary {
+        &::selection,
+        ::selection {
+            color: ui-text-color(map_get($theme, primary), '100');
+            background: ui-color(map_get($theme, primary), '100');
+            opacity: 0.5;
+        }
+    }
+    .ui-selection-accent {
+        &::selection,
+        ::selection {
+            color: ui-text-color(map_get($theme, accent), '100');
+            background: ui-color(map_get($theme, accent), '100');
+            opacity: 0.5;
+        }
+    }
+}
