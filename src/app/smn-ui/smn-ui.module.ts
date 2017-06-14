@@ -11,6 +11,9 @@ import {DatepickerComponent} from './datepicker/datepicker.component';
 import {CalendarComponent} from './calendar/calendar.component';
 import {CalendarContentComponent} from './calendar/calendar-content.component';
 import {AddCalendarDirective} from './calendar/add-calendar.directive';
+import { MainMenuComponent } from './main-menu/main-menu.component';
+import { MenuListComponent } from './main-menu/menu-list/menu-list.component';
+import { MenuItemComponent } from './main-menu/menu-item/menu-item.component';
 
 const lib: any[] = [
     UiInputContainerComponent,
@@ -21,7 +24,10 @@ const lib: any[] = [
     DatepickerComponent,
     UiOptionComponent,
     CalendarContentComponent,
-    AddCalendarDirective
+    AddCalendarDirective,
+    MainMenuComponent,
+    MenuListComponent,
+    MenuItemComponent
 ];
 
 @NgModule({

@@ -1,0 +1,7 @@
+<ui-menu-item (isOpen)="menuEvent($event)"
+	[item]="item"
+	[list]="item.opcoesFilhas"
+	[level]="level"
+	[class.is-open]="isOpened && item.opcoesFilhas"
+	*ngFor="let item of list">
+</ui-menu-item>

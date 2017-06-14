@@ -1,8 +1,16 @@
 <ui-toolbar class="fixed flat elevate-on-scroll">
-    <button class="ui-button flat icon">
+    <button (click)="activeMenu()" class="ui-button flat icon">
         <i class="material-icons">menu</i>
     </button>
     <span class="title">{{title}}</span>
 </ui-toolbar>
+
+<ui-drawer [class.open]="openMenu">
+    <div class="toolbar-offset"></div>
+    <div class="drawer-content">
+        <ui-main-menu [menu-list]="menuList.result.opcoes" (menu-click)="openMenu = false"></ui-main-menu>
+    </div>
+</ui-drawer>
+<ui-drawer-background (click)="openMenu = false" [class.show]="openMenu"></ui-drawer-background>
 
 <router-outlet></router-outlet>
