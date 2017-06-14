@@ -3,26 +3,11 @@ ui-option-container {
     flex-wrap: wrap;
     min-height: 32px;
     align-items: center;
+    margin-bottom: 8px;
 
     > ui-option {
         flex: 0 0 auto;
         max-width: 100%;
-    }
-    &.full-row > ui-option {
-        flex: 1 0 100%;
-    }
-    &.v-space-4 > ui-option {
-        margin-top: 4px;
-        margin-bottom: 4px;
-    }
-    &.v-space-8 > ui-option {
-        margin-top: 8px;
-        margin-bottom: 8px;
-    }
-    &.b-space-8 > ui-option {
-        margin-right: 8px;
-    }
-    &.b-space-16 > ui-option {
         margin-right: 16px;
     }
 }

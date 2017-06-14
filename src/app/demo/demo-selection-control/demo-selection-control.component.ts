@@ -10,9 +10,11 @@ import {ToolbarService} from '../../smn-ui/toolbar/toolbar.service';
 })
 export class DemoSelectionControlComponent implements OnInit {
     checkboxTest = true;
-    checkboxTest2 = true;
+    checkboxTest2: String = 'S';
     radioTest = 2;
     radioTest2 = 2;
+    switchTest: String = 'S';
+    switchTest2: String = 'N';
 
     constructor(private titleService: Title, private toolbarService: ToolbarService) {
     }

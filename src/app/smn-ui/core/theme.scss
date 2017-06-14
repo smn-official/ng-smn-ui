@@ -4,6 +4,7 @@
 @import "../card/card.theme";
 @import "../selection-control/option/option.theme";
 @import "../selection-control/selection/selection.theme";
+@import "../selection-control/switch/switch.theme";
 @import "../toolbar/toolbar.theme";
 @import "variables";
 
@@ -41,10 +42,11 @@
     body {
         background-color: ui-if(map_get($theme, is-dark), #303030, #FAFAFA);
     }
-    @include ui-selection($theme);
     @include ui-button($theme);
     @include ui-input($theme);
     @include ui-card($theme);
     @include ui-option($theme);
+    @include ui-selection($theme);
+    @include ui-switch($theme);
     @include ui-toolbar($theme);
 }

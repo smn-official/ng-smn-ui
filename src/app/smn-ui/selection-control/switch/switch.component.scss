@@ -1,3 +1,19 @@
+ui-switch-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+
+    .info {
+        color: rgba(0, 0, 0, 0.87);
+
+        .secondary {
+            display: block;
+            color: rgba(0, 0, 0, 0.54);
+        }
+    }
+}
+
 ui-switch {
     position: relative;
     width: 36px;
@@ -11,7 +27,7 @@ ui-switch {
         opacity: 0;
     }
     .switch-cover {
-        background-color: #2196f3;
+        //background-color: #2196f3;
         width: 0;
         height: 0;
         margin: auto;
@@ -54,17 +70,17 @@ ui-switch {
         background-color: inherit;
         transition: 300ms ease-in-out;
     }
-    .ng-empty + .switch-cover {
-        background-color: #212121;
+    input:not(:checked) + .switch-cover {
+        //background-color: #212121;
     }
-    .ng-empty + .switch-cover .thumb-container {
+    input:not(:checked) + .switch-cover .thumb-container {
         right: 100%;
     }
-    .ng-empty + .switch-cover .thumb {
+    input:not(:checked) + .switch-cover .thumb {
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.21), 0 1px 3px rgba(0, 0, 0, 0.3);
         transform: translateX(100%);
     }
-    .ng-empty:not([disabled]) + .switch-cover .thumb {
+    input:not(:checked):not([disabled]) + .switch-cover .thumb {
         background-color: white;
     }
     .thumb-container::before {
@@ -84,8 +100,8 @@ ui-switch {
         transition: 300ms ease-in-out;
         pointer-events: none;
     }
-    input.ng-empty + .switch-cover .thumb-container::before {
-        background-color: black;
+    input:not(:checked) + .switch-cover .thumb-container::before {
+        //background-color: black;
         opacity: 0.1;
         margin: auto 0;
     }
@@ -94,6 +110,6 @@ ui-switch {
         transform: scale(1);
     }
     [disabled] + .switch-cover {
-        background-color: #bdbdbd;
+        //background-color: #bdbdbd;
     }
 }
