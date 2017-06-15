@@ -1,0 +1,9 @@
+@import "../core/variables";
+
+@mixin ui-divider($theme) {
+    $color: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, .12), rgba(0, 0, 0, .12));
+
+    .ui-divider {
+        background-color: $color;
+    }
+}

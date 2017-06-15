@@ -15,6 +15,7 @@ import {AddCalendarDirective} from './calendar/add-calendar.directive';
 import {MainMenuComponent} from './main-menu/main-menu.component';
 import {MenuListComponent} from './main-menu/menu-list/menu-list.component';
 import {MenuItemComponent} from './main-menu/menu-item/menu-item.component';
+import {UiNavDrawerComponent} from './nav-drawer/nav-drawer.component';
 import {DatetimeService} from './calendar/datetime.service';
 import {WindowRef} from './providers/window.provider';
 
@@ -31,7 +32,8 @@ const lib: any[] = [
     AddCalendarDirective,
     MainMenuComponent,
     MenuListComponent,
-    MenuItemComponent
+    MenuItemComponent,
+    UiNavDrawerComponent
 ];
 
 @NgModule({

@@ -5,6 +5,20 @@ ui-option-container {
     align-items: center;
     margin-bottom: 8px;
 
+    .info {
+        color: rgba(0, 0, 0, 0.87);
+        display: block;
+        width: 100%;
+        margin-bottom: 8px;
+        font-size: 12px;
+        line-height: 16px;
+
+        .secondary {
+            display: block;
+            color: rgba(0, 0, 0, 0.54);
+        }
+    }
+
     > ui-option {
         flex: 0 0 auto;
         max-width: 100%;
