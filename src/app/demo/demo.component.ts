@@ -18,12 +18,11 @@ export class DemoComponent implements OnInit {
         toolbarService.titleChange.subscribe(title => {
             this.title = title;
         });
-        this.menuOpen = false;
     }
 
     ngOnInit() {
         this.titleService.setTitle('SMN UI Demos');
         this.toolbarService.setTitle('SMN UI Demos');
+        this.menuOpen = false;
     }
-
 }

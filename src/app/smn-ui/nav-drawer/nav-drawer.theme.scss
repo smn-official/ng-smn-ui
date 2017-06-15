@@ -1,36 +1,14 @@
 @import '../core/variables';
 
-@mixin ui-toolbar($theme) {
-    ui-toolbar {
-        &.primary {
-            header {
-                background-color: map_get($theme, primary-color);
-                color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+@mixin ui-nav-drawer($theme) {
+    $color-overlay: ui-if(map-get($theme, is-dark) == true, rgba(0, 0, 0, .2), rgba(0, 0, 0, .4));
+    $color-divisor: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, .12), rgba(0, 0, 0, .12));
 
-                .logo ~ .title {
-                    border-left: 1px solid ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
-                }
+    .ui-nav-drawer-overlay {
+        background-color: $color-overlay;
+    }
 
-                .ui-button .badge {
-                    background-color: map_get($theme, accent-color);
-                    color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
-                }
-            }
-        }
-        &.accent {
-            header {
-                background-color: map_get($theme, accent-color);
-                color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
-
-                .logo ~ .title {
-                    border-left: 1px solid ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
-                }
-
-                .ui-button .badge {
-                    background-color: map_get($theme, primary-color);
-                    color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
-                }
-            }
-        }
+    ui-nav-drawer nav .ui-nav-drawer-overflow {
+        border-top: 1px solid $color-divisor;
     }
 }
