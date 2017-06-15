@@ -7,7 +7,7 @@ function _window(): any {
 
 @Injectable()
 export class WindowRef {
-    get nativeWindow(): any {
+    static get nativeWindow(): any {
         return _window();
     }
 }
