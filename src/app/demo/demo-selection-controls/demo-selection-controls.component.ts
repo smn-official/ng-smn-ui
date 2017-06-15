@@ -4,11 +4,11 @@ import {Title} from '@angular/platform-browser';
 import {ToolbarService} from '../../smn-ui/toolbar/toolbar.service';
 
 @Component({
-    selector: 'demo-selection-control',
-    templateUrl: './demo-selection-control.component.html',
-    styleUrls: ['./demo-selection-control.component.scss']
+    selector: 'demo-selection-controls',
+    templateUrl: './demo-selection-controls.component.html',
+    styleUrls: ['./demo-selection-controls.component.scss']
 })
-export class DemoSelectionControlComponent implements OnInit {
+export class DemoSelectionControlsComponent implements OnInit {
     checkboxTest = true;
     checkboxTest2: String = 'S';
     radioTest = 2;
