@@ -18,6 +18,7 @@ import {MenuItemComponent} from './main-menu/menu-item/menu-item.component';
 import {UiNavDrawerComponent} from './nav-drawer/nav-drawer.component';
 import {DatetimeService} from './calendar/datetime.service';
 import {WindowRef} from './providers/window.provider';
+import {UiElement} from './providers/element.provider';
 import { CapitalizePipe } from './utils/pipes/capitalize.pipe';
 
 const lib: any[] = [
@@ -46,7 +47,11 @@ const lib: any[] = [
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [...lib],
     exports: [...lib],
-    providers: [WindowRef, DatetimeService],
+    providers: [
+        WindowRef,
+        DatetimeService,
+        UiElement
+    ],
     entryComponents: [CalendarContentComponent]
 })
 export class SMNUIModule {
