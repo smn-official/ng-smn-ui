@@ -1,3 +1,22 @@
-<p>
-  calendar-content works!
-</p>
+<div class="calendar">
+    <div class="label">
+        <button class="month-label">
+            <span>{{months[info.month] + ' de ' + info.year}}</span>
+        </button>
+    </div>
+    <div class="week-header">
+        <div class="week-day" *ngFor="let day of days">{{day.charAt(0).toUpperCase()}}</div>
+    </div>
+    <div class="days">
+        <div class="day"
+             *ngFor="let day of info.days"
+             [ngClass]="{'today': day.today}">
+            <button type="button"
+                    class="ui-button icon"
+                    (click)="!isDisabled(day.value) && chooseDate(day.value)"
+                    [disabled]="isDisabled(day.value)"
+                    [ngClass]="{'primary': isDay(day.value) || day.today, 'flat': !isDay(day.value)}"
+                    *ngIf="day.month === info.month">{{day.date}}</button>
+        </div>
+    </div>
+</div>

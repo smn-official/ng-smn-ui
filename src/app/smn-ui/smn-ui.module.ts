@@ -15,6 +15,8 @@ import {AddCalendarDirective} from './calendar/add-calendar.directive';
 import {MainMenuComponent} from './main-menu/main-menu.component';
 import {MenuListComponent} from './main-menu/menu-list/menu-list.component';
 import {MenuItemComponent} from './main-menu/menu-item/menu-item.component';
+import {DatetimeService} from './calendar/datetime.service';
+import {WindowRef} from './providers/window.provider';
 
 const lib: any[] = [
     UiInputContainerComponent,
@@ -40,6 +42,7 @@ const lib: any[] = [
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [...lib],
     exports: [...lib],
+    providers: [WindowRef, DatetimeService],
     entryComponents: [CalendarContentComponent]
 })
 export class SMNUIModule {

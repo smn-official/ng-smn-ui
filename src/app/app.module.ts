@@ -8,8 +8,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {DemoModule} from './demo/demo.module';
 
-import {WindowRef} from './smn-ui/providers/window.provider';
-
 @NgModule({
     declarations: [
         AppComponent
@@ -21,9 +19,7 @@ import {WindowRef} from './smn-ui/providers/window.provider';
         DemoModule,
         AppRoutingModule
     ],
-    providers: [
-        WindowRef
-    ],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule {
