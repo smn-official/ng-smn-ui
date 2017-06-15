@@ -20,8 +20,11 @@ import {DatetimeService} from './datetime.service';
 export class CalendarComponent implements OnInit, AfterViewInit {
     @Input() ngModel: Date;
     @Input() initOnSelected: Date;
+    @Input() maxDate: Date;
+    @Input() minDate: Date;
     @ViewChild(AddCalendarDirective) addCalendar: AddCalendarDirective;
 
+    calendar: any;
     days: any;
     shortDays: any;
     months: any;
@@ -88,12 +91,16 @@ export class CalendarComponent implements OnInit, AfterViewInit {
             });
         }
 
+        this.calendar = info;
+
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(CalendarContentComponent);
         const viewContainerRef = this.addCalendar.viewContainerRef;
         viewContainerRef.clear();
         this.componentRef = viewContainerRef.createComponent(componentFactory);
         this.componentRef.instance.info = info;
         this.componentRef.instance.ngModel = this.ngModel;
+        this.componentRef.instance.minDate = this.minDate;
+        this.componentRef.instance.maxDate = this.maxDate;
         this.componentRef.instance.chosenDate = this.chosenDate;
         this.componentRef.instance.confirmSelection = this.confirmSelection;
         this.componentRef.instance.chosen.subscribe(newValue => {
@@ -114,10 +121,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     nextMonth(): void {
         this.viewDate.setMonth(this.viewDate.getMonth() + 1);
         this.renderCalendar(this.viewDate);
-    }
-
-    formatDate(date: Date): string {
-        return `${this.shortDays[date.getDay()]}, ${date.getDate()} de ${this.months[date.getMonth()]}`;
     }
 
     selectDate(value) {

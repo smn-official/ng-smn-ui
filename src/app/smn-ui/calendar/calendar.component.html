@@ -1,9 +1,9 @@
 <header>
     <div>
         <div class="year" >{{chosenDate && chosenDate.getFullYear()}}</div>
-        <div class="date">
-            <span *ngIf="!chosenDate">Selecione uma data</span>
-            <span *ngIf="chosenDate" ng-bind="$ctrl.choosenDate | date:'EEE, d \'de\' MMMM' | uiCapitalize">{{formatDate(chosenDate)}}</span>
+        <span class="date-empty" *ngIf="!chosenDate">Selecione uma data</span>
+        <div class="date" *ngIf="chosenDate">
+            {{shortDays[chosenDate.getDay()] | uiCapitalize}}, {{chosenDate.getDate()}} de {{months[chosenDate.getMonth()] | uiCapitalize}}
         </div>
     </div>
 </header>
@@ -11,18 +11,18 @@
     <div class="controls">
         <button class="prev ui-button icon flat"
                 (click)="prevMonth()"
-                ng-if="!$ctrl.uiMinDate || $ctrl.calendar.days[0].time > $ctrl.uiMinDate.getTime()"
+                *ngIf="!minDate || (calendar && calendar.days[0].time > minDate.getTime())"
                 tabindex="0"><i class="material-icons">keyboard_arrow_left</i></button>
         <button class="next ui-button icon flat"
                 (click)="nextMonth()"
-                ng-if="!$ctrl.uiMaxDate || $ctrl.calendar.days[$ctrl.calendar.days.length - 1].time < $ctrl.uiMaxDate.getTime()"
+                *ngIf="!maxDate || (calendar && calendar.days[calendar.days.length - 1].time < maxDate.getTime())"
                 tabindex="2"><i class="material-icons">keyboard_arrow_right</i></button>
     </div>
     <div class="calendar-cover">
         <div addCalendar></div>
     </div>
 </div>
-<div class="actions" *ngIf="confirmSelection">
-    <button class="ui-button" (click)="cancel()">Cancelar</button>
-    <button class="ui-button" (click)="selectDate(chosenDate)">Ok</button>
+<div class="actions ui-button-container align-right" *ngIf="confirmSelection">
+    <button class="ui-button flat primary" (click)="cancel()">Cancelar</button>
+    <button class="ui-button flat primary" (click)="selectDate(chosenDate)">Ok</button>
 </div>

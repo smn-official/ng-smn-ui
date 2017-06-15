@@ -1,0 +1,14 @@
+@import "../core/variables";
+
+@mixin ui-calendar($theme) {
+    $is-dark: map_get($theme, is-dark);
+
+    ui-calendar {
+        background-color: ui-if($is-dark, ui-color('grey', '800'), #FFF);
+
+        header {
+            background-color: ui-if($is-dark, ui-color('grey', '700'), map_get($theme, primary-color));
+            color: ui-if($is-dark, #FFF, ui-text-color(map_get($theme, primary), map_get($theme, primary-hue)));
+        }
+    }
+}

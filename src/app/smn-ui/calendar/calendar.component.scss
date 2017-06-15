@@ -12,9 +12,7 @@ ui-calendar {
 
 
     header {
-        background-color: ui-color('grey', '300');
-        color: #fff;
-        padding: 8px 16px;
+        padding: 16px;
         min-height: 72px;
         display: flex;
         justify-content: center;
@@ -27,8 +25,14 @@ ui-calendar {
         font-weight: 400;
     }
 
+    header .date-empty {
+        font-size: 18px;
+        font-weight: 500;
+    }
+
     header .date {
-        font-size: 22px;
+        margin-top: 8px;
+        font-size: 26px;
         font-weight: 500;
     }
 

@@ -6,6 +6,8 @@
 @import "../selection-control/selection/selection.theme";
 @import "../selection-control/switch/switch.theme";
 @import "../toolbar/toolbar.theme";
+@import "../calendar/calendar.theme";
+@import "../calendar/calendar-content.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -49,4 +51,6 @@
     @include ui-selection($theme);
     @include ui-switch($theme);
     @include ui-toolbar($theme);
+    @include ui-calendar($theme);
+    @include ui-calendar-content($theme);
 }

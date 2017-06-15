@@ -17,6 +17,7 @@ import {MenuListComponent} from './main-menu/menu-list/menu-list.component';
 import {MenuItemComponent} from './main-menu/menu-item/menu-item.component';
 import {DatetimeService} from './calendar/datetime.service';
 import {WindowRef} from './providers/window.provider';
+import { CapitalizePipe } from './utils/pipes/capitalize.pipe';
 
 const lib: any[] = [
     UiInputContainerComponent,
@@ -31,7 +32,8 @@ const lib: any[] = [
     AddCalendarDirective,
     MainMenuComponent,
     MenuListComponent,
-    MenuItemComponent
+    MenuItemComponent,
+    CapitalizePipe
 ];
 
 @NgModule({
