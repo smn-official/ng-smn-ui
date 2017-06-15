@@ -4,11 +4,11 @@ import {Title} from '@angular/platform-browser';
 import {ToolbarService} from '../../smn-ui/toolbar/toolbar.service';
 
 @Component({
-    selector: 'demo-datepicker',
-    templateUrl: './demo-datepicker.component.html',
-    styleUrls: ['./demo-datepicker.component.scss']
+    selector: 'demo-date-pickers',
+    templateUrl: './demo-date-pickers.component.html',
+    styleUrls: ['./demo-date-pickers.component.scss']
 })
-export class DemoDatepickerComponent implements OnInit {
+export class DemoDatePickersComponent implements OnInit {
 
     constructor(private titleService: Title, private toolbarService: ToolbarService) {
     }

@@ -8,6 +8,7 @@
 @import "../toolbar/toolbar.theme";
 @import "../calendar/calendar.theme";
 @import "../calendar/calendar-content.theme";
+@import "../divider/divider.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -53,4 +54,5 @@
     @include ui-toolbar($theme);
     @include ui-calendar($theme);
     @include ui-calendar-content($theme);
+    @include ui-divider($theme);
 }

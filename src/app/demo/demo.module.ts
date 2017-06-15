@@ -5,12 +5,13 @@ import {RouterModule} from '@angular/router';
 import {SMNUIModule} from '../smn-ui/smn-ui.module';
 
 import {DemoComponent} from './demo.component';
-import {DemoInputComponent} from './demo-input/demo-input.component';
-import {DemoButtonComponent} from './demo-button/demo-button.component';
-import {DemoCardComponent} from './demo-card/demo-card.component';
-import {DemoDatepickerComponent} from './demo-datepicker/demo-datepicker.component';
-import {DemoSelectionControlComponent} from './demo-selection-control/demo-selection-control.component';
-import {DemoToolbarComponent} from './demo-toolbar/demo-toolbar.component';
+import {DemoInputsComponent} from './demo-inputs/demo-inputs.component';
+import {DemoButtonsComponent} from './demo-buttons/demo-buttons.component';
+import {DemoCardsComponent} from './demo-cards/demo-cards.component';
+import {DemoDatePickersComponent} from './demo-date-pickers/demo-date-pickers.component';
+import {DemoSelectionControlsComponent} from './demo-selection-controls/demo-selection-controls.component';
+import {DemoToolbarsComponent} from './demo-toolbars/demo-toolbars.component';
+import {DemoDividersComponent} from './demo-dividers/demo-dividers.component';
 
 @NgModule({
     imports: [
@@ -21,12 +22,13 @@ import {DemoToolbarComponent} from './demo-toolbar/demo-toolbar.component';
     ],
     declarations: [
         DemoComponent,
-        DemoInputComponent,
-        DemoButtonComponent,
-        DemoCardComponent,
-        DemoSelectionControlComponent,
-        DemoToolbarComponent,
-        DemoDatepickerComponent
+        DemoInputsComponent,
+        DemoButtonsComponent,
+        DemoCardsComponent,
+        DemoSelectionControlsComponent,
+        DemoToolbarsComponent,
+        DemoDatePickersComponent,
+        DemoDividersComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

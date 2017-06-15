@@ -1,0 +1,21 @@
+@import "../core/variables";
+
+ui-nav-drawer {
+    nav {
+        top: 0;
+        bottom: 0;
+        max-width: 320px;
+        position: fixed;
+        background-color: #fff;
+        width: 100%;
+        z-index: 1;
+        box-shadow: ui-shadow('16dp');
+        transition: transform 0.28s ui-easing('deceleration');
+        left: 0;
+        transform: translateX(-100% - 10);
+    }
+
+    &.open nav {
+        transform: translateX(0);
+    }
+}

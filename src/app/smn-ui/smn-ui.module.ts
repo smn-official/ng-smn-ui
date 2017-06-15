@@ -15,6 +15,7 @@ import {AddCalendarDirective} from './calendar/add-calendar.directive';
 import {MainMenuComponent} from './main-menu/main-menu.component';
 import {MenuListComponent} from './main-menu/menu-list/menu-list.component';
 import {MenuItemComponent} from './main-menu/menu-item/menu-item.component';
+import {UiNavDrawerComponent} from './nav-drawer/nav-drawer.component';
 import {DatetimeService} from './calendar/datetime.service';
 import {WindowRef} from './providers/window.provider';
 import { CapitalizePipe } from './utils/pipes/capitalize.pipe';
@@ -33,7 +34,8 @@ const lib: any[] = [
     MainMenuComponent,
     MenuListComponent,
     MenuItemComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    UiNavDrawerComponent
 ];
 
 @NgModule({

@@ -4,17 +4,18 @@ import {Title} from '@angular/platform-browser';
 import {ToolbarService} from '../../smn-ui/toolbar/toolbar.service';
 
 @Component({
-    selector: 'demo-toolbar',
-    templateUrl: './demo-toolbar.component.html',
-    styleUrls: ['./demo-toolbar.component.scss']
+    selector: 'demo-dividers',
+    templateUrl: './demo-dividers.component.html',
+    styleUrls: ['./demo-dividers.component.scss']
 })
-export class DemoToolbarComponent implements OnInit {
+export class DemoDividersComponent implements OnInit {
+
     constructor(private titleService: Title, private toolbarService: ToolbarService) {
     }
 
     ngOnInit() {
-        this.titleService.setTitle('Toolbar - SMN UI Demos');
-        this.toolbarService.setTitle('Toolbar');
+        this.titleService.setTitle('Divider - SMN UI Demos');
+        this.toolbarService.setTitle('Divider');
     }
 
 }
