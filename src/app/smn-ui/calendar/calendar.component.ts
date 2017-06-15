@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import {CalendarContentComponent} from './calendar-content.component';
 import {AddCalendarDirective} from './add-calendar.directive';
+import {DatetimeService} from './datetime.service';
 
 @Component({
     selector: 'ui-calendar',
@@ -24,17 +25,15 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     days: any;
     shortDays: any;
     months: any;
-    shortMonths: any;
     viewDate: Date;
     chosenDate: any;
     confirmSelection = true;
     componentRef;
 
-    constructor(public componentFactoryResolver: ComponentFactoryResolver) {
-        this.days = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
-        this.shortDays = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
-        this.months = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
-        this.shortMonths = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dec'];
+    constructor(public componentFactoryResolver: ComponentFactoryResolver, public datetimeService: DatetimeService) {
+        this.days = datetimeService.days;
+        this.shortDays = datetimeService.shortDays;
+        this.months = datetimeService.months;
     }
 
     ngOnInit(): void {
@@ -49,7 +48,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         this.renderCalendar(this.viewDate);
     }
 
-    renderCalendar(dateTarget: Date, isPrev?: boolean): void {
+    renderCalendar(dateTarget: Date): void {
         let date: Date = dateTarget;
 
         date.setHours(0, 0, 0, 0);
@@ -94,7 +93,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         viewContainerRef.clear();
         this.componentRef = viewContainerRef.createComponent(componentFactory);
         this.componentRef.instance.info = info;
-        this.componentRef.instance.prev = isPrev;
         this.componentRef.instance.ngModel = this.ngModel;
         this.componentRef.instance.chosenDate = this.chosenDate;
         this.componentRef.instance.confirmSelection = this.confirmSelection;
@@ -104,14 +102,13 @@ export class CalendarComponent implements OnInit, AfterViewInit {
                 if (!newValue.confirmSelection) {
                     this.selectDate(newValue.value);
                 }
-                console.log(this);
             }
         });
     }
 
     prevMonth(): void {
         this.viewDate.setMonth(this.viewDate.getMonth() - 1);
-        this.renderCalendar(this.viewDate, true);
+        this.renderCalendar(this.viewDate);
     }
 
     nextMonth(): void {

@@ -1,5 +1,6 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
+import {DatetimeService} from './datetime.service';
 
 @Component({
     selector: 'ui-calendar-content',
@@ -7,33 +8,20 @@ import {Subject} from 'rxjs/Subject';
     styleUrls: ['./calendar-content.component.scss'],
     animations: []
 })
-export class CalendarContentComponent implements OnInit, OnChanges {
+export class CalendarContentComponent {
     maxDate: Date;
     minDate: Date;
     info: any;
-    prev: any;
     ngModel: any;
     chosenDate: any;
     days: any;
-    shortDays: any;
     months: any;
-    shortMonths: any;
-    confirmSelection = false;
+    confirmSelection: boolean;
     chosen: Subject<any> = new Subject();
 
-    constructor() {
-        this.days = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
-        this.shortDays = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
-        this.months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-        this.shortMonths = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dec'];
-    }
-
-    ngOnInit() {
-
-    }
-
-    ngOnChanges() {
-        console.log(this);
+    constructor(public datetimeService: DatetimeService) {
+        this.days = datetimeService.days;
+        this.months = datetimeService.months;
     }
 
     isDay(value) {
@@ -69,13 +57,7 @@ export class CalendarContentComponent implements OnInit, OnChanges {
         const maxDate = this.maxDate ? new Date(this.maxDate).getTime() : null;
         const date = value.getTime();
 
-        if (typeof minDate === 'number' && !isNaN(minDate) && date < minDate) {
-            return true;
-        }
-        if (typeof maxDate === 'number' && !isNaN(maxDate) && date > maxDate) {
-            return true;
-        }
-        return false;
+        return (typeof minDate === 'number' && !isNaN(minDate) && date < minDate) || (typeof maxDate === 'number' && !isNaN(maxDate) && date > maxDate);
     }
 
 }
