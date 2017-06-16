@@ -21,7 +21,6 @@ import {UiCookie} from '../providers/cookie.provider';
 })
 export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
     @Input() open: boolean;
-    @Input() ngClass: String;
     @Output() openChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor(private element: ElementRef) {
