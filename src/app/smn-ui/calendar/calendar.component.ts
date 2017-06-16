@@ -10,9 +10,9 @@ import {
     OnChanges,
     EventEmitter
 } from '@angular/core';
-import {CalendarContentComponent} from './calendar-content.component';
-import {AddCalendarDirective} from './add-calendar.directive';
-import {DatetimeService} from './datetime.service';
+import {UiCalendarContentComponent} from './calendar-content.component';
+import {UiAddCalendarDirective} from './add-calendar.directive';
+import {UiDatetimeService} from './datetime.service';
 
 @Component({
     selector: 'ui-calendar',
@@ -20,7 +20,7 @@ import {DatetimeService} from './datetime.service';
     styleUrls: ['./calendar.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class CalendarComponent implements OnInit, OnChanges, AfterViewInit {
+export class UiCalendarComponent implements OnInit, OnChanges, AfterViewInit {
     @Input() model: any;
     @Input() maxDate: Date;
     @Input() minDate: Date;
@@ -28,7 +28,7 @@ export class CalendarComponent implements OnInit, OnChanges, AfterViewInit {
     @Input() confirmSelection: boolean;
     @Output() select: EventEmitter<any> = new EventEmitter();
     @Output() modelChange: EventEmitter<any> = new EventEmitter();
-    @ViewChild(AddCalendarDirective) addCalendar: AddCalendarDirective;
+    @ViewChild(UiAddCalendarDirective) addCalendar: UiAddCalendarDirective;
 
     calendar: any;
     days: any;
@@ -38,7 +38,7 @@ export class CalendarComponent implements OnInit, OnChanges, AfterViewInit {
     chosenDate: any;
     componentRef;
 
-    constructor(public componentFactoryResolver: ComponentFactoryResolver, public datetimeService: DatetimeService) {
+    constructor(public componentFactoryResolver: ComponentFactoryResolver, public datetimeService: UiDatetimeService) {
         this.days = datetimeService.days;
         this.shortDays = datetimeService.shortDays;
         this.months = datetimeService.months;
@@ -134,7 +134,7 @@ export class CalendarComponent implements OnInit, OnChanges, AfterViewInit {
 
         this.calendar = calendar;
 
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(CalendarContentComponent);
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UiCalendarContentComponent);
         const viewContainerRef = this.addCalendar.viewContainerRef;
         viewContainerRef.clear();
         this.componentRef = viewContainerRef.createComponent(componentFactory);

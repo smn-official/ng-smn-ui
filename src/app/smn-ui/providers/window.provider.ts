@@ -6,7 +6,7 @@ function _window(): any {
 }
 
 @Injectable()
-export class WindowRef {
+export class UiWindowRef {
     static get nativeWindow(): any {
         return _window();
     }

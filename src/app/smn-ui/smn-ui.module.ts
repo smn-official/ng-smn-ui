@@ -8,35 +8,35 @@ import {UiToolbarComponent} from './toolbar/toolbar.component';
 import {UiOptionComponent} from './selection-control/option/option.component';
 import {UiSwitchComponent} from './selection-control/switch/switch.component';
 import {UiMaxlengthDirective} from './format/validators/maxlength.directive';
-import {DatepickerComponent} from './datepicker/datepicker.component';
-import {CalendarComponent} from './calendar/calendar.component';
-import {CalendarContentComponent} from './calendar/calendar-content.component';
-import {AddCalendarDirective} from './calendar/add-calendar.directive';
-import {MainMenuComponent} from './main-menu/main-menu.component';
-import {MenuListComponent} from './main-menu/menu-list/menu-list.component';
-import {MenuItemComponent} from './main-menu/menu-item/menu-item.component';
+import {UiDatepickerComponent} from './datepicker/datepicker.component';
+import {UiCalendarComponent} from './calendar/calendar.component';
+import {UiCalendarContentComponent} from './calendar/calendar-content.component';
+import {UiAddCalendarDirective} from './calendar/add-calendar.directive';
+import {UiMainMenuComponent} from './main-menu/main-menu.component';
+import {UiMenuListComponent} from './main-menu/menu-list/menu-list.component';
+import {UiMenuItemComponent} from './main-menu/menu-item/menu-item.component';
 import {UiNavDrawerComponent} from './nav-drawer/nav-drawer.component';
-import {DatetimeService} from './calendar/datetime.service';
-import {WindowRef} from './providers/window.provider';
+import {UiDatetimeService} from './calendar/datetime.service';
+import {UiWindowRef} from './providers/window.provider';
 import {UiElement} from './providers/element.provider';
 import {UiCookie} from './providers/cookie.provider';
-import {CapitalizePipe} from './utils/pipes/capitalize.pipe';
+import {UiCapitalizePipe} from './utils/pipes/capitalize.pipe';
 
 const lib: any[] = [
     UiInputContainerComponent,
     UiInputDirective,
     UiToolbarComponent,
     UiMaxlengthDirective,
-    CalendarComponent,
-    DatepickerComponent,
+    UiCalendarComponent,
+    UiDatepickerComponent,
     UiOptionComponent,
     UiSwitchComponent,
-    CalendarContentComponent,
-    AddCalendarDirective,
-    MainMenuComponent,
-    MenuListComponent,
-    MenuItemComponent,
-    CapitalizePipe,
+    UiCalendarContentComponent,
+    UiAddCalendarDirective,
+    UiMainMenuComponent,
+    UiMenuListComponent,
+    UiMenuItemComponent,
+    UiCapitalizePipe,
     UiNavDrawerComponent
 ];
 
@@ -49,12 +49,12 @@ const lib: any[] = [
     declarations: [...lib],
     exports: [...lib],
     providers: [
-        WindowRef,
-        DatetimeService,
+        UiWindowRef,
+        UiDatetimeService,
         UiElement,
         UiCookie
     ],
-    entryComponents: [CalendarContentComponent]
+    entryComponents: [UiCalendarContentComponent]
 })
 export class SMNUIModule {
 }

@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
-import {DatetimeService} from './datetime.service';
+import {UiDatetimeService} from './datetime.service';
 import {UiElement} from '../providers/element.provider';
 
 @Component({
@@ -8,7 +8,7 @@ import {UiElement} from '../providers/element.provider';
     templateUrl: './calendar-content.component.html',
     styleUrls: ['./calendar-content.component.scss'],
 })
-export class CalendarContentComponent implements AfterViewInit {
+export class UiCalendarContentComponent implements AfterViewInit {
     maxDate: Date;
     minDate: Date;
     calendar: any;
@@ -19,7 +19,7 @@ export class CalendarContentComponent implements AfterViewInit {
     confirmSelection: boolean;
     chosen: Subject<any> = new Subject();
 
-    constructor(public datetimeService: DatetimeService, public elementRef: ElementRef) {
+    constructor(public datetimeService: UiDatetimeService, public elementRef: ElementRef) {
         this.days = datetimeService.days;
         this.months = datetimeService.months;
     }

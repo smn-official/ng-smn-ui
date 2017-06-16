@@ -9,7 +9,7 @@ import {
     Input
 } from '@angular/core';
 
-import {WindowRef} from '../providers/window.provider';
+import {UiWindowRef} from '../providers/window.provider';
 import {UiElement} from '../providers/element.provider';
 import {UiCookie} from '../providers/cookie.provider';
 
@@ -24,19 +24,19 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
     @Output() openChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor(private element: ElementRef) {
-        let currentScrollTop = WindowRef.nativeWindow.scrollY;
+        let currentScrollTop = UiWindowRef.nativeWindow.scrollY;
 
         const noscroll = () => {
             const isNavOpen = this.element.nativeElement.classList.contains('open');
 
             if (isNavOpen) {
-                WindowRef.nativeWindow.scrollTo(0, currentScrollTop);
+                UiWindowRef.nativeWindow.scrollTo(0, currentScrollTop);
             } else {
-                currentScrollTop = WindowRef.nativeWindow.scrollY;
+                currentScrollTop = UiWindowRef.nativeWindow.scrollY;
             }
         };
 
-        WindowRef.nativeWindow.addEventListener('scroll', noscroll);
+        UiWindowRef.nativeWindow.addEventListener('scroll', noscroll);
     }
 
     ngAfterViewInit() {
