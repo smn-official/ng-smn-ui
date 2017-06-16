@@ -19,7 +19,8 @@ import {UiNavDrawerComponent} from './nav-drawer/nav-drawer.component';
 import {DatetimeService} from './calendar/datetime.service';
 import {WindowRef} from './providers/window.provider';
 import {UiElement} from './providers/element.provider';
-import { CapitalizePipe } from './utils/pipes/capitalize.pipe';
+import {UiCookie} from './providers/cookie.provider';
+import {CapitalizePipe} from './utils/pipes/capitalize.pipe';
 
 const lib: any[] = [
     UiInputContainerComponent,
@@ -50,7 +51,8 @@ const lib: any[] = [
     providers: [
         WindowRef,
         DatetimeService,
-        UiElement
+        UiElement,
+        UiCookie
     ],
     entryComponents: [CalendarContentComponent]
 })
