@@ -147,18 +147,20 @@
             height: 40px;
         }
 
-        box-shadow: ui-shadow('1dp', true);
+        &:not([disabled]) {
+            box-shadow: ui-shadow('1dp', true);
 
-        @include mobile {
-            box-shadow: ui-shadow('2dp', true);
-        }
+            @include mobile {
+                box-shadow: ui-shadow('2dp', true);
+            }
 
-        &:hover {
-            box-shadow: ui-shadow('2dp', true);
-        }
+            &:hover {
+                box-shadow: ui-shadow('2dp', true);
+            }
 
-        &:active {
-            box-shadow: ui-shadow('8dp', true);
+            &:active {
+                box-shadow: ui-shadow('8dp', true);
+            }
         }
     }
 
@@ -232,7 +234,7 @@
         }
     }
 
-    &.raised {
+    &.raised:not([disabled]) {
         box-shadow: ui-shadow('1dp');
         @include mobile {
             box-shadow: ui-shadow('2dp');
