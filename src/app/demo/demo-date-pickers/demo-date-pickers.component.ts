@@ -10,12 +10,18 @@ import {ToolbarService} from '../../smn-ui/toolbar/toolbar.service';
 })
 export class DemoDatePickersComponent implements OnInit {
 
+    today: Date;
     constructor(private titleService: Title, private toolbarService: ToolbarService) {
+        this.today = new Date();
     }
 
     ngOnInit() {
         this.titleService.setTitle('Date Picker - SMN UI Demos');
         this.toolbarService.setTitle('Date Picker');
+    }
+
+    select(value) {
+        console.log(value);
     }
 
 }
