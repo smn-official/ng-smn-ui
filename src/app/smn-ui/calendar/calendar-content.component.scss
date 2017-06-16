@@ -1,5 +1,5 @@
 :host {
-    width: 280px;
+    width: 296px;
     display: block;
     padding: 8px 0;
 
@@ -21,11 +21,13 @@
     .week-header {
         display: flex;
         font-weight: bold;
+        padding: 0 8px;
     }
 
     .days {
         display: flex;
         flex-wrap: wrap;
+        padding: 0 8px;
     }
 
     .week-day,

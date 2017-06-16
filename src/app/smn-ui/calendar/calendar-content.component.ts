@@ -1,6 +1,7 @@
-import {AfterViewInit, Component, ElementRef} from "@angular/core";
-import {Subject} from "rxjs/Subject";
-import {DatetimeService} from "./datetime.service";
+import {AfterViewInit, Component, ElementRef} from '@angular/core';
+import {Subject} from 'rxjs/Subject';
+import {DatetimeService} from './datetime.service';
+import {UiElement} from '../providers/element.provider';
 
 @Component({
     selector: 'ui-calendar-content',
@@ -21,66 +22,63 @@ export class CalendarContentComponent implements AfterViewInit {
     constructor(public datetimeService: DatetimeService, public elementRef: ElementRef) {
         this.days = datetimeService.days;
         this.months = datetimeService.months;
-
     }
 
     ngAfterViewInit() {
         this.elementRef.nativeElement.querySelectorAll('.days button').forEach(item => {
-            // const nodeList = Array.prototype.slice.call(father);
-            //
-            // nodeList.indexOf(el);
             item.addEventListener('keydown', e => {
-                const target = e.target.parentNode;
-                // const nodeList = Array.prototype.slice.call(target.parentNode);
-                // console.log(target.parentNode.indexOf(target));
+                const target = UiElement.closest(e.target, '.day');
+                const index = UiElement.index(target);
 
                 let toFocus;
+                let toFocusIndex = 0;
                 let toFocusAlt;
 
+                setTimeout(() => {
+                    switch (e.keyCode) {
+                        // Seta para esquerda
+                        case 37:
+                            toFocus = this.getSibling(index - 1);
+                            if (!toFocus.length) {
+                                toFocus = this.elementRef.nativeElement.querySelectorAll('.days button:not([disabled])');
+                                toFocusIndex = toFocus.length - 1;
+                            }
+                            toFocus[toFocusIndex].focus();
+                            break;
+                        // Seta para cima
+                        case 38:
+                            toFocus = this.getSibling(index - 7);
+                            toFocusAlt = this.elementRef.nativeElement.querySelectorAll('.days button:not([disabled])')[0];
 
+                            if (toFocus.length && index > UiElement.index(toFocus[0])) {
+                                toFocus[0].focus();
+                            } else {
+                                toFocusAlt.focus();
+                            }
+                            break;
+                        // Seta para direita
+                        case 39:
+                            toFocus = this.getSibling(index + 1);
+                            if (!toFocus.length) {
+                                this.elementRef.nativeElement.querySelectorAll('.days button:not([disabled])')[0].focus();
+                            } else {
+                                toFocus[0].focus();
+                            }
+                            break;
+                        // // Seta para baixo
+                        case 40:
+                            toFocus = this.getSibling(index + 7);
+                            toFocusAlt = this.elementRef.nativeElement.querySelectorAll('.days button:not([disabled])');
+                            toFocusAlt = toFocusAlt[toFocusAlt.length - 1];
 
-                // switch (e.keyCode) {
-                //     // Seta para esquerda
-                //     case 37:
-                //         toFocus = this.getSibling(target.index() - 1);
-                //         if (!toFocus.length)
-                //             $element.find('.days button:not([disabled]):last').focus();
-                //         else
-                //             toFocus.focus();
-                //         break;
-                //     // Seta para cima
-                //     case 38:
-                //         toFocus = this.getSibling(target.index() - 7);
-                //         toFocusAlt = $element.find('.days button:not([disabled]):first');
-                //
-                //         if (toFocus.length && target.index() > toFocus.parent().index())
-                //             toFocus.focus();
-                //         else if (target.index() > toFocusAlt.parent().index())
-                //             toFocusAlt.focus();
-                //         else
-                //             $element.find('.month-label').focus();
-                //         break;
-                //     // Seta para direita
-                //     case 39:
-                //         toFocus = this.getSibling(target.index() + 1);
-                //         if (!toFocus.length)
-                //             $element.find('.days button:not([disabled]):first').focus();
-                //         else
-                //             toFocus.focus();
-                //         break;
-                //     // Seta para baixo
-                //     case 40:
-                //         toFocus = this.getSibling(target.index() + 7);
-                //         toFocusAlt = $element.find('.days button:not([disabled]):last');
-                //
-                //         if (toFocus.length && target.index() < toFocus.parent().index())
-                //             toFocus.focus();
-                //         else if (target.index() < toFocusAlt.parent().index())
-                //             toFocusAlt.focus();
-                //         else
-                //             $element.find('.month-label').focus();
-                //         break;
-                // }
+                            if (toFocus.length && index < UiElement.index(toFocus[0].parentNode)) {
+                                toFocus[0].focus();
+                            } else {
+                                toFocusAlt.focus();
+                            }
+                            break;
+                    }
+                });
             });
         });
 
@@ -92,8 +90,11 @@ export class CalendarContentComponent implements AfterViewInit {
         });
     }
 
-    getSibling(index) {
-        return this.elementRef.nativeElement.querySelectorAll('.calendar .day')[index].querySelectorAll('button:not([disabled])');
+    getSibling(index): any[] {
+        if (index < 0 || !this.elementRef.nativeElement.querySelectorAll('.day')[index]) {
+            return [];
+        }
+        return this.elementRef.nativeElement.querySelectorAll('.day')[index].querySelectorAll('button:not([disabled])');
     }
 
     isDay(value) {
