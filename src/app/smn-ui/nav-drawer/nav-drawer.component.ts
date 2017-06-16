@@ -55,6 +55,7 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
         this.element.nativeElement.addEventListener('click', (e) => {
             if (!isPersistent && UiElement.is(e.srcElement, 'a')) {
                 this.open = false;
+                this.openChange.emit(this.open);
             }
         });
 
