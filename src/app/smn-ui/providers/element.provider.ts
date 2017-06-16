@@ -21,6 +21,10 @@ export class UiElement {
     static is(el, selector): any {
         return _is(el, selector);
     }
+
+    static position(el): any {
+        return _position(el);
+    }
 }
 
 function _closest(el, selector): any {
@@ -86,4 +90,48 @@ function _is(el, selector): any {
         };
 
     return (el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector).call(el, selector);
+}
+
+function _position(el): any {
+    /* http://javascript.info/tutorial/coordinates */
+
+    if (el.getBoundingClientRect) {
+        return getOffsetRect(el);
+    } else { // old browser
+        return getOffsetSum(el);
+    }
+
+    function getOffsetSum(elem) {
+        /* Source: http://javascript.info/tutorial/coordinates */
+
+        let top = 0, left = 0;
+
+        while (elem) {
+            top = top + parseInt(elem.offsetTop, 10);
+            left = left + parseInt(elem.offsetLeft, 10);
+            elem = elem.offsetParent;
+        }
+
+        return {top: top, left: left};
+    }
+
+    function getOffsetRect(elem) {
+        /* http://javascript.info/tutorial/coordinates */
+
+        const box = elem.getBoundingClientRect();
+
+        const body = document.body;
+        const docElem = document.documentElement;
+
+        const scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop;
+        const scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft;
+
+        const clientTop = docElem.clientTop || body.clientTop || 0;
+        const clientLeft = docElem.clientLeft || body.clientLeft || 0;
+
+        const top = box.top + scrollTop - clientTop;
+        const left = box.left + scrollLeft - clientLeft;
+
+        return {top: Math.round(top), left: Math.round(left)};
+    }
 }

@@ -1,0 +1,17 @@
+.ui-list {
+    li,
+    .ui-list-item {
+        height: 48px;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.87);
+        font-weight: 500;
+
+        &.subheader {
+            color: rgba(0, 0, 0, 0.54);
+        }
+    }
+}

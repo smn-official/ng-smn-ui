@@ -12,7 +12,7 @@
     </div>
 </ui-drawer>
 <ui-drawer-background (click)="openMenu = false" [class.show]="openMenu"></ui-drawer-background>-->
-<ui-nav-drawer [(open)]="menuOpen">
+<ui-nav-drawer class="persistent" [(open)]="menuOpen">
     <ui-toolbar class="flat">
         <button (click)="menuOpen = false" class="ui-button flat icon">
             <i class="material-icons">arrow_back</i>
@@ -20,32 +20,16 @@
         <span class="title">{{title}}</span>
     </ui-toolbar>
     <div class="ui-nav-drawer-overflow">
-        <ul>
-            <li>
-                <a routerLink="/">Home</a>
-            </li>
-            <li>
-                <a routerLink="/buttons">Buttons</a>
-            </li>
-            <li>
-                <a routerLink="/cards">Cards</a>
-            </li>
-            <li>
-                <a routerLink="/date-pickers">Date pickers</a>
-            </li>
-            <li>
-                <a routerLink="/dividers">Dividers</a>
-            </li>
-            <li>
-                <a routerLink="/inputs">Inputs</a>
-            </li>
-            <li>
-                <a routerLink="/selection-controls">Selection controls</a>
-            </li>
-            <li>
-                <a routerLink="/toolbars">Toolbars</a>
-            </li>
-        </ul>
+        <div class="ui-list">
+            <a class="ui-list-item" uiRipple routerLink="/">Home</a>
+            <a class="ui-list-item" uiRipple routerLink="/buttons">Buttons</a>
+            <a class="ui-list-item" uiRipple routerLink="/cards">Cards</a>
+            <a class="ui-list-item" uiRipple routerLink="/date-pickers">Date pickers</a>
+            <a class="ui-list-item" uiRipple routerLink="/dividers">Dividers</a>
+            <a class="ui-list-item" uiRipple routerLink="/inputs">Inputs</a>
+            <a class="ui-list-item" uiRipple routerLink="/selection-controls">Selection controls</a>
+            <a class="ui-list-item" uiRipple routerLink="/toolbars">Toolbars</a>
+        </div>
     </div>
 </ui-nav-drawer>
 

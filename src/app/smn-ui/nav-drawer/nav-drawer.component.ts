@@ -40,16 +40,20 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
     }
 
     ngAfterViewInit() {
+        const body = UiElement.closest(this.element.nativeElement, 'body');
+        body.style.transition = 'none';
+
         setTimeout(() => {
+            body.style.transition = '';
             this.element.nativeElement.querySelectorAll('.ui-nav-drawer-overlay')[0].style.visibility = 'visible';
         }, 300);
 
         const isPersistent = this.element.nativeElement.classList.contains('persistent');
         const isOpen = this.element.nativeElement.classList.contains('open');
         if (isPersistent && isOpen) {
-            UiElement.closest(this.element.nativeElement, 'body').classList.add('ui-nav-drawer-persistent');
+            body.classList.add('ui-nav-drawer-persistent');
         } else {
-            UiElement.closest(this.element.nativeElement, 'body').classList.remove('ui-nav-drawer-persistent');
+            body.classList.remove('ui-nav-drawer-persistent');
         }
 
         this.element.nativeElement.addEventListener('click', (e) => {
@@ -84,12 +88,13 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
             }
 
             const isPersistent = this.element.nativeElement.classList.contains('persistent');
+            const body = UiElement.closest(this.element.nativeElement, 'body');
 
             if (isPersistent && isOpen) {
-                UiElement.closest(this.element.nativeElement, 'body').classList.add('ui-nav-drawer-persistent');
+                body.classList.add('ui-nav-drawer-persistent');
                 UiCookie.set('NavDrawerPersistent', 'true');
             } else {
-                UiElement.closest(this.element.nativeElement, 'body').classList.remove('ui-nav-drawer-persistent');
+                body.classList.remove('ui-nav-drawer-persistent');
                 UiCookie.set('NavDrawerPersistent', 'false');
             }
         }

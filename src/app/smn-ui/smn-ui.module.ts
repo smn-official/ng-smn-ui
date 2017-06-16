@@ -21,6 +21,7 @@ import {UiWindowRef} from './providers/window.provider';
 import {UiElement} from './providers/element.provider';
 import {UiCookie} from './providers/cookie.provider';
 import {UiCapitalizePipe} from './utils/pipes/capitalize.pipe';
+import {UiRippleDirective} from './ripple/ripple.directive';
 
 const lib: any[] = [
     UiInputContainerComponent,
@@ -37,7 +38,8 @@ const lib: any[] = [
     UiMenuListComponent,
     UiMenuItemComponent,
     UiCapitalizePipe,
-    UiNavDrawerComponent
+    UiNavDrawerComponent,
+    UiRippleDirective
 ];
 
 @NgModule({
