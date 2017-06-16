@@ -3,26 +3,28 @@
         <div class="year" >{{chosenDate && chosenDate.getFullYear()}}</div>
         <span class="date-empty" *ngIf="!chosenDate">Selecione uma data</span>
         <div class="date" *ngIf="chosenDate">
-            {{shortDays[chosenDate.getDay()] | uiCapitalize}}, {{chosenDate.getDate()}} de {{months[chosenDate.getMonth()] | uiCapitalize}}
+            <span class="week-day">{{shortDays[chosenDate.getDay()] | uiCapitalize}},</span> {{chosenDate.getDate()}} de {{months[chosenDate.getMonth()] | uiCapitalize}}
         </div>
     </div>
 </header>
-<div class="content">
-    <div class="controls">
-        <button class="prev ui-button icon flat"
-                (click)="prevMonth()"
-                *ngIf="!minDate || (calendar && calendar.days[0].time > minDate.getTime())"
-                tabindex="0"><i class="material-icons">keyboard_arrow_left</i></button>
-        <button class="next ui-button icon flat"
-                (click)="nextMonth()"
-                *ngIf="!maxDate || (calendar && calendar.days[calendar.days.length - 1].time < maxDate.getTime())"
-                tabindex="2"><i class="material-icons">keyboard_arrow_right</i></button>
+<div>
+    <div class="content">
+        <div class="controls">
+            <button class="prev ui-button icon flat"
+                    (click)="prevMonth()"
+                    *ngIf="!minDate || (calendar && calendar.days[0].time > minDate.getTime())"
+                    tabindex="0"><i class="material-icons">keyboard_arrow_left</i></button>
+            <button class="next ui-button icon flat"
+                    (click)="nextMonth()"
+                    *ngIf="!maxDate || (calendar && calendar.days[calendar.days.length - 1].time < maxDate.getTime())"
+                    tabindex="2"><i class="material-icons">keyboard_arrow_right</i></button>
+        </div>
+        <div class="calendar-cover">
+            <div addCalendar></div>
+        </div>
     </div>
-    <div class="calendar-cover">
-        <div addCalendar></div>
+    <div class="actions ui-button-container align-right" *ngIf="confirmSelection">
+        <button class="ui-button flat primary" (click)="cancel()">Cancelar</button>
+        <button class="ui-button flat primary" (click)="selectDate(chosenDate)">Ok</button>
     </div>
-</div>
-<div class="actions ui-button-container align-right" *ngIf="confirmSelection">
-    <button class="ui-button flat primary" (click)="cancel()">Cancelar</button>
-    <button class="ui-button flat primary" (click)="selectDate(chosenDate)">Ok</button>
 </div>
