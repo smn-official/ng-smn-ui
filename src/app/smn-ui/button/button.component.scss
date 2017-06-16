@@ -93,7 +93,7 @@
         opacity: 0.06;
     }
 
-    &:active:not([ui-ripple])::before {
+    &:active:not([uiRipple])::before {
         opacity: 0.12;
     }
 
@@ -134,7 +134,7 @@
         transition: transform 0.195s ui-easing();
         transform: scale(0);
     }
-    &.icon:focus::before {
+    &.icon:not([uiRipple]):focus::before {
         transform: scale(1);
     }
     &.fab {
@@ -182,6 +182,10 @@
         background-color: ui-color('green');
         color: ui-text-color('green');
 
+        .ui-ripple-wave {
+            background-color: ui-if(ui-text-color('green') == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+        }
+
         &::before {
             background-color: ui-text-color('green');
         }
@@ -196,6 +200,10 @@
         background-color: ui-color('orange');
         color: ui-text-color('orange');
 
+        .ui-ripple-wave {
+            background-color: ui-if(ui-text-color('orange') == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+        }
+
         &::before {
             background-color: ui-text-color('orange');
         }
@@ -209,6 +217,10 @@
     &.error {
         background-color: ui-color('red');
         color: ui-text-color('red');
+
+        .ui-ripple-wave {
+            background-color: ui-if(ui-text-color('red') == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+        }
 
         &::before {
             background-color: ui-text-color('red');

@@ -12,6 +12,10 @@
                 background-color: $hover-color;
             }
 
+            .ui-ripple-wave {
+                background-color: ui-if($hover-color == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+            }
+
             &.icon {
                 &.primary::before {
                     background-color: ui-color(map_get($theme, primary));
@@ -40,6 +44,10 @@
                 background-color: ui-text-color('grey', '300');
             }
 
+            .ui-ripple-wave {
+                background-color: ui-if(ui-text-color('grey', '300') == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+            }
+
             &.flat {
                 background-color: transparent;
                 color: $text-color;
@@ -47,11 +55,19 @@
                 &::before {
                     background-color: $hover-color;
                 }
+
+                .ui-ripple-wave {
+                    background-color: ui-if($hover-color == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+                }
             }
 
             &.primary {
                 background-color: ui-color(map_get($theme, primary), map_get($theme, primary-hue));
                 color: ui-text-color(map_get($theme, primary));
+
+                .ui-ripple-wave {
+                    background-color: ui-if(ui-text-color(map_get($theme, primary)) == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+                }
 
                 &::before {
                     background-color: ui-text-color(map_get($theme, primary));
@@ -71,6 +87,10 @@
                 background-color: ui-color(map_get($theme, accent), map_get($theme, accent-hue));
                 color: ui-text-color(map_get($theme, accent));
 
+                .ui-ripple-wave {
+                    background-color: ui-if(ui-text-color(map_get($theme, accent)) == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+                }
+
                 &::before {
                     background-color: ui-text-color(map_get($theme, accent));
                 }
@@ -83,6 +103,10 @@
                         background-color: $hover-color;
                     }
                 }
+            }
+
+            &.flat .ui-ripple-wave {
+                background-color: ui-if($hover-color == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
             }
         }
     }

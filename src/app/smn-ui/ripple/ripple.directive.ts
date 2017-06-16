@@ -21,7 +21,13 @@ export class UiRippleDirective {
             const elementWidth = element.nativeElement.offsetWidth;
             const elementHeight = element.nativeElement.offsetHeight;
 
-            elRippleContainerTemplateClone.style.borderRadius = element.nativeElement.style.borderRadius;
+            const isIcon = element.nativeElement.classList.contains('icon');
+            const isFab = element.nativeElement.classList.contains('fab');
+            const isRounded = element.nativeElement.classList.contains('ripple-rounded');
+
+            if (isIcon || isFab || isRounded) {
+                elRippleContainerTemplateClone.style.borderRadius = '50%';
+            }
             elRippleContainerTemplateClone.style.width = elementWidth + 'px';
             elRippleContainerTemplateClone.style.height = elementHeight + 'px';
 
@@ -58,8 +64,7 @@ export class UiRippleDirective {
                 x: mousePos.x - elementPos.left
             };
 
-            const borderRadius = element.nativeElement.style.borderRadius || 0;
-            if (borderRadius === elementWidth / 2) {
+            if (isIcon || isFab || isRounded) {
                 finalTop = finalTop + (elementWidth / 2);
                 finalLeft = finalLeft + (elementWidth / 2);
             } else {
