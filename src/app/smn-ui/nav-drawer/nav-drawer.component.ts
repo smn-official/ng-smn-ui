@@ -28,8 +28,9 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
 
         const noscroll = () => {
             const isNavOpen = this.element.nativeElement.classList.contains('open');
+            const isPersistent = this.element.nativeElement.classList.contains('persistent');
 
-            if (isNavOpen) {
+            if (isNavOpen && !isPersistent) {
                 UiWindowRef.nativeWindow.scrollTo(0, currentScrollTop);
             } else {
                 currentScrollTop = UiWindowRef.nativeWindow.scrollY;
