@@ -8,8 +8,6 @@ import {UiWindowRef} from '../providers/window.provider';
 })
 export class UiRippleDirective {
     constructor(private element: ElementRef) {
-        console.log(element.nativeElement);
-
         const elRippleContainerTemplate = <HTMLElement>document.createElement('div');
         elRippleContainerTemplate.classList.add('ui-ripple-container');
         const elRippleTemplate = <HTMLElement>document.createElement('div');
@@ -87,14 +85,12 @@ export class UiRippleDirective {
             elRippleContainerTemplateClone.classList.remove('pressed');
 
             const elRipples = elRippleContainerTemplateClone.children;
-            console.log(elRipples);
 
             const len = elRipples.length;
             for (let i = 0; i < len; i++) {
                 const elRipple = <HTMLElement>elRipples[i];
                 if (elRipple) {
                     const elementOpacity = elRipple.style.opacity || '1';
-                    console.log(elementOpacity);
 
                     if (elementOpacity === '1') {
                         animate(elRipple, 'opacity', 1, 0, 800, () => {
