@@ -12,7 +12,7 @@
     </div>
 </ui-drawer>
 <ui-drawer-background (click)="openMenu = false" [class.show]="openMenu"></ui-drawer-background>-->
-<ui-nav-drawer class="persistent" [ngClass]="{open: menuOpen}" (closeMenu)="menuOpen = false">
+<ui-nav-drawer [(open)]="menuOpen">
     <ui-toolbar class="flat">
         <button (click)="menuOpen = false" class="ui-button flat icon">
             <i class="material-icons">arrow_back</i>

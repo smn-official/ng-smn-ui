@@ -2,6 +2,7 @@ import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
 import {ToolbarService} from '../smn-ui/toolbar/toolbar.service';
+import {UiCookie} from '../smn-ui/providers/cookie.provider';
 
 @Component({
     selector: 'demo',
@@ -24,5 +25,11 @@ export class DemoComponent implements OnInit {
         this.titleService.setTitle('SMN UI Demos');
         this.toolbarService.setTitle('SMN UI Demos');
         this.menuOpen = false;
+
+        const isNavDrawerPersistent = UiCookie.get('NavDrawerPersistent') === 'true';
+
+        if (isNavDrawerPersistent) {
+            this.menuOpen = true;
+        }
     }
 }

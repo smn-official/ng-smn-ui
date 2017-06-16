@@ -1,7 +1,17 @@
-import {Component, AfterViewInit, ViewEncapsulation, Output, EventEmitter, ElementRef, OnChanges, Input} from '@angular/core';
+import {
+    Component,
+    AfterViewInit,
+    ViewEncapsulation,
+    Output,
+    EventEmitter,
+    ElementRef,
+    OnChanges,
+    Input
+} from '@angular/core';
 
 import {WindowRef} from '../providers/window.provider';
 import {UiElement} from '../providers/element.provider';
+import {UiCookie} from '../providers/cookie.provider';
 
 @Component({
     selector: 'ui-nav-drawer',
@@ -10,32 +20,24 @@ import {UiElement} from '../providers/element.provider';
     encapsulation: ViewEncapsulation.None
 })
 export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
-    @Output() closeMenu: EventEmitter<any> = new EventEmitter();
+    @Input() open: boolean;
     @Input() ngClass: String;
+    @Output() openChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor(private element: ElementRef) {
         let currentScrollTop = WindowRef.nativeWindow.scrollY;
 
-        const $this = this;
-
-        function noscroll() {
-            console.log(WindowRef.nativeWindow);
-
-            const isNavOpen = $this.element.nativeElement.classList.contains('open');
+        const noscroll = () => {
+            const isNavOpen = this.element.nativeElement.classList.contains('open');
 
             if (isNavOpen) {
                 WindowRef.nativeWindow.scrollTo(0, currentScrollTop);
             } else {
                 currentScrollTop = WindowRef.nativeWindow.scrollY;
             }
-        }
+        };
 
-        // add listener to disable scroll
         WindowRef.nativeWindow.addEventListener('scroll', noscroll);
-
-        /*// Remove listener to disable scroll
-         WindowRef.nativeWindow.removeEventListener('scroll', noscroll);*/
-
     }
 
     ngAfterViewInit() {
@@ -53,27 +55,50 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
 
         this.element.nativeElement.addEventListener('click', (e) => {
             if (!isPersistent && UiElement.is(e.srcElement, 'a')) {
-                this.closeMenu.emit();
+                this.open = false;
             }
         });
+
+        if (this.open) {
+            this.element.nativeElement.classList.add('open');
+        } else {
+            this.element.nativeElement.classList.remove('open');
+        }
     }
 
     ngOnChanges(changes) {
-        if (changes.ngClass) {
+        const isNavDrawerPersistent = UiCookie.get('NavDrawerPersistent') === 'true';
+
+        if (isNavDrawerPersistent) {
+            this.open = true;
+            this.element.nativeElement.classList.add('open');
+        }
+
+        if (changes.open) {
+            const isOpen = changes.open.currentValue;
+
+            if (isOpen) {
+                this.element.nativeElement.classList.add('open');
+            } else {
+                this.element.nativeElement.classList.remove('open');
+            }
+
             const isPersistent = this.element.nativeElement.classList.contains('persistent');
-            const isOpen = changes.ngClass.currentValue.open;
 
             if (isPersistent && isOpen) {
                 UiElement.closest(this.element.nativeElement, 'body').classList.add('ui-nav-drawer-persistent');
+                UiCookie.set('NavDrawerPersistent', 'true');
             } else {
                 UiElement.closest(this.element.nativeElement, 'body').classList.remove('ui-nav-drawer-persistent');
+                UiCookie.set('NavDrawerPersistent', 'false');
             }
         }
     }
 
     closeMenuOverlay() {
-        if (this.closeMenu) {
-            this.closeMenu.emit();
+        if (this.open !== undefined) {
+            this.open = false;
+            this.openChange.emit(this.open);
         }
     }
 }
