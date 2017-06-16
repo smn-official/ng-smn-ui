@@ -1,5 +1,5 @@
 <ui-toolbar class="fixed flat elevate-on-scroll primary">
-    <button (click)="menuOpen = true" class="ui-button flat icon">
+    <button (click)="menuOpen = true" class="ui-button flat icon" uiRipple>
         <i class="material-icons">menu</i>
     </button>
     <span class="title">{{title}}</span>
@@ -14,7 +14,7 @@
 <ui-drawer-background (click)="openMenu = false" [class.show]="openMenu"></ui-drawer-background>-->
 <ui-nav-drawer class="persistent" [(open)]="menuOpen">
     <ui-toolbar class="flat">
-        <button (click)="menuOpen = false" class="ui-button flat icon">
+        <button (click)="menuOpen = false" class="ui-button flat icon" uiRipple>
             <i class="material-icons">arrow_back</i>
         </button>
         <span class="title">{{title}}</span>

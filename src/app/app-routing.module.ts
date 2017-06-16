@@ -8,6 +8,7 @@ import {DemoCardsComponent} from './demo/demo-cards/demo-cards.component';
 import {DemoDatePickersComponent} from './demo/demo-date-pickers/demo-date-pickers.component';
 import {DemoSelectionControlsComponent} from './demo/demo-selection-controls/demo-selection-controls.component';
 import {DemoToolbarsComponent} from './demo/demo-toolbars/demo-toolbars.component';
+import {DemoDividersComponent} from './demo/demo-dividers/demo-dividers.component';
 
 const routes: Routes = [{
     path: '',
@@ -19,7 +20,7 @@ const routes: Routes = [{
         {path: 'date-pickers', component: DemoDatePickersComponent},
         {path: 'selection-controls', component: DemoSelectionControlsComponent},
         {path: 'toolbars', component: DemoToolbarsComponent},
-        {path: 'dividers', component: DemoToolbarsComponent},
+        {path: 'dividers', component: DemoDividersComponent},
     ]
 }];
 
