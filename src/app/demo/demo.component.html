@@ -12,37 +12,41 @@
     </div>
 </ui-drawer>
 <ui-drawer-background (click)="openMenu = false" [class.show]="openMenu"></ui-drawer-background>-->
-<ui-nav-drawer [ngClass]="{open: menuOpen}">
+<ui-nav-drawer class="persistent" [ngClass]="{open: menuOpen}" (closeMenu)="menuOpen = false">
     <ui-toolbar class="flat">
         <button (click)="menuOpen = false" class="ui-button flat icon">
             <i class="material-icons">arrow_back</i>
         </button>
         <span class="title">{{title}}</span>
     </ui-toolbar>
-    <ul>
-        <li class="ui-divider"></li>
-        <li>
-            <a routerLink="/">Home</a>
-        </li>
-        <li>
-            <a routerLink="/buttons">Buttons</a>
-        </li>
-        <li>
-            <a routerLink="/cards">Cards</a>
-        </li>
-        <li>
-            <a routerLink="/date-pickers">Date pickers</a>
-        </li>
-        <li>
-            <a routerLink="/inputs">Inputs</a>
-        </li>
-        <li>
-            <a routerLink="/selection-controls">Selection controls</a>
-        </li>
-        <li>
-            <a routerLink="/toolbar">Toolbar</a>
-        </li>
-    </ul>
+    <div class="ui-nav-drawer-overflow">
+        <ul>
+            <li>
+                <a routerLink="/">Home</a>
+            </li>
+            <li>
+                <a routerLink="/buttons">Buttons</a>
+            </li>
+            <li>
+                <a routerLink="/cards">Cards</a>
+            </li>
+            <li>
+                <a routerLink="/date-pickers">Date pickers</a>
+            </li>
+            <li>
+                <a routerLink="/dividers">Dividers</a>
+            </li>
+            <li>
+                <a routerLink="/inputs">Inputs</a>
+            </li>
+            <li>
+                <a routerLink="/selection-controls">Selection controls</a>
+            </li>
+            <li>
+                <a routerLink="/toolbars">Toolbars</a>
+            </li>
+        </ul>
+    </div>
 </ui-nav-drawer>
 
 <router-outlet></router-outlet>

@@ -9,6 +9,7 @@
 @import "../calendar/calendar.theme";
 @import "../calendar/calendar-content.theme";
 @import "../divider/divider.theme";
+@import "../nav-drawer/nav-drawer.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -55,4 +56,5 @@
     @include ui-calendar($theme);
     @include ui-calendar-content($theme);
     @include ui-divider($theme);
+    @include ui-nav-drawer($theme);
 }
