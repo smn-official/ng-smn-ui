@@ -38,7 +38,6 @@ ui-toolbar {
         align-items: center;
         padding: 4px;
         color: ui-text-color('grey', '300');
-        z-index: 1;
 
         .ui-button {
             margin: 12px;
@@ -71,6 +70,7 @@ ui-toolbar {
     &.fixed {
         header {
             position: fixed;
+            z-index: 1;
         }
 
         .toolbar-space {
