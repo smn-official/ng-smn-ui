@@ -1,39 +1,46 @@
-import {Directive, ElementRef} from '@angular/core';
+import {Directive, ElementRef, HostListener} from '@angular/core';
 
 import {UiElement} from '../providers/element.provider';
-import {UiWindowRef} from '../providers/window.provider';
 
 @Directive({
     selector: '[uiRipple]'
 })
 export class UiRippleDirective {
+    private elRippleContainerTemplate: HTMLElement;
+    private elRippleTemplate: HTMLElement;
+    private elRippleContainerTemplateClone: HTMLElement;
+    private ripples: number;
+    private maxRipples = 20;
+
     constructor(private element: ElementRef) {
-        const elRippleContainerTemplate = <HTMLElement>document.createElement('div');
-        elRippleContainerTemplate.classList.add('ui-ripple-container');
-        const elRippleTemplate = <HTMLElement>document.createElement('div');
-        elRippleTemplate.classList.add('ui-ripple-wave');
+        this.elRippleContainerTemplate = document.createElement('div');
+        this.elRippleContainerTemplate.classList.add('ui-ripple-container');
+        this.elRippleTemplate = document.createElement('div');
+        this.elRippleTemplate.classList.add('ui-ripple-wave');
 
-        const elRippleContainerTemplateClone = <HTMLElement>elRippleContainerTemplate.cloneNode(true);
+        this.elRippleContainerTemplateClone = <HTMLElement>this.elRippleContainerTemplate.cloneNode(true);
 
-        let ripples = 0;
+        this.ripples = 0;
+    }
 
-        element.nativeElement.addEventListener('mousedown', (e) => {
-            const elementWidth = element.nativeElement.offsetWidth;
-            const elementHeight = element.nativeElement.offsetHeight;
+    @HostListener('mousedown', ['$event']) onMousedown(e) {
+        if (!this.element.nativeElement.hasAttribute('disabled') && this.ripples < this.maxRipples) {
+            const elementWidth = this.element.nativeElement.offsetWidth;
+            const elementHeight = this.element.nativeElement.offsetHeight;
 
-            const isIcon = element.nativeElement.classList.contains('icon');
-            const isFab = element.nativeElement.classList.contains('fab');
-            const isRounded = element.nativeElement.classList.contains('ripple-rounded');
+            const isIcon = this.element.nativeElement.classList.contains('icon');
+            const isFab = this.element.nativeElement.classList.contains('fab');
+            const isRounded = this.element.nativeElement.classList.contains('ripple-rounded');
 
             if (isIcon || isFab || isRounded) {
-                elRippleContainerTemplateClone.style.borderRadius = '50%';
+                this.elRippleContainerTemplateClone.style.borderRadius = '50%';
             }
-            elRippleContainerTemplateClone.style.width = elementWidth + 'px';
-            elRippleContainerTemplateClone.style.height = elementHeight + 'px';
+            this.elRippleContainerTemplateClone.style.width = elementWidth + 'px';
+            this.elRippleContainerTemplateClone.style.height = elementHeight + 'px';
 
-            element.nativeElement.appendChild(elRippleContainerTemplateClone);
+            this.element.nativeElement.appendChild(this.elRippleContainerTemplateClone);
 
-            const elRippleTemplateClone = <HTMLElement>elRippleTemplate.cloneNode(true);
+            const elRippleTemplateClone = <HTMLElement>this.elRippleTemplate.cloneNode(true);
 
             const isElementHorizontal = elementWidth > elementHeight;
 
@@ -57,7 +64,7 @@ export class UiRippleDirective {
             elRippleTemplateClone.style.height = finalHeight + 'px';
 
             const mousePos = getMousePosition(e);
-            const elementPos = UiElement.position(element.nativeElement);
+            const elementPos = UiElement.position(this.element.nativeElement);
 
             const pos = {
                 y: mousePos.y - elementPos.top,
@@ -75,78 +82,52 @@ export class UiRippleDirective {
             elRippleTemplateClone.style.top = finalTop + 'px';
             elRippleTemplateClone.style.left = finalLeft + 'px';
 
-            elRippleContainerTemplateClone.insertBefore(elRippleTemplateClone, elRippleContainerTemplateClone.firstChild);
+            this.elRippleContainerTemplateClone.insertBefore(elRippleTemplateClone, this.elRippleContainerTemplateClone.firstChild);
 
-            elRippleContainerTemplateClone.classList.add('pressed');
+            this.elRippleContainerTemplateClone.classList.add('pressed');
 
-            animate(elRippleContainerTemplateClone, 'border-spacing', 0, 1, 800, null, (tick) => {
+            animate(this.elRippleContainerTemplateClone, 'border-spacing', 0, 1, 800, null, (tick) => {
                 elRippleTemplateClone.style.transform = `scale(${tick})`;
             });
 
-            ripples++;
-        });
+            this.ripples++;
+        }
+    }
 
-        element.nativeElement.addEventListener('mouseup', () => {
-            elRippleContainerTemplateClone.classList.remove('pressed');
+    @HostListener('mouseup', ['$event']) onMouseup(e) {
+        eraseRipples(this);
+    }
 
-            const elRipples = elRippleContainerTemplateClone.children;
-
-            const len = elRipples.length;
-            for (let i = 0; i < len; i++) {
-                const elRipple = <HTMLElement>elRipples[i];
-                if (elRipple) {
-                    const elementOpacity = elRipple.style.opacity || '1';
-
-                    if (elementOpacity === '1') {
-                        animate(elRipple, 'opacity', 1, 0, 800, () => {
-                            try {
-                                elRipple.parentNode.removeChild(elRipple);
-                            } catch (e) {
-                            }
-                            ripples = 0;
-                        }, null);
-                    }
-                }
-            }
-        });
+    @HostListener('mouseout', ['$event']) onMouseout(e) {
+        eraseRipples(this);
     }
 }
 
-UiWindowRef.nativeWindow.addEventListener('mouseup', eraseRipples);
+function eraseRipples(thiss) {
+    thiss.elRippleContainerTemplateClone.classList.remove('pressed');
 
-function eraseRipples() {
-    setTimeout(() => {
-        /*Retirando todos os ripples que ficaram para trás*/
-        const elRipples = document.querySelectorAll('.ui-ripple-wave');
+    const elRipples = thiss.elRippleContainerTemplateClone.children;
 
-        const len = elRipples.length;
-        for (let i = 0; i < len; i++) {
-            const elRipple = <HTMLElement>elRipples[i];
-            if (elRipple) {
-                const elRippleParent = <HTMLElement>elRipple.parentNode;
+    const len = elRipples.length;
 
-                const elRipples2 = elRippleParent.children;
-                const len2 = elRipples2.length;
-                for (let i2 = 0; i2 < len2; i2++) {
-                    const elRipple2 = <HTMLElement>elRipples2[i];
-                    if (elRipple2) {
-                        const elementOpacity = elRipple2.style.opacity || '1';
+    thiss.ripples = len;
 
-                        if (elementOpacity === '1') {
-                            animate(elRipple2, 'opacity', 1, 0, 800, () => {
-                                try {
-                                    elRipple2.parentNode.removeChild(elRipple2);
-                                } catch (e) {
-                                }
-                                eraseRipples();
-                            }, null);
-                        }
+    for (let i = 0; i < len; i++) {
+        const elRipple = <HTMLElement>elRipples[i];
+        if (elRipple) {
+            const elementOpacity = elRipple.style.opacity || '1';
+
+            if (elementOpacity === '1') {
+                animate(elRipple, 'opacity', 1, 0, 800, () => {
+                    try {
+                        elRipple.parentNode.removeChild(elRipple);
+                        thiss.ripples--;
+                    } catch (e) {
                     }
-                }
+                }, null);
             }
         }
-
-    });
+    }
 }
 
 function getMousePosition(e) {
