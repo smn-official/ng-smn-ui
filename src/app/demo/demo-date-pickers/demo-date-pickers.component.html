@@ -11,15 +11,19 @@
             <ui-calendar [minDate]="today" [(model)]="date"></ui-calendar>
         </ui-card-content>
     </ui-card>
-    <ui-card class="dark">
-        <ui-card-content>
-            <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="dateDark" class="accent" name="dateDark">
-                <label>Date</label>
-                <!--<ui-datepicker></ui-datepicker>-->
-            </ui-input-container>
 
-            <ui-calendar class="portrait-only" [maxDate]="date" [(model)]="dateDark" (select)="select()" [confirmSelection]="true"></ui-calendar>
-        </ui-card-content>
-    </ui-card>
+    <div class="dark">
+        <ui-card>
+            <ui-card-content>
+                <ui-input-container>
+                    <input type="text" uiInput [(ngModel)]="dateDark" class="accent" name="dateDark">
+                    <label>Date</label>
+                    <!--<ui-datepicker></ui-datepicker>-->
+                </ui-input-container>
+
+                <ui-calendar class="portrait-only" [maxDate]="date" [(model)]="dateDark" (select)="select()"
+                             [confirmSelection]="true"></ui-calendar>
+            </ui-card-content>
+        </ui-card>
+    </div>
 </div>

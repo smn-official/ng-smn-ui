@@ -1,6 +1,6 @@
 import {Directive, ElementRef, HostListener} from '@angular/core';
 
-import {UiElement} from '../smn-ui.module';
+import {UiElement} from '../providers/element.provider';
 
 @Directive({
     selector: '[uiRipple]'

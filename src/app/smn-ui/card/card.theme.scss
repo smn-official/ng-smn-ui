@@ -1,5 +1,10 @@
 @import "../core/variables";
 
 @mixin ui-card($theme) {
+    $color-background: ui-if(map-get($theme, is-dark) == true, #424242, #fff);
 
+    ui-card {
+        background-color: $color-background;
+        color: map_get($theme, primary-text-color);
+    }
 }

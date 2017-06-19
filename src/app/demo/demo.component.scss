@@ -12,19 +12,9 @@ $theme-dark: ui-theme($primary, $accent, true);
 @include ui-build-theme($theme);
 
 .dark {
-    background-color: #303030;
-    color: rgba(255,255,255,1);
     @include ui-build-theme($theme-dark);
 }
 
 .light {
-    background-color: #FAFAFA;
-    color: rgba(0,0,0,.87);
     @include ui-build-theme($theme);
-}
-
-ui-nav-drawer {
-    ui-toolbar header {
-        background-color: #fff;
-    }
 }

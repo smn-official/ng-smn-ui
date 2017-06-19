@@ -1,4 +1,5 @@
 import {Component, AfterViewInit, ViewEncapsulation, ElementRef} from '@angular/core';
+
 import {UiWindowRef} from '../providers/window.provider';
 import {UiElement} from '../providers/element.provider';
 
