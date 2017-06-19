@@ -5,13 +5,6 @@
     <span class="title">{{title}}</span>
 </ui-toolbar>
 
-<!--<ui-drawer [class.open]="openMenu">
-    <div class="toolbar-offset"></div>
-    <div class="drawer-content">
-        <ui-main-menu [menu-list]="menuList.result.opcoes" (menu-click)="openMenu = false"></ui-main-menu>
-    </div>
-</ui-drawer>
-<ui-drawer-background (click)="openMenu = false" [class.show]="openMenu"></ui-drawer-background>-->
 <ui-nav-drawer class="persistent" [(open)]="menuOpen">
     <ui-toolbar class="flat">
         <button (click)="menuOpen = false" class="ui-button flat icon" uiRipple>
