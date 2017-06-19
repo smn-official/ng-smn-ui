@@ -1,7 +1,7 @@
 import {Injectable, EventEmitter} from '@angular/core';
 
 @Injectable()
-export class ToolbarService {
+export class UiToolbarService {
     sharedValue: String;
     titleChange: EventEmitter<any> = new EventEmitter();
 

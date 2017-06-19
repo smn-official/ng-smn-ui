@@ -1,21 +1,20 @@
 import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
-import {ToolbarService} from '../smn-ui/toolbar/toolbar.service';
-import {UiCookie} from '../smn-ui/providers/cookie.provider';
+import {UiCookie, UiToolbarService} from '../smn-ui/smn-ui.module';
 
 @Component({
     selector: 'demo',
     templateUrl: './demo.component.html',
     styleUrls: ['./demo.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    providers: [ToolbarService]
+    providers: [UiToolbarService]
 })
 export class DemoComponent implements OnInit {
     title: String;
     menuOpen: boolean;
 
-    constructor(private titleService: Title, private toolbarService: ToolbarService) {
+    constructor(private titleService: Title, private toolbarService: UiToolbarService) {
         toolbarService.titleChange.subscribe(title => {
             this.title = title;
         });

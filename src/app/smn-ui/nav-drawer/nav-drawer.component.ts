@@ -9,9 +9,7 @@ import {
     Input
 } from '@angular/core';
 
-import {UiWindowRef} from '../providers/window.provider';
-import {UiElement} from '../providers/element.provider';
-import {UiCookie} from '../providers/cookie.provider';
+import {UiWindowRef, UiElement, UiCookie} from '../smn-ui.module';
 
 @Component({
     selector: 'ui-nav-drawer',

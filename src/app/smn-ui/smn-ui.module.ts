@@ -17,11 +17,15 @@ import {UiMenuListComponent} from './main-menu/menu-list/menu-list.component';
 import {UiMenuItemComponent} from './main-menu/menu-item/menu-item.component';
 import {UiNavDrawerComponent} from './nav-drawer/nav-drawer.component';
 import {UiDatetimeService} from './calendar/datetime.service';
-import {UiWindowRef} from './providers/window.provider';
-import {UiElement} from './providers/element.provider';
-import {UiCookie} from './providers/cookie.provider';
 import {UiCapitalizePipe} from './utils/pipes/capitalize.pipe';
 import {UiRippleDirective} from './ripple/ripple.directive';
+
+import {UiCookie} from './providers/cookie.provider';
+import {UiToolbarService} from './toolbar/toolbar.service';
+import {UiElement} from './providers/element.provider';
+import {UiWindowRef} from './providers/window.provider';
+
+export {UiCookie, UiToolbarService, UiElement, UiWindowRef}
 
 const lib: any[] = [
     UiInputContainerComponent,
@@ -53,8 +57,7 @@ const lib: any[] = [
     providers: [
         UiWindowRef,
         UiDatetimeService,
-        UiElement,
-        UiCookie
+        UiElement
     ],
     entryComponents: [UiCalendarContentComponent]
 })

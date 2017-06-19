@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
-import {ToolbarService} from '../../smn-ui/toolbar/toolbar.service';
+import {UiToolbarService} from '../../smn-ui/smn-ui.module';
 
 @Component({
     selector: 'demo-date-pickers',
@@ -11,7 +11,7 @@ import {ToolbarService} from '../../smn-ui/toolbar/toolbar.service';
 export class DemoDatePickersComponent implements OnInit {
 
     today: Date;
-    constructor(private titleService: Title, private toolbarService: ToolbarService) {
+    constructor(private titleService: Title, private toolbarService: UiToolbarService) {
         this.today = new Date();
     }
 
