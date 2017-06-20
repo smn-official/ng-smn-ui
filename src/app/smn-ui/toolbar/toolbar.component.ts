@@ -37,4 +37,3 @@ export class UiToolbarComponent implements AfterViewInit {
     ngAfterViewInit() {
     }
 }
-/**/
