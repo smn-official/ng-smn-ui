@@ -13,9 +13,23 @@ export class UiToolbarComponent implements AfterViewInit {
 
     constructor(private element: ElementRef) {
         UiElement.on(UiWindowRef.nativeWindow, 'scroll resize', () => {
-            this.element.nativeElement.classList.remove('scrolled');
-            if (this.element.nativeElement.classList.contains('elevate-on-scroll') && UiWindowRef.nativeWindow.scrollY > 1) {
-                this.element.nativeElement.classList.add('scrolled');
+            if (this.element.nativeElement.classList.contains('elevate-on-scroll')) {
+                const header = this.element.nativeElement.querySelectorAll('header')[0];
+                const scroll = UiWindowRef.nativeWindow.scrollY * 3.4;
+
+                if (scroll < 97) {
+                    header.style.paddingBottom = (102 - scroll) + 'px';
+                    header.style.height = (162 - (scroll)) + 'px';
+
+                    this.element.nativeElement.classList.remove('scrolled');
+                    header.style.zIndex = 1;
+                } else {
+                    header.style.paddingBottom = '';
+                    header.style.height = '';
+
+                    this.element.nativeElement.classList.add('scrolled');
+                    header.style.zIndex = 2;
+                }
             }
         });
     }
@@ -23,3 +37,4 @@ export class UiToolbarComponent implements AfterViewInit {
     ngAfterViewInit() {
     }
 }
+/**/
