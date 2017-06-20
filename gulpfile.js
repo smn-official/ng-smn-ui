@@ -51,3 +51,15 @@ gulp.task('dist', () => {
 gulp.task('build', () => {
     $.runSequence('clean:dist', 'copy:tmp', 'index', ['copy:tsconfig', 'copy:package', 'copy:readme'], 'dist', 'clean:tmp');
 });
+
+const destination = $.util.env.dest;
+gulp.task('dist:dev', () => {
+    return gulp.src(`${paths.dirTemp}/**/*.*`)
+        .pipe(gulp.dest(destination || 'dist-dev'))
+});
+gulp.task('build:dev', () => {
+    $.runSequence('clean:dist', 'copy:tmp', 'index', ['copy:tsconfig', 'copy:package', 'copy:readme'], 'dist:dev', 'clean:tmp');
+});
+gulp.task('build:dev:watch', ['build:dev'], () => {
+    gulp.watch(`${paths.base}/**/*.*`, ['build:dev'])
+});
