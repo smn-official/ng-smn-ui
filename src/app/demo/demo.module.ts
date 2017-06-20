@@ -12,6 +12,7 @@ import {DemoDatePickersComponent} from './demo-date-pickers/demo-date-pickers.co
 import {DemoSelectionControlsComponent} from './demo-selection-controls/demo-selection-controls.component';
 import {DemoToolbarsComponent} from './demo-toolbars/demo-toolbars.component';
 import {DemoDividersComponent} from './demo-dividers/demo-dividers.component';
+import {DemoLayoutComponent} from './demo-layout/demo-layout.component';
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import {DemoDividersComponent} from './demo-dividers/demo-dividers.component';
         DemoSelectionControlsComponent,
         DemoToolbarsComponent,
         DemoDatePickersComponent,
-        DemoDividersComponent
+        DemoDividersComponent,
+        DemoLayoutComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
