@@ -31,4 +31,27 @@ export class UiToolbarService {
             return mailToolbar;
         }
     }
+
+    public activateExtendedToolbar() {
+        this.getMainToolbar().classList.add('size-2x');
+
+        const header = this.getMainToolbar().querySelectorAll('header')[0];
+        header.style.transition = 'all 280ms';
+        setTimeout(() => {
+            header.style.transition = '';
+        }, 280);
+    }
+
+    public deactivateExtendedToolbar() {
+        this.getMainToolbar().classList.remove('size-2x');
+        this.getMainToolbar().classList.remove('scrolled');
+
+        const header = this.getMainToolbar().querySelectorAll('header')[0];
+        header.style.transition = 'all 280ms';
+        header.style.height = '';
+        header.style.paddingBottom = '';
+        setTimeout(() => {
+            header.style.transition = '';
+        }, 280);
+    }
 }

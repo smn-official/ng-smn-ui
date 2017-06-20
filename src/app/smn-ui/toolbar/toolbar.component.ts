@@ -15,20 +15,30 @@ export class UiToolbarComponent implements AfterViewInit {
         UiElement.on(UiWindowRef.nativeWindow, 'scroll resize', () => {
             if (this.element.nativeElement.classList.contains('elevate-on-scroll')) {
                 const header = this.element.nativeElement.querySelectorAll('header')[0];
-                const scroll = UiWindowRef.nativeWindow.scrollY * 3.4;
+                const scroll = UiWindowRef.nativeWindow.scrollY * 3.6;
 
-                if (scroll < 97) {
-                    header.style.paddingBottom = (102 - scroll) + 'px';
-                    header.style.height = (162 - (scroll)) + 'px';
+                if (this.element.nativeElement.classList.contains('size-2x')) {
+                    if (scroll < 97) {
+                        header.style.paddingBottom = (102 - scroll) + 'px';
+                        header.style.height = (162 - (scroll)) + 'px';
+                    } else {
+                        header.style.paddingBottom = '';
+                        header.style.height = '';
+                    }
 
-                    this.element.nativeElement.classList.remove('scrolled');
-                    header.style.zIndex = 1;
+                    if (scroll > 97) {
+                        header.style.zIndex = 2;
+                        this.element.nativeElement.classList.add('scrolled');
+                    } else {
+                        header.style.zIndex = 1;
+                        this.element.nativeElement.classList.remove('scrolled');
+                    }
                 } else {
-                    header.style.paddingBottom = '';
-                    header.style.height = '';
-
-                    this.element.nativeElement.classList.add('scrolled');
-                    header.style.zIndex = 2;
+                    if (scroll > 1) {
+                        this.element.nativeElement.classList.add('scrolled');
+                    } else {
+                        this.element.nativeElement.classList.remove('scrolled');
+                    }
                 }
             }
         });

@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation, OnInit} from '@angular/core';
+import {Component, ViewEncapsulation, OnInit, AfterViewInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
 import {UiCookie, UiToolbarService} from '../smn-ui/smn-ui.module';
@@ -10,7 +10,7 @@ import {UiCookie, UiToolbarService} from '../smn-ui/smn-ui.module';
     encapsulation: ViewEncapsulation.None,
     providers: [UiToolbarService]
 })
-export class DemoComponent implements OnInit {
+export class DemoComponent implements OnInit, AfterViewInit {
     title: String;
     menuOpen: boolean;
 
@@ -30,5 +30,9 @@ export class DemoComponent implements OnInit {
         if (isNavDrawerPersistent) {
             this.menuOpen = true;
         }
+    }
+
+    ngAfterViewInit() {
+        this.toolbarService.registerMainToolbar(document.getElementById('app-header'));
     }
 }

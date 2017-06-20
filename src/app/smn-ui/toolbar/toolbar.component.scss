@@ -169,3 +169,54 @@ ui-toolbar {
         }
     }
 }
+
+body.ui-nav-drawer-persistent {
+    ui-toolbar {
+        &.size-2x {
+            @each $size in $sizes {
+                @media (max-width: #{$size + 320}px) {
+                    &.elevate-on-s#{$size} {
+                        header {
+                            transition: height 280ms ui-easing('deceleration'),
+                            padding-bottom 280ms ui-easing('deceleration');
+                            height: 64px !important;
+                            padding-bottom: 4px !important;
+                            animation: fixZindex 0.28s ui-easing('deceleration');
+                            animation-fill-mode: forwards;
+                        }
+
+                        @keyframes fixZindex {
+                            0% {
+                                z-index: 1;
+                            }
+
+                            99% {
+                                z-index: 1;
+                            }
+                            100% {
+                                z-index: 2;
+                            }
+                        }
+
+                        .toolbar-space {
+                            transition: height 280ms ui-easing('deceleration');
+                            height: 64px !important;
+                        }
+                    }
+                }
+            }
+
+            @include mobile-portrait {
+                header:not(.nothing) {
+                    height: 56px !important;
+                    padding-bottom: 4px !important;
+                    z-index: 2 !important;
+                }
+
+                .toolbar-space:not(.nothing) {
+                    height: 56px !important;
+                }
+            }
+        }
+    }
+}

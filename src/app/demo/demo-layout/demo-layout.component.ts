@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit, OnDestroy} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
 import {UiToolbarService} from '../../smn-ui/smn-ui.module';
@@ -8,7 +8,7 @@ import {UiToolbarService} from '../../smn-ui/smn-ui.module';
     templateUrl: './demo-layout.component.html',
     styleUrls: ['./demo-layout.component.scss']
 })
-export class DemoLayoutComponent implements OnInit {
+export class DemoLayoutComponent implements OnInit, AfterViewInit, OnDestroy {
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
     }
 
@@ -17,4 +17,11 @@ export class DemoLayoutComponent implements OnInit {
         this.toolbarService.setTitle('Layout');
     }
 
+    ngAfterViewInit() {
+        this.toolbarService.activateExtendedToolbar();
+    }
+
+    ngOnDestroy() {
+        this.toolbarService.deactivateExtendedToolbar();
+    }
 }
