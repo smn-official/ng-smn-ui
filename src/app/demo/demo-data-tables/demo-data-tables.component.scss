@@ -1,0 +1,12 @@
+@import '../../smn-ui/core/palette';
+
+:host {
+    ui-card {
+        position: relative;
+        z-index: 1;
+        /deep/ header {
+            background-color: ui-color('white');
+            color: ui-text-color('white');
+        }
+    }
+}

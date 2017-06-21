@@ -1,0 +1,61 @@
+<div class="ui-s960">
+    <ui-card>
+        <ui-toolbar class="flat">
+            <span class="title">Test</span>
+            <div class="align-right">
+                <button class="ui-button flat icon" uiRipple>
+                    <i class="material-icons">search</i>
+                </button>
+            </div>
+        </ui-toolbar>
+        <table class="ui-data-table">
+            <tbody>
+            <tr>
+                <th class="option">
+                    <ui-option>
+                        <input type="checkbox" [(ngModel)]="checkboxTest" [checked]="checkboxTest">
+                    </ui-option>
+                </th>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Sobrenome
+                </th>
+                <th class="align-right">
+                    Idade
+                </th>
+            </tr>
+            <tr *ngFor="let item of [1,2,3,4,5,6,7,8,9,0]">
+                <td class="option">
+                    <ui-option>
+                        <input type="checkbox" [(ngModel)]="checkboxTest" [checked]="checkboxTest">
+                    </ui-option>
+                </td>
+                <td>
+                    Teste
+                </td>
+                <td>
+                    Teste
+                </td>
+                <td class="align-right">
+                    10
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td>Teste</td>
+            </tr>
+            </tfoot>
+        </table>
+    </ui-card>
+    <div class="ui-fab-container">
+        <button class="ui-button accent fab" uiRipple>
+            <i class="material-icons">add</i>
+        </button>
+    </div>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
