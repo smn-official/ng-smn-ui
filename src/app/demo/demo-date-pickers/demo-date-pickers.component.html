@@ -8,18 +8,24 @@
                 <!--<ui-datepicker></ui-datepicker>-->
             </ui-input-container>
 
-            <ui-calendar [minDate]="today" [(model)]="date"></ui-calendar>
+            <ui-calendar [minDate]="today" [(ngModel)]="date" ngDefaultControl></ui-calendar>
         </ui-card-content>
     </ui-card>
     <ui-card class="dark">
         <ui-card-content>
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="dateDark" class="accent" name="dateDark">
+                <input type="text" uiInput [(ngModel)]="dateDark" [maxDate]="date" class="accent" name="dateDark" [confirmSelection]="true" uiDatepicker="myDatePicker" darkClass="dark">
                 <label>Date</label>
                 <!--<ui-datepicker></ui-datepicker>-->
+                <div class="icon">
+                    <button class="ui-button icon flat" uiDatepickerCaller="myDatePicker">
+                        <i class="material-icons">today</i>
+                    </button>
+                </div>
             </ui-input-container>
 
-            <ui-calendar class="portrait-only" [maxDate]="date" [(model)]="dateDark" (select)="select()" [confirmSelection]="true"></ui-calendar>
+            {{dateDark}}
+            <ui-calendar class="portrait-only" [maxDate]="date" [(ngModel)]="dateDark" (select)="select()" [confirmSelection]="false" ngDefaultControl></ui-calendar>
         </ui-card-content>
     </ui-card>
 </div>

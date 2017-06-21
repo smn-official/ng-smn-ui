@@ -1,5 +1,5 @@
 import {
-    AfterViewInit,
+    AfterViewChecked,
     Component,
     ComponentFactoryResolver,
     Input,
@@ -13,6 +13,7 @@ import {
 import {UiCalendarContentComponent} from './calendar-content.component';
 import {UiAddCalendarDirective} from './add-calendar.directive';
 import {UiDatetimeService} from './datetime.service';
+import {Subject} from "rxjs/Subject";
 
 @Component({
     selector: 'ui-calendar',
@@ -20,15 +21,18 @@ import {UiDatetimeService} from './datetime.service';
     styleUrls: ['./calendar.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class UiCalendarComponent implements OnInit, OnChanges, AfterViewInit {
-    @Input() model: any;
+export class UiCalendarComponent implements OnInit, OnChanges, AfterViewChecked {
+    @Input() ngModel: any;
     @Input() maxDate: Date;
     @Input() minDate: Date;
     @Input() initOnSelected: Date;
     @Input() confirmSelection: boolean;
     @Output() select: EventEmitter<any> = new EventEmitter();
-    @Output() modelChange: EventEmitter<any> = new EventEmitter();
+    @Output() cancel: EventEmitter<any> = new EventEmitter();
+    @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
     @ViewChild(UiAddCalendarDirective) addCalendar: UiAddCalendarDirective;
+    chosen: Subject<any> = new Subject();
+
 
     calendar: any;
     days: any;
@@ -45,14 +49,17 @@ export class UiCalendarComponent implements OnInit, OnChanges, AfterViewInit {
     }
 
     ngOnInit(): void {
-        this.chosenDate = this.model;
-        this.model = this.model ? new Date(this.model) : this.model;
-        this.viewDate = this.model || this.initOnSelected || new Date();
+        this.chosenDate = this.ngModel;
+        this.ngModel = this.ngModel ? new Date(this.ngModel) : this.ngModel;
+        this.viewDate = this.ngModel || this.initOnSelected || new Date();
+        this.ngModel = this.ngModel ? new Date(this.ngModel) : this.ngModel;
+        this.viewDate = this.ngModel || this.initOnSelected || new Date();
+        this.renderCalendar(this.viewDate);
     }
 
-    ngOnChanges(value): void {
-        if (value.model && !value.model.firstChange) {
-            this.model = this.chosenDate = this.componentRef.instance.chosenDate = this.componentRef.instance.model = value.model.currentValue;
+    public ngOnChanges(value): void {
+        if (value.ngModel && !value.ngModel.firstChange) {
+            this.ngModel = this.chosenDate = this.componentRef.instance.chosenDate = this.componentRef.instance.ngModel = value.ngModel.currentValue;
         }
         if (value.maxDate && !value.maxDate.firstChange) {
             this.componentRef.instance.maxDate = this.maxDate = value.maxDate.currentValue;
@@ -65,34 +72,34 @@ export class UiCalendarComponent implements OnInit, OnChanges, AfterViewInit {
         }
     }
 
-    ngAfterViewInit(): void {
-        this.model = this.model ? new Date(this.model) : this.model;
-        this.viewDate = this.model || this.initOnSelected || new Date();
-        this.renderCalendar(this.viewDate);
+    public ngAfterViewChecked(): void {
+
     }
 
-    prevMonth(): void {
+    public prevMonth(): void {
         this.viewDate.setMonth(this.viewDate.getMonth() - 1);
         this.renderCalendar(this.viewDate);
     }
 
-    nextMonth(): void {
+    public nextMonth(): void {
         this.viewDate.setMonth(this.viewDate.getMonth() + 1);
         this.renderCalendar(this.viewDate);
     }
 
-    selectDate(value) {
-        this.model = this.componentRef.instance.model = value;
-        this.modelChange.emit(this.model);
-        this.select.emit(this.model);
+    public selectDate(value) {
+        this.ngModel = this.componentRef.instance.ngModel = value;
+        this.ngModelChange.emit(this.ngModel);
+        this.select.emit(this.ngModel);
+        this.chosen.next(this.ngModel);
     }
 
-    cancel() {
-        this.model = this.chosenDate = this.componentRef.instance.model = this.componentRef.instance.chosenDate = null;
-        this.modelChange.emit(this.model);
+    public cancelDate() {
+        this.ngModel = this.chosenDate = this.componentRef.instance.ngModel = this.componentRef.instance.chosenDate = null;
+        this.cancel.emit();
+        this.ngModelChange.emit(this.ngModel);
     }
 
-    renderCalendar(dateTarget: Date): void {
+    public renderCalendar(dateTarget: Date): void {
         let date: Date = dateTarget;
 
         date.setHours(0, 0, 0, 0);
@@ -139,7 +146,7 @@ export class UiCalendarComponent implements OnInit, OnChanges, AfterViewInit {
         viewContainerRef.clear();
         this.componentRef = viewContainerRef.createComponent(componentFactory);
         this.componentRef.instance.calendar = calendar;
-        this.componentRef.instance.model = this.model;
+        this.componentRef.instance.ngModel = this.ngModel;
         this.componentRef.instance.minDate = this.minDate;
         this.componentRef.instance.maxDate = this.maxDate;
         this.componentRef.instance.chosenDate = this.chosenDate;

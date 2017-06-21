@@ -5,7 +5,7 @@ textarea {
 }
 
 ui-input-container {
-	transition: ui-easing();
+	transition: ui-easing('desaceleration');
 	position: relative;
 	display: flex;
 	flex-direction: row;
@@ -33,7 +33,7 @@ ui-input-container {
         text-overflow: ellipsis;
         font-size: 16px;
         color: rgba(0,0,0,.54);
-        transition: 225ms ui-easing();
+        transition: 225ms ui-easing('desaceleration');
     }
 
     .ui-control {
@@ -75,7 +75,7 @@ ui-input-container {
         }
 
         &.ng-invalid.ng-dirty ~ label {
-            animation: shake 360ms ui-easing();
+            animation: shake 360ms ui-easing('desaceleration');
         }
 
         // Line
@@ -92,7 +92,7 @@ ui-input-container {
         height: 2px;
         left: 50%;
         width: 0;
-        transition: all 225ms ui-easing();
+        transition: all 225ms ui-easing('desaceleration');
         background-color: rgba(0,0,0,.42); // Value default
         opacity: 0;
     }

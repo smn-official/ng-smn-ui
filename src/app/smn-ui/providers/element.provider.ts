@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable} from "@angular/core";
 
 @Injectable()
 export class UiElement {
@@ -82,14 +82,13 @@ function _on(el, events, listener): any {
     }
 }
 function _is(el, selector): any {
-    el = el || {
-            msMatchesSelector: undefined,
-            mozMatchesSelector: undefined,
-            webkitMatchesSelector: undefined,
-            oMatchesSelector: undefined
-        };
+    const matches = el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector;
 
-    return (el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector).call(el, selector);
+    if (matches) {
+        return (matches).call(el, selector);
+    } else {
+        return null;
+    }
 }
 
 function _position(el): any {

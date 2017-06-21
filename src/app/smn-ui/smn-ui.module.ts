@@ -8,7 +8,6 @@ import {UiToolbarComponent} from './toolbar/toolbar.component';
 import {UiOptionComponent} from './selection-control/option/option.component';
 import {UiSwitchComponent} from './selection-control/switch/switch.component';
 import {UiMaxlengthDirective} from './format/validators/maxlength.directive';
-import {UiDatepickerComponent} from './datepicker/datepicker.component';
 import {UiCalendarComponent} from './calendar/calendar.component';
 import {UiCalendarContentComponent} from './calendar/calendar-content.component';
 import {UiAddCalendarDirective} from './calendar/add-calendar.directive';
@@ -22,6 +21,9 @@ import {UiElement} from './providers/element.provider';
 import {UiCookie} from './providers/cookie.provider';
 import {UiCapitalizePipe} from './utils/pipes/capitalize.pipe';
 import {UiRippleDirective} from './ripple/ripple.directive';
+import { UiDatepickerDirective } from './datepicker/datepicker.directive';
+import { UiDatepickerCallerDirective } from './datepicker/datepicker-caller.directive';
+import {UiReferencesService} from './datepicker/references.service';
 
 const lib: any[] = [
     UiInputContainerComponent,
@@ -29,7 +31,6 @@ const lib: any[] = [
     UiToolbarComponent,
     UiMaxlengthDirective,
     UiCalendarComponent,
-    UiDatepickerComponent,
     UiOptionComponent,
     UiSwitchComponent,
     UiCalendarContentComponent,
@@ -39,7 +40,9 @@ const lib: any[] = [
     UiMenuItemComponent,
     UiCapitalizePipe,
     UiNavDrawerComponent,
-    UiRippleDirective
+    UiRippleDirective,
+    UiDatepickerDirective,
+    UiDatepickerCallerDirective
 ];
 
 @NgModule({
@@ -51,12 +54,13 @@ const lib: any[] = [
     declarations: [...lib],
     exports: [...lib],
     providers: [
+        UiReferencesService,
         UiWindowRef,
         UiDatetimeService,
         UiElement,
         UiCookie
     ],
-    entryComponents: [UiCalendarContentComponent]
+    entryComponents: [UiCalendarComponent, UiCalendarContentComponent]
 })
 export class SMNUIModule {
 }
