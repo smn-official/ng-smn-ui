@@ -1,19 +1,19 @@
 import {
-    AfterViewChecked,
     Component,
     ComponentFactoryResolver,
+    EventEmitter,
+    HostBinding,
     Input,
-    Output,
-    OnInit,
-    ViewChild,
-    ViewEncapsulation,
     OnChanges,
-    EventEmitter
+    OnInit,
+    Output,
+    ViewChild,
+    ViewEncapsulation
 } from '@angular/core';
 import {UiCalendarContentComponent} from './calendar-content.component';
 import {UiAddCalendarDirective} from './add-calendar.directive';
 import {UiDatetimeService} from './datetime.service';
-import {Subject} from "rxjs/Subject";
+import {Subject} from 'rxjs/Subject';
 
 @Component({
     selector: 'ui-calendar',
@@ -21,7 +21,7 @@ import {Subject} from "rxjs/Subject";
     styleUrls: ['./calendar.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class UiCalendarComponent implements OnInit, OnChanges, AfterViewChecked {
+export class UiCalendarComponent implements OnInit, OnChanges {
     @Input() ngModel: any;
     @Input() maxDate: Date;
     @Input() minDate: Date;
@@ -32,7 +32,6 @@ export class UiCalendarComponent implements OnInit, OnChanges, AfterViewChecked 
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
     @ViewChild(UiAddCalendarDirective) addCalendar: UiAddCalendarDirective;
     chosen: Subject<any> = new Subject();
-
 
     calendar: any;
     days: any;
@@ -58,7 +57,7 @@ export class UiCalendarComponent implements OnInit, OnChanges, AfterViewChecked 
     }
 
     public ngOnChanges(value): void {
-        if (value.ngModel && !value.ngModel.firstChange) {
+        if (value.ngModel && !value.ngModel.firstChange && !isNaN(value.ngModel.currentValue)) {
             this.ngModel = this.chosenDate = this.componentRef.instance.chosenDate = this.componentRef.instance.ngModel = value.ngModel.currentValue;
         }
         if (value.maxDate && !value.maxDate.firstChange) {
@@ -70,10 +69,6 @@ export class UiCalendarComponent implements OnInit, OnChanges, AfterViewChecked 
         if (value.confirmSelection) {
             this.confirmSelection = value.confirmSelection.currentValue;
         }
-    }
-
-    public ngAfterViewChecked(): void {
-
     }
 
     public prevMonth(): void {
@@ -160,5 +155,4 @@ export class UiCalendarComponent implements OnInit, OnChanges, AfterViewChecked 
             }
         });
     }
-
 }

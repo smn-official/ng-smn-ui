@@ -11,6 +11,7 @@
 @import "../divider/divider.theme";
 @import "../nav-drawer/nav-drawer.theme";
 @import "../list/list.theme";
+@import "../datepicker/datepicker-caller.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -59,4 +60,5 @@
     @include ui-divider($theme);
     @include ui-nav-drawer($theme);
     @include ui-list($theme);
+    @include ui-datepicker-caller($theme);
 }

@@ -24,7 +24,6 @@ export class UiDatepickerDirective implements OnInit, OnChanges {
     @Input() initOnSelected: Date;
     @Input() confirmSelection: boolean;
     @Input() darkClass: string;
-    @Input() pickerEvent: string;
     @Input('uiDatepicker') datePicker: string;
     @Output() select: EventEmitter<any> = new EventEmitter();
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();

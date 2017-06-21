@@ -21,6 +21,7 @@ import {UiCalendarComponent} from '../calendar/calendar.component';
 export class UiDatepickerCallerDirective implements AfterViewInit {
     datePicker;
     componentRef: any;
+    componentElement: any;
     pickerOpen: boolean;
     wrapDatepicker: HTMLElement;
     @Input() pickerEvent: string;
@@ -45,8 +46,10 @@ export class UiDatepickerCallerDirective implements AfterViewInit {
                 y: inputElement.offsetHeight + position.top + 1 // 1 para alinhar a linha do input
             };
 
-            this.renderDatepicker(this.datePicker, coordinate);
-            e.stopPropagation(); // Parando propagação do evento para os eventos do window
+            if (!this.pickerOpen) {
+                this.renderDatepicker(this.datePicker, coordinate);
+                e.stopPropagation(); // Parando propagação do evento para os eventos do window
+            }
         });
 
         UiElement.on(UiWindowRef.nativeWindow, 'click resize scroll', (e) => {
@@ -96,23 +99,30 @@ export class UiDatepickerCallerDirective implements AfterViewInit {
         this.wrapDatepicker.appendChild(overlay);
         this.wrapDatepicker.appendChild(element);
         document.body.appendChild(this.wrapDatepicker);
-
+        setTimeout(() => {
+            this.wrapDatepicker.classList.add('open');
+        });
     }
 
     public renderDatepicker(component, coordinate): void {
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UiCalendarComponent);
         this.componentRef = componentFactory.create(this.injector);
-        const componentElement = this.getComponentAsElement(this.componentRef);
+        this.componentElement = this.getComponentAsElement(this.componentRef);
 
         this.setInstances(component, this.componentRef);
         this.applicationRef.attachView(this.componentRef.hostView);
-        this.renderViewCalendar(componentElement, coordinate, component.darkClass);
+        this.renderViewCalendar(this.componentElement, coordinate, component.darkClass);
         this.pickerOpen = true;
     }
 
     public closePicker(): void {
-        this.pickerOpen = false;
-        this.applicationRef.detachView(this.componentRef.hostView);
-        document.body.removeChild(this.wrapDatepicker);
+        this.wrapDatepicker.classList.remove('open');
+        setTimeout(() => {
+            this.pickerOpen = false;
+            this.applicationRef.detachView(this.componentRef.hostView);
+            try {
+                document.body.removeChild(this.wrapDatepicker);
+            } catch (e) { }
+        }, 280);
     }
 }
