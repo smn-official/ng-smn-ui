@@ -44,8 +44,8 @@
     align-items: flex-end;
     width: 60px;
     position: fixed;
-    right: 10px;
-    bottom: 10px;
+    right: 16px;
+    bottom: 16px;
 
     .ui-button {
         &.mini:not(:last-child) {
@@ -140,6 +140,7 @@
     &.fab {
         width: 56px;
         height: 56px;
+        min-height: 56px;
         margin: 5px;
 
         &.mini {
@@ -275,5 +276,67 @@
         z-index: 1;
 
         transition: transform 0.28s ui-easing();
+    }
+}
+
+$sizes: 480 600 840 960 1280 1440 1600;
+
+@each $size in $sizes {
+    .ui-s#{$size} {
+        .ui-fab-container {
+            z-index: 1;
+            transition: all 280ms ui-easing('deceleration');
+
+            top: 128px;
+            bottom: 100%;
+
+            right: calc(50% - (#{$size}px / 2) - 79px);
+
+            @media (max-width: #{$size + 188}px) {
+                top: 100%;
+                margin-top: -82px;
+                right: 16px;
+
+                .ui-button {
+                    &.mini:not(:last-child) {
+                        margin-right: 12px;
+                    }
+                }
+            }
+
+            &.scrolled {
+                top: 100%;
+                margin-top: -82px;
+                right: 16px;
+
+                .ui-button {
+                    &.mini:not(:last-child) {
+                        margin-right: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+body.ui-nav-drawer-persistent {
+    @each $size in $sizes {
+        .ui-s#{$size} {
+            .ui-fab-container {
+                right: calc(50% - (#{$size + 320}px / 2) - 79px);
+
+                @media (max-width: #{$size + 188 + 320}px) {
+                    top: 100%;
+                    margin-top: -82px;
+                    right: 16px;
+
+                    .ui-button {
+                        &.mini:not(:last-child) {
+                            margin-right: 12px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

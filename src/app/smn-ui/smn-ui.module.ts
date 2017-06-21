@@ -21,6 +21,7 @@ import {UiRippleDirective} from './ripple/ripple.directive';
 import { UiDatepickerDirective } from './datepicker/datepicker.directive';
 import { UiDatepickerCallerDirective } from './datepicker/datepicker-caller.directive';
 import {UiReferencesService} from './datepicker/references.service';
+import './button/button.component';
 
 import {UiCookie} from './providers/cookie.provider';
 import {UiToolbarService} from './toolbar/toolbar.service';
