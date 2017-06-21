@@ -10,6 +10,7 @@ import {DemoSelectionControlsComponent} from './demo/demo-selection-controls/dem
 import {DemoToolbarsComponent} from './demo/demo-toolbars/demo-toolbars.component';
 import {DemoDividersComponent} from './demo/demo-dividers/demo-dividers.component';
 import {DemoLayoutComponent} from './demo/demo-layout/demo-layout.component';
+import {DemoDataTablesComponent} from './demo/demo-data-tables/demo-data-tables.component';
 
 const routes: Routes = [{
     path: '',
@@ -23,6 +24,7 @@ const routes: Routes = [{
         {path: 'toolbars', component: DemoToolbarsComponent},
         {path: 'dividers', component: DemoDividersComponent},
         {path: 'layout', component: DemoLayoutComponent},
+        {path: 'data-tables', component: DemoDataTablesComponent},
     ]
 }];
 

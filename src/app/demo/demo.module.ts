@@ -13,6 +13,7 @@ import {DemoSelectionControlsComponent} from './demo-selection-controls/demo-sel
 import {DemoToolbarsComponent} from './demo-toolbars/demo-toolbars.component';
 import {DemoDividersComponent} from './demo-dividers/demo-dividers.component';
 import {DemoLayoutComponent} from './demo-layout/demo-layout.component';
+import {DemoDataTablesComponent} from './demo-data-tables/demo-data-tables.component';
 
 @NgModule({
     imports: [
@@ -30,7 +31,8 @@ import {DemoLayoutComponent} from './demo-layout/demo-layout.component';
         DemoToolbarsComponent,
         DemoDatePickersComponent,
         DemoDividersComponent,
-        DemoLayoutComponent
+        DemoLayoutComponent,
+        DemoDataTablesComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
