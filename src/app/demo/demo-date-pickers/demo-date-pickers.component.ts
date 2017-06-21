@@ -21,7 +21,7 @@ export class DemoDatePickersComponent implements OnInit {
     }
 
     select(value) {
-        console.log(value);
+        console.error(value);
     }
 
 }

@@ -26,23 +26,6 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
     public closeNav: Function;
 
     constructor(private element: ElementRef) {
-        // let currentScrollTop = UiWindowRef.nativeWindow.scrollY;
-
-        // const noscroll = () => {
-        //     const isNavOpen = this.element.nativeElement.classList.contains('open');
-        //     const isPersistent = this.element.nativeElement.classList.contains('persistent');
-        //
-        //     if (isNavOpen && !isPersistent) {
-        //         document.querySelectorAll('body')[0].style.overflowY = 'hidden';
-        //         // UiWindowRef.nativeWindow.scrollTo(0, currentScrollTop);
-        //     } else {
-        //         // currentScrollTop = UiWindowRef.nativeWindow.scrollY;
-        //         document.querySelectorAll('body')[0].style.overflowY = '';
-        //     }
-        // };
-
-        // UiWindowRef.nativeWindow.addEventListener('scroll', noscroll);
-
         this.openNav = () => {
             if (document.querySelectorAll('body')[0].clientWidth <= 375 || (!this.element.nativeElement.classList.contains('persistent') && UiWindowRef.nativeWindow.scrollY > 1)) {
                 const fabContainer = document.querySelectorAll('.ui-fab-container')[0];
@@ -66,10 +49,10 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
 
     ngAfterViewInit() {
         const body = UiElement.closest(this.element.nativeElement, 'body');
-        body.style.transition = 'none';
+        body.classList.add('notransition');
 
         setTimeout(() => {
-            body.style.transition = '';
+            body.classList.remove('notransition');
             this.element.nativeElement.querySelectorAll('.ui-nav-drawer-overlay')[0].style.visibility = 'visible';
         }, 300);
 

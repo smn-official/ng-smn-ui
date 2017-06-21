@@ -51,7 +51,6 @@ export class UiDatepickerCallerDirective implements AfterViewInit {
 
         UiElement.on(UiWindowRef.nativeWindow, 'click resize scroll', (e) => {
             if (this.pickerOpen) {
-                console.log();
                 if ((!(UiElement.is(e.target, '.wrap-datepicker') || UiElement.closest(e.target, '.wrap-datepicker')) && !(document.body.clientWidth < 600 && e.type === 'scroll')) || UiElement.is(e.target, '.overlay')) {
                     this.closePicker();
                 }
