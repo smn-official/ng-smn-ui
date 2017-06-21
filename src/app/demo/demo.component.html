@@ -1,17 +1,10 @@
-<ui-toolbar class="fixed flat elevate-on-scroll primary">
+<ui-toolbar class="fixed flat elevate-on-scroll primary elevate-on-s960" id="app-header">
     <button (click)="menuOpen = true" class="ui-button flat icon" uiRipple>
         <i class="material-icons">menu</i>
     </button>
     <span class="title">{{title}}</span>
 </ui-toolbar>
 
-<!--<ui-drawer [class.open]="openMenu">
-    <div class="toolbar-offset"></div>
-    <div class="drawer-content">
-        <ui-main-menu [menu-list]="menuList.result.opcoes" (menu-click)="openMenu = false"></ui-main-menu>
-    </div>
-</ui-drawer>
-<ui-drawer-background (click)="openMenu = false" [class.show]="openMenu"></ui-drawer-background>-->
 <ui-nav-drawer class="persistent" [(open)]="menuOpen">
     <ui-toolbar class="flat">
         <button (click)="menuOpen = false" class="ui-button flat icon" uiRipple>
@@ -27,6 +20,7 @@
             <a class="ui-list-item" uiRipple routerLink="/date-pickers">Date pickers</a>
             <a class="ui-list-item" uiRipple routerLink="/dividers">Dividers</a>
             <a class="ui-list-item" uiRipple routerLink="/inputs">Inputs</a>
+            <a class="ui-list-item" uiRipple routerLink="/layout">Layout</a>
             <a class="ui-list-item" uiRipple routerLink="/selection-controls">Selection controls</a>
             <a class="ui-list-item" uiRipple routerLink="/toolbars">Toolbars</a>
         </div>

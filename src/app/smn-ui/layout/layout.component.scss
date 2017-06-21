@@ -1,0 +1,9 @@
+$sizes: 480 600 840 960 1280 1440 1600;
+
+@each $size in $sizes {
+    .ui-s#{$size} {
+        max-width: #{$size}px;
+        width: 100%;
+        margin: 0 auto;
+    }
+}

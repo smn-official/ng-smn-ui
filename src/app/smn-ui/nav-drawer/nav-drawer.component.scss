@@ -6,7 +6,7 @@ ui-nav-drawer {
         bottom: 0;
         max-width: 320px;
         position: fixed;
-        background-color: #fff;
+        //background-color: #fff;
         width: 100%;
         z-index: 2;
         box-shadow: ui-shadow('16dp');
@@ -19,6 +19,10 @@ ui-nav-drawer {
             overflow: auto;
             margin-top: -1px;
         }
+    }
+
+    ui-toolbar header {
+        //background-color: #fff;
     }
 
     &.persistent {

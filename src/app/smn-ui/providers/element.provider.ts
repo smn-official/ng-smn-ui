@@ -18,6 +18,10 @@ export class UiElement {
         return _on(el, events, listener);
     }
 
+    static off(el, events, listener): any {
+        return _off(el, events, listener);
+    }
+
     static is(el, selector): any {
         return _is(el, selector);
     }
@@ -81,6 +85,15 @@ function _on(el, events, listener): any {
         }
     }
 }
+function _off(el, events, listener): any {
+    events = events.split(' ');
+    const iLen = events.length;
+    for (let i = 0; i < iLen; i++) {
+        if (events[i]) {
+            el.removeEventListener(events[i], listener, false);
+        }
+    }
+}
 function _is(el, selector): any {
     const matches = el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector;
 
@@ -90,7 +103,6 @@ function _is(el, selector): any {
         return null;
     }
 }
-
 function _position(el): any {
     /* http://javascript.info/tutorial/coordinates */
 
