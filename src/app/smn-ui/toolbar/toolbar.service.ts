@@ -1,4 +1,6 @@
 import {Injectable, EventEmitter} from '@angular/core';
+import {UiWindowRef} from '../providers/window.provider';
+import {UiElement} from '../providers/element.provider';
 
 let mailToolbar: HTMLElement;
 
@@ -40,6 +42,8 @@ export class UiToolbarService {
         setTimeout(() => {
             header.style.transition = '';
         }, 280);
+
+        UiElement.trigger(UiWindowRef.nativeWindow, 'scroll');
     }
 
     public deactivateExtendedToolbar() {
@@ -53,5 +57,7 @@ export class UiToolbarService {
         setTimeout(() => {
             header.style.transition = '';
         }, 280);
+
+        UiElement.trigger(UiWindowRef.nativeWindow, 'scroll');
     }
 }

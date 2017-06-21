@@ -22,22 +22,46 @@ import {UiCookie} from '../providers/cookie.provider';
 export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
     @Input() open: boolean;
     @Output() openChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+    public openNav: Function;
+    public closeNav: Function;
 
     constructor(private element: ElementRef) {
-        let currentScrollTop = UiWindowRef.nativeWindow.scrollY;
+        // let currentScrollTop = UiWindowRef.nativeWindow.scrollY;
 
-        const noscroll = () => {
-            const isNavOpen = this.element.nativeElement.classList.contains('open');
-            const isPersistent = this.element.nativeElement.classList.contains('persistent');
+        // const noscroll = () => {
+        //     const isNavOpen = this.element.nativeElement.classList.contains('open');
+        //     const isPersistent = this.element.nativeElement.classList.contains('persistent');
+        //
+        //     if (isNavOpen && !isPersistent) {
+        //         document.querySelectorAll('body')[0].style.overflowY = 'hidden';
+        //         // UiWindowRef.nativeWindow.scrollTo(0, currentScrollTop);
+        //     } else {
+        //         // currentScrollTop = UiWindowRef.nativeWindow.scrollY;
+        //         document.querySelectorAll('body')[0].style.overflowY = '';
+        //     }
+        // };
 
-            if (isNavOpen && !isPersistent) {
-                UiWindowRef.nativeWindow.scrollTo(0, currentScrollTop);
-            } else {
-                currentScrollTop = UiWindowRef.nativeWindow.scrollY;
+        // UiWindowRef.nativeWindow.addEventListener('scroll', noscroll);
+
+        this.openNav = () => {
+            if (document.querySelectorAll('body')[0].clientWidth <= 375 || (!this.element.nativeElement.classList.contains('persistent') && UiWindowRef.nativeWindow.scrollY > 1)) {
+                const fabContainer = document.querySelectorAll('.ui-fab-container')[0];
+                if (fabContainer) {
+                    fabContainer.classList.add('hide');
+                }
             }
+            this.element.nativeElement.classList.add('open');
+            document.querySelectorAll('body')[0].style.overflowY = 'hidden';
         };
 
-        UiWindowRef.nativeWindow.addEventListener('scroll', noscroll);
+        this.closeNav = () => {
+            const fabContainer = document.querySelectorAll('.ui-fab-container')[0];
+            if (fabContainer) {
+                fabContainer.classList.remove('hide');
+            }
+            this.element.nativeElement.classList.remove('open');
+            document.querySelectorAll('body')[0].style.overflowY = '';
+        };
     }
 
     ngAfterViewInit() {
@@ -52,22 +76,24 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
         const isPersistent = this.element.nativeElement.classList.contains('persistent');
         const isOpen = this.element.nativeElement.classList.contains('open');
         if (isPersistent && isOpen) {
-            body.classList.add('ui-nav-drawer-persistent');
+            if (document.querySelectorAll('body')[0].clientWidth > 375) {
+                body.classList.add('ui-nav-drawer-persistent');
+            }
         } else {
             body.classList.remove('ui-nav-drawer-persistent');
         }
 
         this.element.nativeElement.addEventListener('click', (e) => {
-            if (!isPersistent && UiElement.is(e.srcElement, 'a')) {
+            if (!(isPersistent && document.querySelectorAll('body')[0].clientWidth > 375) && UiElement.is(e.srcElement, 'a')) {
                 this.open = false;
                 this.openChange.emit(this.open);
             }
         });
 
         if (this.open) {
-            this.element.nativeElement.classList.add('open');
+            this.openNav();
         } else {
-            this.element.nativeElement.classList.remove('open');
+            this.closeNav();
         }
     }
 
@@ -76,24 +102,26 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
 
         if (isNavDrawerPersistent) {
             this.open = true;
-            this.element.nativeElement.classList.add('open');
+            this.openNav();
         }
 
         if (changes.open) {
             const isOpen = changes.open.currentValue;
 
             if (isOpen) {
-                this.element.nativeElement.classList.add('open');
+                this.openNav();
             } else {
-                this.element.nativeElement.classList.remove('open');
+                this.closeNav();
             }
 
             const isPersistent = this.element.nativeElement.classList.contains('persistent');
             const body = UiElement.closest(this.element.nativeElement, 'body');
 
             if (isPersistent && isOpen) {
-                body.classList.add('ui-nav-drawer-persistent');
-                UiCookie.set('NavDrawerPersistent', 'true');
+                if (document.querySelectorAll('body')[0].clientWidth > 375) {
+                    body.classList.add('ui-nav-drawer-persistent');
+                    UiCookie.set('NavDrawerPersistent', 'true');
+                }
             } else {
                 body.classList.remove('ui-nav-drawer-persistent');
                 UiCookie.set('NavDrawerPersistent', 'false');

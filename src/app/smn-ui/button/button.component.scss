@@ -46,10 +46,20 @@
     position: fixed;
     right: 16px;
     bottom: 16px;
+    @include mobile {
+        right: 10px;
+        bottom: 10px;
+    }
 
     .ui-button {
         &.mini:not(:last-child) {
             margin-right: 12px;
+        }
+    }
+
+    &.hide {
+        .ui-button {
+            transform: scale(0);
         }
     }
 }
@@ -64,7 +74,8 @@
     text-transform: uppercase;
     text-align: center;
     transform: scale(1);
-    transition: color 0.28s ui-easing(),
+    transition: transform 0.28s ui-easing('deceleration'),
+    color 0.28s ui-easing(),
     background-color 0.28s ui-easing(),
     box-shadow 0.28s ui-easing();
     font-family: inherit;
@@ -296,6 +307,11 @@ $sizes: 480 600 840 960 1280 1440 1600;
                 top: 100%;
                 margin-top: -82px;
                 right: 16px;
+                @include mobile {
+                    right: 10px;
+                    margin-top: -76px;
+
+                }
 
                 .ui-button {
                     &.mini:not(:last-child) {

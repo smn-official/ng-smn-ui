@@ -126,7 +126,13 @@ ui-toolbar {
             @media (max-width: #{$size}px) {
                 &.elevate-on-s#{$size} {
                     header {
-                        height: 64px !important;
+                        height: 48px !important;
+                        @include desktop {
+                            height: 64px !important;
+                        }
+                        @include mobile-portrait {
+                            height: 56px !important;
+                        }
                         padding-bottom: 4px !important;
                         animation: fixZindex 0.28s ui-easing('deceleration');
                         animation-fill-mode: forwards;
@@ -146,7 +152,13 @@ ui-toolbar {
                     }
 
                     .toolbar-space {
-                        height: 64px !important;
+                        height: 48px !important;
+                        @include desktop {
+                            height: 64px !important;
+                        }
+                        @include mobile-portrait {
+                            height: 56px !important;
+                        }
                     }
                 }
             }
@@ -173,7 +185,13 @@ body.ui-nav-drawer-persistent {
                 @media (max-width: #{$size + 320}px) {
                     &.elevate-on-s#{$size} {
                         header {
-                            height: 64px !important;
+                            height: 48px !important;
+                            @include desktop {
+                                height: 64px !important;
+                            }
+                            @include mobile-portrait {
+                                height: 56px !important;
+                            }
                             padding-bottom: 4px !important;
                             animation: fixZindex 0.28s ui-easing('deceleration');
                             animation-fill-mode: forwards;
@@ -193,7 +211,13 @@ body.ui-nav-drawer-persistent {
                         }
 
                         .toolbar-space {
-                            height: 64px !important;
+                            height: 48px !important;
+                            @include desktop {
+                                height: 64px !important;
+                            }
+                            @include mobile-portrait {
+                                height: 56px !important;
+                            }
                         }
                     }
                 }
@@ -213,3 +237,4 @@ body.ui-nav-drawer-persistent {
         }
     }
 }
+/**/

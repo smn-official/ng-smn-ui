@@ -1,4 +1,4 @@
-$mq-mobile-portrait: 360px !default;
+$mq-mobile-portrait: 375px !default;
 $mq-mobile-landscape: 600px !default;
 
 @mixin mobile {
@@ -20,7 +20,7 @@ $mq-mobile-landscape: 600px !default;
 }
 
 @mixin desktop {
-    @media only screen and (min-width: $mq-mobile-landscape + 1) and (orientation: portrait), only screen and (min-width: $mq-mobile-portrait) {
+    @media only screen and (min-width: $mq-mobile-portrait + 1) and (min-width: $mq-mobile-landscape + 1) {
         @content;
     }
 }
