@@ -12,15 +12,19 @@ import {UiElement} from '../providers/element.provider';
 export class UiToolbarComponent implements AfterViewInit {
 
     constructor(private element: ElementRef) {
-        UiElement.on(UiWindowRef.nativeWindow, 'scroll resize', () => {
+        UiElement.on(UiWindowRef.nativeWindow, 'scroll resize', (e) => {
             if (this.element.nativeElement.classList.contains('elevate-on-scroll')) {
                 const header = this.element.nativeElement.querySelectorAll('header')[0];
                 const scroll = UiWindowRef.nativeWindow.scrollY * 3.6;
 
                 if (this.element.nativeElement.classList.contains('size-2x')) {
-                    if (scroll < 97) {
+                    if (e.type === 'scroll' && scroll < 97) {
+                        this.element.nativeElement.classList.add('notransition');
                         header.style.paddingBottom = (102 - scroll) + 'px';
                         header.style.height = (162 - (scroll)) + 'px';
+                        setTimeout(() => {
+                            this.element.nativeElement.classList.remove('notransition');
+                        });
                     } else {
                         header.style.paddingBottom = '';
                         header.style.height = '';
