@@ -19,6 +19,7 @@ import {UiNavDrawerComponent} from './nav-drawer/nav-drawer.component';
 import {UiDatetimeService} from './calendar/datetime.service';
 import {UiCapitalizePipe} from './utils/pipes/capitalize.pipe';
 import {UiRippleDirective} from './ripple/ripple.directive';
+import './button/button.component';
 
 import {UiCookie} from './providers/cookie.provider';
 import {UiToolbarService} from './toolbar/toolbar.service';

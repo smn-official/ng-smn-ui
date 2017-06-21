@@ -24,7 +24,7 @@ export class UiToolbarComponent implements AfterViewInit {
                         header.style.height = (162 - (scroll)) + 'px';
                         setTimeout(() => {
                             this.element.nativeElement.classList.remove('notransition');
-                        });
+                        }, 500);
                     } else {
                         header.style.paddingBottom = '';
                         header.style.height = '';
@@ -38,7 +38,7 @@ export class UiToolbarComponent implements AfterViewInit {
                         this.element.nativeElement.classList.remove('scrolled');
                     }
                 } else {
-                    if (scroll > 1) {
+                    if (UiWindowRef.nativeWindow.scrollY > 1) {
                         this.element.nativeElement.classList.add('scrolled');
                     } else {
                         this.element.nativeElement.classList.remove('scrolled');
