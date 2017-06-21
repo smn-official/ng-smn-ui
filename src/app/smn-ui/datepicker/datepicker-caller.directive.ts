@@ -54,7 +54,7 @@ export class UiDatepickerCallerDirective implements AfterViewInit {
 
         UiElement.on(UiWindowRef.nativeWindow, 'click resize scroll', (e) => {
             if (this.pickerOpen) {
-                if ((!(UiElement.is(e.target, '.wrap-datepicker') || UiElement.closest(e.target, '.wrap-datepicker')) && !(document.body.clientWidth < 600 && e.type === 'scroll')) || UiElement.is(e.target, '.overlay')) {
+                if ((!(UiElement.is(e.target, '.wrap-datepicker') || UiElement.closest(e.target, '.wrap-datepicker')) && !(document.body.clientWidth <= 600 && e.type === 'scroll')) || UiElement.is(e.target, '.overlay')) {
                     this.closePicker();
                 }
             }
@@ -101,6 +101,9 @@ export class UiDatepickerCallerDirective implements AfterViewInit {
         document.body.appendChild(this.wrapDatepicker);
         setTimeout(() => {
             this.wrapDatepicker.classList.add('open');
+            if (document.body.clientWidth <= 600) {
+                document.body.style.overflowY = 'hidden';
+            }
         });
     }
 
@@ -120,6 +123,7 @@ export class UiDatepickerCallerDirective implements AfterViewInit {
         setTimeout(() => {
             this.pickerOpen = false;
             this.applicationRef.detachView(this.componentRef.hostView);
+            document.body.style.overflowY = '';
             try {
                 document.body.removeChild(this.wrapDatepicker);
             } catch (e) { }
