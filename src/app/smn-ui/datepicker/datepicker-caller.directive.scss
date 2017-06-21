@@ -1,0 +1,36 @@
+@import "../core/variables";
+
+.wrap-datepicker {
+
+    @media (max-width: 600px) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        display: flex;
+        background-color: transparent !important;
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,.2);
+        }
+
+        .overlay, ui-calendar {
+            z-index: 1;
+        }
+
+        ui-calendar {
+            box-shadow: ui-shadow('24dp');
+            position: relative !important;
+            top: initial !important;
+            left: initial !important;
+            margin: auto;
+        }
+    }
+}

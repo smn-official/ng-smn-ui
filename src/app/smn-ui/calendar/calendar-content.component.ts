@@ -13,7 +13,7 @@ export class UiCalendarContentComponent implements AfterViewInit {
     maxDate: Date;
     minDate: Date;
     calendar: any;
-    model: any;
+    ngModel: any;
     chosenDate: any;
     days: any;
     months: any;
@@ -115,7 +115,7 @@ export class UiCalendarContentComponent implements AfterViewInit {
         if (value) {
             this.chosenDate = value;
             if (!this.confirmSelection) {
-                this.model = value;
+                this.ngModel = value;
             }
             const newValue = {
                 value,

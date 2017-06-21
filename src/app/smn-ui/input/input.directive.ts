@@ -12,7 +12,6 @@ export class UiInputDirective implements AfterViewInit, OnChanges {
 
   constructor(private element: ElementRef, private renderer: Renderer2) {
     this.placeholder = element.nativeElement.placeholder;
-
   }
 
   ngAfterViewInit() {
