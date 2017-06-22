@@ -1,7 +1,7 @@
-import {Component, OnInit, AfterViewInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, AfterViewInit, OnDestroy, ElementRef} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
-import {UiToolbarService} from '../../smn-ui/smn-ui.module';
+import {UiToolbarService, UiElement} from '../../smn-ui/smn-ui.module';
 
 @Component({
     selector: 'demo-data-tables',
@@ -10,8 +10,10 @@ import {UiToolbarService} from '../../smn-ui/smn-ui.module';
 })
 export class DemoDataTablesComponent implements OnInit, AfterViewInit, OnDestroy {
     list: Array<any>;
+    searchOpen: boolean;
+    searchText: string;
 
-    constructor(private titleService: Title, private toolbarService: UiToolbarService) {
+    constructor(private titleService: Title, private toolbarService: UiToolbarService, private element: ElementRef) {
         this.list = [
             {
                 name: 'Spider',
@@ -67,5 +69,21 @@ export class DemoDataTablesComponent implements OnInit, AfterViewInit, OnDestroy
 
     ngOnDestroy() {
         this.toolbarService.deactivateExtendedToolbar();
+    }
+
+    toggleSearch() {
+        const inputSearch = this.element.nativeElement.querySelectorAll('input[name="searchText"]')[0];
+
+        if (this.searchOpen) {
+            this.searchOpen = false;
+            UiElement.closest(inputSearch, 'form').style.right = '';
+        } else {
+            this.searchOpen = true;
+            UiElement.closest(inputSearch, 'form').style.right = UiElement.closest(inputSearch, '.align-right').clientWidth + 'px';
+
+            setTimeout(() => {
+                inputSearch.focus();
+            }, 280);
+        }
     }
 }

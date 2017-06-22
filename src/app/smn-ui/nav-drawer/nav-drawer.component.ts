@@ -34,7 +34,7 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
                 }
             }
             this.element.nativeElement.classList.add('open');
-            if (!document.body.classList.contains('ui-nav-drawer-persistent')) {
+            if (!this.element.nativeElement.classList.contains('persistent')) {
                 document.body.style.overflowY = 'hidden';
             } else {
                 document.body.style.overflowY = '';

@@ -1,6 +1,88 @@
 <div class="ui-s960">
     <ui-card>
         <ui-toolbar class="flat">
+            <span class="title" [ngClass]="{'hide': searchOpen}">Test</span>
+            <div class="align-right">
+                <form #searchForm="ngForm" name="searchForm" class="ui-validate on-dirty" [ngClass]="{'open': searchOpen}">
+                    <ui-input-container>
+                        <input #searchFormText="ngModel" type="text" name="searchText" [(ngModel)]="searchText" uiMaxlength="200" uiInput [persistPlaceholder]="true" placeholder="Pesquisa">
+                        <div class="ui-messages">
+                            <div *ngIf="searchFormText.errors && searchFormText.dirty">
+                                <div class="ui-message counter error">
+                                    {{searchText ? searchText.length : 0}}/200
+                                </div>
+                            </div>
+                        </div>
+                    </ui-input-container>
+                </form>
+                <button class="ui-button flat icon" uiRipple (click)="toggleSearch()">
+                    <i class="material-icons">search</i>
+                </button>
+                <button class="ui-button flat icon" uiRipple>
+                    <i class="material-icons">add</i>
+                </button>
+            </div>
+        </ui-toolbar>
+        <table class="ui-data-table">
+            <tbody>
+            <tr>
+                <th class="picture">
+                </th>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Sobrenome
+                </th>
+                <th class="align-right">
+                    Idade
+                </th>
+            </tr>
+            <tr *ngFor="let item of list">
+                <td class="picture">
+                    <div class="image"
+                         style="background-image: url(https://cdn.vox-cdn.com/uploads/chorus_asset/file/6173241/7089-The_Amazing_Spiderman_keyart2_alt_HD.jpg)"></div>
+                </td>
+                <td>
+                    {{item.name}}
+                </td>
+                <td>
+                    {{item.surname}}
+                </td>
+                <td class="align-right">
+                    {{item.age}}
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4" class="align-right">
+                    <div class="ui-button-container align-right">
+                        <span class="pagination">
+                            1-10 de 10
+                        </span>
+                        <button class="ui-button flat icon" uiRipple disabled>
+                            <i class="material-icons">keyboard_arrow_left</i>
+                        </button>
+                        <button class="ui-button flat icon" uiRipple disabled>
+                            <i class="material-icons">keyboard_arrow_right</i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </ui-card>
+    <div class="ui-fab-container">
+        <button class="ui-button accent fab" uiRipple>
+            <i class="material-icons">add</i>
+        </button>
+    </div>
+</div>
+
+<div class="ui-s960">
+    <ui-card>
+        <ui-toolbar class="flat">
             <span class="title">Test</span>
             <div class="align-right">
                 <button class="ui-button flat icon" uiRipple>
@@ -26,20 +108,21 @@
                     Idade
                 </th>
             </tr>
-            <tr *ngFor="let item of list" [ngClass]="{'selected': item.selected}" (click)="item.selected = !item.selected">
+            <tr *ngFor="let item of list" [ngClass]="{'selected': item.selected}"
+                (click)="$event.preventDefault(); item.selected = !item.selected">
                 <td class="option">
                     <ui-option>
                         <input type="checkbox" [(ngModel)]="item.selected" [checked]="item.selected">
                     </ui-option>
                 </td>
                 <td>
-                    Teste
+                    {{item.name}}
                 </td>
                 <td>
-                    Teste
+                    {{item.surname}}
                 </td>
                 <td class="align-right">
-                    10
+                    {{item.age}}
                 </td>
             </tr>
             </tbody>
@@ -56,6 +139,4 @@
         </button>
     </div>
 </div>
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<!---->
