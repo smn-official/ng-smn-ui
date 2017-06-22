@@ -28,9 +28,23 @@
         }
     }
 
-    tr:last-child {
-        th, td {
-            border-color: transparent;
+    tr {
+        &:last-child {
+            th, td {
+                border-color: transparent;
+            }
+        }
+
+        &.selected {
+            td {
+                background-color: ui-color('grey', '100');
+            }
+        }
+
+        &:hover {
+            td {
+                background-color: ui-color('grey', '200');
+            }
         }
     }
 
