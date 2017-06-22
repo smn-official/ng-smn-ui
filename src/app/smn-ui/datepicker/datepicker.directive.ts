@@ -1,11 +1,11 @@
-import {Directive, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {Directive, EventEmitter, Input, Output, OnChanges, OnInit, OnDestroy} from '@angular/core';
 import {UiReferencesService} from './references.service';
 import {Subject} from 'rxjs/Subject';
 
 @Directive({
     selector: '[uiDatepicker]'
 })
-export class UiDatepickerDirective implements OnInit, OnChanges {
+export class UiDatepickerDirective implements OnInit, OnChanges, OnDestroy {
     @Input() ngModel;
     @Input() maxDate: Date;
     @Input() minDate: Date;
@@ -26,5 +26,9 @@ export class UiDatepickerDirective implements OnInit, OnChanges {
 
     ngOnChanges(value) {
         this.chosen.next(value);
+    }
+
+    ngOnDestroy() {
+        this.referencesService.remove(this.datePicker);
     }
 }

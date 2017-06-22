@@ -21,6 +21,10 @@ export class UiReferencesService {
         return this.datePickers[name];
     }
 
+    remove(name: string) {
+        delete this.datePickers[name];
+    }
+
     getAll(): UiDatepickerDirective {
         return this.datePickers;
     }
