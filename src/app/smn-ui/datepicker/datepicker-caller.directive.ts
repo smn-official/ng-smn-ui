@@ -92,14 +92,27 @@ export class UiDatepickerCallerDirective implements AfterViewInit {
         }
 
         element.classList.add('portrait-only');
-        element.style.position = 'absolute';
-        element.style.top = coordinate.y + 'px';
-        element.style.left = coordinate.x + 'px';
-
         this.wrapDatepicker.appendChild(overlay);
         this.wrapDatepicker.appendChild(element);
         document.body.appendChild(this.wrapDatepicker);
+
         setTimeout(() => {
+            const pickerHorizontalCoveringArea = coordinate.x + element.clientWidth;
+            const pickerVerticalCoveringArea = coordinate.y + element.clientHeight;
+            const windowWidth = document.body.clientWidth + document.body.scrollLeft;
+            const windowHeight = document.body.clientHeight + document.body.scrollTop;
+
+            if (pickerHorizontalCoveringArea > windowWidth) {
+                coordinate.x = windowWidth - (pickerHorizontalCoveringArea + 8);
+            }
+            if (pickerVerticalCoveringArea > windowHeight) {
+                coordinate.y = windowHeight - (element.clientHeight + 8);
+            }
+
+            element.style.position = 'absolute';
+            element.style.top = coordinate.y + 'px';
+            element.style.left = coordinate.x + 'px';
+
             this.wrapDatepicker.classList.add('open');
             if (document.body.clientWidth <= 600) {
                 document.body.style.overflowY = 'hidden';
