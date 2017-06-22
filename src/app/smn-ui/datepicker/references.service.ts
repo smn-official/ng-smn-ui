@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {UiDatepickerDirective} from './datepicker.directive';
+import {UiWindowRef} from "../providers/window.provider";
+import {UiElement} from "../providers/element.provider";
 
 @Injectable()
 export class UiReferencesService {
@@ -23,6 +25,10 @@ export class UiReferencesService {
 
     remove(name: string) {
         delete this.datePickers[name];
+    }
+
+    closeAll() {
+        UiElement.trigger(UiWindowRef.nativeWindow, 'click');
     }
 
     getAll(): UiDatepickerDirective {

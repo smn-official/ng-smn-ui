@@ -14,6 +14,7 @@ import {UiCalendarContentComponent} from './calendar-content.component';
 import {UiAddCalendarDirective} from './add-calendar.directive';
 import {UiDatetimeService} from './datetime.service';
 import {Subject} from 'rxjs/Subject';
+import {isDate} from "rxjs/util/isDate";
 
 @Component({
     selector: 'ui-calendar',
@@ -48,11 +49,9 @@ export class UiCalendarComponent implements OnInit, OnChanges {
     }
 
     ngOnInit(): void {
-        this.chosenDate = this.ngModel;
+        this.chosenDate = isDate(this.ngModel) ? this.ngModel : null;
         this.ngModel = this.ngModel ? new Date(this.ngModel) : this.ngModel;
-        this.viewDate = this.ngModel || this.initOnSelected || new Date();
-        this.ngModel = this.ngModel ? new Date(this.ngModel) : this.ngModel;
-        this.viewDate = this.ngModel || this.initOnSelected || new Date();
+        this.viewDate = isDate(this.ngModel) ? this.ngModel : this.initOnSelected || new Date();
         this.renderCalendar(this.viewDate);
     }
 
@@ -136,16 +135,13 @@ export class UiCalendarComponent implements OnInit, OnChanges {
 
         this.calendar = calendar;
 
+        const keysComponent = ['calendar', 'ngModel', 'minDate', 'maxDate', 'chosenDate', 'confirmSelection'];
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UiCalendarContentComponent);
         const viewContainerRef = this.addCalendar.viewContainerRef;
         viewContainerRef.clear();
         this.componentRef = viewContainerRef.createComponent(componentFactory);
-        this.componentRef.instance.calendar = calendar;
-        this.componentRef.instance.ngModel = this.ngModel;
-        this.componentRef.instance.minDate = this.minDate;
-        this.componentRef.instance.maxDate = this.maxDate;
-        this.componentRef.instance.chosenDate = this.chosenDate;
-        this.componentRef.instance.confirmSelection = this.confirmSelection;
+        keysComponent.map(key => this.componentRef.instance[key] = this[key]);
+
         this.componentRef.instance.chosen.subscribe(newValue => {
             if (newValue) {
                 this.chosenDate = newValue.value;
