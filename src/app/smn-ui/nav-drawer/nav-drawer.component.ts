@@ -27,14 +27,14 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
 
     constructor(private element: ElementRef) {
         this.openNav = () => {
-            if (document.querySelectorAll('body')[0].clientWidth <= 375 || (!this.element.nativeElement.classList.contains('persistent') && UiWindowRef.nativeWindow.scrollY > 1)) {
+            if (document.body.clientWidth <= 375 || (!this.element.nativeElement.classList.contains('persistent') && UiWindowRef.nativeWindow.scrollY > 1)) {
                 const fabContainer = document.querySelectorAll('.ui-fab-container')[0];
                 if (fabContainer) {
                     fabContainer.classList.add('hide');
                 }
             }
             this.element.nativeElement.classList.add('open');
-            document.querySelectorAll('body')[0].style.overflowY = 'hidden';
+            document.body.style.overflowY = 'hidden';
         };
 
         this.closeNav = () => {
@@ -43,7 +43,7 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
                 fabContainer.classList.remove('hide');
             }
             this.element.nativeElement.classList.remove('open');
-            document.querySelectorAll('body')[0].style.overflowY = '';
+            document.body.style.overflowY = '';
         };
     }
 
@@ -59,7 +59,7 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
         const isPersistent = this.element.nativeElement.classList.contains('persistent');
         const isOpen = this.element.nativeElement.classList.contains('open');
         if (isPersistent && isOpen) {
-            if (document.querySelectorAll('body')[0].clientWidth > 375) {
+            if (document.body.clientWidth > 375) {
                 body.classList.add('ui-nav-drawer-persistent');
             }
         } else {
@@ -67,7 +67,7 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
         }
 
         this.element.nativeElement.addEventListener('click', (e) => {
-            if (!(isPersistent && document.querySelectorAll('body')[0].clientWidth > 375) && UiElement.is(e.srcElement, 'a')) {
+            if (!(isPersistent && document.body.clientWidth > 375) && UiElement.is(e.srcElement, 'a')) {
                 this.open = false;
                 this.openChange.emit(this.open);
             }
@@ -101,7 +101,7 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
             const body = UiElement.closest(this.element.nativeElement, 'body');
 
             if (isPersistent && isOpen) {
-                if (document.querySelectorAll('body')[0].clientWidth > 375) {
+                if (document.body.clientWidth > 375) {
                     body.classList.add('ui-nav-drawer-persistent');
                     UiCookie.set('NavDrawerPersistent', 'true');
                 }

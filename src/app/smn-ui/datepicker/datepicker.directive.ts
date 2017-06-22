@@ -1,18 +1,6 @@
-import {
-    ApplicationRef,
-    ComponentFactoryResolver,
-    Directive,
-    EventEmitter,
-    HostListener,
-    Injector,
-    Input,
-    OnInit,
-    Output,
-    OnChanges
-} from '@angular/core';
+import {Directive, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {UiReferencesService} from './references.service';
 import {Subject} from 'rxjs/Subject';
-
 
 @Directive({
     selector: '[uiDatepicker]'
