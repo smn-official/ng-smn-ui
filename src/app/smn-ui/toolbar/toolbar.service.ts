@@ -43,7 +43,9 @@ export class UiToolbarService {
             header.style.transition = '';
         }, 280);
 
-        UiElement.trigger(UiWindowRef.nativeWindow, 'scroll');
+        setTimeout(() => {
+            UiElement.trigger(UiWindowRef.nativeWindow, 'scroll');
+        }, 280);
     }
 
     public deactivateExtendedToolbar() {
