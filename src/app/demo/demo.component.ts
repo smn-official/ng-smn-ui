@@ -30,9 +30,10 @@ export class DemoComponent implements OnInit, AfterViewInit {
         if (isNavDrawerPersistent) {
             this.menuOpen = true;
         }
+
+        this.toolbarService.registerMainToolbar(document.getElementById('app-header'));
     }
 
     ngAfterViewInit() {
-        this.toolbarService.registerMainToolbar(document.getElementById('app-header'));
     }
 }
