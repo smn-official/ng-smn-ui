@@ -24,6 +24,7 @@ export class UiDatepickerCallerDirective implements AfterViewInit {
     componentElement: any;
     pickerOpen: boolean;
     wrapDatepicker: HTMLElement;
+    inputElement: HTMLElement;
     @Input() pickerEvent: string;
     @Input('uiDatepickerCaller') datePickerCaller: string;
 
@@ -37,13 +38,14 @@ export class UiDatepickerCallerDirective implements AfterViewInit {
     public ngAfterViewInit(): void {
         this.datePicker = this.referencesService.get(this.datePickerCaller);
 
-        const inputElement: HTMLElement = <HTMLElement>document.querySelectorAll(`[uiDatePicker="${this.datePickerCaller}"]`)[0];
+        this.inputElement = <HTMLElement>document.querySelectorAll(`[uiDatePicker="${this.datePickerCaller}"]`)[0];
 
         UiElement.on(this.elementRef.nativeElement, this.pickerEvent || 'click', (e) => {
-            const position = UiElement.position(inputElement);
+            this.referencesService.closeAll();
+            const position = UiElement.position(this.inputElement);
             const coordinate = {
                 x: position.left,
-                y: inputElement.offsetHeight + position.top + 1 // 1 para alinhar a linha do input
+                y: this.inputElement.offsetHeight + position.top
             };
 
             if (!this.pickerOpen) {
@@ -66,20 +68,17 @@ export class UiDatepickerCallerDirective implements AfterViewInit {
     }
 
     public setInstances(component, componentRef): void {
-        componentRef.instance.ngModel = component.ngModel;
-        componentRef.instance.maxDate = component.maxDate;
-        componentRef.instance.minDate = component.minDate;
-        componentRef.instance.initOnSelected = component.initOnSelected;
-        componentRef.instance.confirmSelection = component.confirmSelection;
-        componentRef.instance.select = component.select;
+        const keysComponent = ['ngModel', 'maxDate', 'minDate', 'initOnSelected', 'confirmSelection', 'select'];
+        keysComponent.map(key => componentRef.instance[key] = component[key]);
+        componentRef.instance.cancel.subscribe(() => this.closePicker());
+        component.chosen.subscribe(value => componentRef.instance.ngOnChanges(value));
         componentRef.instance.chosen.subscribe(value => {
             this.referencesService.updateModel(this.datePickerCaller, value);
             if (this.pickerOpen) {
+                this.inputElement.focus();
                 this.closePicker();
             }
         });
-        componentRef.instance.cancel.subscribe(() => this.closePicker());
-        component.chosen.subscribe(value => componentRef.instance.ngOnChanges(value));
     }
 
     public renderViewCalendar(element, coordinate, darkClass): void {
@@ -91,6 +90,7 @@ export class UiDatepickerCallerDirective implements AfterViewInit {
             this.wrapDatepicker.classList.add(darkClass);
         }
 
+        this.wrapDatepicker.style.transform = 'scale(0)';
         element.classList.add('portrait-only');
         this.wrapDatepicker.appendChild(overlay);
         this.wrapDatepicker.appendChild(element);
@@ -109,6 +109,7 @@ export class UiDatepickerCallerDirective implements AfterViewInit {
                 coordinate.y = windowHeight - (element.clientHeight + 8);
             }
 
+            this.wrapDatepicker.style.transform = '';
             element.style.position = 'absolute';
             element.style.top = coordinate.y + 'px';
             element.style.left = coordinate.x + 'px';

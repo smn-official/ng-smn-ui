@@ -12,11 +12,11 @@
         <div class="controls">
             <button class="prev ui-button icon flat"
                     (click)="prevMonth()"
-                    *ngIf="!minDate || (calendar && calendar.days[0].time > minDate.getTime())"
+                    [hidden]="!(!minDate || (calendar && calendar.days[0].time > minDate.getTime()))"
                     tabindex="0"><i class="material-icons">keyboard_arrow_left</i></button>
             <button class="next ui-button icon flat"
                     (click)="nextMonth()"
-                    *ngIf="!maxDate || (calendar && calendar.days[calendar.days.length - 1].time < maxDate.getTime())"
+                    [hidden]="!(!maxDate || (calendar && calendar.days[calendar.days.length - 1].time < maxDate.getTime()))"
                     tabindex="2"><i class="material-icons">keyboard_arrow_right</i></button>
         </div>
         <div class="calendar-cover">
