@@ -41,9 +41,6 @@ export class UiToolbarService {
         header.style.transition = 'all 280ms';
         setTimeout(() => {
             header.style.transition = '';
-        }, 280);
-
-        setTimeout(() => {
             UiElement.trigger(UiWindowRef.nativeWindow, 'scroll');
         }, 280);
     }

@@ -11,6 +11,30 @@
         height: 56px;
         text-align: left;
         cursor: default;
+        user-select: none;
+
+        i {
+            font-size: 16px;
+            vertical-align: middle;
+            transition: opacity 280ms ui-easing(),
+            transform 280ms ui-easing();
+            opacity: 0;
+            transform: rotate(180deg);
+        }
+
+        &.order_asc {
+            i {
+                opacity: 1;
+                transform: rotate(180deg);
+            }
+        }
+
+        &.order_desc {
+            i {
+                opacity: 1;
+                transform: rotate(0deg);
+            }
+        }
     }
 
     th, td {
@@ -87,4 +111,3 @@
         }
     }
 }
-/**/

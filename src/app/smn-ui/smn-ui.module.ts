@@ -18,10 +18,13 @@ import {UiNavDrawerComponent} from './nav-drawer/nav-drawer.component';
 import {UiDatetimeService} from './calendar/datetime.service';
 import {UiCapitalizePipe} from './utils/pipes/capitalize.pipe';
 import {UiRippleDirective} from './ripple/ripple.directive';
-import { UiDatepickerDirective } from './datepicker/datepicker.directive';
-import { UiDatepickerCallerDirective } from './datepicker/datepicker-caller.directive';
+import {UiDatepickerDirective} from './datepicker/datepicker.directive';
+import {UiDatepickerCallerDirective} from './datepicker/datepicker-caller.directive';
 import {UiReferencesService} from './datepicker/references.service';
 import './button/button.component';
+import {UiPhonePipe} from './utils/pipes/phone.pipe';
+export {UiPhonePipe};
+import {UiDataTableOrderByDirective} from './data-table/order-by.directive';
 
 import {UiCookie} from './providers/cookie.provider';
 import {UiToolbarService} from './toolbar/toolbar.service';
@@ -47,7 +50,9 @@ const lib: any[] = [
     UiNavDrawerComponent,
     UiRippleDirective,
     UiDatepickerDirective,
-    UiDatepickerCallerDirective
+    UiDatepickerCallerDirective,
+    UiPhonePipe,
+    UiDataTableOrderByDirective
 ];
 
 @NgModule({
