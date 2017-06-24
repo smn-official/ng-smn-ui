@@ -1,0 +1,4 @@
+{{bar.text}}
+<button class="ui-button" *ngIf="bar.action && bar.textAction" (click)="bar.action(); hide()">
+    {{bar.textAction}}
+</button>

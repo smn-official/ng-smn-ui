@@ -14,6 +14,7 @@ import {DemoToolbarsComponent} from './demo-toolbars/demo-toolbars.component';
 import {DemoDividersComponent} from './demo-dividers/demo-dividers.component';
 import {DemoLayoutComponent} from './demo-layout/demo-layout.component';
 import {DemoDataTablesComponent} from './demo-data-tables/demo-data-tables.component';
+import {DemoSnackbarComponent} from './demo-snackbar/demo-snackbar.component';
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import {DemoDataTablesComponent} from './demo-data-tables/demo-data-tables.compo
         DemoDatePickersComponent,
         DemoDividersComponent,
         DemoLayoutComponent,
-        DemoDataTablesComponent
+        DemoDataTablesComponent,
+        DemoSnackbarComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

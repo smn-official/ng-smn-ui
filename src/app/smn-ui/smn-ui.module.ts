@@ -20,7 +20,9 @@ import {UiCapitalizePipe} from './utils/pipes/capitalize.pipe';
 import {UiRippleDirective} from './ripple/ripple.directive';
 import {UiDatepickerDirective} from './datepicker/datepicker.directive';
 import {UiDatepickerCallerDirective} from './datepicker/datepicker-caller.directive';
+import {UiSnackbarContainerComponent} from './snackbar/snackbar-container.component';
 import {UiReferencesService} from './datepicker/references.service';
+import {UiSnackbarComponent} from './snackbar/snackbar.component';
 import './button/button.component';
 import {UiPhonePipe} from './utils/pipes/phone.pipe';
 export {UiPhonePipe};
@@ -30,6 +32,7 @@ import {UiCookie} from './providers/cookie.provider';
 import {UiToolbarService} from './toolbar/toolbar.service';
 import {UiElement} from './providers/element.provider';
 import {UiWindowRef} from './providers/window.provider';
+import {UiSnackbarService} from './snackbar/snackbar.service';
 
 export {UiCookie, UiToolbarService, UiElement, UiWindowRef}
 
@@ -52,7 +55,9 @@ const lib: any[] = [
     UiDatepickerDirective,
     UiDatepickerCallerDirective,
     UiPhonePipe,
-    UiDataTableOrderByDirective
+    UiDataTableOrderByDirective,
+    UiSnackbarContainerComponent,
+    UiSnackbarComponent
 ];
 
 @NgModule({
@@ -67,7 +72,8 @@ const lib: any[] = [
         UiReferencesService,
         UiWindowRef,
         UiDatetimeService,
-        UiElement
+        UiElement,
+        UiSnackbarService
     ],
     entryComponents: [UiCalendarComponent, UiCalendarContentComponent]
 })
