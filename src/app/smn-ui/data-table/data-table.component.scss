@@ -10,6 +10,7 @@
         color: rgba(0, 0, 0, 0.54);
         height: 56px;
         text-align: left;
+        cursor: default;
     }
 
     th, td {
@@ -21,9 +22,10 @@
             padding-right: 24px;
         }
 
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid ui-color('grey', '300');
 
-        &.option {
+        &.option,
+        &.picture {
             width: 56px;
         }
     }
@@ -55,4 +57,34 @@
     .align-right {
         text-align: right;
     }
+
+    .image {
+        height: 32px;
+        width: 32px;
+        border-radius: 16px;
+        background-position: center;
+        background-size: cover;
+        margin: 0 2px;
+    }
+
+    tfoot td {
+        color: rgba(0, 0, 0, 0.54);
+        font-size: 12px;
+        cursor: default;
+
+        &:hover {
+            background-color: transparent;
+        }
+        height: 56px;
+        &:last-child {
+            padding-right: 14px;
+        }
+
+        .pagination {
+            margin-right: 24px;
+            display: flex;
+            align-items: center;
+        }
+    }
 }
+/**/

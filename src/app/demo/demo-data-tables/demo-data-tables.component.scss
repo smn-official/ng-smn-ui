@@ -1,4 +1,4 @@
-@import '../../smn-ui/core/palette';
+@import '../../smn-ui/core/variables';
 
 :host {
     ui-card {
@@ -7,6 +7,48 @@
         /deep/ header {
             background-color: ui-color('white');
             color: ui-text-color('white');
+        }
+        margin-bottom: 20px;
+    }
+
+    /deep/ form[name="searchForm"] {
+        transition: all 280ms ui-easing('deceleration');
+        position: absolute;
+        right: 60px;
+        left: 100%;
+        top: 14px;
+
+        ui-input-container {
+            width: 100%;
+
+            .ui-input-wrap {
+                padding-top: 0;
+                margin-bottom: 0;
+
+                input::-webkit-input-placeholder {
+                    transition: color 280ms ui-easing('deceleration');
+                }
+            }
+        }
+
+        &:not(.open) ui-input-container .ui-input-wrap input::-webkit-input-placeholder {
+            color: transparent;
+        }
+
+        &.open {
+            left: 25px;
+        }
+    }
+
+    ui-toolbar {
+        .title {
+            transition: opacity 280ms ui-easing('deceleration'),
+            transform 280ms ui-easing('deceleration');
+
+            &.hide {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
         }
     }
 }

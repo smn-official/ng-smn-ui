@@ -157,6 +157,7 @@
         &.mini {
             width: 40px;
             height: 40px;
+            min-height: 40px;
         }
 
         &:not([disabled]) {

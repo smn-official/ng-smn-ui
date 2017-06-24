@@ -46,6 +46,18 @@ export class UiToolbarComponent implements AfterViewInit {
                 }
             }
         });
+
+        let form: any = document.querySelectorAll('form');
+        if (form.length) {
+            form = <HTMLElement>form[0];
+            const input = form.querySelectorAll('input')[0];
+            input.addEventListener('focus', () => {
+                form.classList.add('open');
+            });
+            input.addEventListener('blur', () => {
+                form.classList.remove('open');
+            });
+        }
     }
 
     ngAfterViewInit() {
