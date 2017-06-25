@@ -7,19 +7,19 @@ let mailToolbar: HTMLElement;
 @Injectable()
 export class UiToolbarService {
     sharedValue: String;
-    titleChange: EventEmitter<any> = new EventEmitter();
+    change: EventEmitter<any> = new EventEmitter();
 
     constructor() {
     }
 
-    public getTitle() {
+    public get() {
         return this.sharedValue;
     }
 
-    public setTitle(sharedValue: String) {
+    public set(sharedValue: String) {
         this.sharedValue = sharedValue;
 
-        this.titleChange.emit(sharedValue);
+        this.change.emit(sharedValue);
     }
 
     public registerMainToolbar(element: any) {
@@ -58,5 +58,19 @@ export class UiToolbarService {
         }, 280);
 
         UiElement.trigger(UiWindowRef.nativeWindow, 'scroll');
+    }
+
+    public activateTransparentToolbar(auxiliarClass?: string) {
+        this.getMainToolbar().classList.add('transparent');
+        if (auxiliarClass) {
+            this.getMainToolbar().classList.add(auxiliarClass);
+        }
+    }
+
+    public deactivateTransparentToolbar(auxiliarClass?: string) {
+        this.getMainToolbar().classList.remove('transparent');
+        if (auxiliarClass) {
+            this.getMainToolbar().classList.remove(auxiliarClass);
+        }
     }
 }
