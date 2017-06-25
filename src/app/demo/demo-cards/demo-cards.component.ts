@@ -15,7 +15,7 @@ export class DemoCardsComponent implements OnInit {
 
     ngOnInit() {
         this.titleService.setTitle('Card - SMN UI Demos');
-        this.toolbarService.setTitle('Card');
+        this.toolbarService.set('Card');
     }
 
 }

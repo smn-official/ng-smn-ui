@@ -15,7 +15,7 @@ export class DemoInputsComponent implements OnInit {
 
     ngOnInit() {
         this.titleService.setTitle('Input - SMN UI Demos');
-        this.toolbarService.setTitle('Input');
+        this.toolbarService.set('Input');
     }
 
 }

@@ -21,7 +21,7 @@ export class DemoSelectionControlsComponent implements OnInit {
 
     ngOnInit() {
         this.titleService.setTitle('Selection Control - SMN UI Demos');
-        this.toolbarService.setTitle('Selection Control');
+        this.toolbarService.set('Selection Control');
     }
 
 }

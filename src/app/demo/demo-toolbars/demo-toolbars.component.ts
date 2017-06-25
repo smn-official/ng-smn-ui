@@ -14,7 +14,7 @@ export class DemoToolbarsComponent implements OnInit {
 
     ngOnInit() {
         this.titleService.setTitle('Toolbar - SMN UI Demos');
-        this.toolbarService.setTitle('Toolbar');
+        this.toolbarService.set('Toolbar');
     }
 
 }

@@ -15,7 +15,7 @@ export class DemoDividersComponent implements OnInit {
 
     ngOnInit() {
         this.titleService.setTitle('Divider - SMN UI Demos');
-        this.toolbarService.setTitle('Divider');
+        this.toolbarService.set('Divider');
     }
 
 }

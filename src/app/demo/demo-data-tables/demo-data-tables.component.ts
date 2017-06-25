@@ -60,7 +60,7 @@ export class DemoDataTablesComponent implements OnInit, AfterViewInit, OnDestroy
 
     ngOnInit() {
         this.titleService.setTitle('Data Tables - SMN UI Demos');
-        this.toolbarService.setTitle('Data Tables');
+        this.toolbarService.set('Data Tables');
     }
 
     ngAfterViewInit() {

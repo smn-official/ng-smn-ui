@@ -15,7 +15,7 @@ export class DemoButtonsComponent implements OnInit {
 
     ngOnInit() {
         this.titleService.setTitle('Button - SMN UI Demos');
-        this.toolbarService.setTitle('Button');
+        this.toolbarService.set('Button');
     }
 
 }

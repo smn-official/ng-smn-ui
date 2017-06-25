@@ -14,7 +14,7 @@ export class DemoLayoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnInit() {
         this.titleService.setTitle('Layout - SMN UI Demos');
-        this.toolbarService.setTitle('Layout');
+        this.toolbarService.set('Layout');
     }
 
     ngAfterViewInit() {

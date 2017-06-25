@@ -15,14 +15,14 @@ export class DemoComponent implements OnInit, AfterViewInit {
     menuOpen: boolean;
 
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
-        toolbarService.titleChange.subscribe(title => {
+        toolbarService.change.subscribe(title => {
             this.title = title;
         });
     }
 
     ngOnInit() {
         this.titleService.setTitle('SMN UI Demos');
-        this.toolbarService.setTitle('SMN UI Demos');
+        this.toolbarService.set('SMN UI Demos');
         this.menuOpen = false;
 
         const isNavDrawerPersistent = UiCookie.get('NavDrawerPersistent') === 'true';
