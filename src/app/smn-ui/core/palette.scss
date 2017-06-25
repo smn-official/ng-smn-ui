@@ -1075,8 +1075,8 @@ $material-colors: (
     )
 );
 
-@function ui-color($color: 'white', $hue: '500') {
-    $color: map-get(map-get(map-get($material-colors, $color), $hue), 'color');
+@function ui-color($color: 'white', $hue: '500', $opacity: 1) {
+    $color: rgba(map-get(map-get(map-get($material-colors, $color), $hue), 'color'), $opacity);
     @if $color {
         @return $color;
     } @else {
@@ -1084,8 +1084,8 @@ $material-colors: (
     }
 }
 
-@function ui-text-color($color: 'white', $hue: '500') {
-    $color: map-get(map-get(map-get($material-colors, $color), $hue), 'text');
+@function ui-text-color($color: 'white', $hue: '500', $opacity: 1) {
+    $color: rgba(map-get(map-get(map-get($material-colors, $color), $hue), 'text'), $opacity);
     @if $color {
         @return $color;
     } @else {
