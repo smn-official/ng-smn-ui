@@ -38,10 +38,10 @@ ui-toolbar {
             min-height: 48px;
         }
         box-shadow: ui-shadow('4dp');
-        background-color: ui-color('grey', '300');
         transition: box-shadow 0.335s ui-easing('deceleration'),
         height 0.28s ui-easing('deceleration'),
-        padding-bottom 0.28s ui-easing('deceleration');
+        padding-bottom 0.28s ui-easing('deceleration'),
+        background 0.28s ui-easing('deceleration');
         display: flex;
         align-items: center;
         padding: 4px;
@@ -68,10 +68,29 @@ ui-toolbar {
         .logo {
             max-height: 30px;
             margin: 0 20px 0 10px;
+            width: auto;
+            height: 100%;
+
+            @include mobile {
+                display: none;
+            }
+
+            img {
+                height: 100%;
+            }
         }
 
         .logo ~ .title {
-            border-left: 1px solid ui-text-color('grey', '300');
+            border-left: 1px solid ui-text-color('grey', '300', 0.3);
+            @include mobile {
+                border-left: none;
+            }
+        }
+    }
+
+    &.transparent {
+        header {
+            background-color: transparent;
         }
     }
 
@@ -93,6 +112,10 @@ ui-toolbar {
     .align-right {
         margin-left: auto;
         display: flex;
+
+        div {
+            display: flex;
+        }
     }
 
     &.size-2x {
