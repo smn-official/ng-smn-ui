@@ -3,13 +3,14 @@
 .ui-button-container {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 
-    button {
+    .ui-button {
         margin: 2px 0;
         min-width: unset;
     }
 
-    button:not(.full) {
+    .ui-button:not(.full) {
         margin-right: 4px;
         margin-left: 0;
     }
@@ -17,7 +18,7 @@
     &.align-right {
         justify-content: flex-end;
 
-        button:not(.full) {
+        .ui-button:not(.full) {
             margin-left: 4px;
             margin-right: 0;
         }
@@ -31,7 +32,7 @@
             justify-content: flex-start;
         }
 
-        button:not(.full) + button:not(.full) {
+        .ui-button:not(.full) + .ui-button:not(.full) {
             margin-left: 4px;
             margin-right: 0;
         }
@@ -81,6 +82,16 @@
     font-family: inherit;
     white-space: nowrap;
     min-width: 88px;
+
+    @at-root a#{&} {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &:hover {
+        text-decoration: none;
+    }
 
     &.full {
         width: 100%;
