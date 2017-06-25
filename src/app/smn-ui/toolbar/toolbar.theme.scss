@@ -8,12 +8,21 @@
                 color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
 
                 .logo ~ .title {
-                    border-left: 1px solid ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+                    border-left: 1px solid ui-text-color(map_get($theme, primary), map_get($theme, primary-hue), 0.3);
+                    @include mobile {
+                        border-left: none;
+                    }
                 }
 
-                .ui-button .badge {
-                    background-color: map_get($theme, accent-color);
-                    color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+                .ui-button {
+                    &:not(.success):not(.warning):not(.error):not([disabled]) .ui-ripple-wave {
+                        background-color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue), 0.1);
+                    }
+
+                    .badge {
+                        background-color: map_get($theme, accent-color);
+                        color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+                    }
                 }
             }
         }
@@ -23,14 +32,24 @@
                 color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
 
                 .logo ~ .title {
-                    border-left: 1px solid ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+                    border-left: 1px solid ui-text-color(map_get($theme, accent), map_get($theme, accent-hue), 0.3);
+                    @include mobile {
+                        border-left: none;
+                    }
                 }
 
-                .ui-button .badge {
-                    background-color: map_get($theme, primary-color);
-                    color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+                .ui-button {
+                    &:not(.success):not(.warning):not(.error):not([disabled]) .ui-ripple-wave {
+                        background-color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue), 0.1);
+                    }
+
+                    .badge {
+                        background-color: map_get($theme, primary-color);
+                        color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+                    }
                 }
             }
         }
     }
 }
+/**/
