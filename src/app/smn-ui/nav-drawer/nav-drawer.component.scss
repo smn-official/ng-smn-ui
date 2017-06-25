@@ -107,8 +107,15 @@ ui-nav-drawer:not(.open) nav + .ui-nav-drawer-overlay {
 body {
     transition: margin-left 0.28s ui-easing('deceleration');
 }
+
 body.ui-nav-drawer-persistent {
     @include desktop {
-        margin-left: 320px;
+        & {
+            margin-left: 320px;
+        }
+
+        .ui-nav-drawer-persistent {
+            padding-left: 320px;
+        }
     }
 }
