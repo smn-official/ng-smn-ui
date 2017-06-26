@@ -25,8 +25,8 @@ export class DemoDatePickersComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.titleService.setTitle('Date Picker - SMN UI Demos');
-        this.toolbarService.set('Date Picker');
+        this.titleService.setTitle('Date picker - SMN UI Demos');
+        this.toolbarService.set('Date picker');
     }
 
     execFunctionSelect() {
