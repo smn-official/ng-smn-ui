@@ -15,6 +15,7 @@ import {DemoDividersComponent} from './demo-dividers/demo-dividers.component';
 import {DemoLayoutComponent} from './demo-layout/demo-layout.component';
 import {DemoDataTablesComponent} from './demo-data-tables/demo-data-tables.component';
 import {DemoSnackbarComponent} from './demo-snackbar/demo-snackbar.component';
+import {DemoProgressComponent} from "./demo-progress/demo-progress.component";
 
 @NgModule({
     imports: [
@@ -34,7 +35,8 @@ import {DemoSnackbarComponent} from './demo-snackbar/demo-snackbar.component';
         DemoDividersComponent,
         DemoLayoutComponent,
         DemoDataTablesComponent,
-        DemoSnackbarComponent
+        DemoSnackbarComponent,
+        DemoProgressComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

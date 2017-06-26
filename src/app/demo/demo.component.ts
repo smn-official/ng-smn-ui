@@ -21,8 +21,6 @@ export class DemoComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        this.titleService.setTitle('SMN UI Demos');
-        this.toolbarService.set('SMN UI Demos');
         this.menuOpen = false;
 
         const isNavDrawerPersistent = UiCookie.get('NavDrawerPersistent') === 'true';
@@ -35,5 +33,9 @@ export class DemoComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
+        setTimeout(() => {
+            this.titleService.setTitle('SMN UI Demos');
+            this.toolbarService.set('SMN UI Demos');
+        });
     }
 }
