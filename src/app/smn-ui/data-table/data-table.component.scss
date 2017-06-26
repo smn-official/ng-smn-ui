@@ -72,6 +72,12 @@
                 background-color: ui-color('grey', '200');
             }
         }
+
+        &.empty {
+            td {
+                background-color: transparent;
+            }
+        }
     }
 
     td {
@@ -111,3 +117,4 @@
         }
     }
 }
+/**/
