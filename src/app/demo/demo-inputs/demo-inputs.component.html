@@ -33,7 +33,7 @@
             <ui-input-container>
                 <input [type]="type ? 'text' : 'password'" [(ngModel)]="password" uiInput>
                 <label>Password</label>
-                <div class="suffix" (click)="type = !type">
+                <div class="suffix ui-button flat icon" (click)="type = !type" uiRipple>
                     <i class="material-icons light">{{type ? 'visibility_off' : 'visibility'}}</i>
                 </div>
             </ui-input-container>
