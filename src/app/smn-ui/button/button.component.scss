@@ -83,7 +83,7 @@
     white-space: nowrap;
     min-width: 88px;
 
-    @at-root a#{&} {
+    @at-root *:not(button)#{&} {
         display: flex;
         align-items: center;
         justify-content: center;
