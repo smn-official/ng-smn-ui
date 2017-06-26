@@ -13,12 +13,15 @@ import {DemoLayoutComponent} from './demo/demo-layout/demo-layout.component';
 import {DemoDataTablesComponent} from './demo/demo-data-tables/demo-data-tables.component';
 import {DemoSnackbarComponent} from './demo/demo-snackbar/demo-snackbar.component';
 import {DemoProgressComponent} from './demo/demo-progress/demo-progress.component';
+import {DemoNavDrawerComponent} from './demo/demo-nav-drawer/demo-nav-drawer.component';
+import {DemoHomeComponent} from './demo/demo-home/demo-home.component';
 
 const routes: Routes = [
     {
         path: '',
         component: DemoComponent,
         children: [
+            {path: '', component: DemoHomeComponent},
             {path: 'inputs', component: DemoInputsComponent},
             {path: 'buttons', component: DemoButtonsComponent},
             {path: 'cards', component: DemoCardsComponent},
@@ -29,7 +32,8 @@ const routes: Routes = [
             {path: 'layout', component: DemoLayoutComponent},
             {path: 'data-tables', component: DemoDataTablesComponent},
             {path: 'snackbars', component: DemoSnackbarComponent},
-            {path: 'progress', component: DemoProgressComponent}
+            {path: 'progress', component: DemoProgressComponent},
+            {path: 'nav-drawer', component: DemoNavDrawerComponent}
         ]
     },
     {path: '**', redirectTo: ''}
