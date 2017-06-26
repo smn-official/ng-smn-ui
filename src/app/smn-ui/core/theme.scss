@@ -12,6 +12,7 @@
 @import "../nav-drawer/nav-drawer.theme";
 @import "../list/list.theme";
 @import "../datepicker/datepicker-caller.theme";
+@import "../progress/linear/progress-linear.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -61,4 +62,5 @@
     @include ui-nav-drawer($theme);
     @include ui-list($theme);
     @include ui-datepicker-caller($theme);
+    @include ui-progress($theme);
 }
