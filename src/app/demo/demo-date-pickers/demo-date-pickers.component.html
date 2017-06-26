@@ -3,51 +3,51 @@
         <ui-card-title>Version light</ui-card-title>
         <ui-card-content>
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="simple" name="date" uiDatepicker="simple">
+                <input type="text" uiInput [(ngModel)]="simple" name="date" uiDatePicker="simple">
                 <label>Date</label>
                 <div class="icon">
-                    <button class="ui-button icon flat" uiDatepickerCaller="simple">
+                    <button class="ui-button icon flat" uiDatePickerCaller="simple">
                         <i class="material-icons">today</i>
                     </button>
                 </div>
             </ui-input-container>
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="minAndMax" name="date" uiDatepicker="minAndMax" [minDate]="minDate" [maxDate]="maxDate">
+                <input type="text" uiInput [(ngModel)]="minAndMax" name="date" uiDatePicker="minAndMax" [minDate]="minDate" [maxDate]="maxDate">
                 <label>Min e max</label>
                 <div class="icon">
-                    <button class="ui-button icon flat" uiDatepickerCaller="minAndMax">
+                    <button class="ui-button icon flat" uiDatePickerCaller="minAndMax">
                         <i class="material-icons">today</i>
                     </button>
                 </div>
                 <div class="ui-messages">
                     <div class="ui-message helper">
-                        Minimo: 10 dias para trás do dia de hoje; maximo: 20 dias para frente do dia de hoje
+                        Mínimo: 10 dias para trás do dia de hoje; máximo: 20 dias para frente do dia de hoje
                     </div>
                 </div>
             </ui-input-container>
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="confirmSelect" name="date" uiDatepicker="confirmSelect" [confirmSelection]="true">
+                <input type="text" uiInput [(ngModel)]="confirmSelect" name="date" uiDatePicker="confirmSelect" [confirmSelection]="true">
                 <label>Confirm select</label>
                 <div class="icon">
-                    <button class="ui-button icon flat" uiDatepickerCaller="confirmSelect">
+                    <button class="ui-button icon flat" uiDatePickerCaller="confirmSelect">
                         <i class="material-icons">today</i>
                     </button>
                 </div>
             </ui-input-container>
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="functionSelect" name="date" uiDatepicker="functionSelect" (select)="execFunctionSelect()">
+                <input type="text" uiInput [(ngModel)]="functionSelect" name="date" uiDatePicker="functionSelect" (select)="execFunctionSelect()">
                 <label>Execute function select</label>
                 <div class="icon">
-                    <button class="ui-button icon flat" uiDatepickerCaller="functionSelect">
+                    <button class="ui-button icon flat" uiDatePickerCaller="functionSelect">
                         <i class="material-icons">today</i>
                     </button>
                 </div>
             </ui-input-container>
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="initOnSelected" name="date" uiDatepicker="initOnSelected" [initOnSelected]="worldWarII">
+                <input type="text" uiInput [(ngModel)]="initOnSelected" name="date" uiDatePicker="initOnSelected" [initOnSelected]="worldWarII">
                 <label>Data segunda guerra mundial</label>
                 <div class="icon">
-                    <button class="ui-button icon flat" uiDatepickerCaller="initOnSelected">
+                    <button class="ui-button icon flat" uiDatePickerCaller="initOnSelected">
                         <i class="material-icons">today</i>
                     </button>
                 </div>
@@ -65,16 +65,16 @@
             <ui-card-title>Version dark</ui-card-title>
             <ui-card-content>
                 <ui-input-container>
-                    <input type="text" uiInput [(ngModel)]="dateDark" class="accent" name="dateDark" uiDatepicker="datepickerDark" darkClass="dark">
+                    <input type="text" uiInput [(ngModel)]="dateDark" class="accent" name="dateDark" uiDatePicker="datepickerDark" darkClass="dark">
                     <label>Date</label>
                     <div class="icon">
-                        <button class="ui-button icon flat" uiDatepickerCaller="datepickerDark">
+                        <button class="ui-button icon flat" uiDatePickerCaller="datepickerDark">
                             <i class="material-icons">today</i>
                         </button>
                     </div>
                     <div class="ui-messages">
                         <div class="ui-message helper">
-                            Com mais de um tema é nessecessário passar o nome da classe dark (darkClass)
+                            Com mais de um tema é necessário passar o nome da classe dark (darkClass)
                         </div>
                     </div>
                 </ui-input-container>
