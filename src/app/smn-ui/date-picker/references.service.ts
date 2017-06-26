@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {UiDatepickerDirective} from './datepicker.directive';
-import {UiWindowRef} from "../providers/window.provider";
-import {UiElement} from "../providers/element.provider";
+import {UiDatePickerDirective} from './date-picker.directive';
+import {UiWindowRef} from '../providers/window.provider';
+import {UiElement} from '../providers/element.provider';
 
 @Injectable()
 export class UiReferencesService {
@@ -11,7 +11,7 @@ export class UiReferencesService {
     constructor() {
     }
 
-    add(name: string, component: UiDatepickerDirective): void {
+    add(name: string, component: UiDatePickerDirective): void {
         if (this.datePickers && this.datePickers[name]) {
             throw console.error('Error');
         }
@@ -19,7 +19,7 @@ export class UiReferencesService {
         this.datePickers[name] = component;
     }
 
-    get(name: string): UiDatepickerDirective {
+    get(name: string): UiDatePickerDirective {
         return this.datePickers[name];
     }
 
@@ -31,7 +31,7 @@ export class UiReferencesService {
         UiElement.trigger(UiWindowRef.nativeWindow, 'click');
     }
 
-    getAll(): UiDatepickerDirective {
+    getAll(): UiDatePickerDirective {
         return this.datePickers;
     }
 

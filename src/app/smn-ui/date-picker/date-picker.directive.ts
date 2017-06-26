@@ -3,16 +3,16 @@ import {UiReferencesService} from './references.service';
 import {Subject} from 'rxjs/Subject';
 
 @Directive({
-    selector: '[uiDatepicker]'
+    selector: '[uiDatePicker]'
 })
-export class UiDatepickerDirective implements OnInit, OnChanges, OnDestroy {
+export class UiDatePickerDirective implements OnInit, OnChanges, OnDestroy {
     @Input() ngModel;
     @Input() maxDate: Date;
     @Input() minDate: Date;
     @Input() initOnSelected: Date;
     @Input() confirmSelection: boolean;
     @Input() darkClass: string;
-    @Input('uiDatepicker') datePicker: string;
+    @Input('uiDatePicker') datePicker: string;
     @Output() select: EventEmitter<any> = new EventEmitter();
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
     chosen: Subject<any> = new Subject();

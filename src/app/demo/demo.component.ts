@@ -1,5 +1,4 @@
-import {Component, ViewEncapsulation, OnInit, AfterViewInit} from '@angular/core';
-import {Title} from '@angular/platform-browser';
+import {Component, ViewEncapsulation, OnInit, AfterViewInit, ElementRef} from '@angular/core';
 
 import {UiCookie, UiToolbarService} from '../smn-ui/smn-ui.module';
 
@@ -14,15 +13,13 @@ export class DemoComponent implements OnInit, AfterViewInit {
     title: String;
     menuOpen: boolean;
 
-    constructor(private titleService: Title, private toolbarService: UiToolbarService) {
+    constructor(private toolbarService: UiToolbarService, public element: ElementRef) {
         toolbarService.change.subscribe(title => {
             this.title = title;
         });
     }
 
     ngOnInit() {
-        this.titleService.setTitle('SMN UI Demos');
-        this.toolbarService.set('SMN UI Demos');
         this.menuOpen = false;
 
         const isNavDrawerPersistent = UiCookie.get('NavDrawerPersistent') === 'true';

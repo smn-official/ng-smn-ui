@@ -18,12 +18,12 @@ import {UiNavDrawerComponent} from './nav-drawer/nav-drawer.component';
 import {UiDatetimeService} from './calendar/datetime.service';
 import {UiCapitalizePipe} from './utils/pipes/capitalize.pipe';
 import {UiRippleDirective} from './ripple/ripple.directive';
-import {UiDatepickerDirective} from './datepicker/datepicker.directive';
-import {UiDatepickerCallerDirective} from './datepicker/datepicker-caller.directive';
+import {UiDatePickerDirective} from './date-picker/date-picker.directive';
+import {UiDatePickerCallerDirective} from './date-picker/date-picker-caller.directive';
 import {UiSnackbarContainerComponent} from './snackbar/snackbar-container.component';
-import {UiReferencesService} from './datepicker/references.service';
+import {UiReferencesService} from './date-picker/references.service';
 import {UiSnackbarComponent} from './snackbar/snackbar.component';
-import './button/button.component';
+import './button/button.service';
 import {UiPhonePipe} from './utils/pipes/phone.pipe';
 export {UiPhonePipe};
 import {UiDataTableOrderByDirective} from './data-table/order-by.directive';
@@ -53,8 +53,8 @@ const lib: any[] = [
     UiCapitalizePipe,
     UiNavDrawerComponent,
     UiRippleDirective,
-    UiDatepickerDirective,
-    UiDatepickerCallerDirective,
+    UiDatePickerDirective,
+    UiDatePickerCallerDirective,
     UiPhonePipe,
     UiDataTableOrderByDirective,
     UiSnackbarContainerComponent,

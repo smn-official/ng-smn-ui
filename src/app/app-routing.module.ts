@@ -12,23 +12,34 @@ import {DemoDividersComponent} from './demo/demo-dividers/demo-dividers.componen
 import {DemoLayoutComponent} from './demo/demo-layout/demo-layout.component';
 import {DemoDataTablesComponent} from './demo/demo-data-tables/demo-data-tables.component';
 import {DemoSnackbarComponent} from './demo/demo-snackbar/demo-snackbar.component';
+import {DemoProgressComponent} from './demo/demo-progress/demo-progress.component';
+import {DemoNavDrawerComponent} from './demo/demo-nav-drawer/demo-nav-drawer.component';
+import {DemoHomeComponent} from './demo/demo-home/demo-home.component';
+import {DemoSmartListComponent} from './demo/demo-smart-list/demo-smart-list.component';
 
-const routes: Routes = [{
-    path: '',
-    component: DemoComponent,
-    children: [
-        {path: 'inputs', component: DemoInputsComponent},
-        {path: 'buttons', component: DemoButtonsComponent},
-        {path: 'cards', component: DemoCardsComponent},
-        {path: 'date-pickers', component: DemoDatePickersComponent},
-        {path: 'selection-controls', component: DemoSelectionControlsComponent},
-        {path: 'toolbars', component: DemoToolbarsComponent},
-        {path: 'dividers', component: DemoDividersComponent},
-        {path: 'layout', component: DemoLayoutComponent},
-        {path: 'data-tables', component: DemoDataTablesComponent},
-        {path: 'snackbars', component: DemoSnackbarComponent}
-    ]
-}];
+const routes: Routes = [
+    {
+        path: '',
+        component: DemoComponent,
+        children: [
+            {path: '', component: DemoHomeComponent},
+            {path: 'inputs', component: DemoInputsComponent},
+            {path: 'buttons', component: DemoButtonsComponent},
+            {path: 'cards', component: DemoCardsComponent},
+            {path: 'date-pickers', component: DemoDatePickersComponent},
+            {path: 'selection-controls', component: DemoSelectionControlsComponent},
+            {path: 'toolbars', component: DemoToolbarsComponent},
+            {path: 'dividers', component: DemoDividersComponent},
+            {path: 'layout', component: DemoLayoutComponent},
+            {path: 'data-tables', component: DemoDataTablesComponent},
+            {path: 'snackbars', component: DemoSnackbarComponent},
+            {path: 'progress', component: DemoProgressComponent},
+            {path: 'nav-drawer', component: DemoNavDrawerComponent},
+            {path: 'smart-list', component: DemoSmartListComponent},
+        ]
+    },
+    {path: '**', redirectTo: ''}
+];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

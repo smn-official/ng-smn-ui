@@ -82,6 +82,7 @@
     font-family: inherit;
     white-space: nowrap;
     min-width: 88px;
+    user-select: none;
 
     @at-root *:not(button)#{&} {
         display: flex;
@@ -368,3 +369,4 @@ body.ui-nav-drawer-persistent {
         }
     }
 }
+/**/

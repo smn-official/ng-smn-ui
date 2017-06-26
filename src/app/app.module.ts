@@ -7,7 +7,6 @@ import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
 import {DemoModule} from './demo/demo.module';
-import { DemoSnackbarComponent } from './demo/demo-snackbar/demo-snackbar.component';
 
 @NgModule({
     declarations: [
