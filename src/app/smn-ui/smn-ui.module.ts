@@ -33,7 +33,7 @@ import {UiToolbarService} from './toolbar/toolbar.service';
 import {UiElement} from './providers/element.provider';
 import {UiWindowRef} from './providers/window.provider';
 import {UiColor} from './providers/color.provider';
-import {UiSnackbarService} from './snackbar/snackbar.service';
+import {UiSnackbar} from './snackbar/snackbar.provider';
 
 export {UiCookie, UiToolbarService, UiElement, UiWindowRef, UiColor}
 
@@ -74,7 +74,7 @@ const lib: any[] = [
         UiWindowRef,
         UiDatetimeService,
         UiElement,
-        UiSnackbarService,
+        UiSnackbar,
         UiColor
     ],
     entryComponents: [UiCalendarComponent, UiCalendarContentComponent]

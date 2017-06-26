@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {UiSnackbarService} from './snackbar.service';
+import {UiSnackbar} from './snackbar.provider';
 
 @Component({
     selector: 'ui-snackbar-container',
@@ -10,8 +10,8 @@ export class UiSnackbarContainerComponent {
 
     bars: any[];
 
-    constructor(snackbarService: UiSnackbarService) {
-        snackbarService.barsChange.subscribe((value) => {
+    constructor() {
+        UiSnackbar.barsChange.subscribe((value) => {
             this.bars = value;
         });
     }

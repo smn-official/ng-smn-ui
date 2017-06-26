@@ -1,22 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {UiSnackbarService} from './snackbar.service';
+import {Component, Input} from '@angular/core';
+import {UiSnackbar} from './snackbar.provider';
 
 @Component({
     selector: 'ui-snackbar',
     templateUrl: './snackbar.component.html',
     styleUrls: ['./snackbar.component.scss']
 })
-export class UiSnackbarComponent implements OnInit {
+export class UiSnackbarComponent {
 
     @Input() bar;
 
-    constructor(private snackbarService: UiSnackbarService) {
-    }
-
-    ngOnInit() {
+    constructor() {
     }
 
     hide() {
-        this.snackbarService.hide();
+        UiSnackbar.hide();
     }
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UiSnackbarService} from '../../smn-ui/snackbar/snackbar.service';
+import {UiSnackbar} from '../../smn-ui/snackbar/snackbar.provider';
 
 @Component({
     selector: 'ui-demo-snackbar',
@@ -8,27 +8,44 @@ import {UiSnackbarService} from '../../smn-ui/snackbar/snackbar.service';
 })
 export class DemoSnackbarComponent implements OnInit {
 
-    constructor(private snackbarService: UiSnackbarService) {
+    constructor() {
     }
 
     ngOnInit() {
-        this.snackbarService.add({
-            text: 'Mário'
-        });
-        let counter = 0;
-        setInterval(() => {
-            counter++;
+        setTimeout(() => {
 
-            this.snackbarService.add({
-                text: 'Interval ' + counter,
-                textAction: 'Ok',
-                center: true,
-                action: () => {
-                    console.log(counter);
-                },
-                delay: 20000
-            });
-        }, 4500);
+
+            // UiSnackbar.show({
+            //     text: 'Usuário cadastrado com sucesso',
+            //     textAction: 'Ok',
+            //     action: () => {
+            //         console.log('Exec action');
+            //     },
+            //     delay: 9999999999
+            // });
+        }, 500);
+    }
+
+    showSnack(center) {
+        UiSnackbar.show({
+            text: 'SMN UI compilado com sucesso',
+            center
+        });
+    }
+
+    showSnackWithAction() {
+        UiSnackbar.show({
+            text: 'Vou demorar 7s para sair da tela, click no botão para me fechar',
+            textAction: 'Fechar',
+            action: () => {
+                alert('Exec action');
+            },
+            delay: 7000
+        });
+    }
+
+    closeSnack() {
+        UiSnackbar.hide();
     }
 
 }
