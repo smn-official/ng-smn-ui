@@ -15,6 +15,7 @@ import {DemoSnackbarComponent} from './demo/demo-snackbar/demo-snackbar.componen
 import {DemoProgressComponent} from './demo/demo-progress/demo-progress.component';
 import {DemoNavDrawerComponent} from './demo/demo-nav-drawer/demo-nav-drawer.component';
 import {DemoHomeComponent} from './demo/demo-home/demo-home.component';
+import {DemoSmartListComponent} from './demo/demo-smart-list/demo-smart-list.component';
 
 const routes: Routes = [
     {
@@ -33,7 +34,8 @@ const routes: Routes = [
             {path: 'data-tables', component: DemoDataTablesComponent},
             {path: 'snackbars', component: DemoSnackbarComponent},
             {path: 'progress', component: DemoProgressComponent},
-            {path: 'nav-drawer', component: DemoNavDrawerComponent}
+            {path: 'nav-drawer', component: DemoNavDrawerComponent},
+            {path: 'smart-list', component: DemoSmartListComponent},
         ]
     },
     {path: '**', redirectTo: ''}
