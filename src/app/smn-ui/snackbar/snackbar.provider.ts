@@ -22,7 +22,9 @@ export class UiSnackbar {
     }
 
     static hide() {
-        document.querySelectorAll('ui-snackbar-container > ui-snackbar')[0].classList.add('leave');
+        if (bars.length) {
+            document.querySelectorAll('ui-snackbar-container > ui-snackbar')[0].classList.add('leave');
+        }
         setTimeout(() => {
             clearTimeout(timeout);
             this.finishTimeout();
@@ -60,7 +62,6 @@ export class UiSnackbar {
     private static setTranslateFAB(translate, addClass) {
         const fabs = document.querySelectorAll('.ui-fab-container .ui-button.fab');
         [].forEach.call(fabs, (fab) => {
-            console.log(addClass);
             fab.classList[addClass ? 'add' : 'remove']('elevating-snack');
             fab.style.transform = `translateY(-${translate}px)`;
         });
