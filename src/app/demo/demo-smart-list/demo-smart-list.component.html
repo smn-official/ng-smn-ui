@@ -1,17 +1,46 @@
 <div class="light">
     <ui-card>
-        <ui-card-title>Seja bem vindo!</ui-card-title>
         <ui-card-content>
-            Esse é o demo do SMN UI, o verdadeiro.
+            <form #formTeste="ngForm" class="ui-validate on-dirty">
+                <ui-smart-list #teste [model]="lista">
+                    <div *ngFor="let item of teste.list; let i = index;">
+                        <div class="ui-flex-container">
+                            <ui-input-container>
+                                <input #fieldTextarea="ngModel" type="text" [name]="i + 'a'" [(ngModel)]="item.a"
+                                       uiInput required>
+                                <label>Teste</label>
+                                <div class="ui-messages">
+                                    <div *ngIf="fieldTextarea.errors && fieldTextarea.dirty">
+                                        <div class="ui-message error"
+                                             [hidden]="!fieldTextarea.pristine && !fieldTextarea.errors.required">
+                                            Textarea is
+                                            required
+                                        </div>
+                                    </div>
+                                </div>
+                            </ui-input-container>
+                            <ui-input-container>
+                                <input #fieldTextarea2="ngModel" type="text" [name]="i + 'b'" [(ngModel)]="item.b"
+                                       uiInput required>
+                                <label>Teste 2</label>
+                                <div class="ui-messages">
+                                    <div *ngIf="fieldTextarea2.errors && fieldTextarea2.dirty">
+                                        <div class="ui-message error"
+                                             [hidden]="!fieldTextarea2.pristine && !fieldTextarea2.errors.required">
+                                            Textarea is
+                                            required
+                                        </div>
+                                    </div>
+                                </div>
+                            </ui-input-container>
+                            <span (click)="teste.remove(i);">Excluir</span>
+                        </div>
+                    </div>
+                </ui-smart-list>
+            </form>
         </ui-card-content>
     </ui-card>
-</div>
 
-<div class="dark">
-    <ui-card>
-        <ui-card-title>Seja bem vindo!</ui-card-title>
-        <ui-card-content>
-            Esse é o demo do SMN UI, o verdadeiro.
-        </ui-card-content>
-    </ui-card>
+    <pre>{{lista | json}}</pre>
 </div>
+<!---->

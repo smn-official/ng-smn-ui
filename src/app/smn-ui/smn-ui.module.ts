@@ -2,6 +2,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 
+import './button/button.service';
 import {UiInputContainerComponent} from './input/input-container.component';
 import {UiInputDirective} from './input/input.directive';
 import {UiToolbarComponent} from './toolbar/toolbar.component';
@@ -23,11 +24,9 @@ import {UiDatePickerCallerDirective} from './date-picker/date-picker-caller.dire
 import {UiSnackbarContainerComponent} from './snackbar/snackbar-container.component';
 import {UiReferencesService} from './date-picker/references.service';
 import {UiSnackbarComponent} from './snackbar/snackbar.component';
-import './button/button.service';
 import {UiPhonePipe} from './utils/pipes/phone.pipe';
-export {UiPhonePipe};
 import {UiDataTableOrderByDirective} from './data-table/order-by.directive';
-
+import {UiSmartListComponent} from './smart-list/smart-list.component';
 import {UiCookie} from './providers/cookie.provider';
 import {UiToolbarService} from './toolbar/toolbar.service';
 import {UiElement} from './providers/element.provider';
@@ -35,7 +34,7 @@ import {UiWindowRef} from './providers/window.provider';
 import {UiColor} from './providers/color.provider';
 import {UiSnackbar} from './snackbar/snackbar.provider';
 
-export {UiCookie, UiToolbarService, UiElement, UiWindowRef, UiColor, UiSnackbar}
+export {UiCookie, UiToolbarService, UiElement, UiWindowRef, UiColor, UiSnackbar, UiPhonePipe}
 
 const lib: any[] = [
     UiInputContainerComponent,
@@ -58,7 +57,8 @@ const lib: any[] = [
     UiPhonePipe,
     UiDataTableOrderByDirective,
     UiSnackbarContainerComponent,
-    UiSnackbarComponent
+    UiSnackbarComponent,
+    UiSmartListComponent
 ];
 
 @NgModule({
