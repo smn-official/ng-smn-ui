@@ -25,7 +25,6 @@ import {UiReferencesService} from './date-picker/references.service';
 import {UiSnackbarComponent} from './snackbar/snackbar.component';
 import './button/button.service';
 import {UiPhonePipe} from './utils/pipes/phone.pipe';
-export {UiPhonePipe};
 import {UiDataTableOrderByDirective} from './data-table/order-by.directive';
 
 import {UiCookie} from './providers/cookie.provider';
@@ -34,6 +33,9 @@ import {UiElement} from './providers/element.provider';
 import {UiWindowRef} from './providers/window.provider';
 import {UiColor} from './providers/color.provider';
 import {UiSnackbar} from './snackbar/snackbar.provider';
+import {UiMenuComponent} from './menu/menu.component';
+import {UiMenuTriggerDirective} from './menu/menu-trigger.directive';
+export {UiPhonePipe};
 
 export {UiCookie, UiToolbarService, UiElement, UiWindowRef, UiColor, UiSnackbar}
 
@@ -58,7 +60,9 @@ const lib: any[] = [
     UiPhonePipe,
     UiDataTableOrderByDirective,
     UiSnackbarContainerComponent,
-    UiSnackbarComponent
+    UiSnackbarComponent,
+    UiMenuComponent,
+    UiMenuTriggerDirective
 ];
 
 @NgModule({

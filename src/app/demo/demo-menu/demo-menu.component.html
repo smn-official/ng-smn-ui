@@ -1,0 +1,23 @@
+<div style="max-width: 600px; margin: 16px auto">
+    <ui-card>
+        <ui-card-content>
+            <button class="ui-button icon flat" uiRipple [uiMenuTrigger]="testeMenu">
+                <i class="material-icons">more_vert</i>
+            </button>
+            Click for open menu
+            <button class="ui-button icon flat" uiRipple [uiMenuTrigger]="testeMenu2">
+                <i class="material-icons">more_vert</i>
+            </button>
+        </ui-card-content>
+    </ui-card>
+    <ui-menu #testeMenu>
+        <div (click)="bindFunction()">Bind: {{text}}</div>
+    </ui-menu>
+
+    <ui-menu #testeMenu2>
+        <div (click)="bindFunction()">Bind: {{text + 1}}</div>
+    </ui-menu>
+</div>
+
+
+

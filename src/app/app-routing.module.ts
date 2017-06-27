@@ -16,6 +16,7 @@ import {DemoProgressComponent} from './demo/demo-progress/demo-progress.componen
 import {DemoNavDrawerComponent} from './demo/demo-nav-drawer/demo-nav-drawer.component';
 import {DemoHomeComponent} from './demo/demo-home/demo-home.component';
 import {DemoSmartListComponent} from './demo/demo-smart-list/demo-smart-list.component';
+import {DemoMenuComponent} from './demo/demo-menu/demo-menu.component';
 
 const routes: Routes = [
     {
@@ -36,6 +37,7 @@ const routes: Routes = [
             {path: 'progress', component: DemoProgressComponent},
             {path: 'nav-drawer', component: DemoNavDrawerComponent},
             {path: 'smart-list', component: DemoSmartListComponent},
+            {path: 'menus', component: DemoMenuComponent},
         ]
     },
     {path: '**', redirectTo: ''}
