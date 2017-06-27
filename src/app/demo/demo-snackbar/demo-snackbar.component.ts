@@ -15,20 +15,33 @@ export class DemoSnackbarComponent implements OnInit {
     }
 
     showSnack(center) {
+        UiSnackbar.hide();
         UiSnackbar.show({
             text: 'SMN UI compilado com sucesso',
             center
         });
     }
 
+    showSnackInfinity() {
+        UiSnackbar.show({
+            text: 'SMN UI compilado com sucesso',
+            duration: Infinity,
+            actionText: 'Fechar',
+            action: (close) => {
+                close();
+            },
+        });
+    }
+
     showSnackWithAction() {
         UiSnackbar.show({
             text: 'Vou demorar 7s para sair da tela, click no botão para me fechar',
-            textAction: 'Fechar',
-            action: () => {
+            actionText: 'Fechar',
+            action: (close) => {
+                close();
                 alert('Exec action');
             },
-            delay: 7000
+            duration: 7000
         });
     }
 

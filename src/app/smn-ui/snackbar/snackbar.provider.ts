@@ -3,7 +3,7 @@ import {EventEmitter, Injectable} from '@angular/core';
 let timeout: any;
 const bars: any[] = [];
 const defaults: {} = {
-    delay: 5000,
+    duration: 5000,
     center: false,
     actionText: null
 };
@@ -24,22 +24,23 @@ export class UiSnackbar {
     static hide() {
         if (bars.length) {
             document.querySelectorAll('ui-snackbar-container > ui-snackbar')[0].classList.add('leave');
+            setTimeout(() => {
+                clearTimeout(timeout);
+                this.finishTimeout();
+            }, 280);
         }
-        setTimeout(() => {
-            clearTimeout(timeout);
-            this.finishTimeout();
-        }, 280);
     }
 
     private static timerBar(bar) {
         if (bars.length) {
             this.elevateFAB();
 
-
-            timeout = setTimeout(() => {
-                document.querySelectorAll('ui-snackbar-container > ui-snackbar')[0].classList.add('leave');
-                setTimeout(() => this.finishTimeout(), 280);
-            }, bar.delay);
+            if (bar.duration !== Infinity) {
+                timeout = setTimeout(() => {
+                    document.querySelectorAll('ui-snackbar-container > ui-snackbar')[0].classList.add('leave');
+                    setTimeout(() => this.finishTimeout(), 280);
+                }, bar.duration);
+            }
         }
     };
 
