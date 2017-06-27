@@ -1,4 +1,14 @@
+@import "../core/variables";
+
 .wrap-menu {
     //max-width: 300px;
     position: absolute;
+    transition: all 280ms ui-easing('aceleration');
+    transform-origin: top left;
+    transform: scale(0);
+
+    &.open {
+        transition: all 280ms ui-easing('deceleration');
+        transform: scale(1);
+    }
 }

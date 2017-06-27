@@ -19,7 +19,7 @@ export class UiMenuTriggerDirective implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        UiElement.on(this.elementRef.nativeElement, this.triggerEvents || 'click', (e) => {
+        UiElement.on(this.elementRef.nativeElement, this.triggerEvents || 'click', () => {
             this.close();
 
             setTimeout(() => {
@@ -51,7 +51,6 @@ export class UiMenuTriggerDirective implements OnInit, AfterViewInit {
     }
 
     open(element, coordinate) {
-        element.style.transform = 'scale(0)';
 
         setTimeout(() => {
             const horizontalCoveringArea = coordinate.x + element.clientWidth;
