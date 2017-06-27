@@ -12,18 +12,6 @@ export class DemoSnackbarComponent implements OnInit {
     }
 
     ngOnInit() {
-        setTimeout(() => {
-
-
-            // UiSnackbar.show({
-            //     text: 'Usuário cadastrado com sucesso',
-            //     textAction: 'Ok',
-            //     action: () => {
-            //         console.log('Exec action');
-            //     },
-            //     delay: 9999999999
-            // });
-        }, 500);
     }
 
     showSnack(center) {
