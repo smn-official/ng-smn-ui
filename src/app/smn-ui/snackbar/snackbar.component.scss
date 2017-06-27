@@ -28,14 +28,19 @@
 
     @include desktop {
         min-width: 288px;
-        margin: 0 auto 16px 16px;
+        margin: 16px 16px;
         border-radius: 2px;
         max-width: 568px;
         width: auto;
 
-        &.leave:not(.center) {
-            transform: translateY(110%); //Suporte para margim
-            transform: translateY(calc(100% + 16px));
+        &:not(.center) {
+            position: absolute;
+            bottom: 0;
+
+            &.leave {
+                transform: translateY(110%); //Suporte para margin
+                transform: translateY(calc(100% + 16px));
+            }
         }
     }
 
