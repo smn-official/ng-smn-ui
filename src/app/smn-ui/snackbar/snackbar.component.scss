@@ -16,10 +16,11 @@
         animation: enter-snackbar 280ms ui-easing('deceleration');
     }
 
-    & + /deep/ ui-snackbar {
+    & + /deep/ ui-snackbar:not(.nothing) {
         position: absolute;
         z-index: -1;
         transform: translateY(100%);
+        bottom: initial;
     }
 
     &.leave {
