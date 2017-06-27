@@ -1,14 +1,16 @@
 <div class="light">
     <ui-card>
         <ui-card-content>
-            <ui-input-container>
-                <input type="text" [(ngModel)]="simple" uiInput>
-                <label>Simple</label>
-            </ui-input-container>
-            <ui-input-container>
-                <input type="text" [(ngModel)]="accent" uiInput class="accent">
-                <label>Accent</label>
-            </ui-input-container>
+            <div class="ui-flex-container break-on-s960">
+                <ui-input-container>
+                    <input type="text" [(ngModel)]="simple" uiInput>
+                    <label>Simple</label>
+                </ui-input-container>
+                <ui-input-container>
+                    <input type="text" [(ngModel)]="accent" uiInput class="accent">
+                    <label>Accent</label>
+                </ui-input-container>
+            </div>
             <ui-input-container>
                 <input type="text" [(ngModel)]="hero" uiInput placeholder="Ex: Arrow">
                 <label>Hero</label>

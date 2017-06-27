@@ -1,0 +1,46 @@
+$sizes: 480 600 840 960 1280 1440 1600;
+
+.ui-flex-container {
+    display: flex;
+
+    ui-input-container,
+    ui-switch-container {
+        flex: 1;
+
+        & + * {
+            margin-left: 16px;
+        }
+    }
+}
+
+body:not(.ui-nav-drawer-persistent) .ui-flex-container {
+    @each $size in $sizes {
+        @media (max-width: #{$size}px) {
+            &.break-on-s#{$size} {
+                flex-direction: column;
+
+                ui-input-container {
+                    & + ui-input-container {
+                        margin-left: initial;
+                    }
+                }
+            }
+        }
+    }
+}
+
+body.ui-nav-drawer-persistent .ui-flex-container {
+    @each $size in $sizes {
+        @media (max-width: #{$size + 320}px) {
+            &.break-on-s#{$size} {
+                flex-direction: column;
+
+                ui-input-container {
+                    & + ui-input-container {
+                        margin-left: initial;
+                    }
+                }
+            }
+        }
+    }
+}

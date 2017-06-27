@@ -206,20 +206,20 @@
     }
 
     &.success {
-        background-color: ui-color('green');
-        color: ui-text-color('green');
+        background-color: ui-color('green', '600');
+        color: ui-text-color('green', '600');
 
         .ui-ripple-wave {
-            background-color: ui-if(ui-text-color('green') == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+            background-color: ui-if(ui-text-color('green', '600') == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
         }
 
         &::before {
-            background-color: ui-text-color('green');
+            background-color: ui-text-color('green', '600');
         }
-
+a
         &.flat {
             background-color: transparent;
-            color: ui-color('green');
+            color: ui-color('green', '600');
         }
     }
 

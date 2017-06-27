@@ -49,7 +49,7 @@ ui-input-container {
         border-bottom: 1px solid rgba(0,0,0,.42); // Value default
 
         &:disabled,
-        &:read-only {
+        &:read-only:not(select) {
             border-style: dotted;
         }
 

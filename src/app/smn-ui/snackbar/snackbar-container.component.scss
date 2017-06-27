@@ -12,7 +12,8 @@
     transition: left 280ms ui-easing('decelaration');
 }
 
-
-:host-context(.ui-nav-drawer-persistent) {
-    left: 320px;
+@include desktop {
+    :host-context(.ui-nav-drawer-persistent) {
+        left: 320px;
+    }
 }

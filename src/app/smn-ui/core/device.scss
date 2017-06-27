@@ -2,7 +2,7 @@ $mq-mobile-portrait: 375px !default;
 $mq-mobile-landscape: 600px !default;
 
 @mixin mobile {
-    @media (max-width: $mq-mobile-portrait), only screen and (min-width: $mq-mobile-portrait + 1) and (max-width: $mq-mobile-landscape) and (orientation: landscape) {
+    @media (max-width: $mq-mobile-portrait), only screen and (min-width: $mq-mobile-portrait + 1) and (max-width: $mq-mobile-landscape) {
         @content;
     }
 }
@@ -14,7 +14,7 @@ $mq-mobile-landscape: 600px !default;
 }
 
 @mixin mobile-landscape {
-    @media only screen and (min-width: $mq-mobile-portrait + 1) and (max-width: $mq-mobile-landscape) and (orientation: landscape) {
+    @media only screen and (min-width: $mq-mobile-portrait + 1) and (max-width: $mq-mobile-landscape) {
         @content;
     }
 }
