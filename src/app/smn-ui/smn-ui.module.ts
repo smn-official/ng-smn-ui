@@ -35,7 +35,7 @@ import {UiWindowRef} from './providers/window.provider';
 import {UiColor} from './providers/color.provider';
 import {UiSnackbar} from './snackbar/snackbar.provider';
 
-export {UiCookie, UiToolbarService, UiElement, UiWindowRef, UiColor}
+export {UiCookie, UiToolbarService, UiElement, UiWindowRef, UiColor, UiSnackbar}
 
 const lib: any[] = [
     UiInputContainerComponent,
