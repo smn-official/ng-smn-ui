@@ -35,6 +35,7 @@ import {UiColor} from './providers/color.provider';
 import {UiSnackbar} from './snackbar/snackbar.provider';
 import {UiMenuComponent} from './menu/menu.component';
 import {UiMenuTriggerDirective} from './menu/menu-trigger.directive';
+import {UiProgressRadialComponent} from './progress/radial/progress-radial.component';
 export {UiPhonePipe};
 
 export {UiCookie, UiToolbarService, UiElement, UiWindowRef, UiColor, UiSnackbar}
@@ -64,7 +65,8 @@ const lib: any[] = [
     UiSmartListComponent,
     UiSnackbarComponent,
     UiMenuComponent,
-    UiMenuTriggerDirective
+    UiMenuTriggerDirective,
+    UiProgressRadialComponent
 ];
 
 @NgModule({
