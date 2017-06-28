@@ -19,7 +19,8 @@ import {DemoProgressComponent} from './demo-progress/demo-progress.component';
 import {DemoNavDrawerComponent} from './demo-nav-drawer/demo-nav-drawer.component';
 import {DemoHomeComponent} from './demo-home/demo-home.component';
 import {DemoSmartListComponent} from './demo-smart-list/demo-smart-list.component';
-import { DemoMenuComponent } from './demo-menu/demo-menu.component';
+import {DemoMenuComponent} from './demo-menu/demo-menu.component';
+import {DemoSubheaderComponent} from './demo-subheader/demo-subheader.component';
 
 @NgModule({
     imports: [
@@ -44,7 +45,8 @@ import { DemoMenuComponent } from './demo-menu/demo-menu.component';
         DemoNavDrawerComponent,
         DemoHomeComponent,
         DemoSmartListComponent,
-        DemoMenuComponent
+        DemoMenuComponent,
+        DemoSubheaderComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -1,0 +1,13 @@
+@import "../core/variables";
+
+@mixin ui-subheader($theme) {
+    $text-color: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, .7), rgba(0, 0, 0, .54));
+
+    ui-subheader {
+        color: $text-color;
+
+        &.primary {
+            color: map_get($theme, primary-color);
+        }
+    }
+}

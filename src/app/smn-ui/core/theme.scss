@@ -13,6 +13,7 @@
 @import "../list/list.theme";
 @import "../date-picker/date-picker-caller.theme";
 @import "../progress/linear/progress-linear.theme";
+@import "../subheader/subheader.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -63,4 +64,5 @@
     @include ui-list($theme);
     @include ui-date-picker-caller($theme);
     @include ui-progress($theme);
+    @include ui-subheader($theme);
 }
