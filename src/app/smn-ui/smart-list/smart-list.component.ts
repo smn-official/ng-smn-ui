@@ -1,8 +1,4 @@
-import {
-    Component, OnInit, ElementRef, Input, IterableDiffers, OnChanges, DoCheck, IterableDiffer,
-    KeyValueDiffers
-} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import {Component, OnInit, Input, DoCheck, KeyValueDiffers} from '@angular/core';
 
 @Component({
     selector: 'ui-smart-list',
@@ -21,6 +17,9 @@ export class UiSmartListComponent implements OnInit, DoCheck {
     }
 
     ngOnInit() {
+        if (!this.model) {
+            console.error('Você precisa declarar a model no seu componente');
+        }
         this.objDiffer = {};
         this.list.forEach((elt, i) => {
             this.objDiffer[i] = this.differs.find(elt).create(null);
@@ -28,6 +27,8 @@ export class UiSmartListComponent implements OnInit, DoCheck {
     }
 
     ngDoCheck() {
+        let wasChanged = false;
+
         this.list.forEach((elt, i) => {
             let objDiffer = this.objDiffer[i];
             if (!objDiffer) {
@@ -35,31 +36,34 @@ export class UiSmartListComponent implements OnInit, DoCheck {
             }
             const objChanges = objDiffer.diff(elt);
             if (objChanges) {
+                wasChanged = true;
                 objChanges.forEachChangedItem((elt2) => {
-                    if (!elt2.currentValue) {
+                    if (!elt2.currentValue && typeof elt2.currentValue !== 'number') {
                         delete elt[elt2.key];
                     }
                 });
-            }
 
-            console.log(elt);
+                if (elt && this.model.indexOf(elt) < 0 && (Object.keys(elt).length > 0)) {
+                    this.model.push(elt);
+                }
 
-            if (elt && this.model.indexOf(elt) < 0 && (Object.keys(elt).length > 0)) {
-                this.model.push(elt);
-            }
-
-            if (elt && (Object.keys(elt).length === 0) && this.model.length && this.model.indexOf(elt) > -1) {
-                this.model.splice(this.model.indexOf(elt), 1);
+                if (elt && (Object.keys(elt).length === 0) && this.model.length && this.model.indexOf(elt) > -1) {
+                    this.model.splice(this.model.indexOf(elt), 1);
+                }
             }
         });
+
+        if (wasChanged) {
+            this.newItem();
+        }
     }
 
     newItem() {
-        let found = false;
+        let found = 0;
 
         this.list.forEach((item) => {
-            if (!found && item && (Object.keys(item).length === 0)) {
-                found = true;
+            if (item && (Object.keys(item).length === 0)) {
+                found++;
                 const element = this.list[this.list.indexOf(item)];
                 this.list.splice(this.list.indexOf(item), 1);
                 this.list.splice(this.list.length, 0, element);
@@ -71,7 +75,7 @@ export class UiSmartListComponent implements OnInit, DoCheck {
         } else {
             setTimeout(() => {
                 this.list.splice(this.list.length - 1, 1);
-                this.list.push({});
+                this.newItem();
             });
         }
     }

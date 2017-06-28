@@ -7,7 +7,7 @@
                         <div class="ui-flex-container">
                             <ui-input-container>
                                 <input #fieldTextarea="ngModel" type="text" [name]="i + 'a'" [(ngModel)]="item.a"
-                                       uiInput required>
+                                       uiInput [required]="i < teste.list.length - 1">
                                 <label>Teste</label>
                                 <div class="ui-messages">
                                     <div *ngIf="fieldTextarea.errors && fieldTextarea.dirty">
@@ -21,7 +21,7 @@
                             </ui-input-container>
                             <ui-input-container>
                                 <input #fieldTextarea2="ngModel" type="text" [name]="i + 'b'" [(ngModel)]="item.b"
-                                       uiInput required>
+                                       uiInput [required]="i < teste.list.length - 1">
                                 <label>Teste 2</label>
                                 <div class="ui-messages">
                                     <div *ngIf="fieldTextarea2.errors && fieldTextarea2.dirty">
@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                             </ui-input-container>
-                            <span (click)="teste.remove(i);">Excluir</span>
+                            <span *ngIf="i < teste.list.length - 1" (click)="teste.remove(i);">Excluir</span>
                         </div>
                     </div>
                 </ui-smart-list>
