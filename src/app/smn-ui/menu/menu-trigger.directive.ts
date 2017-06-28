@@ -59,7 +59,7 @@ export class UiMenuTriggerDirective implements AfterViewInit {
         setTimeout(() => {
             let horizontalCoveringArea = coordinate.x + element.clientWidth;
             const verticalCoveringArea = coordinate.y + element.clientHeight;
-            const windowWidth = document.body.clientWidth + document.body.scrollLeft;
+            const windowWidth = window.innerWidth + document.body.scrollLeft;
             const windowHeight = document.body.clientHeight + document.body.scrollTop;
 
             if (this.menu.align === 'right') {

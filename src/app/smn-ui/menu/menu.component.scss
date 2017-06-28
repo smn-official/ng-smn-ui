@@ -14,6 +14,7 @@
     transform-origin: top left;
     transform: scale(0);
     opacity: 0;
+    z-index: 1;
 
     &.right {
         transform-origin: top right;
@@ -56,12 +57,23 @@
 
         .icon {
             margin-right: 14px;
+            margin-left: -4px;
         }
 
         @include desktop {
             height: 32px;
             line-height: 32px;
             font-size: 15px;
+            padding: 0 24px;
+        }
+    }
+
+    ui-subheader {
+        color: inherit;
+        padding: 0 16px;
+
+        @include desktop {
+            min-height: 32px;
             padding: 0 24px;
         }
     }
