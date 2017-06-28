@@ -7,20 +7,10 @@
         padding: 0;
         outline: none;
         box-sizing: border-box;
+
     }
 
-    /*&::-webkit-scrollbar {
-        width: 6px !important;
-        height: 6px !important;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, .9);
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, .4);
-    }*/
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 html, body {
