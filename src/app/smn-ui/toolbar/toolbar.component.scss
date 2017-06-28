@@ -2,21 +2,24 @@
 
 $sizes: 480 600 840 960 1280 1440 1600;
 
+.ui-toolbar-space {
+    @include desktop {
+        height: 64px;
+        min-height: 64px;
+    }
+    @include mobile-portrait {
+        height: 56px;
+        min-height: 56px;
+    }
+    @include mobile-landscape {
+        height: 48px;
+        min-height: 48px;
+    }
+    transition: height 0.28s ui-easing('deceleration');
+}
+
 ui-toolbar {
-    .toolbar-space {
-        @include desktop {
-            height: 64px;
-            min-height: 64px;
-        }
-        @include mobile-portrait {
-            height: 56px;
-            min-height: 56px;
-        }
-        @include mobile-landscape {
-            height: 48px;
-            min-height: 48px;
-        }
-        transition: height 0.28s ui-easing('deceleration');
+    .ui-toolbar-space {
         display: none;
     }
 
@@ -88,8 +91,8 @@ ui-toolbar {
         }
     }
 
-    &.transparent {
-        header {
+    @include desktop {
+        &.transparent header {
             background-color: transparent;
         }
     }
@@ -100,7 +103,7 @@ ui-toolbar {
             z-index: 1;
         }
 
-        .toolbar-space {
+        .ui-toolbar-space {
             display: block;
         }
     }
@@ -134,7 +137,7 @@ ui-toolbar {
             }
         }
 
-        .toolbar-space {
+        .ui-toolbar-space {
             @include desktop {
                 height: 98px;
             }
@@ -174,7 +177,7 @@ ui-toolbar {
                         }
                     }
 
-                    .toolbar-space {
+                    .ui-toolbar-space {
                         height: 48px !important;
                         @include desktop {
                             height: 64px !important;
@@ -194,7 +197,7 @@ ui-toolbar {
                 z-index: 2 !important;
             }
 
-            .toolbar-space:not(.nothing) {
+            .ui-toolbar-space:not(.nothing) {
                 height: 56px !important;
             }
         }
@@ -233,7 +236,7 @@ body.ui-nav-drawer-persistent {
                             }
                         }
 
-                        .toolbar-space {
+                        .ui-toolbar-space {
                             height: 48px !important;
                             @include desktop {
                                 height: 64px !important;
@@ -253,7 +256,7 @@ body.ui-nav-drawer-persistent {
                     z-index: 2 !important;
                 }
 
-                .toolbar-space:not(.nothing) {
+                .ui-toolbar-space:not(.nothing) {
                     height: 56px !important;
                 }
             }
