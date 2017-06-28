@@ -5,7 +5,8 @@ $sizes: 480 600 840 960 1280 1440 1600;
 
     ui-input-container,
     ui-switch-container,
-    .ui-flex-container {
+    .ui-flex-container,
+    .flex {
         flex: 1;
 
         & + * {
@@ -30,7 +31,8 @@ body:not(.ui-nav-drawer-persistent) .ui-flex-container {
 
                 > ui-input-container,
                 > ui-switch-container,
-                > .ui-flex-container {
+                > .ui-flex-container,
+                > .flex {
                     & + * {
                         margin-left: initial;
                     }
@@ -48,7 +50,8 @@ body.ui-nav-drawer-persistent .ui-flex-container {
 
                 > ui-input-container,
                 > ui-switch-container,
-                > .ui-flex-container {
+                > .ui-flex-container,
+                > .flex {
                     & + * {
                         margin-left: initial;
                     }
