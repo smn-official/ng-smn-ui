@@ -33,7 +33,10 @@
                                     </div>
                                 </div>
                             </ui-input-container>
-                            <span *ngIf="i < teste.list.length - 1" (click)="teste.remove(i);">Excluir</span>
+                            <button *ngIf="i < teste.list.length - 1" (click)="teste.remove(i);"
+                                    class="ui-button icon flat" uiRipple>
+                                <i class="material-icons">close</i>
+                            </button>
                         </div>
                     </div>
                 </ui-smart-list>

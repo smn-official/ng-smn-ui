@@ -7,16 +7,20 @@ import {Component, OnInit, Input, DoCheck, KeyValueDiffers} from '@angular/core'
 
 export class UiSmartListComponent implements OnInit, DoCheck {
     @Input() model: any;
+    @Input('default-item') defaultItem: any;
     list: any[];
     differ: any;
     objDiffer: { string?: any };
 
     constructor(private differs: KeyValueDiffers) {
-        this.list = [{}];
         this.differ = differs.find([]).create(null);
     }
 
     ngOnInit() {
+        if (!this.defaultItem) {
+            this.defaultItem = {};
+        }
+        this.list = [Object.assign({}, this.defaultItem)];
         if (!this.model) {
             console.error('Você precisa declarar a model no seu componente');
         }
@@ -38,16 +42,16 @@ export class UiSmartListComponent implements OnInit, DoCheck {
             if (objChanges) {
                 wasChanged = true;
                 objChanges.forEachChangedItem((elt2) => {
-                    if (!elt2.currentValue && typeof elt2.currentValue !== 'number') {
+                    if (!elt2.currentValue && typeof elt2.currentValue !== 'number' && typeof elt2.currentValue !== 'boolean') {
                         delete elt[elt2.key];
                     }
                 });
 
-                if (elt && this.model.indexOf(elt) < 0 && (Object.keys(elt).length > 0)) {
+                if (elt && this.model.indexOf(elt) < 0 && (Object.keys(elt).length > Object.keys(this.defaultItem).length)) {
                     this.model.push(elt);
                 }
 
-                if (elt && (Object.keys(elt).length === 0) && this.model.length && this.model.indexOf(elt) > -1) {
+                if (elt && (Object.keys(elt).length === Object.keys(this.defaultItem).length) && equals(elt, this.defaultItem) && this.model.length && this.model.indexOf(elt) > -1) {
                     this.model.splice(this.model.indexOf(elt), 1);
                 }
             }
@@ -62,7 +66,7 @@ export class UiSmartListComponent implements OnInit, DoCheck {
         let found = 0;
 
         this.list.forEach((item) => {
-            if (item && (Object.keys(item).length === 0)) {
+            if (item && (Object.keys(item).length <= Object.keys(this.defaultItem).length) && equals(item, this.defaultItem)) {
                 found++;
                 const element = this.list[this.list.indexOf(item)];
                 this.list.splice(this.list.indexOf(item), 1);
@@ -71,7 +75,7 @@ export class UiSmartListComponent implements OnInit, DoCheck {
         });
 
         if (!found) {
-            this.list.push({});
+            this.list.push(Object.assign({}, this.defaultItem));
         } else {
             setTimeout(() => {
                 this.list.splice(this.list.length - 1, 1);
@@ -82,8 +86,17 @@ export class UiSmartListComponent implements OnInit, DoCheck {
 
     remove(i) {
         Object.keys(this.list[i]).forEach((key) => {
-            delete this.list[i][key];
+            if (!Object.keys(this.defaultItem).includes(key)) {
+                delete this.list[i][key];
+            } else {
+                this.list[i][key] = this.defaultItem[key];
+            }
         });
-        this.newItem();
+        this.ngDoCheck();
     }
+}
+
+
+function equals(x, y) {
+    return JSON.stringify(x) === JSON.stringify(y);
 }
