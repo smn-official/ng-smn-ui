@@ -84,11 +84,9 @@
     min-width: 88px;
     user-select: none;
 
-    @at-root *:not(button)#{&} {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
         text-decoration: none;
@@ -369,4 +367,3 @@ body.ui-nav-drawer-persistent {
         }
     }
 }
-/**/
