@@ -1,3 +1,5 @@
+@import '../../core/variables';
+
 ui-option-container {
     display: flex;
     flex-wrap: wrap;
@@ -186,9 +188,13 @@ ui-option {
     input:disabled + .ui-option-shell::before {
         display: none;
     }
+    input:disabled + div + span {
+        color: ui-color('grey', '400');
+    }
     > label {
         display: flex;
         align-items: center;
         min-height: 19px;
     }
 }
+/**/

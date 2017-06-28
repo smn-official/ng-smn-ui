@@ -27,10 +27,8 @@
             }
         }
 
-        :disabled + .switch-cover {
+        input:disabled + .switch-cover {
             background-color: ui-color('grey', '400');
         }
     }
-
-
 }

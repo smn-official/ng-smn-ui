@@ -110,3 +110,12 @@ ui-switch {
         transform: scale(1);
     }
 }
+
+fieldset:disabled ui-switch-container {
+    .info {
+        color: rgba(0, 0, 0, 0.42);
+        .secondary {
+            color: rgba(0, 0, 0, 0.24);
+        }
+    }
+}
