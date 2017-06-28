@@ -164,6 +164,10 @@
         min-height: 56px;
         margin: 5px;
 
+        &.hide {
+            transform: scale(0);
+        }
+
         &.mini {
             width: 40px;
             height: 40px;
