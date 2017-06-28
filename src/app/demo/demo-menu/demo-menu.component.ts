@@ -6,20 +6,20 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./demo-menu.component.scss']
 })
 export class DemoMenuComponent implements OnInit {
-    text: number;
+    counter: number;
+    sizes;
+    sizeTarget;
 
     constructor() {
-        this.text = 0;
+        this.counter = 0;
+        this.sizes = [2, 3, 4, 5, 6, 7];
+        this.sizeTarget = this.sizes[0];
     }
 
     ngOnInit() {
-        setTimeout(() => {
-            this.text++;
-        }, 3000)
     }
 
     bindFunction() {
-        alert('Bind function');
-        this.text++;
+        this.counter++;
     }
 }

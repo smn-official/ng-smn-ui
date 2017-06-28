@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, TemplateRef, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, TemplateRef, ViewChild, ViewEncapsulation} from '@angular/core';
 
 @Component({
     selector: 'ui-menu',
@@ -7,7 +7,8 @@ import {Component, ElementRef, OnInit, TemplateRef, ViewChild, ViewEncapsulation
     encapsulation: ViewEncapsulation.None
 })
 export class UiMenuComponent implements OnInit {
-
+    @Input() darkClass;
+    @Input() align;
     @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
 
     constructor(public elementRef: ElementRef) {

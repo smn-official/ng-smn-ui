@@ -48,7 +48,7 @@
 }
 
 @mixin ui-build-theme($theme) {
-    body {
+    html, body {
         background-color: ui-if(map_get($theme, is-dark), #303030, #FAFAFA);
     }
     @include ui-button($theme);

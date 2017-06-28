@@ -1,14 +1,72 @@
 @import "../core/variables";
 
+@mixin sizes($width) {
+    @each $item in 2 3 4 5 6 7 {
+        &.size-#{$item}x {
+            min-width: #{$width * $item}px;
+        }
+    }
+}
+
 .wrap-menu {
-    //max-width: 300px;
     position: absolute;
-    transition: all 280ms ui-easing('aceleration');
+    transition: transform 280ms ui-easing('aceleration'), opacity 280ms ui-easing('aceleration');
     transform-origin: top left;
     transform: scale(0);
+    opacity: 0;
+
+    &.right {
+        transform-origin: top right;
+    }
+
+    &.top {
+        transform-origin: top;
+    }
 
     &.open {
-        transition: all 280ms ui-easing('deceleration');
+        transition: transform 280ms ui-easing('deceleration'), opacity 280ms ui-easing('deceleration');
         transform: scale(1);
+        opacity: 1;
     }
+
+    ui-card {
+        box-shadow: ui-shadow('8dp');
+    }
+
+    .ui-menu-content {
+        padding: 8px 0;
+        min-width: 56px;
+
+        @include sizes(56);
+
+        @include desktop {
+            @include sizes(64);
+        }
+    }
+
+    .ui-menu-item {
+        height: 48px;
+        line-height: 48px;
+        padding: 0 16px;
+        white-space: nowrap;
+        cursor: default;
+        user-select: none;
+        display: flex;
+        align-items: center;
+
+        .icon {
+            margin-right: 14px;
+        }
+
+        @include desktop {
+            height: 32px;
+            line-height: 32px;
+            font-size: 15px;
+            padding: 0 24px;
+        }
+    }
+}
+
+body.ui-nav-drawer-persistent .wrap-menu {
+    z-index: 3;
 }

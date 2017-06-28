@@ -9,7 +9,7 @@ $theme-dark: ui-theme($primary, $accent, true);
 
 @include ui-core();
 
-@include ui-build-theme($theme);
+@include ui-build-theme($theme-dark);
 
 .dark {
     @include ui-build-theme($theme-dark);
