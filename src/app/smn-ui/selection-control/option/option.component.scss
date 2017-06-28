@@ -88,7 +88,7 @@ ui-option {
     .ui-option:focus + .ui-option-shell::before, > label:active .ui-option-shell::before {
         transform: scale(1);
     }
-    input[type="checkbox"]:not([disabled]):active + .ui-option-shell, > label:active .ui-option-shell {
+    input[type="checkbox"]:not(:disabled):active + .ui-option-shell, > label:active .ui-option-shell {
         transform: scale(.9);
     }
     .ui-option-fill {
@@ -176,14 +176,14 @@ ui-option {
     }
 
     /* Disabled */
-    input[disabled] + .ui-option-shell {
+    input:disabled + .ui-option-shell {
         opacity: .6;
     }
-    input[disabled] + * {
+    input:disabled + * {
         cursor: not-allowed;
         transform: scale(1) !important;
     }
-    input[disabled] + .ui-option-shell::before {
+    input:disabled + .ui-option-shell::before {
         display: none;
     }
     > label {

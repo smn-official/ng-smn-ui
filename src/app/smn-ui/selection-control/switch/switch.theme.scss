@@ -20,14 +20,15 @@
         input:not(:checked) + .switch-cover .thumb-container::before {
             background-color: ui-if(map_get($theme, is-dark), white, black);
         }
-        [disabled] + .switch-cover {
-            background-color: ui-color('grey', '400');
-        }
 
         &.primary {
             .switch-cover {
                 background-color: map_get($theme, primary-color);
             }
+        }
+
+        :disabled + .switch-cover {
+            background-color: ui-color('grey', '400');
         }
     }
 

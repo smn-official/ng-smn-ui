@@ -80,7 +80,7 @@ ui-switch {
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.21), 0 1px 3px rgba(0, 0, 0, 0.3);
         transform: translateX(100%);
     }
-    input:not(:checked):not([disabled]) + .switch-cover .thumb {
+    input:not(:checked):not(:disabled) + .switch-cover .thumb {
         background-color: white;
     }
     .thumb-container::before {
@@ -108,8 +108,5 @@ ui-switch {
     input:focus + .switch-cover .thumb-container::before,
     input:active + .switch-cover .thumb-container::before {
         transform: scale(1);
-    }
-    [disabled] + .switch-cover {
-        //background-color: #bdbdbd;
     }
 }

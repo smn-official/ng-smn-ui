@@ -27,7 +27,7 @@
             }
         }
 
-        &[disabled] {
+        &:disabled {
             background-color: $disabled-background-color;
             color: $disabled-text-color;
 
@@ -36,7 +36,7 @@
             }
         }
 
-        &:not(.success):not(.warning):not(.error):not([disabled]) {
+        &:not(.success):not(.warning):not(.error):not(:disabled) {
             background-color: ui-color('grey', '300');
             color: ui-text-color('grey', '300');
 
@@ -58,6 +58,10 @@
 
                 .ui-ripple-wave {
                     background-color: ui-if($hover-color == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+                }
+
+                ui-progress-radial.indeterminate .spinner-container .path {
+                    stroke: $text-color;
                 }
             }
 
@@ -81,6 +85,10 @@
                         background-color: $hover-color;
                     }
                 }
+
+                ui-progress-radial.indeterminate .spinner-container .path {
+                    stroke: ui-text-color(map_get($theme, primary));
+                }
             }
 
             &.accent {
@@ -102,6 +110,10 @@
                     &::before {
                         background-color: $hover-color;
                     }
+                }
+
+                ui-progress-radial.indeterminate .spinner-container .path {
+                    stroke: ui-text-color(map_get($theme, accent));
                 }
             }
 

@@ -15,7 +15,7 @@
                 }
 
                 .ui-button {
-                    &:not(.success):not(.warning):not(.error):not([disabled]) .ui-ripple-wave {
+                    &:not(.success):not(.warning):not(.error):not(:disabled) .ui-ripple-wave {
                         background-color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue), 0.1);
                     }
 
@@ -39,7 +39,7 @@
                 }
 
                 .ui-button {
-                    &:not(.success):not(.warning):not(.error):not([disabled]) .ui-ripple-wave {
+                    &:not(.success):not(.warning):not(.error):not(:disabled) .ui-ripple-wave {
                         background-color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue), 0.1);
                     }
 

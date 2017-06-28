@@ -53,7 +53,7 @@ ui-toolbar {
         .ui-button {
             margin: 12px;
 
-            &.flat:not(.success):not(.warning):not(.error):not([disabled]) {
+            &.flat:not(.success):not(.warning):not(.error):not(:disabled) {
                 color: inherit;
 
                 i {

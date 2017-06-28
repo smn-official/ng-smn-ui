@@ -69,7 +69,7 @@
         border-bottom-right-radius: 0;
     }
 
-    /deep/ [uiRipple].ui-button:not(.success):not(.warning):not(.error):not([disabled]).flat.accent .ui-ripple-wave {
+    /deep/ [uiRipple].ui-button:not(.success):not(.warning):not(.error):not(:disabled).flat.accent .ui-ripple-wave {
         background-color: ui-text-color('black', '500', 0.1);
     }
 
