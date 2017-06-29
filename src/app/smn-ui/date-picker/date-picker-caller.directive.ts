@@ -82,13 +82,13 @@ export class UiDatePickerCallerDirective implements AfterViewInit {
         });
     }
 
-    public renderViewCalendar(element, coordinate, darkClass): void {
+    public renderViewCalendar(element, coordinate, themeClass): void {
         this.wrapDatePicker = document.createElement('div');
         this.wrapDatePicker.classList.add('wrap-date-picker');
         const overlay = document.createElement('div');
         overlay.classList.add('overlay');
-        if (darkClass) {
-            this.wrapDatePicker.classList.add(darkClass);
+        if (themeClass) {
+            this.wrapDatePicker.classList.add(themeClass);
         }
 
         this.wrapDatePicker.style.transform = 'scale(0)';
@@ -129,7 +129,7 @@ export class UiDatePickerCallerDirective implements AfterViewInit {
 
         this.setInstances(component, this.componentRef);
         this.applicationRef.attachView(this.componentRef.hostView);
-        this.renderViewCalendar(this.componentElement, coordinate, component.darkClass);
+        this.renderViewCalendar(this.componentElement, coordinate, component.themeClass);
         this.pickerOpen = true;
     }
 

@@ -11,7 +11,7 @@ export class UiDatePickerDirective implements OnInit, OnChanges, OnDestroy {
     @Input() minDate: Date;
     @Input() initOnSelected: Date;
     @Input() confirmSelection: boolean;
-    @Input() darkClass: string;
+    @Input('theme-class') themeClass: string;
     @Input('uiDatePicker') datePicker: string;
     @Output() select: EventEmitter<any> = new EventEmitter();
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
