@@ -6,6 +6,8 @@ ui-switch-container {
 
     .info {
         color: rgba(0, 0, 0, 0.87);
+        user-select: none;
+        cursor: default;
 
         .secondary {
             display: block;
