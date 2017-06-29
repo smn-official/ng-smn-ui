@@ -1,4 +1,7 @@
-import {Component, ElementRef, Input, TemplateRef, ViewChild, ViewEncapsulation} from '@angular/core';
+import {
+    Component, ElementRef, EventEmitter, Input, Output, TemplateRef, ViewChild,
+    ViewEncapsulation
+} from '@angular/core';
 
 @Component({
     selector: 'ui-menu',
@@ -8,10 +11,14 @@ import {Component, ElementRef, Input, TemplateRef, ViewChild, ViewEncapsulation}
 })
 export class UiMenuComponent {
     @Input('theme-class') themeClass;
-    @Input() align;
     @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
+    @Output() closeChange: EventEmitter<any> = new EventEmitter();
+
 
     constructor(public elementRef: ElementRef) {
     }
 
+    close() {
+        this.closeChange.emit();
+    }
 }

@@ -8,8 +8,8 @@
                 <span>Menu left aligned</span>
             </div>
             <div class="ui-flex-container" style="align-items: center">
-                <span style="flex: 1; text-align: right">Menu right aligned</span>
-                <button class="ui-button icon flat" uiRipple [uiMenuTrigger]="testeMenu2">
+                <span style="flex: 1; text-align: right" >Menu right aligned</span>
+                <button class="ui-button icon flat" uiRipple [uiMenuTrigger]="testeMenu2" align="right">
                     <i class="material-icons">more_vert</i>
                 </button>
             </div>
@@ -31,11 +31,11 @@
 <ui-menu #testeMenu>
     <div class="ui-menu-content">
         <div class="ui-menu-item" uiRipple>Counter: {{counter}}</div>
-        <div class="ui-menu-item" uiRipple (click)="bindFunction(); $event.stopPropagation()">Increment counter</div>
+        <div class="ui-menu-item" uiRipple (click)="bindFunction(); $event.stopPropagation(); testeMenu.close()">Increment counter</div>
     </div>
 </ui-menu>
 
-<ui-menu #testeMenu2 align="right" theme-class="dark">
+<ui-menu #testeMenu2 theme-class="dark">
     <div class="ui-menu-content">
         <div class="ui-menu-item" uiRipple>Counter: {{counter}}</div>
         <div class="ui-menu-item" uiRipple (click)="bindFunction(); $event.stopPropagation()">Increment counter</div>

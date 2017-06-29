@@ -1,14 +1,15 @@
-import {AfterViewInit, Directive, ElementRef, Input, ViewContainerRef} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, Input, ViewContainerRef, AfterViewChecked} from '@angular/core';
 import {UiElement} from '../providers/element.provider';
 import {UiWindowRef} from '../providers/window.provider';
 
 @Directive({
     selector: '[uiMenuTrigger]'
 })
-export class UiMenuTriggerDirective implements AfterViewInit {
+export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
 
     viewRef;
     mouseDownTarget;
+    @Input() align;
     @Input() triggerEvents;
     @Input('uiMenuTrigger') menu;
 
@@ -16,6 +17,10 @@ export class UiMenuTriggerDirective implements AfterViewInit {
     }
 
     ngAfterViewInit() {
+        this.menu.closeChange.subscribe(() => {
+            this.close();
+        });
+
         UiElement.on(this.elementRef.nativeElement, this.triggerEvents || 'click', () => {
             this.close();
 
@@ -42,6 +47,9 @@ export class UiMenuTriggerDirective implements AfterViewInit {
         });
     }
 
+    ngAfterViewChecked() {
+    }
+
     render(coordinate) {
         this.viewRef = this.viewContainerRef.createEmbeddedView(this.menu.templateRef);
         this.viewRef.detectChanges();
@@ -62,7 +70,7 @@ export class UiMenuTriggerDirective implements AfterViewInit {
             const windowWidth = window.innerWidth + document.body.scrollLeft;
             const windowHeight = document.body.clientHeight + document.body.scrollTop;
 
-            if (this.menu.align === 'right') {
+            if (this.align === 'right') {
                 coordinate.x -= element.clientWidth - this.elementRef.nativeElement.clientWidth;
                 horizontalCoveringArea = coordinate.x;
             }
@@ -82,8 +90,8 @@ export class UiMenuTriggerDirective implements AfterViewInit {
             if (this.menu.themeClass) {
                 element.classList.add(this.menu.themeClass);
             }
-            if (this.menu.align) {
-                element.classList.add(this.menu.align);
+            if (this.align) {
+                element.classList.add(this.align);
             }
 
             element.style.transform = '';
