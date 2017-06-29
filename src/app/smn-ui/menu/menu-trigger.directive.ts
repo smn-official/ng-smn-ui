@@ -79,8 +79,8 @@ export class UiMenuTriggerDirective implements AfterViewInit {
                 coordinate.y = windowHeight - (element.clientHeight + 8);
             }
 
-            if (this.menu.darkClass) {
-                element.classList.add(this.menu.darkClass);
+            if (this.menu.themeClass) {
+                element.classList.add(this.menu.themeClass);
             }
             if (this.menu.align) {
                 element.classList.add(this.menu.align);
