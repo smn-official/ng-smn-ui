@@ -91,10 +91,8 @@ ui-toolbar {
         }
     }
 
-    @include desktop {
-        &.transparent header {
-            background-color: transparent;
-        }
+    &.transparent:not(.scrolled) header {
+        background-color: transparent;
     }
 
     &.fixed {
