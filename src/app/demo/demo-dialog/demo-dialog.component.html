@@ -1,0 +1,17 @@
+<div class="ui-button-container">
+    <button class="ui-button raised primary" [uiDialogTrigger]="testDialog" uiRipple>Open Dialog</button>
+    <button class="ui-button raised primary" [uiDialogTrigger]="testDialog" uiRipple transparent-overlay="true">
+        Open Dialog with Transparent Overlay
+    </button>
+</div>
+
+<ui-dialog #testDialog card-size="400">
+    <ui-card-title>Test dialog</ui-card-title>
+    <ui-card-content>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi in itaque nihil, non quod rem voluptate.
+        Accusantium beatae consectetur hic maiores nemo officiis totam? Aspernatur culpa labore laudantium natus nulla.
+    </ui-card-content>
+    <div class="ui-button-container cover">
+        <button class="ui-button raised primary" uiRipple (click)="testDialog.close()">Close Dialog</button>
+    </div>
+</ui-dialog>
