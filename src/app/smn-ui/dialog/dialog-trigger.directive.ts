@@ -62,6 +62,8 @@ export class UiDialogTriggerDirective implements AfterViewInit {
             element.style.transform = '';
 
             element.classList.add('open');
+
+            document.body.style.overflowY = 'hidden';
         });
     }
 
@@ -76,6 +78,7 @@ export class UiDialogTriggerDirective implements AfterViewInit {
             });
 
             setTimeout(() => this.viewContainerRef.remove(this.viewContainerRef.indexOf(viewRef)), 280);
+            document.body.style.overflowY = '';
         }
     }
 
