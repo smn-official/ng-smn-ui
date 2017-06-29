@@ -1,5 +1,5 @@
 import {
-    Component, ElementRef, EventEmitter, Input, Output, TemplateRef, ViewChild,
+    Component, ElementRef, EventEmitter, Output, TemplateRef, ViewChild,
     ViewEncapsulation
 } from '@angular/core';
 
@@ -10,10 +10,8 @@ import {
     encapsulation: ViewEncapsulation.None
 })
 export class UiMenuComponent {
-    @Input('theme-class') themeClass;
     @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
     @Output() closeChange: EventEmitter<any> = new EventEmitter();
-
 
     constructor(public elementRef: ElementRef) {
     }
