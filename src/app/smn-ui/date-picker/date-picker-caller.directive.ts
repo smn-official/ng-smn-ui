@@ -38,9 +38,9 @@ export class UiDatePickerCallerDirective implements AfterViewInit {
     public ngAfterViewInit(): void {
         this.datePicker = this.referencesService.get(this.datePickerCaller);
 
-        this.inputElement = <HTMLElement>document.querySelectorAll(`[uiDatePicker="${this.datePickerCaller}"]`)[0];
-
         UiElement.on(this.elementRef.nativeElement, this.pickerEvent || 'click', (e) => {
+            this.inputElement = <HTMLElement>document.querySelectorAll(`[uiDatePicker="${this.datePickerCaller}"]`)[0];
+
             this.referencesService.closeAll();
             const position = UiElement.position(this.inputElement);
             const coordinate = {
