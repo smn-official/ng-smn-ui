@@ -6,5 +6,9 @@
     ui-card {
         background-color: $color-background;
         color: map_get($theme, primary-text-color);
+
+        .secondary-text {
+            color: map_get($theme, secondary-text-color);
+        }
     }
 }

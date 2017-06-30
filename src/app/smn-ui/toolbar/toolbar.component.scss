@@ -66,6 +66,7 @@ ui-toolbar {
             padding: 0 16px;
             font-weight: 500;
             cursor: default;
+            user-select: none;
         }
 
         .logo {

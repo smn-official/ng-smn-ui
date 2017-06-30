@@ -1,20 +1,21 @@
 @import "palette";
 @import "../button/button.theme";
-@import "../input/input.theme";
+@import "../calendar/calendar-content.theme";
+@import "../calendar/calendar.theme";
 @import "../card/card.theme";
+@import "../date-picker/date-picker-caller.theme";
+@import "../dialog/dialog.theme";
+@import "../divider/divider.theme";
+@import "../input/input.theme";
+@import "../list/list.theme";
+@import "../nav-drawer/nav-drawer.theme";
+@import "../progress/linear/progress-linear.theme";
+@import "../ripple/ripple.theme";
 @import "../selection-control/option/option.theme";
 @import "../selection-control/selection/selection.theme";
 @import "../selection-control/switch/switch.theme";
-@import "../toolbar/toolbar.theme";
-@import "../calendar/calendar.theme";
-@import "../calendar/calendar-content.theme";
-@import "../divider/divider.theme";
-@import "../nav-drawer/nav-drawer.theme";
-@import "../list/list.theme";
-@import "../date-picker/date-picker-caller.theme";
-@import "../progress/linear/progress-linear.theme";
 @import "../subheader/subheader.theme";
-@import "../ripple/ripple.theme";
+@import "../toolbar/toolbar.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -52,19 +53,20 @@
         background-color: ui-if(map_get($theme, is-dark), #303030, #FAFAFA);
     }
     @include ui-button($theme);
-    @include ui-input($theme);
-    @include ui-card($theme);
-    @include ui-option($theme);
-    @include ui-selection($theme);
-    @include ui-switch($theme);
-    @include ui-toolbar($theme);
     @include ui-calendar($theme);
     @include ui-calendar-content($theme);
-    @include ui-divider($theme);
-    @include ui-nav-drawer($theme);
-    @include ui-list($theme);
+    @include ui-card($theme);
     @include ui-date-picker-caller($theme);
+    @include ui-dialog($theme);
+    @include ui-divider($theme);
+    @include ui-input($theme);
+    @include ui-list($theme);
+    @include ui-nav-drawer($theme);
+    @include ui-option($theme);
     @include ui-progress($theme);
-    @include ui-subheader($theme);
     @include ui-ripple($theme);
+    @include ui-selection($theme);
+    @include ui-subheader($theme);
+    @include ui-switch($theme);
+    @include ui-toolbar($theme);
 }

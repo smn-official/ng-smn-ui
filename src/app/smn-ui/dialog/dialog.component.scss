@@ -1,0 +1,49 @@
+@import "../core/variables";
+
+.wrap-dialog {
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ui-card {
+        //transition: transform 280ms ui-easing('aceleration'), opacity 280ms ui-easing('aceleration');
+        //transform-origin: top;
+        //transform: scale(0);
+        transform-origin: bottom;
+        transition: transform 225ms ui-easing('acceleration'), opacity 195ms ui-easing('acceleration');
+        transform: scale(0.8) translateY(16px);
+        box-shadow: ui-shadow('24dp');
+        opacity: 0;
+    }
+
+    .overlay {
+        transition: opacity 280ms ui-easing('aceleration');
+        left: 0;
+        top: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+
+    &.open {
+        ui-card {
+            //transition: transform 280ms ui-easing('deceleration'), opacity 280ms ui-easing('deceleration');
+            //transform: scale(1);
+            transition: transform 225ms ui-easing('deceleration'), opacity 195ms ui-easing('deceleration');
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+        .overlay {
+            transition: opacity 280ms ui-easing('deceleration');
+            opacity: 1;
+        }
+    }
+}
+

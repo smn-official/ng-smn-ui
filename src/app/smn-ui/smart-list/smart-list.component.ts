@@ -1,12 +1,13 @@
-import {Component, OnInit, Input, DoCheck, KeyValueDiffers} from '@angular/core';
+import {Component, OnInit, Input, DoCheck, KeyValueDiffers, Output, EventEmitter, OnChanges} from '@angular/core';
 
 @Component({
     selector: 'ui-smart-list',
     templateUrl: 'smart-list.component.html'
 })
 
-export class UiSmartListComponent implements OnInit, DoCheck {
+export class UiSmartListComponent implements OnInit, DoCheck, OnChanges {
     @Input() model: any;
+    @Output() modelChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Input('default-item') defaultItem: any;
     list: any[];
     differ: any;
@@ -27,6 +28,9 @@ export class UiSmartListComponent implements OnInit, DoCheck {
         this.objDiffer = {};
         this.list.forEach((elt, i) => {
             this.objDiffer[i] = this.differs.find(elt).create(null);
+        });
+        this.model.forEach((item) => {
+            this.list.push(item);
         });
     }
 
@@ -93,6 +97,16 @@ export class UiSmartListComponent implements OnInit, DoCheck {
             }
         });
         this.ngDoCheck();
+    }
+
+    ngOnChanges(changes) {
+        if (changes.model && changes.model.currentValue && changes.model.currentValue.length) {
+            changes.model.currentValue.forEach((item) => {
+                if (this.list.indexOf(item) === -1) {
+                    this.list.push(item);
+                }
+            });
+        }
     }
 }
 

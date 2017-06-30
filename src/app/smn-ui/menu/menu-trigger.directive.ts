@@ -6,11 +6,11 @@ import {UiWindowRef} from '../providers/window.provider';
     selector: '[uiMenuTrigger]'
 })
 export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
-
     viewRef;
     mouseDownTarget;
+    @Input('trigger-events') triggerEvents;
+    @Input('theme-class') themeClass;
     @Input() align;
-    @Input() triggerEvents;
     @Input('uiMenuTrigger') menu;
 
     constructor(public viewContainerRef: ViewContainerRef, public elementRef: ElementRef) {
@@ -87,8 +87,8 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
                 coordinate.y = windowHeight - (element.clientHeight + 8);
             }
 
-            if (this.menu.themeClass) {
-                element.classList.add(this.menu.themeClass);
+            if (this.themeClass) {
+                element.classList.add(this.themeClass);
             }
             if (this.align) {
                 element.classList.add(this.align);

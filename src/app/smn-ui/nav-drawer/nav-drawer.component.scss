@@ -110,12 +110,6 @@ body {
 
 body.ui-nav-drawer-persistent {
     @include desktop {
-        & {
-            margin-left: 320px;
-        }
-
-        .ui-nav-drawer-persistent {
-            padding-left: 320px;
-        }
+        margin-left: 320px;
     }
 }

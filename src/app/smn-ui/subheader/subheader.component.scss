@@ -8,4 +8,6 @@ ui-subheader {
     align-items: center;
     width: 100%;
     color: ui-color('black', '500', 0.54);
+    user-select: none;
+    cursor: default;
 }
