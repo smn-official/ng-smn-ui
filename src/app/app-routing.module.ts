@@ -18,6 +18,7 @@ import {DemoHomeComponent} from './demo/demo-home/demo-home.component';
 import {DemoSmartListComponent} from './demo/demo-smart-list/demo-smart-list.component';
 import {DemoMenuComponent} from './demo/demo-menu/demo-menu.component';
 import {DemoSubheaderComponent} from './demo/demo-subheader/demo-subheader.component';
+import {DemoMaskComponent} from './demo/demo-mask/demo-mask.component';
 
 const routes: Routes = [
     {
@@ -37,8 +38,9 @@ const routes: Routes = [
             {path: 'snackbars', component: DemoSnackbarComponent},
             {path: 'progress', component: DemoProgressComponent},
             {path: 'nav-drawer', component: DemoNavDrawerComponent},
-            {path: 'smart-list', component: DemoSmartListComponent},
+            {path: 'masks', component: DemoMaskComponent},
             {path: 'menus', component: DemoMenuComponent},
+            {path: 'smart-list', component: DemoSmartListComponent},
             {path: 'subheader', component: DemoSubheaderComponent},
         ]
     },

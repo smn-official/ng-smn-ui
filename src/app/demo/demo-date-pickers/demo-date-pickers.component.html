@@ -3,7 +3,7 @@
         <ui-card-title>Version light</ui-card-title>
         <ui-card-content>
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="simple" name="date" uiDatePicker="simple">
+                <input type="text" uiInput [(ngModel)]="simple" name="date" uiDatePicker="simple" uiMaskDate>
                 <label>Date</label>
                 <div class="icon">
                     <button class="ui-button icon flat" uiDatePickerCaller="simple">
@@ -11,6 +11,7 @@
                     </button>
                 </div>
             </ui-input-container>
+            {{simple}}
             <ui-input-container>
                 <input type="text" uiInput [(ngModel)]="minAndMax" name="date" uiDatePicker="minAndMax" [minDate]="minDate" [maxDate]="maxDate">
                 <label>Min e max</label>

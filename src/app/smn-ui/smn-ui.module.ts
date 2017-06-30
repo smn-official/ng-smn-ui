@@ -36,6 +36,8 @@ import {UiSnackbar} from './snackbar/snackbar.provider';
 import {UiMenuComponent} from './menu/menu.component';
 import {UiMenuTriggerDirective} from './menu/menu-trigger.directive';
 import {UiProgressRadialComponent} from './progress/radial/progress-radial.component';
+import { MaskDateDirective } from './utils/masks/mask-date.directive';
+import { UiDatePipe } from './utils/pipes/date.pipe';
 export {UiPhonePipe};
 
 export {UiCookie, UiToolbarService, UiElement, UiWindowRef, UiColor, UiSnackbar}
@@ -66,7 +68,9 @@ const lib: any[] = [
     UiSnackbarComponent,
     UiMenuComponent,
     UiMenuTriggerDirective,
-    UiProgressRadialComponent
+    UiProgressRadialComponent,
+    MaskDateDirective,
+    UiDatePipe
 ];
 
 @NgModule({
