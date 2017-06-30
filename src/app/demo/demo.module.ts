@@ -22,6 +22,7 @@ import {DemoSmartListComponent} from './demo-smart-list/demo-smart-list.componen
 import {DemoSnackbarComponent} from './demo-snackbar/demo-snackbar.component';
 import {DemoSubheaderComponent} from './demo-subheader/demo-subheader.component';
 import {DemoToolbarsComponent} from './demo-toolbars/demo-toolbars.component';
+import {DemoMaskComponent} from './demo-mask/demo-mask.component';
 
 @NgModule({
     imports: [
@@ -31,6 +32,8 @@ import {DemoToolbarsComponent} from './demo-toolbars/demo-toolbars.component';
         SMNUIModule
     ],
     declarations: [
+        DemoComponent,
+        DemoInputsComponent,
         DemoButtonsComponent,
         DemoCardsComponent,
         DemoComponent,
@@ -46,6 +49,9 @@ import {DemoToolbarsComponent} from './demo-toolbars/demo-toolbars.component';
         DemoProgressComponent,
         DemoSelectionControlsComponent,
         DemoSmartListComponent,
+        DemoMenuComponent,
+        DemoSubheaderComponent,
+        DemoMaskComponent,
         DemoSnackbarComponent,
         DemoSubheaderComponent,
         DemoToolbarsComponent,

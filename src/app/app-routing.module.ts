@@ -19,6 +19,7 @@ import {DemoSmartListComponent} from './demo/demo-smart-list/demo-smart-list.com
 import {DemoSnackbarComponent} from './demo/demo-snackbar/demo-snackbar.component';
 import {DemoSubheaderComponent} from './demo/demo-subheader/demo-subheader.component';
 import {DemoToolbarsComponent} from './demo/demo-toolbars/demo-toolbars.component';
+import {DemoMaskComponent} from './demo/demo-mask/demo-mask.component';
 
 const routes: Routes = [
     {
@@ -40,6 +41,9 @@ const routes: Routes = [
             {path: 'selection-controls', component: DemoSelectionControlsComponent},
             {path: 'smart-list', component: DemoSmartListComponent},
             {path: 'snackbars', component: DemoSnackbarComponent},
+            {path: 'masks', component: DemoMaskComponent},
+            {path: 'menus', component: DemoMenuComponent},
+            {path: 'smart-list', component: DemoSmartListComponent},
             {path: 'subheader', component: DemoSubheaderComponent},
             {path: 'toolbars', component: DemoToolbarsComponent},
         ]

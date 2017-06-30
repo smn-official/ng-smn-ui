@@ -38,6 +38,8 @@ import {UiSwitchComponent} from './selection-control/switch/switch.component';
 import {UiToolbarComponent} from './toolbar/toolbar.component';
 import {UiToolbarService} from './toolbar/toolbar.service';
 import {UiWindowRef} from './providers/window.provider';
+import { MaskDateDirective } from './utils/masks/mask-date.directive';
+import { UiDatePipe } from './utils/pipes/date.pipe';
 
 export {
     UiColor,
@@ -78,6 +80,11 @@ const lib: any[] = [
     UiSnackbarContainerComponent,
     UiSwitchComponent,
     UiToolbarComponent,
+    UiMenuComponent,
+    UiMenuTriggerDirective,
+    UiProgressRadialComponent,
+    MaskDateDirective,
+    UiDatePipe
 ];
 
 @NgModule({

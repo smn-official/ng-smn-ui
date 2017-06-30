@@ -84,9 +84,11 @@
     min-width: 88px;
     user-select: none;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    &:not(button) {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
 
     &:hover {
         text-decoration: none;
