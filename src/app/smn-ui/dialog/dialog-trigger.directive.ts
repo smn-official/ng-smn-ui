@@ -10,7 +10,6 @@ export class UiDialogTriggerDirective implements AfterViewInit {
     @Input('trigger-events') triggerEvents: string;
     @Input('dark-class') darkClass: string;
     @Input('transparent-overlay') transparentOverlay: boolean;
-    @Input('alternative-close-function') alternativeCloseFunction: Function;
     @Input('uiDialogTrigger') dialog;
 
     constructor(public viewContainerRef: ViewContainerRef, public elementRef: ElementRef) {
@@ -52,11 +51,7 @@ export class UiDialogTriggerDirective implements AfterViewInit {
             }
 
             element.querySelectorAll('.overlay')[0].addEventListener('click', () => {
-                if (this.alternativeCloseFunction) {
-                    this.alternativeCloseFunction();
-                } else {
-                    this.close();
-                }
+                this.close();
             });
 
             element.style.transform = '';

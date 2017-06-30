@@ -9,7 +9,7 @@
     .example2 {
         display: flex;
 
-        ui-card {
+        .light, .dark {
             width: 50%;
 
             &:first-child {
