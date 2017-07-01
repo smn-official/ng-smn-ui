@@ -316,6 +316,10 @@
         z-index: 1;
 
         transition: transform 0.28s ui-easing();
+
+        &.hide {
+            transform: scale(0);
+        }
     }
 }
 
