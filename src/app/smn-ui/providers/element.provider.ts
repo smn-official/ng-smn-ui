@@ -26,8 +26,8 @@ export class UiElement {
         return _is(el, selector);
     }
 
-    static position(el): any {
-        return _position(el);
+    static position(el, withoutScroll?): any {
+        return _position(el, withoutScroll);
     }
 }
 
@@ -103,7 +103,7 @@ function _is(el, selector): any {
         return null;
     }
 }
-function _position(el): any {
+function _position(el, withoutScroll): any {
     /* http://javascript.info/tutorial/coordinates */
 
     if (el.getBoundingClientRect) {
@@ -134,8 +134,12 @@ function _position(el): any {
         const body = document.body;
         const docElem = document.documentElement;
 
-        const scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop;
-        const scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft;
+        let scrollTop = 0;
+        let scrollLeft = 0;
+        if (!withoutScroll) {
+            scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop;
+            scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft;
+        }
 
         const clientTop = docElem.clientTop || body.clientTop || 0;
         const clientLeft = docElem.clientLeft || body.clientLeft || 0;
