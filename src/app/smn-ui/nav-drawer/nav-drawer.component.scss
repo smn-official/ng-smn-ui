@@ -13,6 +13,7 @@ ui-nav-drawer {
         transition: transform 0.28s ui-easing('deceleration');
         left: 0;
         transform: translateX(-100% - 10);
+        user-select: none;
 
         .ui-nav-drawer-overflow {
             height: 100%;
