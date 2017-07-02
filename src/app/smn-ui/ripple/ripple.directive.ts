@@ -124,6 +124,12 @@ function eraseRipples(thiss) {
                         thiss.ripples--;
                     } catch (e) {
                     }
+                    if (!thiss.ripples) {
+                        try {
+                            thiss.elRippleContainerTemplateClone.parentNode.removeChild(thiss.elRippleContainerTemplateClone);
+                        } catch (e) {
+                        }
+                    }
                 }, null);
             }
         }
