@@ -57,7 +57,7 @@ ui-toolbar {
                 margin: 6px;
             }
 
-            &.flat:not(.success):not(.warning):not(.error):not(:disabled) {
+            &:not(.success):not(.warning):not(.error):not(:disabled).flat {
                 color: inherit;
 
                 i {
@@ -78,6 +78,7 @@ ui-toolbar {
             margin: 0 20px 0 10px;
             width: auto;
             height: 100%;
+            user-select: none;
 
             @include mobile {
                 display: none;

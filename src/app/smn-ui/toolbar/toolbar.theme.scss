@@ -51,5 +51,14 @@
             }
         }
     }
+
+    header .ui-button:not(.success):not(.warning):not(.error):not(:disabled).flat {
+        color: inherit;
+
+        i {
+            color: inherit;
+        }
+    }
 }
+
 /**/
