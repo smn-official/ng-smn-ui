@@ -52,6 +52,15 @@
     html, body {
         background-color: ui-if(map_get($theme, is-dark), #303030, #FAFAFA);
     }
+    .primary-text {
+        color: map_get($theme, primary-text-color);
+    }
+    .secondary-text {
+        color: map_get($theme, secondary-text-color);
+    }
+    .hint-text {
+        color: map_get($theme, hint-text-color);
+    }
     @include ui-button($theme);
     @include ui-calendar($theme);
     @include ui-calendar-content($theme);
