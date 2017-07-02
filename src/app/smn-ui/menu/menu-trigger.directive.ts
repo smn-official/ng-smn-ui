@@ -7,13 +7,14 @@ import {UiWindowRef} from '../providers/window.provider';
 })
 export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
     viewRef;
-    mouseDownTarget;
     @Input('trigger-events') triggerEvents;
     @Input('theme-class') themeClass;
     @Input() align;
     @Input('uiMenuTrigger') menu;
+    isMobile: boolean;
 
     constructor(public viewContainerRef: ViewContainerRef, public elementRef: ElementRef) {
+        this.isMobile = UiWindowRef.nativeWindow.innerWidth <= 763;
     }
 
     ngAfterViewInit() {
@@ -36,9 +37,13 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
 
         UiElement.on(UiWindowRef.nativeWindow, 'mouseup resize scroll touchend', (e) => {
             if (this.elementRef.nativeElement !== e.target) {
-                debounce(() => {
+                if (this.isMobile) {
+                    debounce(() => {
+                        this.close();
+                    }, 300)();
+                } else {
                     this.close();
-                }, 300)();
+                }
             }
         });
     }
