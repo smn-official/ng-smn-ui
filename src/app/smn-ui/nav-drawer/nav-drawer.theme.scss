@@ -10,6 +10,13 @@
         ui-toolbar header {
             background-color: $color-background;
             color: map_get($theme, primary-text-color);
+
+            .logo ~ .title {
+                border-left: 1px solid $color-divisor;
+                @include mobile {
+                    border-left: none;
+                }
+            }
         }
     }
 
