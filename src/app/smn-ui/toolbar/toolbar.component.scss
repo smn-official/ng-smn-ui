@@ -3,6 +3,7 @@
 $sizes: 480 600 840 960 1280 1440 1600;
 
 .ui-toolbar-space {
+    height: 56px;
     @include desktop {
         height: 64px;
         min-height: 64px;
@@ -27,7 +28,7 @@ ui-toolbar {
         left: 0;
         top: 0;
         right: 0;
-        height: 48px;
+        height: 56px;
         @include desktop {
             height: 64px;
             min-height: 64px;
@@ -52,6 +53,9 @@ ui-toolbar {
 
         .ui-button {
             margin: 12px;
+            @include mobile-landscape {
+                margin: 6px;
+            }
 
             &.flat:not(.success):not(.warning):not(.error):not(:disabled) {
                 color: inherit;
@@ -262,3 +266,4 @@ body.ui-nav-drawer-persistent {
         }
     }
 }
+/**/
