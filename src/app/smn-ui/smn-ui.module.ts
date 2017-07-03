@@ -38,9 +38,9 @@ import {UiSwitchComponent} from './selection-control/switch/switch.component';
 import {UiToolbarComponent} from './toolbar/toolbar.component';
 import {UiToolbarService} from './toolbar/toolbar.service';
 import {UiWindowRef} from './providers/window.provider';
-import {UiMaskDateDirective} from './utils/masks/date/mask-date.directive';
+import {MaskDateDirective} from './utils/masks/date/mask-date.directive';
 import {UiTimeAgoPipe} from './utils/pipes/time-ago.pipe';
-import {UiDateValidatorDirective} from './utils/masks/date/date.validator.directive';
+import {UiListItemDirective} from './list/list.directive';
 
 
 export {
@@ -85,9 +85,9 @@ const lib: any[] = [
     UiMenuComponent,
     UiMenuTriggerDirective,
     UiProgressRadialComponent,
-    UiMaskDateDirective,
+    MaskDateDirective,
     UiTimeAgoPipe,
-    UiDateValidatorDirective
+    UiListItemDirective
 ];
 
 @NgModule({

@@ -86,7 +86,7 @@ export class UiRippleDirective {
 
             this.elRippleContainerTemplateClone.classList.add('pressed');
 
-            animate(this.elRippleContainerTemplateClone, 'border-spacing', 0, 1, 800, null, (tick) => {
+            UiElement.animate(this.elRippleContainerTemplateClone, 'border-spacing', 0, 1, 800, null, (tick) => {
                 elRippleTemplateClone.style.transform = `scale(${tick})`;
             });
 
@@ -118,7 +118,7 @@ function eraseRipples(thiss) {
             const elementOpacity = elRipple.style.opacity || '1';
 
             if (elementOpacity === '1') {
-                animate(elRipple, 'opacity', 1, 0, 800, () => {
+                UiElement.animate(elRipple, 'opacity', 1, 0, 800, () => {
                     try {
                         elRipple.parentNode.removeChild(elRipple);
                         thiss.ripples--;
@@ -154,31 +154,4 @@ function getMousePosition(e) {
     }
 
     return pos;
-}
-
-function animate(object, property, start_value, end_value, time, end, tick) {
-    const propWithPx = ['width', 'height', 'left', 'top', 'border-radius', 'border-spacing', 'margin-left', 'margin-top'];
-
-    const frame_rate = 0.06; // 60 FPS
-    let frame = 0;
-    const delta = (end_value - start_value) / time / frame_rate;
-    const handle = setInterval(() => {
-        frame++;
-        const value = start_value + delta * frame;
-
-        if (tick) {
-            tick(value);
-        }
-
-        const hasPx = propWithPx.indexOf(property) > -1;
-
-        object.style[property] = value + (hasPx ? 'px' : '');
-        if ((start_value > end_value ? value.toFixed(2) <= end_value : value.toFixed(2) >= end_value)) {
-            clearInterval(handle);
-
-            if (end) {
-                end();
-            }
-        }
-    }, 1 / frame_rate);
 }
