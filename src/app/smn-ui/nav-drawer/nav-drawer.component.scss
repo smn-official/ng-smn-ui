@@ -24,6 +24,10 @@ ui-nav-drawer {
         @include mobile {
             width: calc(100% - 56px);
         }
+
+        .ui-list-item:not(.nothing) {
+            padding-left: 21px;
+        }
     }
 
     ui-toolbar header {
