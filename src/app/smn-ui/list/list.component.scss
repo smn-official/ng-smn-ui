@@ -15,5 +15,18 @@
         &.subheader {
             color: rgba(0, 0, 0, 0.54);
         }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            width: 56px;
+            color: rgba(0, 0, 0, 0.54);
+        }
+
+        &,
+        .icon {
+            transition: color 280ms ui-easing('deceleration');
+        }
     }
 }
+/**/

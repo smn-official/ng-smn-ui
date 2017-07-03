@@ -9,6 +9,20 @@
             &.subheader {
                 color: map_get($theme, secondary-text-color);
             }
+
+            &.active {
+                &,
+                .icon {
+                    color: map_get($theme, primary-color);
+                }
+
+                &.accent {
+                    &,
+                    .icon {
+                        color: map_get($theme, accent-color);
+                    }
+                }
+            }
         }
     }
 
