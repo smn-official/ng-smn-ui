@@ -183,11 +183,8 @@ function _setCaretPosition(el, beforeSelIndex, afterSelIndex, symbolsPositions?)
         futureSelIndex = afterSelIndex;
 
         for (let i = 0; i < symbolsPositions.length; i++) {
-            console.log('First', beforeSelIndex, symbolsPositions[i]);
-            console.log('Second', afterSelIndex, symbolsPositions[i] + 1);
             if (beforeSelIndex === symbolsPositions[i] && afterSelIndex === symbolsPositions[i] + 1) {
                 futureSelIndex = symbolsPositions[i] + 2;
-                console.log(futureSelIndex);
 
                 break;
             }

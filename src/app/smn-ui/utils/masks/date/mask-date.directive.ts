@@ -34,7 +34,6 @@ export class MaskDateDirective implements ControlValueAccessor {
 
     render(rawValue: any): void {
         this.ngModel = checkDate(this.formatDate(rawValue));
-        this.ngModel = this.ngModel ? this.ngModel.toISOString() : '';
         this.ngModelChange.emit(this.ngModel);
         this.elementRef.nativeElement.value = this.formatDate(this.elementRef.nativeElement.value);
     }
