@@ -1,7 +1,13 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class UiElement {
+    static caretPosition = {
+        // https://javascriptexamples.info/snippet/getset-cursor-in-html-textarea
+        get: _getCaretPosition,
+        set: _setCaretPosition
+    };
+
     static closest(el, selector): any {
         return _closest(el, selector);
     }
@@ -154,7 +160,61 @@ function _position(el, withoutScroll): any {
         return {top: Math.round(top), left: Math.round(left)};
     }
 }
+function _getCaretPosition(el): any {
+    let documentt: {
+        selection?: any
+    };
+    documentt = document;
 
+    let caretPos = 0;
+    if (documentt.selection) { // IE Support
+        el.focus();
+        const select = documentt.selection.createRange();
+        select.moveStart('character', -el.value.length);
+        caretPos = select.text.length;
+    } else if (el.selectionStart || el.selectionStart === '0') { // Firefox support
+        caretPos = el.selectionStart;
+    }
+
+    return caretPos;
+}
+function _setCaretPosition(el, beforeSelIndex, afterSelIndex, symbolsPositions?): any {
+    let futureSelIndex;
+    symbolsPositions = symbolsPositions ? symbolsPositions : [];
+
+    if (el.selectionStart || el.selectionStart === '0') {
+
+        futureSelIndex = afterSelIndex;
+
+        for (let i = 0; i < symbolsPositions.length; i++) {
+            if (beforeSelIndex === symbolsPositions[i] && afterSelIndex === symbolsPositions[i] + 1) {
+                futureSelIndex = symbolsPositions[i] + 2;
+
+                break;
+            }
+        }
+
+        setCaret();
+        setTimeout(() => {
+            setCaret();
+        });
+    }
+
+    function setCaret() {
+        if (el.createTextRange) {
+            const range = el.createTextRange();
+            range.move('character', futureSelIndex);
+            range.select();
+        } else {
+            if (el.selectionStart) {
+                el.focus();
+                el.setSelectionRange(futureSelIndex, futureSelIndex);
+            } else {
+                el.focus();
+            }
+        }
+    }
+}
 function _animate(object, property, start_value, end_value, time, end, tick) {
     const propWithPx = ['width', 'height', 'left', 'top', 'border-radius', 'border-spacing', 'margin-left', 'margin-top'];
 
@@ -181,4 +241,3 @@ function _animate(object, property, start_value, end_value, time, end, tick) {
         }
     }, 1 / frame_rate);
 }
-/**/
