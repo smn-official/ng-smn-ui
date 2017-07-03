@@ -41,6 +41,7 @@ import {UiWindowRef} from './providers/window.provider';
 import {MaskDateDirective} from './utils/masks/mask-date.directive';
 import {UiDatePipe} from './utils/pipes/date.pipe';
 import {UiTimeAgoPipe} from './utils/pipes/time-ago.pipe';
+import {UiListItemDirective} from './list/list.directive';
 
 
 export {
@@ -87,7 +88,8 @@ const lib: any[] = [
     UiProgressRadialComponent,
     MaskDateDirective,
     UiDatePipe,
-    UiTimeAgoPipe
+    UiTimeAgoPipe,
+    UiListItemDirective
 ];
 
 @NgModule({

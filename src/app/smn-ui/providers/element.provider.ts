@@ -29,6 +29,10 @@ export class UiElement {
     static position(el, withoutScroll?): any {
         return _position(el, withoutScroll);
     }
+
+    static animate(object, property, start_value, end_value, time, end?, tick?): any {
+        return _animate(object, property, start_value, end_value, time, end, tick);
+    }
 }
 
 function _closest(el, selector): any {
@@ -150,3 +154,31 @@ function _position(el, withoutScroll): any {
         return {top: Math.round(top), left: Math.round(left)};
     }
 }
+
+function _animate(object, property, start_value, end_value, time, end, tick) {
+    const propWithPx = ['width', 'height', 'left', 'top', 'border-radius', 'border-spacing', 'margin-left', 'margin-top'];
+
+    const frame_rate = 0.06; // 60 FPS
+    let frame = 0;
+    const delta = (end_value - start_value) / time / frame_rate;
+    const handle = setInterval(() => {
+        frame++;
+        const value = start_value + delta * frame;
+
+        if (tick) {
+            tick(value);
+        }
+
+        const hasPx = propWithPx.indexOf(property) > -1;
+
+        object.style[property] = value + (hasPx ? 'px' : '');
+        if ((start_value > end_value ? value.toFixed(2) <= end_value : value.toFixed(2) >= end_value)) {
+            clearInterval(handle);
+
+            if (end) {
+                end();
+            }
+        }
+    }, 1 / frame_rate);
+}
+/**/

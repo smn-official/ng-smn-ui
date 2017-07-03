@@ -15,23 +15,85 @@
     <div class="ui-nav-drawer-overflow">
         <div class="ui-list">
             <a class="ui-list-item" uiRipple routerLink="/">Home</a>
-            <a class="ui-list-item" uiRipple routerLink="/buttons">Buttons</a>
-            <a class="ui-list-item" uiRipple routerLink="/cards">Cards</a>
-            <a class="ui-list-item" uiRipple routerLink="/data-tables">Data tables</a>
-            <a class="ui-list-item" uiRipple routerLink="/date-pickers">Date pickers</a>
-            <a class="ui-list-item" uiRipple routerLink="/dialog">Dialog</a>
-            <a class="ui-list-item" uiRipple routerLink="/dividers">Dividers</a>
-            <a class="ui-list-item" uiRipple routerLink="/inputs">Inputs</a>
-            <a class="ui-list-item" uiRipple routerLink="/layout">Layout</a>
-            <a class="ui-list-item" uiRipple routerLink="/masks">Masks</a>
-            <a class="ui-list-item" uiRipple routerLink="/menus">Menus</a>
-            <a class="ui-list-item" uiRipple routerLink="/nav-drawer">Navigation drawer</a>
-            <a class="ui-list-item" uiRipple routerLink="/progress">Progress & activity</a>
-            <a class="ui-list-item" uiRipple routerLink="/selection-controls">Selection controls</a>
-            <a class="ui-list-item" uiRipple routerLink="/smart-list">Smart list</a>
-            <a class="ui-list-item" uiRipple routerLink="/snackbars">Snackbars & toasts</a>
-            <a class="ui-list-item" uiRipple routerLink="/subheader">Subheader</a>
-            <a class="ui-list-item" uiRipple routerLink="/toolbars">Toolbars</a>
+            <div class="ui-list-item" uiRipple [uiListItem]="pages">
+                Pages
+                <span class="arrow"><i class="material-icons">keyboard_arrow_right</i></span>
+            </div>
+            <div class="ui-list-item-group" #pages>
+                <a class="ui-list-item" uiRipple routerLink="/buttons">Buttons</a>
+                <a class="ui-list-item" uiRipple routerLink="/cards">Cards</a>
+                <a class="ui-list-item" uiRipple routerLink="/data-tables">Data tables</a>
+                <a class="ui-list-item" uiRipple routerLink="/date-pickers">Date pickers</a>
+                <a class="ui-list-item" uiRipple routerLink="/dialog">Dialog</a>
+                <a class="ui-list-item" uiRipple routerLink="/dividers">Dividers</a>
+                <a class="ui-list-item" uiRipple routerLink="/inputs">Inputs</a>
+                <a class="ui-list-item" uiRipple routerLink="/layout">Layout</a>
+                <a class="ui-list-item" uiRipple routerLink="/masks">Masks</a>
+                <a class="ui-list-item" uiRipple routerLink="/menus">Menus</a>
+                <a class="ui-list-item" uiRipple routerLink="/nav-drawer">Navigation drawer</a>
+                <a class="ui-list-item" uiRipple routerLink="/progress">Progress & activity</a>
+                <a class="ui-list-item" uiRipple routerLink="/selection-controls">Selection controls</a>
+                <a class="ui-list-item" uiRipple routerLink="/smart-list">Smart list</a>
+                <a class="ui-list-item" uiRipple routerLink="/snackbars">Snackbars & toasts</a>
+                <a class="ui-list-item" uiRipple routerLink="/subheader">Subheader</a>
+                <a class="ui-list-item" uiRipple routerLink="/toolbars">Toolbars</a>
+                <div class="ui-list-item" uiRipple [uiListItem]="pages8">
+                    Pages
+                    <span class="arrow"><i class="material-icons">keyboard_arrow_right</i></span>
+                </div>
+                <div class="ui-list-item-group" #pages8>
+                    <a class="ui-list-item" uiRipple routerLink="/buttons">Buttons</a>
+                    <a class="ui-list-item" uiRipple routerLink="/cards">Cards</a>
+                </div>
+                <div class="ui-list-item" uiRipple [uiListItem]="pages2">
+                    Pages
+                    <span class="arrow"><i class="material-icons">keyboard_arrow_right</i></span>
+                </div>
+                <div class="ui-list-item-group" #pages2>
+                    <a class="ui-list-item" uiRipple routerLink="/buttons">Buttons</a>
+                    <a class="ui-list-item" uiRipple routerLink="/cards">Cards</a>
+                    <div class="ui-list-item" uiRipple [uiListItem]="pages3">
+                        Pages
+                        <span class="arrow"><i class="material-icons">keyboard_arrow_right</i></span>
+                    </div>
+                    <div class="ui-list-item-group" #pages3>
+                        <a class="ui-list-item" uiRipple routerLink="/buttons">Buttons</a>
+                        <a class="ui-list-item" uiRipple routerLink="/cards">Cards</a>
+                        <div class="ui-list-item" uiRipple [uiListItem]="pages4">
+                            Pages
+                            <span class="arrow"><i class="material-icons">keyboard_arrow_right</i></span>
+                        </div>
+                        <div class="ui-list-item-group" #pages4>
+                            <a class="ui-list-item" uiRipple routerLink="/buttons">Buttons</a>
+                            <a class="ui-list-item" uiRipple routerLink="/cards">Cards</a>
+                            <div class="ui-list-item" uiRipple [uiListItem]="pages5">
+                                Pages
+                                <span class="arrow"><i class="material-icons">keyboard_arrow_right</i></span>
+                            </div>
+                            <div class="ui-list-item-group" #pages5>
+                                <a class="ui-list-item" uiRipple routerLink="/buttons">Buttons</a>
+                                <a class="ui-list-item" uiRipple routerLink="/cards">Cards</a>
+                                <div class="ui-list-item" uiRipple [uiListItem]="pages6">
+                                    Pages
+                                    <span class="arrow"><i class="material-icons">keyboard_arrow_right</i></span>
+                                </div>
+                                <div class="ui-list-item-group" #pages6>
+                                    <a class="ui-list-item" uiRipple routerLink="/buttons">Buttons</a>
+                                    <a class="ui-list-item" uiRipple routerLink="/cards">Cards</a>
+                                    <div class="ui-list-item" uiRipple [uiListItem]="pages7">
+                                        Pages
+                                        <span class="arrow"><i class="material-icons">keyboard_arrow_right</i></span>
+                                    </div>
+                                    <div class="ui-list-item-group" #pages7>
+                                        <a class="ui-list-item" uiRipple routerLink="/buttons">Buttons</a>
+                                        <a class="ui-list-item" uiRipple routerLink="/cards">Cards</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </ui-nav-drawer>
@@ -40,3 +102,4 @@
 
 <!--<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>-->
 <!--<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>-->
+<!---->

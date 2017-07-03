@@ -380,6 +380,18 @@ body.ui-nav-drawer-persistent {
                         }
                     }
                 }
+
+                &.scrolled {
+                    top: 100%;
+                    margin-top: -82px;
+                    right: 16px;
+
+                    .ui-button {
+                        &.mini:not(:last-child) {
+                            margin-right: 12px;
+                        }
+                    }
+                }
             }
         }
     }

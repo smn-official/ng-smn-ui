@@ -16,17 +16,32 @@ ui-nav-drawer {
         user-select: none;
 
         .ui-nav-drawer-overflow {
-            height: 100%;
+            height: calc(100% - 64px);
             overflow: auto;
             margin-top: -1px;
+            position: relative;
+            //padding-bottom: 56px;
+            //@include desktop {
+            //    padding-bottom: 64px;
+            //}
+            //@include mobile-portrait {
+            //    padding-bottom: 56px;
+            //}
+            //@include mobile-landscape {
+            //    padding-bottom: 48px;
+            //}
         }
 
         @include mobile {
             width: calc(100% - 56px);
         }
 
-        .ui-list-item:not(.nothing) {
-            padding-left: 21px;
+        .ui-list {
+            padding-bottom: 0;
+
+            .ui-list-item:not(.nothing) {
+                padding-left: 21px;
+            }
         }
     }
 
