@@ -5,14 +5,14 @@ import {UiElement} from '../../../providers/element.provider';
 import {checkDate} from './check-date';
 
 @Directive({
-    selector: '[uiMaskDate]',
+    selector: '[uiMaskDate][ngModel]',
     providers: [{
         provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => MaskDateDirective),
+        useExisting: forwardRef(() => UiMaskDateDirective),
         multi: true
     }, DatePipe]
 })
-export class MaskDateDirective implements ControlValueAccessor {
+export class UiMaskDateDirective implements ControlValueAccessor {
 
     input: boolean;
     onChange: Function;

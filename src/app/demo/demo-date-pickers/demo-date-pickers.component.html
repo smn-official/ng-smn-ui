@@ -1,9 +1,9 @@
-<div style="margin: 16px auto; width: 600px; max-width: 100%">
+<form #datePickers="ngForm" style="margin: 16px auto; width: 600px; max-width: 100%">
     <ui-card>
-        <ui-card-title>Version light</ui-card-title>
-        <ui-card-content>
+        <ui-card-title (click)="updateDates()">Version light</ui-card-title>
+        <ui-card-content class="ui-validate on-dirty">
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="simple" name="date" uiDatePicker="simple" uiMaskDate>
+                <input type="text" uiInput [(ngModel)]="simple" name="date" uiDatePicker="simple" uiMaskDate [minDate]="minDate" [maxDate]="maxDate" #date="ngModel">
                 <label>Date</label>
                 <div class="icon">
                     <button class="ui-button icon flat" uiDatePickerCaller="simple">
@@ -11,9 +11,8 @@
                     </button>
                 </div>
             </ui-input-container>
-            {{simple}}
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="minAndMax" name="date" uiDatePicker="minAndMax" [minDate]="minDate" [maxDate]="maxDate">
+                <input type="text" uiInput [(ngModel)]="minAndMax" name="minAndMax" uiDatePicker="minAndMax" [minDate]="minDate" [maxDate]="maxDate">
                 <label>Min e max</label>
                 <div class="icon">
                     <button class="ui-button icon flat" uiDatePickerCaller="minAndMax">
@@ -27,7 +26,7 @@
                 </div>
             </ui-input-container>
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="confirmSelect" name="date" uiDatePicker="confirmSelect" [confirmSelection]="true">
+                <input type="text" uiInput [(ngModel)]="confirmSelect" name="confirmSelect" uiDatePicker="confirmSelect" [confirmSelection]="true">
                 <label>Confirm select</label>
                 <div class="icon">
                     <button class="ui-button icon flat" uiDatePickerCaller="confirmSelect">
@@ -36,7 +35,7 @@
                 </div>
             </ui-input-container>
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="functionSelect" name="date" uiDatePicker="functionSelect" (select)="execFunctionSelect()">
+                <input type="text" uiInput [(ngModel)]="functionSelect" name="functionSelect" uiDatePicker="functionSelect" (select)="execFunctionSelect()">
                 <label>Execute function select</label>
                 <div class="icon">
                     <button class="ui-button icon flat" uiDatePickerCaller="functionSelect">
@@ -45,7 +44,7 @@
                 </div>
             </ui-input-container>
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="initOnSelected" name="date" uiDatePicker="initOnSelected" [initOnSelected]="worldWarII">
+                <input type="text" uiInput [(ngModel)]="initOnSelected" name="initOnSelected" uiDatePicker="initOnSelected" [initOnSelected]="worldWarII">
                 <label>Data segunda guerra mundial</label>
                 <div class="icon">
                     <button class="ui-button icon flat" uiDatePickerCaller="initOnSelected">
@@ -84,4 +83,4 @@
             </ui-card-content>
         </ui-card>
     </div>
-</div>
+</form>
