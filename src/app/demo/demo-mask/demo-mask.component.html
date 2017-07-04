@@ -21,5 +21,12 @@
                 <div class="ui-message helper">Model: {{cnpj}}; View: {{cnpj | uiCnpj}}</div>
             </div>
         </ui-input-container>
+        <ui-input-container>
+            <input type="text" name="cep" [(ngModel)]="cep" uiInput uiMaskCep>
+            <label>CEP(uiMaskCep)</label>
+            <div class="ui-messages">
+                <div class="ui-message helper">Model: {{cep}}; View: {{cep | uiCep}}</div>
+            </div>
+        </ui-input-container>
     </ui-card-content>
 </ui-card>

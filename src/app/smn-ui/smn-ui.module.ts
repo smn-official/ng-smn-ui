@@ -45,6 +45,8 @@ import {UiMaskCpfDirective} from './utils/masks/cpf/mask-cpf.directive';
 import {UiCpfPipe} from './utils/masks/cpf/cpf.pipe';
 import {UiMaskCnpjDirective} from './utils/masks/cnpj/mask-cnpj.directive';
 import {UiCnpjPipe} from './utils/masks/cnpj/cnpj.pipe';
+import {UiMaskCepDirective} from './utils/masks/cep/mask-cep.directive';
+import {UiCepPipe} from './utils/masks/cep/cep.pipe';
 
 export {
     UiColor,
@@ -94,7 +96,9 @@ const lib: any[] = [
     UiMaskCpfDirective,
     UiCpfPipe,
     UiMaskCnpjDirective,
-    UiCnpjPipe
+    UiCnpjPipe,
+    UiMaskCepDirective,
+    UiCepPipe
 ];
 
 @NgModule({
