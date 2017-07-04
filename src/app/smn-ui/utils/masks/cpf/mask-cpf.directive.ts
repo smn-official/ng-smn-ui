@@ -1,4 +1,4 @@
-import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges, Output} from '@angular/core';
+import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, Output} from '@angular/core';
 import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
 import {UiCpfPipe} from './cpf.pipe';
 import {UiElement} from '../../../providers/element.provider';
@@ -15,7 +15,7 @@ import {UiElement} from '../../../providers/element.provider';
         multi: true
     }, UiCpfPipe]
 })
-export class UiMaskCpfDirective implements ControlValueAccessor, Validator, OnChanges {
+export class UiMaskCpfDirective implements ControlValueAccessor, Validator {
 
     input: boolean;
     beforeSelIndex;
@@ -23,8 +23,6 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, OnCh
     onTouched: Function;
     control: AbstractControl;
     symbolsPositions: number[] = [3, 7, 11, 14];
-    @Input() minDate: Date;
-    @Input() maxDate: Date;
     @Input() ngModel: any;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
@@ -55,12 +53,6 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, OnCh
     formart(value) {
         value = value.toString().replace(/[^0-9]+/g, '');
         return value.substring(0, 11);
-    }
-
-    ngOnChanges(changes): void {
-        if ((changes.minDate && !changes.minDate.firstChange) || (changes.maxDate && !changes.maxDate.firstChange)) {
-            this.control.updateValueAndValidity(this.control);
-        }
     }
 
     validate(control: AbstractControl): { [key: string]: any } {
