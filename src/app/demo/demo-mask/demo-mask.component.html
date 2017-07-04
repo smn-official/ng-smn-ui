@@ -28,5 +28,12 @@
                 <div class="ui-message helper">Model: {{cep}}; View: {{cep | uiCep}}</div>
             </div>
         </ui-input-container>
+        <ui-input-container>
+            <input type="text" name="phone" [(ngModel)]="phone" uiInput uiMaskPhone>
+            <label>Phone(uiMaskPhone)</label>
+            <div class="ui-messages">
+                <div class="ui-message helper">Model: {{phone}}; View: {{phone | uiPhone}}</div>
+            </div>
+        </ui-input-container>
     </ui-card-content>
 </ui-card>

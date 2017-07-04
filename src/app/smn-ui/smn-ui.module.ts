@@ -26,7 +26,6 @@ import {UiMenuListComponent} from './main-menu/menu-list/menu-list.component';
 import {UiMenuTriggerDirective} from './menu/menu-trigger.directive';
 import {UiNavDrawerComponent} from './nav-drawer/nav-drawer.component';
 import {UiOptionComponent} from './selection-control/option/option.component';
-import {UiPhonePipe} from './utils/pipes/phone.pipe';
 import {UiProgressRadialComponent} from './progress/radial/progress-radial.component';
 import {UiReferencesService} from './date-picker/references.service';
 import {UiRippleDirective} from './ripple/ripple.directive';
@@ -47,15 +46,20 @@ import {UiMaskCnpjDirective} from './utils/masks/cnpj/mask-cnpj.directive';
 import {UiCnpjPipe} from './utils/masks/cnpj/cnpj.pipe';
 import {UiMaskCepDirective} from './utils/masks/cep/mask-cep.directive';
 import {UiCepPipe} from './utils/masks/cep/cep.pipe';
+import {UiPhonePipe} from "app/smn-ui/utils/masks/phone/phone.pipe";
+import {UiMaskPhoneDirective} from './utils/masks/phone/mask-phone.directive';
 
 export {
     UiColor,
     UiCookie,
     UiElement,
-    UiPhonePipe,
     UiSnackbar,
     UiToolbarService,
     UiWindowRef,
+    UiCpfPipe,
+    UiCnpjPipe,
+    UiCepPipe,
+    UiPhonePipe
 }
 
 const lib: any[] = [
@@ -78,7 +82,6 @@ const lib: any[] = [
     UiMenuTriggerDirective,
     UiNavDrawerComponent,
     UiOptionComponent,
-    UiPhonePipe,
     UiProgressRadialComponent,
     UiRippleDirective,
     UiSmartListComponent,
@@ -98,7 +101,9 @@ const lib: any[] = [
     UiMaskCnpjDirective,
     UiCnpjPipe,
     UiMaskCepDirective,
-    UiCepPipe
+    UiCepPipe,
+    UiMaskPhoneDirective,
+    UiPhonePipe
 ];
 
 @NgModule({
