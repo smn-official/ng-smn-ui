@@ -68,7 +68,7 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
         return date;
     }
 
-    ngOnChanges(changes) {
+    ngOnChanges(changes): void {
         if ((changes.minDate && !changes.minDate.firstChange) || (changes.maxDate && !changes.maxDate.firstChange)) {
             this.control.updateValueAndValidity(this.control);
         }
