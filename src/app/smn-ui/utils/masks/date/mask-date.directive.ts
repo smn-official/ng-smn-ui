@@ -1,5 +1,5 @@
-import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, Output} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges, Output} from '@angular/core';
+import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {UiElement} from '../../../providers/element.provider';
 import {checkDate} from './check-date';
@@ -10,15 +10,22 @@ import {checkDate} from './check-date';
         provide: NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => UiMaskDateDirective),
         multi: true
+    }, {
+        provide: NG_VALIDATORS,
+        useExisting: forwardRef(() => UiMaskDateDirective),
+        multi: true
     }, DatePipe]
 })
-export class UiMaskDateDirective implements ControlValueAccessor {
+export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnChanges {
 
     input: boolean;
     onChange: Function;
     onTouched: Function;
     beforeSelIndex;
     symbolsPositions: number[] = [2, 5];
+    control: AbstractControl;
+    @Input() minDate: Date;
+    @Input() maxDate: Date;
     @Input() ngModel: any;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
@@ -59,6 +66,42 @@ export class UiMaskDateDirective implements ControlValueAccessor {
             date = date.substring(0, 5) + '/' + date.substring(5, 9);
         }
         return date;
+    }
+
+    ngOnChanges(changes) {
+        if ((changes.minDate && !changes.minDate.firstChange) || (changes.maxDate && !changes.maxDate.firstChange)) {
+            this.control.updateValueAndValidity(this.control);
+        }
+    }
+
+    validate(control: AbstractControl): { [key: string]: any } {
+
+        this.control = control;
+        const value = this.elementRef.nativeElement.value;
+        const dateControl = control.value;
+
+        if (value && !checkDate(value)) {
+            return { parse: true };
+        } else if (checkDate(value)) {
+            dateControl.setHours(0, 0, 0, 0);
+
+            if (this.minDate) {
+                this.minDate.setHours(0, 0, 0, 0);
+
+                if (dateControl.getTime() < this.minDate.getTime()) {
+                    return { minDate: true };
+                }
+            }
+            if (this.maxDate) {
+                this.maxDate.setHours(0, 0, 0, 0);
+
+                if (dateControl.getTime() > this.maxDate.getTime()) {
+                    return { maxDate: true };
+                }
+            }
+        }
+
+        return null;
     }
 
     @HostListener('keydown') onKeydown() {

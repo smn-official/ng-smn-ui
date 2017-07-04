@@ -42,7 +42,6 @@ import {UiMaskDateDirective} from './utils/masks/date/mask-date.directive';
 import {UiTimeAgoPipe} from './utils/pipes/time-ago.pipe';
 import {UiListItemDirective} from './list/list.directive';
 
-
 export {
     UiColor,
     UiCookie,
