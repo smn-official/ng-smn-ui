@@ -38,7 +38,7 @@ import {UiSwitchComponent} from './selection-control/switch/switch.component';
 import {UiToolbarComponent} from './toolbar/toolbar.component';
 import {UiToolbarService} from './toolbar/toolbar.service';
 import {UiWindowRef} from './providers/window.provider';
-import {MaskDateDirective} from './utils/masks/date/mask-date.directive';
+import {UiMaskDateDirective} from './utils/masks/date/mask-date.directive';
 import {UiTimeAgoPipe} from './utils/pipes/time-ago.pipe';
 import {UiListItemDirective} from './list/list.directive';
 
@@ -85,7 +85,7 @@ const lib: any[] = [
     UiMenuComponent,
     UiMenuTriggerDirective,
     UiProgressRadialComponent,
-    MaskDateDirective,
+    UiMaskDateDirective,
     UiTimeAgoPipe,
     UiListItemDirective
 ];
