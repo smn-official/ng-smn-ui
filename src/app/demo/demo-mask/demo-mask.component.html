@@ -3,7 +3,9 @@
         <ui-input-container>
             <input type="text" name="date" [(ngModel)]="date" uiInput uiMaskDate>
             <label>Date(uiMaskDate)</label>
+            <div class="ui-messages">
+                <div class="ui-message helper">{{date}}</div>
+            </div>
         </ui-input-container>
-        {{date}}
     </ui-card-content>
 </ui-card>
