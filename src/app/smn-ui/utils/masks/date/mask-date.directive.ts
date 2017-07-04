@@ -1,7 +1,7 @@
 import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges, Output} from '@angular/core';
 import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
 import {DatePipe} from '@angular/common';
-import {UiElement} from '../../../providers/element.provider';
+import {UiElement} from '../../providers/element.provider';
 import {checkDate} from './check-date';
 
 @Directive({

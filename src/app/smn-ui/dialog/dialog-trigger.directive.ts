@@ -1,6 +1,6 @@
 import {AfterViewInit, Directive, ElementRef, Input, ViewContainerRef} from '@angular/core';
-import {UiElement} from '../providers/element.provider';
-import {UiWindowRef} from '../providers/window.provider';
+import {UiElement} from '../utils/providers/element.provider';
+import {UiWindowRef} from '../utils/providers/window.provider';
 
 @Directive({
     selector: '[uiDialogTrigger]'

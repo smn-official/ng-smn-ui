@@ -1,6 +1,6 @@
 import {AfterViewInit, Directive, ElementRef, HostListener, Input} from '@angular/core';
 
-import {UiElement} from '../providers/element.provider';
+import {UiElement} from '../utils/providers/element.provider';
 
 @Directive({selector: '[uiListItem]'})
 export class UiListItemDirective implements AfterViewInit {

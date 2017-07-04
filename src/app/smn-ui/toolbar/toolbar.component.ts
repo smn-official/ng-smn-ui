@@ -1,7 +1,7 @@
 import {Component, AfterViewInit, ViewEncapsulation, ElementRef} from '@angular/core';
 
-import {UiWindowRef} from '../providers/window.provider';
-import {UiElement} from '../providers/element.provider';
+import {UiWindowRef} from '../utils/providers/window.provider';
+import {UiElement} from '../utils/providers/element.provider';
 
 @Component({
     selector: 'ui-toolbar',

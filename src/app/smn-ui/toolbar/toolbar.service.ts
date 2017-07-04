@@ -1,6 +1,6 @@
 import {Injectable, EventEmitter} from '@angular/core';
-import {UiWindowRef} from '../providers/window.provider';
-import {UiElement} from '../providers/element.provider';
+import {UiWindowRef} from '../utils/providers/window.provider';
+import {UiElement} from '../utils/providers/element.provider';
 
 let mailToolbar: HTMLElement;
 

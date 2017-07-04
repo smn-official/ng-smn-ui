@@ -1,7 +1,7 @@
 import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, Output} from '@angular/core';
 import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
 import {UiPhonePipe} from './phone.pipe';
-import {UiElement} from '../../../providers/element.provider';
+import {UiElement} from '../../providers/element.provider';
 
 @Directive({
     selector: '[uiMaskPhone][ngModel]',
