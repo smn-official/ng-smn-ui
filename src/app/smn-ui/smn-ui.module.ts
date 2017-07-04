@@ -41,6 +41,8 @@ import {UiWindowRef} from './providers/window.provider';
 import {UiMaskDateDirective} from './utils/masks/date/mask-date.directive';
 import {UiTimeAgoPipe} from './utils/pipes/time-ago.pipe';
 import {UiListItemDirective} from './list/list.directive';
+import {UiMaskCpfDirective} from './utils/masks/cpf/mask-cpf.directive';
+import { UiCpfPipe } from './utils/masks/cpf/cpf.pipe';
 
 export {
     UiColor,
@@ -86,7 +88,9 @@ const lib: any[] = [
     UiProgressRadialComponent,
     UiMaskDateDirective,
     UiTimeAgoPipe,
-    UiListItemDirective
+    UiListItemDirective,
+    UiMaskCpfDirective,
+    UiCpfPipe
 ];
 
 @NgModule({

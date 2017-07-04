@@ -7,5 +7,12 @@
                 <div class="ui-message helper">{{date}}</div>
             </div>
         </ui-input-container>
+        <ui-input-container>
+            <input type="text" name="cpf" [(ngModel)]="cpf" uiInput uiMaskCpf>
+            <label>CPF(uiMaskCpf)</label>
+            <div class="ui-messages">
+                <div class="ui-message helper">Model: {{cpf}}; View: {{cpf | uiCpf}}</div>
+            </div>
+        </ui-input-container>
     </ui-card-content>
 </ui-card>
