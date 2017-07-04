@@ -14,5 +14,12 @@
                 <div class="ui-message helper">Model: {{cpf}}; View: {{cpf | uiCpf}}</div>
             </div>
         </ui-input-container>
+        <ui-input-container>
+            <input type="text" name="cnpj" [(ngModel)]="cnpj" uiInput uiMaskCnpj>
+            <label>CPF(uiMaskCnpj)</label>
+            <div class="ui-messages">
+                <div class="ui-message helper">Model: {{cnpj}}; View: {{cnpj | uiCnpj}}</div>
+            </div>
+        </ui-input-container>
     </ui-card-content>
 </ui-card>

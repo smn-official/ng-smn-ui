@@ -42,7 +42,9 @@ import {UiMaskDateDirective} from './utils/masks/date/mask-date.directive';
 import {UiTimeAgoPipe} from './utils/pipes/time-ago.pipe';
 import {UiListItemDirective} from './list/list.directive';
 import {UiMaskCpfDirective} from './utils/masks/cpf/mask-cpf.directive';
-import { UiCpfPipe } from './utils/masks/cpf/cpf.pipe';
+import {UiCpfPipe} from './utils/masks/cpf/cpf.pipe';
+import {UiMaskCnpjDirective} from './utils/masks/cnpj/mask-cnpj.directive';
+import {UiCnpjPipe} from './utils/masks/cnpj/cnpj.pipe';
 
 export {
     UiColor,
@@ -90,7 +92,9 @@ const lib: any[] = [
     UiTimeAgoPipe,
     UiListItemDirective,
     UiMaskCpfDirective,
-    UiCpfPipe
+    UiCpfPipe,
+    UiMaskCnpjDirective,
+    UiCnpjPipe
 ];
 
 @NgModule({
