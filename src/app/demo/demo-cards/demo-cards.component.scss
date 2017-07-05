@@ -9,12 +9,8 @@
     .example2 {
         display: flex;
 
-        ui-card {
-            width: 50%;
-
-            &:first-child {
-                margin-right: 10px;
-            }
+        > :first-child {
+            margin-right: 10px;
         }
     }
 }
