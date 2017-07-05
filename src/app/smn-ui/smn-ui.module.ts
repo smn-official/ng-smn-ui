@@ -7,26 +7,25 @@ import {UiAddCalendarDirective} from './calendar/add-calendar.directive';
 import {UiCalendarComponent} from './calendar/calendar.component';
 import {UiCalendarContentComponent} from './calendar/calendar-content.component';
 import {UiCapitalizePipe} from './utils/pipes/capitalize.pipe';
-import {UiColor} from './providers/color.provider';
-import {UiCookie} from './providers/cookie.provider';
+import {UiColor} from './utils/providers/color.provider';
+import {UiCookie} from './utils/providers/cookie.provider';
 import {UiDataTableOrderByDirective} from './data-table/order-by.directive';
 import {UiDatePickerCallerDirective} from './date-picker/date-picker-caller.directive';
 import {UiDatePickerDirective} from './date-picker/date-picker.directive';
 import {UiDatetimeService} from './calendar/datetime.service';
 import {UiDialogComponent} from './dialog/dialog.component';
 import {UiDialogTriggerDirective} from './dialog/dialog-trigger.directive';
-import {UiElement} from './providers/element.provider';
+import {UiElement} from './utils/providers/element.provider';
 import {UiInputContainerComponent} from './input/input-container.component';
 import {UiInputDirective} from './input/input.directive';
 import {UiMainMenuComponent} from './main-menu/main-menu.component';
-import {UiMaxlengthDirective} from './format/validators/maxlength.directive';
+import {UiMaxlengthDirective} from './utils/validators/maxlength.directive';
 import {UiMenuComponent} from './menu/menu.component';
 import {UiMenuItemComponent} from './main-menu/menu-item/menu-item.component';
 import {UiMenuListComponent} from './main-menu/menu-list/menu-list.component';
 import {UiMenuTriggerDirective} from './menu/menu-trigger.directive';
 import {UiNavDrawerComponent} from './nav-drawer/nav-drawer.component';
 import {UiOptionComponent} from './selection-control/option/option.component';
-import {UiPhonePipe} from './utils/pipes/phone.pipe';
 import {UiProgressRadialComponent} from './progress/radial/progress-radial.component';
 import {UiReferencesService} from './date-picker/references.service';
 import {UiRippleDirective} from './ripple/ripple.directive';
@@ -37,19 +36,30 @@ import {UiSnackbar} from './snackbar/snackbar.provider';
 import {UiSwitchComponent} from './selection-control/switch/switch.component';
 import {UiToolbarComponent} from './toolbar/toolbar.component';
 import {UiToolbarService} from './toolbar/toolbar.service';
-import {UiWindowRef} from './providers/window.provider';
+import {UiWindowRef} from './utils/providers/window.provider';
 import {UiMaskDateDirective} from './utils/masks/date/mask-date.directive';
 import {UiTimeAgoPipe} from './utils/pipes/time-ago.pipe';
 import {UiListItemDirective} from './list/list.directive';
+import {UiMaskCpfDirective} from './utils/masks/cpf/mask-cpf.directive';
+import {UiCpfPipe} from './utils/masks/cpf/cpf.pipe';
+import {UiMaskCnpjDirective} from './utils/masks/cnpj/mask-cnpj.directive';
+import {UiCnpjPipe} from './utils/masks/cnpj/cnpj.pipe';
+import {UiMaskCepDirective} from './utils/masks/cep/mask-cep.directive';
+import {UiCepPipe} from './utils/masks/cep/cep.pipe';
+import {UiPhonePipe} from "app/smn-ui/utils/masks/phone/phone.pipe";
+import {UiMaskPhoneDirective} from './utils/masks/phone/mask-phone.directive';
 
 export {
     UiColor,
     UiCookie,
     UiElement,
-    UiPhonePipe,
     UiSnackbar,
     UiToolbarService,
     UiWindowRef,
+    UiCpfPipe,
+    UiCnpjPipe,
+    UiCepPipe,
+    UiPhonePipe
 }
 
 const lib: any[] = [
@@ -72,7 +82,6 @@ const lib: any[] = [
     UiMenuTriggerDirective,
     UiNavDrawerComponent,
     UiOptionComponent,
-    UiPhonePipe,
     UiProgressRadialComponent,
     UiRippleDirective,
     UiSmartListComponent,
@@ -86,7 +95,15 @@ const lib: any[] = [
     UiProgressRadialComponent,
     UiMaskDateDirective,
     UiTimeAgoPipe,
-    UiListItemDirective
+    UiListItemDirective,
+    UiMaskCpfDirective,
+    UiCpfPipe,
+    UiMaskCnpjDirective,
+    UiCnpjPipe,
+    UiMaskCepDirective,
+    UiCepPipe,
+    UiMaskPhoneDirective,
+    UiPhonePipe
 ];
 
 @NgModule({

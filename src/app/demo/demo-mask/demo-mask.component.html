@@ -3,7 +3,37 @@
         <ui-input-container>
             <input type="text" name="date" [(ngModel)]="date" uiInput uiMaskDate>
             <label>Date(uiMaskDate)</label>
+            <div class="ui-messages">
+                <div class="ui-message helper">{{date}}</div>
+            </div>
         </ui-input-container>
-        {{date}}
+        <ui-input-container>
+            <input type="text" name="cpf" [(ngModel)]="cpf" uiInput uiMaskCpf>
+            <label>CPF(uiMaskCpf)</label>
+            <div class="ui-messages">
+                <div class="ui-message helper">Model: {{cpf}}; View: {{cpf | uiCpf}}</div>
+            </div>
+        </ui-input-container>
+        <ui-input-container>
+            <input type="text" name="cnpj" [(ngModel)]="cnpj" uiInput uiMaskCnpj>
+            <label>CNPJ(uiMaskCnpj)</label>
+            <div class="ui-messages">
+                <div class="ui-message helper">Model: {{cnpj}}; View: {{cnpj | uiCnpj}}</div>
+            </div>
+        </ui-input-container>
+        <ui-input-container>
+            <input type="text" name="cep" [(ngModel)]="cep" uiInput uiMaskCep>
+            <label>CEP(uiMaskCep)</label>
+            <div class="ui-messages">
+                <div class="ui-message helper">Model: {{cep}}; View: {{cep | uiCep}}</div>
+            </div>
+        </ui-input-container>
+        <ui-input-container>
+            <input type="text" name="phone" [(ngModel)]="phone" uiInput uiMaskPhone>
+            <label>Phone(uiMaskPhone)</label>
+            <div class="ui-messages">
+                <div class="ui-message helper">Model: {{phone}}; View: {{phone | uiPhone}}</div>
+            </div>
+        </ui-input-container>
     </ui-card-content>
 </ui-card>

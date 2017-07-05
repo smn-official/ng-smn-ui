@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ElementRef} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 import {UiDatetimeService} from './datetime.service';
 
-import {UiElement} from '../providers/element.provider';
+import {UiElement} from '../utils/providers/element.provider';
 
 @Component({
     selector: 'ui-calendar-content',

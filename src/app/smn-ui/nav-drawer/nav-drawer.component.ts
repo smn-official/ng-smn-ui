@@ -9,9 +9,9 @@ import {
     Input
 } from '@angular/core';
 
-import {UiWindowRef} from '../providers/window.provider';
-import {UiElement} from '../providers/element.provider';
-import {UiCookie} from '../providers/cookie.provider';
+import {UiWindowRef} from '../utils/providers/window.provider';
+import {UiElement} from '../utils/providers/element.provider';
+import {UiCookie} from '../utils/providers/cookie.provider';
 
 @Component({
     selector: 'ui-nav-drawer',

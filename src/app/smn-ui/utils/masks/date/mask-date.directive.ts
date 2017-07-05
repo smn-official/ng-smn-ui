@@ -1,7 +1,7 @@
 import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges, Output} from '@angular/core';
 import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
 import {DatePipe} from '@angular/common';
-import {UiElement} from '../../../providers/element.provider';
+import {UiElement} from '../../providers/element.provider';
 import {checkDate} from './check-date';
 
 @Directive({
@@ -19,11 +19,11 @@ import {checkDate} from './check-date';
 export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnChanges {
 
     input: boolean;
+    beforeSelIndex;
     onChange: Function;
     onTouched: Function;
-    beforeSelIndex;
-    symbolsPositions: number[] = [2, 5];
     control: AbstractControl;
+    symbolsPositions: number[] = [2, 5];
     @Input() minDate: Date;
     @Input() maxDate: Date;
     @Input() ngModel: any;
@@ -39,7 +39,7 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
         this.input = false;
     }
 
-    render(rawValue: any): void {
+    renderViaInput(rawValue: any): void {
         this.ngModel = checkDate(this.formatDate(rawValue));
         this.ngModelChange.emit(this.ngModel);
         this.elementRef.nativeElement.value = this.formatDate(this.elementRef.nativeElement.value);
@@ -112,7 +112,7 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
         const afterSelIndex = UiElement.caretPosition.get(this.elementRef.nativeElement);
         const rawValue: string = this.elementRef.nativeElement.value;
         this.input = true;
-        this.render(rawValue);
+        this.renderViaInput(rawValue);
         UiElement.caretPosition.set(this.elementRef.nativeElement, this.beforeSelIndex, afterSelIndex, this.symbolsPositions);
     }
 }

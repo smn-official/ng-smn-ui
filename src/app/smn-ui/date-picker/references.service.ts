@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {UiDatePickerDirective} from './date-picker.directive';
-import {UiWindowRef} from '../providers/window.provider';
-import {UiElement} from '../providers/element.provider';
+import {UiWindowRef} from '../utils/providers/window.provider';
+import {UiElement} from '../utils/providers/element.provider';
 
 @Injectable()
 export class UiReferencesService {
