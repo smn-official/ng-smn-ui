@@ -1,5 +1,8 @@
-import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, Output} from '@angular/core';
-import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
+import {
+    AfterViewInit, Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input,
+    Output
+} from '@angular/core';
+import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
 import {UiCpfPipe} from './cpf.pipe';
 import {UiElement} from '../../providers/element.provider';
 
@@ -15,13 +18,14 @@ import {UiElement} from '../../providers/element.provider';
         multi: true
     }, UiCpfPipe]
 })
-export class UiMaskCpfDirective implements ControlValueAccessor, Validator {
+export class UiMaskCpfDirective implements ControlValueAccessor, Validator, AfterViewInit {
 
+    loaded: boolean;
     input: boolean;
     beforeSelIndex;
     onChange: Function;
     onTouched: Function;
-    control: AbstractControl;
+    control: FormControl;
     symbolsPositions: number[] = [3, 7, 11, 14];
     @Input() ngModel: any;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
@@ -29,7 +33,16 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator {
     constructor(public elementRef: ElementRef, public cpfPipe: UiCpfPipe) {
     }
 
+    ngAfterViewInit() {
+        setTimeout(() => {
+            this.loaded = true;
+        });
+    }
+
     writeValue(rawValue: any): void {
+        if (this.control && this.loaded) {
+            this.control.markAsDirty();
+        }
         if (!this.input) {
             this.elementRef.nativeElement.value = this.cpfPipe.transform(this.ngModel);
         }
@@ -37,6 +50,7 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator {
     }
 
     renderViaInput(rawValue: any): void {
+        this.control.markAsDirty();
         this.ngModel = this.formart(rawValue);
         this.ngModelChange.emit(this.ngModel);
         this.elementRef.nativeElement.value = this.cpfPipe.transform(this.elementRef.nativeElement.value);
@@ -55,12 +69,12 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator {
         return value.substring(0, 11);
     }
 
-    validate(control: AbstractControl): { [key: string]: any } {
+    validate(control: FormControl): { [key: string]: any } {
 
         this.control = control;
 
         if (control.value && this.formart(control.value).length < 11) {
-            return { parse: true };
+            return {parse: true};
         }
 
         return null;
