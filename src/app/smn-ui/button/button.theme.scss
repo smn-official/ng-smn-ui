@@ -87,7 +87,7 @@
                 }
 
                 ui-progress-radial.indeterminate .spinner-container .path {
-                    stroke: ui-text-color(map_get($theme, primary));
+                    stroke: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
                 }
             }
 
