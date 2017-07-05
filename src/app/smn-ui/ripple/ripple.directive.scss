@@ -1,0 +1,22 @@
+[uiRipple] {
+    position: relative;
+
+    .ui-ripple-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    .ui-ripple-wave {
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(33, 33, 33, 0.1);
+        width: 0;
+        height: 0;
+        z-index: 0;
+        transform: scale(0);
+        pointer-events: none;
+    }
+}

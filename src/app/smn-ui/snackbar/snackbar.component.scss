@@ -1,0 +1,92 @@
+@import "../core/variables";
+
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #323232;
+    padding-left: 24px;
+    box-shadow: ui-shadow('2dp');
+    margin: 0 auto;
+    width: 100%;
+    flex: 0 0 auto;
+    transition: transform 280ms ui-easing('deceleration');
+
+    &:first-child {
+        animation: enter-snackbar 280ms ui-easing('deceleration');
+    }
+
+    & + /deep/ ui-snackbar:not(.nothing) {
+        position: absolute;
+        z-index: -1;
+        transform: translateY(100%);
+        bottom: initial;
+    }
+
+    &.leave {
+        transform: translateY(100%);
+    }
+
+    @include desktop {
+        min-width: 288px;
+        margin: 16px 16px;
+        border-radius: 2px;
+        max-width: 568px;
+        width: auto;
+
+        &:not(.center) {
+            position: absolute;
+            bottom: 0;
+
+            &.leave {
+                transform: translateY(110%); //Suporte para margin
+                transform: translateY(calc(100% + 16px));
+            }
+        }
+    }
+
+    .text {
+        color: #FFF;
+        font-size: 14px;
+        padding: 14px 0;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+
+    .text {
+        margin-right: 24px;
+    }
+
+    button.ui-button {
+        min-width: 0;
+        margin-right: 8px;
+    }
+
+    &.center {
+        margin: 0 auto;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    /deep/ [uiRipple].ui-button:not(.success):not(.warning):not(.error):not(:disabled).flat.accent .ui-ripple-wave {
+        background-color: ui-text-color('black', '500', 0.1);
+    }
+
+}
+
+@include desktop {
+    /deep/ .ui-button.elevating-snack {
+        transform: translateY(0) !important;
+    }
+}
+
+@keyframes enter-snackbar {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+

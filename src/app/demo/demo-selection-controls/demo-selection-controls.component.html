@@ -1,0 +1,229 @@
+<div class="example2">
+    <div class="light">
+        <ui-card>
+            <ui-card-title>Option Light</ui-card-title>
+            <ui-card-content>
+                <ui-option-container class="v-space-4 b-space-16">
+                    <ui-option>
+                        <input type="checkbox" [(ngModel)]="checkboxTest" [checked]="checkboxTest">
+                        <span>{{checkboxTest}}</span>
+                    </ui-option>
+                </ui-option-container>
+
+                <ui-option-container class="v-space-4 b-space-16">
+                    <div class="info">
+                        Test
+                    </div>
+                    <ui-option>
+                        <input type="radio" name="radioTest" [(ngModel)]="radioTest" [value]="1">
+                        <span>Test 1</span>
+                    </ui-option>
+                    <ui-option>
+                        <input type="radio" name="radioTest" [(ngModel)]="radioTest" [value]="2">
+                        <span>Test 2</span>
+                    </ui-option>
+                    <ui-option>
+                        <input type="radio" name="radioTest" [(ngModel)]="radioTest" [value]="3">
+                        <span>Test 3</span>
+                    </ui-option>
+                    {{radioTest}}
+                </ui-option-container>
+
+                <ui-option-container class="v-space-4 b-space-16">
+                    <ui-option class="primary">
+                        <input type="checkbox" disabled checked>
+                        <span>Disabled</span>
+                    </ui-option>
+                    <ui-option>
+                        <input type="radio" name="radioTest" disabled>
+                        <span>Disabled</span>
+                    </ui-option>
+                </ui-option-container>
+            </ui-card-content>
+        </ui-card>
+    </div>
+
+    <div class="dark">
+        <ui-card>
+            <ui-card-title>Option Dark</ui-card-title>
+            <ui-card-content>
+                <ui-option-container class="v-space-4 b-space-16">
+                    <ui-option>
+                        <input type="checkbox"
+                               [checked]="checkboxTest2 == 'S'"
+                               (change)="checkboxTest2=$event.target.checked ? 'S':'N'">
+                        <span>{{checkboxTest2}}</span>
+                    </ui-option>
+                </ui-option-container>
+
+                <ui-option-container class="v-space-4 b-space-16">
+                    <div class="info">
+                        Test
+                    </div>
+                    <ui-option>
+                        <input type="radio" name="radioTest2" [(ngModel)]="radioTest2" [value]="1">
+                        <span>Test 1</span>
+                    </ui-option>
+                    <ui-option>
+                        <input type="radio" name="radioTest2" [(ngModel)]="radioTest2" [value]="2">
+                        <span>Test 2</span>
+                    </ui-option>
+                    <ui-option>
+                        <input type="radio" name="radioTest2" [(ngModel)]="radioTest2" [value]="3">
+                        <span>Test 3</span>
+                    </ui-option>
+                    {{radioTest2}}
+                </ui-option-container>
+
+                <ui-option-container class="v-space-4 b-space-16">
+                    <ui-option class="primary">
+                        <input type="checkbox" disabled checked>
+                        <span>Disabled</span>
+                    </ui-option>
+                    <ui-option>
+                        <input type="radio" name="radioTest" disabled>
+                        <span>Disabled</span>
+                    </ui-option>
+                </ui-option-container>
+            </ui-card-content>
+        </ui-card>
+    </div>
+</div>
+
+<div class="example2">
+    <div class="light">
+        <ui-card>
+            <ui-card-title>Switch Light</ui-card-title>
+            <ui-card-content>
+                <ui-switch-container>
+                    <div class="info">
+                        Model: {{switchTest}}
+                        <span class="secondary">Test (.secondary)</span>
+                    </div>
+                    <ui-switch class="action">
+                        <input type="checkbox"
+                               name="switchTest"
+                               [checked]="switchTest == 'S'"
+                               (change)="switchTest=$event.target.checked ? 'S':'N'">
+                    </ui-switch>
+                </ui-switch-container>
+                <ui-switch-container>
+                    <div class="info">
+                        Model: {{switchTest}}
+                        <span class="secondary">Test (.secondary)</span>
+                    </div>
+                    <ui-switch class="primary">
+                        <input type="checkbox"
+                               name="switchTest"
+                               [checked]="switchTest == 'S'"
+                               (change)="switchTest=$event.target.checked ? 'S':'N'">
+                    </ui-switch>
+                </ui-switch-container>
+                <ui-switch-container>
+                    <div class="info">
+                        Model: {{switchTest2}}
+                        <span class="secondary">Test (.secondary)</span>
+                    </div>
+                    <ui-switch class="primary">
+                        <input type="checkbox"
+                               name="switchTest"
+                               [checked]="switchTest2 == 'S'"
+                               (change)="switchTest2=$event.target.checked ? 'S':'N'">
+                    </ui-switch>
+                </ui-switch-container>
+            </ui-card-content>
+        </ui-card>
+    </div>
+
+    <div class="dark">
+        <ui-card>
+            <ui-card-title>Option Dark</ui-card-title>
+            <ui-card-content>
+                <ui-switch-container>
+                    <div class="info">
+                        Model: {{switchTest}}
+                        <span class="secondary">Test (.secondary)</span>
+                    </div>
+                    <ui-switch class="action">
+                        <input type="checkbox"
+                               name="switchTest"
+                               [checked]="switchTest == 'S'"
+                               (change)="switchTest=$event.target.checked ? 'S':'N'">
+                    </ui-switch>
+                </ui-switch-container>
+                <ui-switch-container>
+                    <div class="info">
+                        Model: {{switchTest}}
+                        <span class="secondary">Test (.secondary)</span>
+                    </div>
+                    <ui-switch class="primary">
+                        <input type="checkbox"
+                               name="switchTest"
+                               [checked]="switchTest == 'S'"
+                               (change)="switchTest=$event.target.checked ? 'S':'N'">
+                    </ui-switch>
+                </ui-switch-container>
+                <ui-switch-container>
+                    <div class="info">
+                        Model: {{switchTest2}}
+                        <span class="secondary">Test (.secondary)</span>
+                    </div>
+                    <ui-switch class="primary">
+                        <input type="checkbox"
+                               name="switchTest"
+                               [checked]="switchTest2 == 'S'"
+                               (change)="switchTest2=$event.target.checked ? 'S':'N'">
+                    </ui-switch>
+                </ui-switch-container>
+            </ui-card-content>
+        </ui-card>
+    </div>
+</div>
+
+<div class="example2 ui-selection-primary">
+    <div class="light">
+        <ui-card>
+            <ui-card-title>Selection Primary Light (.ui-selection-primary)</ui-card-title>
+            <ui-card-content>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid ducimus impedit itaque magni maxime
+                perferendis sunt ullam! Adipisci amet harum impedit ipsa laborum omnis pariatur praesentium quos
+                reprehenderit ut.
+            </ui-card-content>
+        </ui-card>
+    </div>
+
+    <div class="dark">
+        <ui-card>
+            <ui-card-title>Selection Primary Dark (.ui-selection-primary)</ui-card-title>
+            <ui-card-content>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid ducimus impedit itaque magni maxime
+                perferendis sunt ullam! Adipisci amet harum impedit ipsa laborum omnis pariatur praesentium quos
+                reprehenderit ut.
+            </ui-card-content>
+        </ui-card>
+    </div>
+</div>
+
+<div class="example2 ui-selection-accent">
+    <div class="light">
+        <ui-card>
+            <ui-card-title>Selection Accent Light (.ui-selection-accent)</ui-card-title>
+            <ui-card-content>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid ducimus impedit itaque magni maxime
+                perferendis sunt ullam! Adipisci amet harum impedit ipsa laborum omnis pariatur praesentium quos
+                reprehenderit ut.
+            </ui-card-content>
+        </ui-card>
+    </div>
+
+    <div class="dark">
+        <ui-card>
+            <ui-card-title>Selection Accent Dark (.ui-selection-accent)</ui-card-title>
+            <ui-card-content>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid ducimus impedit itaque magni maxime
+                perferendis sunt ullam! Adipisci amet harum impedit ipsa laborum omnis pariatur praesentium quos
+                reprehenderit ut.
+            </ui-card-content>
+        </ui-card>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+@import "../core/variables";
+
+@mixin ui-input($theme) {
+    $label-color: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.7), rgba(0,0,0,.54));
+    $border-color: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.7), rgba(0,0,0,.42));
+    $placeholder-color: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.5), rgba(0,0,0,.42));
+    $message-color: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.7), rgba(0,0,0,.54));
+    $disabled: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.5), rgba(0,0,0, .42));
+    $disabled-line: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.7), rgba(0,0,0, .42));
+    $autocomplete-background: ui-if(map-get($theme, is-dark) == true, #424242, #fff);
+
+    ui-input-container {
+        label {
+            color: $label-color;
+        }
+
+        .ui-control {
+            color: map-get($theme, primary-text-color);
+            border-color: $border-color;
+
+            &::placeholder {
+                color: $placeholder-color;
+            }
+
+            &:focus ~ label {
+                color: map-get($theme, primary-color);
+            }
+
+            &:focus ~ .line {
+                background-color: map-get($theme, primary-color);
+            }
+
+            &.accent {
+                &:focus ~ label {
+                    color: map-get($theme, accent-color);
+                }
+
+                &:focus ~ .line {
+                    background-color: map-get($theme, accent-color);
+                }
+            }
+
+            &:disabled {
+                color: $disabled;
+                border-color: $disabled;
+            }
+
+            &:disabled ~ label {
+                color: $disabled;
+            }
+
+            &:disabled ~ .line {
+                background-color: #FFF;
+                border-color: $disabled-line;
+            }
+        }
+
+        .ui-messages .ui-message.helper,
+        .ui-messages .ui-message.counter {
+            color: $message-color;
+        }
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus
+    input:-webkit-autofill,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+        -webkit-text-fill-color: ui-if(map-get($theme, is-dark) == true, #fff, #000);
+        -webkit-box-shadow: 0 0 0px 1000px $autocomplete-background inset;
+        transition: background-color 5000s ease-in-out 0s;
+    }
+}
+/**/

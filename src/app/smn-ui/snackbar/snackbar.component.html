@@ -1,0 +1,8 @@
+<div class="text">
+    {{bar.text}}
+</div>
+<div class="action" *ngIf="bar.action && bar.actionText">
+    <button class="ui-button accent flat" (click)="bar.action(hide)" uiRipple>
+        {{bar.actionText}}
+    </button>
+</div>

@@ -1,0 +1,64 @@
+$sizes: 480 600 840 960 1280 1440 1600;
+
+.ui-flex-container {
+    display: flex;
+
+    ui-input-container,
+    ui-switch-container,
+    .ui-flex-container,
+    .flex {
+        flex: 1;
+
+        & + * {
+            margin-left: 16px;
+        }
+    }
+
+    .ui-flex-container {
+        width: 100%;
+    }
+
+    .ui-button {
+        align-self: center;
+    }
+}
+
+body:not(.ui-nav-drawer-persistent) .ui-flex-container {
+    @each $size in $sizes {
+        @media (max-width: #{$size}px) {
+            &.break-on-s#{$size} {
+                flex-direction: column;
+
+                > ui-input-container,
+                > ui-switch-container,
+                > .ui-flex-container,
+                > .flex {
+                    & + * {
+                        margin-left: initial;
+                    }
+                }
+            }
+        }
+    }
+}
+
+body.ui-nav-drawer-persistent .ui-flex-container {
+    @each $size in $sizes {
+        @media (max-width: #{$size + 320}px) {
+            &.break-on-s#{$size} {
+                flex-direction: column;
+
+                > ui-input-container,
+                > ui-switch-container,
+                > .ui-flex-container,
+                > .flex {
+                    & + * {
+                        margin-left: initial;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**/

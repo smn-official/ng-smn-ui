@@ -1,0 +1,30 @@
+<div style="max-width: 608px; width: 100%; margin: 0 auto">
+    <ui-card>
+        <ui-card-title>Snackbars & Toats</ui-card-title>
+        <ui-card-content>
+            <div class="ui-button-container">
+                <button class="ui-button" uiRipple (click)="showSnack()">
+                    Simple
+                </button>
+                <button class="ui-button" uiRipple (click)="showSnack(true)">
+                    Simple align center
+                </button>
+                <button class="ui-button" uiRipple (click)="showSnackInfinity()">
+                    Infinity
+                </button>
+                <button class="ui-button" uiRipple (click)="showSnackWithAction()">
+                    Action
+                </button>
+                <button class="ui-button" uiRipple (click)="closeSnack()">
+                    Close snack
+                </button>
+            </div>
+        </ui-card-content>
+    </ui-card>
+</div>
+<div class="ui-fab-container">
+    <button class="ui-button primary fab" uiRipple>
+        <i class="material-icons">add</i>
+    </button>
+</div>
+<ui-snackbar-container></ui-snackbar-container>

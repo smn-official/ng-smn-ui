@@ -1,0 +1,125 @@
+@import "../core/variables";
+
+@mixin ui-button($theme) {
+    $text-color: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, .7), rgba(0, 0, 0, .54));
+    $hover-color: ui-if(map-get($theme, is-dark) == true, #FFF, #000);
+    $disabled-background-color: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.12));
+    $disabled-text-color: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, 0.30), rgba(0, 0, 0, 0.26));
+
+    .ui-button {
+        &.flat {
+            &::before {
+                background-color: $hover-color;
+            }
+
+            .ui-ripple-wave {
+                background-color: ui-if($hover-color == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+            }
+
+            &.icon {
+                &.primary::before {
+                    background-color: map_get($theme, primary-color);
+                }
+
+                &.accent::before {
+                    background-color: map_get($theme, accent-color);
+                }
+            }
+        }
+
+        &:disabled {
+            background-color: $disabled-background-color;
+            color: $disabled-text-color;
+
+            &.flat {
+                background-color: transparent;
+            }
+        }
+
+        &:not(.success):not(.warning):not(.error):not(:disabled) {
+            background-color: ui-color('grey', '300');
+            color: ui-text-color('grey', '300');
+
+            &::before {
+                background-color: ui-text-color('grey', '300');
+            }
+
+            .ui-ripple-wave {
+                background-color: ui-if(ui-text-color('grey', '300') == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+            }
+
+            &.flat {
+                background-color: transparent;
+                color: $text-color;
+
+                &::before {
+                    background-color: $hover-color;
+                }
+
+                .ui-ripple-wave {
+                    background-color: ui-if($hover-color == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+                }
+
+                ui-progress-radial.indeterminate .spinner-container .path {
+                    stroke: $text-color;
+                }
+            }
+
+            &.primary {
+                background-color: ui-color(map_get($theme, primary), map_get($theme, primary-hue));
+                color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+
+                .ui-ripple-wave {
+                    background-color: ui-if(ui-text-color(map_get($theme, primary), map_get($theme, primary-hue)) == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+                }
+
+                &::before {
+                    background-color: ui-text-color(map_get($theme, primary));
+                }
+
+                &.flat {
+                    background-color: transparent;
+                    color: map_get($theme, primary-color);
+
+                    &::before {
+                        background-color: $hover-color;
+                    }
+                }
+
+                ui-progress-radial.indeterminate .spinner-container .path {
+                    stroke: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+                }
+            }
+
+            &.accent {
+                background-color: map_get($theme, accent-color);
+                color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+
+                .ui-ripple-wave {
+                    background-color: ui-if(ui-text-color(map_get($theme, accent), map_get($theme, accent-hue)) == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+                }
+
+                &::before {
+                    background-color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+                }
+
+                &.flat {
+                    background-color: transparent;
+                    color: map_get($theme, accent-color);
+
+                    &::before {
+                        background-color: $hover-color;
+                    }
+                }
+
+                ui-progress-radial.indeterminate .spinner-container .path {
+                    stroke: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+                }
+            }
+
+            &.flat .ui-ripple-wave {
+                background-color: ui-if($hover-color == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+            }
+        }
+    }
+}

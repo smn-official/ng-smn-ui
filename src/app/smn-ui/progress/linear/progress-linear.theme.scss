@@ -1,0 +1,23 @@
+@import "../../core/variables";
+
+@mixin ui-progress($theme) {
+    .ui-progress {
+        &.primary {
+            background-color: ui-color(map_get($theme, primary), '200');
+
+            .determinate,
+            .indeterminate {
+                background-color: ui-color(map_get($theme, primary));
+            }
+        }
+
+        &.accent {
+            background-color: ui-color(map_get($theme, accent), '200');
+
+            .determinate,
+            .indeterminate {
+                background-color: ui-color(map_get($theme, accent));
+            }
+        }
+    }
+}

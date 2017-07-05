@@ -1,0 +1,9 @@
+@import "../core/variables";
+
+@mixin ui-ripple($theme) {
+    $ripple-color: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+
+    [uiRipple] .ui-ripple-wave {
+        background-color: $ripple-color;
+    }
+}

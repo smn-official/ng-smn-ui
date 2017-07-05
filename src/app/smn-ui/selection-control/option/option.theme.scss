@@ -1,0 +1,56 @@
+@import '../../core/variables';
+
+@mixin ui-option($theme) {
+    ui-option-container {
+        .info {
+            color: map_get($theme, primary-text-color);
+            .secondary {
+                color: map_get($theme, secondary-text-color);
+            }
+        }
+    }
+
+    ui-option {
+        input[type="radio"]:checked + .ui-option-shell {
+            border-color: map-get($theme, accent-color);
+        }
+
+        input[type="radio"]:checked + .ui-option-shell .ui-option-fill {
+            border-color: map-get($theme, accent-color);
+        }
+
+        input[type="checkbox"]:checked + .ui-option-shell .ui-option-fill {
+            border-color: map-get($theme, accent-color);
+        }
+
+        &.primary {
+            input[type="radio"]:checked + .ui-option-shell {
+                border-color: map-get($theme, primary-color);
+            }
+
+            input[type="radio"]:checked + .ui-option-shell .ui-option-fill {
+                border-color: map-get($theme, primary-color);
+            }
+
+            input[type="checkbox"]:checked + .ui-option-shell .ui-option-fill {
+                border-color: map-get($theme, primary-color);
+            }
+        }
+
+        .ui-option-shell {
+            border: 2px solid map-get($theme, secondary-text-color);
+        }
+
+        .ui-option-shell::before {
+            background-color: ui-if(map-get($theme, is-dark), rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
+        }
+
+        input[type="checkbox"] + .ui-option-shell .ui-option-fill {
+            border-color: ui-if(map-get($theme, is-dark), rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.6));
+        }
+
+        input[type="radio"] + .ui-option-shell .ui-option-fill {
+            border: 0 solid ui-if(map-get($theme, is-dark), rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.6));
+        }
+    }
+}

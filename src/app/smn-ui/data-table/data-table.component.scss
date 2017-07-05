@@ -1,0 +1,120 @@
+.ui-data-table {
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.87);
+    border-collapse: collapse;
+    width: 100%;
+
+    th {
+        font-size: 12px;
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.54);
+        height: 56px;
+        text-align: left;
+        cursor: default;
+        user-select: none;
+
+        i {
+            font-size: 16px;
+            vertical-align: middle;
+            transition: opacity 280ms ui-easing(),
+            transform 280ms ui-easing();
+            opacity: 0;
+            transform: rotate(180deg);
+        }
+
+        &.order_asc {
+            i {
+                opacity: 1;
+                transform: rotate(180deg);
+            }
+        }
+
+        &.order_desc {
+            i {
+                opacity: 1;
+                transform: rotate(0deg);
+            }
+        }
+    }
+
+    th, td {
+        &:first-child {
+            padding: 0 24px;
+        }
+
+        &:last-child {
+            padding-right: 24px;
+        }
+
+        border-bottom: 1px solid ui-color('grey', '300');
+
+        &.option,
+        &.picture {
+            width: 56px;
+        }
+    }
+
+    tr {
+        &:last-child {
+            th, td {
+                border-color: transparent;
+            }
+        }
+
+        &.selected {
+            td {
+                background-color: ui-color('grey', '100');
+            }
+        }
+
+        &:hover {
+            td {
+                background-color: ui-color('grey', '200');
+            }
+        }
+
+        &.empty {
+            td {
+                background-color: transparent;
+            }
+        }
+    }
+
+    td {
+        height: 48px;
+    }
+
+    .align-right {
+        text-align: right;
+    }
+
+    .image {
+        height: 32px;
+        width: 32px;
+        border-radius: 16px;
+        background-position: center;
+        background-size: cover;
+        margin: 0 2px;
+    }
+
+    tfoot td {
+        color: rgba(0, 0, 0, 0.54);
+        font-size: 12px;
+        cursor: default;
+
+        &:hover {
+            background-color: transparent;
+        }
+        height: 56px;
+        &:last-child {
+            padding-right: 14px;
+        }
+
+        .pagination {
+            margin-right: 24px;
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+/**/

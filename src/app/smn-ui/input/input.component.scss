@@ -1,0 +1,190 @@
+@import "../core/variables";
+
+textarea {
+	resize: none;
+}
+
+ui-input-container {
+	transition: ui-easing('desaceleration');
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+    & > * + * {
+        margin-left: 16px;
+    }
+
+    .ui-input-wrap {
+        position: relative;
+        flex: 1;
+        padding-top: 16px;
+        margin-bottom: 26px;
+    }
+
+    label {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 24px;
+        pointer-events: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 16px;
+        color: rgba(0,0,0,.54);
+        transition: 225ms ui-easing('desaceleration');
+        user-select: none;
+    }
+
+    select {
+        user-select: none;
+    }
+
+    .ui-control {
+        display: block;
+        font-size: 16px;
+        font-weight: 400;
+        background-color: transparent;
+        border: 0;
+        padding: 8px 0;
+        width: 100%;
+        color: rgba(0,0,0,.87); // Value default
+        border-bottom: 1px solid rgba(0,0,0,.42); // Value default
+
+        &:disabled,
+        &:read-only:not(select) {
+            border-style: dotted;
+        }
+
+        &::placeholder {
+            color: rgba(0,0,0,.42); // Value default
+        }
+
+        // Label
+
+        &:focus ~ label,
+        &:not(.ui-empty) ~ label,
+        &.elevate ~ label {
+            top: 4px;
+            font-size: 12px;
+        }
+
+        &[required] ~ label::after {
+            content: '*';
+            margin-left: 2px;
+        }
+
+        &[required]:focus ~ label::after {
+            color: ui-color('red');
+        }
+
+        &.ng-invalid.ng-dirty ~ label {
+            animation: shake 360ms ui-easing('desaceleration');
+        }
+
+        // Line
+        &:focus ~ .line {
+            opacity: 1;
+            left: 0;
+            width: 100%;
+        }
+    }
+
+    .line {
+        position: absolute;
+        bottom: -1px;
+        height: 2px;
+        left: 50%;
+        width: 0;
+        transition: all 225ms ui-easing('desaceleration');
+        background-color: rgba(0,0,0,.42); // Value default
+        opacity: 0;
+    }
+
+    .ui-messages {
+        display: block;
+        position: relative;
+        top: 6px;
+
+        .ui-message {
+            font-size: 12px;
+            position: absolute;
+            left: 0;
+            right: 0;
+
+            &.helper,
+            &.counter {
+                color: rgba(0,0,0,.54); // Value default
+            }
+
+            &.counter {
+                text-align: right;
+            }
+
+            &.counter.error, &.error {
+                color: ui-color('red');
+            }
+        }
+    }
+
+    .suffix {
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        right: 0;
+        margin-top: -4px;
+        cursor: default;
+        user-select: none;
+        top: 20px;
+
+        & ~ .ui-control {
+            padding-right: 32px;
+        }
+    }
+
+    .no-pad,
+    .no-space {
+        padding-top: 0;
+    }
+    .no-margin,
+    .no-space {
+        margin-bottom: 0;
+    }
+    .ui-control.center {
+        text-align: center;
+    }
+    .ui-control.right {
+        text-align: right;
+    }
+}
+
+/* Validate */
+.ui-validate:not(.on-dirty):not(.on-submit) .ui-control.ng-invalid,
+.ui-validate.on-dirty .ui-control.ng-dirty.ng-invalid,
+.ui-validate.on-submit.ng-submitted .ui-control.ng-invalid {
+	border-color: ui-color('red');
+}
+.ui-validate:not(.on-dirty):not(.on-submit) .ui-control.ng-invalid ~ label,
+.ui-validate.on-dirty .ui-control.ng-dirty.ng-invalid ~ label,
+.ui-validate.on-submit.ng-submitted .ui-control.ng-invalid ~ label {
+	color: ui-color('red');
+}
+.ui-validate:not(.on-dirty):not(.on-submit) .ui-control.ng-invalid ~ .line,
+.ui-validate.on-dirty .ui-control.ng-dirty.ng-invalid ~ .line,
+.ui-validate.on-submit.ng-submitted .ui-control.ng-invalid ~ .line {
+	background-color: ui-color('red');
+}
+
+/* Animations */
+@keyframes shake {
+	25% {
+		transform: translateX(3px);
+	}
+	50% {
+		transform: translateX(0);
+	}
+	75% {
+		transform: translateX(1px);
+	}
+}

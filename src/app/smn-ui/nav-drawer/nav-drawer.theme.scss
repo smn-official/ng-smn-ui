@@ -1,0 +1,36 @@
+@import '../core/variables';
+
+@mixin ui-nav-drawer($theme) {
+    $color-overlay: ui-if(map-get($theme, is-dark) == true, rgba(0, 0, 0, .2), rgba(0, 0, 0, .4));
+    $color-background: ui-if(map-get($theme, is-dark) == true, #424242, #fff);
+    $color-divisor: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, .12), rgba(0, 0, 0, .12));
+    $color-divisor-secondary: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, .07), rgba(0, 0, 0, .07));
+
+    ui-nav-drawer {
+        nav,
+        ui-toolbar header {
+            background-color: $color-background;
+            color: map_get($theme, primary-text-color);
+
+            .logo ~ .title {
+                border-left: 1px solid $color-divisor;
+                @include mobile {
+                    border-left: none;
+                }
+            }
+        }
+
+        .ui-divider:not(.nothing) {
+            background-color: $color-divisor-secondary;
+        }
+    }
+
+    .ui-nav-drawer-overlay {
+        background-color: $color-overlay;
+    }
+
+    ui-nav-drawer nav .ui-nav-drawer-overflow {
+        border-top: 1px solid $color-divisor;
+        margin-top: -1px;
+    }
+}

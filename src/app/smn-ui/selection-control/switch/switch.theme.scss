@@ -1,0 +1,34 @@
+@import '../../core/variables';
+
+@mixin ui-switch($theme) {
+    ui-switch-container {
+        .info {
+            color: map_get($theme, primary-text-color);
+            .secondary {
+                color: map_get($theme, secondary-text-color);
+            }
+        }
+    }
+
+    ui-switch {
+        .switch-cover {
+            background-color: map_get($theme, accent-color);
+        }
+        input:not(:checked) + .switch-cover {
+            background-color: ui-if(map_get($theme, is-dark), ui-color('grey', '50'), ui-color('grey', '900'));
+        }
+        input:not(:checked) + .switch-cover .thumb-container::before {
+            background-color: ui-if(map_get($theme, is-dark), white, black);
+        }
+
+        &.primary {
+            .switch-cover {
+                background-color: map_get($theme, primary-color);
+            }
+        }
+
+        input:disabled + .switch-cover {
+            background-color: ui-color('grey', '400');
+        }
+    }
+}

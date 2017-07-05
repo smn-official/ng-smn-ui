@@ -1,0 +1,135 @@
+@import "../core/variables";
+
+ui-nav-drawer {
+    nav {
+        top: 0;
+        bottom: 0;
+        max-width: 320px;
+        position: fixed;
+        //background-color: #fff;
+        width: 100%;
+        z-index: 3;
+        box-shadow: ui-shadow('16dp');
+        transition: transform 0.28s ui-easing('deceleration');
+        left: 0;
+        transform: translateX(-100% - 10);
+        user-select: none;
+
+        .ui-nav-drawer-overflow {
+            height: calc(100% - 64px);
+            overflow: auto;
+            margin-top: -1px;
+            position: relative;
+            //padding-bottom: 56px;
+            //@include desktop {
+            //    padding-bottom: 64px;
+            //}
+            //@include mobile-portrait {
+            //    padding-bottom: 56px;
+            //}
+            //@include mobile-landscape {
+            //    padding-bottom: 48px;
+            //}
+        }
+
+        @include mobile {
+            width: calc(100% - 56px);
+        }
+
+        .ui-list {
+            padding-bottom: 0;
+
+            .ui-list-item:not(.nothing) {
+                padding-left: 21px;
+            }
+        }
+    }
+
+    ui-toolbar header {
+        //background-color: #fff;
+    }
+
+    &.persistent {
+        nav {
+            @include desktop {
+                box-shadow: ui-shadow('1dp');
+            }
+        }
+    }
+
+    &.open nav {
+        transform: translateX(0);
+    }
+
+    &:not(.persistent) .ui-nav-drawer-overlay {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        opacity: 0;
+        z-index: -1;
+        visibility: hidden;
+    }
+
+    @include mobile {
+        .ui-nav-drawer-overlay {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            opacity: 0;
+            z-index: -1;
+            visibility: hidden;
+        }
+    }
+}
+
+ui-nav-drawer.open nav + .ui-nav-drawer-overlay {
+    animation: openNav 0.28s ui-easing('deceleration');
+    animation-fill-mode: forwards;
+}
+
+ui-nav-drawer:not(.open) nav + .ui-nav-drawer-overlay {
+    animation: closeNav 0.28s ui-easing('deceleration');
+    animation-fill-mode: forwards;
+}
+
+@keyframes openNav {
+    0% {
+        opacity: 0;
+        z-index: 2;
+    }
+
+    100% {
+        opacity: 1;
+        z-index: 2;
+    }
+}
+
+@keyframes closeNav {
+    0% {
+        opacity: 1;
+        z-index: 2;
+    }
+
+    99% {
+        opacity: 0;
+        z-index: 2;
+    }
+    100% {
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+body {
+    transition: margin-left 0.28s ui-easing('deceleration');
+}
+
+body.ui-nav-drawer-persistent {
+    @include desktop {
+        margin-left: 320px;
+    }
+}

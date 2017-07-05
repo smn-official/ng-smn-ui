@@ -1,0 +1,112 @@
+.ui-list {
+    padding: 8px 0;
+
+    li,
+    .ui-list-item {
+        height: 48px;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.87);
+        font-weight: 500;
+        width: 100%;
+        &:not(a) {
+            cursor: default;
+        }
+
+        &.subheader {
+            color: rgba(0, 0, 0, 0.54);
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            width: 56px;
+            color: rgba(0, 0, 0, 0.54);
+        }
+
+        .arrow {
+            position: absolute;
+            color: rgba(0, 0, 0, 0.54);
+            right: 12px;
+            top: 50%;
+            margin-top: -12px;
+            i {
+                transition: transform 280ms ui-easing('deceleration');
+            }
+        }
+
+        &,
+        .icon {
+            transition: color 280ms ui-easing('deceleration');
+        }
+
+        transition: background-color 280ms ui-easing('deceleration');
+
+        &.collapsed:not(.nothing) {
+            background-color: rgba(0, 0, 0, 0.025);
+            font-weight: 500;
+            .arrow i {
+                transform: rotate(90deg);
+            }
+        }
+    }
+
+    @mixin teste($test) {
+        .ui-list-item-group {
+            li,
+            .ui-list-item:not(.nothing) {
+                padding-left: #{$test}px !important;
+                &.collapsed {
+                    font-weight: 500;
+                }
+            }
+
+            @content;
+        }
+    }
+
+    .ui-list-item-group {
+        li,
+        .ui-list-item {
+            font-weight: 400;
+            padding-left: 37px !important;
+            &.collapsed:not(.nothing) {
+                font-weight: 500;
+            }
+        }
+
+        @include teste(53) {
+            @include teste(69) {
+                @include teste(85) {
+                    @include teste(101) {
+                    }
+                }
+            }
+        }
+
+        overflow: hidden;
+
+        height: 0;
+
+        transition: height 280ms ui-easing('deceleration'),
+        background-color 280ms ui-easing('deceleration'),
+        opacity 280ms ui-easing('deceleration');
+
+        //opacity: 0;
+
+        &.collapsed {
+            background-color: rgba(0, 0, 0, 0.025);
+            opacity: 1;
+
+            li,
+            .ui-list-item {
+                font-weight: 400;
+            }
+        }
+    }
+}
+
+/**/

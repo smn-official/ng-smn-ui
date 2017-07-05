@@ -1,0 +1,19 @@
+@import '../core/variables';
+
+:host {
+    position: fixed;
+    height: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: left 280ms ui-easing('decelaration');
+}
+
+@include desktop {
+    :host-context(.ui-nav-drawer-persistent) {
+        left: 320px;
+    }
+}

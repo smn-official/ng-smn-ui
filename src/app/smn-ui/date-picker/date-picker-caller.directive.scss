@@ -1,0 +1,65 @@
+@import "../core/variables";
+
+.wrap-date-picker {
+
+    ui-calendar {
+        transform-origin: top left;
+        transition: transform 280ms ui-easing('sharp'), opacity 280ms ui-easing('sharp');
+        transform: scale(0);
+        opacity: 0;
+        z-index: 3;
+    }
+
+    &.open ui-calendar {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    @media (max-width: 600px) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 3;
+        display: flex;
+        background-color: transparent !important;
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0);
+            transition: background 195ms ui-easing('deceleration');
+        }
+
+        .overlay, ui-calendar {
+            z-index: 3;
+        }
+
+        ui-calendar {
+            box-shadow: ui-shadow('24dp');
+            position: relative !important;
+            top: initial !important;
+            left: initial !important;
+            margin: auto;
+            transform-origin: bottom;
+            transition: transform 225ms ui-easing('acceleration'), opacity 195ms ui-easing('acceleration');
+            transform: scale(0.8) translateY(16px);
+        }
+
+        &.open {
+            .overlay {
+                background-color: rgba(0,0,0,.2);
+            }
+
+            ui-calendar {
+                transition: transform 225ms ui-easing('deceleration'), opacity 195ms ui-easing('deceleration');
+                transform: scale(1) translateY(0);
+            }
+        }
+
+    }
+}

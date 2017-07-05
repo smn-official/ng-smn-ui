@@ -1,0 +1,81 @@
+@import "palette";
+@import "../button/button.theme";
+@import "../calendar/calendar-content.theme";
+@import "../calendar/calendar.theme";
+@import "../card/card.theme";
+@import "../date-picker/date-picker-caller.theme";
+@import "../dialog/dialog.theme";
+@import "../divider/divider.theme";
+@import "../input/input.theme";
+@import "../list/list.theme";
+@import "../nav-drawer/nav-drawer.theme";
+@import "../progress/linear/progress-linear.theme";
+@import "../ripple/ripple.theme";
+@import "../selection-control/option/option.theme";
+@import "../selection-control/selection/selection.theme";
+@import "../selection-control/switch/switch.theme";
+@import "../subheader/subheader.theme";
+@import "../toolbar/toolbar.theme";
+@import "variables";
+
+@function ui-theme($primary, $accent, $is-dark: false) {
+    $primary-text-color: rgba(0, 0, 0, 0.87);
+    $secondary-text-color: rgba(0, 0, 0, 0.54);
+    $disabled-text-color: rgba(0, 0, 0, 0.38);
+    $hint-text-color: $disabled-text-color;
+
+    @if $is-dark == true {
+        $primary-text-color: rgba(255, 255, 255, 1);
+        $secondary-text-color: rgba(255, 255, 255, 0.70);
+        $disabled-text-color: rgba(255, 255, 255, 0.50);
+        $hint-text-color: $disabled-text-color;
+    }
+
+    $theme: (
+        primary: map_get($primary, color),
+        primary-hue: map_get($primary, hue),
+        primary-color: ui-color(map_get($primary, color), map_get($primary, hue)),
+        accent: map_get($accent, color),
+        accent-hue: map_get($accent, hue),
+        accent-color: ui-color(map_get($accent, color), map_get($accent, hue)),
+        is-dark: $is-dark,
+        primary-text-color: $primary-text-color,
+        secondary-text-color: $secondary-text-color,
+        disabled-text-color: $disabled-text-color,
+        hint-text-color: $hint-text-color,
+    );
+
+    @return $theme;
+}
+
+@mixin ui-build-theme($theme) {
+    html, body {
+        background-color: ui-if(map_get($theme, is-dark), #303030, #FAFAFA);
+    }
+    .primary-text {
+        color: map_get($theme, primary-text-color);
+    }
+    .secondary-text {
+        color: map_get($theme, secondary-text-color);
+    }
+    .hint-text {
+        color: map_get($theme, hint-text-color);
+    }
+    @include ui-button($theme);
+    @include ui-calendar($theme);
+    @include ui-calendar-content($theme);
+    @include ui-card($theme);
+    @include ui-date-picker-caller($theme);
+    @include ui-dialog($theme);
+    @include ui-divider($theme);
+    @include ui-input($theme);
+    @include ui-list($theme);
+    @include ui-nav-drawer($theme);
+    @include ui-option($theme);
+    @include ui-progress($theme);
+    @include ui-ripple($theme);
+    @include ui-selection($theme);
+    @include ui-subheader($theme);
+    @include ui-switch($theme);
+    @include ui-toolbar($theme);
+}

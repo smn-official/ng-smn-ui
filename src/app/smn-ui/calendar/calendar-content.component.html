@@ -1,0 +1,20 @@
+<div class="label">
+    <button class="month-label">
+        <span>{{months[calendar.month] + ' de ' + calendar.year | uiCapitalize}}</span>
+    </button>
+</div>
+<div class="week-header">
+    <div class="week-day" *ngFor="let day of days">{{day.charAt(0).toUpperCase()}}</div>
+</div>
+<div class="days">
+    <div class="day" *ngFor="let day of calendar.days">
+        <button type="button"
+                class="ui-button icon"
+                (click)="!isDisabled(day.value) && chooseDate(day.value)"
+                [disabled]="isDisabled(day.value)"
+                [ngClass]="{'primary': isDay(day.value) || day.today, 'flat': !isDay(day.value)}"
+                *ngIf="day.month === calendar.month">
+            {{day.date}}
+        </button>
+    </div>
+</div>

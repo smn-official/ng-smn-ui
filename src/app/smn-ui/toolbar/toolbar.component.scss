@@ -1,0 +1,270 @@
+@import "../core/variables";
+
+$sizes: 480 600 840 960 1280 1440 1600;
+
+.ui-toolbar-space {
+    height: 56px;
+    @include desktop {
+        height: 64px;
+        min-height: 64px;
+    }
+    @include mobile-portrait {
+        height: 56px;
+        min-height: 56px;
+    }
+    @include mobile-landscape {
+        height: 48px;
+        min-height: 48px;
+    }
+    transition: height 0.28s ui-easing('deceleration');
+}
+
+ui-toolbar {
+    .ui-toolbar-space {
+        display: none;
+    }
+
+    header {
+        left: 0;
+        top: 0;
+        right: 0;
+        height: 56px;
+        @include desktop {
+            height: 64px;
+            min-height: 64px;
+        }
+        @include mobile-portrait {
+            height: 56px;
+            min-height: 56px;
+        }
+        @include mobile-landscape {
+            height: 48px;
+            min-height: 48px;
+        }
+        box-shadow: ui-shadow('4dp');
+        transition: box-shadow 0.335s ui-easing('deceleration'),
+        height 0.28s ui-easing('deceleration'),
+        padding-bottom 0.28s ui-easing('deceleration'),
+        background 0.28s ui-easing('deceleration');
+        display: flex;
+        align-items: center;
+        padding: 4px;
+        color: ui-text-color('grey', '300');
+
+        .ui-button {
+            margin: 12px;
+            @include mobile-landscape {
+                margin: 6px;
+            }
+
+            &:not(.success):not(.warning):not(.error):not(:disabled).flat {
+                color: inherit;
+
+                i {
+                    color: inherit;
+                }
+            }
+        }
+
+        .title {
+            padding: 0 16px;
+            font-weight: 500;
+            cursor: default;
+            user-select: none;
+        }
+
+        .logo {
+            max-height: 30px;
+            margin: 0 20px 0 10px;
+            width: auto;
+            height: 100%;
+            user-select: none;
+
+            @include mobile {
+                display: none;
+            }
+
+            img {
+                height: 100%;
+            }
+        }
+
+        .logo ~ .title {
+            border-left: 1px solid ui-text-color('grey', '300', 0.3);
+            @include mobile {
+                border-left: none;
+            }
+        }
+    }
+
+    &.transparent:not(.scrolled) header {
+        background-color: transparent;
+    }
+
+    &.fixed {
+        header {
+            position: fixed;
+            z-index: 1;
+        }
+
+        .ui-toolbar-space {
+            display: block;
+        }
+    }
+
+    &.flat:not(.scrolled) header {
+        box-shadow: none;
+    }
+
+    .align-right {
+        margin-left: auto;
+        display: flex;
+
+        div {
+            display: flex;
+        }
+    }
+
+    &.size-2x {
+        &:not(.scrolled) {
+            header {
+                box-shadow: none;
+
+                @include desktop {
+                    height: 162px;
+                    padding-bottom: 102px;
+                }
+                @include mobile-landscape {
+                    height: 66px;
+                    padding-bottom: 22px;
+                }
+            }
+        }
+
+        .ui-toolbar-space {
+            @include desktop {
+                height: 98px;
+            }
+            @include mobile-landscape {
+                height: 66px;
+            }
+        }
+    }
+
+    &.size-2x {
+        @each $size in $sizes {
+            @media (max-width: #{$size}px) {
+                &.elevate-on-s#{$size} {
+                    header {
+                        height: 48px !important;
+                        @include desktop {
+                            height: 64px !important;
+                        }
+                        @include mobile-portrait {
+                            height: 56px !important;
+                        }
+                        padding-bottom: 4px !important;
+                        animation: fixZindex 0.28s ui-easing('deceleration');
+                        animation-fill-mode: forwards;
+                    }
+
+                    @keyframes fixZindex {
+                        0% {
+                            z-index: 1;
+                        }
+
+                        99% {
+                            z-index: 1;
+                        }
+                        100% {
+                            z-index: 2;
+                        }
+                    }
+
+                    .ui-toolbar-space {
+                        height: 48px !important;
+                        @include desktop {
+                            height: 64px !important;
+                        }
+                        @include mobile-portrait {
+                            height: 56px !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        @include mobile-portrait {
+            header:not(.nothing) {
+                height: 56px !important;
+                padding-bottom: 4px !important;
+                z-index: 2 !important;
+            }
+
+            .ui-toolbar-space:not(.nothing) {
+                height: 56px !important;
+            }
+        }
+    }
+}
+
+body.ui-nav-drawer-persistent {
+    ui-toolbar {
+        &.size-2x {
+            @each $size in $sizes {
+                @media (max-width: #{$size + 320}px) {
+                    &.elevate-on-s#{$size} {
+                        header {
+                            height: 48px !important;
+                            @include desktop {
+                                height: 64px !important;
+                            }
+                            @include mobile-portrait {
+                                height: 56px !important;
+                            }
+                            padding-bottom: 4px !important;
+                            animation: fixZindex 0.28s ui-easing('deceleration');
+                            animation-fill-mode: forwards;
+                        }
+
+                        @keyframes fixZindex {
+                            0% {
+                                z-index: 1;
+                            }
+
+                            99% {
+                                z-index: 1;
+                            }
+                            100% {
+                                z-index: 2;
+                            }
+                        }
+
+                        .ui-toolbar-space {
+                            height: 48px !important;
+                            @include desktop {
+                                height: 64px !important;
+                            }
+                            @include mobile-portrait {
+                                height: 56px !important;
+                            }
+                        }
+                    }
+                }
+            }
+
+            @include mobile-portrait {
+                header:not(.nothing) {
+                    height: 56px !important;
+                    padding-bottom: 4px !important;
+                    z-index: 2 !important;
+                }
+
+                .ui-toolbar-space:not(.nothing) {
+                    height: 56px !important;
+                }
+            }
+        }
+    }
+}
+/**/

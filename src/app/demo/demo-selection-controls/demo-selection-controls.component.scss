@@ -1,0 +1,20 @@
+:host {
+    margin: 20px;
+    display: block;
+
+    ui-card {
+        margin-bottom: 10px;
+    }
+
+    .example2 {
+        display: flex;
+
+        .light, .dark {
+            width: 50%;
+
+            &:first-child {
+                margin-right: 10px;
+            }
+        }
+    }
+}

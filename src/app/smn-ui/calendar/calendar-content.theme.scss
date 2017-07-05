@@ -1,0 +1,13 @@
+@import "../core/variables";
+
+@mixin ui-calendar-content($theme) {
+
+    ui-calendar-content {
+        .label span {
+            color: map_get($theme, primary-text-color);
+        }
+        .week-header {
+            color: map_get($theme, secondary-text-color);
+        }
+    }
+}

@@ -1,0 +1,11 @@
+@import "../core/variables";
+
+@mixin ui-date-picker-caller($theme) {
+    $opacity: ui-if(map_get($theme, is-dark), .2, .4);
+
+    @media (max-width: 600px) {
+        .wrap-date-picker.open .overlay {
+            background-color: rgba(0, 0, 0, $opacity);
+        }
+    }
+}

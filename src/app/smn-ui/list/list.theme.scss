@@ -1,0 +1,29 @@
+@import "../core/variables";
+
+@mixin ui-list($theme) {
+    .ui-list {
+        li,
+        .ui-list-item {
+            color: map_get($theme, primary-text-color);
+
+            &.subheader {
+                color: map_get($theme, secondary-text-color);
+            }
+
+            &.active {
+                &,
+                .icon {
+                    color: map_get($theme, primary-color);
+                }
+
+                &.accent {
+                    &,
+                    .icon {
+                        color: map_get($theme, accent-color);
+                    }
+                }
+            }
+        }
+    }
+
+}
