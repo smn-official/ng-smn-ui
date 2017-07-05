@@ -12,7 +12,6 @@ export class UiListItemDirective implements AfterViewInit {
     ngAfterViewInit() {
         setTimeout(() => {
             const itemActive = this.uiListItem.querySelectorAll('.ui-list-item.active')[0];
-            console.log(itemActive);
             if (itemActive) {
                 this.element.nativeElement.classList.toggle('collapsed');
                 this.uiListItem.classList.toggle('collapsed');
