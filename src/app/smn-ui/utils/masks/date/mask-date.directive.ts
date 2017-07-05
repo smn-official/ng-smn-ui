@@ -1,8 +1,12 @@
-import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges, Output} from '@angular/core';
-import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
+import {
+    AfterViewInit, Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges,
+    Output
+} from '@angular/core';
+import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import {UiElement} from '../../providers/element.provider';
 import {checkDate} from './check-date';
+import {isDate} from 'rxjs/util/isDate';
 
 @Directive({
     selector: '[uiMaskDate][ngModel]',
@@ -16,13 +20,14 @@ import {checkDate} from './check-date';
         multi: true
     }, DatePipe]
 })
-export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnChanges {
+export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnChanges, AfterViewInit {
 
+    loaded: boolean;
     input: boolean;
     beforeSelIndex;
     onChange: Function;
     onTouched: Function;
-    control: AbstractControl;
+    control: FormControl;
     symbolsPositions: number[] = [2, 5];
     @Input() minDate: Date;
     @Input() maxDate: Date;
@@ -32,7 +37,16 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
     constructor(public elementRef: ElementRef, public datePipe: DatePipe) {
     }
 
+    ngAfterViewInit() {
+        setTimeout(() => {
+            this.loaded = true;
+        });
+    }
+
     writeValue(rawValue: any): void {
+        if (this.control && this.loaded) {
+            this.control.markAsDirty();
+        }
         if (!this.input) {
             this.elementRef.nativeElement.value = this.formatDate(this.datePipe.transform(this.ngModel, 'dd/MM/yyyy'));
         }
@@ -40,6 +54,7 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
     }
 
     renderViaInput(rawValue: any): void {
+        this.control.markAsDirty();
         this.ngModel = checkDate(this.formatDate(rawValue));
         this.ngModelChange.emit(this.ngModel);
         this.elementRef.nativeElement.value = this.formatDate(this.elementRef.nativeElement.value);
@@ -74,14 +89,13 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
         }
     }
 
-    validate(control: AbstractControl): { [key: string]: any } {
-
+    validate(control: FormControl): { [key: string]: any } {
         this.control = control;
         const value = this.elementRef.nativeElement.value;
-        const dateControl = control.value;
+        const dateControl = isDate(control.value) ? control.value : new Date(control.value);
 
         if (value && !checkDate(value)) {
-            return { parse: true };
+            return {parse: true};
         } else if (checkDate(value)) {
             dateControl.setHours(0, 0, 0, 0);
 
@@ -89,14 +103,14 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
                 this.minDate.setHours(0, 0, 0, 0);
 
                 if (dateControl.getTime() < this.minDate.getTime()) {
-                    return { minDate: true };
+                    return {minDate: true};
                 }
             }
             if (this.maxDate) {
                 this.maxDate.setHours(0, 0, 0, 0);
 
                 if (dateControl.getTime() > this.maxDate.getTime()) {
-                    return { maxDate: true };
+                    return {maxDate: true};
                 }
             }
         }

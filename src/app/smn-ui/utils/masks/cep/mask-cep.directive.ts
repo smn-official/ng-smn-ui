@@ -1,5 +1,5 @@
-import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, Output} from '@angular/core';
-import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
+import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, Output, AfterViewInit} from '@angular/core';
+import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
 import {UiCepPipe} from './cep.pipe';
 import {UiElement} from '../../providers/element.provider';
 
@@ -15,13 +15,14 @@ import {UiElement} from '../../providers/element.provider';
         multi: true
     }, UiCepPipe]
 })
-export class UiMaskCepDirective implements ControlValueAccessor, Validator {
+export class UiMaskCepDirective implements ControlValueAccessor, Validator, AfterViewInit {
 
+    loaded: boolean;
     input: boolean;
     beforeSelIndex;
     onChange: Function;
     onTouched: Function;
-    control: AbstractControl;
+    control: FormControl;
     symbolsPositions: number[] = [5, 9];
     @Input() ngModel: any;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
@@ -29,7 +30,16 @@ export class UiMaskCepDirective implements ControlValueAccessor, Validator {
     constructor(public elementRef: ElementRef, public cepPipe: UiCepPipe) {
     }
 
+    ngAfterViewInit() {
+       setTimeout(() => {
+            this.loaded = true;
+       });
+    }
+
     writeValue(rawValue: any): void {
+        if (this.control && this.loaded) {
+            this.control.markAsDirty();
+        }
         if (!this.input) {
             this.elementRef.nativeElement.value = this.cepPipe.transform(this.ngModel);
         }
@@ -37,6 +47,7 @@ export class UiMaskCepDirective implements ControlValueAccessor, Validator {
     }
 
     renderViaInput(rawValue: any): void {
+        this.control.markAsDirty();
         this.ngModel = this.formart(rawValue);
         this.ngModelChange.emit(this.ngModel);
         this.elementRef.nativeElement.value = this.cepPipe.transform(this.elementRef.nativeElement.value);
@@ -55,12 +66,12 @@ export class UiMaskCepDirective implements ControlValueAccessor, Validator {
         return value.substring(0, 8);
     }
 
-    validate(control: AbstractControl): { [key: string]: any } {
+    validate(control: FormControl): { [key: string]: any } {
 
         this.control = control;
 
         if (control.value && this.formart(control.value).length < 8) {
-            return { parse: true };
+            return {parse: true};
         }
 
         return null;

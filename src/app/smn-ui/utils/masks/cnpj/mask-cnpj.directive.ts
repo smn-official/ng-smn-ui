@@ -1,5 +1,8 @@
-import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, Output} from '@angular/core';
-import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
+import {
+    AfterViewInit, Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input,
+    Output
+} from '@angular/core';
+import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
 import {UiCnpjPipe} from './cnpj.pipe';
 import {UiElement} from '../../providers/element.provider';
 
@@ -15,13 +18,14 @@ import {UiElement} from '../../providers/element.provider';
         multi: true
     }, UiCnpjPipe]
 })
-export class UiMaskCnpjDirective implements ControlValueAccessor, Validator {
+export class UiMaskCnpjDirective implements ControlValueAccessor, Validator, AfterViewInit {
 
+    loaded: boolean;
     input: boolean;
     beforeSelIndex;
     onChange: Function;
     onTouched: Function;
-    control: AbstractControl;
+    control: FormControl;
     symbolsPositions: number[] = [2, 6, 10, 15, 18];
     @Input() minDate: Date;
     @Input() maxDate: Date;
@@ -31,7 +35,16 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator {
     constructor(public elementRef: ElementRef, public cnpjPipe: UiCnpjPipe) {
     }
 
+    ngAfterViewInit() {
+        setTimeout(() => {
+            this.loaded = true;
+        });
+    }
+
     writeValue(rawValue: any): void {
+        if (this.control && this.loaded) {
+            this.control.markAsDirty();
+        }
         if (!this.input) {
             this.elementRef.nativeElement.value = this.cnpjPipe.transform(this.ngModel);
         }
@@ -39,6 +52,7 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator {
     }
 
     renderViaInput(rawValue: any): void {
+        this.control.markAsDirty();
         this.ngModel = this.formart(rawValue);
         this.ngModelChange.emit(this.ngModel);
         this.elementRef.nativeElement.value = this.cnpjPipe.transform(this.elementRef.nativeElement.value);
@@ -57,12 +71,12 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator {
         return value.substring(0, 14);
     }
 
-    validate(control: AbstractControl): { [key: string]: any } {
+    validate(control: FormControl): { [key: string]: any } {
 
         this.control = control;
 
         if (control.value && this.formart(control.value).length < 14) {
-            return { parse: true };
+            return {parse: true};
         }
 
         return null;
