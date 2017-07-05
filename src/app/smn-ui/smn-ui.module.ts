@@ -46,7 +46,7 @@ import {UiMaskCnpjDirective} from './utils/masks/cnpj/mask-cnpj.directive';
 import {UiCnpjPipe} from './utils/masks/cnpj/cnpj.pipe';
 import {UiMaskCepDirective} from './utils/masks/cep/mask-cep.directive';
 import {UiCepPipe} from './utils/masks/cep/cep.pipe';
-import {UiPhonePipe} from "app/smn-ui/utils/masks/phone/phone.pipe";
+import {UiPhonePipe} from './utils/masks/phone/phone.pipe';
 import {UiMaskPhoneDirective} from './utils/masks/phone/mask-phone.directive';
 
 export {
