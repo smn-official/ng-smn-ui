@@ -18,11 +18,11 @@
 
             &.icon {
                 &.primary::before {
-                    background-color: ui-color(map_get($theme, primary));
+                    background-color: map_get($theme, primary-color);
                 }
 
                 &.accent::before {
-                    background-color: ui-color(map_get($theme, primary));
+                    background-color: map_get($theme, accent-color);
                 }
             }
         }
@@ -67,10 +67,10 @@
 
             &.primary {
                 background-color: ui-color(map_get($theme, primary), map_get($theme, primary-hue));
-                color: ui-text-color(map_get($theme, primary));
+                color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
 
                 .ui-ripple-wave {
-                    background-color: ui-if(ui-text-color(map_get($theme, primary)) == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+                    background-color: ui-if(ui-text-color(map_get($theme, primary), map_get($theme, primary-hue)) == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
                 }
 
                 &::before {
@@ -79,7 +79,7 @@
 
                 &.flat {
                     background-color: transparent;
-                    color: ui-color(map_get($theme, primary));
+                    color: map_get($theme, primary-color);
 
                     &::before {
                         background-color: $hover-color;
@@ -92,20 +92,20 @@
             }
 
             &.accent {
-                background-color: ui-color(map_get($theme, accent), map_get($theme, accent-hue));
-                color: ui-text-color(map_get($theme, accent));
+                background-color: map_get($theme, accent-color);
+                color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
 
                 .ui-ripple-wave {
-                    background-color: ui-if(ui-text-color(map_get($theme, accent)) == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+                    background-color: ui-if(ui-text-color(map_get($theme, accent), map_get($theme, accent-hue)) == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
                 }
 
                 &::before {
-                    background-color: ui-text-color(map_get($theme, accent));
+                    background-color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
                 }
 
                 &.flat {
                     background-color: transparent;
-                    color: ui-color(map_get($theme, accent));
+                    color: map_get($theme, accent-color);
 
                     &::before {
                         background-color: $hover-color;
@@ -113,7 +113,7 @@
                 }
 
                 ui-progress-radial.indeterminate .spinner-container .path {
-                    stroke: ui-text-color(map_get($theme, accent));
+                    stroke: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
                 }
             }
 

@@ -12,7 +12,9 @@
         color: rgba(0, 0, 0, 0.87);
         font-weight: 500;
         width: 100%;
-        cursor: default;
+        &:not(a) {
+            cursor: default;
+        }
 
         &.subheader {
             color: rgba(0, 0, 0, 0.54);
@@ -106,4 +108,5 @@
         }
     }
 }
+
 /**/

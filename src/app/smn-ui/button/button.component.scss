@@ -209,7 +209,7 @@
         }
     }
 
-    &.success {
+    &.success:not(:disabled) {
         background-color: ui-color('green', '600');
         color: ui-text-color('green', '600');
 
@@ -231,7 +231,7 @@
         }
     }
 
-    &.warning {
+    &.warning:not(:disabled) {
         background-color: ui-color('orange');
         color: ui-text-color('orange');
 
@@ -253,7 +253,7 @@
         }
     }
 
-    &.error {
+    &.error:not(:disabled) {
         background-color: ui-color('red');
         color: ui-text-color('red');
 
