@@ -39,7 +39,7 @@ import {UiToolbarService} from './toolbar/toolbar.service';
 import {UiWindowRef} from './utils/providers/window.provider';
 import {UiMaskDateDirective} from './utils/masks/date/mask-date.directive';
 import {UiTimeAgoPipe} from './utils/pipes/time-ago.pipe';
-import {UiListItemDirective} from './list/list.directive';
+import {UiListItemDirective} from './list/list-item.directive';
 import {UiMaskCpfDirective} from './utils/masks/cpf/mask-cpf.directive';
 import {UiCpfPipe} from './utils/masks/cpf/cpf.pipe';
 import {UiMaskCnpjDirective} from './utils/masks/cnpj/mask-cnpj.directive';
