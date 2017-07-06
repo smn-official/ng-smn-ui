@@ -41,6 +41,9 @@ export function checkDate(value: any): any {
     if (month < 1 || month > 12) {
         return false;
     }
+    if (year.length < 4) {
+        return false;
+    }
 
     const dateCheck: number = new Date(year, month, 0).getDate();
     if (date > dateCheck || date < 1) {
