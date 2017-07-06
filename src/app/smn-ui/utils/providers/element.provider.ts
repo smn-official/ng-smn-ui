@@ -161,10 +161,10 @@ function _position(el, withoutScroll): any {
     }
 }
 function _getCaretPosition(el): any {
-    let documentt: {
-        selection?: any
+    const documentt:any = {
+        selection: undefined
     };
-    documentt = document;
+    Object.assign(documentt, document);
 
     let caretPos = 0;
     if (documentt.selection) { // IE Support

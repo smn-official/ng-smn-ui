@@ -27,7 +27,7 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
     beforeSelIndex;
     onChange: Function;
     onTouched: Function;
-    control: FormControl;
+    control: any;
     symbolsPositions: number[] = [2, 5];
     @Input() minDate: Date;
     @Input() maxDate: Date;
