@@ -1,0 +1,66 @@
+@import "../core/variables";
+
+@mixin ui-slider($theme) {
+    $primary-color: map_get($theme, primary-color);
+    $accent-color: map_get($theme, accent-color);
+    $is-dark: map_get($theme, is-dark);
+
+    ui-slider {
+        .track {
+            &.off {
+                background-color: ui-if($is-dark, rgba(255, 255, 255, .3), rgba(0, 0, 0, .26));
+            }
+            &.on {
+                background-color: $primary-color;
+
+                .balloon-wrap {
+                    path {
+                        fill: $primary-color;
+                    }
+                    .value {
+                        color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+                    }
+                }
+
+                .thumb-container {
+                    .thumb {
+                        background-color: $primary-color;
+                    }
+
+                    &::before {
+                        background-color: rgba($primary-color, 0.1);
+                    }
+
+                }
+            }
+        }
+
+        .points .point {
+            background-color: ui-if($is-dark, ui-color('white'), ui-color('black'));
+        }
+    }
+
+    ui-slider.accent .track.on {
+        background-color: $accent-color;
+
+        .balloon-wrap {
+            path {
+                fill: $accent-color;
+            }
+            .value {
+                color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+            }
+        }
+
+        .thumb-container {
+            .thumb {
+                background-color: $accent-color;
+            }
+
+            &::before {
+                background-color: rgba($accent-color, 0.1);
+            }
+
+        }
+    }
+}

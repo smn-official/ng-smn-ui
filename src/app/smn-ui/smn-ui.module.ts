@@ -47,6 +47,8 @@ import {UiCepPipe} from './utils/masks/cep/cep.pipe';
 import {UiPhonePipe} from './utils/masks/phone/phone.pipe';
 import {UiMaskPhoneDirective} from './utils/masks/phone/mask-phone.directive';
 import {UiListComponent} from './list/list.component';
+import {UiSliderComponent} from './slider/slider.component';
+import {UiSliderMultiHandleComponent} from './slider/slider-multi-handle.component';
 
 export {
     UiColor,
@@ -100,7 +102,10 @@ const lib: any[] = [
     UiCepPipe,
     UiMaskPhoneDirective,
     UiPhonePipe,
-    UiListComponent
+    UiListComponent,
+    UiPhonePipe,
+    UiSliderComponent,
+    UiSliderMultiHandleComponent
 ];
 
 @NgModule({
