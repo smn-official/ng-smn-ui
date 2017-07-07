@@ -86,14 +86,19 @@ function _trigger(el, eventToTrigger): any {
     event.initEvent(eventToTrigger, true, false);
     el.dispatchEvent(event);
 }
-function _on(el, events, listener): any {
-    events = events.split(' ');
-    const iLen = events.length;
-    for (let i = 0; i < iLen; i++) {
-        if (events[i]) {
-            el.addEventListener(events[i], listener, false);
-        }
+function _on(pEl, events, listener): any {
+    let elements;
+    if (pEl.constructor === NodeList) {
+        elements = pEl;
+    } else {
+        elements = [pEl];
     }
+
+    events = events.split(' ');
+
+    Array.prototype.forEach.call(elements, el => {
+        events.forEach(event => el.addEventListener(event, listener, false));
+    });
 }
 function _off(el, events, listener): any {
     events = events.split(' ');
