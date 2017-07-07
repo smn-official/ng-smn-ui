@@ -1,6 +1,7 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {RouterModule} from '@angular/router';
 
 import './button/button.service';
 import {UiAddCalendarDirective} from './calendar/add-calendar.directive';
@@ -45,7 +46,7 @@ import {UiMaskCepDirective} from './utils/masks/cep/mask-cep.directive';
 import {UiCepPipe} from './utils/masks/cep/cep.pipe';
 import {UiPhonePipe} from './utils/masks/phone/phone.pipe';
 import {UiMaskPhoneDirective} from './utils/masks/phone/mask-phone.directive';
-// import {UiListComponent} from './list/list.component';
+import {UiListComponent} from './list/list.component';
 
 export {
     UiColor,
@@ -99,13 +100,14 @@ const lib: any[] = [
     UiCepPipe,
     UiMaskPhoneDirective,
     UiPhonePipe,
-    // UiListComponent
+    UiListComponent
 ];
 
 @NgModule({
     imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        RouterModule
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [...lib],

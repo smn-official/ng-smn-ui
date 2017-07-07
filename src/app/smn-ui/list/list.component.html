@@ -1,3 +1,23 @@
-<ng-content>
-
-</ng-content>
+<ng-container>
+    <div class="ui-list">
+        <div *ngFor="let item of list">
+            <div *ngIf="!item.childs && !item.url" class="ui-list-item disabled">{{item.name}}</div>
+            <a *ngIf="!item.childs && item.url" class="ui-list-item" uiRipple
+               [routerLink]="item.url ? [item.url] : null"
+               [routerLinkActive]="['active']">{{item.name}}</a>
+            <div *ngIf="item.childs">
+                <div class="ui-list-item" uiRipple [uiListItem]="componentes">
+                    {{item.name}}
+                    <span class="arrow"><i class="material-icons">keyboard_arrow_right</i></span>
+                </div>
+                <div class="ui-list-item-group" #componentes>
+                    <div *ngFor="let child of item.childs">
+                        <div *ngIf="!child.url" class="ui-list-item disabled">{{child.name}}</div>
+                        <a *ngIf="child.url" class="ui-list-item" uiRipple [routerLink]="child.url ? [child.url] : null"
+                           [routerLinkActive]="['active']">{{child.name}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
