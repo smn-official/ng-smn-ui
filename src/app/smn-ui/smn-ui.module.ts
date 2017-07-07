@@ -18,11 +18,8 @@ import {UiDialogTriggerDirective} from './dialog/dialog-trigger.directive';
 import {UiElement} from './utils/providers/element.provider';
 import {UiInputContainerComponent} from './input/input-container.component';
 import {UiInputDirective} from './input/input.directive';
-import {UiMainMenuComponent} from './main-menu/main-menu.component';
 import {UiMaxlengthDirective} from './utils/validators/maxlength.directive';
 import {UiMenuComponent} from './menu/menu.component';
-import {UiMenuItemComponent} from './main-menu/menu-item/menu-item.component';
-import {UiMenuListComponent} from './main-menu/menu-list/menu-list.component';
 import {UiMenuTriggerDirective} from './menu/menu-trigger.directive';
 import {UiNavDrawerComponent} from './nav-drawer/nav-drawer.component';
 import {UiOptionComponent} from './selection-control/option/option.component';
@@ -39,6 +36,7 @@ import {UiToolbarService} from './toolbar/toolbar.service';
 import {UiWindowRef} from './utils/providers/window.provider';
 import {UiMaskDateDirective} from './utils/masks/date/mask-date.directive';
 import {UiTimeAgoPipe} from './utils/pipes/time-ago.pipe';
+// import {UiListItemDirective} from './list/list-item.directive';
 import {UiListItemDirective} from './list/list.directive';
 import {UiMaskCpfDirective} from './utils/masks/cpf/mask-cpf.directive';
 import {UiCpfPipe} from './utils/masks/cpf/cpf.pipe';
@@ -48,6 +46,7 @@ import {UiMaskCepDirective} from './utils/masks/cep/mask-cep.directive';
 import {UiCepPipe} from './utils/masks/cep/cep.pipe';
 import {UiPhonePipe} from './utils/masks/phone/phone.pipe';
 import {UiMaskPhoneDirective} from './utils/masks/phone/mask-phone.directive';
+// import {UiListComponent} from './list/list.component';
 
 export {
     UiColor,
@@ -74,11 +73,8 @@ const lib: any[] = [
     UiDialogTriggerDirective,
     UiInputContainerComponent,
     UiInputDirective,
-    UiMainMenuComponent,
     UiMaxlengthDirective,
     UiMenuComponent,
-    UiMenuItemComponent,
-    UiMenuListComponent,
     UiMenuTriggerDirective,
     UiNavDrawerComponent,
     UiOptionComponent,
@@ -103,7 +99,8 @@ const lib: any[] = [
     UiMaskCepDirective,
     UiCepPipe,
     UiMaskPhoneDirective,
-    UiPhonePipe
+    UiPhonePipe,
+    UiListComponent
 ];
 
 @NgModule({
