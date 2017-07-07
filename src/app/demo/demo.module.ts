@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {SMNUIModule} from '../smn-ui/smn-ui.module';
@@ -23,6 +23,7 @@ import {DemoSnackbarComponent} from './demo-snackbar/demo-snackbar.component';
 import {DemoSubheaderComponent} from './demo-subheader/demo-subheader.component';
 import {DemoToolbarsComponent} from './demo-toolbars/demo-toolbars.component';
 import {DemoMaskComponent} from './demo-mask/demo-mask.component';
+import {DemoSliderComponent} from './demo-slider/demo-slider.component';
 
 @NgModule({
     imports: [
@@ -55,6 +56,7 @@ import {DemoMaskComponent} from './demo-mask/demo-mask.component';
         DemoSnackbarComponent,
         DemoSubheaderComponent,
         DemoToolbarsComponent,
+        DemoSliderComponent,
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

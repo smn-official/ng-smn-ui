@@ -1,0 +1,62 @@
+<ui-card>
+    <ui-card-content>
+        <ui-option-container class="v-space-4 b-space-16">
+            <ui-option>
+                <input type="checkbox" [(ngModel)]="checkbox" [checked]="checkbox">
+                <span>Disabled: {{!!checkbox}}; Begin: {{begin}}; End: {{end}}</span>
+            </ui-option>
+            <ui-option>
+                <input type="checkbox" [(ngModel)]="ballon" [checked]="ballon">
+                <span>Show balloon: {{!ballon}}</span>
+            </ui-option>
+        </ui-option-container>
+        <ui-slider [range]="range" [(begin)]="begin" [(end)]="end" [disabled]="checkbox" [hideBalloon]="ballon"></ui-slider>
+    </ui-card-content>
+
+    <ui-card-content>
+        <ui-option-container class="v-space-4 b-space-16">
+            <ui-option>
+                <input type="checkbox" [(ngModel)]="checkbox" [checked]="checkbox">
+                <span>Disabled: {{!!checkbox}}; Value: {{value}}</span>
+            </ui-option>
+            <ui-option>
+                <input type="checkbox" [(ngModel)]="ballon" [checked]="ballon">
+                <span>Show balloon: {{!ballon}}</span>
+            </ui-option>
+        </ui-option-container>
+        <ui-slider [range]="range" [(value)]="value" [disabled]="checkbox" [hideBalloon]="ballon" class="accent"></ui-slider>
+    </ui-card-content>
+</ui-card>
+
+<div class="dark">
+    <ui-card>
+        <ui-card-content>
+            <ui-option-container class="v-space-4 b-space-16">
+                <ui-option>
+                    <input type="checkbox" [(ngModel)]="checkboxDark" [checked]="checkboxDark">
+                    <span>Disabled: {{!!checkboxDark}}; Begin: {{begin}}; End: {{end}}</span>
+                </ui-option>
+                <ui-option>
+                    <input type="checkbox" [(ngModel)]="ballonDark" [checked]="ballonDark">
+                    <span>Show balloon: {{!ballonDark}}</span>
+                </ui-option>
+            </ui-option-container>
+            <ui-slider [range]="range" [(begin)]="beginDark" [(end)]="endDark" [disabled]="checkboxDark" [hideBalloon]="ballonDark"></ui-slider>
+        </ui-card-content>
+
+        <ui-card-content>
+            <ui-option-container class="v-space-4 b-space-16">
+                <ui-option>
+                    <input type="checkbox" [(ngModel)]="checkboxDark" [checked]="checkboxDark">
+                    <span>Disabled: {{!!checkboxDark}}; Value: {{value}}</span>
+                </ui-option>
+                <ui-option>
+                    <input type="checkbox" [(ngModel)]="ballonDark" [checked]="ballonDark">
+                    <span>Show balloon: {{!ballonDark}}</span>
+                </ui-option>
+            </ui-option-container>
+            <ui-slider [range]="range" [(value)]="value" [disabled]="checkboxDark" [hideBalloon]="ballonDark" class="accent"></ui-slider>
+        </ui-card-content>
+    </ui-card>
+
+</div>

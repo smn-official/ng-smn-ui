@@ -16,6 +16,7 @@
 @import "../selection-control/switch/switch.theme";
 @import "../subheader/subheader.theme";
 @import "../toolbar/toolbar.theme";
+@import "../slider/slider.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -78,4 +79,5 @@
     @include ui-subheader($theme);
     @include ui-switch($theme);
     @include ui-toolbar($theme);
+    @include ui-slider($theme);
 }

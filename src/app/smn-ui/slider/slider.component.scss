@@ -1,0 +1,170 @@
+@import "../core/variables";
+
+:host {
+    display: block;
+    position: relative;
+
+    .track {
+        height: 2px;
+
+        &.on {
+            position: absolute;
+            top: 0;
+            transition: left 280ms ui-easing('decelaration'), right 280ms ui-easing('decelaration'), width 280ms ui-easing('decelaration'), background 280ms ui-easing('decelaration');
+
+            &.no-transition {
+                transition: none;
+            }
+
+            &.disabled {
+                background-color: transparent;
+
+                .thumb-container {
+
+                    &:focus::before {
+                        transform: scale(0);
+                    }
+
+                    .thumb {
+                        width: 8px;
+                        height: 8px;
+                        background-color: ui-color('grey', '400');
+                    }
+                }
+
+
+            }
+
+            .thumb-container {
+                position: absolute;
+                top: 1px; // Half of track
+
+                &.left {
+                    left: 0;
+                    transform: scale(1) translate(-50%, -50%);
+                }
+
+                &.right {
+                    right: 0;
+                    transform: scale(1) translate(50%, -50%);
+                }
+
+                .thumb {
+                    position: relative;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    transition: width 280ms ui-easing('deceleration'), height 280ms ui-easing('deceleration'), transform 280ms ui-easing('deceleration');
+                }
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    width: 32px;
+                    height: 32px;
+                    top: -10px;
+                    left: -10px;
+                    border-radius: 50%;
+                    transform: scale(0);
+                    transition: transform 280ms ui-easing('deceleration');
+                }
+
+                &:focus::before {
+                    transform: scale(1);
+                }
+
+                &.active {
+                    &::before {
+                        transform: scale(0);
+                    }
+
+                    .thumb {
+                        width: 18px;
+                        height: 18px;
+                    }
+                }
+            }
+
+            .balloon-wrap {
+                position: absolute;
+                top: -42px;
+                transition: transform 280ms ui-easing('deceleration'), width 280ms ui-easing('deceleration');
+                z-index: 1;
+                transform: scale(0);
+                transform-origin: bottom;
+                cursor: default;
+                margin-left: -18px;
+                margin-right: -18px;
+                width: 36px;
+
+                &.active {
+                    transform: scale(1);
+                }
+
+                .value {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    display: flex;
+                    justify-content: center;
+                    font-size: 10px;
+                    padding-top: 9px;
+                    user-select: none;
+                }
+
+            }
+
+            .balloon-wrap ~ .thumb-container {
+                transition: transform 280ms ui-easing('deceleration');
+
+                &::before {
+                    transition: transform 280ms 280ms ui-easing('deceleration');
+                }
+
+                .thumb {
+                    transition: width 280ms ui-easing('deceleration'), height 280ms ui-easing('deceleration'), transform 280ms ui-easing('deceleration');
+
+                }
+
+                &.active {
+                    transform: scale(0);
+                    pointer-events: auto;
+                    .thumb {
+                        width: 12px;
+                        height: 12px;
+                        transform: scale(0);
+                    }
+
+                    &::before {
+                        transition: transform 280ms ui-easing('deceleration');
+                    }
+                }
+
+            }
+        }
+    }
+
+    .points {
+        margin-top: -2px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .point {
+            padding: 1px;
+            border-radius: 50%;
+            transform: scale(0);
+        }
+
+        &.show .point {
+            transform: scale(1);
+        }
+
+        &.disabled .point {
+            background-color: transparent;
+        }
+    }
+}
