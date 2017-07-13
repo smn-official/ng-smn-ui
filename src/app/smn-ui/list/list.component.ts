@@ -29,13 +29,11 @@ export class UiListComponent implements OnInit {
         }
 
         this.list.forEach(item => {
-            console.log(item);
             Object.keys(this.itemModel).forEach((key) => {
                 const old_key = this.itemModel[key];
                 renameObjectKey(item, old_key, key);
             });
         });
-        console.log(this.list);
 
         this.list = iteratePristineMenu(this.list);
     }

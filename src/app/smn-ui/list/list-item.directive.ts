@@ -52,7 +52,10 @@ function toggleExpand(elementList, elementTrigger) {
     }
 
     setTimeout(() => {
-        const overflow = UiElement.closest(elementList, '.ui-list').parentNode;
+        let overflow = UiElement.closest(elementList, '.ui-list').parentNode;
+        if (UiElement.is(overflow, 'ui-list')) {
+            overflow = UiElement.closest(elementList, '.ui-list').parentNode;
+        }
         UiElement.animate(elementList, 'border-spacing', overflow.scrollTop, elementTrigger.offsetTop, 500, null, (tick) => {
             overflow.scrollTop = tick;
         });
@@ -62,4 +65,3 @@ function toggleExpand(elementList, elementTrigger) {
 function getHeight(element) {
     return Array.prototype.reduce.call(element.childNodes, (p, c) => p + (c.offsetHeight || 0), 0);
 }
-/**/

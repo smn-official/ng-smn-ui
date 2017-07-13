@@ -3,6 +3,14 @@
         <i class="material-icons">menu</i>
     </button>
     <span class="title">{{title}}</span>
+
+    <div class="align-right">
+        <button class="ui-button flat icon" uiRipple [uiMenuTrigger]="testeMenu">
+            <i class="material-icons">notifications</i>
+            <span class="badge">2</span>
+        </button>
+    </div>
+
 </ui-toolbar>
 
 <ui-nav-drawer class="persistent" [(open)]="menuOpen">
@@ -34,7 +42,7 @@
             <a class="ui-list-item" uiRipple routerLink="/subheader">Subheader</a>
             <a class="ui-list-item" uiRipple routerLink="/toolbars">Toolbars</a>
         </div>
-        <!--<ui-list [list]="menuList" [item-model]="itemModel"></ui-list>-->
+        <ui-list [list]="menuList" [item-model]="itemModel"></ui-list>
     </div>
 </ui-nav-drawer>
 
@@ -42,4 +50,10 @@
 
 <!--<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>-->
 <!--<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>-->
-<!---->
+
+<ui-menu #testeMenu>
+    <div class="ui-menu-content">
+        <div class="ui-menu-item" uiRipple>Counter: {{counter}}</div>
+        <div class="ui-menu-item" uiRipple (click)="bindFunction(); $event.stopPropagation(); testeMenu.close()">Increment counter</div>
+    </div>
+</ui-menu>
