@@ -2,7 +2,10 @@ import {Injectable, EventEmitter} from '@angular/core';
 import {UiWindowRef} from '../utils/providers/window.provider';
 import {UiElement} from '../utils/providers/element.provider';
 
-let mailToolbar: HTMLElement;
+let mainToolbar: HTMLElement;
+let defaultBreakpoint: any;
+
+const sizes: [any] = [480, 600, 840, 960, 1280, 1440, 1600];
 
 @Injectable()
 export class UiToolbarService {
@@ -23,18 +26,33 @@ export class UiToolbarService {
     }
 
     public registerMainToolbar(element: any) {
-        mailToolbar = <HTMLElement>element;
+        mainToolbar = <HTMLElement>element;
+        defaultBreakpoint = [];
+        sizes.forEach(size => {
+            if (mainToolbar.classList.contains(`elevate-on-s${size}`)) {
+                defaultBreakpoint.push(`elevate-on-s${size}`);
+            }
+        });
     }
 
     public getMainToolbar(): HTMLElement {
-        if (!mailToolbar) {
+        if (!mainToolbar) {
             console.error('Você não registrou um toolbar principal.');
         } else {
-            return mailToolbar;
+            return mainToolbar;
         }
     }
 
-    public activateExtendedToolbar() {
+    public activateExtendedToolbar(breakpoint?: any) {
+        if (breakpoint) {
+            if (!sizes.includes(breakpoint)) {
+                console.error(`O tamanho do "breakpoint" tem que ser um dos tamanhos suportados: ${sizes.join(', ')}`);
+            } else {
+                sizes.forEach(size => this.getMainToolbar().classList.remove(`elevate-on-s${size}`));
+                this.getMainToolbar().classList.add(`elevate-on-s${breakpoint}`);
+            }
+        }
+
         this.getMainToolbar().classList.add('size-2x');
 
         const header = this.getMainToolbar().querySelectorAll('header')[0];
@@ -46,6 +64,9 @@ export class UiToolbarService {
     }
 
     public deactivateExtendedToolbar() {
+        sizes.forEach(size => this.getMainToolbar().classList.remove(`elevate-on-s${size}`));
+        defaultBreakpoint.forEach(size => this.getMainToolbar().classList.add(`elevate-on-s${size}`));
+
         this.getMainToolbar().classList.remove('size-2x');
         this.getMainToolbar().classList.remove('scrolled');
 
@@ -74,3 +95,4 @@ export class UiToolbarService {
         }
     }
 }
+/**/
