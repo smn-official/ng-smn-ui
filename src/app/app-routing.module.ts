@@ -21,6 +21,7 @@ import {DemoSubheaderComponent} from './demo/demo-subheader/demo-subheader.compo
 import {DemoToolbarsComponent} from './demo/demo-toolbars/demo-toolbars.component';
 import {DemoMaskComponent} from './demo/demo-mask/demo-mask.component';
 import {DemoSliderComponent} from './demo/demo-slider/demo-slider.component';
+import {DemoListComponent} from './demo/demo-list/demo-list.component';
 
 const routes: Routes = [
     {
@@ -48,6 +49,7 @@ const routes: Routes = [
             {path: 'smart-list', component: DemoSmartListComponent},
             {path: 'subheader', component: DemoSubheaderComponent},
             {path: 'toolbars', component: DemoToolbarsComponent},
+            {path: 'list', component: DemoListComponent},
         ]
     },
     {path: '**', redirectTo: ''}

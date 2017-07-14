@@ -1,0 +1,89 @@
+<div class="light">
+    <ui-card>
+        <ui-card-title>List</ui-card-title>
+        <ui-list [list]="menuList" [item-model]="itemModel">
+            <a class="ui-list-item" uiRipple routerLink="/"><span class="icon"><i class="material-icons">home</i></span>Home</a>
+            <li>
+                <span class="avatar"><i class="material-icons">home</i></span>Avatar and single line
+            </li>
+            <li class="multi-line">
+                <div class="avatar"><i class="material-icons">home</i></div>
+                <div class="lines">
+                    <div class="primary">
+                        Avatar and two line (info)
+                    </div>
+                    <div class="secondary">
+                        Secondary text
+                    </div>
+                </div>
+                <div class="action">
+                    <button class="ui-button flat icon" uiRipple>
+                        <i class="material-icons">info</i>
+                    </button>
+                </div>
+            </li>
+            <div class="ui-list-item multi-line">
+                <div class="avatar"><i class="material-icons">home</i></div>
+                <div class="lines">
+                    <div class="primary">
+                        Avatar and two line (checkbox)
+                    </div>
+                    <div class="secondary">
+                        Secondary text
+                    </div>
+                </div>
+                <div class="action">
+                    <ui-option>
+                        <input type="checkbox" [(ngModel)]="checkboxTest" [checked]="checkboxTest">
+                    </ui-option>
+                </div>
+            </div>
+            <div class="ui-list-item multi-line">
+                <div class="avatar"><i class="material-icons">home</i></div>
+                <div class="lines">
+                    <div class="primary">
+                        Avatar and two line (switch)
+                    </div>
+                    <div class="secondary">
+                        Secondary text
+                    </div>
+                </div>
+                <div class="action">
+                    <ui-switch class="action">
+                        <input type="checkbox"
+                               name="switchTest"
+                               [checked]="switchTest == 'S'"
+                               (change)="switchTest=$event.target.checked ? 'S':'N'">
+                    </ui-switch>
+                </div>
+            </div>
+            <li class="multi-line">
+                <div class="avatar"><i class="material-icons">home</i></div>
+                <div class="lines">
+                    <div class="primary">
+                        Avatar and three line
+                    </div>
+                    <div class="secondary">
+                        Secondary text<br>third line
+                    </div>
+                </div>
+            </li>
+        </ui-list>
+    </ui-card>
+</div>
+
+<div class="dark">
+    <ui-card>
+        <ui-card-title>List</ui-card-title>
+        <ui-card-content>
+            <ui-list [list]="menuList" [item-model]="itemModel">
+                <a class="ui-list-item" uiRipple routerLink="/"><span class="icon"><i
+                    class="material-icons">home</i></span>Home</a>
+                <li uiRipple>
+                    <span class="avatar"><i class="material-icons">home</i></span>Avatar and single line
+                </li>
+            </ui-list>
+        </ui-card-content>
+    </ui-card>
+</div>
+<!---->

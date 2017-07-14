@@ -24,7 +24,8 @@ export class UiListComponent implements OnInit {
                 id: 'id',
                 parentId: 'parentId',
                 name: 'name',
-                url: 'url'
+                url: 'url',
+                icon: 'icon'
             };
         }
 

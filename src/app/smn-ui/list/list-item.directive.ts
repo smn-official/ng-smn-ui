@@ -13,16 +13,16 @@ export class UiListItemDirective implements AfterViewInit {
         setTimeout(() => {
             const itemActive = this.uiListItem.querySelectorAll('.ui-list-item.active')[0];
             if (itemActive) {
-                this.element.nativeElement.classList.toggle('collapsed');
-                this.uiListItem.classList.toggle('collapsed');
+                this.element.nativeElement.classList.toggle('expanded');
+                this.uiListItem.classList.toggle('expanded');
                 toggleExpand(this.uiListItem, this.element.nativeElement);
             }
         });
     }
 
     @HostListener('click') onClick() {
-        this.element.nativeElement.classList.toggle('collapsed');
-        this.uiListItem.classList.toggle('collapsed');
+        this.element.nativeElement.classList.toggle('expanded');
+        this.uiListItem.classList.toggle('expanded');
         toggleExpand(this.uiListItem, this.element.nativeElement);
     }
 }

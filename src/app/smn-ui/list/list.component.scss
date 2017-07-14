@@ -3,7 +3,7 @@
 
     li,
     .ui-list-item {
-        height: 48px;
+        min-height: 48px;
         padding: 0 16px;
         display: flex;
         align-items: center;
@@ -24,14 +24,60 @@
             color: rgba(0, 0, 0, 0.44);
         }
 
-        .icon {
+        .icon:not(.ui-button) {
             display: flex;
             align-items: center;
-            width: 56px;
+            width: 40px;
+            margin-right: 16px;
             color: rgba(0, 0, 0, 0.54);
+            user-select: none;
+        }
+
+        .avatar {
+            user-select: none;
+            width: 40px;
+            margin-right: 16px;
+            height: 40px;
+            border-radius: 20px;
+            background-color: ui-color('grey');
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        &.multi-line {
+            .lines {
+                padding: 19px 0;
+            }
+
+            .avatar {
+                align-self: flex-start;
+                margin-top: 16px;
+            }
+
+            .primary {
+                font-weight: 400;
+                font-size: 16px;
+            }
+            .secondary {
+                font-weight: 400;
+                font-size: 14px;
+            }
+        }
+
+        .action {
+            display: flex;
+            align-items: flex-end;
+            margin-left: auto;
+            max-width: 56px;
+            ui-option {
+                margin-right: 9px;
+            }
         }
 
         .arrow {
+            user-select: none;
             position: absolute;
             color: rgba(0, 0, 0, 0.54);
             right: 12px;
@@ -43,27 +89,27 @@
         }
 
         &,
-        .icon {
+        .icon:not(.ui-button) {
             transition: color 280ms ui-easing('deceleration');
         }
 
         transition: background-color 280ms ui-easing('deceleration');
 
-        &.collapsed:not(.nothing) {
+        &.expanded:not(.nothing) {
             background-color: rgba(0, 0, 0, 0.025);
             font-weight: 500;
             .arrow i {
-                transform: rotate(90deg);
+                transform: rotate(-180deg);
             }
         }
     }
 
-    @mixin teste($test) {
+    @mixin paddingsleft($test) {
         .ui-list-item-group {
             li,
             .ui-list-item:not(.nothing) {
                 padding-left: #{$test}px !important;
-                &.collapsed {
+                &.expanded {
                     font-weight: 500;
                 }
             }
@@ -77,15 +123,15 @@
         .ui-list-item {
             font-weight: 400;
             padding-left: 37px !important;
-            &.collapsed:not(.nothing) {
+            &.expanded:not(.nothing) {
                 font-weight: 500;
             }
         }
 
-        @include teste(53) {
-            @include teste(69) {
-                @include teste(85) {
-                    @include teste(101) {
+        @include paddingsleft(53) {
+            @include paddingsleft(69) {
+                @include paddingsleft(85) {
+                    @include paddingsleft(101) {
                     }
                 }
             }
@@ -101,7 +147,7 @@
 
         //opacity: 0;
 
-        &.collapsed {
+        &.expanded {
             background-color: rgba(0, 0, 0, 0.025);
             opacity: 1;
 

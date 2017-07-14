@@ -24,6 +24,7 @@ import {DemoSubheaderComponent} from './demo-subheader/demo-subheader.component'
 import {DemoToolbarsComponent} from './demo-toolbars/demo-toolbars.component';
 import {DemoMaskComponent} from './demo-mask/demo-mask.component';
 import {DemoSliderComponent} from './demo-slider/demo-slider.component';
+import {DemoListComponent} from './demo-list/demo-list.component';
 
 @NgModule({
     imports: [
@@ -57,6 +58,7 @@ import {DemoSliderComponent} from './demo-slider/demo-slider.component';
         DemoSubheaderComponent,
         DemoToolbarsComponent,
         DemoSliderComponent,
+        DemoListComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

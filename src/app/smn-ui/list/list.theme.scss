@@ -10,15 +10,31 @@
                 color: map_get($theme, secondary-text-color);
             }
 
+            .arrow,
+            .icon:not(.ui-button),
+            &.subheader,
+            .avatar,
+            .secondary {
+                color: map_get($theme, secondary-text-color);
+            }
+
+            .avatar {
+                background-color: ui_if(map_get($theme, is-dark), ui-color('grey', '700'), ui-color('grey', '300'));
+            }
+
+            &.disabled {
+                color: map_get($theme, disabled-text-color);
+            }
+
             &.active {
                 &,
-                .icon {
+                .icon:not(.ui-button) {
                     color: map_get($theme, primary-color);
                 }
 
                 &.accent {
                     &,
-                    .icon {
+                    .icon:not(.ui-button) {
                         color: map_get($theme, accent-color);
                     }
                 }
