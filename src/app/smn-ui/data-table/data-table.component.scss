@@ -108,12 +108,19 @@
         height: 56px;
         &:last-child {
             padding-right: 14px;
+            border-top: 1px solid ui-color('grey', '300');
         }
 
         .pagination {
             margin-right: 24px;
             display: flex;
             align-items: center;
+        }
+    }
+
+    tbody:not(:last-child) {
+        tr:last-child td {
+            border-color: ui-color('grey', '300');
         }
     }
 }
