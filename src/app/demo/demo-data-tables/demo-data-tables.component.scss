@@ -3,7 +3,7 @@
 :host {
     ui-card {
         position: relative;
-        z-index: 1;
+        z-index: 2;
         /deep/ header {
             background-color: ui-color('white');
             color: ui-text-color('white');

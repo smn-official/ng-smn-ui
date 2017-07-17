@@ -104,7 +104,7 @@ ui-toolbar {
     &.fixed {
         header {
             position: fixed;
-            z-index: 1;
+            z-index: 2;
         }
 
         .ui-toolbar-space {
@@ -170,14 +170,14 @@ ui-toolbar {
 
                     @keyframes fixZindex {
                         0% {
-                            z-index: 1;
+                            z-index: 2;
                         }
 
                         99% {
-                            z-index: 1;
+                            z-index: 2;
                         }
                         100% {
-                            z-index: 2;
+                            z-index: 3;
                         }
                     }
 
@@ -198,7 +198,7 @@ ui-toolbar {
             header:not(.nothing) {
                 height: 56px !important;
                 padding-bottom: 4px !important;
-                z-index: 2 !important;
+                z-index: 3 !important;
             }
 
             .ui-toolbar-space:not(.nothing) {
@@ -229,14 +229,14 @@ body.ui-nav-drawer-persistent {
 
                         @keyframes fixZindex {
                             0% {
-                                z-index: 1;
+                                z-index: 2;
                             }
 
                             99% {
-                                z-index: 1;
+                                z-index: 2;
                             }
                             100% {
-                                z-index: 2;
+                                z-index: 3;
                             }
                         }
 
@@ -257,7 +257,7 @@ body.ui-nav-drawer-persistent {
                 header:not(.nothing) {
                     height: 56px !important;
                     padding-bottom: 4px !important;
-                    z-index: 2 !important;
+                    z-index: 3 !important;
                 }
 
                 .ui-toolbar-space:not(.nothing) {

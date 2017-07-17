@@ -49,6 +49,7 @@ import {UiMaskPhoneDirective} from './utils/masks/phone/mask-phone.directive';
 import {UiListComponent} from './list/list.component';
 import {UiSliderComponent} from './slider/slider.component';
 import {UiSliderMultiHandleComponent} from './slider/slider-multi-handle.component';
+import {UiInfiniteLoadDirective} from './utils/infinite-load/infinite-load.directive';
 
 export {
     UiColor,
@@ -105,7 +106,8 @@ const lib: any[] = [
     UiListComponent,
     UiPhonePipe,
     UiSliderComponent,
-    UiSliderMultiHandleComponent
+    UiSliderMultiHandleComponent,
+    UiInfiniteLoadDirective
 ];
 
 @NgModule({
