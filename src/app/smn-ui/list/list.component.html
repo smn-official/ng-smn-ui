@@ -24,7 +24,7 @@
                             </span>
                             {{child.name}}
                         </div>
-                        <a *ngIf="child.url" class="ui-list-item" uiRipple [routerLink]="child.url ? [child.url] : null"
+                        <a *ngIf="child.url" class="ui-list-item" uiRipple [routerLink]="child.url ? ['/' + child.url] : null"
                            [routerLinkActive]="['active']">
                             <span *ngIf="!!child.icon" class="icon">
                                 <i *ngIf="child.icon.material" class="material-icons">{{child.icon.material}}</i>

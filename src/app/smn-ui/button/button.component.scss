@@ -108,7 +108,7 @@
         bottom: 0;
         background-color: #000;
         opacity: 0;
-        transition: ui-easing();
+        transition: opacity 280ms ui-easing('deceleration');
         border-radius: 2px;
     }
 
