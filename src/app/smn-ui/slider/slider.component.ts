@@ -73,12 +73,11 @@ export class UiSliderComponent implements OnInit, AfterViewInit, OnChanges {
             }
 
             this.change(e);
-            e.preventDefault();
         });
     }
 
     change(event, mouseUp?) {
-        const currentPosition = event.pageX || (event.originalEvent && event.originalEvent.touches ? event.originalEvent.touches[0].pageX : null);
+        const currentPosition = event.pageX || (event.touches ? event.touches[0].pageX : null) || (event.changedTouches ? event.changedTouches[0].pageX : null);
         let position = this.getPositionInIndex(currentPosition);
         const newValue = this.closestNumber(position);
 

@@ -17,6 +17,8 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
     beginElement: HTMLElement;
     endElement: HTMLElement;
     thumbs: HTMLElement;
+    bodyElement: HTMLElement;
+    htmlElement: HTMLElement;
 
     @Input() hideBalloon: boolean;
     @Input() disabled: boolean;
@@ -27,9 +29,13 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
     @Output() endChange: EventEmitter<number> = new EventEmitter();
 
     constructor(public elementRef: ElementRef) {
+
     }
 
     ngOnInit() {
+        this.bodyElement = document.body;
+        this.htmlElement = <HTMLElement>document.documentElement;
+
         this.multiHandle = true;
         this.percentageBlock = 100 / (this.range.length - 1);
         this.begin = this.begin || this.range[0];
@@ -56,20 +62,22 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
     }
 
     registerEventsListeners() {
-        UiElement.on(this.thumbs, 'mousedown touchstart', e => {
-            if (this.disabled) {
-                e.stopImmediatePropagation();
-            }
-            this.mouseDown = true;
-            this.toggleTackOn(true);
-        });
-
         UiElement.on(this.beginElement, 'mousedown touchstart', () => {
             this.direction = 'begin';
             this.toggleBalloon(true);
 
             this.beginElement.classList.add('active');
             this.endElement.classList.remove('active');
+        });
+
+        UiElement.on(this.thumbs, 'mousedown touchstart', e => {
+            if (this.disabled) {
+                e.stopImmediatePropagation();
+            }
+            this.mouseDown = true;
+            this.toggleTackOn(true);
+            this.bodyElement.style.overflowY = 'hidden';
+            this.htmlElement.style.overflowY = 'hidden';
         });
 
         UiElement.on(this.endElement, 'mousedown touchstart', () => {
@@ -95,20 +103,21 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
             this.mouseDown = false;
             this.toggleBalloon();
             this.toggleTackOn();
+
+            this.bodyElement.style.overflowY = '';
+            this.htmlElement.style.overflowY = '';
         });
 
         UiElement.on(document, 'mousemove touchmove', e => {
             if (!this.mouseDown || this.disabled) {
                 return;
             }
-
             this.change(e);
-            e.preventDefault();
         });
     }
 
     change(event, mouseUp?) {
-        const currentPosition = event.pageX || (event.originalEvent && event.originalEvent.touches ? event.originalEvent.touches[0].pageX : null);
+        const currentPosition = event.pageX || (event.touches ? event.touches[0].pageX : null) || (event.changedTouches ? event.changedTouches[0].pageX : null);
         let position = this.getPositionInIndex(currentPosition);
         const newValue = this.closestNumber(position);
 
@@ -120,10 +129,12 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
             this[`${this.direction}Model`] = newValue.index;
             this.direction = 'end';
             UiElement.trigger(this.endElement, 'mousedown');
+            this.endElement.focus();
         } else if (this.direction === 'end' && this.endModel < this.beginModel) {
             this[`${this.direction}Model`] = newValue.index;
             this.direction = 'begin';
             UiElement.trigger(this.beginElement, 'mousedown');
+            this.beginElement.focus();
         }
 
         this[this.direction] = newValue.value;
