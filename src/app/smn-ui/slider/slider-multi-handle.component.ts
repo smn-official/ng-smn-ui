@@ -19,6 +19,7 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
     thumbs: HTMLElement;
     bodyElement: HTMLElement;
     htmlElement: HTMLElement;
+    getPercentage: Function;
 
     @Input() hideBalloon: boolean;
     @Input() disabled: boolean;

@@ -11,6 +11,8 @@ export class UiSliderComponent implements OnInit, AfterViewInit, OnChanges {
     mouseDown: boolean;
     percentageBlock: number;
     valueElement: HTMLElement;
+    getPercentageLeft: Function;
+    getPercentageRight: Function;
 
     @Input() hideBalloon: boolean;
     @Input() disabled: boolean;
