@@ -7,6 +7,7 @@ import {UiElement} from '../utils/providers/element.provider';
     styleUrls: ['./slider.component.scss']
 })
 export class UiSliderComponent implements OnInit, AfterViewInit, OnChanges {
+    multiHandle: boolean;
     valueModel;
     mouseDown: boolean;
     percentageBlock: number;
