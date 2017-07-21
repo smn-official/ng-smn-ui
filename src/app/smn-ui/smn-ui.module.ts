@@ -50,6 +50,7 @@ import {UiListComponent} from './list/list.component';
 import {UiSliderComponent} from './slider/slider.component';
 import {UiSliderMultiHandleComponent} from './slider/slider-multi-handle.component';
 import {UiInfiniteLoadDirective} from './utils/infinite-load/infinite-load.directive';
+import {UiInfiniteLoadService} from './utils/infinite-load/infinite-load.service';
 
 export {
     UiColor,
@@ -61,7 +62,8 @@ export {
     UiCpfPipe,
     UiCnpjPipe,
     UiCepPipe,
-    UiPhonePipe
+    UiPhonePipe,
+    UiInfiniteLoadService
 }
 
 const lib: any[] = [
@@ -126,6 +128,7 @@ const lib: any[] = [
         UiReferencesService,
         UiSnackbar,
         UiWindowRef,
+        UiInfiniteLoadService
     ],
     entryComponents: [UiCalendarComponent, UiCalendarContentComponent]
 })
