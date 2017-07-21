@@ -2,7 +2,13 @@
     <div class="ui-list">
         <ng-content></ng-content>
         <div *ngFor="let item of list">
-            <div *ngIf="!item.childs && !item.url" class="ui-list-item disabled">{{item.name}}</div>
+            <div *ngIf="!item.childs && !item.url" class="ui-list-item disabled">
+                <span *ngIf="!!item.icon" class="icon">
+                    <i *ngIf="item.icon.material" class="material-icons">{{item.icon.material}}</i>
+                    <img *ngIf="!!item.icon.img" [src]="item.icon.img" style="width:24px;height:24px"/>
+                </span>
+                {{item.name}}
+            </div>
             <a *ngIf="!item.childs && item.url" class="ui-list-item" uiRipple
                [routerLink]="item.url ? [item.url] : null"
                [routerLinkActive]="['active']">{{item.name}}</a>

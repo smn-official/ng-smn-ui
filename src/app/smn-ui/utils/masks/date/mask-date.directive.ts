@@ -48,16 +48,16 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
             this.control.markAsDirty();
         }
         if (!this.input) {
-            this.elementRef.nativeElement.value = this.formatDate(this.datePipe.transform(this.ngModel, 'dd/MM/yyyy'));
+            this.elementRef.nativeElement.value = this.format(this.datePipe.transform(this.ngModel, 'dd/MM/yyyy'));
         }
         this.input = false;
     }
 
     renderViaInput(rawValue: any): void {
         this.control.markAsDirty();
-        this.ngModel = checkDate(this.formatDate(rawValue));
+        this.ngModel = checkDate(this.format(rawValue));
         this.ngModelChange.emit(this.ngModel);
-        this.elementRef.nativeElement.value = this.formatDate(this.elementRef.nativeElement.value);
+        this.elementRef.nativeElement.value = this.format(this.elementRef.nativeElement.value);
     }
 
     registerOnChange(fn: any): void {
@@ -68,7 +68,7 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
         this.onTouched = fn;
     }
 
-    formatDate(date: string): string {
+    format(date: string): string {
         if (!date) {
             return '';
         }
