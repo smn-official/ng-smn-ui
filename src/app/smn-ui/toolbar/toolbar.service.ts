@@ -30,7 +30,7 @@ export class UiToolbarService {
         defaultBreakpoint = [];
         sizes.forEach(size => {
             if (mainToolbar.classList.contains(`elevate-on-s${size}`)) {
-                defaultBreakpoint.push(`elevate-on-s${size}`);
+                defaultBreakpoint.push(size);
             }
         });
     }

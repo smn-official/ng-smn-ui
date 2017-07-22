@@ -1,0 +1,11 @@
+@import "../core/variables";
+
+@mixin ui-data-table($theme) {
+    $background: ui-if(map-get($theme, is-dark) == true, ui-color('grey', '500'), ui-color('grey', '300'));
+
+    .ui-data-table {
+        .image {
+            background-color: $background;
+        }
+    }
+}

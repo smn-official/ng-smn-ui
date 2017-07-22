@@ -51,6 +51,7 @@ import {UiSliderComponent} from './slider/slider.component';
 import {UiSliderMultiHandleComponent} from './slider/slider-multi-handle.component';
 import {UiInfiniteLoadDirective} from './utils/infinite-load/infinite-load.directive';
 import {UiInfiniteLoadService} from './utils/infinite-load/infinite-load.service';
+import {UiMaskIntegerDirective} from './utils/masks/integer/mask-integer.directive';
 
 export {
     UiColor,
@@ -109,7 +110,8 @@ const lib: any[] = [
     UiPhonePipe,
     UiSliderComponent,
     UiSliderMultiHandleComponent,
-    UiInfiniteLoadDirective
+    UiInfiniteLoadDirective,
+    UiMaskIntegerDirective
 ];
 
 @NgModule({

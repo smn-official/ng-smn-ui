@@ -7,10 +7,13 @@ import {UiElement} from '../utils/providers/element.provider';
     styleUrls: ['./slider.component.scss']
 })
 export class UiSliderComponent implements OnInit, AfterViewInit, OnChanges {
+    multiHandle: boolean;
     valueModel;
     mouseDown: boolean;
     percentageBlock: number;
     valueElement: HTMLElement;
+    getPercentageLeft: Function;
+    getPercentageRight: Function;
 
     @Input() hideBalloon: boolean;
     @Input() disabled: boolean;

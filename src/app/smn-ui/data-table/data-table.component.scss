@@ -1,3 +1,5 @@
+@import '../core/variables';
+
 .ui-data-table {
     font-size: 13px;
     color: rgba(0, 0, 0, 0.87);
@@ -55,6 +57,8 @@
     }
 
     tr {
+        cursor: default;
+
         &:last-child {
             th, td {
                 border-color: transparent;
