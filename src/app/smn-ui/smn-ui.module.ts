@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, ElementRef, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
@@ -17,6 +17,7 @@ import {UiDatetimeService} from './calendar/datetime.service';
 import {UiDialogComponent} from './dialog/dialog.component';
 import {UiDialogTriggerDirective} from './dialog/dialog-trigger.directive';
 import {UiElement} from './utils/providers/element.provider';
+import {UiElementRef} from './utils/providers/element-ref.provider';
 import {UiInputContainerComponent} from './input/input-container.component';
 import {UiInputDirective} from './input/input.directive';
 import {UiMaxlengthDirective} from './utils/validators/maxlength.directive';
@@ -57,6 +58,7 @@ export {
     UiColor,
     UiCookie,
     UiElement,
+    UiElementRef,
     UiSnackbar,
     UiToolbarService,
     UiWindowRef,
