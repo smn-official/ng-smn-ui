@@ -10,9 +10,9 @@ ui-nav-drawer {
         width: 100%;
         z-index: 3;
         box-shadow: ui-shadow('16dp');
-        transition: transform 0.28s ui-easing('deceleration');
-        left: 0;
-        transform: translateX(-100% - 10);
+        transition: transform 280ms ui-easing('deceleration');
+        left: -10px;
+        transform: translateX(-100%);
         user-select: none;
 
         .ui-nav-drawer-overflow {
@@ -58,6 +58,7 @@ ui-nav-drawer {
     }
 
     &.open nav {
+        left: 0;
         transform: translateX(0);
     }
 
@@ -87,12 +88,12 @@ ui-nav-drawer {
 }
 
 ui-nav-drawer.open nav + .ui-nav-drawer-overlay {
-    animation: openNav 0.28s ui-easing('deceleration');
+    animation: openNav 280ms ui-easing('deceleration');
     animation-fill-mode: forwards;
 }
 
 ui-nav-drawer:not(.open) nav + .ui-nav-drawer-overlay {
-    animation: closeNav 0.28s ui-easing('deceleration');
+    animation: closeNav 280ms ui-easing('deceleration');
     animation-fill-mode: forwards;
 }
 
@@ -125,7 +126,7 @@ ui-nav-drawer:not(.open) nav + .ui-nav-drawer-overlay {
 }
 
 body {
-    transition: margin-left 0.28s ui-easing('deceleration');
+    transition: margin-left 280ms ui-easing('deceleration');
 }
 
 body.ui-nav-drawer-persistent {
