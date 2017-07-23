@@ -101,10 +101,10 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
         windowRef.on('touchmove', (e) => {
             if (navDrawerTouch) {
                 mouseXMovement = e.touches[0].pageX - mouseX;
-                if (navDrawerTouch === 'open') {
+                if (navDrawerTouch === 'open' && !this.open) {
                     mouseXMovement = mouseXMovement > 320 ? 320 : mouseXMovement;
                     navDrawer.css('transform', 'translateX(' + (-320 + mouseXMovement) + 'px)');
-                } else if (navDrawerTouch === 'close') {
+                } else if (navDrawerTouch === 'close' && this.open) {
                     mouseXMovement = mouseXMovement < -330 ? -330 : mouseXMovement;
                     mouseXMovement = mouseXMovement > 0 ? 0 : mouseXMovement;
                     navDrawer.css('transform', 'translateX(' + (mouseXMovement) + 'px)');
@@ -144,6 +144,7 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
 
         if (changes.open) {
             const isOpen = changes.open.currentValue;
+            this.open = isOpen;
 
             if (isOpen) {
                 this.openNav();
