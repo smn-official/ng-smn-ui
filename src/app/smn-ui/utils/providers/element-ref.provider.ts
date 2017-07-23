@@ -83,6 +83,14 @@ export class UiElementRef {
         return Array.prototype.forEach.call(this, callback);
     }
 
+    filter(callback): any {
+        return Array.prototype.filter.call(this, callback);
+    }
+
+    indexOf(element): any {
+        return Array.prototype.indexOf.call(this, element);
+    }
+
     css(styleProp, newValue?): any {
         return UiElement.css(this.nativeElement, styleProp, newValue);
     }
