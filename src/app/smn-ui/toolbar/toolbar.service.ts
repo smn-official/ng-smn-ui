@@ -94,5 +94,19 @@ export class UiToolbarService {
             this.getMainToolbar().classList.remove(auxiliarClass);
         }
     }
+
+    public activateElevatingToolbar(auxiliarClass?: string) {
+        this.getMainToolbar().classList.add('elevate-on-scroll');
+        if (auxiliarClass) {
+            this.getMainToolbar().classList.add(auxiliarClass);
+        }
+    }
+
+    public deactivateElevatingToolbar(auxiliarClass?: string) {
+        this.getMainToolbar().classList.remove('elevate-on-scroll');
+        if (auxiliarClass) {
+            this.getMainToolbar().classList.remove(auxiliarClass);
+        }
+    }
 }
 /**/
