@@ -1,0 +1,17 @@
+@import "../core/variables";
+
+@mixin ui-chip($theme) {
+    $color: ui-if(map-get($theme, is-dark) == true, ui-color('grey', '700'), ui-color('grey', '300'));
+    $text-color: ui-if(map-get($theme, is-dark) == true, #FFF, #000);
+
+    .ui-chip {
+        background-color: rgba($color, 0.75);
+        color: $text-color;
+    }
+
+    a.ui-chip {
+        &:hover, &:active {
+            background-color: $color;
+        }
+    }
+}
