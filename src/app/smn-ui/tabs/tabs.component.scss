@@ -1,0 +1,117 @@
+@import '../core/variables';
+
+:host {
+    width: 100%;
+
+    .tabs {
+        position: relative;
+        overflow: hidden;
+        z-index: 2;
+        width: 100%;
+        height: 48px;
+
+        .overflow {
+            overflow-y: auto;
+            position: relative;
+            width: 100%;
+            height: 100px;
+            display: flex;
+            transition: transform 280ms ui-easing('deceleration'),
+            padding-left 280ms ui-easing('deceleration');
+
+            /deep/ .tab {
+                height: 48px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0 12px;
+                text-transform: uppercase;
+                cursor: default;
+                user-select: none;
+                font-size: 14px;
+                font-weight: 500;
+                color: rgba(white, 0.7);
+
+                transition: color 280ms ui-easing('deceleration'),
+                max-width 280ms ui-easing('deceleration');
+
+                border-bottom: 2px solid transparent;
+
+                &.selected {
+                    color: white;
+                    border-bottom-color: white;
+                }
+
+                @include mobile {
+                    min-width: 72px;
+                }
+
+                @at-root :host .tabs:not(.scrollable) /deep/ .tab {
+                    width: 100%;
+                }
+
+                @at-root :host .tabs.scrollable {
+                    &:not(.no-padding) .overflow {
+                        @include desktop {
+                            padding-left: 60px;
+                        }
+                    }
+
+                    .overflow /deep/ .tab {
+                        min-width: 160px;
+                        max-width: 264px;
+                    }
+                }
+            }
+
+            .indicator {
+                position: absolute;
+                height: 2px;
+                background-color: white;
+                top: 46px;
+
+                transition: width 280ms ui-easing('deceleration'),
+                left 280ms ui-easing('deceleration');
+            }
+        }
+
+        .arrows {
+            .ui-button {
+                color: white;
+                margin: 0;
+            }
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            cursor: default;
+
+            .left, .right {
+                display: flex;
+                justify-content: center;
+                width: 50px;
+                transition: transform 280ms ui-easing('deceleration');
+
+                .ui-button {
+                    pointer-events: auto;
+                    transform: scale(0);
+                }
+
+                &.show {
+                    .ui-button {
+                        transform: scale(1);
+                    }
+                }
+            }
+
+            .right {
+                margin-left: auto;
+            }
+        }
+    }
+}

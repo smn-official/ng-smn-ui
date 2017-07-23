@@ -1,0 +1,18 @@
+<div class="tabs scrollable">
+    <div class="overflow" (scroll)="tabsScroll()">
+        <ng-content></ng-content>
+        <div class="indicator"></div>
+    </div>
+    <div class="arrows">
+        <div class="left" [class.show]="showLeftArrow">
+            <div class="ui-button icon flat" uiRipple (click)="tabsScroll(-200)">
+                <i class="material-icons">keyboard_arrow_left</i>
+            </div>
+        </div>
+        <div class="right" [class.show]="showRightArrow">
+            <div class="ui-button icon flat" uiRipple (click)="tabsScroll(200)">
+                <i class="material-icons">keyboard_arrow_right</i>
+            </div>
+        </div>
+    </div>
+</div>

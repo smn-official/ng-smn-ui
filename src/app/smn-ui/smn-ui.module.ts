@@ -53,6 +53,8 @@ import {UiSliderMultiHandleComponent} from './slider/slider-multi-handle.compone
 import {UiInfiniteLoadDirective} from './utils/infinite-load/infinite-load.directive';
 import {UiInfiniteLoadService} from './utils/infinite-load/infinite-load.service';
 import {UiMaskIntegerDirective} from './utils/masks/integer/mask-integer.directive';
+import {UiTabsComponent} from './tabs/tabs.component';
+import {UiTabsPagesComponent} from './tabs/pages/tabs-pages.component';
 
 export {
     UiColor,
@@ -113,7 +115,9 @@ const lib: any[] = [
     UiSliderComponent,
     UiSliderMultiHandleComponent,
     UiInfiniteLoadDirective,
-    UiMaskIntegerDirective
+    UiMaskIntegerDirective,
+    UiTabsComponent,
+    UiTabsPagesComponent
 ];
 
 @NgModule({
