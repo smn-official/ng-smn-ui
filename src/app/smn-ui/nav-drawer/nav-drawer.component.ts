@@ -95,7 +95,6 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
             mouseX = e.touches[0].pageX;
             navDrawerTouch = (mouseX > 0 && mouseX < 40) ? 'open' : navDrawerTouch;
             navDrawerTouch = (mouseX > 320 && mouseX < 360) ? 'close' : navDrawerTouch;
-            console.log('touch-start', mouseX);
         });
 
         windowRef.on('touchmove', (e) => {
@@ -109,7 +108,6 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
                     mouseXMovement = mouseXMovement > 0 ? 0 : mouseXMovement;
                     navDrawer.css('transform', 'translateX(' + (mouseXMovement) + 'px)');
                 }
-                console.log('touch-move', mouseXMovement);
             }
         });
 
