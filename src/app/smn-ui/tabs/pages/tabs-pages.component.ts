@@ -38,30 +38,31 @@ export class UiTabsPagesComponent implements OnInit, AfterViewInit {
         });
 
         elBannerContainer.addEventListener('touchmove', (e) => {
-            touchXMovement = touchXStartPosition - e.touches[0].pageX;
-            touchYMovement = touchYStartPosition - e.touches[0].pageY;
+            if (touchXStartPosition < 0 || touchXStartPosition > 40) {
+                touchXMovement = touchXStartPosition - e.touches[0].pageX;
+                touchYMovement = touchYStartPosition - e.touches[0].pageY;
 
-            if (!firstMovementCoord) {
-                if (touchXMovement) {
-                    firstMovementCoord = 'X';
-                } else if (touchYMovement) {
-                    firstMovementCoord = 'Y';
+                if (!firstMovementCoord) {
+                    if (touchXMovement > 10 || touchXMovement < -10) {
+                        firstMovementCoord = 'X';
+                    } else if (touchYMovement > 10 || touchYMovement < -10) {
+                        firstMovementCoord = 'Y';
+                    }
                 }
-            }
 
-            if (touchXMovement && firstMovementCoord === 'X') {
-                document.body.style.overflowY = 'hidden';
-                document.querySelector('html').style.overflowY = 'hidden';
+                if (touchXMovement && firstMovementCoord === 'X') {
+                    disableScroll();
 
-                const i = currentBannerIndex;
+                    const i = currentBannerIndex;
 
-                const isNegative = i > 0 ? -1 : 1;
-                const currentPosition = (i * 100) * isNegative;
+                    const isNegative = i > 0 ? -1 : 1;
+                    const currentPosition = (i * 100) * isNegative;
 
-                this.element.nativeElement.querySelectorAll('.page-container .page').forEach(page => {
-                    newPosition = currentPosition - ((100 / page.clientWidth) * touchXMovement);
-                    page.style.transform = `translate(${newPosition}%)`;
-                });
+                    this.element.nativeElement.querySelectorAll('.page-container .page').forEach(page => {
+                        newPosition = currentPosition - ((100 / page.clientWidth) * touchXMovement);
+                        page.style.transform = `translate(${newPosition}%)`;
+                    });
+                }
             }
         });
 
@@ -75,8 +76,9 @@ export class UiTabsPagesComponent implements OnInit, AfterViewInit {
                     this.pagesGoToPage();
                 }
             }
-            document.body.style.overflowY = '';
-            document.querySelector('html').style.overflowY = '';
+            // document.body.style.overflowY = '';
+            // document.querySelector('html').style.overflowY = '';
+            enableScroll();
             firstMovementCoord = undefined;
         });
     }
@@ -97,4 +99,46 @@ export class UiTabsPagesComponent implements OnInit, AfterViewInit {
             this.pagesGoToPage(tabs.indexOf(tabs.filter(tab => tab.is('.selected'))[0]) + 1);
         }
     }
+}
+
+
+
+
+// left: 37, up: 38, right: 39, down: 40,
+// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+const keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+function preventDefault(e) {
+    e = e || window.event;
+    if (e.preventDefault) {
+        e.preventDefault();
+    }
+    e.returnValue = false;
+}
+
+function preventDefaultForScrollKeys(e) {
+    if (keys[e.keyCode]) {
+        preventDefault(e);
+        return false;
+    }
+}
+
+function disableScroll() {
+    if (window.addEventListener) { // older FF
+        window.addEventListener('DOMMouseScroll', preventDefault, false);
+    }
+    window.onwheel = preventDefault; // modern standard
+    window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+    window.ontouchmove  = preventDefault; // mobile
+    document.onkeydown  = preventDefaultForScrollKeys;
+}
+
+function enableScroll() {
+    if (window.removeEventListener) {
+        window.removeEventListener('DOMMouseScroll', preventDefault, false);
+    }
+    window.onmousewheel = document.onmousewheel = null;
+    window.onwheel = null;
+    window.ontouchmove = null;
+    document.onkeydown = null;
 }
