@@ -67,7 +67,7 @@ export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy {
         windowRef.off('scroll resize', this.onScroll);
     }
 
-    tabsScroll(value) {
+    tabsScroll(value?) {
         const overflow = new UiElementRef(this.element.nativeElement).querySelector('.overflow');
 
         const scrollLeft = overflow.nativeElement.scrollLeft;

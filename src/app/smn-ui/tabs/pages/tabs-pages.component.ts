@@ -10,6 +10,8 @@ import {UiElementRef} from '../../utils/providers/element-ref.provider';
 
 export class UiTabsPagesComponent implements OnInit, AfterViewInit {
     @Input() tabs: any;
+    firstLoad: boolean;
+    currentPage: number;
 
     constructor(private element: ElementRef) {
     }
@@ -87,8 +89,8 @@ export class UiTabsPagesComponent implements OnInit, AfterViewInit {
         this.pagesGoToPage(1);
     }
 
-    pagesGoToPage(i?) {
-        i = i ? i - 1 : null;
+    pagesGoToPage(nextPage?) {
+        nextPage = nextPage ? nextPage - 1 : null;
 
         let tabs;
         if (this.tabs) {
@@ -97,25 +99,48 @@ export class UiTabsPagesComponent implements OnInit, AfterViewInit {
             tabs = new UiElementRef(this.element.nativeElement).querySelector('.page');
         }
 
-        if (tabs[i]) {
-            const isNegative = i > 0 ? -1 : 1;
-            const newPosition = i * 100 * isNegative;
+        if (tabs[nextPage]) {
+            const isNegative = nextPage > 0 ? -1 : 1;
+            const newPosition = nextPage * 100 * isNegative;
 
             this.element.nativeElement.querySelectorAll('.page-container .page').forEach(page => {
                 page.style.transform = `translate(${newPosition}%)`;
             });
         } else {
             this.pagesGoToPage(tabs.indexOf(tabs.filter(tab => tab.is('.selected'))[0]) + 1);
+            // TODO: Verificar se isso realmente funciona
         }
 
         const pageContainer = new UiElementRef(this.element.nativeElement);
-        const currentPage = pageContainer.querySelector('.page-container .page')[i];
+        const elNextPage = pageContainer.querySelector('.page-container .page')[nextPage];
 
-        pageContainer.css('height', currentPage.nativeElement.clientHeight + 'px');
+        pageContainer.querySelector('.page-container .page').forEach((page, i) => {
+            if (nextPage === i) {
+                page.css('height', '');
+            }
+        });
+        if (this.firstLoad) {
+            const elCurrentPage = pageContainer.querySelector('.page-container .page')[this.currentPage];
+            pageContainer.css('height', elCurrentPage.nativeElement.clientHeight + 'px');
+        } else {
+            this.firstLoad = true;
+        }
+        setTimeout(() => {
+            pageContainer.css('height', elNextPage.nativeElement.clientHeight + 'px');
+
+            setTimeout(() => {
+                pageContainer.querySelector('.page-container .page').forEach((page, i) => {
+                    if (nextPage !== i) {
+                        page.css('height', 0);
+                    }
+                });
+                pageContainer.css('height', '');
+            }, 280);
+        });
+
+        this.currentPage = nextPage;
     }
 }
-
-
 
 
 // left: 37, up: 38, right: 39, down: 40,
@@ -143,8 +168,8 @@ function disableScroll() {
     }
     window.onwheel = preventDefault; // modern standard
     window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
-    window.ontouchmove  = preventDefault; // mobile
-    document.onkeydown  = preventDefaultForScrollKeys;
+    window.ontouchmove = preventDefault; // mobile
+    document.onkeydown = preventDefaultForScrollKeys;
 }
 
 function enableScroll() {

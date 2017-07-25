@@ -1,7 +1,5 @@
-import {Injectable} from '@angular/core';
 import {UiElement} from './element.provider';
 
-@Injectable()
 export class UiElementRef {
     nativeElement: any;
     length: number;
@@ -93,5 +91,9 @@ export class UiElementRef {
 
     css(styleProp, newValue?): any {
         return UiElement.css(this.nativeElement, styleProp, newValue);
+    }
+
+    getAttribute(name): any {
+        return this.nativeElement.getAttribute(name);
     }
 }
