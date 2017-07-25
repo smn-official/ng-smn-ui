@@ -18,75 +18,84 @@ export class UiTabsPagesComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        const tabs = new UiElementRef(this.tabs.element.nativeElement).querySelector('.tab');
+        if (this.tabs) {
+            const tabs = new UiElementRef(this.tabs.element.nativeElement).querySelector('.tab');
 
-        let touchXMovement;
-        let touchXStartPosition;
-        let touchYMovement;
-        let touchYStartPosition;
-        let firstMovementCoord;
-        let currentBannerIndex;
-        let newPosition;
+            let touchXMovement;
+            let touchXStartPosition;
+            let touchYMovement;
+            let touchYStartPosition;
+            let firstMovementCoord;
+            let currentBannerIndex;
+            let newPosition;
 
-        const elBannerContainer = this.element.nativeElement.querySelector('.page-container');
+            const elBannerContainer = this.element.nativeElement.querySelector('.page-container');
 
-        elBannerContainer.addEventListener('touchstart', (e) => {
-            currentBannerIndex = tabs.indexOf(tabs.filter(tab => tab.is('.selected'))[0]);
-            touchXStartPosition = e.touches[0].pageX;
-            touchYStartPosition = e.touches[0].pageY;
-            elBannerContainer.classList.add('no-transition');
-        });
+            elBannerContainer.addEventListener('touchstart', (e) => {
+                currentBannerIndex = tabs.indexOf(tabs.filter(tab => tab.is('.selected'))[0]);
+                touchXStartPosition = e.touches[0].pageX;
+                touchYStartPosition = e.touches[0].pageY;
+                elBannerContainer.classList.add('no-transition');
+            });
 
-        elBannerContainer.addEventListener('touchmove', (e) => {
-            if (touchXStartPosition < 0 || touchXStartPosition > 40) {
-                touchXMovement = touchXStartPosition - e.touches[0].pageX;
-                touchYMovement = touchYStartPosition - e.touches[0].pageY;
+            elBannerContainer.addEventListener('touchmove', (e) => {
+                if (touchXStartPosition < 0 || touchXStartPosition > 40) {
+                    touchXMovement = touchXStartPosition - e.touches[0].pageX;
+                    touchYMovement = touchYStartPosition - e.touches[0].pageY;
 
-                if (!firstMovementCoord) {
-                    if (touchXMovement > 10 || touchXMovement < -10) {
-                        firstMovementCoord = 'X';
-                    } else if (touchYMovement > 10 || touchYMovement < -10) {
-                        firstMovementCoord = 'Y';
+                    if (!firstMovementCoord) {
+                        if (touchXMovement > 10 || touchXMovement < -10) {
+                            firstMovementCoord = 'X';
+                        } else if (touchYMovement > 10 || touchYMovement < -10) {
+                            firstMovementCoord = 'Y';
+                        }
+                    }
+
+                    if (touchXMovement && firstMovementCoord === 'X') {
+                        disableScroll();
+
+                        const i = currentBannerIndex;
+
+                        const isNegative = i > 0 ? -1 : 1;
+                        const currentPosition = (i * 100) * isNegative;
+
+                        this.element.nativeElement.querySelectorAll('.page-container .page').forEach(page => {
+                            newPosition = currentPosition - ((100 / page.clientWidth) * touchXMovement);
+                            page.style.transform = `translate(${newPosition}%)`;
+                        });
                     }
                 }
+            });
 
-                if (touchXMovement && firstMovementCoord === 'X') {
-                    disableScroll();
-
-                    const i = currentBannerIndex;
-
-                    const isNegative = i > 0 ? -1 : 1;
-                    const currentPosition = (i * 100) * isNegative;
-
-                    this.element.nativeElement.querySelectorAll('.page-container .page').forEach(page => {
-                        newPosition = currentPosition - ((100 / page.clientWidth) * touchXMovement);
-                        page.style.transform = `translate(${newPosition}%)`;
-                    });
+            elBannerContainer.addEventListener('touchend', () => {
+                elBannerContainer.classList.remove('no-transition');
+                if (touchXMovement) {
+                    const newIndex = (Math.round(newPosition / 100) * -1);
+                    if (tabs[newIndex]) {
+                        tabs[newIndex].trigger('click');
+                    } else {
+                        this.pagesGoToPage();
+                    }
                 }
-            }
-        });
+                // document.body.style.overflowY = '';
+                // document.querySelector('html').style.overflowY = '';
+                enableScroll();
+                firstMovementCoord = undefined;
+            });
+        }
 
-        elBannerContainer.addEventListener('touchend', () => {
-            elBannerContainer.classList.remove('no-transition');
-            if (touchXMovement) {
-                const newIndex = (Math.round(newPosition / 100) * -1);
-                if (tabs[newIndex]) {
-                    tabs[newIndex].trigger('click');
-                } else {
-                    this.pagesGoToPage();
-                }
-            }
-            // document.body.style.overflowY = '';
-            // document.querySelector('html').style.overflowY = '';
-            enableScroll();
-            firstMovementCoord = undefined;
-        });
+        this.pagesGoToPage(1);
     }
 
     pagesGoToPage(i?) {
         i = i ? i - 1 : null;
 
-        const tabs = new UiElementRef(this.tabs.element.nativeElement).querySelector('.tab');
+        let tabs;
+        if (this.tabs) {
+            tabs = new UiElementRef(this.tabs.element.nativeElement).querySelector('.tab');
+        } else {
+            tabs = new UiElementRef(this.element.nativeElement).querySelector('.page');
+        }
 
         if (tabs[i]) {
             const isNegative = i > 0 ? -1 : 1;
@@ -98,6 +107,11 @@ export class UiTabsPagesComponent implements OnInit, AfterViewInit {
         } else {
             this.pagesGoToPage(tabs.indexOf(tabs.filter(tab => tab.is('.selected'))[0]) + 1);
         }
+
+        const pageContainer = new UiElementRef(this.element.nativeElement);
+        const currentPage = pageContainer.querySelector('.page-container .page')[i];
+
+        pageContainer.css('height', currentPage.nativeElement.clientHeight + 'px');
     }
 }
 
