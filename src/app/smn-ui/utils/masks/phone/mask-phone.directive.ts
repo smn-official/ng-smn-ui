@@ -40,7 +40,7 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
     }
 
     writeValue(rawValue: any): void {
-        if (this.control && this.loaded) {
+        if (this.control && this.loaded && rawValue) {
             this.control.markAsDirty();
         }
         if (!this.input) {
@@ -50,7 +50,9 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
     }
 
     renderViaInput(rawValue: any): void {
-        this.control.markAsDirty();
+        if (rawValue) {
+            this.control.markAsDirty();
+        }
         this.ngModel = this.format(rawValue);
         this.ngModelChange.emit(this.ngModel);
         this.elementRef.nativeElement.value = this.phonePipe.transform(this.elementRef.nativeElement.value);
