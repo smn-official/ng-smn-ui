@@ -1,11 +1,67 @@
 @import "../core/variables";
 
 @mixin ui-data-table($theme) {
-    $background: ui-if(map-get($theme, is-dark) == true, ui-color('grey', '500'), ui-color('grey', '300'));
+    $background-image: ui-if(map-get($theme, is-dark) == true, ui-color('grey', '500'), ui-color('grey', '300'));
+    $border: ui-if(map-get($theme, is-dark) == true, ui-color('grey', '900'), ui-color('grey', '300'));
+    $selected-color: ui-if(map-get($theme, is-dark) == true, ui-color('grey', '700'), ui-color('grey', '100'));
+    $hover-color: ui-if(map-get($theme, is-dark) == true, ui-color('grey', '900'), ui-color('grey', '200'));
 
     .ui-data-table {
         .image {
-            background-color: $background;
+            background-color: $background-image;
+        }
+
+        color: map_get($theme, primary-text-color);
+
+        th {
+            color: map_get($theme, secondary-text-color);
+        }
+
+        th, td {
+            border-bottom: 1px solid $border;
+        }
+
+        tr {
+            &:last-child {
+                th, td {
+                    border-color: transparent;
+                }
+            }
+
+            &.selected {
+                td {
+                    background-color: $selected-color;
+                }
+            }
+
+            &:hover {
+                td {
+                    background-color: $hover-color;
+                }
+            }
+
+            &.empty {
+                td {
+                    background-color: transparent;
+                }
+            }
+        }
+
+        tfoot td {
+            color: map_get($theme, secondary-text-color);
+
+            &:hover {
+                background-color: transparent;
+            }
+            &:last-child {
+                border-top: 1px solid $border;
+            }
+        }
+
+        tbody:not(:last-child) {
+            tr:last-child td {
+                border-color: $border;
+            }
         }
     }
 }

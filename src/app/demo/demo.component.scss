@@ -12,9 +12,11 @@ $theme-dark: ui-theme($primary, $accent, true);
 @include ui-build-theme($theme);
 
 .dark {
+    color: map_get($theme-dark, primary-text-color);
     @include ui-build-theme($theme-dark);
 }
 
 .light {
+    color: map_get($theme, primary-text-color);
     @include ui-build-theme($theme);
 }

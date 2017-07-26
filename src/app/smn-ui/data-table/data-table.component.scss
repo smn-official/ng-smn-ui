@@ -2,14 +2,12 @@
 
 .ui-data-table {
     font-size: 13px;
-    color: rgba(0, 0, 0, 0.87);
     border-collapse: collapse;
     width: 100%;
 
     th {
         font-size: 12px;
         font-weight: 500;
-        color: rgba(0, 0, 0, 0.54);
         height: 56px;
         text-align: left;
         cursor: default;
@@ -48,8 +46,6 @@
             padding-right: 24px;
         }
 
-        border-bottom: 1px solid ui-color('grey', '300');
-
         &.option,
         &.picture {
             width: 56px;
@@ -58,30 +54,6 @@
 
     tr {
         cursor: default;
-
-        &:last-child {
-            th, td {
-                border-color: transparent;
-            }
-        }
-
-        &.selected {
-            td {
-                background-color: ui-color('grey', '100');
-            }
-        }
-
-        &:hover {
-            td {
-                background-color: ui-color('grey', '200');
-            }
-        }
-
-        &.empty {
-            td {
-                background-color: transparent;
-            }
-        }
     }
 
     td {
@@ -102,29 +74,18 @@
     }
 
     tfoot td {
-        color: rgba(0, 0, 0, 0.54);
         font-size: 12px;
         cursor: default;
 
-        &:hover {
-            background-color: transparent;
-        }
         height: 56px;
         &:last-child {
             padding-right: 14px;
-            border-top: 1px solid ui-color('grey', '300');
         }
 
         .pagination {
             margin-right: 24px;
             display: flex;
             align-items: center;
-        }
-    }
-
-    tbody:not(:last-child) {
-        tr:last-child td {
-            border-color: ui-color('grey', '300');
         }
     }
 }
