@@ -32,7 +32,6 @@ ui-input-container {
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: 16px;
-        color: rgba(0,0,0,.54);
         transition: 225ms ui-easing('desaceleration');
         user-select: none;
     }
@@ -46,19 +45,13 @@ ui-input-container {
         font-size: 16px;
         font-weight: 400;
         background-color: transparent;
-        border: 0;
         padding: 8px 0;
         width: 100%;
-        color: rgba(0,0,0,.87); // Value default
-        border-bottom: 1px solid rgba(0,0,0,.42); // Value default
-
+        border-bottom-width: 1px;
+        border-style: solid;
         &:disabled,
         &:read-only:not(select) {
             border-style: dotted;
-        }
-
-        &::placeholder {
-            color: rgba(0,0,0,.42); // Value default
         }
 
         // Label
@@ -98,7 +91,6 @@ ui-input-container {
         left: 50%;
         width: 0;
         transition: all 225ms ui-easing('desaceleration');
-        background-color: rgba(0,0,0,.42); // Value default
         opacity: 0;
     }
 
@@ -112,11 +104,6 @@ ui-input-container {
             position: absolute;
             left: 0;
             right: 0;
-
-            &.helper,
-            &.counter {
-                color: rgba(0,0,0,.54); // Value default
-            }
 
             &.counter {
                 text-align: right;
