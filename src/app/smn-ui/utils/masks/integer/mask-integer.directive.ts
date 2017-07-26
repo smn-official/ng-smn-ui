@@ -38,7 +38,6 @@ export class UiMaskIntegerDirective implements ControlValueAccessor, AfterViewIn
     }
 
     renderViaInput(rawValue: any): void {
-        console.log(rawValue);
         this.ngModel = this.format(rawValue);
         this.ngModelChange.emit(this.ngModel);
         this.elementRef.nativeElement.value = this.ngModel || '';
