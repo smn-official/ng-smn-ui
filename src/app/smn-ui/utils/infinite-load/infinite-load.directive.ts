@@ -10,7 +10,6 @@ export class UiInfiniteLoadDirective implements AfterViewInit, DoCheck {
     @Output() uiInfiniteLoad: EventEmitter<any> = new EventEmitter();
 
     constructor(private element: ElementRef, private infiniteLoad: UiInfiniteLoadService) {
-        console.log(1);
     }
 
     ngAfterViewInit() {

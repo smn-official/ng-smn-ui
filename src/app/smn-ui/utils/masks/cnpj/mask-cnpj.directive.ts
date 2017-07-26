@@ -53,7 +53,7 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator, Aft
 
     renderViaInput(rawValue: any): void {
         this.control.markAsDirty();
-        this.ngModel = this.formart(rawValue);
+        this.ngModel = this.format(rawValue);
         this.ngModelChange.emit(this.ngModel);
         this.elementRef.nativeElement.value = this.cnpjPipe.transform(this.elementRef.nativeElement.value);
     }
@@ -66,7 +66,7 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator, Aft
         this.onTouched = fn;
     }
 
-    formart(value) {
+    format(value) {
         value = value.toString().replace(/[^0-9]+/g, '');
         return value.substring(0, 14);
     }
@@ -75,7 +75,7 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator, Aft
 
         this.control = control;
 
-        if (control.value && this.formart(control.value).length < 14) {
+        if (control.value && this.format(control.value).length < 14) {
             return {parse: true};
         }
 

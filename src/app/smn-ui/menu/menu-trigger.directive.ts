@@ -15,6 +15,10 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
 
     constructor(public viewContainerRef: ViewContainerRef, public elementRef: ElementRef) {
         this.isMobile = UiWindowRef.nativeWindow.innerWidth <= 763;
+
+        UiWindowRef.nativeWindow.addEventListener('resize', () => {
+            this.isMobile = UiWindowRef.nativeWindow.innerWidth <= 763;
+        });
     }
 
     ngAfterViewInit() {

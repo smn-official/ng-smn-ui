@@ -49,7 +49,6 @@ ui-toolbar {
         display: flex;
         align-items: center;
         padding: 4px;
-        color: ui-text-color('grey', '300');
 
         .ui-button {
             margin: 12px;
@@ -72,14 +71,13 @@ ui-toolbar {
             cursor: default;
             user-select: none;
 
-
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2; /* number of lines to show */
-            line-height: 17px;        /* fallback */
-            max-height: 17*2px;       /* fallback */
+            line-height: 17px; /* fallback */
+            max-height: 17*2px; /* fallback */
         }
 
         .logo {
@@ -96,6 +94,12 @@ ui-toolbar {
             img {
                 height: 100%;
             }
+
+            &:first-child {
+                @include desktop {
+                    margin-left: 15px;
+                }
+            }
         }
 
         .logo ~ .title {
@@ -106,8 +110,26 @@ ui-toolbar {
         }
     }
 
-    &.transparent:not(.scrolled) header {
-        background-color: transparent;
+    &.transparent {
+        &:not(.no-shadow) .ui-toolbar-space {
+            position: relative;
+
+            &:before {
+                z-index: 1;
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 0;
+                transition: box-shadow 280ms ui-easing('deceleration');
+                box-shadow: 0 -50px 147px 69px rgba(0, 0, 0, 0.40);
+            }
+        }
+
+        &:not(.scrolled) header {
+            background-color: transparent;
+        }
     }
 
     &.fixed {

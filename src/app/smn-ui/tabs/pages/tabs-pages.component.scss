@@ -1,0 +1,25 @@
+@import '../../core/variables';
+
+:host {
+    width: 100%;
+    transition: height 280ms ui-easing('deceleration');
+    overflow: hidden;
+
+    .page-container {
+        overflow: hidden;
+        text-align: center;
+        display: flex;
+        justify-content: flex-start;
+
+        &:not(.no-transition) /deep/ .page {
+            transition: transform 280ms ui-easing('deceleration');
+        }
+
+        /deep/ .page {
+            text-align: left;
+            flex-shrink: 0;
+            width: 100%;
+            margin-bottom: auto;
+        }
+    }
+}

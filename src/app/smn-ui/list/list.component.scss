@@ -12,6 +12,7 @@
         color: rgba(0, 0, 0, 0.87);
         font-weight: 500;
         width: 100%;
+        user-select: none;
         &:not(a) {
             cursor: default;
         }
@@ -68,21 +69,32 @@
 
         .action {
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             margin-left: auto;
             max-width: 56px;
-            ui-option {
+            margin-right: -2px;
+            .ui-switch {
                 margin-right: 9px;
+            }
+
+            .arrow {
+                margin-right: 10px;
             }
         }
 
         .arrow {
+            display: flex;
+            align-items: flex-end;
+            margin-left: auto;
+            max-width: 56px;
+            margin-right: -2px;
+
             user-select: none;
-            position: absolute;
+            //position: absolute;
             color: rgba(0, 0, 0, 0.54);
-            right: 12px;
-            top: 50%;
-            margin-top: -12px;
+            //right: 12px;
+            //top: 50%;
+            //margin-top: -12px;
             i {
                 transition: transform 280ms ui-easing('deceleration');
             }
@@ -158,4 +170,3 @@
         }
     }
 }
-

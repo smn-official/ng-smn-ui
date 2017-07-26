@@ -48,7 +48,7 @@ export class UiMaskCepDirective implements ControlValueAccessor, Validator, Afte
 
     renderViaInput(rawValue: any): void {
         this.control.markAsDirty();
-        this.ngModel = this.formart(rawValue);
+        this.ngModel = this.format(rawValue);
         this.ngModelChange.emit(this.ngModel);
         this.elementRef.nativeElement.value = this.cepPipe.transform(this.elementRef.nativeElement.value);
     }
@@ -61,7 +61,7 @@ export class UiMaskCepDirective implements ControlValueAccessor, Validator, Afte
         this.onTouched = fn;
     }
 
-    formart(value) {
+    format(value) {
         value = value.toString().replace(/[^0-9]+/g, '');
         return value.substring(0, 8);
     }
@@ -70,7 +70,7 @@ export class UiMaskCepDirective implements ControlValueAccessor, Validator, Afte
 
         this.control = control;
 
-        if (control.value && this.formart(control.value).length < 8) {
+        if (control.value && this.format(control.value).length < 8) {
             return {parse: true};
         }
 

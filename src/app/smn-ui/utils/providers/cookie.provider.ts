@@ -25,10 +25,10 @@ export class UiCookie {
         this.set(name, '', -1);
     }
 
-    static set(name: string, value: string, expireDays: number = 1, path: string = '') {
+    static set(name: string, value: string, expireDays: number = 365, path: string = '/') {
         const d: Date = new Date();
         d.setTime(d.getTime() + expireDays * 24 * 60 * 60 * 1000);
         const expires: string = 'expires=' + d.toUTCString();
-        document.cookie = name + '=' + value + '; ' + expires + (path.length > 0 ? '; path=' + path : '');
+        document.cookie = name + '=' + value + '; ' + expires + '; path=' + path;
     }
 }

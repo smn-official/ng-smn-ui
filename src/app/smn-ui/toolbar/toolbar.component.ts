@@ -31,10 +31,10 @@ export class UiToolbarComponent implements AfterViewInit {
                     }
 
                     if (scroll > 97) {
-                        header.style.zIndex = 2;
+                        header.style.zIndex = 3;
                         this.element.nativeElement.classList.add('scrolled');
                     } else {
-                        header.style.zIndex = 1;
+                        header.style.zIndex = 2;
                         this.element.nativeElement.classList.remove('scrolled');
                     }
                 } else {

@@ -1,0 +1,34 @@
+@import '../core/variables';
+
+.ui-chip {
+    height: 32px;
+    font-size: 13px;
+    color: rgba(black, 0.87);
+    background-color: ui-color('grey', '300');
+    transition: background-color 280ms ui-easing('deceleration');
+    border-radius: 16px;
+
+    display: inline-flex;
+    align-items: center;
+    padding: 0 16px;
+    cursor: default;
+    user-select: none;
+
+    @at-root a#{&} {
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    .icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 16px;
+        background-size: cover;
+        background-position: center;
+        margin-left: -16px;
+        margin-right: 8px;
+    }
+}

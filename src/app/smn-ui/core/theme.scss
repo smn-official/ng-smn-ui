@@ -17,6 +17,8 @@
 @import "../subheader/subheader.theme";
 @import "../toolbar/toolbar.theme";
 @import "../slider/slider.theme";
+@import "../data-table/data-table.theme";
+@import "../chip/chip.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -52,6 +54,7 @@
 @mixin ui-build-theme($theme) {
     html, body {
         background-color: ui-if(map_get($theme, is-dark), #303030, #FAFAFA);
+        color: map_get($theme, primary-text-color);
     }
     .primary-text {
         color: map_get($theme, primary-text-color);
@@ -80,4 +83,6 @@
     @include ui-switch($theme);
     @include ui-toolbar($theme);
     @include ui-slider($theme);
+    @include ui-data-table($theme);
+    @include ui-chip($theme);
 }
