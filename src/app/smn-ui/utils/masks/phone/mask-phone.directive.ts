@@ -1,6 +1,6 @@
 import {
     AfterViewInit, Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input,
-    Output
+    Output, OnChanges
 } from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
 import {UiPhonePipe} from './phone.pipe';
@@ -18,7 +18,7 @@ import {UiElement} from '../../providers/element.provider';
         multi: true
     }, UiPhonePipe]
 })
-export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, AfterViewInit {
+export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, AfterViewInit, OnChanges {
 
     loaded: boolean;
     input: boolean;
@@ -31,6 +31,12 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
     constructor(public elementRef: ElementRef, public phonePipe: UiPhonePipe) {
+    }
+
+    ngOnChanges(changes): void {
+        if (!changes.ngModel.firstChange && (changes.ngModel.currentValue === null || changes.ngModel.currentValue === undefined)) {
+            this.elementRef.nativeElement.value = '';
+        }
     }
 
     ngAfterViewInit() {

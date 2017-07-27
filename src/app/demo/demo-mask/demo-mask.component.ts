@@ -13,4 +13,8 @@ export class DemoMaskComponent implements OnInit {
     ngOnInit() {
     }
 
+    testSubmit(form) {
+        form.reset();
+    }
+
 }

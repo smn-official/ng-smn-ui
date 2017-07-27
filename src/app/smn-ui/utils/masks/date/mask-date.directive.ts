@@ -44,7 +44,7 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
     }
 
     writeValue(rawValue: any): void {
-        if (this.control && this.loaded) {
+        if (this.control && this.loaded && rawValue) {
             this.control.markAsDirty();
         }
         if (!this.input) {
@@ -54,7 +54,9 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
     }
 
     renderViaInput(rawValue: any): void {
-        this.control.markAsDirty();
+        if (rawValue) {
+            this.control.markAsDirty();
+        }
         this.ngModel = checkDate(this.format(rawValue));
         this.ngModelChange.emit(this.ngModel);
         this.elementRef.nativeElement.value = this.format(this.elementRef.nativeElement.value);
@@ -84,6 +86,9 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
     }
 
     ngOnChanges(changes): void {
+        if (!changes.ngModel.firstChange && (changes.ngModel.currentValue === null || changes.ngModel.currentValue === undefined)) {
+            this.elementRef.nativeElement.value = '';
+        }
         if ((changes.minDate && !changes.minDate.firstChange) || (changes.maxDate && !changes.maxDate.firstChange)) {
             this.control.updateValueAndValidity(this.control);
         }

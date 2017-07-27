@@ -1,5 +1,5 @@
 import {
-    AfterViewInit, Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input,
+    AfterViewInit, Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges,
     Output
 } from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
@@ -18,7 +18,7 @@ import {UiElement} from '../../providers/element.provider';
         multi: true
     }, UiCpfPipe]
 })
-export class UiMaskCpfDirective implements ControlValueAccessor, Validator, AfterViewInit {
+export class UiMaskCpfDirective implements ControlValueAccessor, Validator, AfterViewInit, OnChanges {
 
     loaded: boolean;
     input: boolean;
@@ -33,6 +33,12 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
     constructor(public elementRef: ElementRef, public cpfPipe: UiCpfPipe) {
     }
 
+    ngOnChanges(changes): void {
+        if (!changes.ngModel.firstChange && (changes.ngModel.currentValue === null || changes.ngModel.currentValue === undefined)) {
+            this.elementRef.nativeElement.value = '';
+        }
+    }
+
     ngAfterViewInit() {
         setTimeout(() => {
             this.loaded = true;
@@ -40,7 +46,7 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
     }
 
     writeValue(rawValue: any): void {
-        if (this.control && this.loaded) {
+        if (this.control && this.loaded && rawValue) {
             this.control.markAsDirty();
         }
         if (!this.input) {
@@ -50,7 +56,9 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
     }
 
     renderViaInput(rawValue: any): void {
-        this.control.markAsDirty();
+        if(rawValue) {
+            this.control.markAsDirty();
+        }
         this.ngModel = this.format(rawValue);
         this.ngModelChange.emit(this.ngModel);
         this.elementRef.nativeElement.value = this.cpfPipe.transform(this.elementRef.nativeElement.value);

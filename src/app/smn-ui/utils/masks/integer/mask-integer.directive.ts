@@ -1,6 +1,6 @@
 import {
     AfterViewInit, Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input,
-    Output
+    Output, OnChanges
 } from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
 
@@ -12,7 +12,7 @@ import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/for
         multi: true
     }]
 })
-export class UiMaskIntegerDirective implements ControlValueAccessor, AfterViewInit {
+export class UiMaskIntegerDirective implements ControlValueAccessor, AfterViewInit, OnChanges {
     loaded: boolean;
     input: boolean;
     onChange: Function;
@@ -22,6 +22,12 @@ export class UiMaskIntegerDirective implements ControlValueAccessor, AfterViewIn
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
     constructor(public elementRef: ElementRef) {
+    }
+
+    ngOnChanges(changes): void {
+        if (!changes.ngModel.firstChange && (changes.ngModel.currentValue === null || changes.ngModel.currentValue === undefined)) {
+            this.elementRef.nativeElement.value = '';
+        }
     }
 
     ngAfterViewInit() {
