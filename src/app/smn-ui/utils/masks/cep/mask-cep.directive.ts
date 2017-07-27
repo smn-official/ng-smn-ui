@@ -1,4 +1,4 @@
-import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, Output, AfterViewInit} from '@angular/core';
+import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, Output, AfterViewInit, OnChanges} from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
 import {UiCepPipe} from './cep.pipe';
 import {UiElement} from '../../providers/element.provider';
@@ -15,7 +15,7 @@ import {UiElement} from '../../providers/element.provider';
         multi: true
     }, UiCepPipe]
 })
-export class UiMaskCepDirective implements ControlValueAccessor, Validator, AfterViewInit {
+export class UiMaskCepDirective implements ControlValueAccessor, Validator, AfterViewInit, OnChanges {
 
     loaded: boolean;
     input: boolean;
@@ -30,6 +30,12 @@ export class UiMaskCepDirective implements ControlValueAccessor, Validator, Afte
     constructor(public elementRef: ElementRef, public cepPipe: UiCepPipe) {
     }
 
+    ngOnChanges(changes): void {
+        if (!changes.ngModel.firstChange && (changes.ngModel.currentValue === null || changes.ngModel.currentValue === undefined)) {
+            this.elementRef.nativeElement.value = '';
+        }
+    }
+
     ngAfterViewInit() {
        setTimeout(() => {
             this.loaded = true;
@@ -37,7 +43,7 @@ export class UiMaskCepDirective implements ControlValueAccessor, Validator, Afte
     }
 
     writeValue(rawValue: any): void {
-        if (this.control && this.loaded) {
+        if (this.control && this.loaded && rawValue) {
             this.control.markAsDirty();
         }
         if (!this.input) {
@@ -47,7 +53,9 @@ export class UiMaskCepDirective implements ControlValueAccessor, Validator, Afte
     }
 
     renderViaInput(rawValue: any): void {
-        this.control.markAsDirty();
+        if (rawValue) {
+            this.control.markAsDirty();
+        }
         this.ngModel = this.format(rawValue);
         this.ngModelChange.emit(this.ngModel);
         this.elementRef.nativeElement.value = this.cepPipe.transform(this.elementRef.nativeElement.value);
