@@ -70,7 +70,7 @@ export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy {
     tabsScroll(value?) {
         const overflow = new UiElementRef(this.element.nativeElement).querySelector('.overflow');
 
-        const scrollLeft = overflow.nativeElement.scrollLeft;
+        let scrollLeft = overflow.nativeElement.scrollLeft;
 
         const maxScrollLeft = overflow.nativeElement.scrollWidth - overflow.nativeElement.clientWidth;
 
@@ -78,8 +78,10 @@ export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy {
             overflow.animate('borderSpacing', scrollLeft, scrollLeft + value, 280, null, (tick) => {
                 overflow.nativeElement.scrollLeft = tick;
 
-                this.showLeftArrow = (tick > 0);
-                this.showRightArrow = (tick < maxScrollLeft);
+                scrollLeft = overflow.nativeElement.scrollLeft;
+
+                this.showLeftArrow = (scrollLeft > 0);
+                this.showRightArrow = (scrollLeft < maxScrollLeft);
             });
         } else {
             this.showLeftArrow = (scrollLeft > 0);

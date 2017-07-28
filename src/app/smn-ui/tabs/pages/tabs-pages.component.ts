@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input} from '@angular/core';
 import {UiElementRef} from '../../utils/providers/element-ref.provider';
 
 @Component({
@@ -8,15 +8,15 @@ import {UiElementRef} from '../../utils/providers/element-ref.provider';
     styleUrls: ['tabs-pages.component.scss']
 })
 
-export class UiTabsPagesComponent implements OnInit, AfterViewInit {
+export class UiTabsPagesComponent implements AfterViewInit {
     @Input() tabs: any;
     firstLoad: boolean;
     currentPage: number;
+    timeOutTurnBack: any;
+    @Input('enable-overflow') enableOverflow: boolean;
 
     constructor(private element: ElementRef) {
-    }
-
-    ngOnInit() {
+        this.currentPage = 1;
     }
 
     ngAfterViewInit() {
@@ -38,6 +38,14 @@ export class UiTabsPagesComponent implements OnInit, AfterViewInit {
                 touchXStartPosition = e.touches[0].pageX;
                 touchYStartPosition = e.touches[0].pageY;
                 elBannerContainer.classList.add('no-transition');
+
+                if (this.enableOverflow) {
+                    const pageContainer = new UiElementRef(this.element.nativeElement);
+
+                    pageContainer.querySelector('.page-container .page').forEach(page => {
+                        page.css('height', '');
+                    });
+                }
             });
 
             elBannerContainer.addEventListener('touchmove', (e) => {
@@ -79,8 +87,6 @@ export class UiTabsPagesComponent implements OnInit, AfterViewInit {
                         this.pagesGoToPage();
                     }
                 }
-                // document.body.style.overflowY = '';
-                // document.querySelector('html').style.overflowY = '';
                 enableScroll();
                 firstMovementCoord = undefined;
             });
@@ -128,7 +134,8 @@ export class UiTabsPagesComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
             pageContainer.css('height', elNextPage.nativeElement.clientHeight + 'px');
 
-            setTimeout(() => {
+            clearTimeout(this.timeOutTurnBack);
+            this.timeOutTurnBack = setTimeout(() => {
                 pageContainer.querySelector('.page-container .page').forEach((page, i) => {
                     if (nextPage !== i) {
                         page.css('height', 0);
@@ -138,7 +145,9 @@ export class UiTabsPagesComponent implements OnInit, AfterViewInit {
             }, 280);
         });
 
-        this.currentPage = nextPage;
+        if (nextPage) {
+            this.currentPage = nextPage;
+        }
     }
 }
 

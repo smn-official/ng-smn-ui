@@ -96,4 +96,16 @@ export class UiElementRef {
     getAttribute(name): any {
         return this.nativeElement.getAttribute(name);
     }
+
+    height(newHeight?) {
+        if (typeof newHeight !== 'undefined') {
+            UiElement.css(this.nativeElement, 'height', newHeight);
+        }
+
+        return this.nativeElement.clientHeight;
+    }
+
+    parent() {
+        return new UiElementRef(this.nativeElement.parentNode);
+    }
 }
