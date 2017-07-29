@@ -62,7 +62,8 @@
     }
 }
 
-:host-context(.ui-button.fab) {
+:host-context(.ui-button.fab),
+:host-context(.ui-button.icon) {
     position: absolute;
     width: 100%;
     top: 0;
