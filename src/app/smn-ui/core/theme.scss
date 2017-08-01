@@ -10,6 +10,7 @@
 @import "../list/list.theme";
 @import "../nav-drawer/nav-drawer.theme";
 @import "../progress/linear/progress-linear.theme";
+@import "../progress/radial/progress-radial.theme";
 @import "../ripple/ripple.theme";
 @import "../selection-control/option/option.theme";
 @import "../selection-control/selection/selection.theme";
@@ -76,7 +77,8 @@
     @include ui-list($theme);
     @include ui-nav-drawer($theme);
     @include ui-option($theme);
-    @include ui-progress($theme);
+    @include ui-progress-linear($theme);
+    @include ui-progress-radial($theme);
     @include ui-ripple($theme);
     @include ui-selection($theme);
     @include ui-subheader($theme);

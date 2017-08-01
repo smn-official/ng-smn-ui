@@ -1,0 +1,16 @@
+@import "../../core/variables";
+
+@mixin ui-progress-radial($theme) {
+    ui-progress-radial {
+        .spinner-container .path {
+            stroke: #2196F3;
+        }
+
+        &.primary .spinner-container .path {
+            stroke: map_get($theme, primary-color);
+        }
+        &.accent .spinner-container .path {
+            stroke: map_get($theme, accent-color);
+        }
+    }
+}
