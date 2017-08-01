@@ -77,8 +77,7 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
             }
             this.mouseDown = true;
             this.toggleTackOn(true);
-            this.bodyElement.style.overflowY = 'hidden';
-            this.htmlElement.style.overflowY = 'hidden';
+            UiElement.enableScroll();
         });
 
         UiElement.on(this.endElement, 'mousedown touchstart', () => {
@@ -105,8 +104,8 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
             this.toggleBalloon();
             this.toggleTackOn();
 
-            this.bodyElement.style.overflowY = '';
-            this.htmlElement.style.overflowY = '';
+            UiElement.disableScroll();
+
         });
 
         UiElement.on(document, 'mousemove touchmove', e => {

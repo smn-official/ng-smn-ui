@@ -55,6 +55,10 @@
             }
         }
 
+        select.ui-control option {
+            color: initial;
+        }
+
         .ui-messages .ui-message.helper,
         .ui-messages .ui-message.counter {
             color: $message-color;
