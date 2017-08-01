@@ -1,0 +1,10 @@
+@import '../core/variables';
+
+[uiLazyLoad] {
+    opacity: 0;
+    transition: opacity 280ms ui-easing('deceleration');
+
+    &.loaded {
+        opacity: 1;
+    }
+}

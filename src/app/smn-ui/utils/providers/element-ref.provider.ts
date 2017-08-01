@@ -3,7 +3,7 @@ import {UiElement} from './element.provider';
 export class UiElementRef {
     nativeElement: any;
     length: number;
-    classList: {};
+    classList: any;
 
     constructor(element: any) {
         this.nativeElement = element;
@@ -93,8 +93,16 @@ export class UiElementRef {
         return UiElement.css(this.nativeElement, styleProp, newValue);
     }
 
-    getAttribute(name): any {
-        return this.nativeElement.getAttribute(name);
+    isInViewport(): any {
+        return UiElement.isInViewport(this.nativeElement);
+    }
+
+    attribute(name, value?): any {
+        if (typeof value !== 'undefined') {
+            return this.nativeElement.setAttribute(name, value);
+        } else {
+            return this.nativeElement.getAttribute(name);
+        }
     }
 
     height(newHeight?) {

@@ -55,6 +55,7 @@ import {UiInfiniteLoadService} from './utils/infinite-load/infinite-load.service
 import {UiMaskIntegerDirective} from './utils/masks/integer/mask-integer.directive';
 import {UiTabsComponent} from './tabs/tabs.component';
 import {UiTabsPagesComponent} from './tabs/pages/tabs-pages.component';
+import {UiLazyLoadDirective} from './lazy-load/lazy-load.directive';
 
 export {
     UiColor,
@@ -117,7 +118,8 @@ const lib: any[] = [
     UiInfiniteLoadDirective,
     UiMaskIntegerDirective,
     UiTabsComponent,
-    UiTabsPagesComponent
+    UiTabsPagesComponent,
+    UiLazyLoadDirective
 ];
 
 @NgModule({
