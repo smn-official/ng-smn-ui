@@ -1,5 +1,6 @@
-import {AfterViewInit, Component, ElementRef, Input} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output} from '@angular/core';
 import {UiElementRef} from '../../utils/providers/element-ref.provider';
+import {UiElement} from '../../utils/providers/element.provider';
 
 @Component({
     moduleId: module.id,
@@ -14,6 +15,7 @@ export class UiTabsPagesComponent implements AfterViewInit {
     currentPage: number;
     timeOutTurnBack: any;
     @Input('enable-overflow') enableOverflow: boolean;
+    @Output('onchangepage') onChangePage: EventEmitter<any> = new EventEmitter();
 
     constructor(private element: ElementRef) {
         this.currentPage = 1;
@@ -62,7 +64,7 @@ export class UiTabsPagesComponent implements AfterViewInit {
                     }
 
                     if (touchXMovement && firstMovementCoord === 'X') {
-                        disableScroll();
+                        UiElement.disableScroll();
 
                         const i = currentBannerIndex;
 
@@ -87,7 +89,7 @@ export class UiTabsPagesComponent implements AfterViewInit {
                         this.pagesGoToPage();
                     }
                 }
-                enableScroll();
+                UiElement.enableScroll();
                 firstMovementCoord = undefined;
             });
         }
@@ -96,8 +98,6 @@ export class UiTabsPagesComponent implements AfterViewInit {
     }
 
     pagesGoToPage(nextPage?) {
-        nextPage = nextPage ? nextPage - 1 : null;
-
         let tabs;
         if (this.tabs) {
             tabs = new UiElementRef(this.tabs.element.nativeElement).querySelector('.tab');
@@ -105,9 +105,9 @@ export class UiTabsPagesComponent implements AfterViewInit {
             tabs = new UiElementRef(this.element.nativeElement).querySelector('.page');
         }
 
-        if (tabs[nextPage]) {
-            const isNegative = nextPage > 0 ? -1 : 1;
-            const newPosition = nextPage * 100 * isNegative;
+        if (tabs[nextPage - 1]) {
+            const isNegative = (nextPage - 1) > 0 ? -1 : 1;
+            const newPosition = (nextPage - 1) * 100 * isNegative;
 
             this.element.nativeElement.querySelectorAll('.page-container .page').forEach(page => {
                 page.style.transform = `translate(${newPosition}%)`;
@@ -118,75 +118,42 @@ export class UiTabsPagesComponent implements AfterViewInit {
         }
 
         const pageContainer = new UiElementRef(this.element.nativeElement);
-        const elNextPage = pageContainer.querySelector('.page-container .page')[nextPage];
+        const elNextPage = pageContainer.querySelector('.page-container .page')[nextPage - 1];
 
         pageContainer.querySelector('.page-container .page').forEach((page, i) => {
-            if (nextPage === i) {
+            if (nextPage - 1 === i) {
                 page.css('height', '');
             }
         });
         if (this.firstLoad) {
-            const elCurrentPage = pageContainer.querySelector('.page-container .page')[this.currentPage];
+            const elCurrentPage = pageContainer.querySelector('.page-container .page')[this.currentPage - 1];
             pageContainer.css('height', elCurrentPage.nativeElement.clientHeight + 'px');
         } else {
             this.firstLoad = true;
         }
-        setTimeout(() => {
-            pageContainer.css('height', elNextPage.nativeElement.clientHeight + 'px');
+        if (elNextPage) {
+            setTimeout(() => {
+                pageContainer.css('height', elNextPage.nativeElement.clientHeight + 'px');
 
-            clearTimeout(this.timeOutTurnBack);
-            this.timeOutTurnBack = setTimeout(() => {
-                pageContainer.querySelector('.page-container .page').forEach((page, i) => {
-                    if (nextPage !== i) {
-                        page.css('height', 0);
-                    }
-                });
-                pageContainer.css('height', '');
-            }, 280);
-        });
+                clearTimeout(this.timeOutTurnBack);
+                this.timeOutTurnBack = setTimeout(() => {
+                    pageContainer.querySelector('.page-container .page').forEach((page, i) => {
+                        if (nextPage - 1 !== i) {
+                            page.css('height', 0);
+                        }
+                    });
+                    pageContainer.css('height', '');
+                }, 280);
+            });
+        }
 
-        if (nextPage) {
+        if (typeof nextPage !== 'undefined') {
             this.currentPage = nextPage;
+            if (this.onChangePage) {
+                setTimeout(() => {
+                    this.onChangePage.emit();
+                });
+            }
         }
     }
-}
-
-
-// left: 37, up: 38, right: 39, down: 40,
-// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
-const keys = {37: 1, 38: 1, 39: 1, 40: 1};
-
-function preventDefault(e) {
-    e = e || window.event;
-    if (e.preventDefault) {
-        e.preventDefault();
-    }
-    e.returnValue = false;
-}
-
-function preventDefaultForScrollKeys(e) {
-    if (keys[e.keyCode]) {
-        preventDefault(e);
-        return false;
-    }
-}
-
-function disableScroll() {
-    if (window.addEventListener) { // older FF
-        window.addEventListener('DOMMouseScroll', preventDefault, false);
-    }
-    window.onwheel = preventDefault; // modern standard
-    window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
-    window.ontouchmove = preventDefault; // mobile
-    document.onkeydown = preventDefaultForScrollKeys;
-}
-
-function enableScroll() {
-    if (window.removeEventListener) {
-        window.removeEventListener('DOMMouseScroll', preventDefault, false);
-    }
-    window.onmousewheel = document.onmousewheel = null;
-    window.onwheel = null;
-    window.ontouchmove = null;
-    document.onkeydown = null;
 }
