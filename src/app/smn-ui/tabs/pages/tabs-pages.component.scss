@@ -11,6 +11,10 @@
         text-align: center;
         display: flex;
         justify-content: flex-start;
+        //noinspection CssOverwrittenProperties
+        max-width: 100%;
+        //noinspection CssOverwrittenProperties
+        max-width: 100vw;
 
         &:not(.no-transition) /deep/ .page {
             transition: transform 280ms ui-easing('deceleration');
