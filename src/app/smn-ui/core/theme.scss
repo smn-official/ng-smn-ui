@@ -21,6 +21,7 @@
 @import "../data-table/data-table.theme";
 @import "../chip/chip.theme";
 @import "../tabs/tabs.theme";
+@import "../autocomplete/autocomplete.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -88,5 +89,4 @@
     @include ui-slider($theme);
     @include ui-data-table($theme);
     @include ui-chip($theme);
-    @include ui-tabs($theme);
 }

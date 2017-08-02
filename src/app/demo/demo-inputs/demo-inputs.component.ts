@@ -10,7 +10,10 @@ import {UiToolbarService} from '../../smn-ui/smn-ui.module';
 })
 export class DemoInputsComponent implements OnInit {
 
+    list: string[];
+
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
+        this.list = ['São Paulo', 'Ohio', 'New York'];
     }
 
     ngOnInit() {

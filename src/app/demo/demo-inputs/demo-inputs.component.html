@@ -102,6 +102,11 @@
                 <input type="text" [(ngModel)]="accentDark" uiInput class="accent">
                 <label>Accent dark</label>
             </ui-input-container>
+            <ui-input-container>
+                <select name="option" [(ngModel)]="option" uiInput>
+                    <option *ngFor="let item of list">{{item}}</option>
+                </select>
+            </ui-input-container>
         </ui-card-content>
     </ui-card>
 </div>

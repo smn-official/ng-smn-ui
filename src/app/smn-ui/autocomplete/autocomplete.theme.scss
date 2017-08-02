@@ -1,0 +1,14 @@
+@import "../core/variables";
+
+@mixin ui-autocomplete($theme) {
+
+    ui-autocomplete .focused {
+        background-color: map_get($theme, primary-color);
+        color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+    }
+
+    ui-autocomplete .focused.accent {
+        background-color: map_get($theme, accent-color);
+        color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+    }
+}
