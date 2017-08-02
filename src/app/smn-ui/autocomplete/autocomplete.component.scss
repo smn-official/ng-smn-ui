@@ -1,0 +1,75 @@
+@import "../core/variables";
+
+:host {
+    display: block;
+    .suggestions {
+
+        box-shadow: ui-shadow('8dp');
+        overflow-y: auto;
+
+        .ui-list {
+            padding: 0;
+
+            .not-found, .not-found span {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
+/deep/ .wrap-autocomplete {
+
+    position: absolute;
+
+    .overlay {
+        overflow: hidden;
+
+    }
+
+    ui-autocomplete > .suggestions:not(.nothing) {
+        transition: max-height 280ms ui-easing('sharp'), opacity 280ms ui-easing('sharp');
+        z-index: 3;
+        max-height: 0;
+
+        .ui-list li {
+            transition: opacity 280ms ui-easing('sharp'), transform 280ms ui-easing('sharp');
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+    }
+
+    &.open ui-autocomplete > .suggestions:not(.nothing) {
+        transform: scale(1);
+        max-height: 240px;
+        animation: hide-overflow 280ms ui-easing('sharp');
+
+        &.has-secondary {
+            max-height: 370px;
+        }
+
+        .ui-list li {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    &:not(.open) ui-autocomplete > .suggestions:not(.nothing) {
+        overflow: hidden;
+    }
+
+
+    @keyframes hide-overflow {
+        0% {
+            overflow: hidden;
+        }
+        99.99% {
+            overflow: hidden;
+        }
+        100% {
+            overflow: auto;
+        }
+    }
+
+}

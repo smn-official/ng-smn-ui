@@ -22,6 +22,7 @@ import {DemoToolbarsComponent} from './demo/demo-toolbars/demo-toolbars.componen
 import {DemoMaskComponent} from './demo/demo-mask/demo-mask.component';
 import {DemoSliderComponent} from './demo/demo-slider/demo-slider.component';
 import {DemoListComponent} from './demo/demo-list/demo-list.component';
+import {DemoAutocompleteComponent} from './demo/demo-autocomplete/demo-autocomplete.component';
 
 const routes: Routes = [
     {
@@ -29,6 +30,7 @@ const routes: Routes = [
         component: DemoComponent,
         children: [
             {path: '', component: DemoHomeComponent},
+            {path: 'autocomplete', component: DemoAutocompleteComponent},
             {path: 'buttons', component: DemoButtonsComponent},
             {path: 'cards', component: DemoCardsComponent},
             {path: 'data-tables', component: DemoDataTablesComponent},
