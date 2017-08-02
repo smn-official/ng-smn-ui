@@ -89,4 +89,5 @@
     @include ui-slider($theme);
     @include ui-data-table($theme);
     @include ui-chip($theme);
+    @include ui-tabs($theme);
 }
