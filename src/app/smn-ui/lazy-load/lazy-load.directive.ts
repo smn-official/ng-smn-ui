@@ -16,7 +16,6 @@ export class UiLazyLoadDirective implements DoCheck {
 
     ngDoCheck() {
         if (!this.visible && this.elementRef.isInViewport()) {
-            console.log(this.elementRef);
             this.visible = true;
             this.elementRef.attribute('src', this.lazySrc);
         }
