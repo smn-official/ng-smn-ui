@@ -20,6 +20,7 @@
 @import "../slider/slider.theme";
 @import "../data-table/data-table.theme";
 @import "../chip/chip.theme";
+@import "../tabs/tabs.theme";
 @import "../autocomplete/autocomplete.theme";
 @import "variables";
 
@@ -88,5 +89,4 @@
     @include ui-slider($theme);
     @include ui-data-table($theme);
     @include ui-chip($theme);
-    @include ui-autocomplete($theme);
 }

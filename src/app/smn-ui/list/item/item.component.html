@@ -1,0 +1,26 @@
+<div *ngIf="!item.childs && !item.url" class="ui-list-item disabled">
+    <span *ngIf="!!item.icon" class="icon">
+        <i *ngIf="item.icon.material" class="material-icons">{{item.icon.material}}</i>
+        <img *ngIf="!!item.icon.img" [src]="item.icon.img" style="width:24px;height:24px"/>
+    </span>
+    {{item.name}}
+</div>
+<a *ngIf="!item.childs && item.url" class="ui-list-item" uiRipple
+   [routerLink]="item.url ? [item.url] : null"
+   [routerLinkActive]="['active']">{{item.name}}
+</a>
+<div *ngIf="item.childs">
+    <div class="ui-list-item" uiRipple [uiListItem]="childs">
+                    <span *ngIf="!!item.icon" class="icon">
+                        <i *ngIf="item.icon.material" class="material-icons">{{item.icon.material}}</i>
+                        <img *ngIf="!!item.icon.img" [src]="item.icon.img" style="width:24px;height:24px"/>
+                    </span>
+        {{item.name}}
+        <span class="arrow"><i class="material-icons">keyboard_arrow_down</i></span>
+    </div>
+    <div class="ui-list-item-group" #childs>
+        <div>
+            <ui-list-items [items]="item.childs"></ui-list-items>
+        </div>
+    </div>
+</div>

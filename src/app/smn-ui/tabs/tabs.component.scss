@@ -30,34 +30,30 @@
                 user-select: none;
                 font-size: 14px;
                 font-weight: 500;
-                color: rgba(white, 0.7);
+                text-align: center;
 
                 transition: color 280ms ui-easing('deceleration'),
                 max-width 280ms ui-easing('deceleration');
 
-                border-bottom: 2px solid transparent;
-
                 &.selected {
-                    color: white;
-                    border-bottom-color: white;
                 }
 
                 @include mobile {
                     min-width: 72px;
                 }
 
-                @at-root :host .tabs:not(.scrollable) /deep/ .tab {
+                @at-root :host:not(.scrollable) .tabs /deep/ .tab {
                     width: 100%;
                 }
 
-                @at-root :host .tabs.scrollable {
-                    &:not(.no-padding) .overflow {
+                @at-root :host.scrollable {
+                    &:not(.no-padding) .tabs .overflow {
                         @include desktop {
                             padding-left: 60px;
                         }
                     }
 
-                    .overflow /deep/ .tab {
+                    .tabs .overflow /deep/ .tab {
                         min-width: 160px;
                         max-width: 264px;
                     }
@@ -67,7 +63,6 @@
             .indicator {
                 position: absolute;
                 height: 2px;
-                background-color: white;
                 top: 46px;
 
                 transition: width 280ms ui-easing('deceleration'),
@@ -77,7 +72,6 @@
 
         .arrows {
             .ui-button {
-                color: white;
                 margin: 0;
             }
             position: absolute;

@@ -331,7 +331,10 @@ $sizes: 480 600 840 960 1280 1440 1600;
             z-index: 2;
             transition: all 280ms ui-easing('deceleration');
 
-            top: 128px;
+            top: 120px;
+            @include desktop {
+                top: 128px;
+            }
             bottom: 100%;
 
             right: calc(50% - (#{$size}px / 2) - 79px);
@@ -396,3 +399,4 @@ body.ui-nav-drawer-persistent {
         }
     }
 }
+/**/
