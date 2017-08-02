@@ -4,6 +4,7 @@
     width: 100%;
     transition: height 280ms ui-easing('deceleration');
     overflow: hidden;
+    display: block;
 
     .page-container {
         overflow: hidden;

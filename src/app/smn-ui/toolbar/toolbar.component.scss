@@ -161,21 +161,23 @@ ui-toolbar {
             header {
                 box-shadow: none;
 
+                height: 154px;
+                padding-bottom: 99px;
                 @include desktop {
                     height: 162px;
                     padding-bottom: 102px;
                 }
-                @include mobile-landscape {
-                    height: 66px;
-                    padding-bottom: 22px;
-                }
+                //@include mobile-landscape {
+                //    height: 66px;
+                //    padding-bottom: 22px;
+                //}
             }
         }
 
         .ui-toolbar-space {
-            @include desktop {
+            //@include desktop {
                 height: 98px;
-            }
+            //}
             @include mobile-landscape {
                 height: 66px;
             }
@@ -239,60 +241,62 @@ ui-toolbar {
     }
 }
 
-body.ui-nav-drawer-persistent {
-    ui-toolbar {
-        &.size-2x {
-            @each $size in $sizes {
-                @media (max-width: #{$size + 320}px) {
-                    &.elevate-on-s#{$size} {
-                        header {
-                            height: 48px !important;
-                            @include desktop {
-                                height: 64px !important;
-                            }
-                            @include mobile-portrait {
-                                height: 56px !important;
-                            }
-                            padding-bottom: 4px !important;
-                            animation: fixZindex 0.28s ui-easing('deceleration');
-                            animation-fill-mode: forwards;
-                        }
-
-                        @keyframes fixZindex {
-                            0% {
-                                z-index: 2;
+@include desktop {
+    body.ui-nav-drawer-persistent {
+        ui-toolbar {
+            &.size-2x {
+                @each $size in $sizes {
+                    @media (max-width: #{$size + 320}px) {
+                        &.elevate-on-s#{$size} {
+                            header {
+                                height: 48px !important;
+                                @include desktop {
+                                    height: 64px !important;
+                                }
+                                @include mobile-portrait {
+                                    height: 56px !important;
+                                }
+                                padding-bottom: 4px !important;
+                                animation: fixZindex 0.28s ui-easing('deceleration');
+                                animation-fill-mode: forwards;
                             }
 
-                            99% {
-                                z-index: 2;
-                            }
-                            100% {
-                                z-index: 3;
-                            }
-                        }
+                            @keyframes fixZindex {
+                                0% {
+                                    z-index: 2;
+                                }
 
-                        .ui-toolbar-space {
-                            height: 48px !important;
-                            @include desktop {
-                                height: 64px !important;
+                                99% {
+                                    z-index: 2;
+                                }
+                                100% {
+                                    z-index: 3;
+                                }
                             }
-                            @include mobile-portrait {
-                                height: 56px !important;
+
+                            .ui-toolbar-space {
+                                height: 48px !important;
+                                @include desktop {
+                                    height: 64px !important;
+                                }
+                                @include mobile-portrait {
+                                    height: 56px !important;
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            @include mobile-portrait {
-                header:not(.nothing) {
-                    height: 56px !important;
-                    padding-bottom: 4px !important;
-                    z-index: 3 !important;
-                }
+                @include mobile-portrait {
+                    header:not(.nothing) {
+                        height: 56px !important;
+                        padding-bottom: 4px !important;
+                        z-index: 3 !important;
+                    }
 
-                .ui-toolbar-space:not(.nothing) {
-                    height: 56px !important;
+                    .ui-toolbar-space:not(.nothing) {
+                        height: 56px !important;
+                    }
                 }
             }
         }
