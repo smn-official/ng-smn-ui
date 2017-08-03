@@ -4,6 +4,7 @@
     font-size: 13px;
     border-collapse: collapse;
     width: 100%;
+    overflow: hidden;
 
     th {
         font-size: 12px;
@@ -58,6 +59,9 @@
 
     td {
         height: 48px;
+        &.no-wrap {
+            white-space: nowrap;
+        }
     }
 
     .align-right {
@@ -87,5 +91,10 @@
             display: flex;
             align-items: center;
         }
+    }
+
+    tbody {
+        overflow-x: auto;
+        display: block;
     }
 }
