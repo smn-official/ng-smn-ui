@@ -1,8 +1,15 @@
 <div class="ui-button-container">
     <button class="ui-button raised accent" [uiBottomSheetTrigger]="listBottomSheet" uiRipple>Open with list</button>
     <button class="ui-button raised accent" [uiBottomSheetTrigger]="headerBottomSheet" uiRipple>Open with header</button>
+    <button class="ui-button raised accent" [uiBottomSheetTrigger]="headerBottomSheet" uiRipple theme-class="dark">Open with theme class</button>
     <button class="ui-button raised accent" [uiBottomSheetTrigger]="listBottomSheet" uiRipple transparent-overlay="true">
         Open with Transparent Overlay
+    </button>
+    <button class="ui-button raised accent" [uiBottomSheetTrigger]="gridBottomSheet" uiRipple>
+        Open with Grid
+    </button>
+    <button class="ui-button raised accent" [uiBottomSheetTrigger]="gridListBottomSheet" uiRipple>
+        Open with Grid and List
     </button>
 </div>
 
@@ -35,20 +42,57 @@
     </ul>
 </ui-bottom-sheet>
 
-<ui-bottom-sheet #headerBottomSheet card-size="480" theme-dark="">
+<ui-bottom-sheet #headerBottomSheet card-size="480">
     <h2 class="header">Create</h2>
     <ul class="ui-list" (click)="headerBottomSheet.close()">
         <li uiRipple>
             <div class="icon">
-                <i class="material-icons">share</i>
+                <i class="material-icons">insert_drive_file</i>
             </div>
-            Share
+            Document
         </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">assignment</i>
+            </div>
+            Spreadsheet
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">folder</i>
+            </div>
+            Folder
+        </li>
+        <li class="ui-divider"></li>
         <li uiRipple>
             <div class="icon">
                 <i class="material-icons">cloud_upload</i>
             </div>
             Upload
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">photo_camera</i>
+            </div>
+            Use camera
+        </li>
+    </ul>
+
+</ui-bottom-sheet>
+
+<ui-bottom-sheet class="grid" #gridBottomSheet card-size="480">
+    <ul class="col-3">
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">assignment</i>
+            </div>
+            Spreadsheet
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">folder</i>
+            </div>
+            Folder
         </li>
         <li uiRipple>
             <div class="icon">
@@ -65,10 +109,44 @@
         </li>
         <li uiRipple>
             <div class="icon">
+                <i class="material-icons">photo_camera</i>
+            </div>
+            Use camera
+        </li>
+    </ul>
+</ui-bottom-sheet>
+<ui-bottom-sheet class="grid" #gridListBottomSheet card-size="480">
+    <ul class="ui-list">
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">assignment</i>
+            </div>
+            Spreadsheet
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">folder</i>
+            </div>
+            Folder
+        </li>
+        <li uiRipple>
+            <div class="icon">
                 <i class="material-icons">cloud_upload</i>
             </div>
             Upload
         </li>
+        <li class="ui-divider"></li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">cloud_upload</i>
+            </div>
+            Upload
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">photo_camera</i>
+            </div>
+            Use camera
+        </li>
     </ul>
-
 </ui-bottom-sheet>

@@ -40,6 +40,9 @@ export class UiBottomSheetTriggerDirective implements AfterViewInit {
 
     open(element) {
         setTimeout(() => {
+            const card = element.querySelector('ui-card');
+            card.className += ` ${this.bottomSheet.elementRef.nativeElement.className}`;
+
             if (this.themeClass) {
                 element.classList.add(this.themeClass);
             }
@@ -47,7 +50,7 @@ export class UiBottomSheetTriggerDirective implements AfterViewInit {
                 element.classList.add('transparent-overlay');
             }
             if (this.bottomSheet.cardSize) {
-                element.querySelectorAll('ui-card')[0].style.maxWidth = this.bottomSheet.cardSize + 'px';
+                card.style.maxWidth = this.bottomSheet.cardSize + 'px';
             }
 
             element.querySelectorAll('.overlay')[0].addEventListener('click', () => {
