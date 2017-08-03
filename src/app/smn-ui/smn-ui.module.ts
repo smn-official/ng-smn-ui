@@ -60,6 +60,7 @@ import {UiMaskIntegerDirective} from './utils/masks/integer/mask-integer.directi
 import {UiTabsComponent} from './tabs/tabs.component';
 import {UiTabsPagesComponent} from './tabs/pages/tabs-pages.component';
 import {UiLazyLoadDirective} from './lazy-load/lazy-load.directive';
+import {UiDataTableComponent} from './data-table/data-table.component';
 
 export {
     UiColor,
@@ -127,7 +128,8 @@ const lib: any[] = [
     UiMaskIntegerDirective,
     UiTabsComponent,
     UiTabsPagesComponent,
-    UiLazyLoadDirective
+    UiLazyLoadDirective,
+    UiDataTableComponent
 ];
 
 @NgModule({

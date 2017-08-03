@@ -1,10 +1,13 @@
 @import '../core/variables';
 
+.ui-table-overflow {
+    overflow-x: auto;
+}
+
 .ui-data-table {
     font-size: 13px;
     border-collapse: collapse;
     width: 100%;
-    overflow: hidden;
 
     th {
         font-size: 12px;
@@ -39,6 +42,8 @@
     }
 
     th, td {
+        padding: 0 12px;
+
         &:first-child {
             padding: 0 24px;
         }
@@ -50,6 +55,16 @@
         &.option,
         &.picture {
             width: 56px;
+        }
+
+        .ellipsis {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2; /* number of lines to show */
+            line-height: 17px;        /* fallback */
+            max-height: 17*2px;       /* fallback */
         }
     }
 
@@ -91,10 +106,5 @@
             display: flex;
             align-items: center;
         }
-    }
-
-    tbody {
-        overflow-x: auto;
-        display: block;
     }
 }
