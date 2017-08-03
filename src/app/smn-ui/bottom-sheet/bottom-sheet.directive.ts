@@ -1,5 +1,6 @@
 import {AfterViewInit, Directive, ElementRef, Input, ViewContainerRef} from '@angular/core';
 import {UiElement} from '../utils/providers/element.provider';
+import {UiWindowRef} from '../utils/providers/window.provider';
 
 @Directive({
     selector: '[uiBottomSheetTrigger]'
@@ -7,7 +8,7 @@ import {UiElement} from '../utils/providers/element.provider';
 export class UiBottomSheetTriggerDirective implements AfterViewInit {
     viewRef;
     @Input('trigger-events') triggerEvents: string;
-    @Input('dark-class') darkClass: string;
+    @Input('theme-class') themeClass: string;
     @Input('transparent-overlay') transparentOverlay: boolean;
     @Input('uiBottomSheetTrigger') bottomSheet;
 
@@ -39,8 +40,8 @@ export class UiBottomSheetTriggerDirective implements AfterViewInit {
 
     open(element) {
         setTimeout(() => {
-            if (this.darkClass) {
-                element.classList.add(this.darkClass);
+            if (this.themeClass) {
+                element.classList.add(this.themeClass);
             }
             if (this.transparentOverlay) {
                 element.classList.add('transparent-overlay');

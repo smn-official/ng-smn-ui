@@ -1,17 +1,74 @@
 <div class="ui-button-container">
-    <button class="ui-button raised primary" [uiBottomSheetTrigger]="testBottomSheet" uiRipple>Open Bottom Sheet</button>
-    <button class="ui-button raised primary" [uiBottomSheetTrigger]="testBottomSheet" uiRipple transparent-overlay="true">
-        Open Bottom Sheet with Transparent Overlay
+    <button class="ui-button raised accent" [uiBottomSheetTrigger]="listBottomSheet" uiRipple>Open with list</button>
+    <button class="ui-button raised accent" [uiBottomSheetTrigger]="headerBottomSheet" uiRipple>Open with header</button>
+    <button class="ui-button raised accent" [uiBottomSheetTrigger]="listBottomSheet" uiRipple transparent-overlay="true">
+        Open with Transparent Overlay
     </button>
 </div>
 
-<ui-bottom-sheet #testBottomSheet card-size="400">
-    <ui-card-title>Test bottom-sheet</ui-card-title>
-    <ui-card-content>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi in itaque nihil, non quod rem voluptate.
-        Accusantium beatae consectetur hic maiores nemo officiis totam? Aspernatur culpa labore laudantium natus nulla.
-    </ui-card-content>
-    <div class="ui-button-container cover">
-        <button class="ui-button raised primary" uiRipple (click)="testBottomSheet.close()">Close Bottom Sheet</button>
-    </div>
+<ui-bottom-sheet #listBottomSheet card-size="480">
+    <ul class="ui-list" (click)="listBottomSheet.close()">
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">share</i>
+            </div>
+            Share
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">cloud_upload</i>
+            </div>
+            Upload
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">content_copy</i>
+            </div>
+            Copy
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">print</i>
+            </div>
+            Print this page
+        </li>
+    </ul>
+</ui-bottom-sheet>
+
+<ui-bottom-sheet #headerBottomSheet card-size="480" theme-dark="">
+    <h2 class="header">Create</h2>
+    <ul class="ui-list" (click)="headerBottomSheet.close()">
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">share</i>
+            </div>
+            Share
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">cloud_upload</i>
+            </div>
+            Upload
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">cloud_upload</i>
+            </div>
+            Upload
+        </li>
+        <li class="ui-divider"></li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">cloud_upload</i>
+            </div>
+            Upload
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">cloud_upload</i>
+            </div>
+            Upload
+        </li>
+    </ul>
+
 </ui-bottom-sheet>
