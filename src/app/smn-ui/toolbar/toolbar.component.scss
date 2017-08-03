@@ -20,6 +20,8 @@ $sizes: 480 600 840 960 1280 1440 1600;
 }
 
 ui-toolbar {
+    display: block;
+
     .ui-toolbar-space {
         display: none;
     }

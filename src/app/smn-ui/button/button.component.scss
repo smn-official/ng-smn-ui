@@ -72,7 +72,9 @@
     border-radius: 2px;
     font-size: 14px;
     font-weight: 500;
-    text-transform: uppercase;
+    &:not(.no-uppercase) {
+        text-transform: uppercase;
+    }
     text-align: center;
     transform: scale(1);
     transition: transform 0.28s ui-easing('deceleration'),
@@ -320,6 +322,10 @@
         &.hide {
             transform: scale(0);
         }
+    }
+
+    .icon {
+        margin-right: -12px;
     }
 }
 

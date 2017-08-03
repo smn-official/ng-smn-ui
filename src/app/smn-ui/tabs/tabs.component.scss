@@ -48,8 +48,13 @@
 
                 @at-root :host.scrollable {
                     &:not(.no-padding) .tabs .overflow {
-                        @include desktop {
+                        @media (min-width: 763px) {
                             padding-left: 60px;
+                        }
+                        @at-root :host-context(body.ui-nav-drawer-persistent).scrollable:not(.no-padding) .tabs .overflow {
+                            @media (max-width: 762px + 320) {
+                                padding-left: 0;
+                            }
                         }
                     }
 

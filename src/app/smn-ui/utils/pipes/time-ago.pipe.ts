@@ -88,7 +88,7 @@ export class UiTimeAgoPipe implements PipeTransform, OnDestroy {
             if (this.isMinified) {
                 timeAgo = `${realDelta}s`;
             } else {
-                timeAgo = `${realDelta} dia${(realDelta !== 1) ? 's' : ''}`;
+                timeAgo = `${realDelta} segundo${(realDelta !== 1) ? 's' : ''}`;
             }
             return `${this.textBefore}${timeAgo}${this.textAfter}`;
         } else if (delta < 3600) {
