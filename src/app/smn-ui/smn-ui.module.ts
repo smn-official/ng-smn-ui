@@ -60,6 +60,8 @@ import {UiMaskIntegerDirective} from './utils/masks/integer/mask-integer.directi
 import {UiTabsComponent} from './tabs/tabs.component';
 import {UiTabsPagesComponent} from './tabs/pages/tabs-pages.component';
 import {UiLazyLoadDirective} from './lazy-load/lazy-load.directive';
+import {UiBottomSheetComponent} from './bottom-sheet/bottom-sheet.component';
+import {UiBottomSheetTriggerDirective} from './bottom-sheet/bottom-sheet.directive';
 
 export {
     UiColor,
@@ -127,7 +129,9 @@ const lib: any[] = [
     UiMaskIntegerDirective,
     UiTabsComponent,
     UiTabsPagesComponent,
-    UiLazyLoadDirective
+    UiLazyLoadDirective,
+    UiBottomSheetComponent,
+    UiBottomSheetTriggerDirective
 ];
 
 @NgModule({

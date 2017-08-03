@@ -22,6 +22,7 @@
 @import "../chip/chip.theme";
 @import "../tabs/tabs.theme";
 @import "../autocomplete/autocomplete.theme";
+@import "../bottom-sheet/bottom-sheet.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -91,4 +92,5 @@
     @include ui-chip($theme);
     @include ui-tabs($theme);
     @include ui-autocomplete($theme);
+    @include ui-bottom-sheet($theme);
 }

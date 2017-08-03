@@ -23,6 +23,7 @@ import {DemoMaskComponent} from './demo/demo-mask/demo-mask.component';
 import {DemoSliderComponent} from './demo/demo-slider/demo-slider.component';
 import {DemoListComponent} from './demo/demo-list/demo-list.component';
 import {DemoAutocompleteComponent} from './demo/demo-autocomplete/demo-autocomplete.component';
+import {DemoBottomSheetComponent} from './demo/demo-bottom-sheet/demo-bottom-sheet.component';
 
 const routes: Routes = [
     {
@@ -31,6 +32,7 @@ const routes: Routes = [
         children: [
             {path: '', component: DemoHomeComponent},
             {path: 'autocomplete', component: DemoAutocompleteComponent},
+            {path: 'bottom-sheets', component: DemoBottomSheetComponent},
             {path: 'buttons', component: DemoButtonsComponent},
             {path: 'cards', component: DemoCardsComponent},
             {path: 'data-tables', component: DemoDataTablesComponent},

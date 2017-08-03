@@ -1,0 +1,17 @@
+<div class="ui-button-container">
+    <button class="ui-button raised primary" [uiBottomSheetTrigger]="testBottomSheet" uiRipple>Open Bottom Sheet</button>
+    <button class="ui-button raised primary" [uiBottomSheetTrigger]="testBottomSheet" uiRipple transparent-overlay="true">
+        Open Bottom Sheet with Transparent Overlay
+    </button>
+</div>
+
+<ui-bottom-sheet #testBottomSheet card-size="400">
+    <ui-card-title>Test bottom-sheet</ui-card-title>
+    <ui-card-content>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi in itaque nihil, non quod rem voluptate.
+        Accusantium beatae consectetur hic maiores nemo officiis totam? Aspernatur culpa labore laudantium natus nulla.
+    </ui-card-content>
+    <div class="ui-button-container cover">
+        <button class="ui-button raised primary" uiRipple (click)="testBottomSheet.close()">Close Bottom Sheet</button>
+    </div>
+</ui-bottom-sheet>
