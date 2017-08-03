@@ -1,5 +1,8 @@
 .ui-divider {
     height: 1px;
+    &:not(.nothing) {
+        min-height: 1px;
+    }
     margin: 8px 0;
 
     &:first-child {
