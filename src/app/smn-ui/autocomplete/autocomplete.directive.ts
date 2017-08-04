@@ -29,6 +29,8 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     @Input() secondary: string;
     @Input() loading: boolean;
     @Input('theme-class') themeClass: string;
+    @Output() loadMore: EventEmitter<any> = new EventEmitter();
+    @Output() loadMoreEmmiter: EventEmitter<any> = new EventEmitter();
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
     @Output() modelValueChange: EventEmitter<any> = new EventEmitter();
     @Output() selectChange: EventEmitter<any> = new EventEmitter();
@@ -47,7 +49,9 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
 
     public ngOnInit() {
         this.selectChange.subscribe(item => {
-            this.select(item);
+            if (this.select) {
+                this.select(item);
+            }
             this.ngModel = this.secondary ? item[this.primary] : item;
             this.modelValue = item;
             this.ngModelChange.emit(this.ngModel);
@@ -55,6 +59,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
             this.elementRef.nativeElement.blur();
             this.close();
         });
+
     }
 
     public ngAfterViewInit() {
@@ -89,7 +94,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     }
 
     public setInstances(component, componentRef): void {
-        const keysComponent = ['ngModel', 'list', 'primary', 'secondary', 'selectChange', 'loading', 'accentClass'];
+        const keysComponent = ['ngModel', 'list', 'primary', 'secondary', 'selectChange', 'loading', 'accentClass', 'loadMore'];
 
         keysComponent.forEach(key => {
             componentRef.instance[key] = component[key];
@@ -107,7 +112,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
             let horizontalCoveringArea = coordinate.x + list.clientWidth;
             const verticalCoveringArea = coordinate.y + list.clientHeight;
             const windowWidth = window.innerWidth + document.body.scrollLeft;
-            const windowHeight = document.body.clientHeight + document.body.scrollTop;
+            const windowHeight = window.innerHeight + document.body.scrollTop;
 
             if (horizontalCoveringArea > windowWidth) {
                 coordinate.x = windowWidth - (list.clientWidth + 8);
@@ -118,7 +123,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
             }
 
             if (verticalCoveringArea > windowHeight) {
-                coordinate.y = windowHeight - (list.clientHeight + 8);
+                coordinate.y = windowHeight - (list.clientHeight);
             }
 
             this.wrapElement.style.top = (coordinate.y + this.elementRef.nativeElement.clientHeight) + 'px';

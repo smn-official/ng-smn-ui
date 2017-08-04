@@ -1,8 +1,16 @@
 :host {
-    margin: 20px;
     display: block;
 
     ui-card {
         margin-bottom: 10px;
     }
+
+    .ui-s960 {
+        z-index: 2;
+        position: relative;
+    }
+}
+
+/deep/ .wrap-autocomplete {
+    z-index: 2;
 }

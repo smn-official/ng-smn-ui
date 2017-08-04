@@ -1,11 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {UiToolbarService} from '../../smn-ui/toolbar/toolbar.service';
 
 @Component({
     selector: 'ui-demo-autocomplete',
     templateUrl: './demo-autocomplete.component.html',
     styleUrls: ['./demo-autocomplete.component.scss']
 })
-export class DemoAutocompleteComponent implements OnInit {
+export class DemoAutocompleteComponent implements OnInit, AfterViewInit {
 
     states: string[];
     statesFiltered: string[];
@@ -15,7 +16,7 @@ export class DemoAutocompleteComponent implements OnInit {
     timing;
     allStatesFiltered: any[];
 
-    constructor() {
+    constructor(public toolbarService: UiToolbarService) {
         this.states = ['São Paulo', 'Rio de Janeiro', 'Brasília', 'Brasília Amarela'];
         this.allStates = [{
             name: 'São Paulo',
@@ -44,8 +45,16 @@ export class DemoAutocompleteComponent implements OnInit {
     ngOnInit() {
     }
 
+    ngAfterViewInit() {
+        // this.toolbarService.activateExtendedToolbar();
+    }
+
     select(item) {
         console.log(item);
+    }
+
+    loadMore() {
+        console.log('teste');
     }
 
     search() {

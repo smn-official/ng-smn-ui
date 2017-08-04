@@ -2,13 +2,11 @@
 
 @mixin ui-progress-linear($theme) {
     .ui-progress {
-        &.primary {
-            background-color: ui-color(map_get($theme, primary), '200');
+        background-color: ui-color(map_get($theme, primary), '200');
 
-            .determinate,
-            .indeterminate {
-                background-color: ui-color(map_get($theme, primary));
-            }
+        .determinate,
+        .indeterminate {
+            background-color: ui-color(map_get($theme, primary));
         }
 
         &.accent {

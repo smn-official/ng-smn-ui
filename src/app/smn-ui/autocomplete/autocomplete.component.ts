@@ -14,8 +14,14 @@ export class UiAutocompleteComponent {
     accentClass: boolean;
     focusedIndex: number;
     selectChange: EventEmitter<any>;
+    loadMore: EventEmitter<any>;
 
     selectItem(item) {
         this.selectChange.emit(item);
     }
+
+    loadMoreEmit() {
+        this.loadMore.emit();
+    }
+
 }

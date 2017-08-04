@@ -1,100 +1,159 @@
-<div class="light">
-    <ui-card>
-        <ui-card-title>Autocomplete</ui-card-title>
-        <ui-card-content>
-            <ui-input-container>
-                <input type="text"
-                       [(ngModel)]="searchState"
-                       [(modelValue)]="teste"
-                       uiInput
-                       class="accent"
-                       uiAutocomplete
-                       (input)="search()"
-                       (focus)="search()"
-                       [list]="statesFiltered"
-                       [loading]="loading"
-                       [select]="select">
-                <label>States</label>
-            </ui-input-container>
-        </ui-card-content>
-    </ui-card>
-</div>
+<div class="ui-s960">
+    <div class="light">
+        <ui-card>
+            <ui-card-title>Autocomplete</ui-card-title>
+            <ui-card-content>
+                <ui-input-container>
+                    <input type="text"
+                           [(ngModel)]="searchState"
+                           [(modelValue)]="teste"
+                           uiInput
+                           uiAutocomplete
+                           (input)="search()"
+                           (focus)="search()"
+                           (loadMore)="loadMore()"
+                           [list]="statesFiltered"
+                           [loading]="loading"
+                           [select]="select">
+                    <label>States</label>
+                </ui-input-container>
+            </ui-card-content>
+        </ui-card>
+    </div>
 
-<div class="dark">
-    <ui-card>
-        <ui-card-title>Autocomplete</ui-card-title>
-        <ui-card-content>
-            <ui-input-container>
-                <input type="text"
-                       [(ngModel)]="searchAllState"
-                       [modelValue]="teste2"
-                       uiInput
-                       uiAutocomplete
-                       (input)="searchAll()"
-                       (focus)="searchAll()"
-                       [primary]="'name'"
-                       theme-class="dark"
-                       [secondary]="'country'"
-                       [list]="allStatesFiltered"
-                       [loading]="loading"
-                       [select]="select">
-                <label>States</label>
-            </ui-input-container>
-        </ui-card-content>
-    </ui-card>
-</div>
+    <div class="dark">
+        <ui-card>
+            <ui-card-title>Autocomplete</ui-card-title>
+            <ui-card-content>
+                <ui-input-container>
+                    <input type="text"
+                           [(ngModel)]="searchAllState"
+                           [modelValue]="teste2"
+                           uiInput
+                           class="accent"
+                           uiAutocomplete
+                           (input)="searchAll()"
+                           (focus)="searchAll()"
+                           (loadMore)="loadMore()"
+                           [primary]="'name'"
+                           theme-class="dark"
+                           [secondary]="'country'"
+                           [list]="allStatesFiltered"
+                           [loading]="loading"
+                           [select]="select">
+                    <label>States</label>
+                </ui-input-container>
+                <ui-input-container>
+                    <input type="text"
+                           [(ngModel)]="searchAllState"
+                           [modelValue]="teste2"
+                           uiInput
+                           class="accent"
+                           uiAutocomplete
+                           (input)="searchAll()"
+                           (focus)="searchAll()"
+                           (loadMore)="loadMore()"
+                           [primary]="'name'"
+                           theme-class="dark"
+                           [secondary]="'country'"
+                           [list]="allStatesFiltered"
+                           [loading]="loading"
+                           [select]="select">
+                    <label>States</label>
+                </ui-input-container>
+                <ui-input-container>
+                    <input type="text"
+                           [(ngModel)]="searchAllState"
+                           [modelValue]="teste2"
+                           uiInput
+                           class="accent"
+                           uiAutocomplete
+                           (input)="searchAll()"
+                           (focus)="searchAll()"
+                           (loadMore)="loadMore()"
+                           [primary]="'name'"
+                           theme-class="dark"
+                           [secondary]="'country'"
+                           [list]="allStatesFiltered"
+                           [loading]="loading"
+                           [select]="select">
+                    <label>States</label>
+                </ui-input-container>
+                <ui-input-container>
+                    <input type="text"
+                           [(ngModel)]="searchAllState"
+                           [modelValue]="teste2"
+                           uiInput
+                           class="accent"
+                           uiAutocomplete
+                           (input)="searchAll()"
+                           (focus)="searchAll()"
+                           (loadMore)="loadMore()"
+                           [primary]="'name'"
+                           theme-class="dark"
+                           [secondary]="'country'"
+                           [list]="allStatesFiltered"
+                           [loading]="loading"
+                           [select]="select">
+                    <label>States</label>
+                </ui-input-container>
+            </ui-card-content>
+        </ui-card>
+    </div>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</div>

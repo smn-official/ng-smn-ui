@@ -1,4 +1,4 @@
-<ui-card class="suggestions" tabindex="-1" [ngClass]="{'has-secondary': !!secondary}">
+<ui-card class="suggestions" tabindex="-1" [ngClass]="{'has-secondary': !!secondary}" (uiInfiniteLoad)="loadMoreEmit()">
     <div class="ui-progress" [ngClass]="{'hide': !loading, 'accent': accentClass}" style="position: absolute">
         <div class="indeterminate"></div>
     </div>
