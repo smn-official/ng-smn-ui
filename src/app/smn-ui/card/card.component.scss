@@ -49,8 +49,12 @@ ui-card {
         display: block;
         font-size: 24px;
         padding: 16px 16px 0;
+        cursor: default;
+        user-select: none;
     }
     ui-card-subtitle {
+        cursor: default;
+        user-select: none;
         display: block;
         font-size: 12px;
         padding: 12px 16px 0;

@@ -7,11 +7,33 @@
     .ui-chip {
         background-color: rgba($color, 0.75);
         color: $text-color;
-    }
 
-    a.ui-chip {
-        &:hover, &:active {
-            background-color: $color;
+        .ui-ripple-wave {
+            background-color: rgba($text-color, 0.1);
+        }
+
+        @at-root a#{&} {
+            &:hover, &:active {
+                background-color: $color;
+            }
+        }
+
+        &.marked {
+            background-color: map_get($theme, primary-color);
+            color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+
+            .ui-ripple-wave {
+                background-color: rgba(ui-text-color(map_get($theme, primary), map_get($theme, primary-hue)), 0.1);
+            }
+
+            &.accent-marking {
+                background-color: map_get($theme, accent-color);
+                color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+
+                .ui-ripple-wave {
+                    background-color: rgba(ui-text-color(map_get($theme, accent), map_get($theme, accent-hue)), 0.1);
+                }
+            }
         }
     }
 }

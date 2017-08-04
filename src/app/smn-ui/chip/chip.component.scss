@@ -5,7 +5,8 @@
     font-size: 13px;
     color: rgba(black, 0.87);
     background-color: ui-color('grey', '300');
-    transition: background-color 280ms ui-easing('deceleration');
+    transition: background-color 280ms ui-easing('deceleration'),
+    color 280ms ui-easing('deceleration');
     border-radius: 16px;
 
     display: inline-flex;
@@ -13,6 +14,9 @@
     padding: 0 16px;
     cursor: default;
     user-select: none;
+
+    margin-right: 12px;
+    margin-bottom: 12px;
 
     @at-root a#{&} {
         cursor: pointer;
@@ -30,5 +34,21 @@
         background-position: center;
         margin-left: -16px;
         margin-right: 8px;
+    }
+
+    .close {
+        width: 32px;
+        height: 32px;
+        margin-right: -15px;
+        padding: 6px;
+        color: rgba(black, 0.54);
+        i {
+            transform: rotate(45deg);
+            font-size: 20px;
+        }
+    }
+
+    .ui-ripple-container {
+        border-radius: 16px;
     }
 }

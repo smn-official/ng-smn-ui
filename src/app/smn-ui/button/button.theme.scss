@@ -121,5 +121,17 @@
                 background-color: ui-if($hover-color == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
             }
         }
+
+        .badge {
+            &.primary {
+                background-color: map_get($theme, primary-color);
+                color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+            }
+
+            &.accent {
+                background-color: map_get($theme, accent-color);
+                color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+            }
+        }
     }
 }

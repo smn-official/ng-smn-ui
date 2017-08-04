@@ -56,9 +56,9 @@ export class UiTabsPagesComponent implements AfterViewInit {
                     touchYMovement = touchYStartPosition - e.touches[0].pageY;
 
                     if (!firstMovementCoord) {
-                        if (touchXMovement > 10 || touchXMovement < -10) {
+                        if (touchXMovement > 20 || touchXMovement < -20) {
                             firstMovementCoord = 'X';
-                        } else if (touchYMovement > 10 || touchYMovement < -10) {
+                        } else if (touchYMovement > 20 || touchYMovement < -20) {
                             firstMovementCoord = 'Y';
                         }
                     }
