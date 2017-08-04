@@ -1,12 +1,12 @@
 import {AfterViewInit, Directive, ElementRef, Input, ViewContainerRef} from '@angular/core';
 import {UiElement} from '../utils/providers/element.provider';
-import {UiWindowRef} from '../utils/providers/window.provider';
 
 @Directive({
     selector: '[uiBottomSheetTrigger]'
 })
 export class UiBottomSheetTriggerDirective implements AfterViewInit {
-    viewRef;
+    viewRef: any;
+    fabs: HTMLElement;
     @Input('trigger-events') triggerEvents: string;
     @Input('theme-class') themeClass: string;
     @Input('transparent-overlay') transparentOverlay: boolean;
@@ -52,6 +52,9 @@ export class UiBottomSheetTriggerDirective implements AfterViewInit {
             if (this.bottomSheet.cardSize) {
                 card.style.maxWidth = this.bottomSheet.cardSize + 'px';
             }
+            if (!this.transparentOverlay && this.fabs) {
+                this.fabs.classList.add('hide');
+            }
 
             element.querySelectorAll('.overlay')[0].addEventListener('click', () => {
                 this.close();
@@ -68,6 +71,9 @@ export class UiBottomSheetTriggerDirective implements AfterViewInit {
     close() {
         if (this.viewContainerRef.length) {
             const viewRef = this.viewRef;
+            if (this.fabs) {
+                this.fabs.classList.remove('hide');
+            }
 
             viewRef.rootNodes.forEach(rootNode => {
                 if (rootNode.classList) {

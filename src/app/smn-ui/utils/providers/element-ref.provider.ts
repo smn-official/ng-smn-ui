@@ -72,9 +72,12 @@ export class UiElementRef {
     querySelector(selector): any {
         let selected = this.nativeElement.querySelectorAll(selector);
 
-        selected = selected.length === 1 ? selected[0] : selected;
+        if (selected.length) {
+            selected = selected.length === 1 ? selected[0] : selected;
+            return new UiElementRef(selected);
+        }
 
-        return new UiElementRef(selected);
+        return null;
     }
 
     forEach(callback): any {

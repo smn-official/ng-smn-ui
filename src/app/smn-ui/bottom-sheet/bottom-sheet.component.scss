@@ -16,7 +16,8 @@
         transform: translateY(100%);
         box-shadow: ui-shadow('16dp');
         transition: transform 195ms ui-easing('acceleration');
-        border-radius: 0;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
 
         .header {
             padding: 0 16px;
@@ -83,6 +84,7 @@
         @media (max-width: 600px) {
             & {
                 max-width: 100% !important;
+                border-radius: 0;
             }
         }
     }

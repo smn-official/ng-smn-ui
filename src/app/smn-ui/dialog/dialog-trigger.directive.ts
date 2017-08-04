@@ -1,12 +1,13 @@
 import {AfterViewInit, Directive, ElementRef, Input, ViewContainerRef} from '@angular/core';
 import {UiElement} from '../utils/providers/element.provider';
-import {UiWindowRef} from '../utils/providers/window.provider';
+import {UiElementRef} from '../utils/providers/element-ref.provider';
 
 @Directive({
     selector: '[uiDialogTrigger]'
 })
 export class UiDialogTriggerDirective implements AfterViewInit {
-    viewRef;
+    viewRef: any;
+    fabs: HTMLElement;
     @Input('trigger-events') triggerEvents: string;
     @Input('dark-class') darkClass: string;
     @Input('transparent-overlay') transparentOverlay: boolean;
@@ -40,6 +41,8 @@ export class UiDialogTriggerDirective implements AfterViewInit {
 
     open(element) {
         setTimeout(() => {
+            this.fabs = new UiElementRef(document).querySelector('.ui-fab-container');
+
             if (this.darkClass) {
                 element.classList.add(this.darkClass);
             }
@@ -50,6 +53,9 @@ export class UiDialogTriggerDirective implements AfterViewInit {
                 element.querySelectorAll('ui-card')[0].style.maxWidth = this.dialog.cardSize + 'px';
             }
 
+            if (!this.transparentOverlay && this.fabs) {
+                this.fabs.classList.add('hide');
+            }
             element.querySelectorAll('.overlay')[0].addEventListener('click', () => {
                 this.close();
             });
@@ -65,6 +71,10 @@ export class UiDialogTriggerDirective implements AfterViewInit {
     close() {
         if (this.viewContainerRef.length) {
             const viewRef = this.viewRef; // Salvando a referência para achar o index deste componente
+            if (this.fabs) {
+                this.fabs.classList.remove('hide');
+            }
+
 
             viewRef.rootNodes.forEach(rootNode => {
                 if (rootNode.classList) {
