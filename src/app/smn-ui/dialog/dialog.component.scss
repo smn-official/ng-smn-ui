@@ -10,17 +10,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 16px;
 
     ui-card {
-        //transition: transform 280ms ui-easing('aceleration'), opacity 280ms ui-easing('aceleration');
-        //transform-origin: top;
-        //transform: scale(0);
         transform-origin: bottom;
         transition: transform 225ms ui-easing('acceleration'), opacity 195ms ui-easing('acceleration');
         transform: scale(0.8) translateY(16px);
         box-shadow: ui-shadow('24dp');
         opacity: 0;
         width: 100%;
+        max-height: 100%;
+        overflow-y: auto;
     }
 
     .overlay {
@@ -35,8 +35,6 @@
 
     &.open {
         ui-card {
-            //transition: transform 280ms ui-easing('deceleration'), opacity 280ms ui-easing('deceleration');
-            //transform: scale(1);
             transition: transform 225ms ui-easing('deceleration'), opacity 195ms ui-easing('deceleration');
             transform: scale(1) translateY(0);
             opacity: 1;

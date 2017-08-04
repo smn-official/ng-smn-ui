@@ -92,6 +92,10 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
                 coordinate.y = windowHeight - (element.clientHeight + 8);
             }
 
+            if (coordinate.y <= 0) {
+                coordinate.y = 0;
+            }
+
             if (this.themeClass) {
                 element.classList.add(this.themeClass);
             }
@@ -100,6 +104,7 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
             }
 
             element.style.transform = '';
+            element.querySelector('ui-card').style.maxHeight = UiWindowRef.nativeWindow.innerHeight + 'px';
             element.style.top = coordinate.y + 'px';
             element.style.left = coordinate.x + 'px';
 
