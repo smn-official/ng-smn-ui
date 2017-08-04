@@ -61,6 +61,8 @@ import {UiTabsComponent} from './tabs/tabs.component';
 import {UiTabsPagesComponent} from './tabs/pages/tabs-pages.component';
 import {UiLazyLoadDirective} from './lazy-load/lazy-load.directive';
 import {UiDataTableComponent} from './data-table/data-table.component';
+import {UiBottomSheetComponent} from './bottom-sheet/bottom-sheet.component';
+import {UiBottomSheetTriggerDirective} from './bottom-sheet/bottom-sheet.directive';
 
 export {
     UiColor,
@@ -129,7 +131,10 @@ const lib: any[] = [
     UiTabsComponent,
     UiTabsPagesComponent,
     UiLazyLoadDirective,
-    UiDataTableComponent
+    UiDataTableComponent,
+    UiLazyLoadDirective,
+    UiBottomSheetComponent,
+    UiBottomSheetTriggerDirective
 ];
 
 @NgModule({

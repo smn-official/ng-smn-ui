@@ -1,0 +1,14 @@
+@import '../core/variables';
+
+@mixin ui-bottom-sheet($theme) {
+    $color-overlay: ui-if(map-get($theme, is-dark) == true, rgba(0, 0, 0, .2), rgba(0, 0, 0, .4));
+    $color-icon: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, 1), rgba(0, 0, 0, .54));
+
+    .wrap-bottom-sheet:not(.transparent-overlay) .overlay {
+        background-color: $color-overlay;
+    }
+
+    .wrap-bottom-sheet ui-card.grid li .icon i {
+        color: $color-icon;
+    }
+}

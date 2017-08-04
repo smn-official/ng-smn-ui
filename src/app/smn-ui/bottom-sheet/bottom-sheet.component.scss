@@ -1,0 +1,115 @@
+@import "../core/variables";
+
+.wrap-bottom-sheet {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    ui-card {
+        width: 100%;
+        transform: translateY(100%);
+        box-shadow: ui-shadow('16dp');
+        transition: transform 195ms ui-easing('acceleration');
+        border-radius: 0;
+
+        .header {
+            padding: 0 16px;
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        &.grid {
+            ul:not(.ui-list) {
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+
+                .ui-divider {
+                    min-width: 100%;
+                    margin: 0;
+                }
+
+                li:not(.ui-divider) {
+                    padding: 24px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    user-select: none;
+                    font-size: 14px;
+                    cursor: default;
+
+                    .icon {
+                        width: 48px;
+                        height: 48px;
+                        margin-bottom: 8px;
+
+                        i {
+                            font-size: 48px;
+                        }
+                    }
+                }
+            }
+
+            ul.ui-list {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            ul {
+                @for $i from 2 through 4 {
+                    &.col-#{$i} li:not(.ui-divider) {
+                        min-width: 100% / $i;
+                        max-width: 100% / $i;
+                    }
+                }
+            }
+            .header ~ ul {
+                padding-top: 0;
+            }
+
+
+        }
+
+        @media (max-width: 600px) {
+            & {
+                max-width: 100% !important;
+            }
+        }
+    }
+
+    .overlay {
+        transition: opacity 280ms ui-easing('aceleration');
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+    }
+
+    &.open {
+        ui-card {
+            transition: transform 195ms ui-easing('deceleration');
+            transform: translateY(0);
+        }
+        .overlay {
+            transition: opacity 280ms ui-easing('deceleration');
+            opacity: 1;
+        }
+    }
+
+
+}
+
+
+

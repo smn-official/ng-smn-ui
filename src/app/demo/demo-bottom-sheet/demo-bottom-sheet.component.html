@@ -1,0 +1,153 @@
+<div class="ui-button-container">
+    <button class="ui-button raised accent" [uiBottomSheetTrigger]="listBottomSheet" uiRipple>Open with list</button>
+    <button class="ui-button raised accent" [uiBottomSheetTrigger]="headerBottomSheet" uiRipple>Open with header</button>
+    <button class="ui-button raised accent" [uiBottomSheetTrigger]="headerBottomSheet" uiRipple theme-class="dark">Open with theme class</button>
+    <button class="ui-button raised accent" [uiBottomSheetTrigger]="listBottomSheet" uiRipple transparent-overlay="true">
+        Open with Transparent Overlay
+    </button>
+    <button class="ui-button raised accent" [uiBottomSheetTrigger]="gridBottomSheet" uiRipple>
+        Open with Grid
+    </button>
+    <button class="ui-button raised accent" [uiBottomSheetTrigger]="gridListBottomSheet" uiRipple>
+        Open with Grid and List
+    </button>
+</div>
+
+<ui-bottom-sheet #listBottomSheet card-size="480">
+    <ul class="ui-list" (click)="listBottomSheet.close()">
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">share</i>
+            </div>
+            Share
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">cloud_upload</i>
+            </div>
+            Upload
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">content_copy</i>
+            </div>
+            Copy
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">print</i>
+            </div>
+            Print this page
+        </li>
+    </ul>
+</ui-bottom-sheet>
+
+<ui-bottom-sheet #headerBottomSheet card-size="480">
+    <h2 class="header">Create</h2>
+    <ul class="ui-list" (click)="headerBottomSheet.close()">
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">insert_drive_file</i>
+            </div>
+            Document
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">assignment</i>
+            </div>
+            Spreadsheet
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">folder</i>
+            </div>
+            Folder
+        </li>
+        <li class="ui-divider"></li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">cloud_upload</i>
+            </div>
+            Upload
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">photo_camera</i>
+            </div>
+            Use camera
+        </li>
+    </ul>
+
+</ui-bottom-sheet>
+
+<ui-bottom-sheet class="grid" #gridBottomSheet card-size="480">
+    <ul class="col-3">
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">assignment</i>
+            </div>
+            Spreadsheet
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">folder</i>
+            </div>
+            Folder
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">cloud_upload</i>
+            </div>
+            Upload
+        </li>
+        <li class="ui-divider"></li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">cloud_upload</i>
+            </div>
+            Upload
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">photo_camera</i>
+            </div>
+            Use camera
+        </li>
+    </ul>
+</ui-bottom-sheet>
+
+<ui-bottom-sheet class="grid" #gridListBottomSheet card-size="480">
+    <ul class="ui-list col-2">
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">assignment</i>
+            </div>
+            Spreadsheet
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">folder</i>
+            </div>
+            Folder
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">cloud_upload</i>
+            </div>
+            Upload
+        </li>
+        <li class="ui-divider"></li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">cloud_upload</i>
+            </div>
+            Upload
+        </li>
+        <li uiRipple>
+            <div class="icon">
+                <i class="material-icons">photo_camera</i>
+            </div>
+            Use camera
+        </li>
+    </ul>
+</ui-bottom-sheet>

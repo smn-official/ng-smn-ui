@@ -26,6 +26,7 @@ import {DemoMaskComponent} from './demo-mask/demo-mask.component';
 import {DemoSliderComponent} from './demo-slider/demo-slider.component';
 import {DemoListComponent} from './demo-list/demo-list.component';
 import { DemoAutocompleteComponent } from './demo-autocomplete/demo-autocomplete.component';
+import { DemoBottomSheetComponent } from './demo-bottom-sheet/demo-bottom-sheet.component';
 
 @NgModule({
     imports: [
@@ -60,7 +61,8 @@ import { DemoAutocompleteComponent } from './demo-autocomplete/demo-autocomplete
         DemoToolbarsComponent,
         DemoSliderComponent,
         DemoListComponent,
-        DemoAutocompleteComponent
+        DemoAutocompleteComponent,
+        DemoBottomSheetComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
