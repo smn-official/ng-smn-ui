@@ -58,18 +58,21 @@
                         }
                     }
                 }
+            }
 
+            ul.ui-list {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            ul {
                 @for $i from 2 through 4 {
                     &.col-#{$i} li:not(.ui-divider) {
                         min-width: 100% / $i;
+                        max-width: 100% / $i;
                     }
                 }
-
-
-
             }
-
-
             .header ~ ul {
                 padding-top: 0;
             }
