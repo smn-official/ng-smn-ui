@@ -1,10 +1,10 @@
 {
   "name": "ng-smn-ui",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "license": "MIT",
   "scripts": {
     "start": "ng serve --port 4000",
-    "publish": "gulp build & npm publish dist/"
+    "publish": "gulp build && npm publish dist/"
   },
   "dependencies": {
     "@angular/animations": "^4.2.3",
