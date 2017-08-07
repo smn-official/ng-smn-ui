@@ -14,10 +14,7 @@
     transform-origin: top left;
     transform: scale(0);
     opacity: 0;
-    z-index: 2;
-    //max-height: 100%;
-    //overflow: auto;
-
+    z-index: 6;
 
     &.right {
         transform-origin: top right;
@@ -35,7 +32,6 @@
 
     ui-card {
         box-shadow: ui-shadow('8dp');
-        //margin: 10px;
         overflow-y: auto;
     }
 
@@ -89,5 +85,5 @@
 }
 
 body.ui-nav-drawer-persistent .wrap-menu {
-    z-index: 3;
+    z-index: 6;
 }

@@ -1,6 +1,7 @@
 @import "../core/variables";
 
 .wrap-date-picker {
+    z-index: 6;
 
     ui-calendar {
         transform-origin: top left;
@@ -21,7 +22,6 @@
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: 3;
         display: flex;
         background-color: transparent !important;
 
@@ -33,10 +33,6 @@
             bottom: 0;
             background-color: rgba(0,0,0,0);
             transition: background 195ms ui-easing('deceleration');
-        }
-
-        .overlay, ui-calendar {
-            z-index: 3;
         }
 
         ui-calendar {

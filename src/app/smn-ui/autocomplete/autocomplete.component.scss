@@ -20,8 +20,8 @@
 }
 
 /deep/ .wrap-autocomplete {
-
     position: absolute;
+    z-index: 6;
 
     .overlay {
         overflow: hidden;

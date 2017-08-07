@@ -47,6 +47,7 @@
     position: fixed;
     right: 16px;
     bottom: 16px;
+    z-index: 2;
     @include mobile {
         right: 10px;
         bottom: 10px;
@@ -334,7 +335,6 @@ $sizes: 480 600 840 960 1280 1440 1600;
 @each $size in $sizes {
     .ui-s#{$size} {
         .ui-fab-container {
-            z-index: 2;
             transition: all 280ms ui-easing('deceleration');
 
             top: 120px;

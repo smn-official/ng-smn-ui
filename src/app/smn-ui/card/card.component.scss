@@ -19,6 +19,10 @@ ui-card {
     &.pointer {
         cursor: pointer;
     }
+    &.elevate-on-toolbar {
+        position: relative;
+        z-index: 2;
+    }
     &.raising {
         box-shadow: ui-shadow('1dp');
 

@@ -6,9 +6,8 @@ ui-nav-drawer {
         bottom: 0;
         max-width: 320px;
         position: fixed;
-        //background-color: #fff;
         width: 100%;
-        z-index: 4;
+        z-index: 6;
         box-shadow: ui-shadow('16dp');
         transition: transform 280ms ui-easing('deceleration');
         left: -10px;
@@ -20,16 +19,6 @@ ui-nav-drawer {
             overflow: auto;
             margin-top: -1px;
             position: relative;
-            //padding-bottom: 56px;
-            //@include desktop {
-            //    padding-bottom: 64px;
-            //}
-            //@include mobile-portrait {
-            //    padding-bottom: 56px;
-            //}
-            //@include mobile-landscape {
-            //    padding-bottom: 48px;
-            //}
         }
 
         @include mobile {
@@ -45,12 +34,9 @@ ui-nav-drawer {
         }
     }
 
-    ui-toolbar header {
-        //background-color: #fff;
-    }
-
     &.persistent {
         nav {
+            z-index: 5;
             @include desktop {
                 box-shadow: ui-shadow('1dp');
             }

@@ -105,33 +105,31 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
         this.createWrapElement();
         this.wrapElement.appendChild(element);
 
-        setTimeout(() => {
-            document.body.appendChild(this.wrapElement);
+        document.body.appendChild(this.wrapElement);
 
-            const list = element.querySelector('.ui-list');
-            let horizontalCoveringArea = coordinate.x + list.clientWidth;
-            const verticalCoveringArea = coordinate.y + list.clientHeight;
-            const windowWidth = window.innerWidth + document.body.scrollLeft;
-            const windowHeight = window.innerHeight + document.body.scrollTop;
+        const list = element.querySelector('.ui-list');
+        let horizontalCoveringArea = coordinate.x + list.clientWidth;
+        const verticalCoveringArea = coordinate.y + list.clientHeight;
+        const windowWidth = window.innerWidth + document.body.scrollLeft;
+        const windowHeight = window.innerHeight + document.body.scrollTop;
 
-            if (horizontalCoveringArea > windowWidth) {
-                coordinate.x = windowWidth - (list.clientWidth + 8);
-            }
+        if (horizontalCoveringArea > windowWidth) {
+            coordinate.x = windowWidth - (list.clientWidth + 8);
+        }
 
-            if (coordinate.x <= 8) {
-                coordinate.x = 8;
-            }
+        if (coordinate.x <= 8) {
+            coordinate.x = 8;
+        }
 
-            if (verticalCoveringArea > windowHeight) {
-                coordinate.y = windowHeight - (list.clientHeight);
-            }
+        if (verticalCoveringArea > windowHeight) {
+            coordinate.y = windowHeight - (list.clientHeight);
+        }
 
-            this.wrapElement.style.top = (coordinate.y + this.elementRef.nativeElement.clientHeight) + 'px';
-            this.wrapElement.style.left = coordinate.x + 'px';
-            this.wrapElement.style.width = this.elementRef.nativeElement.clientWidth + 'px';
+        this.wrapElement.style.top = (coordinate.y + this.elementRef.nativeElement.clientHeight) + 'px';
+        this.wrapElement.style.left = coordinate.x + 'px';
+        this.wrapElement.style.width = this.elementRef.nativeElement.clientWidth + 'px';
 
-            this.wrapElement.classList.add('open');
-        });
+        this.wrapElement.classList.add('open');
     }
 
     public createWrapElement() {
