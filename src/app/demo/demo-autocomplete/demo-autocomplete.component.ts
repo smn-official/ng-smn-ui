@@ -49,8 +49,9 @@ export class DemoAutocompleteComponent implements OnInit, AfterViewInit {
         // this.toolbarService.activateExtendedToolbar();
     }
 
-    select(item) {
+    teste2(item) {
         console.log(item);
+        console.log(this);
     }
 
     loadMore() {
