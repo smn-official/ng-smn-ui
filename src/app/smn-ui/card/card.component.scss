@@ -8,7 +8,7 @@ ui-card {
     background-color: #FFF;
     max-width: 100%;
     border-radius: 2px;
-    transition: box-shadow 0.28s ui-easing();
+    transition: box-shadow 0.28s ui-easing('deceleration');
 
     &.no-space {
         margin: 0;
