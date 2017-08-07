@@ -3,7 +3,7 @@ import {Directive, EventEmitter, HostListener, Input, Output} from '@angular/cor
 @Directive({
     selector: '[uiInputFile]'
 })
-export class InputFileDirective {
+export class UiInputFileDirective {
 
     @Input() ngModel: any;
     @Input() accept: any;
