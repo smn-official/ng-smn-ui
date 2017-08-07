@@ -63,6 +63,7 @@ import {UiLazyLoadDirective} from './lazy-load/lazy-load.directive';
 import {UiDataTableComponent} from './data-table/data-table.component';
 import {UiBottomSheetComponent} from './bottom-sheet/bottom-sheet.component';
 import {UiBottomSheetTriggerDirective} from './bottom-sheet/bottom-sheet.directive';
+import { InputFileDirective } from './input/input-file.directive';
 
 export {
     UiColor,
@@ -144,7 +145,7 @@ const lib: any[] = [
         RouterModule
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    declarations: [...lib],
+    declarations: [...lib, InputFileDirective],
     exports: [...lib],
     providers: [
         UiColor,
