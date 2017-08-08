@@ -1,29 +1,31 @@
-import {Directive, EventEmitter, HostListener, Input, Output} from '@angular/core';
+import {Directive, ElementRef, EventEmitter, HostListener, Input, Output} from '@angular/core';
 
 @Directive({
     selector: '[uiInputFile]'
 })
 export class UiInputFileDirective {
 
-    @Input() ngModel: any;
+    @Input() files: any;
     @Input() accept: any;
-    @Input() maxSize: any;
-    @Input() maxFileSize: any;
+    @Input('max-size') maxSize: any;
+    @Input('max-file-size') maxFileSize: any;
     @Input() readDataUrl: any;
     @Input() error: any;
     @Input() fileChange: any;
     @Output() read: EventEmitter<any> = new EventEmitter();
+    @Output() filesChange: EventEmitter<any> = new EventEmitter();
 
 
-    constructor() {
+    constructor(public element: ElementRef) {
+        this.accept = this.accept || ''
     }
 
     @HostListener('change', ['$event']) onChange(e) {
+
         e.stopPropagation();
         e.preventDefault();
 
         const files = e.target.files;
-
         this.readDataUrl = this.readDataUrl && files.length ? [] : null;
         // ctrl.$setDirty();
         // ctrl.$setValidity('uiMaxSize', true);
@@ -38,9 +40,7 @@ export class UiInputFileDirective {
         let sum = 0;
         for (let i = 0; i < files.length; i++) {
             let file = files[i];
-            let fileSize = file.size;
-            let fileType = file.type;
-            let validMaxFileSize = maxFileSize && fileSize > maxFileSize;
+            let validMaxFileSize = maxFileSize && file.size > maxFileSize;
             let validMaxSize = maxSize && sum > maxSize;
             let fileExtension = file.name.substring(file.name.lastIndexOf('.') + 1);
 
@@ -48,7 +48,7 @@ export class UiInputFileDirective {
                 // ctrl.$setValidity('uiMaxFileSize', false);
             }
 
-            sum += fileSize;
+            sum += file.size;
 
             // Verificar MIME Types
             let validType = false;
@@ -56,7 +56,7 @@ export class UiInputFileDirective {
                 let accept = accepts[j].trim();
                 // Checa se tem apenas um asterisco e se ele está no final
                 let regex = accept.match(/^[^\*]*\*$/) ? new RegExp('^' + accept) : new RegExp('^' + accept + '$');
-                if (fileType.match(regex) || fileExtension.match(regex)) {
+                if (file.type.match(regex) || fileExtension.match(regex)) {
                     validType = true;
                     break;
                 }
@@ -82,10 +82,14 @@ export class UiInputFileDirective {
             }
         }
 
-        this.ngModel = e.target.files;
+        this.files = e.target.files;
+        this.filesChange.emit(this.files);
 
-        this.fileChange({ '$files': this.ngModel});
-        // this.fileChange({ '$files': this.ngModel, '$error': ctrl.$invalid ? ctrl.$error : null });
+
+        if (this.fileChange) {
+            this.fileChange({ '$files': this.files});
+        }
+        // this.fileChange({ '$files': this.files, '$error': ctrl.$invalid ? ctrl.$error : null });
     }
 
     toByte(sizeString) {

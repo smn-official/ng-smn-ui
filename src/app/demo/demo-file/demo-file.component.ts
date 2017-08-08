@@ -17,4 +17,8 @@ export class DemoFileComponent implements OnInit {
         this.toolbarService.set('Files');
     }
 
+    changeFile(listFile: FileList) {
+        console.log(listFile);
+    }
+
 }
