@@ -78,6 +78,14 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
         }
         if (changes.list && !changes.list.firstChange && this.componentRef) {
             this.componentRef.instance.list = changes.list.currentValue;
+            setTimeout(() => {
+                const position = UiElement.position(this.elementRef.nativeElement);
+                const coordinate = {
+                    x: position.left,
+                    y: position.top + 1
+                };
+                this.setPosition(coordinate, this.componentElement);
+            })
         }
         if (changes.loading && !changes.loading.firstChange && this.componentRef) {
             this.componentRef.instance.loading = changes.loading.currentValue;
@@ -93,7 +101,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
         return (this.componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     }
 
-    public setInstances(component, componentRef): void {
+    private setInstances(component, componentRef): void {
         const keysComponent = ['ngModel', 'list', 'primary', 'secondary', 'selectChange', 'loading', 'accentClass', 'loadMore'];
 
         keysComponent.forEach(key => {
@@ -101,38 +109,18 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
         });
     }
 
-    public render(element, coordinate): void {
+    private render(element, coordinate): void {
         this.createWrapElement();
         this.wrapElement.appendChild(element);
 
         document.body.appendChild(this.wrapElement);
 
-        const list = element.querySelector('.ui-list');
-        let horizontalCoveringArea = coordinate.x + list.clientWidth;
-        const verticalCoveringArea = coordinate.y + list.clientHeight;
-        const windowWidth = window.innerWidth + document.body.scrollLeft;
-        const windowHeight = window.innerHeight + document.body.scrollTop;
-
-        if (horizontalCoveringArea > windowWidth) {
-            coordinate.x = windowWidth - (list.clientWidth + 8);
-        }
-
-        if (coordinate.x <= 8) {
-            coordinate.x = 8;
-        }
-
-        if (verticalCoveringArea > windowHeight) {
-            coordinate.y = windowHeight - (list.clientHeight);
-        }
-
-        this.wrapElement.style.top = (coordinate.y + this.elementRef.nativeElement.clientHeight) + 'px';
-        this.wrapElement.style.left = coordinate.x + 'px';
-        this.wrapElement.style.width = this.elementRef.nativeElement.clientWidth + 'px';
+        this.setPosition(coordinate, element);
 
         this.wrapElement.classList.add('open');
     }
 
-    public createWrapElement() {
+    private createWrapElement() {
         this.wrapElement = document.createElement('div');
         this.wrapElement.classList.add('wrap-autocomplete');
         const overlay = document.createElement('div');
@@ -145,11 +133,11 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
         this.wrapElement.appendChild(overlay);
     }
 
-    public setFocusIndex(index) {
+    private setFocusIndex(index) {
         this.componentRef.instance.focusedIndex = index;
     }
 
-    public close() {
+    private close() {
 
         if (this.wrapElement) {
             this.wrapElement.classList.remove('open');
@@ -164,7 +152,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
 
     }
 
-    initialize() {
+    private initialize() {
         this.focusedIndex = undefined;
 
         this.accentClass = this.elementRef.nativeElement.classList.contains('accent');
@@ -183,6 +171,32 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
                 this.componentElement = this.getComponentAsElement();
                 this.render(this.componentElement, coordinate);
             }
+        });
+    }
+
+    private setPosition(coordinate, element) {
+        setTimeout(() => {
+            const list = element.querySelector('.ui-list');
+            let horizontalCoveringArea = coordinate.x + list.clientWidth;
+            const verticalCoveringArea = coordinate.y + list.clientHeight;
+            const windowWidth = window.innerWidth + document.body.scrollLeft;
+            const windowHeight = window.innerHeight + document.body.scrollTop - this.elementRef.nativeElement.clientHeight;
+
+            if (horizontalCoveringArea > windowWidth) {
+                coordinate.x = windowWidth - (list.clientWidth + 8);
+            }
+
+            if (coordinate.x <= 8) {
+                coordinate.x = 8;
+            }
+
+            if (verticalCoveringArea > windowHeight) {
+                coordinate.y = windowHeight - (list.clientHeight);
+            }
+
+            this.wrapElement.style.top = (coordinate.y + this.elementRef.nativeElement.clientHeight) + 'px';
+            this.wrapElement.style.left = coordinate.x + 'px';
+            this.wrapElement.style.width = this.elementRef.nativeElement.clientWidth + 'px';
         });
     }
 
