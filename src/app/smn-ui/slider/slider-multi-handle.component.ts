@@ -29,8 +29,12 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
     @Output() beginChange: EventEmitter<number> = new EventEmitter();
     @Output() endChange: EventEmitter<number> = new EventEmitter();
 
-    constructor(public elementRef: ElementRef) {
+    @Input('view-format') viewFormat: Function;
 
+    constructor(public elementRef: ElementRef) {
+        if (!this.viewFormat) {
+            this.viewFormat = value => value;
+        }
     }
 
     ngOnInit() {
@@ -63,7 +67,11 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
     }
 
     registerEventsListeners() {
-        UiElement.on(this.beginElement, 'mousedown touchstart', () => {
+        UiElement.on(this.beginElement, 'mousedown touchstart', e => {
+            if (this.disabled) {
+                return;
+            }
+            e.stopImmediatePropagation();
             this.direction = 'begin';
             this.toggleBalloon(true);
 
@@ -73,14 +81,22 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
 
         UiElement.on(this.thumbs, 'mousedown touchstart', e => {
             if (this.disabled) {
-                e.stopImmediatePropagation();
+                return;
             }
+            e.stopImmediatePropagation();
+            // if (this.disabled) {
+            //     e.stopImmediatePropagation();
+            // }
             this.mouseDown = true;
             this.toggleTackOn(true);
-            UiElement.enableScroll();
+            UiElement.disableScroll();
         });
 
-        UiElement.on(this.endElement, 'mousedown touchstart', () => {
+        UiElement.on(this.endElement, 'mousedown touchstart', e => {
+            if (this.disabled) {
+                return;
+            }
+            e.stopImmediatePropagation();
             this.direction = 'end';
             this.toggleBalloon(true, 0);
 
@@ -104,7 +120,7 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
             this.toggleBalloon();
             this.toggleTackOn();
 
-            UiElement.disableScroll();
+            UiElement.enableScroll();
 
         });
 
@@ -150,8 +166,7 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
             if (active) {
                 balloon.style.right = typeof right === 'number' ? right : '';
                 balloon.classList.add('active');
-            }
-            else {
+            } else {
                 balloon.classList.remove('active');
             }
         }

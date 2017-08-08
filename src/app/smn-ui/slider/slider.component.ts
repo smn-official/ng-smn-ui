@@ -21,7 +21,12 @@ export class UiSliderComponent implements OnInit, AfterViewInit, OnChanges {
     @Input() range: number[];
     @Output() valueChange: EventEmitter<number> = new EventEmitter();
 
+    @Input('view-format') viewFormat: Function;
+
     constructor(public elementRef: ElementRef) {
+        if (!this.viewFormat) {
+            this.viewFormat = value => value;
+        }
     }
 
     ngOnInit() {
@@ -101,8 +106,7 @@ export class UiSliderComponent implements OnInit, AfterViewInit, OnChanges {
             if (active) {
                 balloon.style.right = typeof right === 'number' ? right : '';
                 balloon.classList.add('active');
-            }
-            else {
+            } else {
                 balloon.classList.remove('active');
             }
         }
