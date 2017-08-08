@@ -77,7 +77,7 @@ export class UiElementRef {
             return new UiElementRef(selected);
         }
 
-        return null;
+        return new UiElementRef(null);
     }
 
     forEach(callback): any {
