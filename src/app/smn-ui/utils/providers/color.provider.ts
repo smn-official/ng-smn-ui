@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class UiColor {
-    static isBright(hex, minDarkPerc): boolean {
+    static isBright(hex, minDarkPerc?): boolean {
         return _isBright(hex, minDarkPerc);
     }
 
