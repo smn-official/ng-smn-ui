@@ -15,6 +15,7 @@ import {
 import {UiElement} from '../utils/providers/element.provider';
 import {UiAutocompleteComponent} from './autocomplete.component';
 import {UiWindowRef} from '../utils/providers/window.provider';
+import set = Reflect.set;
 
 @Directive({
     selector: '[uiAutocomplete]'
@@ -117,7 +118,9 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
 
         this.setPosition(coordinate, element);
 
-        this.wrapElement.classList.add('open');
+        setTimeout(() => {
+            this.wrapElement.classList.add('open');
+        });
     }
 
     private createWrapElement() {
@@ -180,7 +183,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
             let horizontalCoveringArea = coordinate.x + list.clientWidth;
             const verticalCoveringArea = coordinate.y + list.clientHeight;
             const windowWidth = window.innerWidth + document.body.scrollLeft;
-            const windowHeight = window.innerHeight + document.body.scrollTop - this.elementRef.nativeElement.clientHeight;
+            const windowHeight = window.innerHeight + document.body.scrollTop;
 
             if (horizontalCoveringArea > windowWidth) {
                 coordinate.x = windowWidth - (list.clientWidth + 8);
