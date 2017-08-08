@@ -22,7 +22,7 @@
 /deep/ .wrap-autocomplete {
     position: absolute;
     z-index: 6;
-
+    transition: top 280ms ui-easing('decelaration'), left 280ms ui-easing('decelaration');
     .overlay {
         overflow: hidden;
 
