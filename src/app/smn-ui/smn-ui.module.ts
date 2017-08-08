@@ -63,6 +63,7 @@ import {UiLazyLoadDirective} from './lazy-load/lazy-load.directive';
 import {UiDataTableComponent} from './data-table/data-table.component';
 import {UiBottomSheetComponent} from './bottom-sheet/bottom-sheet.component';
 import {UiBottomSheetTriggerDirective} from './bottom-sheet/bottom-sheet.directive';
+import {UiEllipsisDirective} from './ellipsis/ellipsis.directive';
 
 export {
     UiColor,
@@ -134,7 +135,8 @@ const lib: any[] = [
     UiDataTableComponent,
     UiLazyLoadDirective,
     UiBottomSheetComponent,
-    UiBottomSheetTriggerDirective
+    UiBottomSheetTriggerDirective,
+    UiEllipsisDirective
 ];
 
 @NgModule({

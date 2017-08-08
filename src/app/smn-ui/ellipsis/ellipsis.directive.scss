@@ -1,0 +1,9 @@
+[uiEllipsis] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-height: 17px;        /* fallback */
+    max-height: 17*2px;       /* fallback */
+}
