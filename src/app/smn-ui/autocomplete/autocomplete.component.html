@@ -1,21 +1,23 @@
-<ui-card class="suggestions" tabindex="-1" [ngClass]="{'has-secondary': !!secondary}" (uiInfiniteLoad)="loadMoreEmit()">
-    <div class="ui-progress" [ngClass]="{'hide': !loading, 'accent': accentClass}" style="position: absolute">
-        <div class="indeterminate"></div>
+<ui-card class="suggestions">
+    <div class="suggestions-wrap" tabindex="-1" [ngClass]="{'has-secondary': !!secondary}" (uiInfiniteLoad)="loadMoreEmit()">
+        <div class="ui-progress" [ngClass]="{'hide': !loading, 'accent': accentClass}" style="position: absolute">
+            <div class="indeterminate"></div>
+        </div>
+        <ul class="ui-list">
+            <li class="multi-line" uiRipple
+                *ngFor="let item of list; let index = index"
+                (click)="selectItem(item)"
+                [ngClass]="{'focused': index === focusedIndex, 'accent': accentClass}"
+                [style.transition-delay]="(index > 5 ? 0: 100 + (index * 50)) + 'ms'">
+                <div class="lines" *ngIf="!!secondary">
+                    <div class="primary">{{item[primary]}}</div>
+                    <div class="secondary">{{item[secondary]}}</div>
+                </div>
+                <span *ngIf="!secondary" class="primary">{{item[primary] || item}}</span>
+            </li>
+            <li *ngIf="!list.length" class="not-found">
+                <span>Nenhum registro encontrado para "{{ngModel}}"</span>
+            </li>
+        </ul>
     </div>
-    <ul class="ui-list">
-        <li class="multi-line" uiRipple
-            *ngFor="let item of list; let index = index"
-            (click)="selectItem(item)"
-            [ngClass]="{'focused': index === focusedIndex, 'accent': accentClass}"
-            [style.transition-delay]="(index > 5 ? 0: 100 + (index * 50)) + 'ms'">
-            <div class="lines" *ngIf="!!secondary">
-                <div class="primary">{{item[primary]}}</div>
-                <div class="secondary">{{item[secondary]}}</div>
-            </div>
-            <span *ngIf="!secondary" class="primary">{{item[primary] || item}}</span>
-        </li>
-        <li *ngIf="!list.length" class="not-found">
-            <span>Nenhum registro encontrado para "{{ngModel}}"</span>
-        </li>
-    </ul>
 </ui-card>

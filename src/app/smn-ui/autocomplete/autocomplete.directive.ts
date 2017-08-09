@@ -15,7 +15,6 @@ import {
 import {UiElement} from '../utils/providers/element.provider';
 import {UiAutocompleteComponent} from './autocomplete.component';
 import {UiWindowRef} from '../utils/providers/window.provider';
-import set = Reflect.set;
 
 @Directive({
     selector: '[uiAutocomplete]'
@@ -64,7 +63,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     }
 
     public ngAfterViewInit() {
-        UiElement.on(UiWindowRef.nativeWindow, 'click resize scroll', e => {
+        UiElement.on(UiWindowRef.nativeWindow, 'click resize', e => {
             if (this.componentRef) {
                 if (!(UiElement.is(e.target, '.wrap-autocomplete') || UiElement.closest(e.target, '.wrap-autocomplete') || UiElement.is(e.target, '.overlay') || e.target === this.elementRef.nativeElement)) {
                     this.close();
@@ -116,10 +115,11 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
 
         document.body.appendChild(this.wrapElement);
 
-        this.setPosition(coordinate, element);
 
         setTimeout(() => {
             this.wrapElement.classList.add('open');
+
+            this.setPosition(coordinate, element);
         });
     }
 
@@ -160,7 +160,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
 
         this.accentClass = this.elementRef.nativeElement.classList.contains('accent');
 
-        setTimeout(() => {
+        // setTimeout(() => {
             const position = UiElement.position(this.elementRef.nativeElement);
             const coordinate = {
                 x: position.left,
@@ -174,33 +174,37 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
                 this.componentElement = this.getComponentAsElement();
                 this.render(this.componentElement, coordinate);
             }
-        });
+        // });
     }
 
     private setPosition(coordinate, element) {
-        setTimeout(() => {
+        // setTimeout(() => {
+
+            console.log(element);
             const list = element.querySelector('.ui-list');
-            let horizontalCoveringArea = coordinate.x + list.clientWidth;
-            const verticalCoveringArea = coordinate.y + list.clientHeight;
-            const windowWidth = window.innerWidth + document.body.scrollLeft;
+            // let horizontalCoveringArea = coordinate.x + list.clientWidth;
+            const verticalCoveringArea = coordinate.y + this.wrapElement.clientHeight;
+            // const windowWidth = window.innerWidth + document.body.scrollLeft;
             const windowHeight = window.innerHeight + document.body.scrollTop;
-
-            if (horizontalCoveringArea > windowWidth) {
-                coordinate.x = windowWidth - (list.clientWidth + 8);
-            }
-
-            if (coordinate.x <= 8) {
-                coordinate.x = 8;
-            }
-
-            if (verticalCoveringArea > windowHeight) {
-                coordinate.y = windowHeight - (list.clientHeight);
-            }
+            console.log(windowHeight, list.parentNode.clientHeight);
+            //
+            // console.log(verticalCoveringArea, coordinate.y + element.clientHeight, windowHeight);
+            // if (horizontalCoveringArea > windowWidth) {
+            //     coordinate.x = windowWidth - (list.clientWidth + 8);
+            // }
+            //
+            // if (coordinate.x <= 8) {
+            //     coordinate.x = 8;
+            // }
+            //
+            // if (verticalCoveringArea > windowHeight) {
+            //     coordinate.y = windowHeight - (list.clientHeight);
+            // }
 
             this.wrapElement.style.top = (coordinate.y + this.elementRef.nativeElement.clientHeight) + 'px';
             this.wrapElement.style.left = coordinate.x + 'px';
             this.wrapElement.style.width = this.elementRef.nativeElement.clientWidth + 'px';
-        });
+        // }, 1000);
     }
 
     @HostListener('input') onInput() {
