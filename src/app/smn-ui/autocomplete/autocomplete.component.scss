@@ -5,9 +5,9 @@
     .suggestions {
 
         box-shadow: ui-shadow('8dp');
+        overflow-y: auto;
 
         .suggestions-wrap {
-            overflow-y: auto;
 
             .ui-list {
                 padding: 0;
@@ -36,6 +36,7 @@
         z-index: 3;
         max-height: 0;
 
+
         .ui-list li {
             transition: opacity 280ms ui-easing('sharp'), transform 280ms ui-easing('sharp');
             opacity: 0;
@@ -44,7 +45,6 @@
     }
 
     &.open ui-autocomplete > .suggestions:not(.nothing) {
-        transform: scale(1);
         max-height: 240px;
         animation: hide-overflow 280ms ui-easing('sharp');
 

@@ -150,7 +150,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
                     this.componentRef = null;
                     this.wrapElement.remove();
                 }
-            }, 280)
+            }, 280);
         }
 
     }
@@ -160,51 +160,45 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
 
         this.accentClass = this.elementRef.nativeElement.classList.contains('accent');
 
-        // setTimeout(() => {
-            const position = UiElement.position(this.elementRef.nativeElement);
-            const coordinate = {
-                x: position.left,
-                y: position.top + 1
-            };
+        const position = UiElement.position(this.elementRef.nativeElement);
+        const coordinate = {
+            x: position.left,
+            y: position.top + 1
+        };
 
-            if (!this.componentRef) {
-                this.createComponent();
-                this.setInstances(this, this.componentRef);
-                this.applicationRef.attachView(this.componentRef.hostView);
-                this.componentElement = this.getComponentAsElement();
-                this.render(this.componentElement, coordinate);
-            }
-        // });
+        if (!this.componentRef) {
+            this.createComponent();
+            this.setInstances(this, this.componentRef);
+            this.applicationRef.attachView(this.componentRef.hostView);
+            this.componentElement = this.getComponentAsElement();
+            this.render(this.componentElement, coordinate);
+        }
     }
 
     private setPosition(coordinate, element) {
-        // setTimeout(() => {
+        const wrap = element.querySelector('.suggestions-wrap');
+        const horizontalCoveringArea = coordinate.x + wrap.clientWidth;
+        const verticalCoveringArea = coordinate.y + wrap.clientHeight;
+        const windowWidth = window.innerWidth + document.body.scrollLeft;
+        const windowHeight = window.innerHeight + document.body.scrollTop;
+        console.log(windowHeight, verticalCoveringArea);
 
-            console.log(element);
-            const list = element.querySelector('.ui-list');
-            // let horizontalCoveringArea = coordinate.x + list.clientWidth;
-            const verticalCoveringArea = coordinate.y + this.wrapElement.clientHeight;
-            // const windowWidth = window.innerWidth + document.body.scrollLeft;
-            const windowHeight = window.innerHeight + document.body.scrollTop;
-            console.log(windowHeight, list.parentNode.clientHeight);
-            //
-            // console.log(verticalCoveringArea, coordinate.y + element.clientHeight, windowHeight);
-            // if (horizontalCoveringArea > windowWidth) {
-            //     coordinate.x = windowWidth - (list.clientWidth + 8);
-            // }
-            //
-            // if (coordinate.x <= 8) {
-            //     coordinate.x = 8;
-            // }
-            //
-            // if (verticalCoveringArea > windowHeight) {
-            //     coordinate.y = windowHeight - (list.clientHeight);
-            // }
+        if (horizontalCoveringArea > windowWidth) {
+            coordinate.x = windowWidth - (wrap.clientWidth + 8);
+        }
 
-            this.wrapElement.style.top = (coordinate.y + this.elementRef.nativeElement.clientHeight) + 'px';
-            this.wrapElement.style.left = coordinate.x + 'px';
-            this.wrapElement.style.width = this.elementRef.nativeElement.clientWidth + 'px';
-        // }, 1000);
+        if (coordinate.x <= 8) {
+            coordinate.x = 8;
+        }
+
+        if (verticalCoveringArea > windowHeight) {
+            // coordinate.y = windowHeight - wrap.clientHeight;
+            coordinate.y = coordinate.y - wrap.clientHeight + this.elementRef.nativeElement.clientHeight - 14; // 14 = label focus
+        }
+
+        this.wrapElement.style.top = (coordinate.y + this.elementRef.nativeElement.clientHeight) + 'px';
+        this.wrapElement.style.left = coordinate.x + 'px';
+        this.wrapElement.style.width = this.elementRef.nativeElement.clientWidth + 'px';
     }
 
     @HostListener('input') onInput() {

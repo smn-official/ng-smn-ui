@@ -1,5 +1,5 @@
-<ui-card class="suggestions">
-    <div class="suggestions-wrap" tabindex="-1" [ngClass]="{'has-secondary': !!secondary}" (uiInfiniteLoad)="loadMoreEmit()">
+<ui-card class="suggestions" tabindex="-1" [ngClass]="{'has-secondary': !!secondary}" (uiInfiniteLoad)="loadMoreEmit()">
+    <div class="suggestions-wrap">
         <div class="ui-progress" [ngClass]="{'hide': !loading, 'accent': accentClass}" style="position: absolute">
             <div class="indeterminate"></div>
         </div>
