@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {UiToolbarService} from '../../smn-ui/toolbar/toolbar.service';
 
 @Component({
@@ -6,7 +6,7 @@ import {UiToolbarService} from '../../smn-ui/toolbar/toolbar.service';
     templateUrl: './demo-autocomplete.component.html',
     styleUrls: ['./demo-autocomplete.component.scss']
 })
-export class DemoAutocompleteComponent implements OnInit, AfterViewInit {
+export class DemoAutocompleteComponent implements OnInit, AfterViewInit, OnDestroy {
 
     states: string[];
     statesFiltered: string[];
@@ -47,7 +47,10 @@ export class DemoAutocompleteComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         this.toolbarService.activateExtendedToolbar(960);
+    }
 
+    ngOnDestroy() {
+        this.toolbarService.deactivateExtendedToolbar();
     }
 
     teste2(item) {
@@ -71,7 +74,7 @@ export class DemoAutocompleteComponent implements OnInit, AfterViewInit {
                 return;
             }
             this.statesFiltered = this.states.filter(item => {
-                return (item.indexOf(this.searchState) !== -1)
+                return (item.indexOf(this.searchState) !== -1);
             });
         }, 300);
     }
@@ -88,7 +91,7 @@ export class DemoAutocompleteComponent implements OnInit, AfterViewInit {
                 return;
             }
             this.allStatesFiltered = this.allStates.filter(item => {
-                return (item.name.indexOf(this.searchState) !== -1)
+                return (item.name.indexOf(this.searchState) !== -1);
             });
         }, 300);
     }
