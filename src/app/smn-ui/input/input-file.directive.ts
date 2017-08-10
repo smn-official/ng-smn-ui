@@ -33,9 +33,8 @@ export class UiInputFileDirective {
         this.ngControl.control.markAsDirty();
         this.ngControl.control.setErrors(null);
 
-        const files = e.target.files;
         this.model = [];
-
+        const files = e.target.files;
         const accepts = this.accept ? this.accept.split(',') : [];
         const maxSize = this.maxSize ? this.toByte(this.maxSize) : null;
         const maxFileSize = this.maxFileSize ? this.toByte(this.maxFileSize) : null;
@@ -45,40 +44,22 @@ export class UiInputFileDirective {
             const file = files[i];
             sum += file.size;
 
-            const validMaxFileSize = maxFileSize && file.size > maxFileSize;
-            const validMaxSize = maxSize && sum > maxSize;
+            const validMaxFileSize = this.validateMaxSize(file.size, maxFileSize);
+            const validMaxSize = this.validateMaxSize(sum, maxSize);
             const fileExtension = file.name.substring(file.name.lastIndexOf('.') + 1);
+            const validType = this.validateType(file, fileExtension, accepts);
 
-            console.log(validMaxSize)
             if (validMaxFileSize) {
-                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, { maxFileSize: true }));
-            }
-
-
-            // Verificar MIME Types
-            let validType = !accepts.length;
-
-            for (let j = 0; j < accepts.length; j++) {
-                const accept = accepts[j].trim();
-                // Checa se tem apenas um asterisco e se ele está no final
-                const regex = accept.match(/^[^\*]*\*$/) ? new RegExp('^' + accept) : new RegExp('^' + accept + '$');
-                console.log(file.type.match(regex), fileExtension.match(regex))
-                if (file.type.match(regex) || fileExtension.match(regex)) {
-                    validType = true;
-                    break;
-                }
+                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, {maxFileSize: true}));
             }
 
             if (!validType) {
-                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, { accept: true }));
+                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, {accept: true}));
             }
 
-            console.log(sum , maxSize)
-            if (maxSize && sum > maxSize) {
-                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, { maxSize: true }));
+            if (this.validateMaxSize(sum, maxSize)) {
+                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, {maxSize: true}));
             }
-
-            console.log(validType && !validMaxFileSize && !validMaxSize)
 
             if (validType && !validMaxFileSize && !validMaxSize) {
                 this.model.push({});
@@ -101,6 +82,27 @@ export class UiInputFileDirective {
             this.fileChange({'$files': this.files});
         }
         // this.fileChange({ '$files': this.files, '$error': ctrl.$invalid ? ctrl.$error : null });
+    }
+
+    validateType(file, extension, accepts): boolean {
+        if (!accepts.length) {
+            return true;
+        }
+
+        for (let j = 0; j < accepts.length; j++) {
+            const accept = accepts[j].trim();
+            const regex = accept.match(/^[^\*]*\*$/) ? new RegExp('^' + accept) : new RegExp('^' + accept + '$');
+
+            if (file.type.match(regex) || extension.match(regex)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    validateMaxSize(size, maxSize): boolean {
+        return ( maxSize && size > maxSize);
     }
 
     toByte(sizeString) {
