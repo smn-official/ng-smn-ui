@@ -119,4 +119,10 @@ export class UiElementRef {
     parent() {
         return new UiElementRef(this.nativeElement.parentNode);
     }
+
+    focus() {
+        if (this.nativeElement && this.nativeElement.focus) {
+            this.nativeElement.focus();
+        }
+    }
 }

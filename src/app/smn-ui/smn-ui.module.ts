@@ -29,6 +29,7 @@ import {UiProgressRadialComponent} from './progress/radial/progress-radial.compo
 import {UiReferencesService} from './date-picker/references.service';
 import {UiRippleDirective} from './ripple/ripple.directive';
 import {UiSmartListComponent} from './smart-list/smart-list.component';
+import {UiSmartListItemComponent} from './smart-list/item/item.component';
 import {UiSnackbarComponent} from './snackbar/snackbar.component';
 import {UiSnackbarContainerComponent} from './snackbar/snackbar-container.component';
 import {UiSnackbar} from './snackbar/snackbar.provider';
@@ -101,6 +102,7 @@ const lib: any[] = [
     UiProgressRadialComponent,
     UiRippleDirective,
     UiSmartListComponent,
+    UiSmartListItemComponent,
     UiSnackbarComponent,
     UiSnackbarComponent,
     UiSnackbarContainerComponent,
