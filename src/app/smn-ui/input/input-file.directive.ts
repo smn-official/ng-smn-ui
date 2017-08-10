@@ -2,22 +2,18 @@ import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, Ou
 import {FormControl, NgControl} from '@angular/forms';
 
 @Directive({
-    selector: '[uiInputFile]',
-    // providers: [
-    //     { provide: FormControl, useExisting: forwardRef(() => UiInputFileDirective), multi: true }
-    // ]
+    selector: '[uiInputFile]'
 })
 export class UiInputFileDirective {
 
     @Input() files: any;
     @Input() model: any;
-    @Input() accept: any;
-    @Input('max-size') maxSize: any;
-    @Input('max-file-size') maxFileSize: any;
-    @Input('read-data-url') readDataUrl: any;
-    @Input() error: any;
-    @Input() fileChange: any;
-    @Output() read: EventEmitter<any> = new EventEmitter();
+    @Input() accept: string;
+    @Input() read: Function;
+    @Input() error: Function;
+    @Input() fileChange: Function;
+    @Input('max-size') maxSize: string;
+    @Input('max-file-size') maxFileSize: string;
     @Output() filesChange: EventEmitter<any> = new EventEmitter();
     @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
@@ -77,11 +73,9 @@ export class UiInputFileDirective {
         this.files = e.target.files;
         this.filesChange.emit(this.files);
 
-
         if (this.fileChange) {
-            this.fileChange({'$files': this.files});
+            this.fileChange(this.files, this.ngControl.control.invalid);
         }
-        // this.fileChange({ '$files': this.files, '$error': ctrl.$invalid ? ctrl.$error : null });
     }
 
     validateType(file, extension, accepts): boolean {
@@ -105,13 +99,14 @@ export class UiInputFileDirective {
         return ( maxSize && size > maxSize);
     }
 
-    toByte(sizeString) {
+    toByte(sizeString: string) {
         sizeString = sizeString.toString();
-        var unitMatch = sizeString.match(/[a-zA-Z]+/g),
-            unit = unitMatch ? unitMatch[0] : null,
-            sizeMatch = sizeString.match(/\d+/),
-            unitSize = sizeMatch ? parseInt(sizeMatch[0]) : null,
-            size = unitSize;
+        const unitMatch = sizeString.match(/[a-zA-Z]+/g);
+        const unit = unitMatch ? unitMatch[0] : null;
+        const sizeMatch = sizeString.match(/\d+/);
+        const unitSize = sizeMatch ? parseInt(sizeMatch[0], 10) : null;
+        let size = unitSize;
+
         switch (unit) {
             case 'KB':
                 size = unitSize * 1024;
@@ -149,7 +144,7 @@ export class UiInputFileDirective {
             data.result = e.target.result;
             data.resolved = true;
             this.modelChange.emit(this.model);
-            // this.read.emit({ $data: data.result, $index: index, $file: file })
+            this.read(data.result, index, file);
         };
 
         reader.onerror = (e: any) => {

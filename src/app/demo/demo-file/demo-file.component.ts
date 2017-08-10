@@ -17,11 +17,15 @@ export class DemoFileComponent implements OnInit {
         this.toolbarService.set('Files');
     }
 
-    changeFile(listFile: FileList) {
-        console.log(listFile);
+    read(item, index, file) {
+        console.log(item, index)
+    }
+    
+    changeFile(listFile: FileList, invalid) {
+        // console.log(listFile, invalid);
     }
 
     error(file, errors, index) {
-        console.log(file, errors, index)
+        // console.log(file, errors, index)
     }
 }
