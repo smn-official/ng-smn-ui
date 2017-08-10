@@ -1,8 +1,13 @@
-import {Component, OnInit, Input, DoCheck, KeyValueDiffers, Output, EventEmitter, OnChanges} from '@angular/core';
+import {
+    Component, OnInit, Input, DoCheck, KeyValueDiffers, Output, EventEmitter, OnChanges,
+    ElementRef
+} from '@angular/core';
+import {UiElementRef} from '../utils/providers/element-ref.provider';
 
 @Component({
     selector: 'ui-smart-list',
-    templateUrl: 'smart-list.component.html'
+    templateUrl: 'smart-list.component.html',
+    styleUrls: ['smart-list.component.scss']
 })
 
 export class UiSmartListComponent implements OnInit, DoCheck, OnChanges {
@@ -12,8 +17,9 @@ export class UiSmartListComponent implements OnInit, DoCheck, OnChanges {
     list: any[];
     differ: any;
     objDiffer: { string?: any };
+    currentFocusedElementIndex: any;
 
-    constructor(private differs: KeyValueDiffers) {
+    constructor(private differs: KeyValueDiffers, public element: ElementRef) {
         this.differ = differs.find([]).create(null);
     }
 
@@ -100,12 +106,16 @@ export class UiSmartListComponent implements OnInit, DoCheck, OnChanges {
     }
 
     ngOnChanges(changes) {
-        if (changes.model && changes.model.currentValue && changes.model.currentValue.length) {
-            changes.model.currentValue.forEach((item) => {
-                if (this.list.indexOf(item) === -1) {
-                    this.list.push(item);
-                }
-            });
+        if (changes.model && changes.model.currentValue) {
+            if (changes.model.currentValue.length) {
+                changes.model.currentValue.forEach((item) => {
+                    if (this.list.indexOf(item) === -1) {
+                        this.list.push(item);
+                    }
+                });
+            } else if (changes.model.currentValue && changes.model.previousValue) {
+                this.list = [Object.assign({}, this.defaultItem)];
+            }
         }
     }
 }

@@ -1,0 +1,7 @@
+:host {
+    display: block;
+
+    /deep/ ui-smart-list-item {
+        display: block;
+    }
+}
