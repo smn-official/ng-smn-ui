@@ -21,4 +21,7 @@ export class DemoFileComponent implements OnInit {
         console.log(listFile);
     }
 
+    error(file, errors, index) {
+        console.log(file, errors, index)
+    }
 }

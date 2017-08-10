@@ -1,79 +1,90 @@
-import {Directive, ElementRef, EventEmitter, HostListener, Input, Output} from '@angular/core';
+import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, Output} from '@angular/core';
+import {FormControl, NgControl} from '@angular/forms';
 
 @Directive({
-    selector: '[uiInputFile]'
+    selector: '[uiInputFile]',
+    // providers: [
+    //     { provide: FormControl, useExisting: forwardRef(() => UiInputFileDirective), multi: true }
+    // ]
 })
 export class UiInputFileDirective {
 
     @Input() files: any;
+    @Input() model: any;
     @Input() accept: any;
     @Input('max-size') maxSize: any;
     @Input('max-file-size') maxFileSize: any;
-    @Input() readDataUrl: any;
+    @Input('read-data-url') readDataUrl: any;
     @Input() error: any;
     @Input() fileChange: any;
     @Output() read: EventEmitter<any> = new EventEmitter();
     @Output() filesChange: EventEmitter<any> = new EventEmitter();
+    @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
 
-    constructor(public element: ElementRef) {
-        this.accept = this.accept || ''
+    constructor(public element: ElementRef, public ngControl: NgControl) {
     }
 
-    @HostListener('change', ['$event']) onChange(e) {
-
+    @HostListener('change', ['$event'])
+    onChange(e) {
         e.stopPropagation();
         e.preventDefault();
 
-        const files = e.target.files;
-        this.readDataUrl = this.readDataUrl && files.length ? [] : null;
-        // ctrl.$setDirty();
-        // ctrl.$setValidity('uiMaxSize', true);
-        // ctrl.$setValidity('uiMaxFileSize', true);
-        // ctrl.$setValidity('uiAccept', true);
+        this.ngControl.control.markAsDirty();
+        this.ngControl.control.setErrors(null);
 
-        // Verificação de tamanho
+        const files = e.target.files;
+        this.model = [];
+
+        const accepts = this.accept ? this.accept.split(',') : [];
         const maxSize = this.maxSize ? this.toByte(this.maxSize) : null;
         const maxFileSize = this.maxFileSize ? this.toByte(this.maxFileSize) : null;
-        const accepts = this.accept.split(',');
 
         let sum = 0;
         for (let i = 0; i < files.length; i++) {
-            let file = files[i];
-            let validMaxFileSize = maxFileSize && file.size > maxFileSize;
-            let validMaxSize = maxSize && sum > maxSize;
-            let fileExtension = file.name.substring(file.name.lastIndexOf('.') + 1);
-
-            if (validMaxFileSize) {
-                // ctrl.$setValidity('uiMaxFileSize', false);
-            }
-
+            const file = files[i];
             sum += file.size;
 
+            const validMaxFileSize = maxFileSize && file.size > maxFileSize;
+            const validMaxSize = maxSize && sum > maxSize;
+            const fileExtension = file.name.substring(file.name.lastIndexOf('.') + 1);
+
+            console.log(validMaxSize)
+            if (validMaxFileSize) {
+                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, { maxFileSize: true }));
+            }
+
+
             // Verificar MIME Types
-            let validType = false;
+            let validType = !accepts.length;
+
             for (let j = 0; j < accepts.length; j++) {
-                let accept = accepts[j].trim();
+                const accept = accepts[j].trim();
                 // Checa se tem apenas um asterisco e se ele está no final
-                let regex = accept.match(/^[^\*]*\*$/) ? new RegExp('^' + accept) : new RegExp('^' + accept + '$');
+                const regex = accept.match(/^[^\*]*\*$/) ? new RegExp('^' + accept) : new RegExp('^' + accept + '$');
+                console.log(file.type.match(regex), fileExtension.match(regex))
                 if (file.type.match(regex) || fileExtension.match(regex)) {
                     validType = true;
                     break;
                 }
             }
+
             if (!validType) {
-                //ctrl.$setValidity('uiAccept', false);
+                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, { accept: true }));
             }
 
+            console.log(sum , maxSize)
             if (maxSize && sum > maxSize) {
-                // ctrl.$setValidity('uiMaxSize', false);
+                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, { maxSize: true }));
             }
+
+            console.log(validType && !validMaxFileSize && !validMaxSize)
 
             if (validType && !validMaxFileSize && !validMaxSize) {
-                this.readDataUrl.push({});
-                this.readFile(file, this.readDataUrl[i], i);
-            }
-            else if (this.error) {
+                this.model.push({});
+                this.modelChange.emit(this.model);
+                this.readFile(file, this.model[i], i);
+            } else if (this.error) {
                 this.error(file, {
                     type: !validType,
                     maxSize: validMaxSize,
@@ -87,7 +98,7 @@ export class UiInputFileDirective {
 
 
         if (this.fileChange) {
-            this.fileChange({ '$files': this.files});
+            this.fileChange({'$files': this.files});
         }
         // this.fileChange({ '$files': this.files, '$error': ctrl.$invalid ? ctrl.$error : null });
     }
@@ -129,27 +140,28 @@ export class UiInputFileDirective {
     }
 
     readFile(file, data, index) {
-        let reader = new FileReader();
+        const reader = new FileReader();
         data.resolved = 'false';
 
-        reader.onload = e => {
-            // data.result = e.target.result;
+        reader.onload = (e: any) => {
+            data.result = e.target.result;
             data.resolved = true;
-            this.read.emit({ $data: data.result, $index: index, $file: file })
+            this.modelChange.emit(this.model);
+            // this.read.emit({ $data: data.result, $index: index, $file: file })
         };
 
-        reader.onerror = e => {
-            // data.error = e.target.error;
+        reader.onerror = (e: any) => {
+            data.error = e.target.error;
+            this.modelChange.emit(this.model);
         };
 
-        reader.onprogress = e => {
-            if (!e.lengthComputable)
-                return;
+        reader.onprogress = (e: any) => {
             data.progress = {
                 loaded: e.loaded,
                 total: e.total,
-                percent: Math.round((e.loaded/e.total) * 100)
-            }
+                percent: Math.round((e.loaded / e.total) * 100)
+            };
+            this.modelChange.emit(this.model);
         };
 
         reader.readAsDataURL(file);
