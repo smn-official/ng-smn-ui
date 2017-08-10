@@ -1,6 +1,4 @@
 import {AfterViewInit, Directive, ElementRef, EventEmitter, Output, DoCheck} from '@angular/core';
-
-import {UiElement} from '../providers/element.provider';
 import {UiInfiniteLoadService} from './infinite-load.service';
 
 @Directive({
@@ -19,6 +17,8 @@ export class UiInfiniteLoadDirective implements AfterViewInit, DoCheck {
     }
 
     ngDoCheck() {
-        UiElement.trigger(this.element.nativeElement, 'scroll');
+        if (this.infiniteLoad.listener) {
+            this.infiniteLoad.listener();
+        }
     }
 }

@@ -7,13 +7,16 @@
         box-shadow: ui-shadow('8dp');
         overflow-y: auto;
 
-        .ui-list {
-            padding: 0;
+        .suggestions-wrap {
 
-            .not-found, .not-found span {
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
+            .ui-list {
+                padding: 0;
+
+                .not-found, .not-found span {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
             }
         }
     }
@@ -21,7 +24,7 @@
 
 /deep/ .wrap-autocomplete {
     position: absolute;
-    z-index: 6;
+    z-index: 2;
     transition: top 280ms ui-easing('decelaration'), left 280ms ui-easing('decelaration');
     .overlay {
         overflow: hidden;
@@ -33,6 +36,7 @@
         z-index: 3;
         max-height: 0;
 
+
         .ui-list li {
             transition: opacity 280ms ui-easing('sharp'), transform 280ms ui-easing('sharp');
             opacity: 0;
@@ -41,7 +45,6 @@
     }
 
     &.open ui-autocomplete > .suggestions:not(.nothing) {
-        transform: scale(1);
         max-height: 240px;
         animation: hide-overflow 280ms ui-easing('sharp');
 

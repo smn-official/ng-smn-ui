@@ -2,6 +2,8 @@ import {AfterViewInit, Directive, ElementRef, Input, ViewContainerRef, AfterView
 import {UiElement} from '../utils/providers/element.provider';
 import {UiWindowRef} from '../utils/providers/window.provider';
 
+import {debounce} from '../utils/functions/debounce';
+
 @Directive({
     selector: '[uiMenuTrigger]'
 })
@@ -126,24 +128,4 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
             setTimeout(() => this.viewContainerRef.remove(this.viewContainerRef.indexOf(viewRef)), 280);
         }
     }
-}
-
-function debounce(func, wait, immediate?) {
-    let timeout;
-    return function () {
-        const context = this;
-        const args = arguments;
-        const later = function () {
-            timeout = null;
-            if (!immediate) {
-                func.apply(context, args);
-            }
-        };
-        const callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) {
-            func.apply(context, args);
-        }
-    };
 }

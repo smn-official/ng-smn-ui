@@ -7,7 +7,8 @@
     $hover-color: ui-if(map-get($theme, is-dark) == true, ui-color('grey', '900'), ui-color('grey', '200'));
 
     .ui-data-table {
-        .image {
+        .image,
+        .letter {
             background-color: $background-image;
         }
 

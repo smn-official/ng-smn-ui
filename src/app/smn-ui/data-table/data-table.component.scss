@@ -83,13 +83,17 @@
         text-align: right;
     }
 
-    .image {
+    .image,
+    .letter {
         height: 32px;
         width: 32px;
         border-radius: 16px;
         background-position: center;
         background-size: cover;
         margin: 0 2px;
+        line-height: 32px;
+        text-align: center;
+        text-transform: uppercase;
     }
 
     tfoot td {

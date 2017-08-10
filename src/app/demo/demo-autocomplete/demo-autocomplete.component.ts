@@ -46,7 +46,8 @@ export class DemoAutocompleteComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        // this.toolbarService.activateExtendedToolbar();
+        this.toolbarService.activateExtendedToolbar(960);
+
     }
 
     teste2(item) {
