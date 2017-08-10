@@ -8,7 +8,7 @@
         transition: transform 280ms ui-easing('sharp'), opacity 280ms ui-easing('sharp');
         transform: scale(0);
         opacity: 0;
-        z-index: 3;
+        z-index: 6;
     }
 
     &.open ui-calendar {
