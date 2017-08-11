@@ -64,6 +64,7 @@ import {UiLazyLoadDirective} from './lazy-load/lazy-load.directive';
 import {UiDataTableComponent} from './data-table/data-table.component';
 import {UiBottomSheetComponent} from './bottom-sheet/bottom-sheet.component';
 import {UiBottomSheetTriggerDirective} from './bottom-sheet/bottom-sheet.directive';
+import { UiInputFileDirective } from './input/input-file.directive';
 import {UiEllipsisDirective} from './ellipsis/ellipsis.directive';
 
 export {
@@ -138,6 +139,7 @@ const lib: any[] = [
     UiLazyLoadDirective,
     UiBottomSheetComponent,
     UiBottomSheetTriggerDirective,
+    UiInputFileDirective,
     UiEllipsisDirective
 ];
 

@@ -24,6 +24,7 @@ import {DemoSliderComponent} from './demo/demo-slider/demo-slider.component';
 import {DemoListComponent} from './demo/demo-list/demo-list.component';
 import {DemoAutocompleteComponent} from './demo/demo-autocomplete/demo-autocomplete.component';
 import {DemoBottomSheetComponent} from './demo/demo-bottom-sheet/demo-bottom-sheet.component';
+import {DemoFileComponent} from './demo/demo-file/demo-file.component';
 
 const routes: Routes = [
     {
@@ -39,6 +40,7 @@ const routes: Routes = [
             {path: 'date-pickers', component: DemoDatePickersComponent},
             {path: 'dialog', component: DemoDialogComponent},
             {path: 'dividers', component: DemoDividersComponent},
+            {path: 'files', component: DemoFileComponent},
             {path: 'inputs', component: DemoInputsComponent},
             {path: 'layout', component: DemoLayoutComponent},
             {path: 'menus', component: DemoMenuComponent},

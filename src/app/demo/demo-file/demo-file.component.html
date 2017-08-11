@@ -1,0 +1,20 @@
+<ui-card>
+    <ui-card-content>
+        <input type="file"
+               name="input"
+               uiInputFile
+               [(ngModel)]="teste"
+               [(files)]="files"
+               [(model)]="data"
+               multiple
+               [read]="read.bind(this)"
+               [fileChange]="changeFile.bind(this)"
+               [error]="error.bind(this)"
+               #validationFile="ngModel">
+        <p>Errors: {{validationFile ? (validationFile.errors | json) : ''}}</p>
+        <p (click)="changeFile(files)">{{files | json}}</p>
+        <div *ngFor="let image of data">
+            <img [src]="image.result" alt="">
+        </div>
+    </ui-card-content>
+</ui-card>
