@@ -85,7 +85,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
                     y: position.top + 1
                 };
                 this.setPosition(coordinate, this.componentElement);
-            })
+            });
         }
         if (changes.loading && !changes.loading.firstChange && this.componentRef) {
             this.componentRef.instance.loading = changes.loading.currentValue;
@@ -181,7 +181,6 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
         const verticalCoveringArea = coordinate.y + wrap.clientHeight;
         const windowWidth = window.innerWidth + document.body.scrollLeft;
         const windowHeight = window.innerHeight + document.body.scrollTop;
-        console.log(windowHeight, verticalCoveringArea);
 
         if (horizontalCoveringArea > windowWidth) {
             coordinate.x = windowWidth - (wrap.clientWidth + 8);
@@ -192,7 +191,6 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
         }
 
         if (verticalCoveringArea > windowHeight) {
-            // coordinate.y = windowHeight - wrap.clientHeight;
             coordinate.y = coordinate.y - wrap.clientHeight + this.elementRef.nativeElement.clientHeight - 14; // 14 = label focus
         }
 
@@ -204,7 +202,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     @HostListener('input') onInput() {
         if (this.ngModel !== this.modelValue) {
             this.modelValue = null;
-            this.modelValueChange.emit(this.modelValue)
+            this.modelValueChange.emit(this.modelValue);
         }
     }
 
