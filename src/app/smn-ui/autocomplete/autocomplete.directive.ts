@@ -177,8 +177,9 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
 
     private setPosition(coordinate, element) {
         const wrap = element.querySelector('.suggestions-wrap');
+        const maxHeightWrap = !!this.secondary ? 370 : 240;
         const horizontalCoveringArea = coordinate.x + wrap.clientWidth;
-        const verticalCoveringArea = coordinate.y + wrap.clientHeight;
+        const verticalCoveringArea = coordinate.y + (wrap.clientHeight > maxHeightWrap ? maxHeightWrap : wrap.clientHeight);
         const windowWidth = window.innerWidth + document.body.scrollLeft;
         const windowHeight = window.innerHeight + document.body.scrollTop;
 
