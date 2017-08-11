@@ -21,7 +21,7 @@ export class UiAutocompleteComponent {
     }
 
     loadMoreEmit() {
-        this.loadMore.emit();
+        setTimeout(() => this.loadMore.emit());
     }
 
 }
