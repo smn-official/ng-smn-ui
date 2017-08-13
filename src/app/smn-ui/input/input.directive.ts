@@ -26,27 +26,32 @@ export class UiInputDirective implements AfterViewInit, OnChanges {
         this.isEmpty(this.ngModel);
     }
 
-    @HostListener('blur') onBlur() {
+    @HostListener('blur')
+    onBlur() {
         if (this.ngModel) {
-            this.ngModel = this.ngModel.trim();
+            if (this.ngModel.trim) {
+                this.ngModel = this.ngModel.trim();
+            }
             this.ngModelChange.emit(this.ngModel);
             this.changeDetectorRef.detectChanges();
         }
         this.isEmpty(this.ngModel);
     }
 
-    @HostListener('focus') onFocus() {
+    @HostListener('focus')
+    onFocus() {
         this.isEmpty(this.ngModel);
         this.setPlaceholder(this.placeholder);
     }
 
-    @HostListener('focusout') onFocusout() {
+    @HostListener('focusout')
+    onFocusout() {
         this.setPlaceholder();
     }
 
     isEmpty(value: any): void {
         // TODO: Try model e view value
-        if (this.ngModel && !this.ngModel.trim()) {
+        if (this.ngModel && this.ngModel.trim && !this.ngModel.trim()) {
             this.ngModel = this.ngModel.trim();
             this.ngModelChange.emit(this.ngModel);
             this.changeDetectorRef.detectChanges();

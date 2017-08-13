@@ -50,6 +50,11 @@
                 }
             }
         }
+        &.transparent:not(.scrolled) {
+            header {
+                color: white;
+            }
+        }
     }
 
     header .ui-button:not(.success):not(.warning):not(.error):not(:disabled).flat {

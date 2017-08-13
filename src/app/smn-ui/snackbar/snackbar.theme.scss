@@ -1,0 +1,7 @@
+@import "../core/variables";
+
+@mixin ui-snackbar($theme) {
+    .ui-button:not(.success):not(.warning):not(.error):not(:disabled).accent.flat {
+        color: ui-color(map_get($theme, primary), '300');
+    }
+}
