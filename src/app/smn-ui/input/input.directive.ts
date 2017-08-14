@@ -28,13 +28,6 @@ export class UiInputDirective implements AfterViewInit, OnChanges {
 
     @HostListener('blur')
     onBlur() {
-        if (this.ngModel) {
-            if (this.ngModel.trim) {
-                this.ngModel = this.ngModel.trim();
-            }
-            this.ngModelChange.emit(this.ngModel);
-            this.changeDetectorRef.detectChanges();
-        }
         this.isEmpty(this.ngModel);
     }
 
@@ -51,12 +44,10 @@ export class UiInputDirective implements AfterViewInit, OnChanges {
 
     isEmpty(value: any): void {
         // TODO: Try model e view value
+        let action = !value && !this.element.nativeElement.value ? 'addClass' : 'removeClass';
         if (this.ngModel && this.ngModel.trim && !this.ngModel.trim()) {
-            this.ngModel = this.ngModel.trim();
-            this.ngModelChange.emit(this.ngModel);
-            this.changeDetectorRef.detectChanges();
+            action = 'addClass';
         }
-        const action = !value && !this.element.nativeElement.value ? 'addClass' : 'removeClass';
         this.renderer[action](this.element.nativeElement, 'ui-empty');
     }
 
