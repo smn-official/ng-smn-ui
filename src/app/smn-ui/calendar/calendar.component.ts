@@ -14,7 +14,7 @@ import {UiCalendarContentComponent} from './calendar-content.component';
 import {UiAddCalendarDirective} from './add-calendar.directive';
 import {UiDatetimeService} from './datetime.service';
 import {Subject} from 'rxjs/Subject';
-import {isDate} from "rxjs/util/isDate";
+import {isDate} from 'rxjs/util/isDate';
 
 @Component({
     selector: 'ui-calendar',
@@ -26,6 +26,7 @@ export class UiCalendarComponent implements OnInit, OnChanges {
     @Input() ngModel: any;
     @Input() maxDate: Date;
     @Input() minDate: Date;
+    @Input() hideHeader: boolean;
     @Input() initOnSelected: Date;
     @Input() confirmSelection: boolean;
     @Output() select: EventEmitter<any> = new EventEmitter();

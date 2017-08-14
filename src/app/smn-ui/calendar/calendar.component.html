@@ -1,4 +1,4 @@
-<header>
+<header *ngIf="!hideHeader">
     <div>
         <div class="year" >{{chosenDate && chosenDate.getFullYear()}}</div>
         <span class="date-empty" *ngIf="!chosenDate">Selecione uma data</span>

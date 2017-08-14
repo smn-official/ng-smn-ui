@@ -73,6 +73,12 @@
             margin-left: auto;
             max-width: 56px;
             margin-right: -2px;
+
+            &.left {
+                margin-left: -2px;
+                margin-right: 32px;
+            }
+
             .ui-switch {
                 margin-right: 9px;
             }
