@@ -64,5 +64,29 @@
                 border-color: $border;
             }
         }
+
+        @include mobile {
+            tbody tr {
+                border-bottom: 1px solid $border;
+
+                &:last-child {
+                    border: none;
+                }
+            }
+        }
     }
+
+
+    ui-data-table {
+        @include mobile {
+            tbody tr {
+                border-bottom: 1px solid $border;
+
+                &:last-child {
+                    border: none;
+                }
+            }
+        }
+    }
+
 }

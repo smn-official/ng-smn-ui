@@ -24,7 +24,7 @@
             transition: opacity 280ms ui-easing(),
             transform 280ms ui-easing();
             opacity: 0;
-            transform: rotate(180deg);
+            transform: rotate(0deg);
         }
 
         &.order_asc {
@@ -64,8 +64,8 @@
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2; /* number of lines to show */
-            line-height: 17px;        /* fallback */
-            max-height: 17*2px;       /* fallback */
+            line-height: 17px; /* fallback */
+            max-height: 17*2px; /* fallback */
         }
     }
 
@@ -110,6 +110,45 @@
             margin-right: 24px;
             display: flex;
             align-items: center;
+        }
+    }
+}
+
+@include mobile {
+    ui-data-table {
+        .ui-data-table {
+            tbody {
+                th {
+                    display: none;
+                }
+
+                tr {
+                    display: block;
+
+                    td:not(.nothing) {
+                        display: block;
+                        text-align: right;
+                        border: none;
+                        vertical-align: middle;
+                        padding: 15px 12px;
+                        width: 100%;
+
+                        &:before {
+                            content: attr(data-title);
+                            float: left;
+                            font-weight: 500;
+                        }
+
+                        .image {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+
+            tfoot tr {
+                height: auto;
+            }
         }
     }
 }
