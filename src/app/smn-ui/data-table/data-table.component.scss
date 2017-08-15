@@ -95,6 +95,7 @@
         line-height: 32px;
         text-align: center;
         text-transform: uppercase;
+        user-select: none;
     }
 
     tfoot td {
@@ -115,15 +116,29 @@
 }
 
 @include mobile {
-    ui-data-table {
+    ui-data-table.responsive {
         .ui-data-table {
             tbody {
                 th {
-                    display: none;
+                    //display: none;
+                    display: inline-block;
+                    border: none;
+                    vertical-align: middle;
+                    height: 30px;
+                    line-height: 30px;
+
+                    &.empty {
+                        display: none;
+                    }
                 }
 
                 tr {
                     display: block;
+                    &:first-child {
+                        display: flex;
+                        justify-content: center;
+                        flex-wrap: wrap;
+                    }
 
                     td:not(.nothing) {
                         display: block;
@@ -132,15 +147,22 @@
                         vertical-align: middle;
                         padding: 15px 12px;
                         width: 100%;
+                        height: auto;
+                        min-height: 48px;
 
                         &:before {
                             content: attr(data-title);
                             float: left;
                             font-weight: 500;
+                            margin-right: 8px;
                         }
 
                         .image {
                             margin: 0;
+                        }
+
+                        &.empty {
+                            display: none;
                         }
                     }
                 }
