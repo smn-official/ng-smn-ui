@@ -174,7 +174,7 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges, OnDestroy
         document.body.classList.remove('ui-nav-drawer-persistent');
         setTimeout(() => {
             document.body.classList.remove('notransition');
-        }, 1)
+        }, 1);
     }
 
     closeMenuOverlay() {
