@@ -25,9 +25,10 @@ import {DemoToolbarsComponent} from './demo-toolbars/demo-toolbars.component';
 import {DemoMaskComponent} from './demo-mask/demo-mask.component';
 import {DemoSliderComponent} from './demo-slider/demo-slider.component';
 import {DemoListComponent} from './demo-list/demo-list.component';
-import { DemoAutocompleteComponent } from './demo-autocomplete/demo-autocomplete.component';
-import { DemoBottomSheetComponent } from './demo-bottom-sheet/demo-bottom-sheet.component';
-import { DemoFileComponent } from './demo-file/demo-file.component';
+import {DemoAutocompleteComponent} from './demo-autocomplete/demo-autocomplete.component';
+import {DemoBottomSheetComponent} from './demo-bottom-sheet/demo-bottom-sheet.component';
+import {DemoFileComponent} from './demo-file/demo-file.component';
+import {DemoColorPickersComponent} from './demo-color-pickers/demo-color-pickers.component';
 
 @NgModule({
     imports: [
@@ -64,7 +65,8 @@ import { DemoFileComponent } from './demo-file/demo-file.component';
         DemoListComponent,
         DemoAutocompleteComponent,
         DemoBottomSheetComponent,
-        DemoFileComponent
+        DemoFileComponent,
+        DemoColorPickersComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
