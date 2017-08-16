@@ -6,7 +6,7 @@ import {
     EventEmitter,
     ElementRef,
     OnChanges,
-    Input
+    Input, OnDestroy
 } from '@angular/core';
 
 import {UiWindowRef} from '../utils/providers/window.provider';
@@ -20,7 +20,7 @@ import {UiElementRef} from '../utils/providers/element-ref.provider';
     styleUrls: ['./nav-drawer.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
+export class UiNavDrawerComponent implements AfterViewInit, OnChanges, OnDestroy {
     @Input() open: boolean;
     @Output() openChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     public openNav: Function;
@@ -167,6 +167,14 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges {
                 UiElement.trigger(window, 'resize');
             }, 280);
         }
+    }
+
+    ngOnDestroy() {
+        document.body.classList.add('notransition');
+        document.body.classList.remove('ui-nav-drawer-persistent');
+        setTimeout(() => {
+            document.body.classList.remove('notransition');
+        }, 1);
     }
 
     closeMenuOverlay() {

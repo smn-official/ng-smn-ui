@@ -18,17 +18,17 @@ export class UiDataTableOrderByDirective implements AfterViewInit {
     }
 
     @HostListener('click') onClick() {
-        if (this.element.nativeElement.classList.contains('order_asc')
-            || this.element.nativeElement.classList.contains('order_desc')) {
-            if (this.element.nativeElement.classList.contains('order_desc')) {
-                this.element.nativeElement.classList.add('order_asc');
-                this.element.nativeElement.classList.remove('order_desc');
-            } else if (this.element.nativeElement.classList.contains('order_asc')) {
+        if (this.element.nativeElement.classList.contains('order_desc')
+            || this.element.nativeElement.classList.contains('order_asc')) {
+            if (this.element.nativeElement.classList.contains('order_asc')) {
+                this.element.nativeElement.classList.add('order_desc');
                 this.element.nativeElement.classList.remove('order_asc');
+            } else if (this.element.nativeElement.classList.contains('order_desc')) {
                 this.element.nativeElement.classList.remove('order_desc');
+                this.element.nativeElement.classList.remove('order_asc');
             }
         } else {
-            this.element.nativeElement.classList.add('order_desc');
+            this.element.nativeElement.classList.add('order_asc');
         }
     }
 }

@@ -1,5 +1,5 @@
 import {
-    AfterViewInit, ChangeDetectorRef, Directive, ElementRef, EventEmitter, HostListener, Input, OnChanges, Output,
+    AfterViewInit, Directive, ElementRef, EventEmitter, HostListener, Input, OnChanges, Output,
     Renderer2
 } from '@angular/core';
 
@@ -13,7 +13,7 @@ export class UiInputDirective implements AfterViewInit, OnChanges {
     @Input() persistPlaceholder: boolean;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
-    constructor(private element: ElementRef, private renderer: Renderer2, private changeDetectorRef: ChangeDetectorRef) {
+    constructor(private element: ElementRef, private renderer: Renderer2) {
         this.placeholder = element.nativeElement.placeholder;
     }
 

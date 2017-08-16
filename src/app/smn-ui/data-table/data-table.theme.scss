@@ -35,9 +35,19 @@
                 }
             }
 
-            &:hover {
-                td {
-                    background-color: $hover-color;
+            @include mobile {
+                &:active {
+                    td {
+                        background-color: $hover-color;
+                    }
+                }
+            }
+
+            @include desktop {
+                &:hover {
+                    td {
+                        background-color: $hover-color;
+                    }
                 }
             }
 
@@ -65,4 +75,18 @@
             }
         }
     }
+
+
+    ui-data-table.responsive {
+        @include mobile {
+            tbody tr {
+                border-bottom: 1px solid $border;
+
+                &:last-child {
+                    border: none;
+                }
+            }
+        }
+    }
+
 }
