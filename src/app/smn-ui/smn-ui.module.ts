@@ -67,6 +67,7 @@ import {UiBottomSheetTriggerDirective} from './bottom-sheet/bottom-sheet.directi
 import {UiInputFileDirective} from './input/input-file.directive';
 import {UiEllipsisDirective} from './ellipsis/ellipsis.directive';
 import {UiRequiredDirective} from './utils/validators/required.directive';
+import {debounce} from './utils/functions/debounce';
 
 export {
     UiColor,
@@ -80,7 +81,8 @@ export {
     UiCnpjPipe,
     UiCepPipe,
     UiPhonePipe,
-    UiInfiniteLoadService
+    UiInfiniteLoadService,
+    debounce
 }
 
 const lib: any[] = [

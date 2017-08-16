@@ -44,6 +44,16 @@ ui-card {
         display: block;
     }
 
+    ui-card-media {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .user-letter {
+            font-size: 42px;
+        }
+    }
+
     ui-card-content {
         display: block;
         padding: 16px;
