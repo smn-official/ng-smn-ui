@@ -1,14 +1,74 @@
+@import "../core/variables";
+
 :host {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     display: block;
     border-radius: 50%;
     background-color: #0d47a1;
 
-    .color {
-        width: 32px;
-        height: 32px;
-        display: block;
-        border-radius: 50%;
+    ui-card {
+        min-width: 246px;
+
+        ui-card-content {
+            padding-top: 8px;
+
+            .wrap-slider {
+
+            }
+        }
+    }
+
+    .colors {
+        padding: 8px 16px 16px 8px;
+        display: flex;
+        flex-wrap: wrap;
+
+        .color {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-left: 8px;
+            margin-top: 8px;
+            cursor: default;
+            user-select: none;
+            transition: background-color 280ms ui-easing('deceleration'), box-shadow 280ms ui-easing('deceleration');
+
+            &.remove i {
+                font-size: 44px;
+            }
+
+            i {
+                transition: color 280ms ui-easing('deceleration');
+            }
+
+            &.selected {
+                box-shadow: ui-shadow('2dp');
+            }
+        }
+    }
+
+    /deep/ ui-slider:not(.nothing) {
+
+        .track {
+            height: 4px;
+        }
+
+        .thumb {
+            width: 16px;
+            height: 16px;
+        }
+
+        .points {
+            margin-top: -4px;
+
+            .point:not(.nothing) {
+                padding: 2px;
+                opacity: 0.54;
+            }
+        }
     }
 }

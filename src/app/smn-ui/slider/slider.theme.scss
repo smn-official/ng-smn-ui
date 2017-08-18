@@ -23,14 +23,7 @@
                 }
 
                 .thumb-container {
-                    .thumb {
-                        background-color: $primary-color;
-                    }
-
-                    &::before {
-                        background-color: rgba($primary-color, 0.1);
-                    }
-
+                    background-color: $primary-color;
                 }
             }
         }
@@ -53,14 +46,7 @@
         }
 
         .thumb-container {
-            .thumb {
-                background-color: $accent-color;
-            }
-
-            &::before {
-                background-color: rgba($accent-color, 0.1);
-            }
-
+            background-color: $accent-color;
         }
     }
 }

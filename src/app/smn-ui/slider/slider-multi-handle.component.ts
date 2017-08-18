@@ -84,9 +84,6 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
                 return;
             }
             e.stopImmediatePropagation();
-            // if (this.disabled) {
-            //     e.stopImmediatePropagation();
-            // }
             this.mouseDown = true;
             this.toggleTackOn(true);
             UiElement.disableScroll();
@@ -135,7 +132,7 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
     change(event, mouseUp?) {
         const currentPosition = event.pageX || (event.touches ? event.touches[0].pageX : null) || (event.changedTouches ? event.changedTouches[0].pageX : null);
         let position = this.getPositionInIndex(currentPosition);
-        const newValue = this.closestNumber(position);
+        const newValue = this.closestNumber(this.range[Math.round(position)]);
 
         if (mouseUp) {
             position = newValue.index;

@@ -1,7 +1,45 @@
 const textBlack = 'rgba(0, 0, 0, .87)';
 const textWhite = '#fff';
-export const colorNames: string[] = ['red', 'pink', 'purple', 'deepPurple', 'indigo', 'blue', 'lightBlue', 'cyan', 'teal', 'green', 'lightGreen', 'lime', 'yellow', 'amber', 'orange', 'deepOrange', 'brown', 'grey', 'blueGrey'];
-export const colors: any = {
+const colors: any[] = [{
+    name: 'red'
+}, {
+    name: 'pink'
+}, {
+    name: 'purple'
+}, {
+    name: 'deepPurple'
+}, {
+    name: 'indigo'
+}, {
+    name: 'blue'
+}, {
+    name: 'lightBlue'
+}, {
+    name: 'cyan'
+}, {
+    name: 'teal'
+}, {
+    name: 'green'
+}, {
+    name: 'lightGreen'
+}, {
+    name: 'lime'
+}, {
+    name: 'yellow'
+}, {
+    name: 'amber'
+}, {
+    name: 'orange'
+}, {
+    name: 'deepOrange'
+}, {
+    name: 'brown'
+}, {
+    name: 'grey'
+}, {
+    name: 'blueGrey'
+}];
+const palette: any = {
     red: {
         50: {
             color: '#ffebee',
@@ -801,3 +839,7 @@ export const colors: any = {
         }
     }
 };
+export {
+    palette,
+    colors
+}
