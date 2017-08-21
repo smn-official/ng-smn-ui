@@ -13,12 +13,10 @@
         </div>
     </div>
     <ui-card-content *ngIf="colorSelected.name">
-        <div class="wrap-slider">
-            <ui-slider [range]="hues"
-                       [(value)]="value"
-                       [color]="getColor(colorSelected.name, value)"
-                       [hideBalloon]="true"
-                       [text-color]="getColorText(colorSelected.name, value)"></ui-slider>
-        </div>
+        <ui-slider [range]="hues"
+                   [(value)]="value"
+                   [color]="getColor(colorSelected.name, value)"
+                   [hideBalloon]="true"
+                   [text-color]="getColorText(colorSelected.name, value)"></ui-slider>
     </ui-card-content>
 </ui-card>

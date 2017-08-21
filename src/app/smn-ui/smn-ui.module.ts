@@ -69,6 +69,7 @@ import {UiInputFileDirective} from './input/input-file.directive';
 import {UiEllipsisDirective} from './ellipsis/ellipsis.directive';
 import {UiRequiredDirective} from './utils/validators/required.directive';
 import {UiColorPickerComponent} from './color-picker/color-picker.component';
+import {UiColorPickerDirective} from './color-picker/color-picker.directive';
 
 export {
     UiColor,
@@ -146,7 +147,8 @@ const lib: any[] = [
     UiInputFileDirective,
     UiEllipsisDirective,
     UiRequiredDirective,
-    UiColorPickerComponent
+    UiColorPickerComponent,
+    UiColorPickerDirective
 ];
 
 @NgModule({

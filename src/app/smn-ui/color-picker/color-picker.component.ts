@@ -51,4 +51,17 @@ export class UiColorPickerComponent implements OnInit {
         this.value = 500;
         this.colors.forEach(color => color.selected = false);
     }
+
+    getNameColorInPalette(color) {
+        if (!color) {
+            return;
+        }
+        Object.keys(this.palette).forEach(key => {
+            Object.keys(this.palette[key]).forEach(hue => {
+                if (this.palette[key][hue].color === color) {
+                    console.log('Found');
+                }
+            });
+        });
+    }
 }

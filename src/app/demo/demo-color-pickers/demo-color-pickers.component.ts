@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'ui-demo-color-pickers',
-  templateUrl: './demo-color-pickers.component.html',
-  styleUrls: ['./demo-color-pickers.component.scss']
+    selector: 'ui-demo-color-pickers',
+    templateUrl: './demo-color-pickers.component.html',
+    styleUrls: ['./demo-color-pickers.component.scss']
 })
 export class DemoColorPickersComponent implements OnInit {
 
-  constructor() { }
+    color: string;
 
-  ngOnInit() {
-  }
+    constructor() {
+    }
+
+    ngOnInit() {
+        // this.color = '#9e9d24';
+    }
 
 }

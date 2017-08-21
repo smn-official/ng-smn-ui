@@ -1,0 +1,22 @@
+.ui-control[uiColorPicker] {
+    color: transparent;
+    user-select: none;
+    border-bottom-width: 0;
+}
+
+.ui-color {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    top: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    cursor: default;
+
+    i {
+        font-size: 36px;
+    }
+}
