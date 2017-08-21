@@ -60,6 +60,8 @@ export class UiColorPickerComponent implements AfterViewInit {
     }
 
     deselectColors() {
+        this.ngModel = this.getColor(null);
+        this.ngModelChange.emit(this.ngModel);
         this.colorSelected = {};
         this.value = 500;
         this.colors.forEach(color => color.selected = false);

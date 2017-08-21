@@ -58,6 +58,7 @@ export class UiColorPickerDirective implements AfterViewInit {
             icon.classList.add('material-icons', 'secondary-text');
             icon.innerText = 'block';
             this.elementColor.appendChild(icon);
+            this.elementColor.setAttribute('style', '');
         }
     }
 
