@@ -169,7 +169,7 @@ const lib: any[] = [
         UiWindowRef,
         UiInfiniteLoadService
     ],
-    entryComponents: [UiCalendarComponent, UiCalendarContentComponent, UiAutocompleteComponent]
+    entryComponents: [UiCalendarComponent, UiCalendarContentComponent, UiAutocompleteComponent, UiColorPickerComponent]
 })
 export class SMNUIModule {
 }

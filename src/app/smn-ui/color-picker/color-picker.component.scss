@@ -1,18 +1,15 @@
 @import "../core/variables";
 
 :host {
-    width: 36px;
-    height: 36px;
-    display: block;
-    border-radius: 50%;
-    background-color: #0d47a1;
-
     ui-card {
-        min-width: 246px;
+        max-width: 246px;
 
         ui-card-content {
             padding-top: 8px;
 
+            &[hidden] {
+                display: none;
+            }
         }
     }
 
@@ -68,4 +65,71 @@
             }
         }
     }
+}
+
+/deep/ .wrap-color-picker {
+
+    .overlay {
+        overflow: hidden;
+    }
+
+    ui-color-picker {
+        transform-origin: top left;
+        transition: transform 280ms ui-easing('sharp'), opacity 280ms ui-easing('sharp');
+        transform: scale(0);
+        opacity: 0;
+        position: absolute;
+    }
+
+    &.open ui-color-picker {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    @media (max-width: 600px) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        background-color: transparent !important;
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0);
+            transition: background 195ms ui-easing('deceleration');
+        }
+
+        ui-color-picker {
+            position: relative;
+            top: 0 !important;
+            left: 0 !important;
+            margin: auto;
+            transform-origin: bottom;
+            transition: transform 225ms ui-easing('acceleration'), opacity 195ms ui-easing('acceleration');
+            transform: scale(0.8) translateY(16px);
+
+            ui-card {
+                box-shadow: ui-shadow('24dp');
+            }
+        }
+
+        &.open {
+            .overlay {
+                background-color: rgba(0,0,0,.2);
+            }
+
+            ui-color-picker {
+                transition: transform 225ms ui-easing('deceleration'), opacity 195ms ui-easing('deceleration');
+                transform: scale(1) translateY(0);
+            }
+        }
+
+    }
+
 }

@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {
+    Component, EventEmitter, Input, OnChanges, AfterViewInit, Output, ViewChild
+} from '@angular/core';
 import {palette, colors} from './color-picker.palette';
 
 @Component({
@@ -6,24 +8,33 @@ import {palette, colors} from './color-picker.palette';
     templateUrl: './color-picker.component.html',
     styleUrls: ['./color-picker.component.scss']
 })
-export class UiColorPickerComponent implements OnInit {
+export class UiColorPickerComponent implements AfterViewInit {
 
     palette: any;
     colors: any;
     hues: any;
     colorSelected: any;
+    ngModel: any;
     value: any;
+    ngModelChange: EventEmitter<any>;
+    @Output() valueChange: EventEmitter<any> = new EventEmitter();
+    @ViewChild('hueColor') hueColor: any;
 
     constructor() {
         this.palette = palette;
         this.colors = colors;
-        this.hues = Array.from({length: 10}, (value, index) => index * 100);
+        this.hues = Array.from({length: 10}, (ngModel, index) => index * 100);
         this.hues[0] = 50;
         this.value = 500;
         this.colorSelected = {};
     }
 
-    ngOnInit() {
+    ngAfterViewInit() {
+        this.setColorSelected(this.ngModel);
+        this.hueColor.valueChange.subscribe(hue => {
+            this.ngModel = this.getColor(this.colorSelected.name, hue);
+            this.ngModelChange.emit(this.ngModel);
+        });
     }
 
     getColor(color, hue = 500) {
@@ -44,6 +55,8 @@ export class UiColorPickerComponent implements OnInit {
         this.deselectColors();
         colorSelected.selected = true;
         this.colorSelected = colorSelected;
+        this.ngModel = this.getColor(this.colorSelected.name, this.value);
+        this.ngModelChange.emit(this.ngModel);
     }
 
     deselectColors() {
@@ -52,16 +65,25 @@ export class UiColorPickerComponent implements OnInit {
         this.colors.forEach(color => color.selected = false);
     }
 
-    getNameColorInPalette(color) {
+    setColorSelected(color) {
         if (!color) {
             return;
         }
+
         Object.keys(this.palette).forEach(key => {
             Object.keys(this.palette[key]).forEach(hue => {
                 if (this.palette[key][hue].color === color) {
-                    console.log('Found');
+                    this.colors.forEach(item => {
+                        if (item.name === key) {
+                            setTimeout(() => {
+                                item.selected = true;
+                                this.value = hue;
+                                this.colorSelected = item;
+                            });
+                        }
+                    });
                 }
             });
         });
     }
-}
+    }
