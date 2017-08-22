@@ -10,7 +10,7 @@
     flex-direction: column;
     justify-content: flex-end;
     transition: left 280ms ui-easing('decelaration');
-    z-index: 4;
+    z-index: 6;
 }
 
 @include desktop {

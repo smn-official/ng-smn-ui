@@ -73,6 +73,7 @@
 }
 
 /deep/ .wrap-color-picker {
+    z-index: 5;
 
     .overlay {
         overflow: hidden;
