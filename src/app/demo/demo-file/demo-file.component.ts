@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {UiToolbarService} from '../../smn-ui/toolbar/toolbar.service';
 
 @Component({
-  selector: 'ui-demo-file',
-  templateUrl: './demo-file.component.html',
-  styleUrls: ['./demo-file.component.scss']
+    selector: 'ui-demo-file',
+    templateUrl: './demo-file.component.html',
+    styleUrls: ['./demo-file.component.scss']
 })
 export class DemoFileComponent implements OnInit {
 
@@ -17,10 +17,10 @@ export class DemoFileComponent implements OnInit {
         this.toolbarService.set('Files');
     }
 
-    read(item, index, file) {
-        console.log(item, index)
+    read(file, item, index) {
+        console.log(item, index);
     }
-    
+
     changeFile(listFile: FileList, invalid) {
         // console.log(listFile, invalid);
     }

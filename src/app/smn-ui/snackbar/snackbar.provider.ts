@@ -37,7 +37,10 @@ export class UiSnackbar {
 
             if (bar.duration !== Infinity) {
                 timeout = setTimeout(() => {
-                    document.querySelectorAll('ui-snackbar-container > ui-snackbar')[0].classList.add('leave');
+                    const firstSnackbar = document.querySelectorAll('ui-snackbar-container > ui-snackbar')[0];
+                    if (firstSnackbar) {
+                        document.querySelectorAll('ui-snackbar-container > ui-snackbar')[0].classList.add('leave');
+                    }
                     setTimeout(() => this.finishTimeout(), 280);
                 }, bar.duration);
             }
