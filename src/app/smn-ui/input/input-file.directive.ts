@@ -144,7 +144,7 @@ export class UiInputFileDirective {
             data.result = e.target.result;
             data.resolved = true;
             this.modelChange.emit(this.model);
-            this.read(data.result, index, file);
+            this.read(file, data.result, index);
         };
 
         reader.onerror = (e: any) => {
