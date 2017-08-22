@@ -36,7 +36,7 @@ export class UiColorPickerDirective implements AfterViewInit {
 
         this.addEvents();
 
-        this.ngModelChange.subscribe(color => this.setColorElement(color))
+        this.ngModelChange.subscribe(color => this.setColorElement(color));
     }
 
     generateElementColor() {

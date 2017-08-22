@@ -13,7 +13,7 @@ export class DemoColorPickersComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.color = '#263238';
+        // this.color = '#263238';
     }
 
 }

@@ -5,10 +5,13 @@
         max-width: 246px;
 
         ui-card-content {
-            padding-top: 8px;
+            height: 34px;
+            overflow: hidden;
+            padding: 0 16px 0;
+            transition: height 280ms ui-easing('deceleration');
 
             &[hidden] {
-                display: none;
+                height: 0;
             }
         }
     }
@@ -46,6 +49,8 @@
     }
 
     /deep/ ui-slider:not(.nothing) {
+
+        margin-top: 16px;
 
         .track {
             height: 4px;

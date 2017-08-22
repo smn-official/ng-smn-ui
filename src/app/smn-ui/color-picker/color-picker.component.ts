@@ -1,7 +1,6 @@
-import {
-    Component, EventEmitter, Input, OnChanges, AfterViewInit, Output, ViewChild
-} from '@angular/core';
+import {Component, EventEmitter, AfterViewInit, Output, ViewChild} from '@angular/core';
 import {palette, colors} from './color-picker.palette';
+import {NgControl} from "@angular/forms";
 
 @Component({
     selector: 'ui-color-picker',
@@ -20,7 +19,7 @@ export class UiColorPickerComponent implements AfterViewInit {
     @Output() valueChange: EventEmitter<any> = new EventEmitter();
     @ViewChild('hueColor') hueColor: any;
 
-    constructor() {
+    constructor(private ngControl: NgControl) {
         this.palette = palette;
         this.colors = colors;
         this.hues = Array.from({length: 10}, (ngModel, index) => index * 100);
@@ -52,6 +51,7 @@ export class UiColorPickerComponent implements AfterViewInit {
     }
 
     selectColor(colorSelected) {
+        this.ngControl.control.markAsDirty();
         this.deselectColors();
         colorSelected.selected = true;
         this.colorSelected = colorSelected;
