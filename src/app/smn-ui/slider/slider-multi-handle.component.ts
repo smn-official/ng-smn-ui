@@ -26,6 +26,8 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
     @Input() begin: number;
     @Input() end: number;
     @Input() range: number[];
+    @Input() color: string;
+    @Input('text-color') textColor: string;
     @Output() beginChange: EventEmitter<number> = new EventEmitter();
     @Output() endChange: EventEmitter<number> = new EventEmitter();
 
@@ -55,6 +57,12 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
         }
         if (changes.end && !changes.end.firstChange && !this.mouseDown) {
             this.endModel = this.closestNumber(this.end).index;
+        }
+        if (changes.color && !changes.color.firstChange && !this.mouseDown) {
+            this.color = changes.color.currentValue;
+        }
+        if (changes.textColor && !changes.textColor.firstChange && !this.mouseDown) {
+            this.textColor = changes.textColor.currentValue;
         }
     }
 
