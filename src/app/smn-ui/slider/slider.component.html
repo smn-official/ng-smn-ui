@@ -4,22 +4,25 @@
 </div>
 <div class="track on"
      [ngClass]="{'disabled': disabled}"
-     [ngStyle]="{'left': getPercentageLeft ? getPercentageLeft() + '%' : 0, 'right': getPercentageRight ? getPercentageRight() + '%' : '', 'width': getPercentage ? getPercentage() + '%': ''}">
+     [ngStyle]="{'left': getPercentageLeft ? getPercentageLeft() + '%' : 0,
+                 'right': getPercentageRight ? getPercentageRight() + '%' : '',
+                 'width': getPercentage ? getPercentage() + '%': '',
+                 'background-color': color || ''}">
     <div class="balloon-wrap" *ngIf="!hideBalloon">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" width="36px" height="36px" viewBox="0 0 36 36" enable-background="new 0 0 36 36" xml:space="preserve">
-            <path d="M31.948,13.996c-0.146-5.378-4.016-8.907-4.016-8.907C23.222,0.624,18.163,0.993,18,1.006
+            <path [style.fill]="color || ''" d="M31.948,13.996c-0.146-5.378-4.016-8.907-4.016-8.907C23.222,0.624,18.163,0.993,18,1.006
                 c-0.163-0.013-5.222-0.382-9.931,4.083c0,0-3.87,3.528-4.016,8.907c0,0-0.497,3.41,1.572,7.205c0,0,0.864,2.126,4.765,6.678
                 c0,0,3.406,3.846,7.595,7.089v0.024c0.005-0.004,0.01-0.008,0.015-0.012c0.005,0.004,0.01,0.008,0.015,0.012v-0.024
                 c4.19-3.244,7.595-7.089,7.595-7.089c3.901-4.552,4.765-6.678,4.765-6.678C32.445,17.405,31.948,13.996,31.948,13.996z"/>
         </svg>
-        <div class="value">
+        <div class="value" [style.color]="textColor || ''">
             {{viewFormat(multiHandle ? direction === 'begin' ? begin : end : value)}}
         </div>
     </div>
-    <div class="thumb-container left" tabindex="1" *ngIf="multiHandle">
+    <div class="thumb-container left" tabindex="1" *ngIf="multiHandle" [style.background-color]="color || ''">
         <div class="thumb"></div>
     </div>
-    <div class="thumb-container right" tabindex="1">
+    <div class="thumb-container right" tabindex="1" [style.background-color]="color || ''">
         <div class="thumb"></div>
     </div>
 </div>

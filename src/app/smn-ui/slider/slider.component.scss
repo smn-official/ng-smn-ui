@@ -20,6 +20,7 @@
                 background-color: transparent;
 
                 .thumb-container {
+                    background-color: ui-color('grey', '400');
 
                     &:focus::before {
                         transform: scale(0);
@@ -28,7 +29,7 @@
                     .thumb {
                         width: 8px;
                         height: 8px;
-                        background-color: ui-color('grey', '400');
+                        background-color: inherit;
                     }
                 }
 
@@ -38,6 +39,8 @@
             .thumb-container {
                 position: absolute;
                 top: 1px; // Half of track
+                border-radius: 50%;
+                transition: transform 280ms ui-easing('deceleration'), background-color 280ms ui-easing('deceleration');
 
                 &.left {
                     left: 0;
@@ -54,7 +57,7 @@
                     width: 12px;
                     height: 12px;
                     border-radius: 50%;
-                    transition: width 280ms ui-easing('deceleration'), height 280ms ui-easing('deceleration'), transform 280ms ui-easing('deceleration');
+                    transition: width 280ms ui-easing('deceleration'), height 280ms ui-easing('deceleration'), background 280ms ui-easing('deceleration'), transform 280ms ui-easing('deceleration');
                 }
 
                 &::before {
@@ -67,6 +70,8 @@
                     border-radius: 50%;
                     transform: scale(0);
                     transition: transform 280ms ui-easing('deceleration');
+                    background-color: inherit;
+                    opacity: 0.1;
                 }
 
                 &:focus::before {
@@ -117,28 +122,26 @@
             }
 
             .balloon-wrap ~ .thumb-container {
-                transition: transform 280ms ui-easing('deceleration');
+                transition: transform 280ms ui-easing('deceleration'), background-color 280ms ui-easing('deceleration');
 
                 &::before {
                     transition: transform 280ms 280ms ui-easing('deceleration');
                 }
 
                 .thumb {
-                    transition: width 280ms ui-easing('deceleration'), height 280ms ui-easing('deceleration'), transform 280ms ui-easing('deceleration');
-
+                    transition: width 280ms ui-easing('deceleration'), height 280ms ui-easing('deceleration'), background 280ms ui-easing('deceleration'), transform 280ms ui-easing('deceleration');
                 }
 
                 &.active {
-                    transform: scale(0);
                     pointer-events: auto;
+
                     .thumb {
-                        width: 12px;
-                        height: 12px;
-                        transform: scale(0);
+                        width: 0;
+                        height: 0;
                     }
 
                     &::before {
-                        transition: transform 280ms ui-easing('deceleration');
+                        transition: none;
                     }
                 }
 

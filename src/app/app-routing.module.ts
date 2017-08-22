@@ -25,6 +25,7 @@ import {DemoListComponent} from './demo/demo-list/demo-list.component';
 import {DemoAutocompleteComponent} from './demo/demo-autocomplete/demo-autocomplete.component';
 import {DemoBottomSheetComponent} from './demo/demo-bottom-sheet/demo-bottom-sheet.component';
 import {DemoFileComponent} from './demo/demo-file/demo-file.component';
+import {DemoColorPickersComponent} from "./demo/demo-color-pickers/demo-color-pickers.component";
 
 const routes: Routes = [
     {
@@ -36,6 +37,7 @@ const routes: Routes = [
             {path: 'bottom-sheets', component: DemoBottomSheetComponent},
             {path: 'buttons', component: DemoButtonsComponent},
             {path: 'cards', component: DemoCardsComponent},
+            {path: 'color-pickers', component: DemoColorPickersComponent},
             {path: 'data-tables', component: DemoDataTablesComponent},
             {path: 'date-pickers', component: DemoDatePickersComponent},
             {path: 'dialog', component: DemoDialogComponent},

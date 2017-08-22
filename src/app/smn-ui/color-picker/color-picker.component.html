@@ -1,0 +1,23 @@
+<ui-card>
+    <div class="colors">
+        <div class="color"
+             *ngFor="let color of colors"
+             tabindex="1"
+             [class.selected]="color.name === colorSelected.name"
+             [ngStyle]="{'background-color': getColor(color.name, color.name === colorSelected.name ? value : 500)}"
+             (click)="selectColor(color)">
+            <i class="material-icons" [style.color]="getColorText(color.name, color.name === colorSelected.name ? value : 500)" *ngIf="color.selected">done</i>
+        </div>
+        <div class="color remove" [class.selected]="!colorSelected.name" (click)="deselectColors()" tabindex="1">
+            <i class="material-icons secondary-text">block</i>
+        </div>
+    </div>
+    <ui-card-content [hidden]="!colorSelected.name">
+        <ui-slider [range]="hues"
+                   [(value)]="value"
+                   [hideBalloon]="true"
+                   [color]="getColor(colorSelected.name, value)"
+                   [text-color]="getColorText(colorSelected.name, value)"
+                   #hueColor></ui-slider>
+    </ui-card-content>
+</ui-card>

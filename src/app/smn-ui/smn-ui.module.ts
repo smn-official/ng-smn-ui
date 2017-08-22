@@ -4,6 +4,7 @@ import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 
 import './button/button.service';
+import {debounce} from './utils/functions/debounce';
 import {UiAddCalendarDirective} from './calendar/add-calendar.directive';
 import {UiCalendarComponent} from './calendar/calendar.component';
 import {UiCalendarContentComponent} from './calendar/calendar-content.component';
@@ -67,7 +68,8 @@ import {UiBottomSheetTriggerDirective} from './bottom-sheet/bottom-sheet.directi
 import {UiInputFileDirective} from './input/input-file.directive';
 import {UiEllipsisDirective} from './ellipsis/ellipsis.directive';
 import {UiRequiredDirective} from './utils/validators/required.directive';
-import {debounce} from './utils/functions/debounce';
+import {UiColorPickerComponent} from './color-picker/color-picker.component';
+import {UiColorPickerDirective} from './color-picker/color-picker.directive';
 
 export {
     UiColor,
@@ -144,7 +146,9 @@ const lib: any[] = [
     UiBottomSheetTriggerDirective,
     UiInputFileDirective,
     UiEllipsisDirective,
-    UiRequiredDirective
+    UiRequiredDirective,
+    UiColorPickerComponent,
+    UiColorPickerDirective
 ];
 
 @NgModule({
@@ -165,7 +169,7 @@ const lib: any[] = [
         UiWindowRef,
         UiInfiniteLoadService
     ],
-    entryComponents: [UiCalendarComponent, UiCalendarContentComponent, UiAutocompleteComponent]
+    entryComponents: [UiCalendarComponent, UiCalendarContentComponent, UiAutocompleteComponent, UiColorPickerComponent]
 })
 export class SMNUIModule {
 }

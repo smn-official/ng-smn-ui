@@ -7,7 +7,7 @@ ui-nav-drawer {
         max-width: 320px;
         position: fixed;
         width: 100%;
-        z-index: 6;
+        z-index: 7;
         box-shadow: ui-shadow('16dp');
         transition: transform 280ms ui-easing('deceleration');
         left: -10px;
@@ -36,7 +36,7 @@ ui-nav-drawer {
 
     &.persistent {
         nav {
-            z-index: 5;
+            z-index: 4;
             @include desktop {
                 box-shadow: ui-shadow('1dp');
             }

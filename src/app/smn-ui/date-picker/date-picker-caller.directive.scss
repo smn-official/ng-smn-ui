@@ -1,14 +1,14 @@
 @import "../core/variables";
 
 .wrap-date-picker {
-    z-index: 6;
+    z-index: 5;
 
     ui-calendar {
         transform-origin: top left;
         transition: transform 280ms ui-easing('sharp'), opacity 280ms ui-easing('sharp');
         transform: scale(0);
         opacity: 0;
-        z-index: 6;
+        z-index: 5;
     }
 
     &.open ui-calendar {

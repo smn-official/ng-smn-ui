@@ -19,6 +19,8 @@ export class UiSliderComponent implements OnInit, AfterViewInit, OnChanges {
     @Input() disabled: boolean;
     @Input() value: number;
     @Input() range: number[];
+    @Input() color: string;
+    @Input('text-color') textColor: string;
     @Output() valueChange: EventEmitter<number> = new EventEmitter();
 
     @Input('view-format') viewFormat: Function;
@@ -38,6 +40,12 @@ export class UiSliderComponent implements OnInit, AfterViewInit, OnChanges {
     ngOnChanges(changes) {
         if (changes.value && !changes.value.firstChange && !this.mouseDown) {
             this.valueModel = this.closestNumber(changes.value.currentValue).index;
+        }
+        if (changes.color && !changes.color.firstChange && !this.mouseDown) {
+            this.color = changes.color.currentValue;
+        }
+        if (changes.textColor && !changes.textColor.firstChange && !this.mouseDown) {
+            this.textColor = changes.textColor.currentValue;
         }
     }
 
@@ -87,7 +95,7 @@ export class UiSliderComponent implements OnInit, AfterViewInit, OnChanges {
     change(event, mouseUp?) {
         const currentPosition = event.pageX || (event.touches ? event.touches[0].pageX : null) || (event.changedTouches ? event.changedTouches[0].pageX : null);
         let position = this.getPositionInIndex(currentPosition);
-        const newValue = this.closestNumber(position);
+        const newValue = this.closestNumber(this.range[Math.round(position)]);
 
         if (mouseUp) {
             position = newValue.index;

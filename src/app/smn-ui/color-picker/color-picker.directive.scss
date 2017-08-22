@@ -1,0 +1,32 @@
+@import "../core/variables";
+
+.ui-color {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    top: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    cursor: default;
+    transition: color 280ms ui-easing('deceleration');
+
+    i {
+        font-size: 35px;
+    }
+}
+
+.ui-control[uiColorPicker] {
+    color: transparent;
+    user-select: none;
+    border-bottom-width: 0;
+    visibility: hidden;
+}
+
+.ui-validate:not(.on-dirty):not(.on-submit) .ui-control.ng-invalid ~ .ui-color i,
+.ui-validate.on-dirty .ui-control.ng-dirty.ng-invalid ~ .ui-color i,
+.ui-validate.on-submit.ng-submitted .ui-control.ng-invalid ~ .ui-color i {
+    color: ui-color('red');
+}
