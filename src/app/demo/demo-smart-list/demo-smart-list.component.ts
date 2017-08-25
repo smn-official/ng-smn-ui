@@ -22,5 +22,8 @@ export class DemoSmartListComponent implements OnInit {
     ngOnInit() {
         this.titleService.setTitle('Smart list - SMN UI Demos');
         this.toolbarService.set('Smart list');
+        setTimeout(() => {
+            this.lista = [{a: '1111', b: '5555', ity: true}];
+        });
     }
 }

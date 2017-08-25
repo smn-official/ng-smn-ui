@@ -84,7 +84,8 @@ export {
     UiCepPipe,
     UiPhonePipe,
     UiInfiniteLoadService,
-    debounce
+    debounce,
+    UiDatetimeService
 }
 
 const lib: any[] = [

@@ -12,8 +12,9 @@ import {UiElementRef} from '../utils/providers/element-ref.provider';
 
 export class UiSmartListComponent implements OnInit, DoCheck, OnChanges {
     @Input() model: any;
-    @Output() modelChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Input('default-item') defaultItem: any;
+    @Input('auto-delete-exception') autoDeleteException: any;
+    @Output() modelChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     list: any[];
     differ: any;
     objDiffer: { string?: any };
@@ -52,7 +53,7 @@ export class UiSmartListComponent implements OnInit, DoCheck, OnChanges {
             if (objChanges) {
                 wasChanged = true;
                 objChanges.forEachChangedItem((elt2) => {
-                    if (!elt2.currentValue && typeof elt2.currentValue !== 'number' && typeof elt2.currentValue !== 'boolean') {
+                    if (!elt2.currentValue && typeof elt2.currentValue !== 'number' && typeof elt2.currentValue !== 'boolean' && !elt[this.autoDeleteException]) {
                         delete elt[elt2.key];
                     }
                 });
@@ -61,7 +62,7 @@ export class UiSmartListComponent implements OnInit, DoCheck, OnChanges {
                     this.model.push(elt);
                 }
 
-                if (elt && (Object.keys(elt).length === Object.keys(this.defaultItem).length) && equals(elt, this.defaultItem) && this.model.length && this.model.indexOf(elt) > -1) {
+                if (elt && (Object.keys(elt).length === Object.keys(this.defaultItem).length) && equals(elt, this.defaultItem) && this.model.length && this.model.indexOf(elt) > -1 && !elt[this.autoDeleteException]) {
                     this.model.splice(this.model.indexOf(elt), 1);
                 }
             }

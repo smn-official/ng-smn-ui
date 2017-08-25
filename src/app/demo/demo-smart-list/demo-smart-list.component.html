@@ -2,7 +2,7 @@
     <ui-card>
         <ui-card-content>
             <form #formTeste="ngForm" class="ui-validate on-dirty">
-                <ui-smart-list #teste [model]="lista">
+                <ui-smart-list #teste [model]="lista" [auto-delete-exception]="'ity'">
                     <ui-smart-list-item *ngFor="let item of teste.list; let i = index;">
                         <div class="ui-flex-container">
                             <ui-input-container>

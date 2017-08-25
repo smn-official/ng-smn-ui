@@ -85,6 +85,7 @@
         transform: scale(0);
         opacity: 0;
         position: absolute;
+        z-index: 5;
     }
 
     &.open ui-color-picker {

@@ -12,6 +12,7 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
     @Input('trigger-events') triggerEvents;
     @Input('theme-class') themeClass;
     @Input() align;
+    @Input('menu-align') menuAlign;
     @Input('uiMenuTrigger') menu;
     isMobile: boolean;
 
@@ -77,7 +78,7 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
             const windowWidth = window.innerWidth + document.body.scrollLeft;
             const windowHeight = document.body.clientHeight + document.body.scrollTop;
 
-            if (this.align === 'right') {
+            if (this.align === 'right' || this.menuAlign === 'right') {
                 coordinate.x -= element.clientWidth - this.elementRef.nativeElement.clientWidth;
                 horizontalCoveringArea = coordinate.x;
             }
@@ -101,8 +102,8 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
             if (this.themeClass) {
                 element.classList.add(this.themeClass);
             }
-            if (this.align) {
-                element.classList.add(this.align);
+            if (this.align || this.menuAlign) {
+                element.classList.add(this.align || this.menuAlign);
             }
 
             element.style.transform = '';
