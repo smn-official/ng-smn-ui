@@ -2,7 +2,6 @@ import {
     Component, OnInit, Input, DoCheck, KeyValueDiffers, Output, EventEmitter, OnChanges,
     ElementRef
 } from '@angular/core';
-import {UiElementRef} from '../utils/providers/element-ref.provider';
 
 @Component({
     selector: 'ui-smart-list',

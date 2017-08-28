@@ -2,6 +2,10 @@ import {Directive, ElementRef, HostListener} from '@angular/core';
 
 import {UiElement} from '../utils/providers/element.provider';
 
+const maxRipples = 10;
+let ripples = 0;
+import {debounce} from '../utils/functions/debounce';
+
 @Directive({
     selector: '[uiRipple]'
 })
@@ -9,8 +13,6 @@ export class UiRippleDirective {
     private elRippleContainerTemplate: HTMLElement;
     private elRippleTemplate: HTMLElement;
     private elRippleContainerTemplateClone: HTMLElement;
-    private ripples: number;
-    private maxRipples = 20;
 
     constructor(private element: ElementRef) {
         this.elRippleContainerTemplate = document.createElement('div');
@@ -19,12 +21,13 @@ export class UiRippleDirective {
         this.elRippleTemplate.classList.add('ui-ripple-wave');
 
         this.elRippleContainerTemplateClone = <HTMLElement>this.elRippleContainerTemplate.cloneNode(true);
-
-        this.ripples = 0;
     }
 
-    @HostListener('mousedown', ['$event']) onMousedown(e) {
-        if (!this.element.nativeElement.hasAttribute('disabled') && this.ripples < this.maxRipples) {
+    @HostListener('mousedown', ['$event'])
+    onMousedown(e) {
+        ripples = document.querySelectorAll('.ui-ripple-wave').length;
+
+        if (!this.element.nativeElement.hasAttribute('disabled') && ripples < maxRipples) {
             const elementWidth = this.element.nativeElement.offsetWidth;
             const elementHeight = this.element.nativeElement.offsetHeight;
 
@@ -90,16 +93,24 @@ export class UiRippleDirective {
                 elRippleTemplateClone.style.transform = `scale(${tick})`;
             });
 
-            this.ripples++;
+            ripples++;
         }
     }
 
-    @HostListener('mouseup', ['$event']) onMouseup(e) {
-        eraseRipples(this);
+    @HostListener('mouseup', ['$event'])
+    onMouseup() {
+        debounce(() => {
+            // console.log(2);
+            eraseRipples(this);
+        }, 800, true)();
     }
 
-    @HostListener('mouseout', ['$event']) onMouseout(e) {
-        eraseRipples(this);
+    @HostListener('mouseout', ['$event'])
+    onMouseout() {
+        debounce(() => {
+            // console.log(1);
+            eraseRipples(this);
+        }, 2000, true)();
     }
 }
 
@@ -110,7 +121,7 @@ function eraseRipples(thiss) {
 
     const len = elRipples.length;
 
-    thiss.ripples = len;
+    ripples = len;
 
     for (let i = 0; i < len; i++) {
         const elRipple = <HTMLElement>elRipples[i];
@@ -121,10 +132,10 @@ function eraseRipples(thiss) {
                 UiElement.animate(elRipple, 'opacity', 1, 0, 800, () => {
                     try {
                         elRipple.parentNode.removeChild(elRipple);
-                        thiss.ripples--;
+                        ripples--;
                     } catch (e) {
                     }
-                    if (!thiss.ripples) {
+                    if (!ripples) {
                         try {
                             thiss.elRippleContainerTemplateClone.parentNode.removeChild(thiss.elRippleContainerTemplateClone);
                         } catch (e) {
