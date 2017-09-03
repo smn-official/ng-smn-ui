@@ -7,7 +7,7 @@ import {UiElementRef} from '../utils/providers/element-ref.provider';
 })
 export class UiDialogTriggerDirective implements AfterViewInit {
     viewRef: any;
-    fabs: HTMLElement;
+    fabs;
     @Input('trigger-events') triggerEvents: string;
     @Input('dark-class') darkClass: string;
     @Input('transparent-overlay') transparentOverlay: boolean;
@@ -53,7 +53,7 @@ export class UiDialogTriggerDirective implements AfterViewInit {
                 element.querySelectorAll('ui-card')[0].style.maxWidth = this.dialog.cardSize + 'px';
             }
 
-            if (!this.transparentOverlay && this.fabs) {
+            if (!this.transparentOverlay && this.fabs.length) {
                 this.fabs.classList.add('hide');
             }
             element.querySelectorAll('.overlay')[0].addEventListener('click', () => {
@@ -71,7 +71,7 @@ export class UiDialogTriggerDirective implements AfterViewInit {
     close() {
         if (this.viewContainerRef.length) {
             const viewRef = this.viewRef; // Salvando a referência para achar o index deste componente
-            if (this.fabs) {
+            if (this.fabs.length) {
                 this.fabs.classList.remove('hide');
             }
 
