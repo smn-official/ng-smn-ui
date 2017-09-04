@@ -327,6 +327,11 @@
 
     .icon {
         margin-right: -12px;
+        float: right;
+        i {
+            line-height: 8px;
+            padding-bottom: 2px;
+        }
     }
 }
 
