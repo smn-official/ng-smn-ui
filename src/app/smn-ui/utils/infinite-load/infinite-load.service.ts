@@ -19,7 +19,7 @@ export class UiInfiniteLoadService {
             const scrollTop = this.element.scrollTop || this.element.scrollY;
             const safeZone = heightOffset * 0.1;
 
-            if (typeof scrollTop === 'undefined' || scrollTop >= heightOffset - safeZone) {
+            if (scrollTop >= heightOffset - safeZone) {
                 func();
             }
         };
