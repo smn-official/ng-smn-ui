@@ -1,13 +1,14 @@
-<form #formMasks (submit)="testSubmit(formMasks)">
+<form #formMasks (submit)="testSubmit(formMasks)" class="ui-validate on-dirty on-submit">
     <ui-card>
         <ui-card-content>
             <ui-input-container>
-                <input type="text" name="date" [(ngModel)]="date" uiInput uiMaskDate>
+                <input type="text" name="date" [(ngModel)]="date" uiInput uiMaskDate required #teste="ngModel">
                 <label>Date(uiMaskDate)</label>
                 <div class="ui-messages">
                     <div class="ui-message helper">{{date}}</div>
                 </div>
             </ui-input-container>
+            <pre>{{teste.errors | json}}</pre>
             <ui-input-container>
                 <input type="text" name="cpf" [(ngModel)]="cpf" uiInput uiMaskCpf>
                 <label>CPF(uiMaskCpf)</label>
@@ -23,12 +24,13 @@
                 </div>
             </ui-input-container>
             <ui-input-container>
-                <input type="text" name="cep" [(ngModel)]="cep" uiInput uiMaskCep>
+                <input type="text" name="cep" [(ngModel)]="cep" uiInput uiMaskCep required #teste2="ngModel">
                 <label>CEP(uiMaskCep)</label>
                 <div class="ui-messages">
                     <div class="ui-message helper">Model: {{cep}}; View: {{cep | uiCep}}</div>
                 </div>
             </ui-input-container>
+            <pre>{{teste2.errors | json}}</pre>
             <ui-input-container>
                 <input type="text" name="phone" [(ngModel)]="phone" uiInput uiMaskPhone>
                 <label>Phone(uiMaskPhone)</label>

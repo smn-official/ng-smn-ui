@@ -4,6 +4,7 @@
     z-index: 5;
 
     ui-calendar {
+        box-shadow: ui-shadow('2dp');
         transform-origin: top left;
         transition: transform 280ms ui-easing('sharp'), opacity 280ms ui-easing('sharp');
         transform: scale(0);
