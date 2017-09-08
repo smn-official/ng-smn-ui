@@ -64,10 +64,14 @@ export class UiSnackbar {
     }
 
     private static setTranslateFAB(translate, addClass) {
-        const fabs = document.querySelectorAll('.ui-fab-container .ui-button.fab');
+        const fabs = document.querySelectorAll('.ui-fab-container.scrolled');
         [].forEach.call(fabs, (fab) => {
             fab.classList[addClass ? 'add' : 'remove']('elevating-snack');
-            fab.style.transform = `translateY(-${translate}px)`;
+            if (translate) {
+                fab.style.transform = `translateY(-${translate}px)`;
+            } else {
+                fab.style.transform = ``;
+            }
         });
     }
 

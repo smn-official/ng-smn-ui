@@ -30,7 +30,7 @@ export class UiListItemDirective implements AfterViewInit {
 function toggleExpand(elementList, elementTrigger) {
     if (!elementList.style.height || elementList.style.height === '0px') {
         const height = getHeight(elementList);
-        elementList.style.height = height + 'px';
+        elementList.style.height = elementList.style.maxHeight || (height + 'px');
         let listItemGroup = UiElement.closest(elementList, '.ui-list-item-group');
         while (listItemGroup) {
             listItemGroup.style.height = getHeight(listItemGroup) + height + 'px';

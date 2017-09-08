@@ -1,9 +1,10 @@
-import {Directive, ElementRef, Input, OnInit} from '@angular/core';
+import {Directive, ElementRef, Input, OnInit, Output} from '@angular/core';
 import {UiElementRef} from '../utils/providers/element-ref.provider';
 
 @Directive({selector: '[uiEllipsis]'})
 export class UiEllipsisDirective implements OnInit {
     @Input() uiEllipsis: number;
+    @Output() uiEllipsisChange: number;
     @Input('line-height') lineHeight: number;
 
     constructor(private element: ElementRef) {
@@ -18,5 +19,13 @@ export class UiEllipsisDirective implements OnInit {
         elementRef.css('-webkit-line-clamp', this.uiEllipsis);
         elementRef.css('max-height', (this.lineHeight * this.uiEllipsis) + 'px');
         elementRef.css('line-height', this.lineHeight + 'px');
+
+        elementRef.on('mousemove', () => {
+            if (elementRef.nativeElement.scrollHeight > elementRef.nativeElement.clientHeight) {
+                elementRef.nativeElement.setAttribute('title', elementRef.nativeElement.innerText);
+            } else {
+                elementRef.nativeElement.removeAttribute('title');
+            }
+        });
     }
 }

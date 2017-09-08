@@ -1,4 +1,4 @@
-import {Directive, ElementRef, HostListener} from '@angular/core';
+import {Directive, ElementRef, HostListener, Input} from '@angular/core';
 
 import {UiElement} from '../utils/providers/element.provider';
 
@@ -10,6 +10,7 @@ import {debounce} from '../utils/functions/debounce';
     selector: '[uiRipple]'
 })
 export class UiRippleDirective {
+    @Input('ripple-disable') rippleDisable;
     private elRippleContainerTemplate: HTMLElement;
     private elRippleTemplate: HTMLElement;
     private elRippleContainerTemplateClone: HTMLElement;
@@ -27,7 +28,7 @@ export class UiRippleDirective {
     onMousedown(e) {
         ripples = document.querySelectorAll('.ui-ripple-wave').length;
 
-        if (!this.element.nativeElement.hasAttribute('disabled') && ripples < maxRipples) {
+        if (!this.rippleDisable && !this.element.nativeElement.hasAttribute('disabled') && ripples < maxRipples) {
             const elementWidth = this.element.nativeElement.offsetWidth;
             const elementHeight = this.element.nativeElement.offsetHeight;
 
