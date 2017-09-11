@@ -1,0 +1,25 @@
+<header *ngIf="!hideHeader">
+    <div>
+        <span class="time-empty" *ngIf="!chosenDate">Selecione um horário</span>
+        <div class="time" *ngIf="chosenDate">
+            <span class="week-day">{{shortDays[chosenDate.getDay()] | uiCapitalize}},</span> {{chosenDate.getDate()}} de {{months[chosenDate.getMonth()] | uiCapitalize}}
+        </div>
+    </div>
+</header>
+<div>
+    <div class="content">
+        <div class="clock-cover">
+            <div class="clock-wrap">
+                <div>
+                    <div class="hour" *ngFor="let hour of hours" [style.transform]="'rotate(' + (30 * (hour >= 12 ? hour - 12 : hour )) + 'deg)'">
+                        <button class="ui-button icon flat" [style.transform]="'rotate(-' + (30 * (hour >= 12 ? hour - 12 : hour )) + 'deg)'">{{hour}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions ui-button-container align-right" *ngIf="confirmSelection">
+        <button class="ui-button flat primary" uiRipple (click)="cancelDate()">Cancelar</button>
+        <button class="ui-button flat primary" uiRipple (click)="selectDate(chosenDate)">Ok</button>
+    </div>
+</div>

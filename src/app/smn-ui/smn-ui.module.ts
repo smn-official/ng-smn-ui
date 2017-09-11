@@ -70,6 +70,8 @@ import {UiEllipsisDirective} from './ellipsis/ellipsis.directive';
 import {UiRequiredDirective} from './utils/validators/required.directive';
 import {UiColorPickerComponent} from './color-picker/color-picker.component';
 import {UiColorPickerDirective} from './color-picker/color-picker.directive';
+import {UiClockComponent} from './clock/clock.component';
+import {UiClockContentComponent} from './clock/clock-content.component';
 
 export {
     UiColor,
@@ -149,7 +151,9 @@ const lib: any[] = [
     UiEllipsisDirective,
     UiRequiredDirective,
     UiColorPickerComponent,
-    UiColorPickerDirective
+    UiColorPickerDirective,
+    UiClockComponent,
+    UiClockContentComponent
 ];
 
 @NgModule({
@@ -170,7 +174,7 @@ const lib: any[] = [
         UiWindowRef,
         UiInfiniteLoadService
     ],
-    entryComponents: [UiCalendarComponent, UiCalendarContentComponent, UiAutocompleteComponent, UiColorPickerComponent]
+    entryComponents: [UiCalendarComponent, UiCalendarContentComponent, UiAutocompleteComponent, UiColorPickerComponent, UiClockComponent, UiClockContentComponent]
 })
 export class SMNUIModule {
 }

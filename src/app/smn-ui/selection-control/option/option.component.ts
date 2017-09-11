@@ -24,7 +24,6 @@ export class UiOptionComponent implements AfterViewInit, OnChanges {
     }
 
     ngOnChanges(changes) {
-        console.log(changes);
         if (changes.color && !changes.color.firstChange) {
             this.setColor();
         }
