@@ -32,9 +32,12 @@
             justify-content: flex-start;
         }
 
+        .ui-button {
+            margin-right: 0;
+        }
+
         .ui-button:not(.full) + .ui-button:not(.full) {
             margin-left: 4px;
-            margin-right: 0;
         }
     }
 }

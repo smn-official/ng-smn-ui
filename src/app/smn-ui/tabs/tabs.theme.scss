@@ -11,19 +11,19 @@
                     border-bottom: 2px solid transparent;
 
                     &.selected {
-                        color: white;
-                        border-bottom-color: white;
+                        color: $text-color;
+                        border-bottom-color: $text-color;
                     }
                 }
 
                 .indicator {
-                    background-color: white;
+                    background-color: $text-color;
                 }
             }
 
             .arrows {
                 .ui-button {
-                    color: white;
+                    color: $text-color;
                 }
             }
         }

@@ -50,6 +50,7 @@ ui-input-container {
         border-bottom-width: 1px;
         border-style: solid;
         border-radius: 0;
+        min-height: 35px;
         &:disabled,
         &:read-only:not(select) {
             border-style: dotted;
