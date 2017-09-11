@@ -52,7 +52,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
             if (this.select) {
                 this.select(item);
             }
-            this.ngModel = this.secondary ? item[this.primary] : item;
+            this.ngModel = item[this.primary] || item;
             this.modelValue = item;
             this.ngModelChange.emit(this.ngModel);
             this.modelValueChange.emit(this.modelValue);
