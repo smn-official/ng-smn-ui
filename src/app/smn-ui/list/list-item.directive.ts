@@ -20,7 +20,8 @@ export class UiListItemDirective implements AfterViewInit {
         });
     }
 
-    @HostListener('click') onClick() {
+    @HostListener('click')
+    onClick() {
         this.element.nativeElement.classList.toggle('expanded');
         this.uiListItem.classList.toggle('expanded');
         toggleExpand(this.uiListItem, this.element.nativeElement);
@@ -30,7 +31,7 @@ export class UiListItemDirective implements AfterViewInit {
 function toggleExpand(elementList, elementTrigger) {
     if (!elementList.style.height || elementList.style.height === '0px') {
         const height = getHeight(elementList);
-        elementList.style.height = elementList.style.maxHeight || (height + 'px');
+        elementList.style.height = (elementList.style.maxHeight ? (height > elementList.style.maxHeight.replace('px', '') ? elementList.style.maxHeight : height + 'px') : height + 'px');
         let listItemGroup = UiElement.closest(elementList, '.ui-list-item-group');
         while (listItemGroup) {
             listItemGroup.style.height = getHeight(listItemGroup) + height + 'px';
