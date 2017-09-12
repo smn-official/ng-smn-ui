@@ -91,6 +91,12 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
         if (changes.ngModel && !changes.ngModel.firstChange && (changes.ngModel.currentValue === null || changes.ngModel.currentValue === undefined)) {
             this.elementRef.nativeElement.value = '';
         }
+        if (changes.minDate && !changes.minDate.firstChange) {
+            this.minDate = isDate(new Date(this.minDate)) ? new Date(this.minDate) : this.minDate;
+        }
+        if (changes.maxDate && !changes.maxDate.firstChange) {
+            this.maxDate = isDate(new Date(this.maxDate)) ? new Date(this.maxDate) : this.maxDate;
+        }
         if ((changes.minDate && !changes.minDate.firstChange) || (changes.maxDate && !changes.maxDate.firstChange)) {
             this.control.updateValueAndValidity(this.control);
         }

@@ -22,8 +22,10 @@ export class DemoDatePickersComponent implements OnInit {
         this.maxDate = new Date();
         this.maxDate.setDate(this.maxDate.getDate() + 20);
         this.worldWarII = new Date('1939-09-01T03:00:00.000Z');
-        this.minDate = this.minDate.toISOString();
+
         this.simple = new Date();
+
+        setTimeout(() => this.minDate = this.minDate.toISOString(), 2000);
     }
 
     ngOnInit() {
