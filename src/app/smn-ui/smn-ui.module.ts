@@ -71,7 +71,7 @@ import {UiRequiredDirective} from './utils/validators/required.directive';
 import {UiColorPickerComponent} from './color-picker/color-picker.component';
 import {UiColorPickerDirective} from './color-picker/color-picker.directive';
 import {UiClockComponent} from './clock/clock.component';
-import {UiClockContentComponent} from './clock/clock-content.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 export {
     UiColor,
@@ -152,15 +152,15 @@ const lib: any[] = [
     UiRequiredDirective,
     UiColorPickerComponent,
     UiColorPickerDirective,
-    UiClockComponent,
-    UiClockContentComponent
+    UiClockComponent
 ];
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        RouterModule
+        RouterModule,
+        BrowserAnimationsModule
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [...lib],
@@ -174,7 +174,7 @@ const lib: any[] = [
         UiWindowRef,
         UiInfiniteLoadService
     ],
-    entryComponents: [UiCalendarComponent, UiCalendarContentComponent, UiAutocompleteComponent, UiColorPickerComponent, UiClockComponent, UiClockContentComponent]
+    entryComponents: [UiCalendarComponent, UiCalendarContentComponent, UiAutocompleteComponent, UiColorPickerComponent, UiClockComponent]
 })
 export class SMNUIModule {
 }

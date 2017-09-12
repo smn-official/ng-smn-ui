@@ -13,6 +13,10 @@
 
         .clock-wrap {
             background-color: ui-if($is-dark, ui-color('grey', '700'), ui-color('grey', '200'));
+
+            &::before {
+                background-color: map_get($theme, secondary-text-color);
+            }
         }
     }
 }

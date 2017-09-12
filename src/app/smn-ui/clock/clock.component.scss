@@ -37,8 +37,10 @@ ui-clock {
 
         .time {
             margin-top: 8px;
-            font-size: 26px;
+            font-size: 40px;
             font-weight: 500;
+            text-align: center;
+            cursor: default;
         }
     }
 
@@ -61,9 +63,31 @@ ui-clock {
                 width: 250px;
                 height: 250px;
                 position: relative;
+
+                > div {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                }
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    display: block;
+                    width: 4px;
+                    height: 4px;
+                    margin: auto;
+                    border-radius: 50%;
+                }
             }
 
-            .hour {
+            .hour, .minute {
                 position: absolute;
                 top: 8px;
                 left: 0;
