@@ -2,6 +2,7 @@
 
 @mixin ui-clock($theme) {
     $is-dark: map_get($theme, is-dark);
+    $background-opacity: rgba(map_get($theme, primary-color), 0.54);
 
     ui-clock {
         background-color: ui-if($is-dark, ui-color('grey', '800'), #FFF);
@@ -15,7 +16,21 @@
             background-color: ui-if($is-dark, ui-color('grey', '700'), ui-color('grey', '200'));
 
             &::before {
-                background-color: map_get($theme, secondary-text-color);
+                background-color: $background-opacity;
+            }
+        }
+
+        .pointer {
+            &::before {
+                background-color: $background-opacity;
+            }
+
+            .ball {
+                background-color: $background-opacity;
+
+                &::before {
+                    background-color: map_get($theme, primary-color);
+                }
             }
         }
     }

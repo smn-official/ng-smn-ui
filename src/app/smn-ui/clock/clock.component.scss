@@ -1,14 +1,5 @@
 @import "../core/variables";
 
-@keyframes open {
-    0% {
-        transform: scale(0);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
 ui-clock {
     display: inline-flex;
     flex-direction: column;
@@ -23,12 +14,6 @@ ui-clock {
         display: flex;
         justify-content: center;
         flex-direction: column;
-
-        .year {
-            font-size: 14px;
-            opacity: .8;
-            font-weight: 400;
-        }
 
         .time-empty {
             font-size: 18px;
@@ -64,12 +49,13 @@ ui-clock {
                 height: 250px;
                 position: relative;
 
-                > div {
+                > div:not(.pointer) {
                     position: absolute;
                     top: 0;
                     left: 0;
                     right: 0;
                     bottom: 0;
+                    z-index: 1;
                 }
 
                 &::before {
@@ -87,20 +73,16 @@ ui-clock {
                 }
             }
 
-            .hour, .minute {
+            .hour, .minute, .pointer {
                 position: absolute;
                 top: 8px;
                 left: 0;
                 right: 0;
-                bottom: 8px;
+                bottom: 50%;
                 width: 36px;
                 margin: 0 auto;
                 pointer-events: none;
-
-                &:nth-child(n+13) {
-                    top: 40px;
-                    bottom: 40px;
-                }
+                transform-origin: bottom center;
 
                 .ui-button {
                     pointer-events: auto;
@@ -110,27 +92,48 @@ ui-clock {
                     }
                 }
             }
-        }
 
-        .controls {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1;
+            .pointer {
+                z-index: 2;
+                transition: transform 280ms ui-easing('deceleration');
 
-            button {
-                position: absolute;
-                top: 0;
-                margin: 8px;
+                &::before {
+                    content: '';
+                    width: 2px;
+                    position: absolute;
+                    top: 36px;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: auto;
+                }
+
+                .ball {
+                    width: 36px;
+                    height: 36px;
+                    margin: auto;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: 0;
+
+                    &::before {
+                        content: '';
+                        width: 8px;
+                        height: 8px;
+                        margin: auto;
+                        display: block;
+                        border-radius: 50%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                    }
+                }
             }
 
-            .prev {
-                left: 0;
-            }
-
-            .next {
-                right: 0;
+            .hour:nth-child(n+13) {
+                top: 40px;
             }
         }
     }
@@ -141,10 +144,6 @@ ui-clock {
 
             header {
                 width: 168px;
-
-                .week-day {
-                    display: block;
-                }
             }
         }
     }

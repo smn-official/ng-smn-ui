@@ -30,8 +30,8 @@ export class UiClockComponent implements OnInit, OnChanges {
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
     chosen: Subject<any> = new Subject();
 
-    hour: Number;
-    minute: Number;
+    hour: number;
+    minute: number;
     hours: any;
     minutes: any;
     chosenDate: any;
@@ -96,5 +96,19 @@ export class UiClockComponent implements OnInit, OnChanges {
         }
 
         return number;
+    }
+
+    public getPositionPointer(): number {
+        let position: number;
+        switch (this.activeSelection) {
+            case 'hours':
+                position = this.hour;
+                break;
+            case 'minutes':
+                position = this.minutes.indexOf(this.minute);
+                break;
+        }
+
+        return typeof position === 'number' ? (30 * (position >= 12 ? position - 12 : position)) : null;
     }
 }

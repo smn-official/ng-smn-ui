@@ -10,6 +10,10 @@
     <div class="content">
         <div class="clock-cover">
             <div class="clock-wrap">
+                <div class="pointer"
+                     *ngIf="hour || minute" [style.transform]="'rotate(' + getPositionPointer() + 'deg)'">
+                    <div class="ball"></div>
+                </div>
                 <div *ngIf="activeSelection === 'hours'" [@explosion]>
                     <div class="hour"
                          *ngFor="let hour of hours"
