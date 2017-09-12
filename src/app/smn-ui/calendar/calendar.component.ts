@@ -52,7 +52,7 @@ export class UiCalendarComponent implements OnInit, OnChanges {
     ngOnInit(): void {
         this.minDate = isDate(new Date(this.minDate)) ? new Date(this.minDate) : this.minDate;
         this.maxDate = isDate(new Date(this.maxDate)) ? new Date(this.maxDate) : this.maxDate;
-        this.chosenDate = isDate(this.ngModel) ? this.ngModel : null;
+        this.chosenDate = isDate(new Date(this.ngModel)) ? new Date(this.ngModel) : null;
         this.ngModel = isDate(new Date(this.ngModel)) ? new Date(this.ngModel) : this.ngModel;
         this.viewDate = isDate(this.ngModel) ? this.ngModel : this.initOnSelected || new Date();
         this.renderCalendar(this.viewDate);
