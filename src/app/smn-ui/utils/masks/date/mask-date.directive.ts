@@ -38,6 +38,8 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
     }
 
     ngAfterViewInit() {
+        this.minDate = new Date(this.minDate);
+        this.maxDate = new Date(this.maxDate);
         setTimeout(() => {
             this.loaded = true;
         });

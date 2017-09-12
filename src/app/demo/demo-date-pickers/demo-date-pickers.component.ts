@@ -10,6 +10,7 @@ import {UiToolbarService} from '../../smn-ui/smn-ui.module';
 })
 export class DemoDatePickersComponent implements OnInit {
 
+    simple;
     today: Date;
     minDate: any;
     maxDate: Date;
@@ -22,6 +23,7 @@ export class DemoDatePickersComponent implements OnInit {
         this.maxDate.setDate(this.maxDate.getDate() + 20);
         this.worldWarII = new Date('1939-09-01T03:00:00.000Z');
         this.minDate = this.minDate.toISOString();
+        this.simple = new Date();
     }
 
     ngOnInit() {
