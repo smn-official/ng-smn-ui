@@ -2,8 +2,6 @@ import {AfterViewInit, Directive, ElementRef, Input, ViewContainerRef, AfterView
 import {UiElement} from '../utils/providers/element.provider';
 import {UiWindowRef} from '../utils/providers/window.provider';
 
-import {debounce} from '../utils/functions/debounce';
-
 @Directive({
     selector: '[uiMenuTrigger]'
 })
@@ -14,14 +12,8 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
     @Input() align;
     @Input('menu-align') menuAlign;
     @Input('uiMenuTrigger') menu;
-    isMobile: boolean;
 
     constructor(public viewContainerRef: ViewContainerRef, public elementRef: ElementRef) {
-        this.isMobile = UiWindowRef.nativeWindow.innerWidth <= 763;
-
-        UiWindowRef.nativeWindow.addEventListener('resize', () => {
-            this.isMobile = UiWindowRef.nativeWindow.innerWidth <= 763;
-        });
     }
 
     ngAfterViewInit() {
@@ -44,13 +36,7 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
 
         UiElement.on(UiWindowRef.nativeWindow, 'mouseup resize scroll touchend', (e) => {
             if (this.elementRef.nativeElement !== e.target) {
-                if (this.isMobile) {
-                    debounce(() => {
-                        this.close();
-                    }, 300)();
-                } else {
-                    this.close();
-                }
+                this.close();
             }
         });
     }
