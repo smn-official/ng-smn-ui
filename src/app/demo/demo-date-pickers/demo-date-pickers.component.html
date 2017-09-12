@@ -2,9 +2,8 @@
     <ui-card>
         <ui-card-title (click)="updateDates()">Version light</ui-card-title>
         <ui-card-content class="ui-validate on-dirty">
-            {{minDate}}
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="simple" name="date" uiDatePicker="simple" uiMaskDate [minDate]="minDate" [maxDate]="maxDate" #date="ngModel">
+                <input type="text" uiInput [(ngModel)]="simple" name="date" uiDatePicker="simple" uiMaskDate [maxDate]="minAndMax" #date="ngModel">
                 <label>Date</label>
                 <div class="icon">
                     <button class="ui-button icon flat" uiDatePickerCaller="simple">
@@ -13,7 +12,7 @@
                 </div>
             </ui-input-container>
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="minAndMax" name="minAndMax" uiDatePicker="minAndMax" [minDate]="minDate" [maxDate]="maxDate">
+                <input type="text" uiInput [(ngModel)]="minAndMax" name="minAndMax" uiDatePicker="minAndMax" [maxDate]="simple">
                 <label>Min e max</label>
                 <div class="icon">
                     <button class="ui-button icon flat" uiDatePickerCaller="minAndMax">
