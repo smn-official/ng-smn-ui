@@ -1,8 +1,8 @@
 <header *ngIf="!hideHeader">
     <div>
         <span class="time-empty" *ngIf="isEmpty()">Selecione um horário</span>
-        <div class="time secondary-text" *ngIf="!isEmpty()" (click)="getPositionPointer()">
-            <span (click)="activeSelection = 'hours'" [class.primary-text]="activeSelection === 'hours'">{{formatToLpad(hour)}}</span>:<span (click)="activeSelection = 'minutes'" [class.primary-text]="activeSelection === 'minutes'">{{formatToLpad(minute)}}</span>
+        <div class="time" *ngIf="!isEmpty()" (click)="getPositionPointer()">
+            <span (click)="activeSelection = 'hours'" [class.time-focused]="activeSelection === 'hours'">{{formatToLpad(hour)}}</span>:<span (click)="activeSelection = 'minutes'" [class.primary-text]="activeSelection === 'minutes'">{{formatToLpad(minute)}}</span>
         </div>
     </div>
 </header>

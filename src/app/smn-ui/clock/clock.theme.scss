@@ -2,14 +2,24 @@
 
 @mixin ui-clock($theme) {
     $is-dark: map_get($theme, is-dark);
-    $background-opacity: rgba(map_get($theme, primary-color), 0.54);
+    $text-color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+    $primary-color: map_get($theme, primary-color);
+    $background-opacity: rgba($primary-color, 0.54);
 
     ui-clock {
         background-color: ui-if($is-dark, ui-color('grey', '800'), #FFF);
 
         header {
-            background-color: ui-if($is-dark, ui-color('grey', '700'), map_get($theme, primary-color));
+            background-color: ui-if($is-dark, ui-color('grey', '700'), $primary-color);
             color: ui-if($is-dark, #FFF, ui-text-color(map_get($theme, primary), map_get($theme, primary-hue)));
+
+            .time {
+                color: ui-if($is-dark, map_get($theme, secondary-text-color), rgba($text-color, 0.54));
+
+                .time-focused {
+                    color: ui-if($is-dark, map_get($theme, primary-text-color), $text-color);
+                }
+            }
         }
 
         .clock-wrap {
@@ -29,7 +39,7 @@
                 background-color: $background-opacity;
 
                 &::before {
-                    background-color: map_get($theme, primary-color);
+                    background-color: $primary-color;
                 }
             }
         }
