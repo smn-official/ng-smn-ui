@@ -1,0 +1,78 @@
+<div class="light">
+    <ui-card>
+        <ui-card-title>Chips</ui-card-title>
+        <ui-card-content>
+            <ui-subheader>Without input</ui-subheader>
+            <div>
+                <div class="ui-chip">Test 1</div>
+                <div class="ui-chip">Test 2</div>
+                <div class="ui-chip">Test 3</div>
+            </div>
+            <ui-subheader>Without input with icon</ui-subheader>
+            <div>
+                <div class="ui-chip">
+                    <div class="icon">
+                        <i class="material-icons">favorite</i>
+                    </div>
+                    Test 1
+                </div>
+                <div class="ui-chip">
+                    <div class="icon">
+                        <i class="material-icons">favorite</i>
+                    </div>
+                    Test 2
+                </div>
+                <div class="ui-chip">
+                    <div class="icon">
+                        <i class="material-icons">favorite</i>
+                    </div>
+                    Test 3
+                </div>
+            </div>
+            <ui-subheader>Without input with close icon</ui-subheader>
+            <div>
+                <div class="ui-chip">
+                    Test 1
+                    <div class="close ripple-rounded" uiRipple><i class="material-icons">add_circle</i></div>
+                </div>
+                <div class="ui-chip">
+                    Test 2
+                    <div class="close ripple-rounded" uiRipple><i class="material-icons">add_circle</i></div>
+                </div>
+                <div class="ui-chip">
+                    Test 3
+                    <div class="close ripple-rounded" uiRipple><i class="material-icons">add_circle</i></div>
+                </div>
+            </div>
+            <ui-subheader>With input</ui-subheader>
+            <ui-chips>
+                <div *ngFor="let selectedChip of selectedChips" class="ui-chip">
+                    {{selectedChip.name}}
+                    <div class="close ripple-rounded" uiRipple (click)="removeChip(selectedChip)"><i class="material-icons">add_circle</i></div></div>
+                <ui-input-container>
+                    <input type="text"
+                           [(ngModel)]="chips.searchState"
+                           uiInput
+                           uiAutocomplete
+                           (input)="loadChips()"
+                           (focus)="loadChips()"
+                           (loadMore)="loadMoreChips()"
+                           [list]="chips"
+                           [primary]="'name'"
+                           [loading]="chips.loading"
+                           [select]="chipSelect.bind(this)">
+                    <label>States</label>
+                </ui-input-container>
+            </ui-chips>
+        </ui-card-content>
+    </ui-card>
+</div>
+
+<div class="dark">
+    <ui-card>
+        <ui-card-title>Chips</ui-card-title>
+        <ui-card-content>
+
+        </ui-card-content>
+    </ui-card>
+</div>

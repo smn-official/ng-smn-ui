@@ -16,7 +16,8 @@
                 <span *ngIf="!secondary" class="primary">{{item[primary] || item}}</span>
             </li>
             <li *ngIf="!list.length" class="not-found">
-                <span>Nenhum registro encontrado para "{{ngModel}}"</span>
+                <span *ngIf="ngModel">Nenhum registro encontrado para "{{ngModel}}"</span>
+                <span *ngIf="!ngModel">Nenhum registro encontrado</span>
             </li>
         </ul>
     </div>

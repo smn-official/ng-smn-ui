@@ -13,6 +13,7 @@ import {DemoDialogComponent} from './demo-dialog/demo-dialog.component';
 import {DemoDividersComponent} from './demo-dividers/demo-dividers.component';
 import {DemoHomeComponent} from './demo-home/demo-home.component';
 import {DemoInputsComponent} from './demo-inputs/demo-inputs.component';
+import {DemoChipsComponent} from './demo-chips/demo-chips.component';
 import {DemoLayoutComponent} from './demo-layout/demo-layout.component';
 import {DemoMenuComponent} from './demo-menu/demo-menu.component';
 import {DemoNavDrawerComponent} from './demo-nav-drawer/demo-nav-drawer.component';
@@ -49,6 +50,7 @@ import {DemoColorPickersComponent} from './demo-color-pickers/demo-color-pickers
         DemoDividersComponent,
         DemoHomeComponent,
         DemoInputsComponent,
+        DemoChipsComponent,
         DemoLayoutComponent,
         DemoMenuComponent,
         DemoNavDrawerComponent,

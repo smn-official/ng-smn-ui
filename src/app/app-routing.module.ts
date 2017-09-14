@@ -10,6 +10,7 @@ import {DemoDialogComponent} from './demo/demo-dialog/demo-dialog.component';
 import {DemoDividersComponent} from './demo/demo-dividers/demo-dividers.component';
 import {DemoHomeComponent} from './demo/demo-home/demo-home.component';
 import {DemoInputsComponent} from './demo/demo-inputs/demo-inputs.component';
+import {DemoChipsComponent} from './demo/demo-chips/demo-chips.component';
 import {DemoLayoutComponent} from './demo/demo-layout/demo-layout.component';
 import {DemoMenuComponent} from './demo/demo-menu/demo-menu.component';
 import {DemoNavDrawerComponent} from './demo/demo-nav-drawer/demo-nav-drawer.component';
@@ -25,7 +26,7 @@ import {DemoListComponent} from './demo/demo-list/demo-list.component';
 import {DemoAutocompleteComponent} from './demo/demo-autocomplete/demo-autocomplete.component';
 import {DemoBottomSheetComponent} from './demo/demo-bottom-sheet/demo-bottom-sheet.component';
 import {DemoFileComponent} from './demo/demo-file/demo-file.component';
-import {DemoColorPickersComponent} from "./demo/demo-color-pickers/demo-color-pickers.component";
+import {DemoColorPickersComponent} from './demo/demo-color-pickers/demo-color-pickers.component';
 
 const routes: Routes = [
     {
@@ -44,6 +45,7 @@ const routes: Routes = [
             {path: 'dividers', component: DemoDividersComponent},
             {path: 'files', component: DemoFileComponent},
             {path: 'inputs', component: DemoInputsComponent},
+            {path: 'chips', component: DemoChipsComponent},
             {path: 'layout', component: DemoLayoutComponent},
             {path: 'menus', component: DemoMenuComponent},
             {path: 'nav-drawer', component: DemoNavDrawerComponent},
