@@ -70,70 +70,84 @@ ui-clock {
                     height: 4px;
                     margin: auto;
                     border-radius: 50%;
+                    transition: transform 280ms ui-easing('deceleration');
+                    transform: scale(0);
                 }
-            }
 
-            .hour, .minute, .pointer {
-                position: absolute;
-                top: 8px;
-                left: 0;
-                right: 0;
-                bottom: 50%;
-                width: 36px;
-                margin: 0 auto;
-                pointer-events: none;
-                transform-origin: bottom center;
+                .hour, .minute, .pointer {
+                    position: absolute;
+                    top: 8px;
+                    left: 0;
+                    right: 0;
+                    bottom: 50%;
+                    width: 36px;
+                    margin: 0 auto;
+                    pointer-events: none;
+                    transform-origin: bottom center;
 
-                .ui-button {
-                    pointer-events: auto;
+                    .ui-button {
+                        pointer-events: auto;
 
+                        &::before {
+                            transform: scale(1);
+                        }
+                    }
+                }
+
+                .pointer {
+                    z-index: 2;
+                    transition: transform 280ms ui-easing('deceleration'), top 280ms ui-easing('deceleration');
+
+                    &::before {
+                        content: '';
+                        width: 2px;
+                        position: absolute;
+                        top: 36px;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        margin: auto;
+                    }
+
+                    .ball {
+                        width: 36px;
+                        height: 36px;
+                        margin: auto;
+                        border-radius: 50%;
+                        position: absolute;
+                        top: 0;
+
+                        &::before {
+                            content: '';
+                            width: 8px;
+                            height: 8px;
+                            margin: auto;
+                            display: block;
+                            border-radius: 50%;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            transition: transform 280ms ui-easing('deceleration');
+                            transform: scale(0);
+                        }
+
+                        &.show-core::before {
+                            transform: scale(1);
+                        }
+                    }
+                }
+
+                .hour:nth-child(n+13) {
+                    top: 40px;
+                }
+
+                &.has-pointer {
                     &::before {
                         transform: scale(1);
                     }
                 }
-            }
-
-            .pointer {
-                z-index: 2;
-                transition: transform 280ms ui-easing('deceleration');
-
-                &::before {
-                    content: '';
-                    width: 2px;
-                    position: absolute;
-                    top: 36px;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    margin: auto;
-                }
-
-                .ball {
-                    width: 36px;
-                    height: 36px;
-                    margin: auto;
-                    border-radius: 50%;
-                    position: absolute;
-                    top: 0;
-
-                    &::before {
-                        content: '';
-                        width: 8px;
-                        height: 8px;
-                        margin: auto;
-                        display: block;
-                        border-radius: 50%;
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
-                    }
-                }
-            }
-
-            .hour:nth-child(n+13) {
-                top: 40px;
             }
         }
     }
