@@ -10,7 +10,7 @@ export class DemoClockComponent implements OnInit {
     time: string;
 
     constructor() {
-        this.time = '07:47';
+        // this.time = '07:47';
     }
 
     ngOnInit() {

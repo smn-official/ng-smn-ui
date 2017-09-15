@@ -56,6 +56,9 @@ export class UiClockComponent implements OnInit, AfterViewInit, OnChanges {
     }
 
     public ngAfterViewInit(): void {
+        this.element.nativeElement.tabIndex = 1;
+        this.element.nativeElement.focus();
+
         UiElement.on(document, 'keydown', e => {
             if (!this.focused) {
                 return;
@@ -166,6 +169,9 @@ export class UiClockComponent implements OnInit, AfterViewInit, OnChanges {
     }
 
     public getPositionPointer(): void {
+        if (!this.hasHourAndMinute()) {
+            return;
+        }
         let oldRotation = this.pointerRotation;
         oldRotation = oldRotation >= 360 ? oldRotation - (Math.floor(oldRotation / 360) * 360) : (oldRotation <= -360 ? oldRotation + (Math.floor(Math.abs(oldRotation) / 360) * 360) : oldRotation);
         let amountRotate;
@@ -200,6 +206,6 @@ export class UiClockComponent implements OnInit, AfterViewInit, OnChanges {
     }
 
     public validate(): boolean {
-        return (this.hour < 24 && this.minute < 59) || typeof this.hour !== 'number' && typeof this.minute !== 'number';
+        return (this.hour < 24 && this.minute < 60) || !this.hasHourAndMinute();
     }
 }
