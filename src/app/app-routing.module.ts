@@ -27,6 +27,7 @@ import {DemoBottomSheetComponent} from './demo/demo-bottom-sheet/demo-bottom-she
 import {DemoFileComponent} from './demo/demo-file/demo-file.component';
 import {DemoColorPickersComponent} from "./demo/demo-color-pickers/demo-color-pickers.component";
 import {DemoClockComponent} from "./demo/demo-clock/demo-clock.component";
+import {DemoTimePickersComponent} from "./demo/demo-time-pickers/demo-time-pickers.component";
 
 const routes: Routes = [
     {
@@ -58,6 +59,7 @@ const routes: Routes = [
             {path: 'sliders', component: DemoSliderComponent},
             {path: 'smart-list', component: DemoSmartListComponent},
             {path: 'subheader', component: DemoSubheaderComponent},
+            {path: 'time-pickers', component: DemoTimePickersComponent},
             {path: 'toolbars', component: DemoToolbarsComponent},
             {path: 'list', component: DemoListComponent},
         ]

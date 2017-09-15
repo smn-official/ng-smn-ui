@@ -30,7 +30,7 @@ ui-clock {
     }
 
     .actions {
-        padding: 8px;
+        padding: 0 8px 8px;
         text-align: right;
         cursor: default;
     }
@@ -41,7 +41,7 @@ ui-clock {
         .clock-cover {
             overflow: hidden;
             transition: 300ms ease-in-out;
-            margin: 8px 24px;
+            margin: 24px;
 
             .clock-wrap {
                 border-radius: 50%;
@@ -158,6 +158,10 @@ ui-clock {
 
             header {
                 width: 168px;
+            }
+
+            .clock-cover {
+                margin: 8px 24px;
             }
         }
     }

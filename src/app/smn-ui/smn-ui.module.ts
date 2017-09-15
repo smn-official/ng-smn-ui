@@ -72,6 +72,9 @@ import {UiColorPickerComponent} from './color-picker/color-picker.component';
 import {UiColorPickerDirective} from './color-picker/color-picker.directive';
 import {UiClockComponent} from './clock/clock.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {UiTimePickerService} from "./time-picker/time-picker.service";
+import {UiTimePickerDirective} from "./time-picker/time-picker.directive";
+import {UiTimePickerCallerDirective} from "./time-picker/time-picker-caller.directive";
 
 export {
     UiColor,
@@ -152,7 +155,9 @@ const lib: any[] = [
     UiRequiredDirective,
     UiColorPickerComponent,
     UiColorPickerDirective,
-    UiClockComponent
+    UiClockComponent,
+    UiTimePickerDirective,
+    UiTimePickerCallerDirective
 ];
 
 @NgModule({
@@ -172,7 +177,8 @@ const lib: any[] = [
         UiReferencesService,
         UiSnackbar,
         UiWindowRef,
-        UiInfiniteLoadService
+        UiInfiniteLoadService,
+        UiTimePickerService
     ],
     entryComponents: [UiCalendarComponent, UiCalendarContentComponent, UiAutocompleteComponent, UiColorPickerComponent, UiClockComponent]
 })

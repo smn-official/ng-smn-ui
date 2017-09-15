@@ -37,6 +37,6 @@
     </div>
     <div class="actions ui-button-container align-right" *ngIf="confirmSelection">
         <button class="ui-button flat primary" uiRipple (click)="cancelTime()">Cancelar</button>
-        <button class="ui-button flat primary" uiRipple (click)="selectTime()">Ok</button>
+        <button class="ui-button flat primary" uiRipple (click)="selectTime(true)" [disabled]="!hasHourAndMinute()">Ok</button>
     </div>
 </div>

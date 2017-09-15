@@ -30,6 +30,7 @@ export class UiClockComponent implements OnInit, AfterViewInit, OnChanges {
     @Output() select: EventEmitter<any> = new EventEmitter();
     @Output() cancel: EventEmitter<any> = new EventEmitter();
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
+    chosen: Subject<any> = new Subject();
 
     hours: number[];
     minutes: number[];
@@ -57,10 +58,16 @@ export class UiClockComponent implements OnInit, AfterViewInit, OnChanges {
     public ngAfterViewInit(): void {
         UiElement.on(document, 'keydown', e => {
             if (!this.focused) {
-                e.preventDefault();
                 return;
             }
             switch (e.keyCode) {
+                case 13:
+                    if (this.activeSelection === 'hours') {
+                        this.selectHour(this.hour);
+                    } else {
+                        this.selectMinute(this.minute);
+                    }
+                    break;
                 case 39:
                 case 40:
                     if (this.activeSelection === 'hours') {
@@ -107,11 +114,12 @@ export class UiClockComponent implements OnInit, AfterViewInit, OnChanges {
         }
     }
 
-    public selectTime() {
+    public selectTime(close?: boolean) {
         if (this.hasHourAndMinute()) {
             this.ngModel = `${this.formatToLpad(this.hour)}:${this.formatToLpad(this.minute)}`;
             this.ngModelChange.emit(this.ngModel);
             this.select.emit(this.ngModel);
+            this.chosen.next({value: this.ngModel, close});
         }
     }
 
@@ -141,7 +149,7 @@ export class UiClockComponent implements OnInit, AfterViewInit, OnChanges {
         this.getPositionPointer();
 
         if (!this.confirmSelection) {
-            this.selectTime();
+            this.selectTime(true);
         }
     }
 
