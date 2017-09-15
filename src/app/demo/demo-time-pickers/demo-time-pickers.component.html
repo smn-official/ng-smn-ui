@@ -37,7 +37,7 @@
             <ui-card-content>
                 <ui-input-container>
                     <input type="text" uiInput [(ngModel)]="timeDark" class="accent" name="timeDark" uiTimePicker="timepickerDark" theme-class="dark">
-                    <label>Date</label>
+                    <label>Time</label>
                     <div class="icon">
                         <button class="ui-button icon flat" uiTimePickerCaller="timepickerDark">
                             <i class="material-icons">today</i>
@@ -49,8 +49,6 @@
                         </div>
                     </div>
                 </ui-input-container>
-
-                <!--<ui-calendar class="portrait-only" [maxDate]="time" [(ngModel)]="timeDark" (select)="select()" [confirmSelection]="false" ngDefaultControl></ui-calendar>-->
             </ui-card-content>
         </ui-card>
     </div>
