@@ -3,7 +3,7 @@
         <ui-card-title>Version light</ui-card-title>
         <ui-card-content class="ui-validate on-dirty">
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="simple" name="time" uiTimePicker="simple" #time="ngModel">
+                <input type="text" uiInput [(ngModel)]="simple" name="time" uiTimePicker="simple" uiMaskTime #time="ngModel">
                 <label>Time</label>
                 <div class="icon">
                     <button class="ui-button icon flat" uiTimePickerCaller="simple">
@@ -12,7 +12,7 @@
                 </div>
             </ui-input-container>
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="confirmSelect" name="confirmSelect" uiTimePicker="confirmSelect" [confirmSelection]="true">
+                <input type="text" uiInput [(ngModel)]="confirmSelect" name="confirmSelect" uiTimePicker="confirmSelect" uiMaskTime [confirmSelection]="true">
                 <label>Confirm select</label>
                 <div class="icon">
                     <button class="ui-button icon flat" uiTimePickerCaller="confirmSelect">
@@ -21,7 +21,7 @@
                 </div>
             </ui-input-container>
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="functionSelect" name="functionSelect" uiTimePicker="functionSelect" (select)="execFunctionSelect()">
+                <input type="text" uiInput [(ngModel)]="functionSelect" name="functionSelect" uiTimePicker="functionSelect" uiMaskTime (select)="execFunctionSelect()">
                 <label>Execute function select</label>
                 <div class="icon">
                     <button class="ui-button icon flat" uiTimePickerCaller="functionSelect">
@@ -36,7 +36,7 @@
             <ui-card-title>Version dark</ui-card-title>
             <ui-card-content>
                 <ui-input-container>
-                    <input type="text" uiInput [(ngModel)]="timeDark" class="accent" name="timeDark" uiTimePicker="timepickerDark" theme-class="dark">
+                    <input type="text" uiInput [(ngModel)]="timeDark" class="accent" name="timeDark" uiTimePicker="timepickerDark" uiMaskTime theme-class="dark">
                     <label>Time</label>
                     <div class="icon">
                         <button class="ui-button icon flat" uiTimePickerCaller="timepickerDark">

@@ -13,6 +13,11 @@
             background-color: ui-if($is-dark, ui-color('grey', '700'), $primary-color);
             color: ui-if($is-dark, #FFF, ui-text-color(map_get($theme, primary), map_get($theme, primary-hue)));
 
+            &.time-error {
+                background-color: ui-color('red');
+                color: ui-text-color('red');
+            }
+
             .time {
                 color: ui-if($is-dark, map_get($theme, secondary-text-color), rgba($text-color, 0.54));
 
@@ -20,6 +25,8 @@
                     color: ui-if($is-dark, map_get($theme, primary-text-color), $text-color);
                 }
             }
+
+
         }
 
         .clock-wrap {

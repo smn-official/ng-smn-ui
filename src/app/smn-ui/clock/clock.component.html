@@ -1,7 +1,8 @@
-<header *ngIf="!hideHeader">
+<header *ngIf="!hideHeader" [class.time-error]="!validate()">
     <div>
         <span class="time-empty" *ngIf="isEmpty()">Selecione um horário</span>
-        <div class="time" *ngIf="!isEmpty()" (click)="getPositionPointer()">
+        <span *ngIf="!isEmpty() && !validate()">Horário inválido</span>
+        <div class="time" *ngIf="!isEmpty() && validate()" (click)="getPositionPointer()">
             <span (click)="activeSelection = 'hours'" [class.time-focused]="activeSelection === 'hours'">{{formatToLpad(hour)}}</span>:<span (click)="activeSelection = 'minutes'" [class.time-focused]="activeSelection === 'minutes'">{{formatToLpad(minute)}}</span>
         </div>
     </div>
@@ -9,9 +10,9 @@
 <div>
     <div class="content">
         <div class="clock-cover">
-            <div class="clock-wrap" [class.has-pointer]="hasHourAndMinute()">
+            <div class="clock-wrap" [class.has-pointer]="hasHourAndMinute() && validate()">
                 <div class="pointer"
-                     *ngIf="hasHourAndMinute()"
+                     *ngIf="hasHourAndMinute() && validate()"
                      [ngStyle]="{'transform': 'rotate(' + pointerRotation + 'deg)', 'top':  getPositionTopPointer()}"
                      [@fade]>
                     <div class="ball" [class.show-core]="activeSelection === 'minutes' && minute % 5 !== 0"></div>

@@ -198,4 +198,8 @@ export class UiClockComponent implements OnInit, AfterViewInit, OnChanges {
     public hasHourAndMinute(): boolean {
         return typeof this.hour === 'number' && typeof this.minute === 'number';
     }
+
+    public validate(): boolean {
+        return (this.hour < 24 && this.minute < 59) || typeof this.hour !== 'number' && typeof this.minute !== 'number';
+    }
 }
