@@ -30,7 +30,6 @@ export class UiClockComponent implements OnInit, AfterViewInit, OnChanges {
     @Output() select: EventEmitter<any> = new EventEmitter();
     @Output() cancel: EventEmitter<any> = new EventEmitter();
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
-    chosen: Subject<any> = new Subject();
 
     hours: number[];
     minutes: number[];
@@ -85,7 +84,7 @@ export class UiClockComponent implements OnInit, AfterViewInit, OnChanges {
         });
 
         UiElement.on(document, 'click', e => {
-            this.focused = (UiElement.is(e.target, 'ui-clock') || UiElement.closest(e.target, 'ui-clock'));
+            this.focused = (this.element.nativeElement === e.target || this.element.nativeElement === UiElement.closest(e.target, 'ui-clock')) && (UiElement.is(e.target, 'ui-clock') || UiElement.closest(e.target, 'ui-clock'));
         });
     }
 
