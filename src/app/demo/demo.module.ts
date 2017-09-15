@@ -30,6 +30,8 @@ import {DemoAutocompleteComponent} from './demo-autocomplete/demo-autocomplete.c
 import {DemoBottomSheetComponent} from './demo-bottom-sheet/demo-bottom-sheet.component';
 import {DemoFileComponent} from './demo-file/demo-file.component';
 import {DemoColorPickersComponent} from './demo-color-pickers/demo-color-pickers.component';
+import {DemoClockComponent} from './demo-clock/demo-clock.component';
+import {DemoTimePickersComponent} from './demo-time-pickers/demo-time-pickers.component';
 
 @NgModule({
     imports: [
@@ -68,7 +70,9 @@ import {DemoColorPickersComponent} from './demo-color-pickers/demo-color-pickers
         DemoAutocompleteComponent,
         DemoBottomSheetComponent,
         DemoFileComponent,
-        DemoColorPickersComponent
+        DemoColorPickersComponent,
+        DemoClockComponent,
+        DemoTimePickersComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

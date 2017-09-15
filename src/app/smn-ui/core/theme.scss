@@ -25,6 +25,8 @@
 @import "../bottom-sheet/bottom-sheet.theme";
 @import "../input/input-file.directive";
 @import "../snackbar/snackbar.theme";
+@import "../clock/clock.theme";
+@import "../time-picker/time-picker-caller.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -97,4 +99,6 @@
     @include ui-bottom-sheet($theme);
     @include ui-input-file($theme);
     @include ui-snackbar($theme);
+    @include ui-clock($theme);
+    @include ui-time-picker-caller($theme);
 }

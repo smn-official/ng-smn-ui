@@ -1,8 +1,8 @@
 @import "../smn-ui/core/core";
 @import "../smn-ui/core/theme";
 
-$primary: (color: 'indigo', hue: '500');
-$accent: (color: 'pink', hue: '400');
+$primary: (color: 'deep-purple', hue: '500');
+$accent: (color: 'green', hue: 'A200');
 
 $theme: ui-theme($primary, $accent);
 $theme-dark: ui-theme($primary, $accent, true);

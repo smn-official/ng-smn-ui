@@ -1,0 +1,169 @@
+@import "../core/variables";
+
+ui-clock {
+    display: inline-flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 2px;
+    position: relative;
+    z-index: 0;
+
+    header {
+        padding: 16px;
+        min-height: 72px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        .time-empty {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .time {
+            margin-top: 8px;
+            font-size: 40px;
+            font-weight: 500;
+            text-align: center;
+            cursor: default;
+        }
+    }
+
+    .actions {
+        padding: 0 8px 8px;
+        text-align: right;
+        cursor: default;
+    }
+
+    .content {
+        position: relative;
+
+        .clock-cover {
+            overflow: hidden;
+            transition: 300ms ease-in-out;
+            margin: 24px;
+
+            .clock-wrap {
+                border-radius: 50%;
+                width: 250px;
+                height: 250px;
+                position: relative;
+
+                > div:not(.pointer) {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 1;
+                }
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    display: block;
+                    width: 4px;
+                    height: 4px;
+                    margin: auto;
+                    border-radius: 50%;
+                    transition: transform 280ms ui-easing('deceleration');
+                    transform: scale(0);
+                }
+
+                .hour, .minute, .pointer {
+                    position: absolute;
+                    top: 8px;
+                    left: 0;
+                    right: 0;
+                    bottom: 50%;
+                    width: 36px;
+                    margin: 0 auto;
+                    pointer-events: none;
+                    transform-origin: bottom center;
+
+                    .ui-button {
+                        pointer-events: auto;
+
+                        &::before {
+                            transform: scale(1);
+                        }
+                    }
+                }
+
+                .pointer {
+                    z-index: 2;
+                    transition: transform 280ms ui-easing('deceleration'), top 280ms ui-easing('deceleration');
+
+                    &::before {
+                        content: '';
+                        width: 2px;
+                        position: absolute;
+                        top: 36px;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        margin: auto;
+                    }
+
+                    .ball {
+                        width: 36px;
+                        height: 36px;
+                        margin: auto;
+                        border-radius: 50%;
+                        position: absolute;
+                        top: 0;
+
+                        &::before {
+                            content: '';
+                            width: 8px;
+                            height: 8px;
+                            margin: auto;
+                            display: block;
+                            border-radius: 50%;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            transition: transform 280ms ui-easing('deceleration');
+                            transform: scale(0);
+                        }
+
+                        &.show-core::before {
+                            transform: scale(1);
+                        }
+                    }
+                }
+
+                .hour:nth-child(n+13) {
+                    top: 40px;
+                }
+
+                &.has-pointer {
+                    &::before {
+                        transform: scale(1);
+                    }
+                }
+            }
+        }
+    }
+
+    @media (min-width: 600px), (min-width: 496px) and (orientation: landscape) {
+        &:not(.portrait-only) {
+            flex-direction: row;
+
+            header {
+                width: 168px;
+            }
+
+            .clock-cover {
+                margin: 8px 24px;
+            }
+        }
+    }
+
+}

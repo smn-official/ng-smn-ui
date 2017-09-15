@@ -1,0 +1,54 @@
+@import "../core/variables";
+
+@mixin ui-clock($theme) {
+    $is-dark: map_get($theme, is-dark);
+    $text-color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+    $primary-color: map_get($theme, primary-color);
+    $background-opacity: rgba($primary-color, 0.54);
+
+    ui-clock {
+        background-color: ui-if($is-dark, ui-color('grey', '800'), #FFF);
+
+        header {
+            background-color: ui-if($is-dark, ui-color('grey', '700'), $primary-color);
+            color: ui-if($is-dark, #FFF, ui-text-color(map_get($theme, primary), map_get($theme, primary-hue)));
+
+            &.time-error {
+                background-color: ui-color('red');
+                color: ui-text-color('red');
+            }
+
+            .time {
+                color: ui-if($is-dark, map_get($theme, secondary-text-color), rgba($text-color, 0.54));
+
+                .time-focused {
+                    color: ui-if($is-dark, map_get($theme, primary-text-color), $text-color);
+                }
+            }
+
+
+        }
+
+        .clock-wrap {
+            background-color: ui-if($is-dark, ui-color('grey', '700'), ui-color('grey', '200'));
+
+            &::before {
+                background-color: $background-opacity;
+            }
+        }
+
+        .pointer {
+            &::before {
+                background-color: $background-opacity;
+            }
+
+            .ball {
+                background-color: $background-opacity;
+
+                &::before {
+                    background-color: $primary-color;
+                }
+            }
+        }
+    }
+}

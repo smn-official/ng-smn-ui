@@ -1,0 +1,43 @@
+<header *ngIf="!hideHeader" [class.time-error]="!validate()">
+    <div>
+        <span class="time-empty" *ngIf="isEmpty()">Selecione um horário</span>
+        <span *ngIf="!isEmpty() && !validate()">Horário inválido</span>
+        <div class="time" *ngIf="!isEmpty() && validate()" (click)="getPositionPointer()">
+            <span (click)="activeSelection = 'hours'" [class.time-focused]="activeSelection === 'hours'">{{formatToLpad(hour)}}</span>:<span (click)="activeSelection = 'minutes'" [class.time-focused]="activeSelection === 'minutes'">{{formatToLpad(minute)}}</span>
+        </div>
+    </div>
+</header>
+<div>
+    <div class="content">
+        <div class="clock-cover">
+            <div class="clock-wrap" [class.has-pointer]="hasHourAndMinute() && validate()">
+                <div class="pointer"
+                     *ngIf="hasHourAndMinute() && validate()"
+                     [ngStyle]="{'transform': 'rotate(' + pointerRotation + 'deg)', 'top':  getPositionTopPointer()}"
+                     [@fade]>
+                    <div class="ball" [class.show-core]="activeSelection === 'minutes' && minute % 5 !== 0"></div>
+                </div>
+                <div *ngIf="activeSelection === 'hours'" [@explosion]>
+                    <div class="hour"
+                         *ngFor="let hour of hours"
+                         [style.transform]="'rotate(' + (30 * (hour >= 12 ? hour - 12 : hour )) + 'deg)'"
+                         (click)="selectHour(hour)">
+                        <button class="ui-button icon flat" [style.transform]="'rotate(-' + (30 * (hour >= 12 ? hour - 12 : hour )) + 'deg)'">{{hour}}</button>
+                    </div>
+                </div>
+                <div *ngIf="activeSelection === 'minutes'" [@explosion]>
+                    <div class="minute"
+                         *ngFor="let minute of minutes; let index = index"
+                         [style.transform]="'rotate(' + (30 * (index >= 12 ? index - 12 : index )) + 'deg)'"
+                         (click)="selectMinute(minute)">
+                        <button class="ui-button icon flat" [style.transform]="'rotate(-' + (30 * (index >= 12 ? index - 12 : index )) + 'deg)'">{{minute}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions ui-button-container align-right" *ngIf="confirmSelection">
+        <button class="ui-button flat primary" uiRipple (click)="cancelTime()">Cancelar</button>
+        <button class="ui-button flat primary" uiRipple (click)="selectTime(true)" [disabled]="!hasHourAndMinute()">Ok</button>
+    </div>
+</div>

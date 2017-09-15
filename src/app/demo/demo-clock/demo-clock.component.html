@@ -1,0 +1,21 @@
+<div class="light">
+    <ui-card>
+        <ui-card-content>
+            <ui-clock [(ngModel)]="time" ngDefaultControl></ui-clock>
+            <div>Model: {{time}}</div>
+        </ui-card-content>
+        <ui-card-content>
+            <ui-clock [confirm-selection]="true"  [(ngModel)]="time" class="portrait-only" ngDefaultControl></ui-clock>
+            <div>Model: {{time}}</div>
+        </ui-card-content>
+    </ui-card>
+</div>
+
+<div class="dark" style="margin-top: 8px">
+    <ui-card>
+        <ui-card-content>
+            <ui-clock [confirm-selection]="true"  [(ngModel)]="time" class="portrait-only" ngDefaultControl></ui-clock>
+            <div>Model: {{time}}</div>
+        </ui-card-content>
+    </ui-card>
+</div>

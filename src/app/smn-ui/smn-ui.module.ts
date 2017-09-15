@@ -2,6 +2,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, ElementRef, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import './button/button.service';
 import {debounce} from './utils/functions/debounce';
@@ -71,6 +72,12 @@ import {UiRequiredDirective} from './utils/validators/required.directive';
 import {UiColorPickerComponent} from './color-picker/color-picker.component';
 import {UiColorPickerDirective} from './color-picker/color-picker.directive';
 import {UiInputAutosizeDirective} from './input/autosize.directive';
+import {UiClockComponent} from './clock/clock.component';
+import {UiTimePickerService} from './time-picker/time-picker.service';
+import {UiTimePickerDirective} from './time-picker/time-picker.directive';
+import {UiTimePickerCallerDirective} from './time-picker/time-picker-caller.directive';
+import {UiTimePipe} from './utils/masks/time/time.pipe';
+import {UiMaskTimeDirective} from './utils/masks/time/mask-time.directive';
 
 export {
     UiColor,
@@ -86,7 +93,8 @@ export {
     UiPhonePipe,
     UiInfiniteLoadService,
     debounce,
-    UiDatetimeService
+    UiDatetimeService,
+    UiTimePipe
 }
 
 const lib: any[] = [
@@ -151,14 +159,21 @@ const lib: any[] = [
     UiRequiredDirective,
     UiColorPickerComponent,
     UiColorPickerDirective,
-    UiInputAutosizeDirective
+    UiInputAutosizeDirective,
+    UiColorPickerDirective,
+    UiClockComponent,
+    UiTimePickerDirective,
+    UiTimePickerCallerDirective,
+    UiTimePipe,
+    UiMaskTimeDirective
 ];
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        RouterModule
+        RouterModule,
+        BrowserAnimationsModule
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [...lib],
@@ -170,9 +185,16 @@ const lib: any[] = [
         UiReferencesService,
         UiSnackbar,
         UiWindowRef,
-        UiInfiniteLoadService
+        UiInfiniteLoadService,
+        UiTimePickerService
     ],
-    entryComponents: [UiCalendarComponent, UiCalendarContentComponent, UiAutocompleteComponent, UiColorPickerComponent]
+    entryComponents: [
+        UiCalendarComponent,
+        UiCalendarContentComponent,
+        UiAutocompleteComponent,
+        UiColorPickerComponent,
+        UiClockComponent
+    ]
 })
 export class SMNUIModule {
 }

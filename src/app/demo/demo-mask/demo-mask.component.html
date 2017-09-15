@@ -10,6 +10,14 @@
             </ui-input-container>
             <pre>{{teste.errors | json}}</pre>
             <ui-input-container>
+                <input type="text" name="time" [(ngModel)]="time" uiInput uiMaskTime required #timeField="ngModel">
+                <label>Time(uiMaskTime)</label>
+                <div class="ui-messages">
+                    <div class="ui-message helper">{{time}}</div>
+                </div>
+            </ui-input-container>
+            <pre>{{timeField.errors | json}}</pre>
+            <ui-input-container>
                 <input type="text" name="cpf" [(ngModel)]="cpf" uiInput uiMaskCpf>
                 <label>CPF(uiMaskCpf)</label>
                 <div class="ui-messages">
