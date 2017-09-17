@@ -105,7 +105,6 @@ ui-toolbar {
         }
 
         .logo ~ .title {
-            border-left: 1px solid ui-text-color('grey', '300', 0.3);
             @include mobile {
                 border-left: none;
             }

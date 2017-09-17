@@ -51,6 +51,13 @@
             }
         }
         &.transparent:not(.scrolled) {
+            .logo ~ .title {
+                border-left: 1px solid rgba(white, 0.3);
+                @include mobile {
+                    border-left: none;
+                }
+            }
+
             header {
                 color: white;
             }
