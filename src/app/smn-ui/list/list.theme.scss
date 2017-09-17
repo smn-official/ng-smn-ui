@@ -42,9 +42,11 @@
                 }
             }
 
-            &:not(.no-ripple):not([uiRipple]):active,
-            &:not(.no-ripple)[ng-reflect-ripple-disable="true"]:active {
-                background-color: $ripple-color;
+            &:not(.subheader) {
+                &:not(.no-ripple):not([uiRipple]):active,
+                &:not(.no-ripple)[ng-reflect-ripple-disable="true"]:active {
+                    background-color: $ripple-color;
+                }
             }
         }
     }
