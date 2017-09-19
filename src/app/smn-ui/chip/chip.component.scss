@@ -35,6 +35,11 @@
         margin-left: -16px;
         margin-right: 8px;
         padding: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        text-transform: uppercase;
         i {
             font-size: 20px;
         }
