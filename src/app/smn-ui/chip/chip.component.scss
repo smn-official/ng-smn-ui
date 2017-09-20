@@ -15,8 +15,10 @@
     cursor: default;
     user-select: none;
 
-    margin-right: 12px;
-    margin-bottom: 12px;
+    &:not(.no-margin) {
+        margin-right: 12px;
+        margin-bottom: 12px;
+    }
 
     @at-root a#{&} {
         cursor: pointer;
