@@ -56,7 +56,7 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
     }
 
     renderViaInput(rawValue: any): void {
-        if(rawValue) {
+        if (rawValue) {
             this.control.markAsDirty();
         }
         this.ngModel = this.format(rawValue);
@@ -78,7 +78,6 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
     }
 
     validate(control: FormControl): { [key: string]: any } {
-
         this.control = control;
 
         if (control.value && this.format(control.value).length < 11) {
