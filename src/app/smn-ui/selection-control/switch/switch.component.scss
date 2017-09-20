@@ -8,11 +8,16 @@ ui-switch-container {
         color: rgba(0, 0, 0, 0.87);
         user-select: none;
         cursor: default;
+        margin-right: 10px;
 
         .secondary {
             display: block;
             color: rgba(0, 0, 0, 0.54);
         }
+    }
+
+    &.no-space {
+        margin-bottom: 0;
     }
 }
 
