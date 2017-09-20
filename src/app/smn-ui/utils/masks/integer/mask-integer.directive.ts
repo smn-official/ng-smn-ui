@@ -1,8 +1,8 @@
 import {
     AfterViewInit, Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input,
-    Output, OnChanges
+    Output, OnChanges, OnInit
 } from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Directive({
     selector: '[uiMaskInteger][ngModel]',
@@ -10,9 +10,13 @@ import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/for
         provide: NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => UiMaskIntegerDirective),
         multi: true
+    }, {
+        provide: NG_VALIDATORS,
+        useExisting: forwardRef(() => UiMaskIntegerDirective),
+        multi: true
     }]
 })
-export class UiMaskIntegerDirective implements ControlValueAccessor, AfterViewInit, OnChanges {
+export class UiMaskIntegerDirective implements ControlValueAccessor, AfterViewInit, OnChanges, OnInit {
     loaded: boolean;
     input: boolean;
     onChange: Function;
@@ -20,6 +24,9 @@ export class UiMaskIntegerDirective implements ControlValueAccessor, AfterViewIn
     control: FormControl;
     @Input() ngModel: any;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
+    @Input() uiMaskInteger: any;
+    @Input() min: number;
+    @Input() max: number;
 
     constructor(public elementRef: ElementRef) {
     }
@@ -30,6 +37,23 @@ export class UiMaskIntegerDirective implements ControlValueAccessor, AfterViewIn
         }
     }
 
+    ngOnInit() {
+        switch (this.uiMaskInteger) {
+            case 'smallint':
+                this.min = -32768;
+                this.max = 32768;
+                break;
+            case 'bigint':
+                this.min = -9223372036854775808;
+                this.max = 9223372036854775807;
+                break;
+            case 'integer':
+                this.min = -2147483648 ;
+                this.max = 2147483647;
+                break;
+        }
+    }
+
     ngAfterViewInit() {
         setTimeout(() => {
             this.loaded = true;
@@ -37,6 +61,9 @@ export class UiMaskIntegerDirective implements ControlValueAccessor, AfterViewIn
     }
 
     writeValue(rawValue: any): void {
+        if (this.control && this.loaded && rawValue) {
+            this.control.markAsDirty();
+        }
         if (!this.input) {
             this.elementRef.nativeElement.value = this.ngModel || '';
         }
@@ -44,6 +71,9 @@ export class UiMaskIntegerDirective implements ControlValueAccessor, AfterViewIn
     }
 
     renderViaInput(rawValue: any): void {
+        if (rawValue) {
+            this.control.markAsDirty();
+        }
         this.ngModel = this.format(rawValue);
         this.ngModelChange.emit(this.ngModel);
         this.elementRef.nativeElement.value = this.ngModel || '';
@@ -62,7 +92,22 @@ export class UiMaskIntegerDirective implements ControlValueAccessor, AfterViewIn
         return newValue || undefined;
     }
 
-    @HostListener('input', ['$event']) onInput($event): void {
+    validate(control: FormControl): { [key: string]: any } {
+        this.control = control;
+
+        if (control.value && this.format(control.value) < this.min) {
+            return {min: true};
+        }
+
+        if (control.value && this.format(control.value) > this.max) {
+            return {max: true};
+        }
+
+        return null;
+    }
+
+    @HostListener('input', ['$event'])
+    onInput($event): void {
         const rawValue = this.elementRef.nativeElement.value;
         this.input = true;
         this.renderViaInput(rawValue);
