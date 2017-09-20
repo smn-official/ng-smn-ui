@@ -51,6 +51,7 @@ export class UiDialogTriggerDirective implements AfterViewInit {
             }
             if (this.dialog.cardSize) {
                 element.querySelectorAll('ui-card')[0].style.maxWidth = this.dialog.cardSize + 'px';
+                element.querySelectorAll('ui-card')[0].style.width = '100%';
             }
 
             if (!this.transparentOverlay && this.fabs.length) {

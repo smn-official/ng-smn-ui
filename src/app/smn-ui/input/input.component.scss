@@ -132,12 +132,12 @@ ui-input-container {
         }
     }
 
-    .no-pad,
-    .no-space {
+    &.no-pad .ui-input-wrap,
+    &.no-space .ui-input-wrap {
         padding-top: 0;
     }
-    .no-margin,
-    .no-space {
+    &.no-margin .ui-input-wrap,
+    &.no-space .ui-input-wrap {
         margin-bottom: 0;
     }
     .ui-control.center {
