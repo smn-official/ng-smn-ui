@@ -44,13 +44,13 @@ export class UiInputDirective implements AfterViewInit, OnChanges {
 
     isEmpty(value: any): void {
         // TODO: Try model e view value
-        setTimeout(() => {
+        // setTimeout(() => {
             let action = !value && !this.element.nativeElement.value ? 'addClass' : 'removeClass';
             if (this.ngModel && this.ngModel.trim && !this.ngModel.trim()) {
                 action = 'addClass';
             }
             this.renderer[action](this.element.nativeElement, 'ui-empty');
-        });
+        // });
     }
 
     setPlaceholder(value?: string) {
