@@ -94,7 +94,8 @@ export {
     UiInfiniteLoadService,
     debounce,
     UiDatetimeService,
-    UiTimePipe
+    UiTimePipe,
+    UiMaskPhoneDirective
 }
 
 const lib: any[] = [
