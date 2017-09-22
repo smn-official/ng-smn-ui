@@ -242,7 +242,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
                 this.setFocusIndex(this.focusedIndex);
                 break;
             case 13:
-                if (this.list && typeof this.focusedIndex === 'number') {
+                if (this.list && typeof this.focusedIndex === 'number' && this.focusedIndex !== -1) {
                     this.selectChange.emit(this.list[this.focusedIndex]);
                 }
                 event.preventDefault();

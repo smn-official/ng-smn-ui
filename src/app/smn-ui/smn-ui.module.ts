@@ -78,8 +78,11 @@ import {UiTimePickerDirective} from './time-picker/time-picker.directive';
 import {UiTimePickerCallerDirective} from './time-picker/time-picker-caller.directive';
 import {UiTimePipe} from './utils/masks/time/time.pipe';
 import {UiMaskTimeDirective} from './utils/masks/time/mask-time.directive';
+import {UiMaskCurrencyDirective} from './utils/masks/currency/mask-currency.directive';
+import {UiCurrencyPipe} from './utils/masks/currency/currency.pipe';
 
 export {
+    debounce,
     UiColor,
     UiCookie,
     UiElement,
@@ -92,9 +95,9 @@ export {
     UiCepPipe,
     UiPhonePipe,
     UiInfiniteLoadService,
-    debounce,
     UiDatetimeService,
     UiTimePipe,
+    UiCurrencyPipe,
     UiMaskPhoneDirective
 }
 
@@ -166,7 +169,9 @@ const lib: any[] = [
     UiTimePickerDirective,
     UiTimePickerCallerDirective,
     UiTimePipe,
-    UiMaskTimeDirective
+    UiMaskTimeDirective,
+    UiMaskCurrencyDirective,
+    UiCurrencyPipe
 ];
 
 @NgModule({
