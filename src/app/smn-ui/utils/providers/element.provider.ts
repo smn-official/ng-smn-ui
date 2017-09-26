@@ -312,6 +312,18 @@ export class UiElement {
             rect.left <= (window.innerWidth || document.documentElement.clientWidth)
         );
     }
+
+    static focus(el) {
+        el.focus();
+        const headerSpace = document.querySelector('ui-toolbar header').clientHeight + 16;
+        const elTop = UiElement.position(el, true).top;
+
+        if (elTop < headerSpace) {
+            window.scrollTo(0, UiElement.position(el).top - headerSpace);
+        }
+
+        return;
+    }
 }
 
 // left: 37, up: 38, right: 39, down: 40,
