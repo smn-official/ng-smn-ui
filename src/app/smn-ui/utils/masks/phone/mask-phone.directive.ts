@@ -101,7 +101,6 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
         if (afterSelIndex === 4) {
             this.beforeSelIndex = 5;
             afterSelIndex = 6;
-
         }
 
         UiElement.caretPosition.set(this.elementRef.nativeElement, this.beforeSelIndex, afterSelIndex, this.symbolsPositions);

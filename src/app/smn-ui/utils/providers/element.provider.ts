@@ -26,41 +26,42 @@ export class UiElement {
         set: function setCaretPosition(el, beforeSelIndex, afterSelIndex, symbolsPositions?): any {
             // https://javascriptexamples.info/snippet/getset-cursor-in-html-textarea
 
-            let futureSelIndex;
-            symbolsPositions = symbolsPositions ? symbolsPositions : [];
+                let futureSelIndex;
+                symbolsPositions = symbolsPositions ? symbolsPositions : [];
+                if (el.selectionStart || el.selectionStart === '0') {
 
-            if (el.selectionStart || el.selectionStart === '0') {
+                    futureSelIndex = afterSelIndex;
 
-                futureSelIndex = afterSelIndex;
+                    for (let i = 0; i < symbolsPositions.length; i++) {
+                        if (beforeSelIndex === symbolsPositions[i] && afterSelIndex === symbolsPositions[i] + 1) {
+                            futureSelIndex = symbolsPositions[i] + 2;
 
-                for (let i = 0; i < symbolsPositions.length; i++) {
-                    if (beforeSelIndex === symbolsPositions[i] && afterSelIndex === symbolsPositions[i] + 1) {
-                        futureSelIndex = symbolsPositions[i] + 2;
-
-                        break;
+                            break;
+                        }
                     }
+
+                    setTimeout(() => {
+                        setCaret();
+                    });
                 }
 
-                setCaret();
-                setTimeout(() => {
-                    setCaret();
-                });
-            }
-
-            function setCaret() {
-                if (el.createTextRange) {
-                    const range = el.createTextRange();
-                    range.move('character', futureSelIndex);
-                    range.select();
-                } else {
-                    if (el.selectionStart) {
-                        el.focus();
-                        el.setSelectionRange(futureSelIndex, futureSelIndex);
-                    } else {
-                        el.focus();
+                function setCaret() {
+                    if (el.setSelectionRange) {
+                        if (el.selectionStart) {
+                            el.focus();
+                            el.setSelectionRange(futureSelIndex, futureSelIndex);
+                        } else {
+                            el.focus();
+                        }
+                    } else if (el.createTextRange) {
+                        const range = el.createTextRange();
+                        range.collapse(true);
+                        range.move('character', futureSelIndex);
+                        range.moveEnd('character', futureSelIndex);
+                        range.moveStart('character', futureSelIndex);
+                        range.select();
                     }
                 }
-            }
         }
     };
 
