@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
 import {UiToolbarService} from '../../smn-ui/smn-ui.module';
+import {UiElement} from '../../smn-ui/utils/providers/element.provider';
 
 @Component({
     selector: 'demo-inputs',
@@ -11,6 +12,7 @@ import {UiToolbarService} from '../../smn-ui/smn-ui.module';
 export class DemoInputsComponent implements OnInit {
 
     list: string[];
+    // @ViewChild('test') test;
 
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
         this.list = ['São Paulo', 'Ohio', 'New York'];
@@ -19,6 +21,10 @@ export class DemoInputsComponent implements OnInit {
     ngOnInit() {
         this.titleService.setTitle('Input - SMN UI Demos');
         this.toolbarService.set('Input');
+
+        // setTimeout(() => {
+        //     UiElement.focus(this.test.nativeElement);
+        // }, 2000);
     }
 
 }
