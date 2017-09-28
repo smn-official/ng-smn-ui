@@ -1,4 +1,4 @@
-import {ApplicationRef, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {UiDialogComponent} from './dialog.component';
 import {UiElementRef} from '../utils/providers/element-ref.provider';
 
