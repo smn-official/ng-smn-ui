@@ -1,15 +1,15 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
 import {UiToolbarService} from '../../smn-ui/smn-ui.module';
-import {DemoComponent} from '../demo.component';
+import {UiDialog} from '../../smn-ui/dialog/dialog.service';
 
 @Component({
     selector: 'demo-dialog',
     templateUrl: './demo-dialog.component.html',
     styleUrls: ['./demo-dialog.component.scss']
 })
-export class DemoDialogComponent implements OnInit {
+export class DemoDialogComponent implements OnInit, AfterViewInit {
 
     constructor(private titleService: Title,
                 private toolbarService: UiToolbarService) {
@@ -20,7 +20,18 @@ export class DemoDialogComponent implements OnInit {
         this.toolbarService.set('Dialog');
     }
 
+    ngAfterViewInit() {
+    }
+
     openDialog() {
         alert('ae');
+    }
+
+    openWithService(dialogRef) {
+        UiDialog.show(dialogRef);
+    }
+
+    closeWithService() {
+        UiDialog.hide();
     }
 }
