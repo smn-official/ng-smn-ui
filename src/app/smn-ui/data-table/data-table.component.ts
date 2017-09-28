@@ -16,6 +16,8 @@ export class UiDataTableComponent implements OnInit {
         const self = new UiElementRef(this.element.nativeElement);
         const tfoot = self.querySelector('tfoot');
 
-        this.tableFooter.nativeElement.appendChild(tfoot.nativeElement);
+        if (tfoot) {
+            this.tableFooter.nativeElement.appendChild(tfoot.nativeElement);
+        }
     }
 }
