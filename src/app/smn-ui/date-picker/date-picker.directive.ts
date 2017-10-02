@@ -19,8 +19,8 @@ export class UiDatePickerDirective implements OnInit, OnChanges, OnDestroy {
     chosen: Subject<any> = new Subject();
 
     constructor(public referencesService: UiReferencesService) {
-        this.minDate = isDate(new Date(this.minDate)) ? new Date(this.minDate) : this.minDate;
-        this.maxDate = isDate(new Date(this.maxDate)) ? new Date(this.maxDate) : this.maxDate;
+        this.minDate = this.minDate && isDate(new Date(this.minDate)) ? new Date(this.minDate) : this.minDate;
+        this.maxDate = this.maxDate && isDate(new Date(this.maxDate)) ? new Date(this.maxDate) : this.maxDate;
     }
 
     ngOnInit() {

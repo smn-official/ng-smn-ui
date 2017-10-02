@@ -42,6 +42,22 @@
             <a class="ui-list-item" uiRipple routerLink="/subheader">Subheader</a>
             <a class="ui-list-item" uiRipple routerLink="/time-pickers">Time pickers</a>
             <a class="ui-list-item" uiRipple routerLink="/toolbars">Toolbars</a>
+            <div>
+                <div class="ui-list-item" uiRipple [uiListItem]="tabsPages">
+                    Tabs / Pages
+                    <span class="arrow"><i class="material-icons">keyboard_arrow_down</i></span>
+                </div>
+                <div class="ui-list-item-group" #tabsPages>
+                    <a class="ui-list-item" uiRipple routerLink="/tabs" [routerLinkActive]="['active']">Tabs</a>
+                    <a class="ui-list-item" uiRipple routerLink="/pages" [routerLinkActive]="['active']">
+                        Pages
+                    </a>
+                    <a class="ui-list-item" uiRipple routerLink="/tabs-pages" [routerLinkActive]="['active']">
+                        Tabs & Pages
+                    </a>
+                </div>
+            </div>
+            <a class="ui-list-item" uiRipple routerLink="/infinite-load">Infinite load</a>
             <a class="ui-list-item" uiRipple routerLink="/select">Select</a>
         </div>
     </div>

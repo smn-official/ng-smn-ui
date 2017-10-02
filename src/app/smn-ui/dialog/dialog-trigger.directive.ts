@@ -1,19 +1,28 @@
-import {AfterViewInit, Directive, ElementRef, Input, ViewContainerRef} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, Input, OnInit, ViewContainerRef} from '@angular/core';
 import {UiElement} from '../utils/providers/element.provider';
 import {UiElementRef} from '../utils/providers/element-ref.provider';
 
 @Directive({
     selector: '[uiDialogTrigger]'
 })
-export class UiDialogTriggerDirective implements AfterViewInit {
+export class UiDialogTriggerDirective implements OnInit, AfterViewInit {
     viewRef: any;
     fabs;
     @Input('trigger-events') triggerEvents: string;
     @Input('dark-class') darkClass: string;
     @Input('transparent-overlay') transparentOverlay: boolean;
+    @Input('click-overlay-to-close') clickOverlayToClose: any;
     @Input('uiDialogTrigger') dialog;
 
     constructor(public viewContainerRef: ViewContainerRef, public elementRef: ElementRef) {
+    }
+
+    ngOnInit() {
+        if (this.clickOverlayToClose === undefined) {
+            this.clickOverlayToClose = true;
+        } else if (this.clickOverlayToClose) {
+            this.clickOverlayToClose = JSON.parse(this.clickOverlayToClose);
+        }
     }
 
     ngAfterViewInit() {
@@ -57,9 +66,12 @@ export class UiDialogTriggerDirective implements AfterViewInit {
             if (!this.transparentOverlay && this.fabs.length) {
                 this.fabs.classList.add('hide');
             }
-            element.querySelectorAll('.overlay')[0].addEventListener('click', () => {
-                this.close();
-            });
+
+            if (this.clickOverlayToClose) {
+                element.querySelectorAll('.overlay')[0].addEventListener('click', () => {
+                    this.close();
+                });
+            }
 
             element.style.transform = '';
 

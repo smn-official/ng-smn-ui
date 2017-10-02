@@ -1,0 +1,34 @@
+<div class="light">
+    <ui-card>
+        <div>
+            <ui-tabs class="no-padding primary" #tabs>
+                <div class="tab selected" uiRipple (click)="tabsPages.pagesGoToPage(1)">
+                    Informações
+                </div>
+                <div class="tab" uiRipple (click)="tabsPages.pagesGoToPage(2)">
+                    Opções de Acesso
+                </div>
+            </ui-tabs>
+        </div>
+        <div>
+            <ui-tabs-pages #tabsPages [tabs]="tabs">
+                <div class="page">
+                    <ui-card-content>
+                        Página 1<br>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci asperiores consequatur
+                        ducimus eveniet expedita facilis id inventore mollitia nihil optio praesentium quasi sint sit,
+                        sunt veniam vitae voluptatum? Perspiciatis, quam?
+                    </ui-card-content>
+                </div>
+                <div class="page">
+                    <ui-card-content>
+                        Página 2<br>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci asperiores consequatur
+                        ducimus eveniet expedita facilis id inventore mollitia nihil optio praesentium quasi sint sit,
+                        sunt veniam vitae voluptatum? Perspiciatis, quam?
+                    </ui-card-content>
+                </div>
+            </ui-tabs-pages>
+        </div>
+    </ui-card>
+</div>

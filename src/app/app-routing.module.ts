@@ -29,6 +29,10 @@ import {DemoFileComponent} from './demo/demo-file/demo-file.component';
 import {DemoColorPickersComponent} from './demo/demo-color-pickers/demo-color-pickers.component';
 import {DemoClockComponent} from './demo/demo-clock/demo-clock.component';
 import {DemoTimePickersComponent} from './demo/demo-time-pickers/demo-time-pickers.component';
+import {DemoTabsComponent} from './demo/demo-tabs-pages/demo-tabs/demo-tabs.component';
+import {DemoTabsPagesComponent} from './demo/demo-tabs-pages/demo-tabs-pages.component';
+import {DemoPagesComponent} from './demo/demo-tabs-pages/demo-pages/demo-pages.component';
+import {DemoInfiniteLoadComponent} from './demo/demo-infinite-load/demo-infinite-load.component';
 import {DemoSelectComponent} from './demo/demo-select/demo-select.component';
 
 const routes: Routes = [
@@ -65,6 +69,10 @@ const routes: Routes = [
             {path: 'time-pickers', component: DemoTimePickersComponent},
             {path: 'toolbars', component: DemoToolbarsComponent},
             {path: 'list', component: DemoListComponent},
+            {path: 'tabs-pages', component: DemoTabsPagesComponent},
+            {path: 'tabs', component: DemoTabsComponent},
+            {path: 'pages', component: DemoPagesComponent},
+            {path: 'infinite-load', component: DemoInfiniteLoadComponent},
             {path: 'select', component: DemoSelectComponent},
         ]
     },
