@@ -1,0 +1,30 @@
+<div class="light">
+    <ui-card>
+        <div>
+            <ui-tabs-pages #tabsPages [tabs]="tabs">
+                <div class="page">
+                    <ui-card-content>
+                        Página 1<br>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci asperiores consequatur
+                        ducimus eveniet expedita facilis id inventore mollitia nihil optio praesentium quasi sint sit,
+                        sunt veniam vitae voluptatum? Perspiciatis, quam?
+                    </ui-card-content>
+                    <div class="ui-button-container cover">
+                        <button class="ui-button" (click)="tabsPages.pagesGoToPage(2)" uiRipple>Ir para página 2</button>
+                    </div>
+                </div>
+                <div class="page">
+                    <ui-card-content>
+                        Página 2<br>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci asperiores consequatur
+                        ducimus eveniet expedita facilis id inventore mollitia nihil optio praesentium quasi sint sit,
+                        sunt veniam vitae voluptatum? Perspiciatis, quam?
+                    </ui-card-content>
+                    <div class="ui-button-container cover">
+                        <button class="ui-button" (click)="tabsPages.pagesGoToPage(1)" uiRipple>Voltar para página 1</button>
+                    </div>
+                </div>
+            </ui-tabs-pages>
+        </div>
+    </ui-card>
+</div>
