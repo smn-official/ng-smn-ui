@@ -1,6 +1,7 @@
 <div class="ui-button-container">
     <button class="ui-button raised primary" [uiDialogTrigger]="testDialog" uiRipple>Open Dialog</button>
-    <button class="ui-button raised primary" [uiDialogTrigger]="testDialog" uiRipple transparent-overlay="true">
+    <button class="ui-button raised primary" uiRipple (click)="openWithService(testDialog)">Open Dialog with service</button>
+    <button class="ui-button raised primary" [uiDialogTrigger]="testDialog" uiRipple transparent-overlay="true" click-overlay-to-close="false">
         Open Dialog with Transparent Overlay
     </button>
 </div>
@@ -13,5 +14,6 @@
     </ui-card-content>
     <div class="ui-button-container cover">
         <button class="ui-button raised primary" uiRipple (click)="testDialog.close()">Close Dialog</button>
+        <button class="ui-button raised primary" uiRipple (click)="closeWithService()">Close Dialog with service</button>
     </div>
 </ui-dialog>

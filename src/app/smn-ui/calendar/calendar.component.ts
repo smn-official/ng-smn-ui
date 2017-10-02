@@ -2,7 +2,6 @@ import {
     Component,
     ComponentFactoryResolver,
     EventEmitter,
-    HostBinding,
     Input,
     OnChanges,
     OnInit,
@@ -50,10 +49,10 @@ export class UiCalendarComponent implements OnInit, OnChanges {
     }
 
     ngOnInit(): void {
-        this.minDate = isDate(new Date(this.minDate)) ? new Date(this.minDate) : this.minDate;
-        this.maxDate = isDate(new Date(this.maxDate)) ? new Date(this.maxDate) : this.maxDate;
-        this.chosenDate = isDate(new Date(this.ngModel)) ? new Date(this.ngModel) : null;
-        this.ngModel = isDate(new Date(this.ngModel)) ? new Date(this.ngModel) : this.ngModel;
+        this.minDate = this.minDate && isDate(new Date(this.minDate)) ? new Date(this.minDate) : this.minDate;
+        this.maxDate = this.maxDate && isDate(new Date(this.maxDate)) ? new Date(this.maxDate) : this.maxDate;
+        this.chosenDate = this.ngModel && isDate(new Date(this.ngModel)) ? new Date(this.ngModel) : null;
+        this.ngModel = this.ngModel && isDate(new Date(this.ngModel)) ? new Date(this.ngModel) : this.ngModel;
         this.viewDate = isDate(this.ngModel) ? this.ngModel : this.initOnSelected || new Date();
         this.renderCalendar(this.viewDate);
 
@@ -61,15 +60,15 @@ export class UiCalendarComponent implements OnInit, OnChanges {
 
     public ngOnChanges(value): void {
         if (value.ngModel && !value.ngModel.firstChange && !isNaN(value.ngModel.currentValue)) {
-            const ngModel = value.ngModel.currentValue = isDate(new Date(value.ngModel.currentValue)) ? new Date(value.ngModel.currentValue) : value.ngModel.currentValue;
+            const ngModel = value.ngModel.currentValue = value.ngModel.currentValue && isDate(new Date(value.ngModel.currentValue)) ? new Date(value.ngModel.currentValue) : value.ngModel.currentValue;
             this.ngModel = this.chosenDate = this.componentRef.instance.chosenDate = this.componentRef.instance.ngModel = ngModel;
         }
         if (value.maxDate && !value.maxDate.firstChange) {
-            const maxDate = value.maxDate.currentValue = isDate(new Date(value.maxDate.currentValue)) ? new Date(value.maxDate.currentValue) : value.maxDate.currentValue;
+            const maxDate = value.maxDate.currentValue = value.maxDate.currentValue && isDate(new Date(value.maxDate.currentValue)) ? new Date(value.maxDate.currentValue) : value.maxDate.currentValue;
             this.componentRef.instance.maxDate = this.maxDate = maxDate;
         }
         if (value.minDate && !value.minDate.firstChange) {
-            const minDate = value.minDate.currentValue = isDate(new Date(value.minDate.currentValue)) ? new Date(value.minDate.currentValue) : value.minDate.currentValue;
+            const minDate = value.minDate.currentValue = value.minDate.currentValue && isDate(new Date(value.minDate.currentValue)) ? new Date(value.minDate.currentValue) : value.minDate.currentValue;
             this.componentRef.instance.minDate = this.minDate = minDate;
         }
         if (value.confirmSelection) {
