@@ -32,6 +32,7 @@ import {DemoTimePickersComponent} from './demo/demo-time-pickers/demo-time-picke
 import {DemoTabsComponent} from './demo/demo-tabs-pages/demo-tabs/demo-tabs.component';
 import {DemoTabsPagesComponent} from './demo/demo-tabs-pages/demo-tabs-pages.component';
 import {DemoPagesComponent} from './demo/demo-tabs-pages/demo-pages/demo-pages.component';
+import {DemoInfiniteLoadComponent} from './demo/demo-infinite-load/demo-infinite-load.component';
 
 const routes: Routes = [
     {
@@ -70,6 +71,7 @@ const routes: Routes = [
             {path: 'tabs-pages', component: DemoTabsPagesComponent},
             {path: 'tabs', component: DemoTabsComponent},
             {path: 'pages', component: DemoPagesComponent},
+            {path: 'infinite-load', component: DemoInfiniteLoadComponent},
         ]
     },
     {path: '**', redirectTo: ''}
