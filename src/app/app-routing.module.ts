@@ -29,6 +29,7 @@ import {DemoFileComponent} from './demo/demo-file/demo-file.component';
 import {DemoColorPickersComponent} from './demo/demo-color-pickers/demo-color-pickers.component';
 import {DemoClockComponent} from './demo/demo-clock/demo-clock.component';
 import {DemoTimePickersComponent} from './demo/demo-time-pickers/demo-time-pickers.component';
+import {DemoSelectComponent} from './demo/demo-select/demo-select.component';
 
 const routes: Routes = [
     {
@@ -64,6 +65,7 @@ const routes: Routes = [
             {path: 'time-pickers', component: DemoTimePickersComponent},
             {path: 'toolbars', component: DemoToolbarsComponent},
             {path: 'list', component: DemoListComponent},
+            {path: 'select', component: DemoSelectComponent},
         ]
     },
     {path: '**', redirectTo: ''}

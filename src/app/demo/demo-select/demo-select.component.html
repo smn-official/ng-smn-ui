@@ -1,0 +1,20 @@
+<div class="light">
+    <ui-card>
+        <ui-card-title>Theme Light</ui-card-title>
+        <ui-card-content>
+            <ui-select [(model)]="test">
+                <ui-select-option *ngFor="let name of names" [value]="name.id" [label]="name.nome" uiRipple></ui-select-option>
+            </ui-select>
+        </ui-card-content>
+        <pre>ModelValue: {{test | json}}</pre>
+    </ui-card>
+</div>
+
+<div class="dark">
+    <ui-card>
+        <ui-card-title>Theme Dark</ui-card-title>
+        <ui-card-content>
+
+        </ui-card-content>
+    </ui-card>
+</div>

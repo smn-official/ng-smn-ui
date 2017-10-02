@@ -32,6 +32,7 @@ import {DemoFileComponent} from './demo-file/demo-file.component';
 import {DemoColorPickersComponent} from './demo-color-pickers/demo-color-pickers.component';
 import {DemoClockComponent} from './demo-clock/demo-clock.component';
 import {DemoTimePickersComponent} from './demo-time-pickers/demo-time-pickers.component';
+import {DemoSelectComponent} from './demo-select/demo-select.component';
 
 @NgModule({
     imports: [
@@ -72,7 +73,8 @@ import {DemoTimePickersComponent} from './demo-time-pickers/demo-time-pickers.co
         DemoFileComponent,
         DemoColorPickersComponent,
         DemoClockComponent,
-        DemoTimePickersComponent
+        DemoTimePickersComponent,
+        DemoSelectComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
