@@ -83,6 +83,7 @@ import {UiCurrencyPipe} from './utils/masks/currency/currency.pipe';
 import {UiDialog} from './dialog/dialog.service';
 import {UiSelectComponent} from './select/select.component';
 import {UiSelectOptionComponent} from './select/option/option.component';
+import {UiSelectFilterPipe} from './select/select-filter.pipe';
 
 export {
     debounce,
@@ -177,6 +178,7 @@ const lib: any[] = [
     UiCurrencyPipe,
     UiSelectComponent,
     UiSelectOptionComponent,
+    UiSelectFilterPipe
 ];
 
 @NgModule({

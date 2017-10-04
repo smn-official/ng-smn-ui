@@ -1,0 +1,13 @@
+@import "../core/variables";
+
+@mixin ui-select($theme) {
+    ui-select, .wrap-select-inner {
+        background-color: ui-if(map-get($theme, is-dark) == true, ui-color('grey', '700'), ui-color('grey', '100'));
+        color: ui-if(map-get($theme, is-dark) == true, ui-color('grey', '100'), ui-color('grey', '700'));
+    }
+
+    .wrap-select-inner input {
+        background-color: ui-if(map-get($theme, is-dark) == true, ui-color('grey', '600'), ui-color('white', '500'));
+        color: ui-if(map-get($theme, is-dark) == true, ui-color('grey', '200'), ui-color('grey', '600'));
+    }
+}

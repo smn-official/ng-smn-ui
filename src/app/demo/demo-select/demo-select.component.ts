@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
 import {UiToolbarService} from '../../smn-ui/smn-ui.module';
@@ -10,6 +10,7 @@ import {UiToolbarService} from '../../smn-ui/smn-ui.module';
 })
 export class DemoSelectComponent implements OnInit {
     names;
+    @ViewChild('selectField') selectField;
 
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
         this.names = [
@@ -26,5 +27,4 @@ export class DemoSelectComponent implements OnInit {
         this.titleService.setTitle('Select - SMN UI Demos');
         this.toolbarService.set('Select');
     }
-
 }

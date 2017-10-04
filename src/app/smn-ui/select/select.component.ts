@@ -1,50 +1,73 @@
 import {
     Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output,
-    ViewEncapsulation, ViewContainerRef, ViewChild, TemplateRef
+    ViewContainerRef, ViewChild, TemplateRef, AfterViewInit
 } from '@angular/core';
 import {UiElement} from '../utils/providers/element.provider';
-import {UiElementRef} from '../utils/providers/element-ref.provider';
+import {NG_VALUE_ACCESSOR, NgModel} from '@angular/forms';
+import {UiSelectFilterPipe} from './select-filter.pipe';
 
 @Component({
     selector: 'ui-select',
     templateUrl: 'select.component.html',
-    styleUrls: ['./select.component.scss']
+    styleUrls: ['./select.component.scss'],
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: UiSelectComponent,
+        multi: true,
+    }],
 })
 
-export class UiSelectComponent implements OnInit {
-    @Input() model;
-    @Output() modelChange = new EventEmitter();
+export class UiSelectComponent implements OnInit, AfterViewInit {
+    @Input('dark-class') darkClass;
+    @Input() input;
+    @Input() chosen;
+    @Output() ngModelChange = new EventEmitter();
     selected;
-    options;
     viewRef;
     @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
+    @ViewChild('selectNative') selectNative;
+    selectedNative;
+    search;
+    @Input() value;
+    @Input() label;
+    @Input() options;
+    optionsExternal;
+    @ViewChild(NgModel) model: NgModel;
+    isMobile = UiElement.isMobile;
 
     constructor(public element: ElementRef, public viewContainerRef: ViewContainerRef) {
         this.options = [];
+        this.optionsExternal = [];
     }
 
     ngOnInit() {
-        this.element.nativeElement.setAttribute('tabindex', 1);
+        this.element.nativeElement.setAttribute('tabindex', 0);
+    }
+
+    ngAfterViewInit() {
     }
 
     @HostListener('focus')
     onFocus() {
         this.close();
 
-        setTimeout(() => {
-            const position = UiElement.position(this.element.nativeElement);
-            const coordinate = {
-                x: position.left,
-                y: position.top
-            };
-            this.render(coordinate);
-            console.log(coordinate);
-        });
+        if (this.isMobile()) {
+            this.selectNative.nativeElement.focus();
+        } else {
+            setTimeout(() => {
+                const position = UiElement.position(this.element.nativeElement);
+                const coordinate = {
+                    x: position.left,
+                    y: position.top
+                };
+                this.render(coordinate);
+            });
+        }
     }
 
     @HostListener('blur', ['$event'])
     onBlur(event) {
-        if (!event.relatedTarget || !UiElement.is(event.relatedTarget, 'ui-select-option')) {
+        if (!event.relatedTarget || !(UiElement.is(event.relatedTarget, 'ui-select-option') || UiElement.closest(event.relatedTarget, '.wrap-select'))) {
             this.close();
         }
     }
@@ -86,9 +109,9 @@ export class UiSelectComponent implements OnInit {
                 coordinate.y = 0;
             }
 
-            // if (this.themeClass) {
-            //     element.classList.add(this.themeClass);
-            // }
+            if (this.darkClass) {
+                element.classList.add(this.darkClass);
+            }
 
             element.style.transform = '';
             // element.querySelector('ui-card').style.maxHeight = window.innerHeight + 'px';
@@ -96,6 +119,23 @@ export class UiSelectComponent implements OnInit {
             element.style.left = coordinate.x + 'px';
             element.style.left = coordinate.x + 'px';
             element.style.width = this.element.nativeElement.clientWidth + 'px';
+
+            element.querySelector('.selected').addEventListener('blur', (event) => {
+                if (!event.relatedTarget || !(UiElement.is(event.relatedTarget, 'ui-select-option') || UiElement.is(event.relatedTarget, '.input-select'))) {
+                    this.close();
+                }
+            });
+            if (this.chosen) {
+                element.querySelector('.input-select').addEventListener('blur', (event) => {
+                    if (!event.relatedTarget || !(UiElement.is(event.relatedTarget, 'ui-select-option') || UiElement.is(event.relatedTarget, '.selected'))) {
+                        this.close();
+                    }
+                });
+                element.querySelector('.input-select').click();
+                element.scrollTo(0, 0);
+            } else {
+                element.querySelector('.selected').focus();
+            }
 
             element.classList.add('open');
         });
@@ -113,6 +153,23 @@ export class UiSelectComponent implements OnInit {
 
             setTimeout(() => this.viewContainerRef.remove(this.viewContainerRef.indexOf(viewRef)), 280);
         }
+    }
+
+    onChangeSelect(select) {
+        if (select) {
+            this.model = select[this.value];
+            this.selected = select[this.label];
+            this.ngModelChange.emit(select[this.value]);
+        }
+    }
+
+    writeValue() {
+    }
+
+    registerOnChange() {
+    }
+
+    registerOnTouched() {
     }
 }
 
