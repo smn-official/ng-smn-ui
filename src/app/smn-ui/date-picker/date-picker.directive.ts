@@ -1,7 +1,7 @@
 import {Directive, EventEmitter, Input, Output, OnChanges, OnInit, OnDestroy} from '@angular/core';
 import {UiReferencesService} from './references.service';
 import {Subject} from 'rxjs/Subject';
-import {isDate} from "rxjs/util/isDate";
+import {isDate} from 'rxjs/util/isDate';
 
 @Directive({
     selector: '[uiDatePicker]'
