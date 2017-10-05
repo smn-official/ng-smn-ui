@@ -1,0 +1,42 @@
+<div class="light">
+    <ui-card>
+        <ui-card-title>Theme Light</ui-card-title>
+        <ui-card-content>
+            <form #form="ngForm" class="ui-validate on-dirty on-submit">
+                <ui-select #selectField="ngModel" name="test" [(ngModel)]="test" [chosen]="true" [options]="names" value="id" label="nome">
+                </ui-select>
+                <div class="ui-messages">
+                    <div>
+                        <div class="ui-message error"
+                             [hidden]="!selectField.errors || !selectField.errors.required">Validation
+                            is
+                            required
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </ui-card-content>
+        <pre>ModelValue: {{test | json}}</pre>
+    </ui-card>
+</div>
+
+<div class="dark">
+    <ui-card>
+        <ui-card-title>Theme Dark</ui-card-title>
+        <ui-card-content>
+            <form #form="ngForm" class="ui-validate on-dirty on-submit">
+                <ui-select #selectField="ngModel" name="test" dark-class="dark" [(ngModel)]="test" [chosen]="true" [options]="names" value="id" label="nome">
+                </ui-select>
+                <div class="ui-messages">
+                    <div>
+                        <div class="ui-message error"
+                             [hidden]="!selectField.errors || !selectField.errors.required">Validation
+                            is
+                            required
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </ui-card-content>
+    </ui-card>
+</div>

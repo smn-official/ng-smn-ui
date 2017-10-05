@@ -33,6 +33,7 @@ import {DemoTabsComponent} from './demo/demo-tabs-pages/demo-tabs/demo-tabs.comp
 import {DemoTabsPagesComponent} from './demo/demo-tabs-pages/demo-tabs-pages.component';
 import {DemoPagesComponent} from './demo/demo-tabs-pages/demo-pages/demo-pages.component';
 import {DemoInfiniteLoadComponent} from './demo/demo-infinite-load/demo-infinite-load.component';
+import {DemoSelectComponent} from './demo/demo-select/demo-select.component';
 
 const routes: Routes = [
     {
@@ -72,6 +73,7 @@ const routes: Routes = [
             {path: 'tabs', component: DemoTabsComponent},
             {path: 'pages', component: DemoPagesComponent},
             {path: 'infinite-load', component: DemoInfiniteLoadComponent},
+            {path: 'select', component: DemoSelectComponent},
         ]
     },
     {path: '**', redirectTo: ''}

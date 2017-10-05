@@ -80,7 +80,10 @@ import {UiTimePipe} from './utils/masks/time/time.pipe';
 import {UiMaskTimeDirective} from './utils/masks/time/mask-time.directive';
 import {UiMaskCurrencyDirective} from './utils/masks/currency/mask-currency.directive';
 import {UiCurrencyPipe} from './utils/masks/currency/currency.pipe';
-import {UiDialog} from "./dialog/dialog.service";
+import {UiDialog} from './dialog/dialog.service';
+import {UiSelectComponent} from './select/select.component';
+import {UiSelectOptionComponent} from './select/option/option.component';
+import {UiSelectFilterPipe} from './select/select-filter.pipe';
 
 export {
     debounce,
@@ -173,7 +176,10 @@ const lib: any[] = [
     UiTimePipe,
     UiMaskTimeDirective,
     UiMaskCurrencyDirective,
-    UiCurrencyPipe
+    UiCurrencyPipe,
+    UiSelectComponent,
+    UiSelectOptionComponent,
+    UiSelectFilterPipe
 ];
 
 @NgModule({
@@ -195,7 +201,7 @@ const lib: any[] = [
         UiWindowRef,
         UiInfiniteLoadService,
         UiTimePickerService,
-        UiDialog
+        UiDialog,
     ],
     entryComponents: [
         UiCalendarComponent,

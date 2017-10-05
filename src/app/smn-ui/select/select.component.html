@@ -1,0 +1,34 @@
+<div class="selected">{{selected}}</div>
+<ng-template>
+    <div class="wrap-select">
+        <div class="wrap-select-inner">
+            <div class="selected" tabindex="0" (click)="close()">{{selected}}</div>
+            <div class="ui-divider"></div>
+            <div *ngIf="chosen">
+                <div class="input-select-space">
+                    <input type="text" [(ngModel)]="search" class="input-select">
+                </div>
+                <div class="ui-divider"></div>
+            </div>
+            <div class="options">
+                <ng-content></ng-content>
+                <ui-select-option *ngFor="let item of optionsExternal" [value]="value" [label]="label"
+                                  uiRipple></ui-select-option>
+                <ui-select-option *ngFor="let item of options | selectFilter : search : label" [value]="item[value]"
+                                  [label]="item[label]" [internal]="true"
+                                  uiRipple></ui-select-option>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<div [hidden]="!options || !isMobile()">
+    <select #selectNative
+            style="transform: scale(1); position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0"
+            [(ngModel)]="selectedNative"
+            (change)="onChangeSelect(selectedNative)">
+        <option *ngFor="let option of options" [ngValue]="option">
+            {{option ? option[label] : null}}
+        </option>
+    </select>
+</div>
