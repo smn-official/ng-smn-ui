@@ -36,6 +36,9 @@ export class UiDialog {
             if (config.darkClass) {
                 element.classList.add(config.darkClass);
             }
+            if (config.themeClass) {
+                element.classList.add(config.themeClass);
+            }
             if (config.transparentOverlay) {
                 element.classList.add('transparent-overlay');
             }
