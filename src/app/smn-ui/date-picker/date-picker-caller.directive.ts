@@ -100,8 +100,8 @@ export class UiDatePickerCallerDirective implements AfterViewInit {
         setTimeout(() => {
             const pickerHorizontalCoveringArea = coordinate.x + element.clientWidth;
             const pickerVerticalCoveringArea = coordinate.y + element.clientHeight;
-            const windowWidth = UiWindowRef.nativeWindow.innerWidth + document.body.scrollLeft;
-            const windowHeight = UiWindowRef.nativeWindow.innerHeight + document.body.scrollTop;
+            const windowWidth = UiWindowRef.nativeWindow.innerWidth + (document.body.scrollLeft || window.scrollX);
+            const windowHeight = UiWindowRef.nativeWindow.innerHeight + (document.body.scrollTop || window.scrollY);
 
             if (pickerHorizontalCoveringArea > windowWidth) {
                 coordinate.x = windowWidth - (element.clientWidth + 8);

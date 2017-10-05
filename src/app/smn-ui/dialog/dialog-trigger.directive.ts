@@ -85,7 +85,6 @@ export class UiDialogTriggerDirective implements AfterViewInit {
                 });
             }
 
-
             viewRef.rootNodes.forEach(rootNode => {
                 if (rootNode.classList) {
                     rootNode.classList.remove('open');
