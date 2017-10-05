@@ -99,7 +99,8 @@ export {
     UiDatetimeService,
     UiTimePipe,
     UiCurrencyPipe,
-    UiMaskPhoneDirective
+    UiMaskPhoneDirective,
+    UiDialog
 }
 
 const lib: any[] = [

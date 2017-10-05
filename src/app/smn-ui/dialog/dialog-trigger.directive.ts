@@ -1,28 +1,18 @@
-import {AfterViewInit, Directive, ElementRef, Input, OnInit, ViewContainerRef} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, Input, ViewContainerRef} from '@angular/core';
 import {UiElement} from '../utils/providers/element.provider';
-import {UiElementRef} from '../utils/providers/element-ref.provider';
 
 @Directive({
     selector: '[uiDialogTrigger]'
 })
-export class UiDialogTriggerDirective implements OnInit, AfterViewInit {
+export class UiDialogTriggerDirective implements AfterViewInit {
     viewRef: any;
-    fabs;
     @Input('trigger-events') triggerEvents: string;
     @Input('dark-class') darkClass: string;
+    @Input('theme-class') themeClass: string;
     @Input('transparent-overlay') transparentOverlay: boolean;
-    @Input('click-overlay-to-close') clickOverlayToClose: any;
     @Input('uiDialogTrigger') dialog;
 
     constructor(public viewContainerRef: ViewContainerRef, public elementRef: ElementRef) {
-    }
-
-    ngOnInit() {
-        if (this.clickOverlayToClose === undefined) {
-            this.clickOverlayToClose = true;
-        } else if (this.clickOverlayToClose) {
-            this.clickOverlayToClose = JSON.parse(this.clickOverlayToClose);
-        }
     }
 
     ngAfterViewInit() {
@@ -50,10 +40,13 @@ export class UiDialogTriggerDirective implements OnInit, AfterViewInit {
 
     open(element) {
         setTimeout(() => {
-            this.fabs = new UiElementRef(document).querySelector('.ui-fab-container');
+            const fabs = document.querySelectorAll('.ui-fab-container');
 
             if (this.darkClass) {
                 element.classList.add(this.darkClass);
+            }
+            if (this.themeClass) {
+                element.classList.add(this.themeClass);
             }
             if (this.transparentOverlay) {
                 element.classList.add('transparent-overlay');
@@ -63,15 +56,14 @@ export class UiDialogTriggerDirective implements OnInit, AfterViewInit {
                 element.querySelectorAll('ui-card')[0].style.width = '100%';
             }
 
-            if (!this.transparentOverlay && this.fabs.length) {
-                this.fabs.classList.add('hide');
-            }
-
-            if (this.clickOverlayToClose) {
-                element.querySelectorAll('.overlay')[0].addEventListener('click', () => {
-                    this.close();
+            if (!this.transparentOverlay && fabs.length) {
+                Array.prototype.forEach.call(fabs, fab => {
+                    fab.classList.add('hide');
                 });
             }
+            element.querySelectorAll('.overlay')[0].addEventListener('click', () => {
+                this.close();
+            });
 
             element.style.transform = '';
 
@@ -84,8 +76,13 @@ export class UiDialogTriggerDirective implements OnInit, AfterViewInit {
     close() {
         if (this.viewContainerRef.length) {
             const viewRef = this.viewRef; // Salvando a referência para achar o index deste componente
-            if (this.fabs.length) {
-                this.fabs.classList.remove('hide');
+
+            const fabs = document.querySelectorAll('.ui-fab-container');
+            if (fabs.length) {
+
+                Array.prototype.forEach.call(fabs, fab => {
+                    fab.classList.remove('hide');
+                });
             }
 
 
