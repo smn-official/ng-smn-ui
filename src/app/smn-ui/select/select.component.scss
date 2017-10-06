@@ -30,6 +30,7 @@
     position: absolute;
     user-select: none;
     cursor: default;
+    z-index: 5;
 
     &.open {
         max-height: 216px;
