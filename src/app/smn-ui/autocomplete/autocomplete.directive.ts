@@ -142,16 +142,16 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
 
     private close() {
 
-        if (this.wrapElement) {
-            this.wrapElement.classList.remove('open');
-            setTimeout(() => {
-                if (this.componentRef) {
-                    this.applicationRef.detachView(this.componentRef.hostView);
-                    this.componentRef = null;
-                    this.wrapElement.remove();
-                }
-            }, 280);
-        }
+        // if (this.wrapElement) {
+        //     this.wrapElement.classList.remove('open');
+        //     setTimeout(() => {
+        //         if (this.componentRef) {
+        //             this.applicationRef.detachView(this.componentRef.hostView);
+        //             this.componentRef = null;
+        //             this.wrapElement.remove();
+        //         }
+        //     }, 280);
+        // }
 
     }
 
@@ -192,7 +192,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
         }
 
         if (verticalCoveringArea > windowHeight) {
-            coordinate.y = coordinate.y - wrap.clientHeight + this.elementRef.nativeElement.clientHeight - 14; // 14 = label focus
+            coordinate.y = coordinate.y - ((wrap.clientHeight > maxHeightWrap ? maxHeightWrap : wrap.clientHeight) + this.elementRef.nativeElement.clientHeight) - 14; // 14 = label focus
         }
 
         this.wrapElement.style.top = (coordinate.y + this.elementRef.nativeElement.clientHeight) + 'px';

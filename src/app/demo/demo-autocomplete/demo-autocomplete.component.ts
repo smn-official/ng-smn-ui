@@ -15,6 +15,7 @@ export class DemoAutocompleteComponent implements OnInit, AfterViewInit, OnDestr
     loading;
     timing;
     allStatesFiltered: any[];
+    teste;
 
     constructor(public toolbarService: UiToolbarService) {
         this.states = ['São Paulo', 'Rio de Janeiro', 'Brasília', 'Brasília Amarela'];
@@ -59,6 +60,31 @@ export class DemoAutocompleteComponent implements OnInit, AfterViewInit, OnDestr
     }
 
     loadMore() {
+        if (this.teste) {
+            return;
+        }
+
+        this.teste = true;
+
+        this.allStatesFiltered = [...this.allStates, ...[{
+            name: 'Brasilia',
+            country: 'Brazil'
+        }, {
+            name: 'Santa catarina',
+            country: 'Brazil'
+        }, {
+            name: 'Malibu',
+            country: 'USA'
+        }, {
+            name: 'Dublin',
+            country: 'Irland'
+        }, {
+            name: 'Galway',
+            country: 'Irland'
+        }, {
+            name: 'Tokio',
+            country: 'Japan'
+        }]];
         console.log('teste');
     }
 
