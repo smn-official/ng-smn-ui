@@ -141,18 +141,16 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     }
 
     private close() {
-
-        // if (this.wrapElement) {
-        //     this.wrapElement.classList.remove('open');
-        //     setTimeout(() => {
-        //         if (this.componentRef) {
-        //             this.applicationRef.detachView(this.componentRef.hostView);
-        //             this.componentRef = null;
-        //             this.wrapElement.remove();
-        //         }
-        //     }, 280);
-        // }
-
+        if (this.wrapElement) {
+            this.wrapElement.classList.remove('open');
+            setTimeout(() => {
+                if (this.componentRef) {
+                    this.applicationRef.detachView(this.componentRef.hostView);
+                    this.componentRef = null;
+                    this.wrapElement.remove();
+                }
+            }, 280);
+        }
     }
 
     private initialize() {
