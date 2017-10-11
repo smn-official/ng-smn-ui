@@ -1,6 +1,6 @@
 import {
     Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output,
-    ViewContainerRef, ViewChild, TemplateRef, AfterViewInit
+    ViewContainerRef, ViewChild, TemplateRef, AfterViewInit, OnChanges
 } from '@angular/core';
 import {UiElement} from '../utils/providers/element.provider';
 import {NG_VALUE_ACCESSOR, NgModel} from '@angular/forms';
@@ -17,7 +17,7 @@ import {UiSelectFilterPipe} from './select-filter.pipe';
     }],
 })
 
-export class UiSelectComponent implements OnInit, AfterViewInit {
+export class UiSelectComponent implements OnInit, AfterViewInit, OnChanges {
     @Input('dark-class') darkClass;
     @Input() input;
     @Input() chosen;
@@ -31,6 +31,7 @@ export class UiSelectComponent implements OnInit, AfterViewInit {
     @Input() value;
     @Input() label;
     @Input() options;
+    @Input() ngModel;
     optionsExternal;
     @ViewChild(NgModel) model: NgModel;
     isMobile = UiElement.isMobile;
@@ -42,9 +43,17 @@ export class UiSelectComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.element.nativeElement.setAttribute('tabindex', 0);
+        this.selectOption();
     }
 
     ngAfterViewInit() {
+    }
+
+    ngOnChanges(changes) {
+        if (changes.options && !changes.options.firstChange) {
+            this.options = changes.options.currentValue;
+            this.selectOption();
+        }
     }
 
     @HostListener('focus')
@@ -161,6 +170,14 @@ export class UiSelectComponent implements OnInit, AfterViewInit {
             this.selected = select[this.label];
             this.ngModelChange.emit(select[this.value]);
         }
+    }
+
+    selectOption() {
+        this.options.forEach(option => {
+            if (option[this.value] === this.ngModel) {
+                this.onChangeSelect(option);
+            }
+        });
     }
 
     writeValue() {

@@ -112,14 +112,14 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
         } else if (checkDate(value)) {
             dateControl.setHours(0, 0, 0, 0);
 
-            if (this.minDate) {
+            if (this.minDate && isDate(this.minDate)) {
                 this.minDate.setHours(0, 0, 0, 0);
 
                 if (dateControl.getTime() < this.minDate.getTime()) {
                     return {minDate: true};
                 }
             }
-            if (this.maxDate) {
+            if (this.maxDate && isDate(this.maxDate)) {
                 this.maxDate.setHours(0, 0, 0, 0);
 
                 if (dateControl.getTime() > this.maxDate.getTime()) {
