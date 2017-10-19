@@ -2,7 +2,7 @@
     <ui-card>
         <ui-card-title>Infinite load (dentro de um elemento)</ui-card-title>
         <ui-card-content>
-            <div style="overflow: scroll; height: 600px" (uiInfiniteLoad)="loadMore()">
+            <div style="overflow: scroll; height: 600px" (uiInfiniteLoad)="loadMore()" orientation="vertical">
                 <div *ngFor="let item of items" style="height: 300px">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid at dignissimos eum nesciunt quod
                     repudiandae sed tenetur! Beatae corporis dolorem doloremque doloribus natus perspiciatis quasi

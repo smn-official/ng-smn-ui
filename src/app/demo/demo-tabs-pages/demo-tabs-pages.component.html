@@ -13,12 +13,15 @@
         <div>
             <ui-tabs-pages #tabsPages [tabs]="tabs">
                 <div class="page">
-                    <ui-card-content>
-                        Página 1<br>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci asperiores consequatur
-                        ducimus eveniet expedita facilis id inventore mollitia nihil optio praesentium quasi sint sit,
-                        sunt veniam vitae voluptatum? Perspiciatis, quam?
-                    </ui-card-content>
+                    <div *ngIf="tabsPages.currentPage === 1">
+                        <ui-card-content>
+                            Página 1<br>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci asperiores consequatur
+                            ducimus eveniet expedita facilis id inventore mollitia nihil optio praesentium quasi sint
+                            sit,
+                            sunt veniam vitae voluptatum? Perspiciatis, quam?
+                        </ui-card-content>
+                    </div>
                 </div>
                 <div class="page">
                     <ui-card-content>
