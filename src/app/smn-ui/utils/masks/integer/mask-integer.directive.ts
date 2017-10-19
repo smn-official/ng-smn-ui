@@ -106,6 +106,11 @@ export class UiMaskIntegerDirective implements ControlValueAccessor, AfterViewIn
         return null;
     }
 
+    setDisabledState(isDisabled: boolean) {
+        const method = isDisabled ? 'setAttribute' : 'removeAttribute';
+        this.elementRef.nativeElement[method]('disabled', 'disabled');
+    }
+
     @HostListener('input', ['$event'])
     onInput($event): void {
         const rawValue = this.elementRef.nativeElement.value;

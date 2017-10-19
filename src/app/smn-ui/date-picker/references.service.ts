@@ -13,7 +13,7 @@ export class UiReferencesService {
 
     add(name: string, component: UiDatePickerDirective): void {
         if (this.datePickers && this.datePickers[name]) {
-            throw console.error('Error');
+            return;
         }
 
         this.datePickers[name] = component;

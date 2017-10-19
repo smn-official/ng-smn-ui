@@ -131,11 +131,18 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
         return null;
     }
 
-    @HostListener('keydown') onKeydown() {
+    setDisabledState(isDisabled: boolean) {
+        const method = isDisabled ? 'setAttribute' : 'removeAttribute';
+        this.elementRef.nativeElement[method]('disabled', 'disabled');
+    }
+
+    @HostListener('keydown')
+    onKeydown() {
         this.beforeSelIndex = UiElement.caretPosition.get(this.elementRef.nativeElement);
     }
 
-    @HostListener('input', ['$event']) onInput($event): void {
+    @HostListener('input', ['$event'])
+    onInput($event): void {
         const afterSelIndex = UiElement.caretPosition.get(this.elementRef.nativeElement);
         const rawValue: string = this.elementRef.nativeElement.value;
         this.input = true;

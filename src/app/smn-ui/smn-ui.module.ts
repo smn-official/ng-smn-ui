@@ -84,6 +84,7 @@ import {UiDialog} from './dialog/dialog.service';
 import {UiSelectComponent} from './select/select.component';
 import {UiSelectOptionComponent} from './select/option/option.component';
 import {UiSelectFilterPipe} from './select/select-filter.pipe';
+import {UiFilterPipe} from './utils/pipes/filter.pipe';
 
 export {
     debounce,
@@ -103,7 +104,8 @@ export {
     UiTimePipe,
     UiCurrencyPipe,
     UiMaskPhoneDirective,
-    UiDialog
+    UiDialog,
+    UiFilterPipe
 }
 
 const lib: any[] = [
@@ -179,7 +181,8 @@ const lib: any[] = [
     UiCurrencyPipe,
     UiSelectComponent,
     UiSelectOptionComponent,
-    UiSelectFilterPipe
+    UiSelectFilterPipe,
+    UiFilterPipe
 ];
 
 @NgModule({
