@@ -10,20 +10,27 @@ import {
     Injector,
     Input,
     OnChanges, OnInit,
-    Output
+    Output, forwardRef
 } from '@angular/core';
 import {UiElement} from '../utils/providers/element.provider';
 import {UiAutocompleteComponent} from './autocomplete.component';
 import {UiWindowRef} from '../utils/providers/window.provider';
+import {FormControl, NG_VALIDATORS} from '@angular/forms';
 
 @Directive({
-    selector: '[uiAutocomplete]'
+    selector: '[uiAutocomplete]',
+    providers: [{
+        provide: NG_VALIDATORS,
+        useExisting: forwardRef(() => UiAutocompleteDirective),
+        multi: true
+    }]
 })
 export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges {
 
     @Input() list: any[];
     @Input() ngModel: any;
     @Input() modelValue: any;
+    @Input('model-property') modelProperty: any;
     @Input() select: Function;
     @Input() primary: string;
     @Input() secondary: string;
@@ -40,6 +47,9 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     componentRef: any;
     componentElement: HTMLElement;
     wrapElement: HTMLElement;
+    control: FormControl;
+    onChange: Function;
+    onTouched: Function;
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver,
                 private applicationRef: ApplicationRef,
@@ -50,7 +60,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     public ngOnInit() {
         this.selectChange.subscribe(item => {
             this.ngModel = item[this.primary] || item;
-            this.modelValue = item;
+            this.modelValue = this.modelProperty && item && typeof item === 'object' ? item[this.modelProperty] : item;
             this.ngModelChange.emit(this.ngModel);
             this.modelValueChange.emit(this.modelValue);
             if (this.select) {
@@ -198,10 +208,33 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
         this.wrapElement.style.width = this.elementRef.nativeElement.clientWidth + 'px';
     }
 
+    registerOnChange(fn: any): void {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn: any): void {
+        this.onTouched = fn;
+    }
+
+    validate(control: FormControl): { [key: string]: any } {
+
+        this.control = control;
+
+        console.log(control.value);
+        console.log(this.modelValue);
+
+        if (!control.value || !this.modelValue) {
+            return {required: true};
+        }
+
+        return null;
+    }
+
     @HostListener('input') onInput() {
         if (this.ngModel !== this.modelValue) {
             this.modelValue = null;
             this.modelValueChange.emit(this.modelValue);
+            console.log(this.control.updateValueAndValidity());
         }
     }
 
