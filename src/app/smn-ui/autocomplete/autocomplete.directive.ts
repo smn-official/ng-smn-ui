@@ -231,7 +231,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
         if (this.ngModel !== this.modelValue) {
             this.modelValue = null;
             this.modelValueChange.emit(this.modelValue);
-            this.control.updateValueAndValidity()
+            this.control.updateValueAndValidity();
         }
     }
 
