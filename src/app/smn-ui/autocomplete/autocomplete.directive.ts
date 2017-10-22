@@ -220,7 +220,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
 
         this.control = control;
 
-        if (!control.value || !this.modelValue) {
+        if (this.elementRef.nativeElement.hasAttribute('required') && (!control.value || !this.modelValue)) {
             return {required: true};
         }
 
