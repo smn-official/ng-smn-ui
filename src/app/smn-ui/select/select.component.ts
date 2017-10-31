@@ -59,17 +59,21 @@ export class UiSelectComponent implements OnInit, AfterViewInit, OnChanges {
     onFocus() {
         this.close();
 
-        if (this.isMobile()) {
-            this.selectNative.nativeElement.focus();
-        } else {
-            setTimeout(() => {
-                const position = UiElement.position(this.element.nativeElement);
-                const coordinate = {
-                    x: position.left,
-                    y: position.top
-                };
-                this.render(coordinate);
-            });
+        const closestFieldset = UiElement.closest(this.element.nativeElement, 'fieldset:disabled');
+
+        if (!this.element.nativeElement.disabled && !closestFieldset) {
+            if (this.isMobile()) {
+                this.selectNative.nativeElement.focus();
+            } else {
+                setTimeout(() => {
+                    const position = UiElement.position(this.element.nativeElement);
+                    const coordinate = {
+                        x: position.left,
+                        y: position.top
+                    };
+                    this.render(coordinate);
+                });
+            }
         }
     }
 
