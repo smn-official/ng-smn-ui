@@ -126,6 +126,12 @@ ui-input-container {
         cursor: default;
         user-select: none;
         top: 20px;
+        &.text {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            margin-top: 0;
+        }
 
         & ~ .ui-control {
             padding-right: 32px;
@@ -176,4 +182,10 @@ ui-input-container {
 	75% {
 		transform: translateX(1px);
 	}
+}
+
+fieldset:disabled ui-input-container {
+    &, * {
+        cursor: not-allowed;
+    }
 }
