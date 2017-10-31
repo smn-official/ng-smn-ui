@@ -27,17 +27,23 @@ export class UiMaskCurrencyDirective implements ControlValueAccessor, Validator,
     onChange: Function;
     onTouched: Function;
     control: FormControl;
-    symbolsPositions: number[] = [2];
-    @Input()
     @Input() ngModel: any;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
+    @Input() min: number;
+    @Input() max: number;
 
     constructor(public elementRef: ElementRef, public currencyPipe: UiCurrencyPipe) {
     }
 
     ngOnChanges(changes): void {
-        if (!changes.ngModel.firstChange && (changes.ngModel.currentValue === null || changes.ngModel.currentValue === undefined)) {
+        if (changes.ngModel && !changes.ngModel.firstChange && (changes.ngModel.currentValue === null || changes.ngModel.currentValue === undefined)) {
             this.elementRef.nativeElement.value = '';
+        }
+        if (typeof changes.max !== 'undefined') {
+            this.max = changes.max.currentValue;
+        }
+        if (typeof changes.min !== 'undefined') {
+            this.min = changes.min.currentValue;
         }
     }
 
@@ -95,6 +101,14 @@ export class UiMaskCurrencyDirective implements ControlValueAccessor, Validator,
         // if (control.value && this.format(control.value).length < 11) {
         //     return {parse: true};
         // }
+
+        if (typeof this.min !== 'undefined' && control.value && this.format(control.value) < this.min) {
+            return {min: true};
+        }
+
+        if (typeof this.max !== 'undefined' && control.value && this.format(control.value) > this.max) {
+            return {max: true};
+        }
 
         return null;
     }
