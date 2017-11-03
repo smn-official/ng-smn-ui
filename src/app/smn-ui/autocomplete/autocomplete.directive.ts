@@ -220,9 +220,6 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
 
         this.control = control;
 
-        console.log(control.value);
-        console.log(this.modelValue);
-
         if (!control.value || !this.modelValue) {
             return {required: true};
         }
@@ -234,7 +231,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
         if (this.ngModel !== this.modelValue) {
             this.modelValue = null;
             this.modelValueChange.emit(this.modelValue);
-            console.log(this.control.updateValueAndValidity());
+            this.control.updateValueAndValidity();
         }
     }
 
