@@ -4,7 +4,7 @@
              *ngFor="let color of colors"
              tabindex="1"
              [class.selected]="color.name === colorSelected.name"
-             [ngStyle]="{'background-color': getColor(color.name, color.name === colorSelected.name ? value : 500)}"
+             [ngStyle]="{'background-color': getColor(color.name, color.name === colorSelected.name ? value : 500), 'border': color.hasBorder ? '1px solid #424242' : 'none'}"
              (click)="selectColor(color)">
             <i class="material-icons" [style.color]="getColorText(color.name, color.name === colorSelected.name ? value : 500)" *ngIf="color.selected">done</i>
         </div>
@@ -12,7 +12,7 @@
             <i class="material-icons secondary-text">block</i>
         </div>
     </div>
-    <ui-card-content [hidden]="!colorSelected.name">
+    <ui-card-content [hidden]="!colorSelected.name" *ngIf="!colorSelected.hideSlider">
         <ui-slider [range]="hues"
                    [(value)]="value"
                    [hideBalloon]="true"

@@ -38,6 +38,13 @@ const colors: any[] = [{
     name: 'grey'
 }, {
     name: 'blueGrey'
+}, {
+    name: 'black',
+    hideSlider: true
+}, {
+    name: 'white',
+    hideSlider: true,
+    hasBorder: true
 }];
 const palette: any = {
     red: {
@@ -836,6 +843,18 @@ const palette: any = {
         900: {
             color: '#263238',
             text: textWhite
+        }
+    },
+    black: {
+        500: {
+            color: '#000000',
+            text: textWhite
+        }
+    },
+    white: {
+        500: {
+            color: '#FFFFFF',
+            text: textBlack
         }
     }
 };
