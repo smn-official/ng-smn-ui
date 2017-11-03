@@ -32,8 +32,14 @@ export class UiMaskIntegerDirective implements ControlValueAccessor, AfterViewIn
     }
 
     ngOnChanges(changes): void {
-        if (!changes.ngModel.firstChange && (changes.ngModel.currentValue === null || changes.ngModel.currentValue === undefined)) {
+        if (changes.ngModel && !changes.ngModel.firstChange && (changes.ngModel.currentValue === null || changes.ngModel.currentValue === undefined)) {
             this.elementRef.nativeElement.value = '';
+        }
+        if (typeof changes.max !== 'undefined') {
+            this.max = changes.max.currentValue;
+        }
+        if (typeof changes.min !== 'undefined') {
+            this.min = changes.min.currentValue;
         }
     }
 
@@ -95,11 +101,11 @@ export class UiMaskIntegerDirective implements ControlValueAccessor, AfterViewIn
     validate(control: FormControl): { [key: string]: any } {
         this.control = control;
 
-        if (control.value && this.format(control.value) < this.min) {
+        if (typeof this.min !== 'undefined' && control.value && this.format(control.value) < this.min) {
             return {min: true};
         }
 
-        if (control.value && this.format(control.value) > this.max) {
+        if (typeof this.max !== 'undefined' && control.value && this.format(control.value) > this.max) {
             return {max: true};
         }
 
