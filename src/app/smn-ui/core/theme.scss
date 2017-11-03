@@ -3,6 +3,7 @@
 @import "../calendar/calendar-content.theme";
 @import "../calendar/calendar.theme";
 @import "../card/card.theme";
+@import "../color-picker/color-picker.theme";
 @import "../date-picker/date-picker-caller.theme";
 @import "../dialog/dialog.theme";
 @import "../divider/divider.theme";
@@ -78,6 +79,7 @@
     @include ui-calendar($theme);
     @include ui-calendar-content($theme);
     @include ui-card($theme);
+    @include ui-color-picker($theme);
     @include ui-date-picker-caller($theme);
     @include ui-dialog($theme);
     @include ui-divider($theme);
