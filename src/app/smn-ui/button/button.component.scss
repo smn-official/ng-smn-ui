@@ -326,6 +326,11 @@
         &.hide {
             transform: scale(0);
         }
+
+        &.small {
+            width: 10px;
+            height: 10px;
+        }
     }
 
     .icon {
