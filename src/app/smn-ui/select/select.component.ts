@@ -53,6 +53,10 @@ export class UiSelectComponent implements OnInit, AfterViewInit, OnChanges {
         if (changes.options || changes.ngModel) {
             this.selectOption();
         }
+        if (changes.ngModel && !changes.ngModel.firstChange) {
+            this.ngModel = changes.ngModel.currentValue;
+            this.selectOption();
+        }
     }
 
     @HostListener('focus')

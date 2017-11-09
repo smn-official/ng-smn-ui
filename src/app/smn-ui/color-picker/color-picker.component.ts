@@ -1,4 +1,4 @@
-import {Component, EventEmitter, AfterViewInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, AfterViewInit, Output, ViewChild, Input} from '@angular/core';
 import {palette, colors} from './color-picker.palette';
 import {NgControl} from "@angular/forms";
 

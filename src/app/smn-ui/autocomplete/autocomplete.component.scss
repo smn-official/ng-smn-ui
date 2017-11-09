@@ -76,3 +76,7 @@
     }
 
 }
+
+/deep/ .wrap-dialog + .wrap-autocomplete {
+    z-index: 5;
+}

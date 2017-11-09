@@ -13,6 +13,7 @@ import {UiWindowRef} from '../utils/providers/window.provider';
 export class UiColorPickerDirective implements AfterViewInit {
 
     @Input() ngModel;
+    @Input('theme-class') themeClass;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
     elementColor;
     palette;
@@ -113,6 +114,10 @@ export class UiColorPickerDirective implements AfterViewInit {
         document.body.appendChild(this.wrapElement);
 
         setTimeout(() => {
+            if (this.themeClass) {
+                this.wrapElement.classList.add(this.themeClass);
+            }
+
             this.wrapElement.classList.add('open');
 
             this.setPosition(coordinate);
