@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {unnacent} from '../functions/unnacent';
+import {unaccent} from '../functions/unaccent';
 
 @Pipe({
     name: 'uiFilter',
@@ -7,8 +7,8 @@ import {unnacent} from '../functions/unnacent';
 })
 export class UiFilterPipe implements PipeTransform {
     transform(value, filterBy, name) {
-        filterBy = filterBy ? unnacent(filterBy.toLowerCase()) : null;
+        filterBy = filterBy ? unaccent(filterBy.toLowerCase()) : null;
         return filterBy ? value.filter(item =>
-            unnacent(item[name].toLowerCase()).indexOf(filterBy) !== -1) : value;
+            unaccent(item[name].toLowerCase()).indexOf(filterBy) !== -1) : value;
     }
 }

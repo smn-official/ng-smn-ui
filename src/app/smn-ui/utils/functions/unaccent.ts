@@ -205,7 +205,7 @@ for (let i = 0; i < defaultDiacriticsRemovalMap.length; i++) {
 }
 
 // "what?" version ... http://jsperf.com/diacritics/12
-export function unnacent(str) {
+export function unaccent(str) {
     return str.replace(/[^\u0000-\u007E]/g, function (a) {
         return diacriticsMap[a] || a;
     });

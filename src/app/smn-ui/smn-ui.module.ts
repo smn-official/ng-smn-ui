@@ -6,6 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import './button/button.service';
 import {debounce} from './utils/functions/debounce';
+import {unaccent} from './utils/functions/unaccent';
 import {UiAddCalendarDirective} from './calendar/add-calendar.directive';
 import {UiCalendarComponent} from './calendar/calendar.component';
 import {UiCalendarContentComponent} from './calendar/calendar-content.component';
@@ -88,6 +89,7 @@ import {UiFilterPipe} from './utils/pipes/filter.pipe';
 
 export {
     debounce,
+    unaccent,
     UiColor,
     UiCookie,
     UiElement,
