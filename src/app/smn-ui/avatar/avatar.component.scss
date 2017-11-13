@@ -1,0 +1,47 @@
+@import "../core/variables";
+
+:host {
+    display: block;
+}
+
+img {
+    display: none;
+}
+
+.wrap {
+    width: 44px;
+    height: 44px;
+    margin: 4px;
+    position: relative;
+}
+
+.image, .letter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+}
+
+.letter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    background-size: cover;
+    background-position: center;
+}
+
+@keyframes grayscale {
+    100%{
+        filter: grayscale(0);
+    }
+}
+
+.grayscale {
+    animation: grayscale 960ms 160ms forwards;
+    filter: grayscale(100%);
+}

@@ -1,0 +1,8 @@
+<img [src]="image" (load)="loadedImage()">
+<div class="wrap" [class.grayscale]="grayscale">
+    <div class="letter" [style.background-color]="color">
+        {{name.charAt(0)}}
+    </div>
+    <div class="image" [style.background-image]="'url(' + newImage + ')'" [@image] *ngIf="showImage"></div>
+    <div class="image" [style.background-image]="'url(' + image + ')'" [@image] *ngIf="grayscale"></div>
+</div>

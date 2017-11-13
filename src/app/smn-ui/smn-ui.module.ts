@@ -86,6 +86,7 @@ import {UiSelectComponent} from './select/select.component';
 import {UiSelectOptionComponent} from './select/option/option.component';
 import {UiSelectFilterPipe} from './select/select-filter.pipe';
 import {UiFilterPipe} from './utils/pipes/filter.pipe';
+import {UiAvatarComponent} from './avatar/avatar.component';
 
 export {
     debounce,
@@ -184,7 +185,8 @@ const lib: any[] = [
     UiSelectComponent,
     UiSelectOptionComponent,
     UiSelectFilterPipe,
-    UiFilterPipe
+    UiFilterPipe,
+    UiAvatarComponent
 ];
 
 @NgModule({

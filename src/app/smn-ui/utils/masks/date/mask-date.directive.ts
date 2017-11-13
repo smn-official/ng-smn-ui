@@ -38,8 +38,8 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
     }
 
     ngAfterViewInit() {
-        this.minDate = isDate(new Date(this.minDate)) ? new Date(this.minDate) : this.minDate;
-        this.maxDate = isDate(new Date(this.maxDate)) ? new Date(this.maxDate) : this.maxDate;
+        this.minDate = this.minDate && isDate(new Date(this.minDate)) ? new Date(this.minDate) : this.minDate;
+        this.maxDate = this.maxDate && isDate(new Date(this.maxDate)) ? new Date(this.maxDate) : this.maxDate;
         setTimeout(() => {
             this.loaded = true;
         });
@@ -92,10 +92,10 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
             this.elementRef.nativeElement.value = '';
         }
         if (changes.minDate && !changes.minDate.firstChange) {
-            this.minDate = isDate(new Date(this.minDate)) ? new Date(this.minDate) : this.minDate;
+            this.minDate = changes.minDate.currentValue && isDate(new Date(this.minDate)) ? new Date(this.minDate) : this.minDate;
         }
         if (changes.maxDate && !changes.maxDate.firstChange) {
-            this.maxDate = isDate(new Date(this.maxDate)) ? new Date(this.maxDate) : this.maxDate;
+            this.maxDate = changes.maxDate.currentValue && isDate(new Date(this.maxDate)) ? new Date(this.maxDate) : this.maxDate;
         }
         if ((changes.minDate && !changes.minDate.firstChange) || (changes.maxDate && !changes.maxDate.firstChange)) {
             this.control.updateValueAndValidity(this.control);
