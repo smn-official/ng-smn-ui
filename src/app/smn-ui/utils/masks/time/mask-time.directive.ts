@@ -25,14 +25,22 @@ export class UiMaskTimeDirective implements ControlValueAccessor, Validator, Aft
     control: FormControl;
     symbolsPositions: number[] = [2];
     @Input() ngModel: any;
+    @Input() minTime: string;
+    @Input() maxTime: string;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
     constructor(public elementRef: ElementRef, public timePipe: UiTimePipe) {
     }
 
     ngOnChanges(changes): void {
-        if (!changes.ngModel.firstChange && (changes.ngModel.currentValue === null || changes.ngModel.currentValue === undefined)) {
+        if (changes.ngModel && !changes.ngModel.firstChange && (changes.ngModel.currentValue === null || changes.ngModel.currentValue === undefined)) {
             this.elementRef.nativeElement.value = '';
+        }
+        if (changes.minTime && !changes.minTime.firstChange) {
+            this.minTime = changes.minTime.currentValue;
+        }
+        if (changes.maxTime && !changes.maxTime.firstChange) {
+            this.maxTime = changes.maxTime.currentValue;
         }
     }
 
@@ -92,6 +100,15 @@ export class UiMaskTimeDirective implements ControlValueAccessor, Validator, Aft
             if (time[1] > 59) {
                 return {minute: true};
             }
+
+            if (this.minTime && this.format(this.minTime).length === 4 && this.format(control.value) < this.format(this.minTime)) {
+                return {minTime: true};
+            }
+
+            if (this.maxTime && this.format(this.maxTime).length === 4 && this.format(control.value) > this.format(this.maxTime)) {
+                return {maxTime: true};
+            }
+
         }
 
         return null;
