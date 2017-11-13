@@ -14,7 +14,6 @@ import {UiElement} from '../utils/providers/element.provider';
 import {UiWindowRef} from '../utils/providers/window.provider';
 import {UiCalendarComponent} from '../calendar/calendar.component';
 
-
 @Directive({
     selector: '[uiDatePickerCaller]'
 })
@@ -39,7 +38,7 @@ export class UiDatePickerCallerDirective implements AfterViewInit {
         this.datePicker = this.referencesService.get(this.datePickerCaller);
 
         UiElement.on(this.elementRef.nativeElement, this.pickerEvent || 'click', (e) => {
-            this.inputElement = <HTMLElement>document.querySelectorAll(`[ng-reflect-date-picker="${this.datePickerCaller}"]`)[0];
+            this.inputElement = <HTMLElement>document.querySelector(`[date-picker-name="${this.datePickerCaller}"]`);
 
             this.referencesService.closeAll();
             const position = UiElement.position(this.inputElement);
@@ -57,7 +56,7 @@ export class UiDatePickerCallerDirective implements AfterViewInit {
         UiElement.on(UiWindowRef.nativeWindow, 'click resize scroll', (e) => {
             if (this.pickerOpen) {
                 if ((!(UiElement.is(e.target, '.wrap-date-picker') || UiElement.closest(e.target, '.wrap-date-picker'))
-                    && !(document.body.clientWidth <= 600 && e.type === 'scroll')) || UiElement.is(e.target, '.overlay')) {
+                        && !(document.body.clientWidth <= 600 && e.type === 'scroll')) || UiElement.is(e.target, '.overlay')) {
                     this.closePicker();
                 }
             }
