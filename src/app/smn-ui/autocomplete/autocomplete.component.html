@@ -9,9 +9,9 @@
                 (click)="selectItem(item)"
                 [ngClass]="{'focused': index === focusedIndex, 'accent': accentClass}"
                 [style.transition-delay]="(index > 5 ? 0: 100 + (index * 50)) + 'ms'">
-                <div class="lines" *ngIf="!!secondary">
-                    <div class="primary">{{item[primary]}}</div>
-                    <div class="secondary">{{item[secondary]}}</div>
+                <div class="lines" *ngIf="secondary">
+                    <div class="primary">{{item[primary] || item[secondary]}}</div>
+                    <div class="secondary">{{item[primary] ? item[secondary] : null}}</div>
                 </div>
                 <span *ngIf="!secondary" class="primary">{{item[primary] || item}}</span>
             </li>
