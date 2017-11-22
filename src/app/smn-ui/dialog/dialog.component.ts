@@ -11,15 +11,17 @@ import {UiElementRef} from '../utils/providers/element-ref.provider';
     encapsulation: ViewEncapsulation.None
 })
 export class UiDialogComponent {
-    @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
-    @Output() closeChange: EventEmitter<any> = new EventEmitter();
+    viewRef: any;
+    opened: boolean;
     @Input('card-size') cardSize: number;
-    viewRef;
+    @Output() closeChange: EventEmitter<any> = new EventEmitter();
+    @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
 
     constructor(public elementRef: ElementRef) {
     }
 
     close() {
+        this.opened = false;
         this.closeChange.emit();
 
         if (this.viewRef) {
@@ -76,6 +78,7 @@ export class UiDialogComponent {
     }
 
     open(element, config) {
+        this.opened = true;
         setTimeout(() => {
             const fabs = new UiElementRef(document).querySelector('.ui-fab-container');
 

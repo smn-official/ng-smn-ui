@@ -6,6 +6,7 @@ import {UiElement} from '../utils/providers/element.provider';
 })
 export class UiDialogTriggerDirective implements AfterViewInit {
     viewRef: any;
+    opened: boolean;
     @Input('trigger-events') triggerEvents: string;
     @Input('dark-class') darkClass: string;
     @Input('theme-class') themeClass: string;
@@ -39,6 +40,7 @@ export class UiDialogTriggerDirective implements AfterViewInit {
     }
 
     open(element) {
+        this.opened = true;
         setTimeout(() => {
             const fabs = document.querySelectorAll('.ui-fab-container');
 
@@ -74,6 +76,7 @@ export class UiDialogTriggerDirective implements AfterViewInit {
     }
 
     close() {
+        this.opened = false;
         if (this.viewContainerRef.length) {
             const viewRef = this.viewRef; // Salvando a referência para achar o index deste componente
 
