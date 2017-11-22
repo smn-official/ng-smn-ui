@@ -23,7 +23,7 @@ $sizes: 480 600 840 960 1280 1440 1600;
     ui-select {
         flex: 1;
 
-        & + *:not(.no-pad) {
+        & + *:not(.no-pad):not(label) {
             margin-left: 16px;
         }
     }
