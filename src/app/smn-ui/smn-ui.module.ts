@@ -86,6 +86,7 @@ import {UiSelectComponent} from './select/select.component';
 import {UiSelectOptionComponent} from './select/option/option.component';
 import {UiSelectFilterPipe} from './select/select-filter.pipe';
 import {UiFilterPipe} from './utils/pipes/filter.pipe';
+import {UiMaskFloatDirective} from './utils/masks/float/mask-float.directive';
 
 export {
     debounce,
@@ -184,7 +185,8 @@ const lib: any[] = [
     UiSelectComponent,
     UiSelectOptionComponent,
     UiSelectFilterPipe,
-    UiFilterPipe
+    UiFilterPipe,
+    UiMaskFloatDirective
 ];
 
 @NgModule({

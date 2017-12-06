@@ -9,6 +9,8 @@ import {UiToolbarService} from '../../smn-ui/smn-ui.module';
     styleUrls: ['./demo-select.component.scss']
 })
 export class DemoSelectComponent implements OnInit {
+    test
+    ;
     names;
     @ViewChild('selectField') selectField;
 
@@ -26,5 +28,12 @@ export class DemoSelectComponent implements OnInit {
     ngOnInit() {
         this.titleService.setTitle('Select - SMN UI Demos');
         this.toolbarService.set('Select');
+    }
+
+    onChangeModel() {
+        console.log(this.test);
+        setTimeout(() => {
+            this.test = null;
+        });
     }
 }

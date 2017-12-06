@@ -3,7 +3,7 @@
         <ui-card-title>Theme Light</ui-card-title>
         <ui-card-content>
             <form #form="ngForm" class="ui-validate on-dirty on-submit">
-                <ui-select #selectField="ngModel" name="test" [(ngModel)]="test" [chosen]="true" [options]="names" value="id" label="nome">
+                <ui-select #selectField="ngModel" name="test" [(ngModel)]="test" (ngModelChange)="onChangeModel()" [chosen]="true" [options]="names" value="id" label="nome">
                 </ui-select>
                 <div class="ui-messages">
                     <div>
