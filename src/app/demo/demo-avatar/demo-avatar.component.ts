@@ -22,6 +22,10 @@ export class DemoAvatarComponent implements OnInit, OnDestroy {
             this.info.image = 'https://wallpapersite.com/images/pages/pic_w/7628.jpg';
             setTimeout(() => {
                 this.info.image = 'http://gameranx.com/wp-content/uploads/2016/02/No-Mans-Sky-4-K-Wallpaper.jpg';
+                this.info.color = '#673ab7';
+                setTimeout(() => {
+                    this.info.image = null;
+                }, 5000);
             }, 5000);
         }, 5000);
     }

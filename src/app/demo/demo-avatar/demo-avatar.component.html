@@ -1,7 +1,18 @@
 <div class="light">
     <ui-card>
         <ui-card-content>
-            <ui-avatar [image]="info.image" [name]="info.name" [color]="info.color"></ui-avatar>
+            <div>
+                <ui-subheader>Default</ui-subheader>
+                <ui-avatar [image]="info.image" [name]="info.name" [color]="info.color"></ui-avatar>
+            </div>
+            <div>
+                <ui-subheader>Size dynamic</ui-subheader>
+                <ui-avatar [image]="info.image" [name]="info.name" [color]="info.color" [size]="size || 44"></ui-avatar>
+                <ui-input-container>
+                    <input type="text" [(ngModel)]="size" uiInput>
+                    <label>Size</label>
+                </ui-input-container>
+            </div>
         </ui-card-content>
     </ui-card>
 </div>
