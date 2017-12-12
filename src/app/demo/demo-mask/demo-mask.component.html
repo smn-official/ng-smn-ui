@@ -18,7 +18,7 @@
             </ui-input-container>
             <pre>{{teste.errors | json}}</pre>
             <ui-input-container>
-                <input type="text" name="time" [(ngModel)]="time" uiInput uiMaskTime required #timeField="ngModel">
+                <input type="text" name="time" [(ngModel)]="time" uiInput uiMaskTime required #timeField="ngModel" [minTime]="'09:00'" [maxTime]="'09:30'">
                 <label>Time(uiMaskTime)</label>
                 <div class="ui-messages">
                     <div class="ui-message helper">{{time}}</div>

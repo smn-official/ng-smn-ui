@@ -122,14 +122,12 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     private render(element, coordinate): void {
         this.createWrapElement();
         this.wrapElement.appendChild(element);
-
         document.body.appendChild(this.wrapElement);
 
 
         setTimeout(() => {
-            this.wrapElement.classList.add('open');
-
             this.setPosition(coordinate, element);
+            this.wrapElement.classList.add('open');
         });
     }
 
@@ -143,6 +141,10 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
             this.wrapElement.classList.add(this.themeClass);
         }
 
+        UiElement.css(this.wrapElement, 'top', 0);
+        UiElement.css(this.wrapElement, 'left', 0);
+        UiElement.css(this.wrapElement, 'visibility', 'hidden');
+        UiElement.css(this.wrapElement, 'transition', 'none');
         this.wrapElement.appendChild(overlay);
     }
 
@@ -203,9 +205,11 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
             coordinate.y = coordinate.y - ((wrap.clientHeight > maxHeightWrap ? maxHeightWrap : wrap.clientHeight) + this.elementRef.nativeElement.clientHeight) - 14; // 14 = label focus
         }
 
-        this.wrapElement.style.top = (coordinate.y + this.elementRef.nativeElement.clientHeight) + 'px';
-        this.wrapElement.style.left = coordinate.x + 'px';
-        this.wrapElement.style.width = this.elementRef.nativeElement.clientWidth + 'px';
+        UiElement.css(this.wrapElement, 'top', `${coordinate.y + this.elementRef.nativeElement.clientHeight}px`);
+        UiElement.css(this.wrapElement, 'left', `${coordinate.x}px`);
+        UiElement.css(this.wrapElement, 'width', `${this.elementRef.nativeElement.clientWidth}px`);
+        UiElement.css(this.wrapElement, 'visibility', '');
+        UiElement.css(this.wrapElement, 'transition', '');
     }
 
     registerOnChange(fn: any): void {
@@ -220,7 +224,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
 
         this.control = control;
 
-        if (this.elementRef.nativeElement.hasAttribute('required') && (!control.value || !this.modelValue)) {
+        if (this.elementRef.nativeElement.hasAttribute('required') && !control.value) {
             return {required: true};
         }
 
