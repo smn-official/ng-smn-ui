@@ -14,7 +14,6 @@ import {UiElement} from '../utils/providers/element.provider';
 import {UiWindowRef} from '../utils/providers/window.provider';
 import {UiClockComponent} from '../clock/clock.component';
 
-
 @Directive({
     selector: '[uiTimePickerCaller]'
 })
@@ -39,7 +38,7 @@ export class UiTimePickerCallerDirective implements AfterViewInit {
         this.timePicker = this.timePickerService.get(this.timePickerCaller);
 
         UiElement.on(this.elementRef.nativeElement, this.pickerEvent || 'click', (e) => {
-            this.inputElement = <HTMLElement>document.querySelector(`[ng-reflect-time-picker="${this.timePickerCaller}"]`);
+            this.inputElement = <HTMLElement>document.querySelector(`[time-picker-name="${this.timePickerCaller}"]`);
 
             this.timePickerService.closeAll();
             const position = UiElement.position(this.inputElement);
