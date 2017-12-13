@@ -1,6 +1,6 @@
 {
   "name": "ng-smn-ui",
-  "version": "1.7.9",
+  "version": "1.8.0",
   "license": "MIT",
   "scripts": {
     "start": "ng serve --port 4000",
