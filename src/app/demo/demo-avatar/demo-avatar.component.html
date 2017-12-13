@@ -7,11 +7,11 @@
             </div>
             <div>
                 <ui-subheader>Size dynamic</ui-subheader>
-                <ui-avatar [image]="info.image" [name]="info.name" [color]="info.color" [size]="size || 44"></ui-avatar>
                 <ui-input-container>
-                    <input type="text" [(ngModel)]="size" uiInput>
+                    <input type="number" [(ngModel)]="size" uiInput>
                     <label>Size</label>
                 </ui-input-container>
+                <ui-avatar [image]="info.image" [name]="info.name" [color]="info.color" [size]="size || 44"></ui-avatar>
             </div>
         </ui-card-content>
     </ui-card>
