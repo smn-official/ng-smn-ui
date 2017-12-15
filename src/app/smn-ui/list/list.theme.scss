@@ -8,14 +8,14 @@
         .ui-list-item {
             color: map_get($theme, primary-text-color);
 
-            path {
+            .fill {
                 fill: map_get($theme, primary-text-color);
             }
 
             &.subheader {
                 color: map_get($theme, secondary-text-color);
 
-                path {
+                .fill {
                     fill: map_get($theme, secondary-text-color);
                 }
             }
@@ -27,7 +27,7 @@
             .secondary {
                 color: map_get($theme, secondary-text-color);
 
-                path {
+                .fill {
                     fill: map_get($theme, secondary-text-color);
                 }
             }
@@ -39,7 +39,7 @@
             &.disabled {
                 color: map_get($theme, disabled-text-color);
 
-                path {
+                .fill {
                     fill: map_get($theme, disabled-text-color);
                 }
             }
@@ -49,7 +49,7 @@
                 .icon:not(.ui-button) {
                     color: map_get($theme, primary-color);
 
-                    path {
+                    .fill {
                         fill: map_get($theme, primary-color);
                     }
                 }
@@ -59,7 +59,7 @@
                     .icon:not(.ui-button) {
                         color: map_get($theme, accent-color);
 
-                        path {
+                        .fill {
                             fill: map_get($theme, accent-color);
                         }
                     }
