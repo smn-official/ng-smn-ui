@@ -40,7 +40,6 @@ export class UiDatePickerDirective implements OnInit, AfterViewInit, OnChanges, 
             this.ngModelChange.emit(null);
             this.changeDetectorRef.detectChanges();
         }
-        console.log(value);
     }
 
     ngOnDestroy() {
