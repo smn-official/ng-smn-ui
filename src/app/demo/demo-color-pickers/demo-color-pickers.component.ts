@@ -13,7 +13,9 @@ export class DemoColorPickersComponent implements OnInit {
     }
 
     ngOnInit() {
-        // this.color = '#263238';
+        setTimeout(() => {
+            this.color = '#263238';
+        }, 600);
     }
 
 }

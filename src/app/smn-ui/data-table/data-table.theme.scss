@@ -36,7 +36,7 @@
             }
 
             @include mobile {
-                &:active {
+                &:not(.disabled):active {
                     td {
                         background-color: $hover-color;
                     }
@@ -44,7 +44,7 @@
             }
 
             @include desktop {
-                &:hover {
+                &:not(.disabled):hover {
                     td {
                         background-color: $hover-color;
                     }

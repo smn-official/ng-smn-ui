@@ -13,6 +13,8 @@ export class UiCurrencyPipe implements PipeTransform {
             value = value.toFixed(2);
         }
 
+        const isNegative = (value.toString().match(/[+]/) || !value.toString().match(/[-]/)) || (value < 0);
+
         // Removendo o que não é dígito qualquer zero adicional no começo da string
         value = value.toString().replace(/[^0-9]+/g, '').replace(/^0+/g, '');
 
@@ -32,6 +34,10 @@ export class UiCurrencyPipe implements PipeTransform {
             }
             newCurrency = valueChar + newCurrency;
         }
+
+        // ADICIONANDO O SINAL NEGATIVO
+        newCurrency = isNegative ? '-' + newCurrency : newCurrency;
+
         return newCurrency;
     }
 

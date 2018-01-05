@@ -57,7 +57,9 @@ export class UiClockComponent implements OnInit, AfterViewInit, OnChanges {
 
     public ngAfterViewInit(): void {
         this.element.nativeElement.tabIndex = 1;
-        this.element.nativeElement.focus();
+        setTimeout(() => {
+            this.element.nativeElement.focus();
+        });
 
         UiElement.on(document, 'keydown', e => {
             if (!this.focused) {
