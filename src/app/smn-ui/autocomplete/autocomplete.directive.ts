@@ -41,6 +41,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
     @Output() modelValueChange: EventEmitter<any> = new EventEmitter();
     @Output() selectChange: EventEmitter<any> = new EventEmitter();
+    @Output() requiredChange: EventEmitter<any> = new EventEmitter();
 
     focusedIndex: number;
     accentClass: boolean;
@@ -232,7 +233,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     }
 
     @HostListener('input') onInput() {
-        if (this.ngModel !== this.modelValue) {
+        if (!(this.ngModel && this.modelValue) || (this.ngModel !== this.modelValue)) {
             this.modelValue = null;
             this.modelValueChange.emit(this.modelValue);
             this.control.updateValueAndValidity();
