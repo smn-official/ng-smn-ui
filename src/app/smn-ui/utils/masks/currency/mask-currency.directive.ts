@@ -82,7 +82,7 @@ export class UiMaskCurrencyDirective implements ControlValueAccessor, Validator,
 
     format(value) {
         value = this.currencyPipe.transform(value);
-        const removeGroupSep = new RegExp('[^\\d\\,]+', 'g');
+        const removeGroupSep = new RegExp('[^\\d\\,-]+', 'g');
         value = value.toString().replace(removeGroupSep, '');
         value = parseFloat(value.replace(',', '.'));
         return value || null;
