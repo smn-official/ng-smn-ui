@@ -36,11 +36,10 @@ export class UiDatePickerDirective implements OnInit, AfterViewInit, OnChanges, 
 
     ngOnChanges(value) {
         this.chosen.next(value);
-        if (value.ngModel.currentValue === '') {
+        if (value.ngModel && value.ngModel.currentValue === '') {
             this.ngModelChange.emit(null);
             this.changeDetectorRef.detectChanges();
         }
-        console.log(value);
     }
 
     ngOnDestroy() {
