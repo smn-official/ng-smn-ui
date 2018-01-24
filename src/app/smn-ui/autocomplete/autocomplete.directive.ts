@@ -12,10 +12,10 @@ import {
     OnChanges, OnInit,
     Output, forwardRef
 } from '@angular/core';
-import {UiElement} from '../utils/providers/element.provider';
-import {UiAutocompleteComponent} from './autocomplete.component';
-import {UiWindowRef} from '../utils/providers/window.provider';
-import {FormControl, NG_VALIDATORS} from '@angular/forms';
+import { UiElement } from '../utils/providers/element.provider';
+import { UiAutocompleteComponent } from './autocomplete.component';
+import { UiWindowRef } from '../utils/providers/window.provider';
+import { FormControl, NG_VALIDATORS } from '@angular/forms';
 
 @Directive({
     selector: '[uiAutocomplete]',
@@ -31,7 +31,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     @Input() ngModel: any;
     @Input() modelValue: any;
     @Input('model-property') modelProperty: any;
-    @Input() select: Function;
+    @Output() select: EventEmitter<any> = new EventEmitter(); //MODIFICAÇÃO//
     @Input() primary: string;
     @Input() secondary: string;
     @Input() loading: boolean;
@@ -53,9 +53,9 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     onTouched: Function;
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver,
-                private applicationRef: ApplicationRef,
-                private injector: Injector,
-                private elementRef: ElementRef) {
+        private applicationRef: ApplicationRef,
+        private injector: Injector,
+        private elementRef: ElementRef) {
     }
 
     public ngOnInit() {
@@ -65,7 +65,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
             this.ngModelChange.emit(this.ngModel);
             this.modelValueChange.emit(this.modelValue);
             if (this.select) {
-                this.select(item);
+                this.select.emit(item);  //MODIFICAÇÕES//
             }
             this.elementRef.nativeElement.blur();
             this.close();
@@ -226,7 +226,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
         this.control = control;
 
         if (this.elementRef.nativeElement.hasAttribute('required') && !control.value) {
-            return {required: true};
+            return { required: true };
         }
 
         return null;
