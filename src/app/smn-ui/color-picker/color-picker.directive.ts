@@ -1,6 +1,6 @@
 import {
     AfterViewInit, ApplicationRef, ComponentFactoryResolver, Directive, ElementRef, EmbeddedViewRef, EventEmitter,
-    Injector, Input, Output
+    Injector, Input, OnChanges, Output
 } from '@angular/core';
 import {palette} from './color-picker.palette';
 import {UiElement} from '../utils/providers/element.provider';
@@ -10,7 +10,7 @@ import {UiWindowRef} from '../utils/providers/window.provider';
 @Directive({
     selector: '[uiColorPicker]'
 })
-export class UiColorPickerDirective implements AfterViewInit {
+export class UiColorPickerDirective implements AfterViewInit, OnChanges {
 
     @Input() ngModel;
     @Input('theme-class') themeClass;
@@ -37,7 +37,16 @@ export class UiColorPickerDirective implements AfterViewInit {
 
         this.addEvents();
 
-        this.ngModelChange.subscribe(color => this.setColorElement(color));
+        this.ngModelChange.subscribe(color => {
+            this.setColorElement(color);
+        });
+    }
+
+    ngOnChanges(changes) {
+        if (changes.ngModel && !changes.ngModel.firstChange) {
+            this.ngModel = changes.ngModel.currentValue;
+            this.setColorElement(this.ngModel);
+        }
     }
 
     generateElementColor() {

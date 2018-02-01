@@ -13,7 +13,7 @@ export class UiTimePickerService {
 
     add(name: string, component: UiTimePickerDirective): void {
         if (this.timePickers && this.timePickers[name]) {
-            throw console.error('Error');
+            return;
         }
 
         this.timePickers[name] = component;

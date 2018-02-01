@@ -55,7 +55,12 @@ export class UiSelectComponent implements OnInit, AfterViewInit, OnChanges {
         }
         if (changes.ngModel && !changes.ngModel.firstChange) {
             this.ngModel = changes.ngModel.currentValue;
-            this.selectOption();
+
+            if (changes.ngModel.currentValue) {
+                this.selectOption();
+            } else {
+                this.onChangeSelect(changes.ngModel.currentValue);
+            }
         }
     }
 
@@ -176,6 +181,11 @@ export class UiSelectComponent implements OnInit, AfterViewInit, OnChanges {
             this.model = select[this.value];
             this.selected = select[this.label];
             this.ngModelChange.emit(select[this.value]);
+        } else {
+            this.search = select;
+            this.model = select;
+            this.selected = select;
+            this.ngModelChange.emit(select);
         }
     }
 

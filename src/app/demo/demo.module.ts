@@ -37,6 +37,7 @@ import {DemoTabsComponent} from './demo-tabs-pages/demo-tabs/demo-tabs.component
 import {DemoPagesComponent} from './demo-tabs-pages/demo-pages/demo-pages.component';
 import {DemoInfiniteLoadComponent} from './demo-infinite-load/demo-infinite-load.component';
 import {DemoSelectComponent} from './demo-select/demo-select.component';
+import {DemoAvatarComponent} from './demo-avatar/demo-avatar.component';
 
 @NgModule({
     imports: [
@@ -84,6 +85,7 @@ import {DemoSelectComponent} from './demo-select/demo-select.component';
         DemoInfiniteLoadComponent,
         DemoTimePickersComponent,
         DemoSelectComponent,
+        DemoAvatarComponent,
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

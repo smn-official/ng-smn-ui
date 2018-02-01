@@ -1,6 +1,6 @@
 import {
     Directive, EventEmitter, Input, Output, OnChanges, OnInit, OnDestroy, ElementRef,
-    AfterViewInit
+    AfterViewInit, ChangeDetectorRef
 } from '@angular/core';
 import {UiReferencesService} from './references.service';
 import {Subject} from 'rxjs/Subject';
@@ -21,7 +21,7 @@ export class UiDatePickerDirective implements OnInit, AfterViewInit, OnChanges, 
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
     chosen: Subject<any> = new Subject();
 
-    constructor(public referencesService: UiReferencesService, public element: ElementRef) {
+    constructor(public referencesService: UiReferencesService, public element: ElementRef, private changeDetectorRef: ChangeDetectorRef) {
         this.minDate = this.minDate && isDate(new Date(this.minDate)) ? new Date(this.minDate) : this.minDate;
         this.maxDate = this.maxDate && isDate(new Date(this.maxDate)) ? new Date(this.maxDate) : this.maxDate;
     }
@@ -36,6 +36,10 @@ export class UiDatePickerDirective implements OnInit, AfterViewInit, OnChanges, 
 
     ngOnChanges(value) {
         this.chosen.next(value);
+        if (value.ngModel && value.ngModel.currentValue === '') {
+            this.ngModelChange.emit(null);
+            this.changeDetectorRef.detectChanges();
+        }
     }
 
     ngOnDestroy() {

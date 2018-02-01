@@ -34,6 +34,7 @@ import {DemoTabsPagesComponent} from './demo/demo-tabs-pages/demo-tabs-pages.com
 import {DemoPagesComponent} from './demo/demo-tabs-pages/demo-pages/demo-pages.component';
 import {DemoInfiniteLoadComponent} from './demo/demo-infinite-load/demo-infinite-load.component';
 import {DemoSelectComponent} from './demo/demo-select/demo-select.component';
+import {DemoAvatarComponent} from './demo/demo-avatar/demo-avatar.component';
 
 const routes: Routes = [
     {
@@ -42,6 +43,7 @@ const routes: Routes = [
         children: [
             {path: '', component: DemoHomeComponent},
             {path: 'autocomplete', component: DemoAutocompleteComponent},
+            {path: 'avatar', component: DemoAvatarComponent},
             {path: 'bottom-sheets', component: DemoBottomSheetComponent},
             {path: 'buttons', component: DemoButtonsComponent},
             {path: 'cards', component: DemoCardsComponent},

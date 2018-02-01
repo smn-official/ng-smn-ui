@@ -5,7 +5,7 @@ import {UiElement} from '../utils/providers/element.provider';
 let mainToolbar: HTMLElement;
 let defaultBreakpoint: any;
 
-const sizes: [any] = [480, 600, 840, 960, 1280, 1440, 1600];
+const sizes: any[] = [480, 600, 840, 960, 1280, 1440, 1600];
 
 @Injectable()
 export class UiToolbarService {
