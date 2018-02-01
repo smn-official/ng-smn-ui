@@ -60,6 +60,7 @@ export class UiClockComponent implements OnInit, AfterViewInit, OnChanges {
         this.element.nativeElement.focus();
 
         UiElement.on(document, 'keydown', e => {
+            e.preventDefault();
             if (!this.focused) {
                 return;
             }
