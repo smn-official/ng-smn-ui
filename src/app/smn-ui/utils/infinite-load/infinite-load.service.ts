@@ -28,8 +28,6 @@ export class UiInfiniteLoadService {
                 const scrollLeft = this.element.scrollLeft || this.element.scrollX;
                 const safeZone = widthOffset * 0.1;
 
-                console.log(scrollLeft, widthOffset, safeZone);
-
                 if (scrollLeft >= widthOffset - safeZone) {
                     func();
                 }

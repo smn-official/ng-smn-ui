@@ -101,7 +101,6 @@ export class UiRippleDirective {
     @HostListener('mouseup', ['$event'])
     onMouseup() {
         debounce(() => {
-            // console.log(2);
             eraseRipples(this);
         }, 800, true)();
     }
@@ -109,7 +108,6 @@ export class UiRippleDirective {
     @HostListener('mouseout', ['$event'])
     onMouseout() {
         debounce(() => {
-            // console.log(1);
             eraseRipples(this);
         }, 2000, true)();
     }
