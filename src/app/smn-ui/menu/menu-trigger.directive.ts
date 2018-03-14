@@ -12,6 +12,7 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
     @Input() align;
     @Input('menu-align') menuAlign;
     @Input('uiMenuTrigger') menu;
+    @Input() persistentMenu;
 
     constructor(public viewContainerRef: ViewContainerRef, public elementRef: ElementRef) {
     }
@@ -22,7 +23,9 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
         });
 
         UiElement.on(this.elementRef.nativeElement, this.triggerEvents || 'click', () => {
-            this.close();
+            if (!this.persistentMenu) {
+                this.close();
+            }
 
             setTimeout(() => {
                 const position = UiElement.position(this.elementRef.nativeElement);
@@ -36,7 +39,9 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
 
         UiElement.on(UiWindowRef.nativeWindow, 'mouseup resize scroll touchend', (e) => {
             if (this.elementRef.nativeElement !== e.target) {
-                this.close();
+                if (!this.persistentMenu) {
+                    this.close();
+                }
             }
         });
     }
