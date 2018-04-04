@@ -169,6 +169,7 @@ export class UiColorPickerDirective implements AfterViewInit, OnChanges {
             this.wrapElement.classList.remove('open');
             setTimeout(() => {
                 if (this.componentRef) {
+                    this.componentRef.instance.colors.forEach(color => color.selected = false);
                     this.applicationRef.detachView(this.componentRef.hostView);
                     this.componentRef = null;
                     this.wrapElement.remove();
