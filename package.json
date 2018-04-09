@@ -1,6 +1,6 @@
 {
   "name": "ng-smn-ui",
-  "version": "1.8.8",
+  "version": "1.8.9",
   "license": "MIT",
   "scripts": {
     "start": "ng serve --port 4000",
@@ -44,6 +44,6 @@
     "run-sequence": "^1.2.2",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
-    "typescript": "~2.2.0"
+    "typescript": "~2.5.3"
   }
 }

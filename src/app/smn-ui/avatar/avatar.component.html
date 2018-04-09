@@ -3,6 +3,6 @@
     <div class="letter" [ngStyle]="{'background-color': color, 'color': isBright(color) ? '#000' : '#FFF'}">
         {{name.charAt(0)}}
     </div>
-    <div class="image" [style.background-image]="'url(' + newImage + ')'" [@image] *ngIf="showImage"></div>
-    <div class="image" [style.background-image]="'url(' + image + ')'" [@image] *ngIf="grayscale"></div>
+    <div class="profile" [style.background-image]="'url(' + newImage + ')'" [@image] *ngIf="showImage"></div>
+    <div class="profile" [style.background-image]="'url(' + image + ')'" [@image] *ngIf="grayscale"></div>
 </div>
