@@ -1,6 +1,6 @@
 <img [src]="image" (load)="loadedImage()" *ngIf="image">
 <div class="wrap" [class.grayscale]="grayscale">
-    <div class="letter" [ngStyle]="{'background-color': color, 'color': isBright(color) ? '#000' : '#FFF'}">
+    <div class="empty" [ngStyle]="{'background-color': color, 'color': isBright(color) ? '#000' : '#FFF'}">
         {{name.charAt(0)}}
     </div>
     <div class="profile" [style.background-image]="'url(' + newImage + ')'" [@image] *ngIf="showImage"></div>
