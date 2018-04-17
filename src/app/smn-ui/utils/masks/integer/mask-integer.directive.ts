@@ -71,7 +71,7 @@ export class UiMaskIntegerDirective implements ControlValueAccessor, AfterViewIn
             this.control.markAsDirty();
         }
         if (!this.input) {
-            this.elementRef.nativeElement.value = this.ngModel || '';
+            this.elementRef.nativeElement.value = typeof this.ngModel === 'number' ? this.ngModel : '';
         }
         this.input = false;
     }
