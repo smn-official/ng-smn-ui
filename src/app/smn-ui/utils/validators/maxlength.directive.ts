@@ -14,7 +14,7 @@ export class UiMaxlengthDirective implements Validator {
 
     validate(control: AbstractControl): { [key: string]: any } {
 
-        const value = control.value;
+        const value = control.value ? control.value.toString() : control.value;
 
         if (value && value.length > this.maxLength) {
             return {
