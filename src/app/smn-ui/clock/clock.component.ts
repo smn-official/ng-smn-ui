@@ -62,7 +62,6 @@ export class UiClockComponent implements OnInit, AfterViewInit, OnChanges {
         });
 
         UiElement.on(document, 'keydown', e => {
-            e.preventDefault();
             if (!this.focused) {
                 return;
             }
@@ -82,6 +81,7 @@ export class UiClockComponent implements OnInit, AfterViewInit, OnChanges {
                         this.minute = this.minute + 1 > 59 ? 0 : this.minute + 1;
                     }
                     this.getPositionPointer();
+                    e.preventDefault();
                     break;
                 case 37:
                 case 38:
@@ -91,6 +91,7 @@ export class UiClockComponent implements OnInit, AfterViewInit, OnChanges {
                         this.minute = this.minute - 1 < 0 ? 59 : this.minute - 1;
                     }
                     this.getPositionPointer();
+                    e.preventDefault();
                     break;
             }
 
