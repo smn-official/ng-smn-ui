@@ -109,7 +109,7 @@ export class UiSmartListComponent implements OnInit, DoCheck, OnChanges {
         if (changes.model && changes.model.currentValue) {
             if (changes.model.currentValue.length) {
                 changes.model.currentValue.forEach((item) => {
-                    if (this.list.indexOf(item) === -1) {
+                    if (this.list && this.list.indexOf(item) === -1) {
                         this.list.push(item);
                     }
                 });
