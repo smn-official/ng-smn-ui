@@ -4,13 +4,13 @@ SMN UI é um framework de componentes escritos em [Angular](https://angular.io/)
 
 ### Instalação
 
-Instalando as depencias do SMN UI
+Instalando as depências do SMN UI
 
 ```shell
 $ npm install ng-smn-ui --save
 ```
 
-Agora importe o SMN UI e o CUSTOM_ELEMENTS_SCHEMA ao seu modulo principal.
+Agora importe o SMN UI e o CUSTOM_ELEMENTS_SCHEMA ao seu módulo principal.
 
 ```js
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
