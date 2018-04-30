@@ -35,7 +35,7 @@ $primary: (color: 'blue', hue: '500');
 $accent: (color: 'green', hue: '50');
 
 /**
-  * O parâmetro passado como "false" segnifica que queremos um tema light
+  * O parâmetro passado como "false" significa que queremos um tema light
   * Basta trocar esse parâmetro para "true" e teremos um tema dark 
 **/
 $theme: ui-theme($primary, $accent, false); 
