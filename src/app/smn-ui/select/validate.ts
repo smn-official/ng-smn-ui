@@ -5,7 +5,7 @@ import {
     Validators,
     ValidatorFn,
 } from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
+import {Observable, of} from 'rxjs/index';
 
 export type ValidationResult = {[validator: string]: string | boolean};
 
@@ -48,10 +48,10 @@ export const validate =
             }
 
             if (validators) {
-                return Observable.of(synchronousValid());
+                return of(synchronousValid());
             }
 
-            return Observable.of(null);
+            return of(null);
         };
     };
 

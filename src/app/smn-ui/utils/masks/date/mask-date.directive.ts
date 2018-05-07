@@ -6,7 +6,7 @@ import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Val
 import {DatePipe} from '@angular/common';
 import {UiElement} from '../../providers/element.provider';
 import {checkDate} from './check-date';
-import {isDate} from 'rxjs/util/isDate';
+import {isDate} from 'rxjs/internal/util/isDate';
 
 @Directive({
     selector: '[uiMaskDate][ngModel]',

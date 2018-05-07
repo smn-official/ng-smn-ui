@@ -20,7 +20,7 @@ export class UiSmartListComponent implements OnInit, DoCheck, OnChanges {
     currentFocusedElementIndex: any;
 
     constructor(private differs: KeyValueDiffers, public element: ElementRef) {
-        this.differ = differs.find([]).create(null);
+        this.differ = differs.find([]).create();
     }
 
     ngOnInit() {
@@ -33,7 +33,7 @@ export class UiSmartListComponent implements OnInit, DoCheck, OnChanges {
         }
         this.objDiffer = {};
         this.list.forEach((elt, i) => {
-            this.objDiffer[i] = this.differs.find(elt).create(null);
+            this.objDiffer[i] = this.differs.find(elt).create();
         });
         this.model.forEach((item) => {
             this.list.push(item);
@@ -46,7 +46,7 @@ export class UiSmartListComponent implements OnInit, DoCheck, OnChanges {
         this.list.forEach((elt, i) => {
             let objDiffer = this.objDiffer[i];
             if (!objDiffer) {
-                objDiffer = this.objDiffer[i] = this.differs.find(elt).create(null);
+                objDiffer = this.objDiffer[i] = this.differs.find(elt).create();
             }
             const objChanges = objDiffer.diff(elt);
             if (objChanges) {

@@ -12,8 +12,8 @@ import {
 import {UiCalendarContentComponent} from './calendar-content.component';
 import {UiAddCalendarDirective} from './add-calendar.directive';
 import {UiDatetimeService} from './datetime.service';
-import {Subject} from 'rxjs/Subject';
-import {isDate} from 'rxjs/util/isDate';
+import {Subject} from 'rxjs';
+import {isDate} from 'rxjs/internal/util/isDate';
 
 @Component({
     selector: 'ui-calendar',

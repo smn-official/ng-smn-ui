@@ -3,7 +3,7 @@ import {
     AfterViewInit
 } from '@angular/core';
 import {UiTimePickerService} from './time-picker.service';
-import {Subject} from 'rxjs/Subject';
+import {Subject} from 'rxjs';
 
 @Directive({
     selector: '[uiTimePicker]'

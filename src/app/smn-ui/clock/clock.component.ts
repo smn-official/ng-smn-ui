@@ -11,8 +11,7 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import {Subject} from 'rxjs/Subject';
-import {isDate} from 'rxjs/util/isDate';
+import {Subject} from 'rxjs/index';
 import {explosionAnimation, fadeAnimation} from './clock.animations';
 import {UiElement} from '../utils/providers/element.provider';
 

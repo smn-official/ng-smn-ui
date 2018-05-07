@@ -1,10 +1,7 @@
 import {OnDestroy, ChangeDetectorRef, Pipe, PipeTransform} from '@angular/core';
 import {AsyncPipe} from '@angular/common';
-import {Observable} from 'rxjs/Rx';
-import 'rxjs/add/observable/interval';
-import 'rxjs/add/operator/repeatWhen';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/operator/takeWhile';
+import {Observable, of, timer} from 'rxjs/index';
+import {repeatWhen, takeWhile, map, flatMap} from 'rxjs/internal/operators';
 
 @Pipe({
     name: 'uiTimeAgo',
@@ -61,17 +58,19 @@ export class UiTimeAgoPipe implements PipeTransform, OnDestroy {
     }
 
     private getObservable() {
-        return Observable
-            .of(1)
-            .repeatWhen(notifications => {
-                return notifications.flatMap((x, i) => {
-                    const sleep = i < 60 ? 1000 : 30000;
-                    return Observable.timer(sleep);
-                });
-            })
-            .takeWhile(_ => !this.isDestroyed)
-            .map((x, i) => this.elapsed());
-    };
+        return of(1).pipe(
+            repeatWhen(notifications => {
+                return notifications.pipe(
+                    flatMap((x, i) => {
+                        const sleep = i < 60 ? 1000 : 30000;
+                        return timer(sleep);
+                    })
+                );
+            }),
+            takeWhile(_ => !this.isDestroyed),
+            map((x, i) => this.elapsed())
+        );
+    }
 
     private elapsed(): string {
         const now = this.now().getTime();

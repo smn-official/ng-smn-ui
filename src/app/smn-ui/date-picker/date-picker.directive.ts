@@ -3,8 +3,8 @@ import {
     AfterViewInit, ChangeDetectorRef
 } from '@angular/core';
 import {UiReferencesService} from './references.service';
-import {Subject} from 'rxjs/Subject';
-import {isDate} from 'rxjs/util/isDate';
+import {Subject} from 'rxjs';
+import {isDate} from 'rxjs/internal/util/isDate';
 
 @Directive({
     selector: '[uiDatePicker]'

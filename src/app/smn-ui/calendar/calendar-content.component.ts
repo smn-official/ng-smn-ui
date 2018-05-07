@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef} from '@angular/core';
-import {Subject} from 'rxjs/Subject';
+import {Subject} from 'rxjs';
 import {UiDatetimeService} from './datetime.service';
 
 import {UiElement} from '../utils/providers/element.provider';
