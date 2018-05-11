@@ -9,10 +9,9 @@ import {
     Input, OnDestroy
 } from '@angular/core';
 
-import {UiWindowRef} from '../utils/providers/window.provider';
-import {UiElement} from '../utils/providers/element.provider';
-import {UiCookie} from '../utils/providers/cookie.provider';
-import {UiElementRef} from '../utils/providers/element-ref.provider';
+import { UiElement } from '../utils/providers/element.provider';
+import { UiCookie } from '../utils/providers/cookie.provider';
+import { UiElementRef } from '../utils/providers/element-ref.provider';
 
 @Component({
     selector: 'ui-nav-drawer',
@@ -28,7 +27,7 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges, OnDestroy
 
     constructor(private element: ElementRef) {
         this.openNav = () => {
-            if (document.body.clientWidth <= 375 || (!this.element.nativeElement.classList.contains('persistent') && UiWindowRef.nativeWindow.scrollY > 1)) {
+            if (document.body.clientWidth <= 375 || (!this.element.nativeElement.classList.contains('persistent') && window.scrollY > 1)) {
                 const fabContainer = document.querySelectorAll('.ui-fab-container')[0];
                 if (fabContainer) {
                     fabContainer.classList.add('hide');
@@ -84,47 +83,46 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges, OnDestroy
             this.closeNav();
         }
 
-        const navDrawer = new UiElementRef(this.element.nativeElement).querySelector('nav');
-        const windowRef = new UiElementRef(window);
+        const navDrawer = this.element.nativeElement.querySelector('nav');
 
         let navDrawerTouch;
         let mouseX;
         let mouseXMovement;
 
-        windowRef.on('touchstart', (e) => {
+        UiElement.on(window, 'touchstart', (e) => {
             mouseX = e.touches[0].pageX;
             navDrawerTouch = (mouseX > 0 && mouseX < 40) ? 'open' : navDrawerTouch;
             navDrawerTouch = (mouseX > 320 && mouseX < 360) ? 'close' : navDrawerTouch;
         });
 
-        windowRef.on('touchmove', (e) => {
+        UiElement.on(window, 'touchmove', (e) => {
             if (navDrawerTouch) {
                 mouseXMovement = e.touches[0].pageX - mouseX;
                 if (navDrawerTouch === 'open' && !this.open) {
                     mouseXMovement = mouseXMovement > 320 ? 320 : mouseXMovement;
-                    navDrawer.css('transform', 'translateX(' + (-320 + mouseXMovement) + 'px)');
+                    UiElement.css(navDrawer, 'transform', 'translateX(' + (-320 + mouseXMovement) + 'px)');
                 } else if (navDrawerTouch === 'close' && this.open) {
                     mouseXMovement = mouseXMovement < -330 ? -330 : mouseXMovement;
                     mouseXMovement = mouseXMovement > 0 ? 0 : mouseXMovement;
-                    navDrawer.css('transform', 'translateX(' + (mouseXMovement) + 'px)');
+                    UiElement.css(navDrawer, 'transform', 'translateX(' + (mouseXMovement) + 'px)');
                 }
             }
         });
 
-        windowRef.on('touchend', () => {
+        UiElement.on(window, 'touchend', () => {
             if (navDrawerTouch) {
                 if (navDrawerTouch === 'open' && mouseXMovement > 20) {
-                    navDrawer.css('transform', '');
+                    UiElement.css(navDrawer, 'transform', '');
                     this.open = true;
                     this.openChange.emit(this.open);
                     this.openNav();
                 } else if (navDrawerTouch === 'close' && mouseXMovement < -20) {
-                    navDrawer.css('transform', '');
+                    UiElement.css(navDrawer, 'transform', '');
                     this.open = false;
                     this.openChange.emit(this.open);
                     this.closeNav();
                 } else {
-                    navDrawer.css('transform', '');
+                    UiElement.css(navDrawer, 'transform', '');
                 }
             }
 
