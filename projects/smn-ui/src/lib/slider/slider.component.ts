@@ -17,6 +17,9 @@ export class UiSliderComponent implements OnInit, AfterViewInit, OnChanges {
 
     @Input() hideBalloon: boolean;
     @Input() disabled: boolean;
+    @Input() begin: number;
+    @Input() end: number;
+    @Input() direction: string;
     @Input() value: number;
     @Input() range: number[];
     @Input() color: string;

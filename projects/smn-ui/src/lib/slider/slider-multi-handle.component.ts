@@ -25,6 +25,7 @@ export class UiSliderMultiHandleComponent implements OnInit, AfterViewInit, OnCh
     @Input() disabled: boolean;
     @Input() begin: number;
     @Input() end: number;
+    @Input() value;
     @Input() range: number[];
     @Input() color: string;
     @Input('text-color') textColor: string;

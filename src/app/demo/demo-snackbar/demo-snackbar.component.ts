@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UiSnackbar} from '../../smn-ui/snackbar/snackbar.provider';
+import {UiSnackbar} from '../../../../projects/smn-ui/src/lib/snackbar/snackbar.provider';
 
 @Component({
     selector: 'ui-demo-snackbar',

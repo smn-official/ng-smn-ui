@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation, OnInit, AfterViewInit, ElementRef} from '@angular/core';
 
-import {UiCookie, UiToolbarService} from '../smn-ui/smn-ui.module';
-import {UiElement} from '../smn-ui/utils/providers/element.provider';
+import {UiCookie, UiToolbarService} from '../../../projects/smn-ui/src/lib/smn-ui.module';
+import {UiElement} from '../../../projects/smn-ui/src/lib/utils/providers/element.provider';
 
 @Component({
     selector: 'demo',

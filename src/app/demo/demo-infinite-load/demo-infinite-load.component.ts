@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
-import {UiToolbarService} from '../../smn-ui/smn-ui.module';
-import {UiInfiniteLoadService} from '../../smn-ui/utils/infinite-load/infinite-load.service';
+import {UiToolbarService} from '../../../../projects/smn-ui/src/lib/smn-ui.module';
+import {UiInfiniteLoadService} from '../../../../projects/smn-ui/src/lib/utils/infinite-load/infinite-load.service';
 
 @Component({
     selector: 'demo-infinite-load',

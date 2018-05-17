@@ -1,4 +1,4 @@
-import {Directive, ElementRef, HostListener, Input} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, HostListener, Input} from '@angular/core';
 
 import {UiElement} from '../utils/providers/element.provider';
 
@@ -9,13 +9,17 @@ import {debounce} from '../utils/functions/debounce';
 @Directive({
     selector: '[uiRipple]'
 })
-export class UiRippleDirective {
+export class UiRippleDirective implements AfterViewInit {
     @Input('ripple-disable') rippleDisable;
-    private elRippleContainerTemplate: HTMLElement;
-    private elRippleTemplate: HTMLElement;
-    private elRippleContainerTemplateClone: HTMLElement;
+    public elRippleContainerTemplate: HTMLElement;
+    public elRippleTemplate: HTMLElement;
+    public elRippleContainerTemplateClone: HTMLElement;
 
-    constructor(private element: ElementRef) {
+    constructor(public element: ElementRef) {
+
+    }
+
+    ngAfterViewInit() {
         this.elRippleContainerTemplate = document.createElement('div');
         this.elRippleContainerTemplate.classList.add('ui-ripple-container');
         this.elRippleTemplate = document.createElement('div');
@@ -67,7 +71,7 @@ export class UiRippleDirective {
             elRippleTemplateClone.style.width = finalWidth + 'px';
             elRippleTemplateClone.style.height = finalHeight + 'px';
 
-            const mousePos = getMousePosition(e);
+            const mousePos = this.getMousePosition(e);
             const elementPos = UiElement.position(this.element.nativeElement);
 
             const pos = {
@@ -98,70 +102,70 @@ export class UiRippleDirective {
         }
     }
 
-    @HostListener('mouseup', ['$event'])
+    @HostListener('mouseup')
     onMouseup() {
         debounce(() => {
-            eraseRipples(this);
+            this.eraseRipples(this);
         }, 800, true)();
     }
 
-    @HostListener('mouseout', ['$event'])
+    @HostListener('mouseout')
     onMouseout() {
         debounce(() => {
-            eraseRipples(this);
+            this.eraseRipples(this);
         }, 2000, true)();
     }
-}
 
-function eraseRipples(thiss) {
-    thiss.elRippleContainerTemplateClone.classList.remove('pressed');
+    eraseRipples(thiss?) {
+        thiss.elRippleContainerTemplateClone.classList.remove('pressed');
 
-    const elRipples = thiss.elRippleContainerTemplateClone.children;
+        const elRipples = thiss.elRippleContainerTemplateClone.children;
 
-    const len = elRipples.length;
+        const len = elRipples.length;
 
-    ripples = len;
+        ripples = len;
 
-    for (let i = 0; i < len; i++) {
-        const elRipple = <HTMLElement>elRipples[i];
-        if (elRipple) {
-            const elementOpacity = elRipple.style.opacity || '1';
+        for (let i = 0; i < len; i++) {
+            const elRipple = <HTMLElement>elRipples[i];
+            if (elRipple) {
+                const elementOpacity = elRipple.style.opacity || '1';
 
-            if (elementOpacity === '1') {
-                UiElement.animate(elRipple, 'opacity', 1, 0, 800, () => {
-                    try {
-                        elRipple.parentNode.removeChild(elRipple);
-                        ripples--;
-                    } catch (e) {
-                    }
-                    if (!ripples) {
+                if (elementOpacity === '1') {
+                    UiElement.animate(elRipple, 'opacity', 1, 0, 800, () => {
                         try {
-                            thiss.elRippleContainerTemplateClone.parentNode.removeChild(thiss.elRippleContainerTemplateClone);
+                            elRipple.parentNode.removeChild(elRipple);
+                            ripples--;
                         } catch (e) {
                         }
-                    }
-                }, null);
+                        if (!ripples) {
+                            try {
+                                thiss.elRippleContainerTemplateClone.parentNode.removeChild(thiss.elRippleContainerTemplateClone);
+                            } catch (e) {
+                            }
+                        }
+                    }, null);
+                }
             }
         }
     }
-}
 
-function getMousePosition(e) {
-    const pos = {
-        y: undefined,
-        x: undefined
-    };
+    getMousePosition(e?) {
+        const pos = {
+            y: undefined,
+            x: undefined
+        };
 
-    if (e.originalEvent && e.originalEvent.touches !== undefined) {
-        pos.y = e.originalEvent.touches[0].pageY;
-        pos.x = e.originalEvent.touches[0].pageX;
-    } else if (e.pageX) {
-        pos.y = e.pageY;
-        pos.x = e.pageX;
-    } else if (e && e.touches !== undefined) {
-        pos.y = e.touches[0].pageY;
-        pos.x = e.touches[0].pageX;
+        if (e.originalEvent && e.originalEvent.touches !== undefined) {
+            pos.y = e.originalEvent.touches[0].pageY;
+            pos.x = e.originalEvent.touches[0].pageX;
+        } else if (e.pageX) {
+            pos.y = e.pageY;
+            pos.x = e.pageX;
+        } else if (e && e.touches !== undefined) {
+            pos.y = e.touches[0].pageY;
+            pos.x = e.touches[0].pageX;
+        }
+
+        return pos;
     }
-
-    return pos;
 }

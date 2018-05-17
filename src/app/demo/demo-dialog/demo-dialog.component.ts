@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
-import {UiToolbarService} from '../../smn-ui/smn-ui.module';
-import {UiDialog} from '../../smn-ui/dialog/dialog.service';
+import {UiToolbarService} from '../../../../projects/smn-ui/src/lib/smn-ui.module';
+import {UiDialog} from '../../../../projects/smn-ui/src/lib/dialog/dialog.service';
 
 @Component({
     selector: 'demo-dialog',

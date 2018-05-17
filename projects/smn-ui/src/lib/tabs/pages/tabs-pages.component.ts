@@ -3,7 +3,6 @@ import {UiElementRef} from '../../utils/providers/element-ref.provider';
 import {UiElement} from '../../utils/providers/element.provider';
 
 @Component({
-    moduleId: module.id,
     selector: 'ui-tabs-pages',
     templateUrl: 'tabs-pages.component.html',
     styleUrls: ['tabs-pages.component.scss']

@@ -22,6 +22,7 @@
       ],
       "smn-ui": [
         "dist/smn-ui",
+        "dist/smn-ui",
         "dist/smn-ui"
       ]
     }
