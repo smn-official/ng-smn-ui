@@ -12,10 +12,10 @@ import {UiElement} from '../utils/providers/element.provider';
 export class UiToolbarComponent implements AfterViewInit {
 
     constructor(private element: ElementRef) {
-        UiElement.on(UiWindowRef.nativeWindow, 'scroll resize', (e) => {
+        UiElement.on(window, 'scroll resize', (e) => {
             if (this.element.nativeElement.classList.contains('elevate-on-scroll')) {
                 const header = this.element.nativeElement.querySelectorAll('header')[0];
-                const scroll = UiWindowRef.nativeWindow.scrollY * 3.6;
+                const scroll = window.scrollY * 3.6;
 
                 if (this.element.nativeElement.classList.contains('size-2x')) {
                     if (e.type === 'scroll' && scroll < 97) {
@@ -38,7 +38,7 @@ export class UiToolbarComponent implements AfterViewInit {
                         this.element.nativeElement.classList.remove('scrolled');
                     }
                 } else {
-                    if (UiWindowRef.nativeWindow.scrollY > 1) {
+                    if (window.scrollY > 1) {
                         this.element.nativeElement.classList.add('scrolled');
                     } else {
                         this.element.nativeElement.classList.remove('scrolled');

@@ -28,7 +28,7 @@ export class UiTimePickerService {
     }
 
     closeAll() {
-        UiElement.trigger(UiWindowRef.nativeWindow, 'click');
+        UiElement.trigger(window, 'click');
     }
 
     getAll(): UiTimePickerDirective {

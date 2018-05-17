@@ -1,13 +1,43 @@
 import {AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit} from '@angular/core';
-import {imageAnimation, animationLetter} from './avatar.animations';
 import {UiColor} from '../utils/providers/color.provider';
 import {UiElement} from '../utils/providers/element.provider';
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
     selector: 'ui-avatar',
     templateUrl: './avatar.component.html',
     styleUrls: ['./avatar.component.scss'],
-    animations: [imageAnimation, animationLetter]
+    animations: [trigger(
+        'image', [
+            transition(':enter', [
+                style({
+                    opacity: 0,
+                }),
+                animate('280ms cubic-bezier(0.0, 0.0, 0.2, 1)', style({
+                    opacity: 1
+                }))
+            ]),
+            transition(':leave', [
+                style({
+                    opacity: 1,
+                }),
+                animate('2800ms cubic-bezier(0.0, 0.0, 0.2, 1)', style({
+                    opacity: 0,
+                }))
+            ])
+        ],
+    ), trigger(
+        'letter', [
+            transition(':leave', [
+                style({
+                    opacity: 1,
+                }),
+                animate('280ms cubic-bezier(0.0, 0.0, 0.2, 1)', style({
+                    opacity: 0,
+                }))
+            ])
+        ],
+    )]
 })
 export class UiAvatarComponent implements OnInit, AfterViewInit, OnChanges {
     newImage: string;

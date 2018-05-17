@@ -90,7 +90,7 @@ export class UiColorPickerDirective implements AfterViewInit, OnChanges {
             }
         });
 
-        UiElement.on(UiWindowRef.nativeWindow, 'click resize scroll', (e) => {
+        UiElement.on(window, 'click resize scroll', (e) => {
             if (this.componentRef) {
                 if ((!(UiElement.is(e.target, '.wrap-color-picker') || UiElement.closest(e.target, '.wrap-color-picker')) && !(document.body.clientWidth <= 600 && e.type === 'scroll')) || UiElement.is(e.target, '.overlay')) {
                     this.close();

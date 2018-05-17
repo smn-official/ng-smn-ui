@@ -12,15 +12,57 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import {Subject} from 'rxjs/index';
-import {explosionAnimation, fadeAnimation} from './clock.animations';
 import {UiElement} from '../utils/providers/element.provider';
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
     selector: 'ui-clock',
     templateUrl: './clock.component.html',
     styleUrls: ['./clock.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    animations: [explosionAnimation, fadeAnimation]
+    animations: [trigger(
+        'explosion', [
+            transition(':enter', [
+                style({
+                    opacity: 0,
+                    transform: 'scale(1.3)'
+                }),
+                animate('280ms cubic-bezier(0.0, 0.0, 0.2, 1)', style({
+                    opacity: 1,
+                    transform: 'scale(1)'
+                }))
+            ]),
+            transition(':leave', [
+                style({
+                    opacity: 1,
+                    transform: 'scale(1)'
+                }),
+                animate('280ms cubic-bezier(0.0, 0.0, 0.2, 1)', style({
+                    opacity: 0,
+                    transform: 'scale(1.3)'
+                }))
+            ])
+        ],
+    ), trigger(
+        'fade', [
+            transition(':enter', [
+                style({
+                    opacity: 0,
+                }),
+                animate('280ms cubic-bezier(0.0, 0.0, 0.2, 1)', style({
+                    opacity: 1,
+                }))
+            ]),
+            transition(':leave', [
+                style({
+                    opacity: 1,
+                }),
+                animate('280ms cubic-bezier(0.0, 0.0, 0.2, 1)', style({
+                    opacity: 0,
+                }))
+            ])
+        ],
+    )]
 })
 export class UiClockComponent implements OnInit, AfterViewInit, OnChanges {
     @Input() ngModel: any;

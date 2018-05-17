@@ -74,7 +74,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     }
 
     public ngAfterViewInit() {
-        UiElement.on(UiWindowRef.nativeWindow, 'click resize', e => {
+        UiElement.on(window, 'click resize', e => {
             if (this.componentRef) {
                 if (!(UiElement.is(e.target, '.wrap-autocomplete') || UiElement.closest(e.target, '.wrap-autocomplete') || UiElement.is(e.target, '.overlay') || e.target === this.elementRef.nativeElement)) {
                     this.close();

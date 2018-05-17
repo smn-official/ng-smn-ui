@@ -59,7 +59,7 @@ export class UiToolbarService {
         header.style.transition = 'all 280ms';
         setTimeout(() => {
             header.style.transition = '';
-            UiElement.trigger(UiWindowRef.nativeWindow, 'scroll');
+            UiElement.trigger(window, 'scroll');
         }, 280);
     }
 
@@ -78,7 +78,7 @@ export class UiToolbarService {
             header.style.transition = '';
         }, 280);
 
-        UiElement.trigger(UiWindowRef.nativeWindow, 'scroll');
+        UiElement.trigger(window, 'scroll');
     }
 
     public activateTransparentToolbar(auxiliarClass?: string) {

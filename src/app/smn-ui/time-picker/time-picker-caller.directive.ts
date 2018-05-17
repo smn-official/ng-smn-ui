@@ -53,7 +53,7 @@ export class UiTimePickerCallerDirective implements AfterViewInit {
             }
         });
 
-        UiElement.on(UiWindowRef.nativeWindow, 'click resize scroll', (e) => {
+        UiElement.on(window, 'click resize scroll', (e) => {
             if (this.pickerOpen) {
                 if ((!(UiElement.is(e.target, '.wrap-time-picker') || UiElement.closest(e.target, '.wrap-time-picker'))
                         && !(document.body.clientWidth <= 600 && e.type === 'scroll')) || UiElement.is(e.target, '.overlay')) {
@@ -102,8 +102,8 @@ export class UiTimePickerCallerDirective implements AfterViewInit {
         setTimeout(() => {
             const pickerHorizontalCoveringArea = coordinate.x + element.clientWidth;
             const pickerVerticalCoveringArea = coordinate.y + element.clientHeight;
-            const windowWidth = UiWindowRef.nativeWindow.innerWidth + (document.body.scrollLeft || window.scrollX);
-            const windowHeight = UiWindowRef.nativeWindow.innerHeight + (document.body.scrollTop || window.scrollY);
+            const windowWidth = window.innerWidth + (document.body.scrollLeft || window.scrollX);
+            const windowHeight = window.innerHeight + (document.body.scrollTop || window.scrollY);
 
             if (pickerHorizontalCoveringArea > windowWidth) {
                 coordinate.x = windowWidth - (element.clientWidth + 8);

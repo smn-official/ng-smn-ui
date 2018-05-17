@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 
+// @dynamic
 @Injectable()
 export class UiCookie {
     static get(name: string) {

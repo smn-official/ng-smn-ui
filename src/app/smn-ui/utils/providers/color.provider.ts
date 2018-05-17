@@ -14,7 +14,7 @@ export class UiColor {
     }
 }
 
-function _isBright(hex, minDarkPerc) {
+export function _isBright(hex, minDarkPerc) {
     const color = _hexToRgb(hex);
     if (!color) {
         return false;
@@ -23,7 +23,7 @@ function _isBright(hex, minDarkPerc) {
     return (luminosityPerc < (minDarkPerc || 0.3));
 }
 
-function _hexToRgb(hex) {
+export function _hexToRgb(hex) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
         r: parseInt(result[1], 16),
