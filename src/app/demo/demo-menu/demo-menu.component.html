@@ -26,6 +26,27 @@
                 <span>Item menu with icon</span>
             </div>
         </ui-card-content>
+        <ui-card-content>
+            <button class="ui-button" uiRipple (click)="menuDirect.show($event)">
+                OPEN IN CLICKED LOCATION
+            </button>
+            <br><br>
+            <button class="ui-button" uiRipple (click)="menuDirect.show($event, {element: $event.target})">
+                OPEN IN CLICKED ELEMENT
+            </button>
+            <br><br>
+            <button class="ui-button" uiRipple (click)="menuDirect.show($event, {align: 'right', element: $event.target})">
+                OPEN IN CLICKED ELEMENT (RIGHT)
+            </button>
+            <br><br>
+            <button class="ui-button" uiRipple (click)="menuDirect.show($event, { class: 'red' })">
+                OPEN WITH CLASS
+            </button>
+            <br><br>
+            <button class="ui-button" uiRipple (click)="menuDirectPersistent.show($event, { persistent: true })">
+                OPEN PERSISTENT
+            </button>
+        </ui-card-content>
     </ui-card>
 </div>
 <ui-menu #testeMenu>
@@ -54,5 +75,18 @@
             <i class="icon material-icons">done</i>
             Done
         </div>
+    </div>
+</ui-menu>
+
+<ui-menu #menuDirect>
+    <div class="ui-menu-content">
+        <div class="ui-menu-item" uiRipple>Counter: {{counter}}</div>
+    </div>
+</ui-menu>
+
+<ui-menu #menuDirectPersistent>
+    <div class="ui-menu-content">
+        <div class="ui-menu-item" uiRipple>Counter: {{counter}}</div>
+        <div class="ui-menu-item" uiRipple (click)="menuDirectPersistent.close()">CLOSE</div>
     </div>
 </ui-menu>
