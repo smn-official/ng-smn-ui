@@ -104,7 +104,7 @@ export class UiMenuComponent implements OnDestroy {
             }
 
             element.style.transform = '';
-            element.querySelector('ui-card').style.maxHeight = UiWindowRef.nativeWindow.innerHeight + 'px';
+            element.querySelector('ui-card').style.maxHeight = window.innerHeight + 'px';
             element.style.top = coordinate.y + 'px';
             element.style.left = coordinate.x + 'px';
             element.classList.add('open');
@@ -130,7 +130,7 @@ export class UiMenuComponent implements OnDestroy {
     createListener() {
         if (!this.listenerExists) {
             this.listenerExists = true;
-            UiElement.on(UiWindowRef.nativeWindow, 'mouseup resize scroll touchend', (e) => {
+            UiElement.on(window, 'mouseup resize scroll touchend', (e) => {
                 if (this.elementRef.nativeElement !== e.target) {
                     if (!this.persistentMenu) {
                         this.close();
