@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
-import {UiToolbarService} from '../../smn-ui/toolbar/toolbar.service';
+import {UiToolbarService} from '../../../../projects/smn-ui/src/lib/toolbar/toolbar.service';
 
 @Component({
     selector: 'ui-demo-autocomplete',

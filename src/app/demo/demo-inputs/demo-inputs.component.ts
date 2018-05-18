@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
-import {UiToolbarService} from '../../smn-ui/smn-ui.module';
-import {UiElement} from '../../smn-ui/utils/providers/element.provider';
+import {UiToolbarService} from '../../../../projects/smn-ui/src/lib/smn-ui.module';
+import {UiElement} from '../../../../projects/smn-ui/src/lib/utils/providers/element.provider';
 
 @Component({
     selector: 'demo-inputs',

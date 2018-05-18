@@ -1,7 +1,7 @@
 import {Component, OnInit, AfterViewInit, OnDestroy, ElementRef} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
-import {UiToolbarService, UiElement} from '../../smn-ui/smn-ui.module';
+import {UiToolbarService, UiElement} from '../../../../projects/smn-ui/src/lib/smn-ui.module';
 
 @Component({
     selector: 'demo-data-tables',

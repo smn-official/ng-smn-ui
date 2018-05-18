@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
-import {UiToolbarService} from '../../smn-ui/smn-ui.module';
+import {UiToolbarService} from '../../../../projects/smn-ui/src/lib/smn-ui.module';
 
 @Component({
     selector: 'demo-buttons',

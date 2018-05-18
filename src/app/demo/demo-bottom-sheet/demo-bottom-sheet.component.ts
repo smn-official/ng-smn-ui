@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UiToolbarService} from '../../smn-ui/toolbar/toolbar.service';
+import {UiToolbarService} from '../../../../projects/smn-ui/src/lib/toolbar/toolbar.service';
 import {Title} from '@angular/platform-browser';
 
 @Component({

@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {UiToolbarService} from '../../smn-ui/toolbar/toolbar.service';
+import {UiToolbarService} from '../../../../projects/smn-ui/src/lib/toolbar/toolbar.service';
 
 @Component({
     selector: 'ui-demo-avatar',
