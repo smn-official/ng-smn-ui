@@ -100,9 +100,16 @@ export class UiAvatarComponent implements OnInit, AfterViewInit, OnChanges {
     setSize() {
         if (this.size) {
             const wrap = this.element.nativeElement.querySelector('.wrap');
-            UiElement.css(this.element.nativeElement.querySelector('.empty'), 'font-size', `${Math.round(this.size / 100 * 36.36)}px`);
+            const empty = this.element.nativeElement.querySelector('.empty');
+            if (empty) {
+                UiElement.css(empty, 'font-size', `${Math.round(this.size / 100 * 36.36)}px`);
+            }
             UiElement.css(wrap, 'width', `${this.size}px`);
             UiElement.css(wrap, 'height', `${this.size}px`);
         }
+    }
+
+    getFontSize() {
+        return Math.round(this.size / 100 * 36.36);
     }
 }

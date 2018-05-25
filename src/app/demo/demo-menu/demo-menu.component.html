@@ -2,7 +2,7 @@
     <ui-card>
         <ui-card-content>
             <div>
-                <button class="ui-button icon flat" uiRipple [uiMenuTrigger]="testeMenu" [persistentMenu]="true">
+                <button class="ui-button icon flat" uiRipple [uiMenuTrigger]="testeMenu" [clickOverlayToClose]="true">
                     <i class="material-icons">more_vert</i>
                 </button>
                 <span>Menu left aligned</span>
@@ -51,7 +51,8 @@
 </div>
 <ui-menu #testeMenu>
     <div class="ui-menu-content">
-        <div class="ui-menu-item" uiRipple>Counter: {{counter}}</div>
+        <div style="width: 800px; height: 800px"></div>
+        <!--<div class="ui-menu-item" uiRipple>Counter: {{counter}}</div>-->
         <!--<div class="ui-menu-item" uiRipple (click)="bindFunction(); $event.stopPropagation(); testeMenu.close()">Increment counter</div>-->
     </div>
 </ui-menu>

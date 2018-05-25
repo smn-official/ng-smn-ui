@@ -13,6 +13,7 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
     @Input('menu-align') menuAlign;
     @Input('uiMenuTrigger') menu;
     @Input() persistentMenu;
+    @Input('click-overlay-to-close') clickOverlayToClose;
 
     constructor(public viewContainerRef: ViewContainerRef, public elementRef: ElementRef) {
     }
@@ -38,10 +39,32 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
         });
 
         UiElement.on(window, 'mouseup resize scroll touchend', (e) => {
+            if (this.clickOverlayToClose) {
+                switch (e.type) {
+                    case 'mouseup':
+                    case 'touchend':
+                        if (!UiElement.closest(e.target, '.wrap-menu')) {
+                            this.close();
+                        }
+                        return;
+                    default:
+                        this.close();
+                        return;
+                }
+            }
+
             if (this.elementRef.nativeElement !== e.target) {
                 if (!this.persistentMenu) {
                     this.close();
                 }
+
+            }
+        });
+
+        UiElement.on(window, 'mouseup touchend', e => {
+            if (this.clickOverlayToClose && !UiElement.closest(e.target, '.wrap-menu')) {
+                this.close();
+                return;
             }
         });
     }
@@ -99,6 +122,7 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
 
             element.style.transform = '';
             element.querySelector('ui-card').style.maxHeight = window.innerHeight + 'px';
+            element.querySelector('ui-card').style.maxWidth = (window.innerWidth - 16) + 'px';
             element.style.top = coordinate.y + 'px';
             element.style.left = coordinate.x + 'px';
 

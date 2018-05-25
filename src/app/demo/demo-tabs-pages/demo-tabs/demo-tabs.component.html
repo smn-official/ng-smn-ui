@@ -10,5 +10,12 @@
                 </div>
             </ui-tabs>
         </div>
+        <div>
+            <ui-tabs class="primary scrollable" #tabsList>
+                <div class="tab" uiRipple *ngFor="let item of list">
+                    {{item.id}}
+                </div>
+            </ui-tabs>
+        </div>
     </ui-card>
 </div>

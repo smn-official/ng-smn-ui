@@ -33,7 +33,7 @@ export class DemoSelectComponent implements OnInit {
     onChangeModel() {
         console.log(this.test);
         setTimeout(() => {
-            this.test = null;
+            // this.test = null;
         });
     }
 }

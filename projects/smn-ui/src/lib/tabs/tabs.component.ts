@@ -2,7 +2,7 @@ import {
     AfterViewInit, Component, ElementRef, Input, OnChanges, OnDestroy, OnInit
 } from '@angular/core';
 
-import {UiElementRef} from '../utils/providers/element-ref.provider';
+import {UiElement} from '../utils/providers/element.provider';
 
 @Component({
     selector: 'ui-tabs',
@@ -25,8 +25,8 @@ export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
     }
 
     ngAfterViewInit() {
-        const tabs = new UiElementRef(this.element.nativeElement).querySelector('.tab');
-        const indicator = new UiElementRef(this.element.nativeElement).querySelector('.indicator');
+        const tabs = this.element.nativeElement.querySelectorAll('.tab');
+        const indicator = this.element.nativeElement.querySelector('.indicator');
 
         const self = this;
 
@@ -35,45 +35,43 @@ export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
         function scrollToTab(tab, withoutAnimation?) {
             tabs.forEach(tab2 => {
                 if (tab2 !== tab && tab2.classList.contains('selected')) {
-                    indicator.css('left', tab2.offset().left + 'px');
-                    indicator.css('width', tab2.css('width'));
+                    UiElement.css(indicator, 'left', UiElement.offset(tab2).left + 'px');
+                    UiElement.css(indicator, 'width', tab2.offsetWidth + 'px');
                     tab2.classList.remove('selected');
                 }
             });
 
-            indicator.css('left', tab.offset().left + 'px');
-            indicator.css('width', tab.css('width'));
+            UiElement.css(indicator, 'left', UiElement.offset(tab).left + 'px');
+            UiElement.css(indicator, 'width', tab.offsetWidth + 'px');
 
             clearTimeout(timeout);
             timeout = setTimeout(() => {
                 tab.classList.add('selected');
-                indicator.css('width', '');
-                indicator.css('left', '');
+                UiElement.css(indicator, 'width', '');
+                UiElement.css(indicator, 'left', '');
             }, 280);
 
-            const overflow = new UiElementRef(self.element.nativeElement).querySelector('.overflow');
+            const overflow = self.element.nativeElement.querySelector('.overflow');
 
-            self.tabsScroll(tab.offset().left - overflow.nativeElement.scrollLeft, withoutAnimation);
+            self.tabsScroll(UiElement.offset(tab).left - overflow.scrollLeft, withoutAnimation);
         }
 
         tabs.forEach(tab => {
             this.element.nativeElement.addEventListener('click', (e) => {
-                if (e.target === tab.nativeElement) {
+                if (e.target === tab) {
                     scrollToTab(tab);
                 }
             });
         });
 
-        const tabSelected = new UiElementRef(this.element.nativeElement).querySelector('.tab.first-selected');
-        if (tabSelected.length) {
+        const tabSelected = this.element.nativeElement.querySelector('.tab.first-selected');
+        if (tabSelected) {
             scrollToTab(tabSelected, true);
             // tabSelected.nativeElement.click();
         }
 
-        const windowRef = new UiElementRef(window);
-
-        windowRef.trigger('scroll');
-        windowRef.on('scroll resize', this.onScroll);
+        UiElement.trigger(window, 'scroll');
+        UiElement.on(window, 'scroll resize', this.onScroll);
     }
 
     ngOnChanges(changes) {
@@ -83,22 +81,21 @@ export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
     }
 
     ngOnDestroy() {
-        const windowRef = new UiElementRef(window);
-        windowRef.off('scroll resize', this.onScroll);
+        UiElement.off(window, 'scroll resize', this.onScroll);
     }
 
     tabsScroll(value?, withoutAnimation?) {
-        const overflow = new UiElementRef(this.element.nativeElement).querySelector('.overflow');
+        const overflow = this.element.nativeElement.querySelector('.overflow');
 
-        let scrollLeft = overflow.nativeElement.scrollLeft;
+        let scrollLeft = overflow.scrollLeft;
 
-        const maxScrollLeft = overflow.nativeElement.scrollWidth - overflow.nativeElement.clientWidth;
+        const maxScrollLeft = overflow.scrollWidth - overflow.clientWidth;
 
         if (typeof value !== 'undefined') {
-            overflow.animate('borderSpacing', scrollLeft, scrollLeft + value, withoutAnimation ? 1 : 280, null, (tick) => {
-                overflow.nativeElement.scrollLeft = tick;
+            UiElement.animate(overflow, 'borderSpacing', scrollLeft, scrollLeft + value, withoutAnimation ? 1 : 280, null, (tick) => {
+                overflow.scrollLeft = tick;
 
-                scrollLeft = overflow.nativeElement.scrollLeft;
+                scrollLeft = overflow.scrollLeft;
 
                 this.showLeftArrow = (scrollLeft > 0);
                 this.showRightArrow = (scrollLeft < maxScrollLeft);
