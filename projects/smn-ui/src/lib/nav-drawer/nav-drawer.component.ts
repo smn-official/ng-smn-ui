@@ -11,7 +11,6 @@ import {
 
 import { UiElement } from '../utils/providers/element.provider';
 import { UiCookie } from '../utils/providers/cookie.provider';
-import { UiElementRef } from '../utils/providers/element-ref.provider';
 
 @Component({
     selector: 'ui-nav-drawer',

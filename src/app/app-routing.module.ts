@@ -35,6 +35,7 @@ import {DemoPagesComponent} from './demo/demo-tabs-pages/demo-pages/demo-pages.c
 import {DemoInfiniteLoadComponent} from './demo/demo-infinite-load/demo-infinite-load.component';
 import {DemoSelectComponent} from './demo/demo-select/demo-select.component';
 import {DemoAvatarComponent} from './demo/demo-avatar/demo-avatar.component';
+import {DemoTooltipComponent} from "./demo/demo-tooltip/demo-tooltip.component";
 
 const routes: Routes = [
     {
@@ -70,6 +71,7 @@ const routes: Routes = [
             {path: 'subheader', component: DemoSubheaderComponent},
             {path: 'time-pickers', component: DemoTimePickersComponent},
             {path: 'toolbars', component: DemoToolbarsComponent},
+            {path: 'tooltips', component: DemoTooltipComponent},
             {path: 'list', component: DemoListComponent},
             {path: 'tabs-pages', component: DemoTabsPagesComponent},
             {path: 'tabs', component: DemoTabsComponent},
