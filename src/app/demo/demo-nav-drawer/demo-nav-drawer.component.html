@@ -3,4 +3,14 @@
     <button class="ui-button raised primary" (click)="closeDrawer()">Close Current Drawer</button>
     <button class="ui-button raised primary" (click)="openDrawerNormal()">Open Normal Drawer</button>
     <button class="ui-button raised primary" (click)="openDrawerPersistent()">Open Persistent Drawer</button>
+    <button class="ui-button raised primary" (click)="menuOpen = true">Open right Drawer</button>
 </div>
+
+<ui-nav-drawer class="right" [(open)]="menuOpen">
+    <ui-toolbar class="flat">
+        <button (click)="menuOpen = false" class="ui-button flat icon" uiRipple>
+            <i class="material-icons">arrow_forward</i>
+        </button>
+        <span class="title">{{title}}</span>
+    </ui-toolbar>
+</ui-nav-drawer>

@@ -1,12 +1,9 @@
 import {AfterViewInit, Directive, ElementRef, Input, OnDestroy, OnInit} from '@angular/core';
-import {UiElement} from "../utils/providers/element.provider";
+import {UiElement} from '../utils/providers/element.provider';
 
 /**
- * TODO: Mostrar tooltip.
  * TODO: Persist tooltip.
- * TODO: Registrar eventos para o tooltip
  * TODO: Remover tooltip no destroy
- * TODO: Registrar direção do tooltip
  * */
 @Directive({
     selector: '[uiTooltip]'
@@ -17,7 +14,6 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy {
     @Input() left: boolean;
     @Input() right: boolean;
     @Input() bottom: boolean;
-    @Input() events: string;
 
     onShow: Function;
     onHide: Function;
@@ -28,26 +24,26 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy {
         this.onShow = (event) => {
             this.show(event);
         };
-        this.onHide = (event) => {
+        this.onHide = () => {
             this.hide();
         };
 
     }
 
     ngOnInit() {
-        this.events = this.events || 'mouseenter';
         if (!this.top && !this.left && !this.right) {
             this.bottom = true;
         }
     }
 
     ngAfterViewInit() {
-        UiElement.on(this.element.nativeElement, this.events, this.onShow);
+        UiElement.on(this.element.nativeElement, 'mouseenter', this.onShow);
         UiElement.on(this.element.nativeElement, 'mouseleave', this.onHide);
     }
 
     ngOnDestroy() {
-        UiElement.off(this.element.nativeElement, this.events, this.onShow);
+        UiElement.off(this.element.nativeElement, 'mouseenter', this.onShow);
+        UiElement.off(this.element.nativeElement, 'mouseleave', this.onHide);
     }
 
     setClass() {
