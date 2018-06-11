@@ -33,11 +33,11 @@
                 </div>
             </ui-input-container>
             <ui-input-container>
-                <input [type]="type ? 'text' : 'password'" [(ngModel)]="password" uiInput #test>
-                <label>Password</label>
                 <div class="suffix ui-button flat icon" (click)="type = !type" uiRipple>
                     <i class="material-icons light">{{type ? 'visibility_off' : 'visibility'}}</i>
                 </div>
+                <input [type]="type ? 'text' : 'password'" [(ngModel)]="password" uiInput #test>
+                <label>Password</label>
             </ui-input-container>
             <form #newTask="ngForm" class="ui-validate on-dirty on-submit">
                 <ui-input-container>
