@@ -3,7 +3,6 @@ import {UiElement} from '../utils/providers/element.provider';
 
 /**
  * TODO: Persist tooltip.
- * TODO: Remover tooltip no destroy
  * */
 @Directive({
     selector: '[uiTooltip]'
@@ -44,6 +43,7 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy {
     ngOnDestroy() {
         UiElement.off(this.element.nativeElement, 'mouseenter', this.onShow);
         UiElement.off(this.element.nativeElement, 'mouseleave', this.onHide);
+        this.hide();
     }
 
     setClass() {

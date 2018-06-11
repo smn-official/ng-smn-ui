@@ -10,6 +10,9 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     ui-card {
         width: 100%;
