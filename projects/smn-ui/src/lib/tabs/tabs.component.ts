@@ -9,7 +9,7 @@ import {UiElement} from '../utils/providers/element.provider';
     templateUrl: 'tabs.component.html',
     styleUrls: ['tabs.component.scss']
 })
-
+/**/
 export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
     showLeftArrow: boolean;
     showRightArrow: boolean;
@@ -33,13 +33,14 @@ export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
         let timeout;
 
         function scrollToTab(tab, withoutAnimation?) {
-            tabs.forEach(tab2 => {
+            for (let i = 0; i < tabs.length; i++) {
+                const tab2 = tabs[i];
                 if (tab2 !== tab && tab2.classList.contains('selected')) {
                     UiElement.css(indicator, 'left', UiElement.offset(tab2).left + 'px');
                     UiElement.css(indicator, 'width', tab2.offsetWidth + 'px');
                     tab2.classList.remove('selected');
                 }
-            });
+            }
 
             UiElement.css(indicator, 'left', UiElement.offset(tab).left + 'px');
             UiElement.css(indicator, 'width', tab.offsetWidth + 'px');
@@ -56,13 +57,14 @@ export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
             self.tabsScroll(UiElement.offset(tab).left - overflow.scrollLeft, withoutAnimation);
         }
 
-        tabs.forEach(tab => {
+        for (let i = 0; i < tabs.length; i++) {
+            const tab = tabs[i];
             this.element.nativeElement.addEventListener('click', (e) => {
                 if (e.target === tab) {
                     scrollToTab(tab);
                 }
             });
-        });
+        }
 
         const tabSelected = this.element.nativeElement.querySelector('.tab.first-selected');
         if (tabSelected) {

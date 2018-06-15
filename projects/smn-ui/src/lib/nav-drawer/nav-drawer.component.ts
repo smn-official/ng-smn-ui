@@ -88,6 +88,10 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges, OnDestroy
         let mouseX;
         let mouseXMovement;
 
+        if (this.element.nativeElement.classList.contains('.right')) {
+            return;
+        }
+
         UiElement.on(window, 'touchstart', (e) => {
             mouseX = e.touches[0].pageX;
             navDrawerTouch = (mouseX > 0 && mouseX < 40) ? 'open' : navDrawerTouch;

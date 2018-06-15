@@ -14,9 +14,9 @@ export class UiElementRef {
                 if (element === window) {
                     this[0] = new UiElementRef(element);
                 } else {
-                    element.forEach((item, i) => {
-                        this[i] = new UiElementRef(item);
-                    });
+                    for (let i = 0; i < element.length; i++) {
+                        this[i] = new UiElementRef(element[i]);
+                    }
                 }
             } else {
                 this.length = 1;
