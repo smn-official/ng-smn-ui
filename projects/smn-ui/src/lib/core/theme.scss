@@ -29,6 +29,7 @@
 @import "../clock/clock.theme";
 @import "../time-picker/time-picker-caller.theme";
 @import "../select/select.theme";
+@import "../menu/menu.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -105,4 +106,5 @@
     @include ui-clock($theme);
     @include ui-time-picker-caller($theme);
     @include ui-select($theme);
+    @include ui-menu($theme);
 }

@@ -65,6 +65,7 @@
         align-items: center;
         color: inherit;
         text-decoration: none;
+        transition: all 280ms ui-easing('deceleration');
 
         .icon {
             margin-right: 14px;

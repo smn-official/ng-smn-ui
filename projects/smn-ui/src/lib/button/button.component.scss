@@ -119,7 +119,11 @@
     }
 
     &:focus::before {
-        opacity: 0.06;
+        opacity: 0.1;
+    }
+
+    &:hover:not(:disabled)::before {
+        opacity: 0.08;
     }
 
     &:active:not([uiRipple])::before {
