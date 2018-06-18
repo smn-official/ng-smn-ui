@@ -7,12 +7,13 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DemoTooltipComponent implements OnInit {
     radioTest;
+    timing;
 
     constructor() {
-        this.radioTest = 'left';
     }
 
     ngOnInit() {
+        setTimeout(() => this.timing = true, 3000);
     }
 
 }

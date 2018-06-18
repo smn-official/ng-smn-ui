@@ -26,7 +26,7 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges, OnDestroy
 
     constructor(private element: ElementRef) {
         this.openNav = () => {
-            if (document.body.clientWidth <= 375 || (!this.element.nativeElement.classList.contains('persistent') && window.scrollY > 1)) {
+            if (document.body.clientWidth <= 375 || (!this.element.nativeElement.classList.contains('persistent') && (window.scrollY || window.pageYOffset) > 1)) {
                 const fabContainer = document.querySelectorAll('.ui-fab-container')[0];
                 if (fabContainer) {
                     fabContainer.classList.add('hide');

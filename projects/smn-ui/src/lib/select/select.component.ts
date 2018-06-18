@@ -111,8 +111,8 @@ export class UiSelectComponent implements OnInit, AfterViewInit, OnChanges {
         setTimeout(() => {
             const horizontalCoveringArea = coordinate.x + element.clientWidth;
             const verticalCoveringArea = coordinate.y + element.clientHeight;
-            const windowWidth = window.innerWidth + window.scrollX;
-            const windowHeight = document.body.clientHeight + window.scrollY;
+            const windowWidth = window.innerWidth + (window.scrollX || window.pageXOffset);
+            const windowHeight = document.body.clientHeight + (window.scrollY || window.pageYOffset);
 
             if (horizontalCoveringArea > windowWidth) {
                 coordinate.x = windowWidth - (element.clientWidth + 8);
