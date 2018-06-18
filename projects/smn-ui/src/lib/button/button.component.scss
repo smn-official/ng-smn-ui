@@ -89,6 +89,11 @@
     white-space: nowrap;
     min-width: 88px;
     user-select: none;
+    cursor: default;
+
+    &[href] {
+        cursor: pointer;
+    }
 
     &:not(button) {
         display: inline-flex;

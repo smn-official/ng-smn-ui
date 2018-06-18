@@ -21,12 +21,21 @@
             </ui-option-container>
             <button class="ui-button accent raised"
                     uiRipple
-                    [uiTooltip]="'Wesley Viado'"
+                    [uiTooltip]="'I am a tooltip'"
                     [top]="radioTest === 'top'"
                     [left]="radioTest === 'left'"
                     [right]="radioTest === 'right'"
                     [bottom]="radioTest === 'bottom'">
                 HOVER ME
+            </button>
+            <button class="ui-button accent raised icon"
+                    uiRipple
+                    [uiTooltip]="'I am a tooltip'"
+                    [top]="radioTest === 'top'"
+                    [left]="radioTest === 'left'"
+                    [right]="radioTest === 'right'"
+                    [bottom]="radioTest === 'bottom'">
+                <i class="material-icons">touch_app</i>
             </button>
         </ui-card-content>
     </ui-card>
