@@ -23,8 +23,6 @@ $margin: 8px;
     @include mobile() {
         $height: 32px;
         @include height(32px);
-        line-height: $height;
-        height: $height;
         font-size: 14px;
     }
 
