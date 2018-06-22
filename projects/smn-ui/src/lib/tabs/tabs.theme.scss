@@ -38,6 +38,11 @@
                             color: map_get($theme, primary-color);
                             border-bottom-color: map_get($theme, primary-color);
                         }
+
+                        &.disabled{
+                            color: #CDCDCD;
+                        }
+
                     }
 
                     .indicator {
