@@ -31,8 +31,6 @@ export class UiTabGroupComponent implements OnInit, AfterViewInit {
         // Ativa uma tab através do index passado com Input ou a primeira tab
         this.activateTab(this.tabs[this.active || 0]);
 
-        this.compileTabTemplate();
-
         this.tabsQueryList.changes.subscribe(newTabs => {
             this.tabs = newTabs.toArray();
             this.generateIndexes();
@@ -78,31 +76,5 @@ export class UiTabGroupComponent implements OnInit, AfterViewInit {
      **/
     updateActivatedTab() {
         this.tabs.map(tab => tab.indexActivatedTab = this.activatedTab.index);
-    }
-
-    /**
-     * Compila um template customizado
-     * @return {void}
-    **/
-    compileTabTemplate () {
-        this.tabs.forEach((tab, index) => {
-            /*
-            * Verificando se a tab tem template e se tem 2 templates
-            * porque um é para o lazy load e o outro para uma tab customizada
-            * */
-            if (tab.templatesRef.length !== 2) {
-                return;
-            }
-
-            setTimeout(() => {
-                // Compilando o template
-                const viewRef = tab.generateTemplate(tab.templatesRef.first);
-
-                // Colocando os elementos do template na tab
-                viewRef.rootNodes.forEach(node => {
-                    this.element.nativeElement.querySelectorAll('.tabs .tab')[index].appendChild(node);
-                });
-            });
-        });
     }
 }
