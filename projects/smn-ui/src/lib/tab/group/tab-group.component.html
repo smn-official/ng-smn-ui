@@ -1,0 +1,17 @@
+<header>
+    <div class="tabs">
+        <div class="tab"
+             *ngFor="let tab of tabs"
+             [ngClass]="{'active': tab.isActive, 'disabled': tab.disabled}"
+             (click)="activateTab(tab)">
+            <div *ngIf="tab.templatesRef.length !== 2">
+                <i class="material-icons" *ngIf="tab.icon">{{tab.icon}}</i>
+                {{tab.label}}
+            </div>
+        </div>
+    </div>
+    <div class="indicator"></div>
+</header>
+<div>
+    <ng-content></ng-content>
+</div>

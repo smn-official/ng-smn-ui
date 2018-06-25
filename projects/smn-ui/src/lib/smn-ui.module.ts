@@ -61,8 +61,8 @@ import {UiInfiniteLoadService} from './utils/infinite-load/infinite-load.service
 import {UiAutocompleteDirective} from './autocomplete/autocomplete.directive';
 import {UiAutocompleteComponent} from './autocomplete/autocomplete.component';
 import {UiMaskIntegerDirective} from './utils/masks/integer/mask-integer.directive';
-import {UiTabsComponent} from './tabs/tabs.component';
-import {UiTabsPagesComponent} from './tabs/pages/tabs-pages.component';
+import {UiTabsComponent} from './old-tabs/tabs.component';
+import {UiTabsPagesComponent} from './old-tabs/pages/tabs-pages.component';
 import {UiLazyLoadDirective} from './lazy-load/lazy-load.directive';
 import {UiDataTableComponent} from './data-table/data-table.component';
 import {UiBottomSheetComponent} from './bottom-sheet/bottom-sheet.component';
@@ -88,7 +88,9 @@ import {UiSelectFilterPipe} from './select/select-filter.pipe';
 import {UiFilterPipe} from './utils/pipes/filter.pipe';
 import {UiAvatarComponent} from './avatar/avatar.component';
 import {UiMaskFloatDirective} from './utils/masks/float/mask-float.directive';
-import { TooltipDirective } from './tooltip/tooltip.directive';
+import {TooltipDirective} from './tooltip/tooltip.directive';
+import {UiTabComponent} from './tab/tab.component';
+import {UiTabGroupComponent} from './tab/group/tab-group.component';
 
 export {
     debounce,
@@ -190,7 +192,9 @@ const lib: any[] = [
     UiFilterPipe,
     UiAvatarComponent,
     UiMaskFloatDirective,
-    TooltipDirective
+    TooltipDirective,
+    UiTabComponent,
+    UiTabGroupComponent
 ];
 
 @NgModule({

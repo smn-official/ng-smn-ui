@@ -1,0 +1,14 @@
+<ui-tab-group [active]="2">
+    <ui-tab label="Oliver Queen" #tab>
+        <ng-template>
+            <a [routerLink]="['/', 'old-tabs']">{{tab.label}}</a>
+        </ng-template>
+        <ng-template>
+            this go to lazy load
+        </ng-template>
+        <div>teste</div>
+    </ui-tab>
+    <ui-tab label="Barry Allen" icon="directions_run">teste2</ui-tab>
+    <ui-tab label="Bruce Wayne">teste3</ui-tab>
+    <ui-tab label="Sarah Lance" *ngIf="loading">teste4</ui-tab>
+</ui-tab-group>

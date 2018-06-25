@@ -33,12 +33,13 @@ import {DemoColorPickersComponent} from './demo-color-pickers/demo-color-pickers
 import {DemoClockComponent} from './demo-clock/demo-clock.component';
 import {DemoTimePickersComponent} from './demo-time-pickers/demo-time-pickers.component';
 import {DemoTabsPagesComponent} from './demo-tabs-pages/demo-tabs-pages.component';
-import {DemoTabsComponent} from './demo-tabs-pages/demo-tabs/demo-tabs.component';
+import {DemoTabsComponent as DemoOldTabsComponent} from './demo-tabs-pages/demo-tabs/demo-tabs.component';
 import {DemoPagesComponent} from './demo-tabs-pages/demo-pages/demo-pages.component';
 import {DemoInfiniteLoadComponent} from './demo-infinite-load/demo-infinite-load.component';
 import {DemoSelectComponent} from './demo-select/demo-select.component';
 import {DemoAvatarComponent} from './demo-avatar/demo-avatar.component';
 import { DemoTooltipComponent } from './demo-tooltip/demo-tooltip.component';
+import { DemoTabsComponent } from './demo-tabs/demo-tabs.component';
 
 @NgModule({
     imports: [
@@ -81,13 +82,14 @@ import { DemoTooltipComponent } from './demo-tooltip/demo-tooltip.component';
         DemoClockComponent,
         DemoTimePickersComponent,
         DemoTabsPagesComponent,
-        DemoTabsComponent,
+        DemoOldTabsComponent,
         DemoPagesComponent,
         DemoInfiniteLoadComponent,
         DemoTimePickersComponent,
         DemoSelectComponent,
         DemoAvatarComponent,
         DemoTooltipComponent,
+        DemoTabsComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
