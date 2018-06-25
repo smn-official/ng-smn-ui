@@ -16,10 +16,11 @@ export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
     onScroll;
     @Input('infinite-load') infiniteLoad;
     @Input() watch;
-    @Input() disableds;
+    @Input() disabled;
 
     constructor(private element: ElementRef) {
         this.onScroll = () => this.tabsScroll(0);
+        this.disabled = [];
     }
 
     ngOnInit() {
@@ -35,8 +36,8 @@ export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
             }
         }
 
-        for (let i = 0; this.disableds.length; i++) {
-            tabs[this.disableds[i]].classList.add('disabled');
+        for (let i = 0; i < this.disabled.length; i++) {
+            tabs[this.disabled[i]].classList.add('disabled');
         }
 
         const self = this;
