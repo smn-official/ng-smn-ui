@@ -13,8 +13,9 @@ export class UiSmartListItemComponent implements AfterViewInit {
 
     ngAfterViewInit() {
         const self = this;
-
-        this.element.nativeElement.querySelectorAll('input').forEach(el => {
+        const inputs = this.element.nativeElement.querySelectorAll('input');
+        for (let i = 0; i < inputs.length; i++) {
+            const el = inputs[i];
             el.addEventListener('focus', e => {
                 this.onFocus(e, self);
             });
@@ -22,7 +23,7 @@ export class UiSmartListItemComponent implements AfterViewInit {
             el.addEventListener('blur', e => {
                 this.onBlur(e, self);
             });
-        });
+        }
     }
 
     onFocus(event, self) {

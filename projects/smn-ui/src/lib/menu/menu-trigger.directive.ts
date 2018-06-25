@@ -1,4 +1,7 @@
-import {AfterViewInit, Directive, ElementRef, Input, ViewContainerRef, AfterViewChecked} from '@angular/core';
+import {
+    AfterViewInit, Directive, ElementRef, Input, ViewContainerRef, AfterViewChecked,
+    HostListener
+} from '@angular/core';
 import {UiElement} from '../utils/providers/element.provider';
 import {UiWindowRef} from '../utils/providers/window.provider';
 
@@ -14,6 +17,7 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
     @Input('uiMenuTrigger') menu;
     @Input() persistentMenu;
     @Input('click-overlay-to-close') clickOverlayToClose;
+    @Input() contextmenu: boolean;
 
     constructor(public viewContainerRef: ViewContainerRef, public elementRef: ElementRef) {
     }
@@ -23,9 +27,13 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
             this.close();
         });
 
-        UiElement.on(this.elementRef.nativeElement, this.triggerEvents || 'click', () => {
+        UiElement.on(this.elementRef.nativeElement, this.triggerEvents || 'click', event => {
             if (!this.persistentMenu) {
                 this.close();
+            }
+
+            if (this.contextmenu) {
+                return;
             }
 
             setTimeout(() => {
@@ -69,6 +77,21 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
         });
     }
 
+    @HostListener('contextmenu') onContextmenu() {
+        if (!this.contextmenu) {
+            return true;
+        }
+
+        const position = UiElement.position(this.elementRef.nativeElement);
+        const coordinate = {
+            x: position.left,
+            y: position.top
+        };
+        this.render(coordinate);
+
+        return false;
+    }
+
     ngAfterViewChecked() {
     }
 
@@ -90,7 +113,7 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
             let horizontalCoveringArea = coordinate.x + element.clientWidth;
             const verticalCoveringArea = coordinate.y + element.clientHeight;
             const windowWidth = window.innerWidth + document.body.scrollLeft;
-            const windowHeight = document.body.clientHeight + (document.body.scrollTop || window.scrollY);
+            const windowHeight = document.body.clientHeight + (document.body.scrollTop || window.scrollY || window.pageYOffset);
 
             if (this.align === 'right' || this.menuAlign === 'right') {
                 coordinate.x -= element.clientWidth - this.elementRef.nativeElement.clientWidth;

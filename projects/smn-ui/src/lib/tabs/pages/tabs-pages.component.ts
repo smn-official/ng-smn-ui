@@ -43,9 +43,10 @@ export class UiTabsPagesComponent implements AfterViewInit {
                 if (this.enableOverflow) {
                     const pageContainer = new UiElementRef(this.element.nativeElement);
 
-                    pageContainer.querySelector('.page-container .page').forEach(page => {
-                        page.css('height', '');
-                    });
+                    const pages = pageContainer.querySelector('.page-container .page');
+                    for (let i = 0; i < pages.length; i++) {
+                        pages[i].css('height', '');
+                    }
                 }
             });
 
@@ -70,10 +71,12 @@ export class UiTabsPagesComponent implements AfterViewInit {
                         const isNegative = i > 0 ? -1 : 1;
                         const currentPosition = (i * 100) * isNegative;
 
-                        this.element.nativeElement.querySelectorAll('.page-container .page').forEach(page => {
+                        const pages = this.element.nativeElement.querySelectorAll('.page-container .page');
+                        for (let i = 0; i < pages.length; i++) {
+                            const page = pages[i];
                             newPosition = currentPosition - ((100 / page.clientWidth) * touchXMovement);
                             page.style.transform = `translate(${newPosition}%)`;
-                        });
+                        }
                     }
                 }
             });
@@ -108,9 +111,12 @@ export class UiTabsPagesComponent implements AfterViewInit {
             const isNegative = (nextPage - 1) > 0 ? -1 : 1;
             const newPosition = (nextPage - 1) * 100 * isNegative;
 
-            this.element.nativeElement.querySelectorAll('.page-container .page').forEach(page => {
+            const pages = this.element.nativeElement.querySelectorAll('.page-container .page');
+            for (let i = 0; i < pages.length; i++) {
+                const page = pages[i];
                 page.style.transform = `translate(${newPosition}%)`;
-            });
+
+            }
         } else {
             this.pagesGoToPage(tabs.indexOf(tabs.filter(tab => tab.is('.selected'))[0]) + 1);
             // TODO: Verificar se isso realmente funciona
@@ -118,12 +124,13 @@ export class UiTabsPagesComponent implements AfterViewInit {
 
         const pageContainer = new UiElementRef(this.element.nativeElement);
         const elNextPage = pageContainer.querySelector('.page-container .page')[nextPage - 1];
-
-        pageContainer.querySelector('.page-container .page').forEach((page, i) => {
+        const pages = pageContainer.querySelector('.page-container .page');
+        for (let i = 0; i < pages.length; i++) {
             if (nextPage - 1 === i) {
-                page.css('height', '');
+                pages[i].css('height', '');
             }
-        });
+        }
+
         if (this.firstLoad) {
             const elCurrentPage = pageContainer.querySelector('.page-container .page')[this.currentPage - 1];
             pageContainer.css('height', elCurrentPage.nativeElement.clientHeight + 'px');
@@ -136,11 +143,13 @@ export class UiTabsPagesComponent implements AfterViewInit {
 
                 clearTimeout(this.timeOutTurnBack);
                 this.timeOutTurnBack = setTimeout(() => {
-                    pageContainer.querySelector('.page-container .page').forEach((page, i) => {
+
+                    const pages2 = pageContainer.querySelector('.page-container .page');
+                    for (let i = 0; i < pages.length; i++) {
                         if (nextPage - 1 !== i) {
-                            page.css('height', 0);
+                            pages[i].css('height', 0);
                         }
-                    });
+                    }
                     pageContainer.css('height', '');
                 }, 280);
             });

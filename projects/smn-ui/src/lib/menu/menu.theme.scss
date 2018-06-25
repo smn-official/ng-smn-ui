@@ -1,0 +1,9 @@
+@import "../core/variables";
+
+@mixin ui-menu($theme) {
+    $hover-color: ui-if(map-get($theme, is-dark) == true, #FFF, #000);
+
+    .ui-menu-item:hover {
+        background-color: rgba($hover-color, 0.1);
+    }
+}

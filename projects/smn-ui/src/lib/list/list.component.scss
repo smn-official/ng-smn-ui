@@ -3,7 +3,7 @@
 
     li,
     .ui-list-item {
-        min-height: 48px;
+        height: 48px;
         padding: 0 16px;
         display: flex;
         align-items: center;
@@ -13,6 +13,7 @@
         font-weight: 500;
         width: 100%;
         user-select: none;
+
         &:not(a) {
             cursor: default;
         }
@@ -49,6 +50,9 @@
         }
 
         &.multi-line {
+            min-height: 48px;
+            height: auto;
+
             .lines {
                 padding: 19px 0;
             }

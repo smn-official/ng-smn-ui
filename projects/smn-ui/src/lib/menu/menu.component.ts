@@ -72,7 +72,7 @@ export class UiMenuComponent implements OnDestroy {
             let horizontalCoveringArea = coordinate.x + element.clientWidth;
             const verticalCoveringArea = coordinate.y + element.clientHeight;
             const windowWidth = window.innerWidth + document.body.scrollLeft;
-            const windowHeight = document.body.clientHeight + (document.body.scrollTop || window.scrollY);
+            const windowHeight = document.body.clientHeight + (document.body.scrollTop || window.scrollY || window.pageYOffset);
 
             if (this.menuAlign === 'right') {
                 coordinate.x -= element.clientWidth - (this.element ? this.element.clientWidth : 0);

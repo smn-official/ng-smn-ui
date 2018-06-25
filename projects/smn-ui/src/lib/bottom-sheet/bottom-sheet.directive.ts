@@ -64,7 +64,7 @@ export class UiBottomSheetTriggerDirective implements AfterViewInit {
 
             element.classList.add('open');
 
-            UiElement.disableScroll();
+            // UiElement.disableScroll();
         });
     }
 
@@ -82,7 +82,7 @@ export class UiBottomSheetTriggerDirective implements AfterViewInit {
             });
 
             setTimeout(() => this.viewContainerRef.remove(this.viewContainerRef.indexOf(viewRef)), 280);
-            UiElement.enableScroll();
+            // UiElement.enableScroll();
         }
     }
 

@@ -7,7 +7,7 @@ UiElement.on(window, 'scroll resize', (e) => {
     const len = fabContainers.length;
 
     if (len) {
-        const scroll = window.scrollY;
+        const scroll = (window.scrollY || window.pageYOffset);
 
         for (let i = 0; i < len; i++) {
             const fabContainer = fabContainers[i];

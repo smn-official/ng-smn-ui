@@ -1,0 +1,55 @@
+@import "../core/variables";
+
+$margin: 8px;
+
+@mixin height($height) {
+    line-height: $height;
+    height: $height;
+}
+
+.wrap-tooltip {
+    background-color: rgba(97, 97, 97, .9);
+    position: absolute;
+    @include height(24px);
+    padding: 0 8px;
+    font-size: 10px;
+    color: #FFF;
+    border-radius: 4px;
+    transform: scale(0.8);
+    opacity: 0;
+    z-index: 5;
+    top: 0;
+
+    @include mobile() {
+        $height: 32px;
+        @include height(32px);
+        font-size: 14px;
+    }
+
+    &.show {
+        transition: transform 225ms ui-easing('deceleration'), opacity 195ms ui-easing('deceleration');
+        opacity: 1;
+        transform: scale(1);
+    }
+    &.hide {
+        transition: opacity 75ms ui-easing('deceleration');
+        opacity: 0;
+    }
+
+    &.top {
+        margin-top: -$margin;
+        transform-origin: bottom;
+    }
+    &.bottom {
+        margin-top: $margin;
+        transform-origin: top;
+    }
+    &.left {
+        margin-left: -$margin;
+        transform-origin: right;
+    }
+    &.right {
+        margin-left: $margin;
+        transform-origin: left;
+    }
+}

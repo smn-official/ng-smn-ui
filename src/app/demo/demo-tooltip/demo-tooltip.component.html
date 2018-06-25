@@ -1,0 +1,44 @@
+<div style="max-width: 600px; margin: 16px auto">
+    <ui-card>
+        <ui-card-content>
+            <ui-option-container class="v-space-4 b-space-16">
+                <ui-option>
+                    <input type="radio" name="radioTest" [(ngModel)]="radioTest" [value]="'top'">
+                    <span>Top</span>
+                </ui-option>
+                <ui-option>
+                    <input type="radio" name="radioTest" [(ngModel)]="radioTest" [value]="'left'">
+                    <span>Left</span>
+                </ui-option>
+                <ui-option>
+                    <input type="radio" name="radioTest" [(ngModel)]="radioTest" [value]="'right'">
+                    <span>Right</span>
+                </ui-option>
+                <ui-option>
+                    <input type="radio" name="radioTest" [(ngModel)]="radioTest" [value]="'bottom'">
+                    <span>Bottom</span>
+                </ui-option>
+            </ui-option-container>
+            <button class="ui-button accent raised"
+                    uiRipple
+                    [uiTooltip]="'I am a tooltip'"
+                    [top]="radioTest === 'top'"
+                    [left]="radioTest === 'left'"
+                    [right]="radioTest === 'right'"
+                    [bottom]="radioTest === 'bottom'">
+                HOVER ME
+            </button>
+            <button style="margin-left: 16px" class="ui-button accent raised icon"
+                    uiRipple
+                    [uiTooltip]="'I am a tooltip'"
+                    [top]="radioTest === 'top'"
+                    [left]="radioTest === 'left'"
+                    [right]="radioTest === 'right'"
+                    [bottom]="radioTest === 'bottom'">
+                <i class="material-icons">touch_app</i>
+            </button>
+        </ui-card-content>
+    </ui-card>
+</div>
+
+<div style="height: 2000px" *ngIf="!timing"></div>

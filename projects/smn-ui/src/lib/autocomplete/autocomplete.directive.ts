@@ -191,8 +191,8 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
         const maxHeightWrap = !!this.secondary ? 370 : 240;
         const horizontalCoveringArea = coordinate.x + wrap.clientWidth;
         const verticalCoveringArea = coordinate.y + (wrap.clientHeight > maxHeightWrap ? maxHeightWrap : wrap.clientHeight);
-        const windowWidth = window.innerWidth + (document.body.scrollLeft || window.scrollX);
-        const windowHeight = window.innerHeight + (document.body.scrollTop || window.scrollY);
+        const windowWidth = window.innerWidth + (document.body.scrollLeft || window.scrollX || window.pageXOffset);
+        const windowHeight = window.innerHeight + (document.body.scrollTop || window.scrollY || window.pageYOffset);
 
         if (horizontalCoveringArea > windowWidth) {
             coordinate.x = windowWidth - (wrap.clientWidth + 8);

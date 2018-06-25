@@ -1,6 +1,13 @@
 @import "../core/variables";
 
 ui-nav-drawer {
+    &.right nav {
+        right: -10px;
+        left: auto;
+        transform: translateX(100%);
+
+    }
+
     nav {
         top: 0;
         bottom: 0;
@@ -10,9 +17,9 @@ ui-nav-drawer {
         z-index: 7;
         box-shadow: ui-shadow('16dp');
         transition: transform 280ms ui-easing('deceleration');
-        left: -10px;
         transform: translateX(-100%);
         user-select: none;
+        left: -10px;
 
         .ui-nav-drawer-overflow {
             height: calc(100% - 64px);
@@ -46,6 +53,11 @@ ui-nav-drawer {
     &.open nav {
         left: 0;
         transform: translateX(0);
+    }
+
+    &.open.right nav {
+        left: auto;
+        right: 0;
     }
 
     &:not(.persistent) .ui-nav-drawer-overlay {

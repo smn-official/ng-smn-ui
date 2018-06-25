@@ -11,7 +11,6 @@ import {
 
 import { UiElement } from '../utils/providers/element.provider';
 import { UiCookie } from '../utils/providers/cookie.provider';
-import { UiElementRef } from '../utils/providers/element-ref.provider';
 
 @Component({
     selector: 'ui-nav-drawer',
@@ -30,7 +29,7 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges, OnDestroy
 
     constructor(private element: ElementRef) {
         this.openNav = () => {
-            if (document.body.clientWidth <= 375 || (!this.element.nativeElement.classList.contains('persistent') && window.scrollY > 1)) {
+            if (document.body.clientWidth <= 375 || (!this.element.nativeElement.classList.contains('persistent') && (window.scrollY || window.pageYOffset) > 1)) {
                 const fabContainer = document.querySelectorAll('.ui-fab-container')[0];
                 if (fabContainer) {
                     fabContainer.classList.add('hide');
@@ -93,6 +92,10 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges, OnDestroy
         let mouseXMovement;
 
         this.onTouchStart = (e) => {
+            if (this.element.nativeElement.classList.contains('.right')) {
+                return;
+            }
+          
             mouseX = e.touches[0].pageX;
             navDrawerTouch = (mouseX > 0 && mouseX < 40) ? 'open' : navDrawerTouch;
             navDrawerTouch = (mouseX > 320 && mouseX < 360) ? 'close' : navDrawerTouch;
