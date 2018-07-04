@@ -39,6 +39,10 @@
                 <input [type]="type ? 'text' : 'password'" [(ngModel)]="password" uiInput #test>
                 <label>Password</label>
             </ui-input-container>
+            <ui-input-container [loading]="true">
+                <input type="text" [(ngModel)]="simple" uiInput>
+                <label>With loading</label>
+            </ui-input-container>
             <form #newTask="ngForm" class="ui-validate on-dirty on-submit">
                 <ui-input-container>
                     <input type="text" [(ngModel)]="validation" name="validation" uiInput required
