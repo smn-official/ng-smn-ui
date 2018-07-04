@@ -15,6 +15,12 @@
         animation: hide 280ms ui-easing('deceleration') forwards;
     }
 
+    &.input {
+        position: absolute;
+        bottom: -1px;
+        max-height: 2px;
+    }
+
     .determinate {
         position: absolute;
         top: 0;
