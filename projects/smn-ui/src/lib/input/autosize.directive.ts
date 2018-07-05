@@ -1,4 +1,4 @@
-import {ElementRef, HostListener, Directive, OnChanges, Input} from '@angular/core';
+import { ElementRef, HostListener, Directive, OnChanges, Input, AfterViewInit } from '@angular/core';
 
 const MAX_LOOKUP_RETRIES = 3;
 
@@ -6,7 +6,7 @@ const MAX_LOOKUP_RETRIES = 3;
     selector: '[autosize]'
 })
 
-export class UiInputAutosizeDirective implements OnChanges {
+export class UiInputAutosizeDirective implements OnChanges, AfterViewInit {
     private retries = 0;
     private textAreaEl: any;
     @Input() ngModel;
@@ -22,6 +22,13 @@ export class UiInputAutosizeDirective implements OnChanges {
         } else {
             this.textAreaEl = this.element.nativeElement;
         }
+    }
+
+    // Faz com que o autosize execute quando a tela for carregada, para casos em que o campo iniciar preenchido
+    ngAfterViewInit() {
+        setTimeout(() => {
+            this.adjust();
+        });
     }
 
     _findNestedTextArea() {

@@ -67,7 +67,7 @@
                 </ui-input-container>
                 <ui-input-container>
                     <textarea [(ngModel)]="textarea" name="textarea" rows="2" uiInput required uiMaxlength="250"
-                          #fieldTextarea="ngModel"></textarea>
+                          #fieldTextarea="ngModel" autosize></textarea>
                     <label>Textarea</label>
                     <div class="ui-messages">
                         <div *ngIf="fieldTextarea.errors && fieldTextarea.dirty">
