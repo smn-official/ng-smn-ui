@@ -10,7 +10,6 @@ import {UiElement} from '../../../../projects/smn-ui/src/lib/utils/providers/ele
     styleUrls: ['./demo-inputs.component.scss']
 })
 export class DemoInputsComponent implements OnInit {
-
     list: string[];
     // @ViewChild('test') test;
 
@@ -21,7 +20,7 @@ export class DemoInputsComponent implements OnInit {
     ngOnInit() {
         this.titleService.setTitle('Input - SMN UI Demos');
         this.toolbarService.set('Input');
-
+    
         // setTimeout(() => {
         //     UiElement.focus(this.test.nativeElement);
         // }, 2000);
