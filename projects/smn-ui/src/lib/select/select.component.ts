@@ -51,6 +51,7 @@ export class UiSelectComponent implements OnInit, AfterViewInit, OnChanges {
     }
 
     ngOnChanges(changes) {
+        this.element.nativeElement.setAttribute('disabled', this.disabled);
         if (changes.options || changes.ngModel) {
             this.selectOption();
         }
