@@ -1,12 +1,12 @@
 @import "../core/variables";
 
 @mixin ui-input($theme) {
-    $label-color: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.7), rgba(0,0,0,.54));
-    $border-color: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.7), rgba(0,0,0,.42));
-    $placeholder-color: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.5), rgba(0,0,0,.42));
-    $message-color: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.7), rgba(0,0,0,.54));
-    $disabled: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.5), rgba(0,0,0, .42));
-    $disabled-line: ui-if(map-get($theme, is-dark) == true, rgba(255,255,255,.7), rgba(0,0,0, .42));
+    $label-color: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, .7), rgba(0, 0, 0, .54));
+    $border-color: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, .7), rgba(0, 0, 0, .42));
+    $placeholder-color: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, .5), rgba(0, 0, 0, .42));
+    $message-color: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, .7), rgba(0, 0, 0, .54));
+    $disabled: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, .5), rgba(0, 0, 0, .42));
+    $disabled-line: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, .7), rgba(0, 0, 0, .42));
     $autocomplete-background: ui-if(map-get($theme, is-dark) == true, #424242, #fff);
 
     ui-input-container {
@@ -57,6 +57,18 @@
 
         select.ui-control option {
             color: initial;
+        }
+
+        .ui-input-wrap ui-select {
+
+            &[disabled="true"] ~ label {
+                color: $disabled;
+            }
+
+            &[disabled="true"] .selected {
+                color: $disabled;
+            }
+
         }
 
         .ui-messages .ui-message.helper,
