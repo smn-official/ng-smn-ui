@@ -1,0 +1,120 @@
+@import "../../core/variables";
+
+@mixin ui-tab-header($theme) {
+    $primary-color: map_get($theme, primary-color);
+    $primary-text-color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+    $accent-color: map_get($theme, accent-color);
+    $accent-text-color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+    $is-dark: map_get($theme, is-dark);
+    $color-tab-inactive: ui-if($is-dark, rgba(255, 255, 255, .87), rgba(0, 0, 0, .54));
+    $color-button: ui-if($is-dark, #000, #FFF);
+
+    ui-tab-header {
+
+        .tab {
+            color: $color-tab-inactive;
+        }
+
+        .tab-wrap {
+            &.active .tab {
+                color: $primary-color;
+                border-color: $primary-color;
+            }
+
+            &.disabled .tab {
+                color: rgba(ui-if($is-dark, #FFF, #000), .24);
+            }
+        }
+
+        .ink-bar {
+            background-color: $primary-color;
+        }
+
+        .navigation .ui-button:not(.success):not(.warning):not(.error):not(:disabled).flat {
+            background-color: ui-if($is-dark, rgba($color-button, .64), rgba($color-button, .87));
+        }
+
+        &.accent {
+            .tab-wrap.active .tab {
+                color: $accent-color;
+                border-color: $accent-color;
+            }
+
+            .ink-bar {
+                background-color: $accent-color;
+            }
+        }
+
+        &.fill-background {
+            background-color: $primary-color;
+
+            .ui-ripple-wave {
+                background-color: rgba($primary-text-color, 0.1);
+            }
+
+            .tab {
+                color: rgba($primary-text-color, .54);
+            }
+
+            .tab-wrap {
+                &.active .tab {
+                    color: $primary-text-color;
+                    border-color: $primary-text-color;
+                }
+
+                &.disabled .tab {
+                    color: rgba($primary-text-color, .24);
+                }
+            }
+
+            .ink-bar {
+                background-color: $primary-text-color;
+            }
+
+            .navigation .ui-button:not(.success):not(.warning):not(.error):not(:disabled).flat {
+                background-color: rgba($primary-color, .7);
+            }
+
+            &.theme-ink-bar .ink-bar {
+                background-color: $accent-color;
+            }
+
+            &.accent {
+                background-color: $accent-color;
+
+                .ui-ripple-wave {
+                    background-color: rgba($accent-text-color, 0.1);
+                }
+
+                .tab {
+                    color: rgba($accent-text-color, .54);
+                }
+
+                .tab-wrap {
+                    &.active .tab {
+                        color: $accent-text-color;
+                        border-color: $accent-text-color;
+                    }
+
+                    &.disabled .tab {
+                        color: rgba($primary-text-color, .24);
+                    }
+                }
+
+
+
+                .ink-bar {
+                    background-color: $accent-text-color;
+                }
+
+                &.theme-ink-bar .ink-bar {
+                    background-color: $primary-color;
+                }
+
+                .navigation .ui-button:not(.success):not(.warning):not(.error):not(:disabled).flat {
+                    background-color: rgba($accent-color, .7);
+                }
+            }
+        }
+    }
+}

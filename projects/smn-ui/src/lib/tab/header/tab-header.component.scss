@@ -1,0 +1,82 @@
+@import "../../core/variables";
+
+$tab-height: 48px;
+
+:host {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+::ng-deep ui-tab-group.scrollable ui-tab-header, :host.scrollable {
+    @include desktop {
+        .tabs-container {
+            padding-left: 52px;
+        }
+    }
+}
+
+.tabs-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.tabs {
+    display: flex;
+    height: $tab-height;
+    align-items: center;
+}
+
+::ng-deep .tab-wrap, .tab-wrap {
+    .tab {
+        padding: 0 16px;
+        min-width: 90px;
+        max-width: 360px;
+        line-height: $tab-height;
+        height: $tab-height;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        white-space: nowrap;
+        user-select: none;
+        border-bottom: 2px solid transparent;
+        display: block;
+
+        cursor: default;
+        transition: color 280ms ui-easing('deceleration'), border-color 0ms ui-easing('deceleration');
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    &.active .tab {
+        transition: color 280ms ui-easing('deceleration'), border-color 0ms 280ms ui-easing('deceleration');
+    }
+}
+
+.ink-bar {
+    left: 0;
+    width: 127px;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    transition: all 280ms ui-easing('deceleration');
+}
+
+.navigation {
+    margin: 0 8px;
+    position: absolute;
+    z-index: 1;
+
+    &.left {
+        left: 0;
+    }
+
+    &.right {
+        right: 0;
+    }
+}

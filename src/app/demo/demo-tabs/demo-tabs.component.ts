@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 
 @Component({
     selector: 'ui-demo-tabs',
@@ -7,8 +7,12 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DemoTabsComponent implements OnInit {
     loading: boolean;
+    info: any;
+    @ViewChild('primaryForm') primaryForm;
+    @ViewChild('phoneForm') phoneForm;
 
     constructor() {
+        this.info = {};
         this.loading = true;
     }
 

@@ -1,14 +1,51 @@
-<ui-tab-group [active]="2">
-    <ui-tab label="Oliver Queen" #tab>
-        <ng-template>
-            <a [routerLink]="['/', 'old-tabs']">{{tab.label}}</a>
+<ui-tab-group [lazy-load]="true"
+              [accent]="accent"
+              [fillBackground]="fillBackground"
+              [themeInkBar]="themeInkBar" class="scrollable">
+    <ui-tab label="Oliver Queen" #tab [disabled]="true">
+        <ng-template uiTabLabel>
+            <a [routerLink]="['/', 'old-tabs']" class="tab">{{tab.label}}</a>
         </ng-template>
-        <ng-template>
+        <ng-template uiTabContent>
             this go to lazy load
         </ng-template>
         <div>teste</div>
     </ui-tab>
-    <ui-tab label="Barry Allen" icon="directions_run">teste2</ui-tab>
-    <ui-tab label="Bruce Wayne">teste3</ui-tab>
-    <ui-tab label="Sarah Lance" *ngIf="loading">teste4</ui-tab>
+    <ui-tab label="Barry Allen" icon="directions_run">
+        <ng-template uiTabContent>
+            <form #primaryForm="ngForm">
+                <ui-input-container>
+                    <input type="text" name="nome" uiInput required [(ngModel)]="info.nome">
+                    <label>Nome</label>
+                </ui-input-container>
+            </form>
+        </ng-template>
+    </ui-tab>
+    <ui-tab label="Bruce Wayne">
+        <ng-template uiTabContent>
+            <form #phoneForm="ngForm">
+                <ui-input-container>
+                    <input type="text" name="telefone" uiInput required [(ngModel)]="info.telefone" uiMaskPhone [disabled]="primaryForm?.invalid">
+                    <label>Telefone</label>
+                </ui-input-container>
+            </form>
+        </ng-template>
+    </ui-tab>
+    <ui-tab label="SarahLance" *ngIf="loading">teste4</ui-tab>
 </ui-tab-group>
+
+<ui-option-container class="v-space-4 b-space-16">
+    <ui-option>
+        <input type="checkbox" [(ngModel)]="fillBackground" [checked]="fillBackground">
+        <span>Fill background</span>
+    </ui-option>
+    <ui-option>
+        <input type="checkbox" [(ngModel)]="accent" [checked]="accent">
+        <span>Accent</span>
+    </ui-option>
+    <ui-option>
+        <input type="checkbox" [(ngModel)]="themeInkBar" [checked]="themeInkBar">
+        <span>Theme ink bar</span>
+    </ui-option>
+</ui-option-container>
+

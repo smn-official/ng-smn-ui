@@ -1076,6 +1076,8 @@ $material-colors: (
 );
 
 @function ui-color($color: 'white', $hue: '500', $opacity: 1) {
+    @debug $material-colors;
+    @debug $color;
     $color: rgba(map-get(map-get(map-get($material-colors, $color), $hue), 'color'), $opacity);
     @if $color {
         @return $color;

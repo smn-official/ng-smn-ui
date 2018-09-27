@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, ElementRef, NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
@@ -91,6 +91,9 @@ import {UiMaskFloatDirective} from './utils/masks/float/mask-float.directive';
 import {TooltipDirective} from './tooltip/tooltip.directive';
 import {UiTabComponent} from './tab/tab.component';
 import {UiTabGroupComponent} from './tab/group/tab-group.component';
+import {UiTabContentDirective} from './tab/tab-content.directive';
+import {UiTabLabelDirective} from './tab/tab-label.directive';
+import { UiTabHeaderComponent } from './tab/header/tab-header.component';
 
 export {
     debounce,
@@ -194,7 +197,10 @@ const lib: any[] = [
     UiMaskFloatDirective,
     TooltipDirective,
     UiTabComponent,
-    UiTabGroupComponent
+    UiTabGroupComponent,
+    UiTabContentDirective,
+    UiTabLabelDirective,
+    UiTabHeaderComponent
 ];
 
 @NgModule({

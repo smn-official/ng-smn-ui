@@ -1,3 +1,6 @@
-<div *ngIf="!isActive">
+<div>
     <ng-content></ng-content>
+</div>
+<div *ngIf="templateContent && templateContent.template && loaded">
+    <ng-container *ngTemplateOutlet="templateContent.template"></ng-container>
 </div>

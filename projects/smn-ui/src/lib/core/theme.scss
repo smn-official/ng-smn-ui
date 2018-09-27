@@ -30,6 +30,7 @@
 @import "../time-picker/time-picker-caller.theme";
 @import "../select/select.theme";
 @import "../menu/menu.theme";
+@import "../tab/header/tab-header.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -107,4 +108,5 @@
     @include ui-time-picker-caller($theme);
     @include ui-select($theme);
     @include ui-menu($theme);
+    @include ui-tab-header($theme);
 }

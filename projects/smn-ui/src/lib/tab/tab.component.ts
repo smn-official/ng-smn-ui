@@ -1,9 +1,9 @@
 import {
-    AfterViewInit, ChangeDetectorRef, Component, ContentChild, ContentChildren, EventEmitter, Input, OnInit, QueryList,
-    TemplateRef,
-    ViewChild,
-    ViewChildren, ViewContainerRef
+    AfterViewInit, ChangeDetectorRef, Component, ContentChild, EventEmitter, Input, OnInit, TemplateRef,
+    ViewContainerRef
 } from '@angular/core';
+import {UiTabContentDirective} from './tab-content.directive';
+import {UiTabLabelDirective} from './tab-label.directive';
 
 @Component({
     selector: 'ui-tab',
@@ -11,7 +11,8 @@ import {
     styleUrls: ['./tab.component.scss']
 })
 export class UiTabComponent implements OnInit, AfterViewInit {
-    @ContentChildren(TemplateRef) templatesRef: QueryList<TemplateRef<any>>;
+    @ContentChild(UiTabContentDirective) templateContent: TemplateRef<any>;
+    @ContentChild(UiTabLabelDirective) templateLabel: TemplateRef<any>;
     @Input() label: string;
     @Input() icon: string;
     @Input() disabled: string;
@@ -19,12 +20,17 @@ export class UiTabComponent implements OnInit, AfterViewInit {
     index: number;
     indexActivatedTab: number;
     tabChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+    loaded: boolean;
 
-    constructor(private viewContainer: ViewContainerRef, private changeDetectorRef: ChangeDetectorRef) {
+    constructor(private viewContainer: ViewContainerRef,
+                private changeDetectorRef: ChangeDetectorRef) {
     }
 
     ngOnInit() {
         this.tabChange.subscribe(value => {
+            if (value) {
+                this.loaded = true;
+            }
             this.isActive = value;
             this.changeDetectorRef.detectChanges();
         });
@@ -37,7 +43,7 @@ export class UiTabComponent implements OnInit, AfterViewInit {
      * Compila um template
      * @param {TemplateRef} template - Template a ser compilado
      * @return {ViewRef}
-    **/
+     **/
     generateTemplate(template: TemplateRef<any>) {
         return this.viewContainer.createEmbeddedView(template);
     }

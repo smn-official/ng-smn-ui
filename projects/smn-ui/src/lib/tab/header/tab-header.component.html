@@ -1,0 +1,16 @@
+<div class="navigation left" *ngIf="hasLeftScroll()">
+    <button type="button" class="ui-button icon flat" (click)="updateScroll(-increment)">
+        <i class="material-icons">chevron_left</i>
+    </button>
+</div>
+<div class="tabs-container">
+    <div class="tabs">
+        <ng-content></ng-content>
+    </div>
+    <div class="ink-bar"></div>
+</div>
+<div class="navigation right" *ngIf="hasRightScroll()">
+    <button type="button" class="ui-button icon flat" (click)="updateScroll(increment)">
+        <i class="material-icons">chevron_right</i>
+    </button>
+</div>

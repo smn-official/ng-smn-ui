@@ -1,20 +1,21 @@
-<header>
-    <div class="tabs">
-        <div class="tab"
-             *ngFor="let tab of tabs"
-             [ngClass]="{'active': tab.isActive, 'disabled': tab.disabled}"
-             (click)="activateTab(tab)">
-            <div *ngIf="tab.templatesRef.length !== 2">
-                <i class="material-icons" *ngIf="tab.icon">{{tab.icon}}</i>
-                {{tab.label}}
-            </div>
-            <div *ngIf="tab.templatesRef.length === 2">
-                <ng-container *ngTemplateOutlet="tab.templatesRef.first"></ng-container>
-            </div>
+<ui-tab-header [ngClass]="{
+                'fill-background': fillBackground,
+                'accent': accent,
+                'theme-ink-bar': themeInkBar}">
+    <div class="tab-wrap"
+         *ngFor="let tab of tabs"
+         [ngClass]="{'active': tab.isActive, 'disabled': tab.disabled}"
+         (click)="activateTab(tab, tabRef)"
+         #tabRef>
+        <div *ngIf="!tab.templateLabel" class="tab" uiRipple="!tab.disabled">
+            <i class="material-icons" *ngIf="tab.icon">{{tab.icon}}</i>
+            {{tab.label}}
+        </div>
+        <div *ngIf="tab.templateLabel">
+            <ng-container *ngTemplateOutlet="tab.templateLabel.template"></ng-container>
         </div>
     </div>
-    <div class="indicator"></div>
-</header>
+</ui-tab-header>
 <div>
     <ng-content></ng-content>
 </div>

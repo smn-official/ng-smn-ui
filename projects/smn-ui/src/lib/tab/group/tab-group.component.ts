@@ -1,8 +1,9 @@
 import {
     AfterViewInit, ChangeDetectorRef, Component, ContentChildren, ElementRef, Input, OnInit,
-    QueryList
+    QueryList, ViewChild
 } from '@angular/core';
 import {UiTabComponent} from '../tab.component';
+import {UiTabHeaderComponent} from '../header/tab-header.component';
 
 @Component({
     selector: 'ui-tab-group',
@@ -11,7 +12,11 @@ import {UiTabComponent} from '../tab.component';
 })
 export class UiTabGroupComponent implements OnInit, AfterViewInit {
     @ContentChildren(UiTabComponent) tabsQueryList: QueryList<UiTabComponent>;
+    @ViewChild(UiTabHeaderComponent) tabHeader: UiTabHeaderComponent;
     @Input() active: number;
+    @Input() fillBackground: boolean;
+    @Input() themeInkBar: boolean;
+    @Input() accent: boolean;
 
     tabs: any[];
     activatedTab: UiTabComponent;
@@ -20,7 +25,6 @@ export class UiTabGroupComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-
     }
 
     ngAfterViewInit() {
@@ -28,8 +32,10 @@ export class UiTabGroupComponent implements OnInit, AfterViewInit {
         this.tabs = this.tabsQueryList.toArray();
         this.changeDetectorRef.detectChanges();
         this.generateIndexes();
+
         // Ativa uma tab através do index passado com Input ou a primeira tab
-        this.activateTab(this.tabs[this.active || 0]);
+        const tab = this.getFirstTab(this.active);
+        this.activateTab(tab, this.getTabRef(tab));
 
         this.tabsQueryList.changes.subscribe(newTabs => {
             this.tabs = newTabs.toArray();
@@ -39,7 +45,7 @@ export class UiTabGroupComponent implements OnInit, AfterViewInit {
             if (!this.tabs.includes(this.activatedTab)) {
                 // Ativando a tab que ficou no mesmo index da última tab ativa
                 const newTab = this.tabs[this.activatedTab.index] || this.tabs[this.tabs.length - 1];
-                this.activateTab(newTab);
+                this.activateTab(newTab, this.getTabRef(tab));
             }
         });
     }
@@ -53,11 +59,44 @@ export class UiTabGroupComponent implements OnInit, AfterViewInit {
     }
 
     /**
+     * Retorna a primeira tab que não está desabilitada
+     * @param {number} tabIndex - Index da tab a ser procurada primeiro
+     * @return {UiTabComponent}
+    **/
+    getFirstTab (tabIndex) {
+        if (typeof tabIndex === 'number' && !this.tabs[tabIndex].disabled) {
+            return this.tabs[tabIndex];
+        }
+
+        for (let i = 0; i < this.tabs.length; i++) {
+            const tab = this.tabs[i];
+            if (!tab.disabled) {
+                return tab;
+            }
+        }
+    }
+
+    /**
+     * Retorna a refencia da tab em HTML
+     * @param {UiTabComponent} tab - Class da tab a ser encontrada
+     * @return {void}
+    **/
+    getTabRef (tab) {
+        const tabsRef = this.element.nativeElement.querySelectorAll('.tab');
+        return tabsRef ? tabsRef[tab.index] : null;
+    }
+
+    /**
      * Ativa uma tab
      * @param tab {UiTabComponent} - Tab a ser ativada
+     * @param tabRef {HTMLElement} - Referencia da tab em um elemento HTML
      * @return {void}
      * */
-    activateTab(tab: UiTabComponent) {
+    activateTab(tab: UiTabComponent, tabRef: HTMLElement) {
+        if (tab.disabled) {
+            return;
+        }
+
         if (this.activatedTab) {
             this.activatedTab.tabChange.emit(false);
         }
@@ -67,6 +106,7 @@ export class UiTabGroupComponent implements OnInit, AfterViewInit {
 
         this.activatedTab = tab;
 
+        this.tabHeader.moveInkBarTo(tabRef);
         this.updateActivatedTab();
     }
 
