@@ -41,14 +41,9 @@ export class UiDatePickerCallerDirective implements AfterViewInit {
             this.inputElement = <HTMLElement>document.querySelector(`[date-picker-name="${this.datePickerCaller}"]`);
 
             this.referencesService.closeAll();
-            const position = UiElement.position(this.inputElement);
-            const coordinate = {
-                x: position.left,
-                y: this.inputElement.offsetHeight + position.top
-            };
 
             if (!this.pickerOpen) {
-                this.renderDatePicker(this.datePicker, coordinate);
+                this.renderDatePicker(this.datePicker);
                 e.stopPropagation(); // Parando propagação do evento para os eventos do window
             }
         });
@@ -56,7 +51,7 @@ export class UiDatePickerCallerDirective implements AfterViewInit {
         UiElement.on(window, 'click resize scroll', (e) => {
             if (this.pickerOpen) {
                 if ((!(UiElement.is(e.target, '.wrap-date-picker') || UiElement.closest(e.target, '.wrap-date-picker'))
-                        && !(document.body.clientWidth <= 600 && e.type === 'scroll')) || UiElement.is(e.target, '.overlay')) {
+                    && !(document.body.clientWidth <= 600 && e.type === 'scroll')) || UiElement.is(e.target, '.overlay')) {
                     this.closePicker();
                 }
             }
@@ -71,6 +66,7 @@ export class UiDatePickerCallerDirective implements AfterViewInit {
         const keysComponent = ['ngModel', 'maxDate', 'minDate', 'initOnSelected', 'confirmSelection', 'select'];
         keysComponent.map(key => componentRef.instance[key] = component[key]);
         componentRef.instance.cancel.subscribe(() => this.closePicker());
+        componentRef.instance.updateMonth.subscribe(() => this.setCoordinate(this.componentElement));
         component.chosen.subscribe(value => componentRef.instance.ngOnChanges(value));
         componentRef.instance.chosen.subscribe(value => {
             this.referencesService.updateModel(this.datePickerCaller, value);
@@ -81,7 +77,7 @@ export class UiDatePickerCallerDirective implements AfterViewInit {
         });
     }
 
-    public renderViewCalendar(element, coordinate, themeClass): void {
+    public renderViewCalendar(element, themeClass): void {
         this.wrapDatePicker = document.createElement('div');
         this.wrapDatePicker.classList.add('wrap-date-picker');
         const overlay = document.createElement('div');
@@ -95,6 +91,40 @@ export class UiDatePickerCallerDirective implements AfterViewInit {
         this.wrapDatePicker.appendChild(overlay);
         this.wrapDatePicker.appendChild(element);
         document.body.appendChild(this.wrapDatePicker);
+
+        this.setCoordinate(element);
+    }
+
+    public renderDatePicker(component): void {
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UiCalendarComponent);
+        this.componentRef = componentFactory.create(this.injector);
+        this.componentElement = this.getComponentAsElement(this.componentRef);
+
+        this.setInstances(component, this.componentRef);
+        this.applicationRef.attachView(this.componentRef.hostView);
+        this.renderViewCalendar(this.componentElement, component.themeClass);
+        this.pickerOpen = true;
+    }
+
+    public closePicker(): void {
+        this.wrapDatePicker.classList.remove('open');
+        setTimeout(() => {
+            this.pickerOpen = false;
+            this.applicationRef.detachView(this.componentRef.hostView);
+            document.body.style.overflowY = '';
+            try {
+                document.body.removeChild(this.wrapDatePicker);
+            } catch (e) {
+            }
+        }, 280);
+    }
+
+    private setCoordinate(element) {
+        const position = UiElement.position(this.inputElement);
+        const coordinate = {
+            x: position.left,
+            y: this.inputElement.offsetHeight + position.top
+        };
 
         setTimeout(() => {
             const pickerHorizontalCoveringArea = coordinate.x + element.clientWidth;
@@ -119,29 +149,5 @@ export class UiDatePickerCallerDirective implements AfterViewInit {
                 document.body.style.overflowY = 'hidden';
             }
         });
-    }
-
-    public renderDatePicker(component, coordinate): void {
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UiCalendarComponent);
-        this.componentRef = componentFactory.create(this.injector);
-        this.componentElement = this.getComponentAsElement(this.componentRef);
-
-        this.setInstances(component, this.componentRef);
-        this.applicationRef.attachView(this.componentRef.hostView);
-        this.renderViewCalendar(this.componentElement, coordinate, component.themeClass);
-        this.pickerOpen = true;
-    }
-
-    public closePicker(): void {
-        this.wrapDatePicker.classList.remove('open');
-        setTimeout(() => {
-            this.pickerOpen = false;
-            this.applicationRef.detachView(this.componentRef.hostView);
-            document.body.style.overflowY = '';
-            try {
-                document.body.removeChild(this.wrapDatePicker);
-            } catch (e) {
-            }
-        }, 280);
     }
 }

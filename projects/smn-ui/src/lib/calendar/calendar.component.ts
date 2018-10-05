@@ -31,6 +31,7 @@ export class UiCalendarComponent implements OnInit, OnChanges {
     @Output() select: EventEmitter<any> = new EventEmitter();
     @Output() cancel: EventEmitter<any> = new EventEmitter();
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
+    @Output() updateMonth: EventEmitter<any> = new EventEmitter();
     @ViewChild(UiAddCalendarDirective) addCalendar: UiAddCalendarDirective;
     chosen: Subject<any> = new Subject();
 
@@ -78,11 +79,13 @@ export class UiCalendarComponent implements OnInit, OnChanges {
 
     public prevMonth(): void {
         this.viewDate.setMonth(this.viewDate.getMonth() - 1);
+        this.updateMonth.emit();
         this.renderCalendar(this.viewDate);
     }
 
     public nextMonth(): void {
         this.viewDate.setMonth(this.viewDate.getMonth() + 1);
+        this.updateMonth.emit();
         this.renderCalendar(this.viewDate);
     }
 
