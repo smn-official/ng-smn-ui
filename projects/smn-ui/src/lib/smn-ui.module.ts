@@ -2,7 +2,6 @@ import {CUSTOM_ELEMENTS_SCHEMA, ElementRef, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import './button/button.service';
 import {debounce} from './utils/functions/debounce';
@@ -197,8 +196,7 @@ const lib: any[] = [
     imports: [
         CommonModule,
         FormsModule,
-        RouterModule,
-        BrowserAnimationsModule
+        RouterModule
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [...lib],
