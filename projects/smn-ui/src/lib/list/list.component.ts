@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnChanges, ViewEncapsulation} from '@angular/core';
 
 @Component({
     selector: 'ui-list',
@@ -6,14 +6,14 @@ import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
     encapsulation: ViewEncapsulation.None
 })
 
-export class UiListComponent implements OnInit {
+export class UiListComponent implements OnChanges {
     @Input() list: any;
     @Input('item-model') itemModel: any;
 
     constructor() {
     }
 
-    ngOnInit() {
+    ngOnChanges() {
         if (!this.list) {
             console.error('É obrigatório fornecer a model "list"');
             return false;
