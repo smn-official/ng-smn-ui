@@ -33,6 +33,13 @@
                 </div>
             </ui-input-container>
             <ui-input-container>
+                <input type="text" name="truecpf" [(ngModel)]="truecpf" uiInput [uiMaskCpf]="true">
+                <label>CPF(uiMaskCpf)</label>
+                <div class="ui-messages">
+                    <div class="ui-message helper">Model: {{truecpf}}; View: {{truecpf | uiCpf}}</div>
+                </div>
+            </ui-input-container>
+            <ui-input-container>
                 <input type="text" name="cnpj" [(ngModel)]="cnpj" uiInput uiMaskCnpj>
                 <label>CNPJ(uiMaskCnpj)</label>
                 <div class="ui-messages">
