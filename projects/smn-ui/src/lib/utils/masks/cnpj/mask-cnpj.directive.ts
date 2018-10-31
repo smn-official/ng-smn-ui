@@ -30,6 +30,7 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator, Aft
     @Input() minDate: Date;
     @Input() maxDate: Date;
     @Input() ngModel: any;
+    @Input('uiMaskCnpj') uiMaskCnpj;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
     constructor(public elementRef: ElementRef, public cnpjPipe: UiCnpjPipe) {
@@ -87,6 +88,10 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator, Aft
             return {parse: true};
         }
 
+        if (this.uiMaskCnpj === true && !this.cnpjIsValid(control.value)) {
+            return {parse: true};
+        }
+
         return null;
     }
 
@@ -95,11 +100,48 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator, Aft
         this.elementRef.nativeElement[method]('disabled', 'disabled');
     }
 
-    @HostListener('keydown') onKeydown() {
+    cnpjIsValid(cnpj) {
+        if (cnpj && cnpj.length !== 14) {
+            return false;
+        }
+        let size = cnpj.length - 2;
+        let numbers = cnpj.substring(0, size);
+        const digits = cnpj.substring(size);
+        let sum = 0;
+        let pos = size - 7;
+        for (let i = size; i >= 1; i--) {
+            sum += numbers.charAt(size - i) * pos--;
+            if (pos < 2) {
+                pos = 9;
+            }
+        }
+        let result = sum % 11 < 2 ? 0 : 11 - sum % 11;
+        if (result.toString() !== digits.charAt(0)) {
+            return false;
+        }
+
+        size = size + 1;
+        numbers = cnpj.substring(0, size);
+        sum = 0;
+        pos = size - 7;
+        for (let i = size; i >= 1; i--) {
+            sum += numbers.charAt(size - i) * pos--;
+            if (pos < 2) {
+                pos = 9;
+            }
+        }
+        result = sum % 11 < 2 ? 0 : 11 - sum % 11;
+
+        return result.toString() === digits.charAt(1);
+    }
+
+    @HostListener('keydown')
+    onKeydown() {
         this.beforeSelIndex = UiElement.caretPosition.get(this.elementRef.nativeElement);
     }
 
-    @HostListener('input', ['$event']) onInput($event): void {
+    @HostListener('input', ['$event'])
+    onInput($event): void {
         const afterSelIndex = UiElement.caretPosition.get(this.elementRef.nativeElement);
         const rawValue: string = this.elementRef.nativeElement.value;
         this.input = true;

@@ -47,6 +47,13 @@
                 </div>
             </ui-input-container>
             <ui-input-container>
+                <input type="text" name="truecnpj" [(ngModel)]="truecnpj" uiInput [uiMaskCnpj]="true">
+                <label>CNPJ(uiMaskCnpj)</label>
+                <div class="ui-messages">
+                    <div class="ui-message helper">Model: {{truecnpj}}; View: {{truecnpj | uiCnpj}}</div>
+                </div>
+            </ui-input-container>
+            <ui-input-container>
                 <input type="text" name="cep" [(ngModel)]="cep" uiInput uiMaskCep required #teste2="ngModel">
                 <label>CEP(uiMaskCep)</label>
                 <div class="ui-messages">
