@@ -88,7 +88,7 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator, Aft
             return {parse: true};
         }
 
-        if (this.uiMaskCnpj === true && !this.cnpjIsValid(control.value)) {
+        if (this.uiMaskCnpj === true && control.value && !this.cnpjIsValid(control.value)) {
             return {parse: true};
         }
 
