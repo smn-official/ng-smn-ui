@@ -1,8 +1,9 @@
-import {AfterViewInit, Component, ElementRef} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input} from '@angular/core';
 import {Subject} from 'rxjs';
 import {UiDatetimeService} from './datetime.service';
 
 import {UiElement} from '../utils/providers/element.provider';
+import {UiColor} from '../utils/providers/color.provider';
 
 @Component({
     selector: 'ui-calendar-content',
@@ -10,22 +11,29 @@ import {UiElement} from '../utils/providers/element.provider';
     styleUrls: ['./calendar-content.component.scss'],
 })
 export class UiCalendarContentComponent implements AfterViewInit {
+
     maxDate: Date;
     minDate: Date;
     calendar: any;
     ngModel: any;
+    events: any[];
     chosenDate: any;
     days: any;
     months: any;
     confirmSelection: boolean;
     chosen: Subject<any> = new Subject();
 
-    constructor(public datetimeService: UiDatetimeService, public elementRef: ElementRef) {
+    constructor(public datetimeService: UiDatetimeService, public elementRef: ElementRef, private changeDetectorRef: ChangeDetectorRef) {
         this.days = datetimeService.days;
         this.months = datetimeService.months;
     }
 
     ngAfterViewInit() {
+        if (this.events && this.events.length) {
+            this.verifyEventDates();
+            this.changeDetectorRef.detectChanges();
+        }
+
         this.elementRef.nativeElement.querySelectorAll('.days button').forEach(item => {
             item.addEventListener('keydown', e => {
                 const target = UiElement.closest(e.target, '.day');
@@ -134,4 +142,21 @@ export class UiCalendarContentComponent implements AfterViewInit {
         return (typeof minDate === 'number' && !isNaN(minDate) && date < minDate) || (typeof maxDate === 'number' && !isNaN(maxDate) && date > maxDate);
     }
 
+    verifyEventDates() {
+        this.calendar.days.map(day => {
+            this.events.map(event => {
+                const date = new Date (event.date);
+
+                if ((date.getTime() + (day.value.getTimezoneOffset() * 60000)) === day.value.getTime()) {
+                    day.hasEvent = true;
+                    day.eventColor = event.color;
+                    day.blocked = event.blocked;
+                }
+            });
+        });
+    }
+
+    isBright(color) {
+        return UiColor.isBright(color);
+    }
 }

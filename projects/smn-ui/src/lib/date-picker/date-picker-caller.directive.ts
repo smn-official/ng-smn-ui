@@ -63,7 +63,7 @@ export class UiDatePickerCallerDirective implements AfterViewInit {
     }
 
     public setInstances(component, componentRef): void {
-        const keysComponent = ['ngModel', 'maxDate', 'minDate', 'initOnSelected', 'confirmSelection', 'select'];
+        const keysComponent = ['ngModel', 'maxDate', 'minDate', 'initOnSelected', 'confirmSelection', 'select', 'events'];
         keysComponent.map(key => componentRef.instance[key] = component[key]);
         componentRef.instance.cancel.subscribe(() => this.closePicker());
         componentRef.instance.updateMonth.subscribe(() => this.setCoordinate(this.componentElement));
