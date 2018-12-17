@@ -144,7 +144,7 @@ export class UiCalendarComponent implements OnInit, OnChanges {
 
         this.calendar = calendar;
 
-        const keysComponent = ['calendar', 'ngModel', 'minDate', 'maxDate', 'chosenDate', 'confirmSelection'];
+        const keysComponent = ['calendar', 'ngModel', 'minDate', 'maxDate', 'chosenDate', 'confirmSelection', 'events'];
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UiCalendarContentComponent);
         const viewContainerRef = this.addCalendar.viewContainerRef;
         viewContainerRef.clear();

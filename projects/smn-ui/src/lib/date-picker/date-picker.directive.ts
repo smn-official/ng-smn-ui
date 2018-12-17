@@ -13,6 +13,7 @@ export class UiDatePickerDirective implements OnInit, AfterViewInit, OnChanges, 
     @Input() ngModel;
     @Input() maxDate: Date;
     @Input() minDate: Date;
+    @Input() events: any;
     @Input() initOnSelected: Date;
     @Input() confirmSelection: boolean;
     @Input('theme-class') themeClass: string;
