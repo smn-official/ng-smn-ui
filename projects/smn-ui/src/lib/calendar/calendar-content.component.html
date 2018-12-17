@@ -14,7 +14,7 @@
                 (click)="!isDisabled(day.value) && chooseDate(day.value)"
                 [disabled]="isDisabled(day.value) || day.blocked"
                 [ngClass]="{'primary': isDay(day.value) || day.today && !day.hasEvent, 'flat': !isDay(day.value),
-                'dark-text': isBright(day.color), 'light-text': !isBright(day.color)}"
+                'dark-text': isBright(day.color), 'light-text': !isBright(day.color) && !isDisabled(day.value)}"
                 *ngIf="day.month === calendar.month">
             {{day.date}}
         </button>
