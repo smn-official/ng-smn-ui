@@ -85,7 +85,7 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
             return {parse: true};
         }
 
-        if (this.uiMaskCpf === true && !this.cpfIsValid(control.value)) {
+        if (this.uiMaskCpf === true && control.value && !this.cpfIsValid(control.value)) {
             return {parse: true};
         }
 
