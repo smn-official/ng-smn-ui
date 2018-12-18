@@ -44,7 +44,11 @@ export class UiToolbarService {
     }
 
     public activateExtendedToolbar(breakpoint?: any) {
-        if (breakpoint && this.getMainToolbar()) {
+        if (!mainToolbar) {
+            return;
+        }
+
+        if (breakpoint &&) {
             if (!sizes.includes(breakpoint)) {
                 console.error(`O tamanho do "breakpoint" tem que ser um dos tamanhos suportados: ${sizes.join(', ')}`);
             } else {
@@ -64,7 +68,7 @@ export class UiToolbarService {
     }
 
     public deactivateExtendedToolbar() {
-        if (!this.getMainToolbar()) {
+        if (!mainToolbar) {
             return;
         }
 
