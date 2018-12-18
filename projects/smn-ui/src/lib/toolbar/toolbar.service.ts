@@ -48,7 +48,7 @@ export class UiToolbarService {
             return;
         }
 
-        if (breakpoint &&) {
+        if (breakpoint) {
             if (!sizes.includes(breakpoint)) {
                 console.error(`O tamanho do "breakpoint" tem que ser um dos tamanhos suportados: ${sizes.join(', ')}`);
             } else {
