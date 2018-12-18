@@ -44,7 +44,7 @@ export class UiToolbarService {
     }
 
     public activateExtendedToolbar(breakpoint?: any) {
-        if (breakpoint) {
+        if (breakpoint && this.getMainToolbar()) {
             if (!sizes.includes(breakpoint)) {
                 console.error(`O tamanho do "breakpoint" tem que ser um dos tamanhos suportados: ${sizes.join(', ')}`);
             } else {
@@ -64,6 +64,10 @@ export class UiToolbarService {
     }
 
     public deactivateExtendedToolbar() {
+        if (!this.getMainToolbar()) {
+            return;
+        }
+
         sizes.forEach(size => this.getMainToolbar().classList.remove(`elevate-on-s${size}`));
         defaultBreakpoint.forEach(size => this.getMainToolbar().classList.add(`elevate-on-s${size}`));
 
