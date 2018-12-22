@@ -23,7 +23,12 @@ export class UiSnackbar {
 
     static hide() {
         if (bars.length) {
-            document.querySelectorAll('ui-snackbar-container > ui-snackbar')[0].classList.add('leave');
+            const snackbar = document.querySelector('ui-snackbar-container > ui-snackbar');
+            if (!snackbar) {
+                return;
+            }
+
+            snackbar.classList.add('leave');
             setTimeout(() => {
                 clearTimeout(timeout);
                 this.finishTimeout();
