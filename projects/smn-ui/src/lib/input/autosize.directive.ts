@@ -50,8 +50,11 @@ export class UiInputAutosizeDirective implements OnChanges, AfterViewInit, DoChe
         this.adjust();
     }
 
+    // setTimeout para aguardar a atualização da model do input
     ngOnChanges(changes) {
-        this.adjust();
+        setTimeout(() => {
+            this.adjust();
+        });
     }
 
     adjust(): void {
