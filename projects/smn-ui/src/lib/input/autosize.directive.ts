@@ -1,4 +1,4 @@
-import { ElementRef, HostListener, Directive, OnChanges, Input, AfterViewInit } from '@angular/core';
+import {ElementRef, HostListener, Directive, OnChanges, Input, AfterViewInit, DoCheck} from '@angular/core';
 
 const MAX_LOOKUP_RETRIES = 3;
 
@@ -6,7 +6,7 @@ const MAX_LOOKUP_RETRIES = 3;
     selector: '[autosize]'
 })
 
-export class UiInputAutosizeDirective implements OnChanges, AfterViewInit {
+export class UiInputAutosizeDirective implements OnChanges, AfterViewInit, DoCheck {
     private retries = 0;
     private textAreaEl: any;
     @Input() ngModel;
@@ -44,6 +44,10 @@ export class UiInputAutosizeDirective implements OnChanges, AfterViewInit {
                 }, 100);
             }
         }
+    }
+
+    ngDoCheck() {
+        this.adjust();
     }
 
     ngOnChanges(changes) {
