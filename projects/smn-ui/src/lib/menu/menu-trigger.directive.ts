@@ -3,12 +3,11 @@ import {
     HostListener
 } from '@angular/core';
 import {UiElement} from '../utils/providers/element.provider';
-import {UiWindowRef} from '../utils/providers/window.provider';
 
 @Directive({
     selector: '[uiMenuTrigger]'
 })
-export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
+export class UiMenuTriggerDirective implements AfterViewInit {
     viewRef;
     @Input('trigger-events') triggerEvents;
     @Input('theme-class') themeClass;
@@ -18,6 +17,7 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
     @Input() persistentMenu;
     @Input('click-overlay-to-close') clickOverlayToClose;
     @Input() contextmenu: boolean;
+    @Input() overlay: boolean;
 
     constructor(public viewContainerRef: ViewContainerRef, public elementRef: ElementRef) {
     }
@@ -27,7 +27,10 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
             this.close();
         });
 
+
         UiElement.on(this.elementRef.nativeElement, this.triggerEvents || 'click', event => {
+            this.menu.overlay = this.overlay;
+
             if (!this.persistentMenu) {
                 this.close();
             }
@@ -92,9 +95,6 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
         return false;
     }
 
-    ngAfterViewChecked() {
-    }
-
     render(coordinate) {
         this.viewRef = this.viewContainerRef.createEmbeddedView(this.menu.templateRef);
         this.viewRef.detectChanges();
@@ -102,7 +102,7 @@ export class UiMenuTriggerDirective implements AfterViewInit, AfterViewChecked {
         this.viewRef.rootNodes.forEach(rootNode => {
             document.body.appendChild(rootNode);
 
-            if (rootNode.clientWidth) {
+            if (rootNode.clientWidth && !rootNode.classList.contains('wrap-menu-overlay')) {
                 this.open(rootNode, coordinate);
             }
         });
