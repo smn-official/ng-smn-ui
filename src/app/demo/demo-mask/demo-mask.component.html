@@ -68,6 +68,13 @@
                     <div class="ui-message helper">Model: {{phone}}; View: {{phone | uiPhone}}</div>
                 </div>
             </ui-input-container>
+            <ui-input-container>
+                <input type="text" name="interger" [(ngModel)]="interger" uiInput uiMaskInteger [max]="2018">
+                <label>Interger</label>
+                <div class="ui-messages">
+                    <div class="ui-message helper">Model: {{interger}}; View: {{interger}}</div>
+                </div>
+            </ui-input-container>
         </ui-card-content>
         <div class="ui-button-container cover">
             <button class="ui-button primary" uiRipple>Test Submit</button>

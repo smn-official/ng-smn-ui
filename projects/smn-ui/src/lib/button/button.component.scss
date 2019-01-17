@@ -73,6 +73,7 @@
     padding-left: 16px;
     padding-right: 16px;
     height: 36px;
+    min-height: 36px;
     border-radius: 2px;
     font-size: 14px;
     font-weight: 500;
@@ -177,7 +178,7 @@
     }
     &.fab {
         width: 56px;
-        height: 56px;
+        min-height: 56px;
         margin: 5px;
 
         &.hide {
@@ -186,7 +187,7 @@
 
         &.mini {
             width: 40px;
-            height: 40px;
+            min-height: 40px;
         }
 
         &:not(:disabled) {
