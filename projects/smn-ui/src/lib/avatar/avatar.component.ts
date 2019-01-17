@@ -48,8 +48,10 @@ export class UiAvatarComponent implements OnInit, AfterViewInit, OnChanges {
     @Input() color: string;
     @Input() image: string;
     @Input() size: number;
+    @Input() nameLength: number;
 
     constructor(private element: ElementRef) {
+        this.nameLength = 1;
     }
 
     ngOnInit(): void {
@@ -77,6 +79,9 @@ export class UiAvatarComponent implements OnInit, AfterViewInit, OnChanges {
         if (changes.size && !changes.size.firstChange) {
             this.size = changes.size.currentValue;
             this.setSize();
+        }
+        if (changes.nameLength && !changes.nameLength.firstChange) {
+            this.nameLength = changes.nameLength.currentValue;
         }
     }
 
