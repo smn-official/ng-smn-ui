@@ -49,9 +49,11 @@ export class UiAvatarComponent implements OnInit, AfterViewInit, OnChanges {
     @Input() image: string;
     @Input() size: number;
     @Input() nameLength: number;
+    @Input() initials: boolean;
 
     constructor(private element: ElementRef) {
         this.nameLength = 1;
+        this.initials = false;
     }
 
     ngOnInit(): void {
@@ -116,5 +118,18 @@ export class UiAvatarComponent implements OnInit, AfterViewInit, OnChanges {
 
     getFontSize() {
         return Math.round(this.size / 100 * 36.36);
+    }
+
+    getName(): string {
+        if (this.name) {
+            if (this.initials) {
+                const ini = this.name.trim().split(' ').map((nome) => { return nome.charAt(0).toUpperCase(); });
+                return ini[0] + ini[ini.length - 1];
+            } else {
+                return this.name.trim().substr(0, this.nameLength).toUpperCase();
+            }
+        } else {
+            return '';
+        }
     }
 }
