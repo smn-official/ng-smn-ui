@@ -36,6 +36,7 @@ import {DemoInfiniteLoadComponent} from './demo/demo-infinite-load/demo-infinite
 import {DemoSelectComponent} from './demo/demo-select/demo-select.component';
 import {DemoAvatarComponent} from './demo/demo-avatar/demo-avatar.component';
 import {DemoTooltipComponent} from "./demo/demo-tooltip/demo-tooltip.component";
+import {DemoGridComponent} from './demo/demo-grid/demo-grid.component';
 
 const routes: Routes = [
     {
@@ -55,6 +56,7 @@ const routes: Routes = [
             {path: 'dialog', component: DemoDialogComponent},
             {path: 'dividers', component: DemoDividersComponent},
             {path: 'files', component: DemoFileComponent},
+            {path: 'grid', component: DemoGridComponent},
             {path: 'inputs', component: DemoInputsComponent},
             {path: 'chips', component: DemoChipsComponent},
             {path: 'layout', component: DemoLayoutComponent},

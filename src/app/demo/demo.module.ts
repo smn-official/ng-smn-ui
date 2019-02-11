@@ -39,6 +39,7 @@ import {DemoInfiniteLoadComponent} from './demo-infinite-load/demo-infinite-load
 import {DemoSelectComponent} from './demo-select/demo-select.component';
 import {DemoAvatarComponent} from './demo-avatar/demo-avatar.component';
 import { DemoTooltipComponent } from './demo-tooltip/demo-tooltip.component';
+import { DemoGridComponent } from './demo-grid/demo-grid.component';
 
 @NgModule({
     imports: [
@@ -88,6 +89,7 @@ import { DemoTooltipComponent } from './demo-tooltip/demo-tooltip.component';
         DemoSelectComponent,
         DemoAvatarComponent,
         DemoTooltipComponent,
+        DemoGridComponent,
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
