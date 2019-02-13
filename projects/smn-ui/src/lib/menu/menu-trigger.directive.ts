@@ -18,6 +18,7 @@ export class UiMenuTriggerDirective implements AfterViewInit {
     @Input('click-overlay-to-close') clickOverlayToClose;
     @Input() contextmenu: boolean;
     @Input() overlay: boolean;
+    @Input() fixed: boolean;
 
     constructor(public viewContainerRef: ViewContainerRef, public elementRef: ElementRef) {
     }
@@ -50,6 +51,11 @@ export class UiMenuTriggerDirective implements AfterViewInit {
         });
 
         UiElement.on(window, 'mouseup resize scroll touchend', (e) => {
+
+            if (this.fixed && (e.type === 'scroll' || e.type === 'resize')) {
+                return;
+            }
+
             if (this.clickOverlayToClose) {
                 switch (e.type) {
                     case 'mouseup':
