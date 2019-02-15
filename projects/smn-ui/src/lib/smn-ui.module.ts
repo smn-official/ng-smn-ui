@@ -87,7 +87,10 @@ import {UiSelectFilterPipe} from './select/select-filter.pipe';
 import {UiFilterPipe} from './utils/pipes/filter.pipe';
 import {UiAvatarComponent} from './avatar/avatar.component';
 import {UiMaskFloatDirective} from './utils/masks/float/mask-float.directive';
-import { TooltipDirective } from './tooltip/tooltip.directive';
+import {TooltipDirective} from './tooltip/tooltip.directive';
+import {UiChosenComponent} from './chosen/chosen.component';
+import {UiChosenOptionComponent} from './chosen/chosen-option/chosen-option.component';
+import {UiChosenGroupComponent} from './chosen/chosen-group/chosen-group.component';
 
 export {
     debounce,
@@ -189,7 +192,10 @@ const lib: any[] = [
     UiFilterPipe,
     UiAvatarComponent,
     UiMaskFloatDirective,
-    TooltipDirective
+    TooltipDirective,
+    UiChosenComponent,
+    UiChosenOptionComponent,
+    UiChosenGroupComponent
 ];
 
 @NgModule({

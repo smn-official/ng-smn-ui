@@ -1,0 +1,34 @@
+@import "../core/variables";
+
+.wrap-chosen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.wrap-chosen {
+    position: absolute;
+    transition: transform 280ms ui-easing('aceleration'), opacity 280ms ui-easing('aceleration');
+    transform-origin: top;
+    transform: scale(0);
+    opacity: 0;
+    z-index: 5;
+
+    &.open {
+        transition: transform 280ms ui-easing('deceleration'), opacity 280ms ui-easing('deceleration');
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    ui-card {
+        box-shadow: ui-shadow('4dp');
+        overflow-y: auto;
+    }
+
+}
+
+body.ui-nav-drawer-persistent .wrap-chosen {
+    z-index: 6;
+}

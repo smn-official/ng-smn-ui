@@ -1,0 +1,11 @@
+<div class="value placeholder" *ngIf="placeholder && !value && ((!persistPlaceholder && focused) || persistPlaceholder)">{{placeholder}}</div>
+<div class="value" *ngIf="value">{{value}}</div>
+<ng-template #optionTemplate>
+    <div class="wrap-chosen-overlay" (click)="close()"></div>
+    <div class="wrap-chosen">
+        <ui-card>
+            <ng-content>
+            </ng-content>
+        </ui-card>
+    </div>
+</ng-template>

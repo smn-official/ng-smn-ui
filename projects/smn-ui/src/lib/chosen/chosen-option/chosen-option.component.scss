@@ -1,0 +1,13 @@
+:host {
+    display: block;
+}
+
+.option {
+    font-size: 16px;
+    padding: 14px 16px;
+    user-select: none;
+    cursor: default;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

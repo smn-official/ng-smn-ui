@@ -40,6 +40,7 @@ import {DemoSelectComponent} from './demo-select/demo-select.component';
 import {DemoAvatarComponent} from './demo-avatar/demo-avatar.component';
 import { DemoTooltipComponent } from './demo-tooltip/demo-tooltip.component';
 import { DemoGridComponent } from './demo-grid/demo-grid.component';
+import { DemoChosenComponent } from './demo-chosen/demo-chosen.component';
 
 @NgModule({
     imports: [
@@ -90,6 +91,7 @@ import { DemoGridComponent } from './demo-grid/demo-grid.component';
         DemoAvatarComponent,
         DemoTooltipComponent,
         DemoGridComponent,
+        DemoChosenComponent,
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
