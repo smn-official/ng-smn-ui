@@ -1,4 +1,4 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
     name: 'uiCurrency'
@@ -19,9 +19,9 @@ export class UiCurrencyPipe implements PipeTransform {
         value = value.toString().replace(/[^0-9]+/g, '').replace(/^0+/g, '');
 
         // Adiciona os zeros necessários à esquerda devido a formatação de dinheiro
-        while (value.length < 3) {
-            value = '0' + value.toString();
-        }
+        // while (value.length < 3) {
+        //     value = '0' + value.toString();
+        // }
 
         let newCurrency = '';
         value = value.split('');
