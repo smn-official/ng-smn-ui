@@ -90,6 +90,10 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
         if (changes.ngModel && !changes.ngModel.firstChange) {
             this.setValue(changes.ngModel.currentValue);
         }
+
+        if (changes.required && !changes.required.firstChange) {
+            this.required = changes.required.currentValue;
+        }
     }
 
     ngAfterContentInit() {
@@ -131,7 +135,7 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
         this.clearFilter();
 
         if (this.search) {
-            setTimeout(() => this.inputSearch.nativeElement.focus());
+            setTimeout(() => this.inputSearch.nativeElement.focus(), 100);
         }
 
         this.focused = true;
@@ -160,18 +164,9 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
 
     open(element, coordinate) {
         setTimeout(() => {
-            const horizontalCoveringArea = coordinate.x + element.clientWidth;
             const verticalCoveringArea = coordinate.y + element.clientHeight;
-            const windowWidth = window.innerWidth + document.body.scrollLeft;
-            const windowHeight = document.body.clientHeight + (document.body.scrollTop || window.scrollY || window.pageYOffset);
-
-            if (horizontalCoveringArea > windowWidth) {
-                coordinate.x = windowWidth - (element.clientWidth + 8);
-            }
-
-            if (coordinate.x <= 8) {
-                coordinate.x = 8;
-            }
+            const bodyHeight = document.body.clientHeight;
+            const windowHeight = bodyHeight + (document.body.scrollTop || window.scrollY || window.pageYOffset);
 
             if (verticalCoveringArea > windowHeight) {
                 coordinate.y = windowHeight - (element.clientHeight + 8);
@@ -181,12 +176,23 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
                 coordinate.y = 0;
             }
 
+            const content = element.querySelector('ui-card > .content');
+            const contentHeight = content.clientHeight;
+
+            const search = element.querySelector('ui-card > .search');
+            const searchHeight =  (search ? search.clientHeight : 0);
+
+            content.style.maxHeight = (contentHeight > bodyHeight ? (bodyHeight - searchHeight) : contentHeight)  + 'px';
+
             element.style.transform = '';
-            element.querySelector('ui-card').style.maxHeight = window.innerHeight + 'px';
-            element.querySelector('ui-card').style.maxWidth = (window.innerWidth - 16) + 'px';
-            element.querySelector('ui-card').style.width = this.element.nativeElement.clientWidth + 'px';
             element.style.top = coordinate.y + 'px';
             element.style.left = coordinate.x + 'px';
+
+            const card = element.querySelector('ui-card');
+            card.style.maxHeight = window.innerHeight + 'px';
+            card.style.maxWidth = (window.innerWidth - 16) + 'px';
+            card.style.width = this.element.nativeElement.clientWidth + 'px';
+
 
             element.classList.add('open');
         });

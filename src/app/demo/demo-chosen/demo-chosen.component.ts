@@ -10,6 +10,7 @@ export class DemoChosenComponent implements OnInit {
     simple: number;
     fruits: any;
     vegetables: any;
+    required: boolean;
 
     constructor() {
         this.fruits = [{
@@ -39,7 +40,12 @@ export class DemoChosenComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.required = true;
         this.simple = 1;
+
+        setTimeout(() => {
+            this.required = false;
+        }, 5000)
     }
 
 }

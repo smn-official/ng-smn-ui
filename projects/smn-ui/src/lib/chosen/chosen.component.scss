@@ -11,6 +11,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 5;
 }
 
 .wrap-chosen {
@@ -29,7 +30,7 @@
 
     ui-card {
         box-shadow: ui-shadow('4dp');
-        overflow-y: auto;
+        overflow: hidden;
 
         .search {
             padding: 8px 16px;
