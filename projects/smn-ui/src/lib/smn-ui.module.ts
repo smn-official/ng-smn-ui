@@ -91,6 +91,8 @@ import {TooltipDirective} from './tooltip/tooltip.directive';
 import {UiChosenComponent} from './chosen/chosen.component';
 import {UiChosenOptionComponent} from './chosen/chosen-option/chosen-option.component';
 import {UiChosenGroupComponent} from './chosen/chosen-group/chosen-group.component';
+import { UiAttachmentComponent } from './attachment/attachment.component';
+import { UiDropAndDownDirective } from './attachment/drop-and-down.directive';
 
 export {
     debounce,
@@ -195,7 +197,9 @@ const lib: any[] = [
     TooltipDirective,
     UiChosenComponent,
     UiChosenOptionComponent,
-    UiChosenGroupComponent
+    UiChosenGroupComponent,
+    UiAttachmentComponent,
+    UiDropAndDownDirective
 ];
 
 @NgModule({

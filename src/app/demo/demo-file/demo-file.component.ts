@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {Title} from '@angular/platform-browser';
-import {UiToolbarService} from '../../../../projects/smn-ui/src/lib/toolbar/toolbar.service';
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { UiToolbarService } from '../../../../projects/smn-ui/src/lib/toolbar/toolbar.service';
 
 @Component({
     selector: 'ui-demo-file',
@@ -8,7 +8,7 @@ import {UiToolbarService} from '../../../../projects/smn-ui/src/lib/toolbar/tool
     styleUrls: ['./demo-file.component.scss']
 })
 export class DemoFileComponent implements OnInit {
-
+    teste: any;
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
     }
 
@@ -18,7 +18,7 @@ export class DemoFileComponent implements OnInit {
     }
 
     read(file, item, index) {
-        console.log(item, index);
+        console.log({ file, item, index });
     }
 
     changeFile(listFile: FileList, invalid) {
