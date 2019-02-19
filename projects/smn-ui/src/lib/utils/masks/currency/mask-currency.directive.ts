@@ -85,7 +85,6 @@ export class UiMaskCurrencyDirective implements ControlValueAccessor, Validator,
         const removeGroupSep = new RegExp('[^\\d\\,-]+', 'g');
         value = value.toString().replace(removeGroupSep, '');
         value = parseFloat(value.replace(',', '.'));
-        console.log(typeof value);
         return typeof value === 'number' && !isNaN(value) ? value : null;
     }
 

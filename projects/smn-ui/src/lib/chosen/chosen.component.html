@@ -1,11 +1,39 @@
-<div class="value placeholder" *ngIf="placeholder && !value && ((!persistPlaceholder && focused) || persistPlaceholder)">{{placeholder}}</div>
-<div class="value" *ngIf="value">{{value}}</div>
+<select *ngIf="isMobile"
+        [required]="required"
+        [(ngModel)]="ngModel"
+        uiInput
+        #nativeSelect
+        (ngModelChange)="changeNativeSelect()">
+    <option *ngFor="let option of onlyOptions"
+            [label]="option.label"
+            [ngValue]="option.value"
+            [disabled]="option.disabled"></option>
+    <optgroup *ngFor="let group of optionsGroup" [label]="group.label">
+        <option *ngFor="let option of group.options"
+                [label]="option.label"
+                [ngValue]="option.value"
+                [disabled]="option.disabled"></option>
+    </optgroup>
+</select>
+<div *ngIf="!isMobile">
+    <div class="value placeholder" *ngIf="placeholder && !value && ((!persistPlaceholder && focused) || persistPlaceholder)">{{placeholder}}</div>
+    <div class="value" *ngIf="value">{{value}}</div>
+</div>
 <ng-template #optionTemplate>
     <div class="wrap-chosen-overlay" (click)="close()"></div>
     <div class="wrap-chosen">
         <ui-card>
-            <ng-content>
-            </ng-content>
+            <div class="search" *ngIf="search">
+                <ui-input-container class="no-space">
+                    <input type="text" uiInput [(ngModel)]="searchText" (ngModelChange)="filterList()" #inputSearch>
+                    <button type="button" class="suffix ui-button flat icon" uiRipple (click)="clearFilter()">
+                        <i class="material-icons">close</i>
+                    </button>
+                </ui-input-container>
+            </div>
+            <div class="content">
+                <ng-content></ng-content>
+            </div>
         </ui-card>
     </div>
 </ng-template>

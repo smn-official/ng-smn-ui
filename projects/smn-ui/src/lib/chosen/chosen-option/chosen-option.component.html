@@ -1,6 +1,7 @@
 <div class="option"
      uiRipple
      (click)="onSelect()"
-     [ngClass]="{'active': active, 'disabled': disabled}">
+     [ngClass]="{'active': active, 'disabled': disabled}"
+     *ngIf="!hidden">
     {{label}}
 </div>

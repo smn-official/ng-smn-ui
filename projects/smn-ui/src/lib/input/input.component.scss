@@ -140,14 +140,23 @@ ui-input-container {
         }
     }
 
-    &.no-pad .ui-input-wrap,
-    &.no-space .ui-input-wrap {
-        padding-top: 0;
+    &.no-pad, &.no-space {
+        .ui-input-wrap {
+            padding-top: 0;
+        }
+
+        .suffix {
+            top: 4px;
+        }
+
     }
-    &.no-margin .ui-input-wrap,
-    &.no-space .ui-input-wrap {
-        margin-bottom: 0;
+
+    &.no-margin, &.no-space {
+        .ui-input-wrap {
+            margin-bottom: 0;
+        }
     }
+
     .ui-control.center {
         text-align: center;
     }

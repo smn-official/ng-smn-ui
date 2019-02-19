@@ -1,18 +1,23 @@
 import {
     AfterContentInit,
-    AfterViewInit, ChangeDetectorRef,
+    AfterViewInit,
     Component,
     ContentChildren,
     ElementRef,
-    EventEmitter, HostListener,
+    EventEmitter, forwardRef, HostListener,
     Input, OnChanges,
     OnInit,
     Output,
     QueryList, TemplateRef, ViewChild, ViewContainerRef
 } from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {UiChosenOptionComponent} from './chosen-option/chosen-option.component';
 import {UiElement} from '../utils/providers/element.provider';
+import {UiChosenGroupComponent} from './chosen-group/chosen-group.component';
+import {unaccent} from '../utils/functions/unaccent';
+
+// TODO: Animation
+// TODO: Export render, open, close
 
 @Component({
     selector: 'ui-chosen',
@@ -22,6 +27,10 @@ import {UiElement} from '../utils/providers/element.provider';
         provide: NG_VALUE_ACCESSOR,
         useExisting: UiChosenComponent,
         multi: true,
+    }, {
+        provide: NG_VALIDATORS,
+        useExisting: forwardRef(() => UiChosenComponent),
+        multi: true
     }]
 })
 export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, AfterContentInit {
@@ -29,7 +38,11 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     viewRef: any;
     value: any;
     focused: boolean;
+    searchText: string;
+    isMobile: boolean;
+    control: any;
 
+    @Input() search: any;
     @Input() ngModel: any;
     @Input() required: boolean;
     @Input() placeholder: string;
@@ -38,6 +51,8 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter<any>();
 
     @ViewChild('optionTemplate') optionTemplate: TemplateRef<any>;
+    @ViewChild('inputSearch') inputSearch: ElementRef;
+    @ViewChild('nativeSelect') nativeSelect: ElementRef;
 
     /**
      * O param "descendants" fala para o @ContentChildren pegar todos components UiChosenOptionComponent
@@ -45,9 +60,13 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
      */
     @ContentChildren(UiChosenOptionComponent, {descendants: true}) options: QueryList<UiChosenOptionComponent>;
 
+    // Pegando os options que foram colocados sem o group
+    @ContentChildren(UiChosenOptionComponent) onlyOptions: QueryList<UiChosenOptionComponent>;
+
+    @ContentChildren(UiChosenGroupComponent, {descendants: true}) optionsGroup: QueryList<UiChosenGroupComponent>;
+
     constructor(private element: ElementRef,
-                private viewContainerRef: ViewContainerRef,
-                private changeDetector: ChangeDetectorRef) {
+                private viewContainerRef: ViewContainerRef) {
     }
 
     ngOnInit() {
@@ -56,9 +75,15 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     ngAfterViewInit() {
         this.element.nativeElement.setAttribute('tabindex', '0');
 
-        UiElement.on(window, 'resize scroll', (e) => {
+        UiElement.on(window, 'resize scroll', () => {
             this.close();
         });
+
+        if (/Mobi|Android/.test(navigator.userAgent)) {
+            this.isMobile = true;
+
+            this.element.nativeElement.classList.add('mobile');
+        }
     }
 
     ngOnChanges(changes) {
@@ -82,10 +107,31 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     registerOnTouched() {
     }
 
+    validate(control: FormControl): { [key: string]: any } {
+        this.control = control;
+
+        if (!control.value && control.value !== 0) {
+            return {required: true};
+        }
+
+        return null;
+    }
+
     @HostListener('focus')
     onFocus() {
+        if (this.isMobile) {
+            this.nativeSelect.nativeElement.focus();
+            return;
+        }
+
         if (this.focused) {
             return;
+        }
+
+        this.clearFilter();
+
+        if (this.search) {
+            setTimeout(() => this.inputSearch.nativeElement.focus());
         }
 
         this.focused = true;
@@ -175,7 +221,30 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     }
 
     select(option) {
+        this.control.markAsDirty();
+        this.control.markAsTouched();
         this.ngModelChange.emit(option.value);
         this.close();
+    }
+
+    filterList() {
+        this.options.map(option => {
+            option.hidden = this.searchText ? !unaccent(option.label.toLowerCase()).includes(unaccent(this.searchText.toLowerCase())) : false;
+        });
+
+        this.optionsGroup.map(group => {
+            group.hidden = group.options.filter(option => !option.hidden).length === 0;
+        });
+    }
+
+    clearFilter() {
+        this.searchText = null;
+        this.filterList();
+    }
+
+    changeNativeSelect() {
+        this.control.markAsDirty();
+        this.control.markAsTouched();
+        this.ngModelChange.emit(this.ngModel);
     }
 }

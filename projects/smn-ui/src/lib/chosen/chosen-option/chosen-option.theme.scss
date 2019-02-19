@@ -1,0 +1,9 @@
+@import "../../core/variables";
+
+@mixin ui-chosen-option($theme) {
+    $text-color: ui-if(map-get($theme, is-dark) == true, rgba(255, 255, 255, .54), rgba(0, 0, 0, .34));
+
+    ui-chosen-option .option.disabled {
+        color: $text-color;
+    }
+}

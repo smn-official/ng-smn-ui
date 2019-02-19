@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, forwardRef, Inject, Input, OnInit, Optional} from '@angular/core';
+import {Component, forwardRef, Inject, Input, OnInit} from '@angular/core';
 import {UiChosenComponent} from '../chosen.component';
 
 @Component({
@@ -13,6 +13,7 @@ export class UiChosenOptionComponent implements OnInit {
     @Input() disabled;
 
     active: boolean;
+    hidden: boolean;
 
     constructor(@Inject(forwardRef(() => UiChosenComponent)) private parent: UiChosenComponent) {
     }

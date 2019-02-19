@@ -1,4 +1,4 @@
-<div class="label">{{label}}</div>
-<div>
+<div class="label" *ngIf="!hidden">{{label}}</div>
+<div *ngIf="!hidden">
     <ng-content></ng-content>
 </div>
