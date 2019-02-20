@@ -114,7 +114,7 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     validate(control: FormControl): { [key: string]: any } {
         this.control = control;
 
-        if (!control.value && control.value !== 0) {
+        if (this.required && !control.value && control.value !== 0) {
             return {required: true};
         }
 
