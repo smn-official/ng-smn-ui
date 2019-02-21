@@ -15,13 +15,19 @@ export class UiCurrencyPipe implements PipeTransform {
 
         const isNegative = !(value.toString().match(/[+]/) || !value.toString().match(/[-]/));
 
+        // Verifica se há valor no model (permite remover o '0,00')
+        const noValue = value.length === 3 && value.replace(',', '').split('').every(n => n === '0');
+
         // Removendo o que não é dígito qualquer zero adicional no começo da string
         value = value.toString().replace(/[^0-9]+/g, '').replace(/^0+/g, '');
 
-        // Adiciona os zeros necessários à esquerda devido a formatação de dinheiro
-        // while (value.length < 3) {
-        //     value = '0' + value.toString();
-        // }
+        // Adiciona os zeros necessários à esquerda devido a formatação de dinheiro, caso haja valor na model
+        if (!noValue) {
+            while (value.length < 3) {
+                value = '0' + value.toString();
+            }
+        }
+
 
         let newCurrency = '';
         value = value.split('');
