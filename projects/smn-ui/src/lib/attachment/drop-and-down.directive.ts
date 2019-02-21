@@ -1,31 +1,22 @@
-import { Directive, HostListener, HostBinding, EventEmitter, Output } from '@angular/core';
+import { Directive, HostListener, HostBinding, EventEmitter, Output, Input } from '@angular/core';
 
 @Directive({
     selector: '[uiDropAndDown]'
 })
 export class UiDropAndDownDirective {
 
-    @HostBinding('style.background') private background = '#f5f5f5';
-
+    @Input() private files: any;
+    @Input() private accept: string;
+    @Input('max-size') private maxSize: string;
+    @Input('max-file-size') private maxFileSize: string;
+    @Output() private filesChange: EventEmitter<any> = new EventEmitter();
     @Output() private readFileEvent: EventEmitter<Object> = new EventEmitter();
+    @HostBinding('style.background') private background = '#f5f5f5';
 
     constructor() { }
 
-    @HostListener('dragover', ['$event']) onDragOver(evt) {
-        evt.preventDefault();
-        evt.stopPropagation();
-
-        this.background = '#999';
-    }
-
-    @HostListener('dragleave', ['$event']) public onDragLeave(evt) {
-        evt.preventDefault();
-        evt.stopPropagation();
-
-        this.background = '#f5f5f5';
-    }
-
-    @HostListener('drop', ['$event']) public onDrop(evt) {
+    @HostListener('drop', ['$event'])
+    private onDrop(evt) {
         evt.preventDefault();
         evt.stopPropagation();
 
@@ -55,5 +46,18 @@ export class UiDropAndDownDirective {
 
             }
         }
+    }
+
+
+    @HostListener('dragover', ['$event']) onDragOver(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
+        this.background = '#999';
+    }
+
+    @HostListener('dragleave', ['$event']) public onDragLeave(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
+        this.background = '#f5f5f5';
     }
 }

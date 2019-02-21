@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
     styleUrls: ['./attachment.component.scss']
 })
 export class UiAttachmentComponent {
-    constructor() { }
+    constructor() {}
 
-    readFile({ file, item, index }) {
-        console.log({ file, item, index });
+    readFile({file, item, index}) {
+        console.log({file, item, index})
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { UiToolbarService } from '../../../../projects/smn-ui/src/lib/toolbar/toolbar.service';
 
@@ -9,12 +9,20 @@ import { UiToolbarService } from '../../../../projects/smn-ui/src/lib/toolbar/to
 })
 export class DemoFileComponent implements OnInit {
     teste: any;
-    constructor(private titleService: Title, private toolbarService: UiToolbarService) {
+    files: any;
+    constructor(private titleService: Title, private toolbarService: UiToolbarService,
+        private changeDetector: ChangeDetectorRef) {
+        this.files = []
     }
 
     ngOnInit() {
         this.titleService.setTitle('Files - SMN UI Demos');
         this.toolbarService.set('Files');
+    }
+
+    ngAfterViewInit(): void {
+        this.files.push({teste: 123});
+        this.changeDetector.detectChanges();
     }
 
     read(file, item, index) {
