@@ -2,6 +2,7 @@
      uiRipple
      (click)="onSelect()"
      [ngClass]="{'active': active, 'disabled': disabled}"
-     *ngIf="!hidden">
+     *ngIf="!hidden"
+     [title]="label">
     {{label}}
 </div>

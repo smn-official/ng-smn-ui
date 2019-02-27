@@ -1,21 +1,24 @@
-<ui-card class="ui-s600">
-    <ui-card-content class="ui-validate on-submit on-dirty">
-        <ui-input-container>
-            <ui-chosen uiInput [(ngModel)]="simple" [required]="true" [search]="true" [disabled]="true">
-                <ui-chosen-option [disabled]="true" label="Choose one..." [value]="null"></ui-chosen-option>
-                <ui-chosen-option *ngFor="let fruit of fruits"
-                                  [value]="fruit.id"
-                                  [label]="fruit.name"></ui-chosen-option>
-                <ui-chosen-group [label]="'Vegetables'">
-                    <ui-chosen-option *ngFor="let vegetable of vegetables"
-                                      [value]="vegetable.id"
-                                      [label]="vegetable.name"></ui-chosen-option>
-                </ui-chosen-group>
-            </ui-chosen>
-            <label>Simple</label>
-        </ui-input-container>
-        Valor: {{simple}}
+<form #formPesquisa="ngForm" class="ui-validate on-dirty on-submit">
+    <ui-card class="ui-s600">
+        <ui-card-content class="ui-validate on-submit on-dirty">
+            <ui-input-container>
+                <ui-chosen name="teste" uiInput [(ngModel)]="simple" [required]="true" [search]="true">
+                    <ui-chosen-option [disabled]="true" label="Choose one..." [value]="null"></ui-chosen-option>
+                    <ui-chosen-option *ngFor="let fruit of fruits"
+                                      [value]="fruit.id"
+                                      [label]="fruit.name"></ui-chosen-option>
+                    <ui-chosen-group [label]="'Vegetables'">
+                        <ui-chosen-option *ngFor="let vegetable of vegetables"
+                                          [value]="vegetable.id"
+                                          [label]="vegetable.name"></ui-chosen-option>
+                    </ui-chosen-group>
+                </ui-chosen>
+                <label>Simple</label>
+            </ui-input-container>
+            Valor: {{simple}}
 
-        <button class="ui-button primary" (click)="simple = 6">UPDATE VALUE</button>
-    </ui-card-content>
-</ui-card>
+            <button class="ui-button primary" (click)="simple = 6">UPDATE VALUE</button>
+        </ui-card-content>
+    </ui-card>
+
+</form>
