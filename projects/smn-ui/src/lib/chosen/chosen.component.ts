@@ -45,6 +45,7 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     @Input() search: any;
     @Input() ngModel: any;
     @Input() required: boolean;
+    @Input() disabled: boolean;
     @Input() placeholder: string;
     @Input() persistPlaceholder: string;
 
@@ -94,6 +95,10 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
         if (changes.required && !changes.required.firstChange) {
             this.required = changes.required.currentValue;
         }
+
+        if (changes.disabled) {
+            this.disabled = changes.disabled.currentValue;
+        }
     }
 
     ngAfterContentInit() {
@@ -128,7 +133,7 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
             return;
         }
 
-        if (this.focused) {
+        if (this.focused || this.disabled) {
             return;
         }
 
@@ -216,7 +221,7 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
 
     setValue(value) {
         this.options.map(option => {
-            if (option.value !== value) {
+            if (option.value != value) { // tslint:disable-line
                 option.setActive(false);
                 return;
             }
@@ -238,9 +243,9 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
             option.hidden = this.searchText ? !unaccent(option.label.toLowerCase()).includes(unaccent(this.searchText.toLowerCase())) : false;
         });
 
-        this.optionsGroup.map(group => {
-            group.hidden = group.options.filter(option => !option.hidden).length === 0;
-        });
+        this.optionsGroup.map(group =>
+            group.hidden = group.options.filter(option => !option.hidden).length === 0
+        );
     }
 
     clearFilter() {

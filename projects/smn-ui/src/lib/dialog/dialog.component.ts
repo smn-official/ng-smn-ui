@@ -40,7 +40,11 @@ export class UiDialogComponent {
             if (this.viewRef) {
                 setTimeout(() => {
                     this.viewRef.rootNodes.forEach(rootNode => {
-                        rootNode.remove();
+                        if (rootNode.remove) {
+                            rootNode.remove();
+                        } else {
+                            rootNode.parentNode.removeChild(rootNode);
+                        }
                     });
                     this.viewRef.destroy();
                     this.viewRef = null;

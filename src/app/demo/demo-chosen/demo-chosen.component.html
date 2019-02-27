@@ -1,7 +1,7 @@
 <ui-card class="ui-s600">
     <ui-card-content class="ui-validate on-submit on-dirty">
         <ui-input-container>
-            <ui-chosen uiInput [(ngModel)]="simple" [required]="true" [search]="true">
+            <ui-chosen uiInput [(ngModel)]="simple" [required]="true" [search]="true" [disabled]="true">
                 <ui-chosen-option [disabled]="true" label="Choose one..." [value]="null"></ui-chosen-option>
                 <ui-chosen-option *ngFor="let fruit of fruits"
                                   [value]="fruit.id"

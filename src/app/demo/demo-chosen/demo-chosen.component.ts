@@ -7,7 +7,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DemoChosenComponent implements OnInit {
 
-    simple: number;
+    simple: any;
     fruits: any;
     vegetables: any;
     required: boolean;
@@ -41,7 +41,7 @@ export class DemoChosenComponent implements OnInit {
 
     ngOnInit() {
         this.required = true;
-        this.simple = 1;
+        this.simple = '1';
 
         setTimeout(() => {
             this.required = false;

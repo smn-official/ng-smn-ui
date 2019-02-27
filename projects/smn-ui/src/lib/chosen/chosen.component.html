@@ -3,6 +3,7 @@
         [(ngModel)]="ngModel"
         uiInput
         #nativeSelect
+        [disabled]="disabled"
         (ngModelChange)="changeNativeSelect()">
     <option *ngFor="let option of onlyOptions"
             [label]="option.label"

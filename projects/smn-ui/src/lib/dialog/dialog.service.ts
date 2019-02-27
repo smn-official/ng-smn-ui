@@ -81,7 +81,11 @@ export class UiDialog {
 
             setTimeout(() => {
                 viewRef.rootNodes.forEach(rootNode => {
-                    rootNode.remove();
+                    if (rootNode.remove) {
+                        rootNode.remove();
+                    } else {
+                        rootNode.parentNode.removeChild(rootNode);
+                    }
                 });
                 viewRef.destroy();
                 viewRef = null;
