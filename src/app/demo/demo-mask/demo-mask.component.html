@@ -2,7 +2,8 @@
     <ui-card>
         <ui-card-content>
             <ui-input-container>
-                <input type="text" name="currency" [(ngModel)]="currency" uiInput uiMaskCurrency required #currencyField="ngModel">
+                <input type="text" name="currency" [(ngModel)]="currency" uiInput uiMaskCurrency required
+                    #currencyField="ngModel">
                 <label>Currency(uiMaskCurrency)</label>
                 <div class="ui-messages">
                     <div class="ui-message helper">{{currency}}</div>
@@ -18,13 +19,24 @@
             </ui-input-container>
             <pre>{{teste.errors | json}}</pre>
             <ui-input-container>
-                <input type="text" name="time" [(ngModel)]="time" uiInput uiMaskTime required #timeField="ngModel" [minTime]="'09:00'" [maxTime]="'09:30'">
+                <input type="text" name="time" [(ngModel)]="time" uiInput uiMaskTime required #timeField="ngModel"
+                    [minTime]="'09:00'" [maxTime]="'09:30'">
                 <label>Time(uiMaskTime)</label>
                 <div class="ui-messages">
                     <div class="ui-message helper">{{time}}</div>
                 </div>
             </ui-input-container>
             <pre>{{timeField.errors | json}}</pre>
+
+            <ui-input-container>
+                <input type="text" name="timeCustom" [(ngModel)]="timeCustom" uiInput uiMaskTime [customTime]="true" required #customTimeField="ngModel">
+                <label>Time(uiMaskTime - customTime)</label>
+                <div class="ui-messages">
+                    <div class="ui-message helper">{{timeCustom}}</div>
+                </div>
+            </ui-input-container>
+            <pre>{{customTimeField.errors | json}}</pre>
+
             <ui-input-container>
                 <input type="text" name="cpf" [(ngModel)]="cpf" uiInput uiMaskCpf>
                 <label>CPF(uiMaskCpf)</label>
