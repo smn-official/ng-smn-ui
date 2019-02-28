@@ -220,15 +220,22 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     }
 
     setValue(value) {
+        let updated = false;
+
         this.options.map(option => {
             if (option.value != value) { // tslint:disable-line
                 option.setActive(false);
                 return;
             }
 
+            updated = true;
             this.value = option.label;
             option.setActive(true);
         });
+
+        if (!updated) {
+            this.value = null;
+        }
     }
 
     select(option) {
