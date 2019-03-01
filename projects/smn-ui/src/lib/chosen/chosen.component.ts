@@ -148,7 +148,7 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
         const position = UiElement.position(this.element.nativeElement);
         const coordinate = {
             x: position.left,
-            y: position.top + this.element.nativeElement.clientHeight
+            y: position.top
         };
 
         this.render(coordinate);
@@ -174,7 +174,9 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
             const windowHeight = bodyHeight + (document.body.scrollTop || window.scrollY || window.pageYOffset);
 
             if (verticalCoveringArea > windowHeight) {
-                coordinate.y = windowHeight - (element.clientHeight + 8);
+                coordinate.y = (document.body.scrollTop || window.scrollY || window.pageYOffset);
+            } else {
+                coordinate.y += this.element.nativeElement.clientHeight;
             }
 
             if (coordinate.y <= 0) {
