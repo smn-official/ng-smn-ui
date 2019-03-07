@@ -19,7 +19,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 5;
+    z-index: 7;
 }
 
 .wrap-chosen {
@@ -28,7 +28,7 @@
     transform-origin: top left;
     transform: scale(0);
     opacity: 0;
-    z-index: 5;
+    z-index: 7;
 
     &.open {
         transition: transform 280ms ui-easing('deceleration'), opacity 280ms ui-easing('deceleration');
