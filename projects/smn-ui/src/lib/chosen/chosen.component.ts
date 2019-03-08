@@ -238,6 +238,8 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
         if (!updated) {
             this.value = null;
         }
+
+        this.element.nativeElement.value = this.value;
     }
 
     select(option) {
