@@ -36,6 +36,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     @Input() secondary: string;
     @Input() loading: boolean;
     @Input('theme-class') themeClass: string;
+    @Input() hideNotFound: boolean;
     @Output() loadMore: EventEmitter<any> = new EventEmitter();
     @Output() loadMoreEmmiter: EventEmitter<any> = new EventEmitter();
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
@@ -113,7 +114,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     }
 
     private setInstances(component, componentRef): void {
-        const keysComponent = ['ngModel', 'list', 'primary', 'secondary', 'selectChange', 'loading', 'accentClass', 'loadMore'];
+        const keysComponent = ['ngModel', 'list', 'primary', 'secondary', 'selectChange', 'loading', 'accentClass', 'loadMore', 'hideNotFound'];
 
         keysComponent.forEach(key => {
             componentRef.instance[key] = component[key];
