@@ -60,7 +60,6 @@ export class UiInputAutosizeDirective implements OnChanges, AfterViewInit, DoChe
     adjust(): void {
         if (!!this.textAreaEl) {
             this.textAreaEl.style.overflow = 'hidden';
-            this.textAreaEl.style.height = 'auto';
             this.textAreaEl.style.height = this.textAreaEl.scrollHeight + 'px';
         }
     }
