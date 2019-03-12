@@ -1,0 +1,26 @@
+@mixin ui-view-component-position($position) {
+    position: $position;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.ui-view-component {
+    @include ui-view-component-position(fixed);
+    z-index: 7;
+
+    &.hidden {
+        width: 0;
+        height: 0;
+    }
+
+    > .container, .overlay {
+        @include ui-view-component-position(absolute);
+    }
+
+    > .container {
+        overflow: hidden;
+    }
+}
+

@@ -15,6 +15,7 @@ import {UiChosenOptionComponent} from './chosen-option/chosen-option.component';
 import {UiElement} from '../utils/providers/element.provider';
 import {UiChosenGroupComponent} from './chosen-group/chosen-group.component';
 import {unaccent} from '../utils/functions/unaccent';
+import {ViewComponentService} from '../utils/providers/view-component/view-component.service';
 
 // TODO: Animation
 // TODO: Export render, open, close
@@ -56,8 +57,8 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     @ViewChild('nativeSelect') nativeSelect: ElementRef;
 
     /**
-     * O param "descendants" fala para o @ContentChildren pegar todos components UiChosenOptionComponent
-     * mesmo que eles estejam dentro de outros components(UiChosenGroupComponent)
+     * O param "descendants" fala para o @ContentChildren pegar todos containers UiChosenOptionComponent
+     * mesmo que eles estejam dentro de outros containers(UiChosenGroupComponent)
      */
     @ContentChildren(UiChosenOptionComponent, {descendants: true}) options: QueryList<UiChosenOptionComponent>;
 
@@ -67,7 +68,8 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     @ContentChildren(UiChosenGroupComponent, {descendants: true}) optionsGroup: QueryList<UiChosenGroupComponent>;
 
     constructor(private element: ElementRef,
-                private viewContainerRef: ViewContainerRef) {
+                private viewContainerRef: ViewContainerRef,
+                private viewComponentService: ViewComponentService) {
     }
 
     ngOnInit() {
@@ -145,17 +147,37 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
 
         this.focused = true;
 
-        const position = UiElement.position(this.element.nativeElement);
+        const position = UiElement.position(this.element.nativeElement, true);
         const coordinate = {
             x: position.left,
-            y: position.top
+            y: position.top + this.element.nativeElement.clientHeight
         };
 
         this.render(coordinate);
     }
 
     render(coordinate) {
-        this.viewRef = this.viewContainerRef.createEmbeddedView(this.optionTemplate);
+        const options = {
+            coordinate,
+            overlay: {
+                active: true,
+                transparent: true
+            },
+            width: this.element.nativeElement.clientWidth,
+            onEmbeddedNode: element => {
+                const bodyHeight = document.body.clientHeight;
+                const content = element.querySelector('ui-card > .content');
+                const contentHeight = content.clientHeight;
+
+                const search = element.querySelector('ui-card > .search');
+                const searchHeight =  (search ? search.clientHeight : 0);
+
+                content.style.maxHeight = (contentHeight > bodyHeight ? (bodyHeight - searchHeight) : contentHeight)  + 'px';
+            },
+            onClose: (() => this.focused = false).bind(this)
+        };
+        this.viewComponentService.renderEmbeddedView(this, this.viewContainerRef, this.optionTemplate, options);
+        /*this.viewRef = this.viewContainerRef.createEmbeddedView(this.optionTemplate);
         this.viewRef.detectChanges();
 
         this.viewRef.rootNodes.forEach(rootNode => {
@@ -164,7 +186,7 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
             if (rootNode.clientWidth && !rootNode.classList.contains('wrap-chosen-overlay')) {
                 this.open(rootNode, coordinate);
             }
-        });
+        });*/
     }
 
     open(element, coordinate) {
@@ -207,6 +229,9 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
 
     close() {
         this.focused = false;
+        this.viewComponentService.removeEmbeddedView(this);
+
+        /*this.focused = false;
 
         if (this.viewContainerRef.length) {
             const viewRef = this.viewRef; // Salvando a referência para achar o index deste componente
@@ -218,7 +243,7 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
             });
 
             setTimeout(() => this.viewContainerRef.remove(this.viewContainerRef.indexOf(viewRef)), 280);
-        }
+        }*/
     }
 
     setValue(value) {
