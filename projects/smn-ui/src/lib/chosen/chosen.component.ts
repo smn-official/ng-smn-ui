@@ -148,7 +148,7 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
         const position = UiElement.position(this.element.nativeElement);
         const coordinate = {
             x: position.left,
-            y: position.top
+            y: position.top + this.element.nativeElement.clientHeight
         };
 
         this.render(coordinate);
@@ -168,15 +168,14 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     }
 
     open(element, coordinate) {
-        setTimeout(() => {
-            const verticalCoveringArea = coordinate.y + element.clientHeight;
-            const bodyHeight = document.body.clientHeight;
-            const windowHeight = bodyHeight + (document.body.scrollTop || window.scrollY || window.pageYOffset);
+        element.style.top = 0;
 
-            if (verticalCoveringArea > windowHeight) {
-                coordinate.y = (document.body.scrollTop || window.scrollY || window.pageYOffset);
-            } else {
-                coordinate.y += this.element.nativeElement.clientHeight;
+        setTimeout(() => {
+            const verticalCoveringArea = UiElement.position(this.element.nativeElement, true).top + element.clientHeight;
+            const bodyHeight = document.body.clientHeight;
+
+            if (verticalCoveringArea > bodyHeight) {
+                coordinate.y -= (verticalCoveringArea - bodyHeight + this.element.nativeElement.clientHeight);
             }
 
             if (coordinate.y <= 0) {
