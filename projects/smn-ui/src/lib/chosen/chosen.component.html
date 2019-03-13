@@ -5,11 +5,11 @@
         #nativeSelect
         [disabled]="disabled"
         (ngModelChange)="changeNativeSelect()">
-    <option *ngFor="let option of onlyOptions"
+    <option *ngFor="let option of onlyOptions; trackBy: trackByValue"
             [label]="option.label"
             [ngValue]="option.value"
             [disabled]="option.disabled"></option>
-    <optgroup *ngFor="let group of optionsGroup" [label]="group.label">
+    <optgroup *ngFor="let group of optionsGroup; trackBy: trackByValue" [label]="group.label">
         <option *ngFor="let option of group.options"
                 [label]="option.label"
                 [ngValue]="option.value"
@@ -17,8 +17,11 @@
     </optgroup>
 </select>
 <div *ngIf="!isMobile">
-    <div class="value placeholder" *ngIf="placeholder && !value && ((!persistPlaceholder && focused) || persistPlaceholder)">{{placeholder}}</div>
-    <div class="value" *ngIf="value">{{value}}</div>
+    <span class="value placeholder"
+         *ngIf="placeholder && !value && ((!persistPlaceholder && focused) || persistPlaceholder)">
+        {{placeholder}}
+    </span>
+    <span class="value" *ngIf="value">{{value}}</span>
 </div>
 <ng-template #optionTemplate>
     <div class="wrap-chosen-overlay" (click)="close()"></div>

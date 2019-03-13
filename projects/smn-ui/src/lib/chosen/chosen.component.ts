@@ -268,4 +268,8 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
         this.control.markAsTouched();
         this.ngModelChange.emit(this.ngModel);
     }
+
+    trackByValue(index, option) {
+        return option.value;
+    }
 }

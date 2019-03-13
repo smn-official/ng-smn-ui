@@ -13,22 +13,26 @@ export class DemoChosenComponent implements OnInit {
     required: boolean;
 
     constructor() {
-        this.fruits = [{
-            id: 1,
-            name: 'Orange'
-        }, {
-            id: 2,
-            name: 'Strawberry'
-        }, {
-            id: 3,
-            name: 'Lemon'
-        }, {
-            id: 4,
-            name: 'Banana'
-        }, {
-            id: 5,
-            name: 'Apple'
-        }];
+        this.fruits = [];
+        for (let i = 0; i < 1; i++) {
+            this.fruits = [...this.fruits, ...[{
+                id: 1,
+                name: 'Orange'
+            }, {
+                id: 2,
+                name: 'Strawberry'
+            }, {
+                id: 3,
+                name: 'Lemon'
+            }, {
+                id: 4,
+                name: 'Banana'
+            }, {
+                id: 5,
+                name: 'Apple'
+            }]];
+
+        }
 
         this.vegetables = [{
             id: 6,
@@ -37,6 +41,7 @@ export class DemoChosenComponent implements OnInit {
             id: 7,
             name: 'Argula'
         }];
+
     }
 
     ngOnInit() {
