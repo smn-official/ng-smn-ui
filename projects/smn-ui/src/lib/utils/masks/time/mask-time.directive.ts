@@ -115,6 +115,11 @@ export class UiMaskTimeDirective implements ControlValueAccessor, Validator, Aft
         return null;
     }
 
+    setDisabledState(isDisabled: boolean) {
+        const method = isDisabled ? 'setAttribute' : 'removeAttribute';
+        this.elementRef.nativeElement[method]('disabled', 'disabled');
+    }
+
     @HostListener('keydown') onKeydown() {
         this.beforeSelIndex = UiElement.caretPosition.get(this.elementRef.nativeElement);
     }
