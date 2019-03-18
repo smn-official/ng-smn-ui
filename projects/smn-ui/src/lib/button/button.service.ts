@@ -1,5 +1,4 @@
 import {UiElement} from '../utils/providers/element.provider';
-import {UiWindowRef} from '../utils/providers/window.provider';
 
 UiElement.on(window, 'scroll resize', (e) => {
     const fabContainers = document.querySelectorAll('.ui-fab-container');
