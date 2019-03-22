@@ -123,16 +123,17 @@ export class UiTabsPagesComponent implements AfterViewInit {
         }
 
         const pageContainer = new UiElementRef(this.element.nativeElement);
-        const elNextPage = this.element.nativeElement.children[0].children[nextPage - 1];
+        const elNextPage = new UiElementRef(this.element.nativeElement.children[0].children[nextPage - 1]);
         const pages = this.element.nativeElement.children[0].children;
         for (let i = 0; i < pages.length; i++) {
             if (nextPage - 1 === i) {
-                pages[i].css('height', '');
+                const pageRef = new UiElementRef(pages[i]);
+                pageRef.css('height', '');
             }
         }
 
         if (this.firstLoad) {
-            const elCurrentPage = this.element.nativeElement.children[0].children[this.currentPage - 1];
+            const elCurrentPage = new UiElementRef(this.element.nativeElement.children[0].children[this.currentPage - 1]);
             pageContainer.css('height', elCurrentPage.nativeElement.clientHeight + 'px');
         } else {
             this.firstLoad = true;
@@ -146,7 +147,8 @@ export class UiTabsPagesComponent implements AfterViewInit {
 
                     for (let i = 0; i < pages.length; i++) {
                         if (nextPage - 1 !== i) {
-                            pages[i].css('height', 0);
+                            const pageRef = new UiElementRef(pages[i]);
+                            pageRef.css('height', 0);
                         }
                     }
                     pageContainer.css('height', '');
