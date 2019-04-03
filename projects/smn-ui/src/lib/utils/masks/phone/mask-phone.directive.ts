@@ -1,10 +1,10 @@
 import {
     AfterViewInit, Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input,
-    Output, OnChanges
+    Output, OnChanges, OnInit
 } from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
-import {UiPhonePipe} from './phone.pipe';
-import {UiElement} from '../../providers/element.provider';
+import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator } from '@angular/forms';
+import { UiPhonePipe } from './phone.pipe';
+import { UiElement } from '../../providers/element.provider';
 
 @Directive({
     selector: '[uiMaskPhone][ngModel]',
@@ -18,7 +18,7 @@ import {UiElement} from '../../providers/element.provider';
         multi: true
     }, UiPhonePipe]
 })
-export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, AfterViewInit, OnChanges {
+export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, AfterViewInit, OnChanges, OnInit {
 
     loaded: boolean;
     input: boolean;
@@ -26,11 +26,25 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
     onChange: Function;
     onTouched: Function;
     control: FormControl;
-    symbolsPositions: number[] = [0, 9, 11, 14];
+    symbolsPositions: number[];
+    maxLength: number;
     @Input() ngModel: any;
+    @Input() uiMaskPhone: any;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
     constructor(public elementRef: ElementRef, public phonePipe: UiPhonePipe) {
+    }
+
+    ngOnInit() {
+        switch (this.uiMaskPhone) {
+            case 'ddi':
+                this.maxLength = 13;
+                this.symbolsPositions = [0, 12, 14, 17];
+                break;
+            default:
+                this.maxLength = 11;
+                this.symbolsPositions = [0, 9, 11, 14];
+        }
     }
 
     ngOnChanges(changes): void {
@@ -50,7 +64,7 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
             this.control.markAsDirty();
         }
         if (!this.input) {
-            this.elementRef.nativeElement.value = this.phonePipe.transform(this.ngModel);
+            this.elementRef.nativeElement.value = this.phonePipe.transform(this.ngModel, { type: this.uiMaskPhone || '' });
         }
         this.input = false;
     }
@@ -61,7 +75,7 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
         }
         this.ngModel = this.format(rawValue);
         this.ngModelChange.emit(this.ngModel);
-        this.elementRef.nativeElement.value = this.phonePipe.transform(this.elementRef.nativeElement.value);
+        this.elementRef.nativeElement.value = this.phonePipe.transform(this.elementRef.nativeElement.value, { type: this.uiMaskPhone || '' });
     }
 
     registerOnChange(fn: any): void {
@@ -74,15 +88,15 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
 
     format(value) {
         value = value.toString().replace(/[^0-9]+/g, '');
-        return value.substring(0, 11);
+        return value.substring(0, this.maxLength);
     }
 
     validate(control: FormControl): { [key: string]: any } {
 
         this.control = control;
 
-        if (control.value && this.format(control.value).length < 10) {
-            return {parse: true};
+        if (control.value && this.format(control.value).length < this.maxLength - 1) {
+            return { parse: true };
         }
 
         return null;
@@ -98,9 +112,21 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
         this.input = true;
         this.renderViaInput(rawValue);
 
-        if (afterSelIndex === 4) {
-            this.beforeSelIndex = 5;
-            afterSelIndex = 6;
+        if (this.uiMaskPhone === 'ddi') {
+            if (afterSelIndex === 4) {
+                this.beforeSelIndex = 5;
+                afterSelIndex = 6;
+            }
+
+            if (afterSelIndex === 8) {
+                this.beforeSelIndex = 9;
+                afterSelIndex = 10;
+            }
+        } else {
+            if (afterSelIndex === 4) {
+                this.beforeSelIndex = 5;
+                afterSelIndex = 6;
+            }
         }
 
         UiElement.caretPosition.set(this.elementRef.nativeElement, this.beforeSelIndex, afterSelIndex, this.symbolsPositions);
