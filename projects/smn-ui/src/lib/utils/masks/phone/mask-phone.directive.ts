@@ -63,9 +63,8 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
         if (this.control && this.loaded && rawValue) {
             this.control.markAsDirty();
         }
-        if (!this.input) {
-            this.elementRef.nativeElement.value = this.phonePipe.transform(this.ngModel, { type: this.uiMaskPhone || '' });
-        }
+
+        this.elementRef.nativeElement.value = this.phonePipe.transform(this.ngModel, { type: this.uiMaskPhone || '' });
         this.input = false;
     }
 
