@@ -74,7 +74,7 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     }
 
     ngAfterViewInit() {
-        this.element.nativeElement.setAttribute('tabindex', '0');
+        this.element.nativeElement.setAttribute('tabindex', this.element.nativeElement.getAttribute('tabindex') || '0');
 
         UiElement.on(window, 'resize scroll', () => {
             this.close();
