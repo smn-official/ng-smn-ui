@@ -76,6 +76,7 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
     ngAfterViewInit() {
         this.minDate = this.minDate && isDate(new Date(this.minDate)) ? new Date(this.minDate) : this.minDate;
         this.maxDate = this.maxDate && isDate(new Date(this.maxDate)) ? new Date(this.maxDate) : this.maxDate;
+
         setTimeout(() => {
             this.loaded = true;
         });
@@ -162,6 +163,10 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
         }
     }
 
+    /**
+     * Retorna o valor formatado corretamente p/ uma data válida
+     * @param value { string } valor da view
+     */
     getCorrectValue(value: string) {
         if (this.dateFormat === 'MM/yyyy') {
             return `${this.day}/${value}`;
@@ -186,13 +191,14 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
 
     validate(control: FormControl): { [key: string]: any } {
         this.control = control;
-        const value = this.elementRef.nativeElement.value;
+        const value = this.ngModel;
         const dateControl = isDate(control.value) ? control.value : new Date(control.value);
 
-        console.log(value);
-        if (value && !checkDate(value)) {
+        if (value && (!isDate(value) || !checkDate(value.toLocaleDateString()))) {
             return { parse: true };
-        } else if (checkDate(value)) {
+        }
+
+        if (value && (isDate(value) || checkDate(value.toLocaleDateString()))) {
             dateControl.setHours(0, 0, 0, 0);
 
             if (this.minDate && isDate(this.minDate)) {
