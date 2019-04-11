@@ -12,22 +12,7 @@ export class UiPhonePipe implements PipeTransform {
 
         value = value.toString().replace(/[^0-9]+/g, '');
 
-        if (args.type === '') {
-            if (value.length > 0) {
-                value = '(' + value;
-            }
-            if (value.length > 3) {
-                value = value.substring(0, 3) + ') ' + value.substring(3);
-            }
-            if (value.length > 9 && value.length < 14) {
-                value = value.substring(0, 9) + '-' + value.substring(9);
-            } else if (value.length > 13) {
-                value = value.substring(0, 10) + '-' + value.substring(10);
-            }
-            if (value.length > 15) {
-                value = value.substring(0, 15);
-            }
-        } else if (args.type === 'ddi') {
+        if (args.type === 'ddi') { // MASK COM PADRAO DDI +00 (00) 00000-0000
             if (value.length > 0) {
                 value = '+' + value;
             }
@@ -44,6 +29,21 @@ export class UiPhonePipe implements PipeTransform {
             }
             if (value.length > 17) {
                 value = value.substring(0, 19);
+            }
+        } else { // MASK COM PADRÃO DEFAULT (00) 00000-0000
+            if (value.length > 0) {
+                value = '(' + value;
+            }
+            if (value.length > 3) {
+                value = value.substring(0, 3) + ') ' + value.substring(3);
+            }
+            if (value.length > 9 && value.length < 14) {
+                value = value.substring(0, 9) + '-' + value.substring(9);
+            } else if (value.length > 13) {
+                value = value.substring(0, 10) + '-' + value.substring(10);
+            }
+            if (value.length > 15) {
+                value = value.substring(0, 15);
             }
         }
 

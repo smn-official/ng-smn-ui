@@ -1,12 +1,13 @@
 import {
     AfterViewInit, Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges,
-    Output
+    Output,
+    OnInit
 } from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
-import {DatePipe} from '@angular/common';
-import {UiElement} from '../../providers/element.provider';
-import {checkDate} from './check-date';
-import {isDate} from 'rxjs/internal/util/isDate';
+import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { UiElement } from '../../providers/element.provider';
+import { checkDate } from './check-date';
+import { isDate } from 'rxjs/internal/util/isDate';
 
 @Directive({
     selector: '[uiMaskDate][ngModel]',
@@ -20,7 +21,7 @@ import {isDate} from 'rxjs/internal/util/isDate';
         multi: true
     }, DatePipe]
 })
-export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnChanges, AfterViewInit {
+export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnChanges, AfterViewInit, OnInit {
 
     loaded: boolean;
     input: boolean;
@@ -29,12 +30,47 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
     onTouched: Function;
     control: any;
     symbolsPositions: number[] = [2, 5];
+    dateFormatsList = [
+        {
+            symbolsPositions: [2, 5],
+            format: 'dd/MM/yyyy',
+            maxlength: 10
+        },
+        {
+            symbolsPositions: [2],
+            format: 'dd/MM',
+            maxlength: 5
+        },
+        {
+            symbolsPositions: [2],
+            format: 'MM/yyyy',
+            maxlength: 7
+        },
+        {
+            symbolsPositions: [2, 5],
+            format: 'dd/MM/yy',
+            maxlength: 8
+        },
+        {
+            symbolsPositions: [2],
+            format: 'MM/yy',
+            maxlength: 5
+        }
+    ];
+    maxlength: number = 10;
     @Input() minDate: Date;
     @Input() maxDate: Date;
     @Input() ngModel: any;
+    @Input() dateFormat: string;
+    @Input() day: string = '01';
+    @Input() year: string = (new Date().getFullYear()).toString();
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
     constructor(public elementRef: ElementRef, public datePipe: DatePipe) {
+    }
+
+    ngOnInit() {
+        this.validaDateFormat();
     }
 
     ngAfterViewInit() {
@@ -50,7 +86,7 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
             this.control.markAsDirty();
         }
         if (!this.input) {
-            this.elementRef.nativeElement.value = this.format(this.datePipe.transform(this.ngModel, 'dd/MM/yyyy'));
+            this.elementRef.nativeElement.value = this.format(this.datePipe.transform(this.ngModel, this.dateFormat));
         }
         this.input = false;
     }
@@ -59,7 +95,7 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
         if (rawValue) {
             this.control.markAsDirty();
         }
-        this.ngModel = checkDate(this.format(rawValue)) || this.format(rawValue);
+        this.ngModel = checkDate(this.getCorrectValue(this.format(rawValue))) || this.format(rawValue);
         this.ngModelChange.emit(this.ngModel);
         this.elementRef.nativeElement.value = this.format(this.elementRef.nativeElement.value);
     }
@@ -84,7 +120,31 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
         if (date.length > this.symbolsPositions[1]) {
             date = date.substring(0, 5) + '/' + date.substring(5, 9);
         }
-        return date;
+        return date.substring(0, this.maxlength);
+    }
+
+    /**
+     * Verifica se o formato da data é válido
+     */
+    validaDateFormat() {
+        if (!this.dateFormat) {
+            this.dateFormat = 'dd/MM/yyyy';
+            return;
+        }
+
+        let valid = false;
+
+        this.dateFormatsList.forEach(item => {
+            if (item.format === this.dateFormat) {
+                this.symbolsPositions = item.symbolsPositions;
+                this.maxlength = item.maxlength;
+                valid = true;
+            }
+        });
+
+        if (!valid) {
+            console.error('Formato de data não suportado, tente algum destes: ["dd/MM/yyyy", "dd/MM", "MM/yyyy", "dd/MM/yy", "MM/yy"]');
+        }
     }
 
     ngOnChanges(changes): void {
@@ -102,13 +162,36 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
         }
     }
 
+    getCorrectValue(value: string) {
+        if (this.dateFormat === 'MM/yyyy') {
+            return `${this.day}/${value}`;
+        }
+
+        if (this.dateFormat === 'dd/MM') {
+            return `${value}/${this.year}`;
+        }
+
+        if (this.dateFormat === 'dd/MM/yy' && value.length > 7) {
+            const valueSplitted = value.split('/');
+            return `${valueSplitted[0]}/${valueSplitted[1]}/20${valueSplitted[2]}`;
+        }
+
+        if (this.dateFormat === 'MM/yy' && value.length > 4) {
+            const valueSplitted = value.split('/');
+            return `${this.day}/${valueSplitted[0]}/20${valueSplitted[1]}`;
+        }
+
+        return value;
+    }
+
     validate(control: FormControl): { [key: string]: any } {
         this.control = control;
         const value = this.elementRef.nativeElement.value;
         const dateControl = isDate(control.value) ? control.value : new Date(control.value);
 
+        console.log(value);
         if (value && !checkDate(value)) {
-            return {parse: true};
+            return { parse: true };
         } else if (checkDate(value)) {
             dateControl.setHours(0, 0, 0, 0);
 
@@ -116,14 +199,14 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
                 this.minDate.setHours(0, 0, 0, 0);
 
                 if (dateControl.getTime() < this.minDate.getTime()) {
-                    return {minDate: true};
+                    return { minDate: true };
                 }
             }
             if (this.maxDate && isDate(this.maxDate)) {
                 this.maxDate.setHours(0, 0, 0, 0);
 
                 if (dateControl.getTime() > this.maxDate.getTime()) {
-                    return {maxDate: true};
+                    return { maxDate: true };
                 }
             }
         }

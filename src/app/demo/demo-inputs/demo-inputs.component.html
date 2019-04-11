@@ -8,6 +8,13 @@
                 </ui-input-container>
 
                 <ui-input-container>
+                    <input type="text" [(ngModel)]="simple" uiInput uiMaskDate #refA="ngModel">
+                    <label>Data</label>
+                </ui-input-container>
+                <pre>{{ refA.errors | json }}</pre>
+
+
+                <ui-input-container>
                     <input type="text" [(ngModel)]="accent" uiInput class="accent">
                     <label>Accent</label>
                 </ui-input-container>

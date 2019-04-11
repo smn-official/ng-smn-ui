@@ -9,8 +9,9 @@ import {UiToolbarService} from '../../../../projects/smn-ui/src/lib/smn-ui.modul
     styleUrls: ['./demo-home.component.scss']
 })
 export class DemoHomeComponent implements OnInit {
-
+    a;
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
+        this.a = new Date();
     }
 
     ngOnInit() {
