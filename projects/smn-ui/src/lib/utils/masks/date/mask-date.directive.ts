@@ -62,8 +62,8 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
     @Input() maxDate: Date;
     @Input() ngModel: any;
     @Input() dateFormat: string;
-    @Input() day: string = '01';
-    @Input() year: string = (new Date().getFullYear()).toString();
+    @Input() day: string = '01'; // Dia padrão
+    @Input() year: string = (new Date().getFullYear()).toString(); // Ano Padrão
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
     constructor(public elementRef: ElementRef, public datePipe: DatePipe) {
@@ -128,7 +128,7 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
      * Verifica se o formato da data é válido
      */
     validaDateFormat() {
-        if (!this.dateFormat) {
+        if (!this.dateFormat) { // Caso não seja passado nenhum parametro, coloca o default
             this.dateFormat = 'dd/MM/yyyy';
             return;
         }
