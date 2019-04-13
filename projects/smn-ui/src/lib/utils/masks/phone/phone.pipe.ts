@@ -12,7 +12,7 @@ export class UiPhonePipe implements PipeTransform {
 
         value = value.toString().replace(/[^0-9]+/g, '');
 
-        if (args.type === 'ddi') { // MASK COM PADRAO DDI +00 (00) 00000-0000
+        if (args && args.type === 'ddi') { // MASK COM PADRAO DDI +00 (00) 00000-0000
             if (value.length > 0) {
                 value = '+' + value;
             }
