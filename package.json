@@ -1,6 +1,6 @@
 {
   "name": "ng-smn-ui",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "license": "MIT",
   "scripts": {
     "start": "ng serve --port 4000 --host=0.0.0.0 --disable-host-check",
@@ -17,6 +17,7 @@
     "@angular/platform-browser": "6.0.2",
     "@angular/platform-browser-dynamic": "6.0.2",
     "@angular/router": "6.0.2",
+    "@smn-official/smn-private-pack": "^1.0.0",
     "core-js": "^2.5.6",
     "rxjs": "^6.1.0",
     "web-animations-js": "^2.2.5",

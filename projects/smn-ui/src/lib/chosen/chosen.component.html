@@ -16,12 +16,12 @@
                 [disabled]="option.disabled"></option>
     </optgroup>
 </select>
-<div *ngIf="!isMobile">
-    <span class="value placeholder"
+<div class="value" *ngIf="!isMobile">
+    <span class="placeholder"
          *ngIf="placeholder && !value && ((!persistPlaceholder && focused) || persistPlaceholder)">
         {{placeholder}}
     </span>
-    <span class="value" *ngIf="value">{{value}}</span>
+    <span *ngIf="value">{{value}}</span>
 </div>
 <ng-template #optionTemplate>
     <div class="wrap-chosen-overlay" (click)="close()"></div>

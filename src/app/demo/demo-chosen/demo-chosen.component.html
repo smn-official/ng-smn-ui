@@ -1,10 +1,10 @@
 <form #formPesquisa="ngForm" class="ui-validate on-dirty on-submit">
     <div style="height: 2000px"></div>
     <ui-card class="ui-s600">
-        <ui-card-content class="ui-validate on-submit on-dirty">
+        <ui-card-content class="ui-validate on-submit on-dirty ui-flex-container">
             <ui-input-container>
                 <ui-chosen name="teste" uiInput [(ngModel)]="simple" [required]="true" [search]="true">
-                    <ui-chosen-option [disabled]="true" label="Choose one..." [value]="null"></ui-chosen-option>
+                    <ui-chosen-option [disabled]="true" label="Choose one... sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss" [value]="null"></ui-chosen-option>
                     <ui-chosen-option *ngFor="let fruit of fruits"
                                       [value]="fruit.id"
                                       [label]="fruit.name"></ui-chosen-option>

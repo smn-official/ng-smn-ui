@@ -1,15 +1,15 @@
 @import "../core/variables";
 
 textarea {
-	resize: none;
+    resize: none;
 }
 
 ui-input-container {
-	transition: ui-easing('desaceleration');
-	position: relative;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
+    transition: ui-easing('desaceleration');
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
     & > *:not(.suffix) + * {
         margin-left: 16px;

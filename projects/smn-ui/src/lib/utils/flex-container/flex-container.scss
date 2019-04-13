@@ -22,6 +22,7 @@ $sizes: 480 600 840 960 1280 1440 1600;
     .flex,
     ui-select {
         flex: 1;
+        overflow: hidden;
 
         & + *:not(.no-pad):not(label) {
             margin-left: 16px;
