@@ -96,8 +96,8 @@ export class UiDialogComponent {
                 element.classList.add('transparent-overlay');
             }
             if (config.cardSize || this.cardSize) {
-                element.querySelectorAll('ui-card')[0].style.maxWidth = (config.cardSize || this.cardSize) + 'px';
-                element.querySelectorAll('ui-card')[0].style.width = '100%';
+                element.querySelector('ui-card').style.maxWidth = (config.cardSize || this.cardSize) + 'px';
+                element.querySelector('ui-card').style.width = '100%';
             }
 
             if (!config.transparentOverlay && fabs.length) {
@@ -105,7 +105,7 @@ export class UiDialogComponent {
             }
 
             if (config.clickOverlayToClose) {
-                element.querySelectorAll('.overlay')[0].addEventListener('click', () => {
+                element.querySelector('.overlay').addEventListener('click', () => {
                     this.close();
                 });
             }
