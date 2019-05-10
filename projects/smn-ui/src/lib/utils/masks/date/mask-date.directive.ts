@@ -57,12 +57,12 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
             maxlength: 5
         }
     ];
-    maxlength: number = 10;
+    maxlength = 10;
     @Input() minDate: Date;
     @Input() maxDate: Date;
     @Input() ngModel: any;
     @Input() dateFormat: string;
-    @Input() day: string = '01'; // Dia padrão
+    @Input() day = '01'; // Dia padrão
     @Input() year: string = (new Date().getFullYear()).toString(); // Ano Padrão
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 

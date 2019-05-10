@@ -1,4 +1,5 @@
 export function checkDate(value: any): any {
+    value = value.replace(/[^\w\s!\/]/gi, '');
     if (!/^[\d, \/]+$/.test(value)) {
         return false;
     }
