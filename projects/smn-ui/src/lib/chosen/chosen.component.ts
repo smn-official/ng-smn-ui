@@ -272,4 +272,8 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     trackByValue(index, option) {
         return option.value;
     }
+
+    updateOptionLabel(label) {
+        this.value = label;
+    }
 }

@@ -50,6 +50,7 @@ export class DemoChosenComponent implements OnInit {
 
         setTimeout(() => {
             this.required = false;
+            this.fruits[0].name = 'Updated from component';
         }, 5000)
     }
 
