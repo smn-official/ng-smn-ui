@@ -16,6 +16,11 @@ export class UiInputAutosizeDirective implements OnChanges, AfterViewInit, DoChe
         this.adjust();
     }
 
+    @HostListener('change', ['$event.target'])
+    onChange(textArea: HTMLTextAreaElement): void {
+        this.adjust();
+    }
+
     constructor(public element: ElementRef) {
         if (this.element.nativeElement.tagName !== 'TEXTAREA') {
             this._findNestedTextArea();
@@ -47,7 +52,7 @@ export class UiInputAutosizeDirective implements OnChanges, AfterViewInit, DoChe
     }
 
     ngDoCheck() {
-        this.adjust();
+        // this.adjust();
     }
 
     // setTimeout para aguardar a atualização da model do input
