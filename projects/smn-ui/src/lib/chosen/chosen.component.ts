@@ -106,7 +106,6 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
             setTimeout(() => this.setValue(this.ngModel));
         }
     }
-
     writeValue() {
     }
 
@@ -275,5 +274,11 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
 
     updateOptionLabel(label) {
         this.value = label;
+    }
+
+    loadOption(option: UiChosenOptionComponent) {
+        if (this.ngModel && option.value === this.ngModel) {
+            this.value = option.label;
+        }
     }
 }

@@ -1,4 +1,4 @@
-import {Component, forwardRef, Inject, Input, OnChanges, OnInit} from '@angular/core';
+import {AfterViewInit, Component, forwardRef, Inject, Input, OnChanges, OnInit} from '@angular/core';
 import {UiChosenComponent} from '../chosen.component';
 
 @Component({
@@ -6,7 +6,7 @@ import {UiChosenComponent} from '../chosen.component';
     templateUrl: './chosen-option.component.html',
     styleUrls: ['./chosen-option.component.scss']
 })
-export class UiChosenOptionComponent implements OnInit, OnChanges {
+export class UiChosenOptionComponent implements AfterViewInit, OnChanges {
 
     @Input() label;
     @Input() value;
@@ -18,7 +18,8 @@ export class UiChosenOptionComponent implements OnInit, OnChanges {
     constructor(@Inject(forwardRef(() => UiChosenComponent)) private parent: UiChosenComponent) {
     }
 
-    ngOnInit() {
+    ngAfterViewInit() {
+        this.parent.loadOption(this);
     }
 
     ngOnChanges(changes) {
