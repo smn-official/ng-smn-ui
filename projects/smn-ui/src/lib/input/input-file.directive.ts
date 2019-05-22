@@ -1,5 +1,5 @@
-import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, Output} from '@angular/core';
-import {FormControl, NgControl} from '@angular/forms';
+import { Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, Output } from '@angular/core';
+import { FormControl, NgControl } from '@angular/forms';
 
 @Directive({
     selector: '[uiInputFile]'
@@ -46,15 +46,15 @@ export class UiInputFileDirective {
             const validType = this.validateType(file, fileExtension, accepts);
 
             if (validMaxFileSize) {
-                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, {maxFileSize: true}));
+                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, { maxFileSize: true }));
             }
 
             if (!validType) {
-                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, {accept: true}));
+                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, { accept: true }));
             }
 
             if (this.validateMaxSize(sum, maxSize)) {
-                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, {maxSize: true}));
+                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, { maxSize: true }));
             }
 
             if (validType && !validMaxFileSize && !validMaxSize) {
@@ -76,6 +76,8 @@ export class UiInputFileDirective {
         if (this.fileChange) {
             this.fileChange(this.files, this.ngControl.control.invalid);
         }
+
+        this.element.nativeElement.value = ''; // Resetando value para próximos arquivos
     }
 
     validateType(file, extension, accepts): boolean {
@@ -96,7 +98,7 @@ export class UiInputFileDirective {
     }
 
     validateMaxSize(size, maxSize): boolean {
-        return ( maxSize && size > maxSize);
+        return (maxSize && size > maxSize);
     }
 
     toByte(sizeString: string) {
