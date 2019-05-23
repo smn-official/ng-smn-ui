@@ -31,6 +31,10 @@ export class UiChosenOptionComponent implements AfterViewInit, OnChanges {
     }
 
     onSelect() {
+        if (this.disabled) {
+            return;
+        }
+
         this.parent.select(this);
     }
 

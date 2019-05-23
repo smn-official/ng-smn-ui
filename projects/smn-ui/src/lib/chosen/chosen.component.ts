@@ -132,7 +132,12 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
             return;
         }
 
-        if (this.focused || this.disabled) {
+        if (this.focused) {
+            return;
+        }
+
+        if (this.disabled) {
+            this.element.nativeElement.blur();
             return;
         }
 
