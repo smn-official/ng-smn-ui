@@ -5,7 +5,7 @@ textarea {
 }
 
 ui-input-container {
-    transition: ui-easing('desaceleration');
+    transition: ui-easing("desaceleration");
     position: relative;
     display: flex;
     flex-direction: row;
@@ -33,7 +33,7 @@ ui-input-container {
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: 16px;
-        transition: 225ms ui-easing('desaceleration');
+        transition: 225ms ui-easing("desaceleration");
         user-select: none;
     }
 
@@ -67,16 +67,16 @@ ui-input-container {
         }
 
         &[required] ~ label::after {
-            content: '*';
+            content: "*";
             margin-left: 2px;
         }
 
         &[required]:focus ~ label::after {
-            color: ui-color('red');
+            color: ui-color("red");
         }
 
         &.ng-invalid.ng-dirty ~ label {
-            animation: shake 360ms ui-easing('desaceleration');
+            animation: shake 360ms ui-easing("desaceleration");
         }
 
         // Line
@@ -84,6 +84,24 @@ ui-input-container {
             opacity: 1;
             left: 0;
             width: 100%;
+        }
+
+        // Warning
+
+        &.warning ~ label,
+        &.warning ~ label::after,
+        &.warning:focus ~ label,
+        &.warning:focus ~ label::after {
+            color: ui-color("orange");
+        }
+
+        &.warning,
+        &.warning:focus {
+            border-color: ui-color("orange");
+        }
+
+        &.warning:focus ~ .line {
+            background-color: ui-color("orange");
         }
     }
 
@@ -93,7 +111,7 @@ ui-input-container {
         height: 2px;
         left: 50%;
         width: 0;
-        transition: all 225ms ui-easing('desaceleration');
+        transition: all 225ms ui-easing("desaceleration");
         opacity: 0;
     }
 
@@ -112,8 +130,14 @@ ui-input-container {
                 text-align: right;
             }
 
-            &.counter.error, &.error {
-                color: ui-color('red');
+            &.counter.error,
+            &.error {
+                color: ui-color("red");
+            }
+
+            &.counter.warning,
+            &.warning {
+                color: ui-color("orange");
             }
         }
     }
@@ -141,7 +165,8 @@ ui-input-container {
         }
     }
 
-    &.no-pad, &.no-space {
+    &.no-pad,
+    &.no-space {
         .ui-input-wrap {
             padding-top: 0;
         }
@@ -149,10 +174,10 @@ ui-input-container {
         .suffix {
             top: 4px;
         }
-
     }
 
-    &.no-margin, &.no-space {
+    &.no-margin,
+    &.no-space {
         .ui-input-wrap {
             margin-bottom: 0;
         }
@@ -170,34 +195,35 @@ ui-input-container {
 .ui-validate:not(.on-dirty):not(.on-submit) .ui-control.ng-invalid,
 .ui-validate.on-dirty .ui-control.ng-dirty.ng-invalid,
 .ui-validate.on-submit.ng-submitted .ui-control.ng-invalid {
-	border-color: ui-color('red');
+    border-color: ui-color("red");
 }
 .ui-validate:not(.on-dirty):not(.on-submit) .ui-control.ng-invalid ~ label,
 .ui-validate.on-dirty .ui-control.ng-dirty.ng-invalid ~ label,
 .ui-validate.on-submit.ng-submitted .ui-control.ng-invalid ~ label {
-	color: ui-color('red');
+    color: ui-color("red");
 }
 .ui-validate:not(.on-dirty):not(.on-submit) .ui-control.ng-invalid ~ .line,
 .ui-validate.on-dirty .ui-control.ng-dirty.ng-invalid ~ .line,
 .ui-validate.on-submit.ng-submitted .ui-control.ng-invalid ~ .line {
-	background-color: ui-color('red');
+    background-color: ui-color("red");
 }
 
 /* Animations */
 @keyframes shake {
-	25% {
-		transform: translateX(3px);
-	}
-	50% {
-		transform: translateX(0);
-	}
-	75% {
-		transform: translateX(1px);
-	}
+    25% {
+        transform: translateX(3px);
+    }
+    50% {
+        transform: translateX(0);
+    }
+    75% {
+        transform: translateX(1px);
+    }
 }
 
 fieldset:disabled ui-input-container {
-    &, * {
+    &,
+    * {
         cursor: not-allowed;
     }
 }
