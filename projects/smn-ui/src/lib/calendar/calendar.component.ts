@@ -29,6 +29,7 @@ export class UiCalendarComponent implements OnInit, OnChanges {
     @Input() initOnSelected: Date;
     @Input() confirmSelection: boolean;
     @Output() select: EventEmitter<any> = new EventEmitter();
+    @Output() selectDateChange: EventEmitter<any> = new EventEmitter();
     @Output() cancel: EventEmitter<any> = new EventEmitter();
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
     @Output() updateMonth: EventEmitter<any> = new EventEmitter();
@@ -93,6 +94,7 @@ export class UiCalendarComponent implements OnInit, OnChanges {
         this.ngModel = this.componentRef.instance.ngModel = value;
         this.ngModelChange.emit(this.ngModel);
         this.select.emit(this.ngModel);
+        this.selectDateChange.emit(this.ngModel);
         this.chosen.next(this.ngModel);
     }
 
