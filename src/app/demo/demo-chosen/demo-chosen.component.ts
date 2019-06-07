@@ -11,50 +11,53 @@ export class DemoChosenComponent implements OnInit {
     fruits: any;
     vegetables: any;
     required: boolean;
+    forma: string;
 
     constructor() {
+        this.forma = 'E';
         this.fruits = [];
-
         setTimeout(() => {
-            for (let i = 0; i < 1; i++) {
-                this.fruits = [...this.fruits, ...[{
-                    id: 1,
-                    name: 'Orange'
-                }, {
-                    id: 2,
-                    name: 'Strawberry'
-                }, {
-                    id: 3,
-                    name: 'Lemon'
-                }, {
-                    id: 4,
-                    name: 'Banana'
-                }, {
-                    id: 5,
-                    name: 'Apple'
-                }]];
+            this.simple = 2;
+        });
 
-            }
-
-            this.vegetables = [{
-                id: 6,
-                name: 'Lettuce'
+        for (let i = 0; i < 1; i++) {
+            this.fruits = [...this.fruits, ...[{
+                id: 1,
+                name: 'Orange'
             }, {
-                id: 7,
-                name: 'Argula'
-            }];
-        }, 500);
+                id: 2,
+                name: 'Strawberry'
+            }, {
+                id: 3,
+                name: 'Lemon'
+            }, {
+                id: 4,
+                name: 'Banana'
+            }, {
+                id: 5,
+                name: 'Apple'
+            }]];
+
+        }
+
+        this.vegetables = [{
+            id: 6,
+            name: 'Lettuce'
+        }, {
+            id: 7,
+            name: 'Argula'
+        }];
     }
 
     ngOnInit() {
-        this.required = true;
-        this.simple = '1';
-        this.simple = 7;
+
+        // this.simple = '1';
+        // this.simple = 7;
 
         setTimeout(() => {
-            this.required = false;
+            this.required = true;
             this.fruits[0].name = 'Updated from component';
-        }, 5000)
+        })
     }
 
 }

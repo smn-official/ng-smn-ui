@@ -1,6 +1,6 @@
 import {
     AfterContentInit,
-    AfterViewInit,
+    AfterViewInit, ChangeDetectorRef,
     Component,
     ContentChildren,
     ElementRef,
@@ -67,7 +67,8 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     @ContentChildren(UiChosenGroupComponent, {descendants: true}) optionsGroup: QueryList<UiChosenGroupComponent>;
 
     constructor(private element: ElementRef,
-                private viewContainerRef: ViewContainerRef) {
+                private viewContainerRef: ViewContainerRef,
+                private changeDetectorRef: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -285,5 +286,6 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
         if (this.ngModel && option.value === this.ngModel) {
             this.value = option.label;
         }
+        this.changeDetectorRef.detectChanges();
     }
 }

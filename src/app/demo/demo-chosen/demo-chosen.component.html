@@ -3,7 +3,7 @@
     <ui-card class="ui-s600">
         <ui-card-content class="ui-validate on-submit on-dirty ui-flex-container">
             <ui-input-container>
-                <ui-chosen name="teste" uiInput [(ngModel)]="simple" [required]="true" [search]="true">
+                <ui-chosen name="teste" uiInput [(ngModel)]="simple" [required]="required" [search]="true">
                     <ui-chosen-option [disabled]="true" label="Choose one... sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss" [value]="null"></ui-chosen-option>
                     <ui-chosen-option *ngFor="let fruit of fruits"
                                       [value]="fruit.id"
@@ -20,6 +20,15 @@
 
             <button class="ui-button primary" (click)="simple = '6'">UPDATE VALUE</button>
         </ui-card-content>
+        <ui-input-container class="no-space" style="width: 86px">
+            <ui-chosen name="forma"
+                       uiInput
+                       required
+                       [(ngModel)]="forma">
+                <ui-chosen-option label="E-mail" [value]="'E'"></ui-chosen-option>
+                <ui-chosen-option label="Manual" [value]="'M'"></ui-chosen-option>
+            </ui-chosen>
+        </ui-input-container>
     </ui-card>
     <div style="height: 2000px"></div>
 </form>
