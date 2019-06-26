@@ -243,6 +243,10 @@
         ui-progress-radial.indeterminate .spinner-container .path {
             stroke: ui-text-color('green', '600');
         }
+
+        &.flat ui-progress-radial.indeterminate .spinner-container .path {
+            stroke: ui-color('green', '600');
+        }
     }
 
     &.warning:not(:disabled) {
@@ -265,6 +269,10 @@
         ui-progress-radial.indeterminate .spinner-container .path {
             stroke: ui-text-color('orange');
         }
+
+        &.flat ui-progress-radial.indeterminate .spinner-container .path {
+            stroke: ui-color('orange');
+        }
     }
 
     &.error:not(:disabled) {
@@ -286,6 +294,10 @@
 
         ui-progress-radial.indeterminate .spinner-container .path {
             stroke: ui-text-color('red');
+        }
+
+        &.flat ui-progress-radial.indeterminate .spinner-container .path {
+            stroke: ui-color('red');
         }
     }
 
@@ -426,4 +438,3 @@ body.ui-nav-drawer-persistent {
         }
     }
 }
-/**/

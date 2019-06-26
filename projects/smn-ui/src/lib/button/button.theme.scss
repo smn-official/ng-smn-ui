@@ -89,6 +89,10 @@
                 ui-progress-radial.indeterminate .spinner-container .path {
                     stroke: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
                 }
+
+                &.flat ui-progress-radial.indeterminate .spinner-container .path {
+                    stroke: ui-color(map_get($theme, primary), map_get($theme, primary-hue));
+                }
             }
 
             &.accent {
@@ -114,6 +118,10 @@
 
                 ui-progress-radial.indeterminate .spinner-container .path {
                     stroke: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+                }
+
+                &.flat ui-progress-radial.indeterminate .spinner-container .path {
+                    stroke: ui-color(map_get($theme, accent), map_get($theme, accent-hue));
                 }
             }
 
