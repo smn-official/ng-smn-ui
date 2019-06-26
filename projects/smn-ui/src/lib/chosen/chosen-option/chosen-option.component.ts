@@ -1,4 +1,4 @@
-import {Component, forwardRef, Inject, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, forwardRef, Inject, Input, OnChanges, OnInit} from '@angular/core';
 import {UiChosenComponent} from '../chosen.component';
 
 @Component({
@@ -6,7 +6,7 @@ import {UiChosenComponent} from '../chosen.component';
     templateUrl: './chosen-option.component.html',
     styleUrls: ['./chosen-option.component.scss']
 })
-export class UiChosenOptionComponent implements OnInit {
+export class UiChosenOptionComponent implements AfterViewInit, OnChanges {
 
     @Input() label;
     @Input() value;
@@ -18,10 +18,23 @@ export class UiChosenOptionComponent implements OnInit {
     constructor(@Inject(forwardRef(() => UiChosenComponent)) private parent: UiChosenComponent) {
     }
 
-    ngOnInit() {
+    ngAfterViewInit() {
+        this.parent.loadOption(this);
+    }
+
+    ngOnChanges(changes) {
+        if (this.active && changes.label && !changes.label.firstChange) {
+            this.label = changes.label.currentValue;
+
+            this.parent.updateOptionLabel(this.label);
+        }
     }
 
     onSelect() {
+        if (this.disabled) {
+            return;
+        }
+
         this.parent.select(this);
     }
 

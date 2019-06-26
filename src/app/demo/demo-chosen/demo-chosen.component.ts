@@ -11,9 +11,15 @@ export class DemoChosenComponent implements OnInit {
     fruits: any;
     vegetables: any;
     required: boolean;
+    forma: string;
 
     constructor() {
+        this.forma = 'E';
         this.fruits = [];
+        setTimeout(() => {
+            this.simple = 2;
+        });
+
         for (let i = 0; i < 1; i++) {
             this.fruits = [...this.fruits, ...[{
                 id: 1,
@@ -41,16 +47,17 @@ export class DemoChosenComponent implements OnInit {
             id: 7,
             name: 'Argula'
         }];
-
     }
 
     ngOnInit() {
-        this.required = true;
-        this.simple = '1';
+
+        // this.simple = '1';
+        // this.simple = 7;
 
         setTimeout(() => {
-            this.required = false;
-        }, 5000)
+            this.required = true;
+            this.fruits[0].name = 'Updated from component';
+        })
     }
 
 }

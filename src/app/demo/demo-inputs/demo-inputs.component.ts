@@ -11,6 +11,7 @@ import { UiElement } from '../../../../projects/smn-ui/src/lib/utils/providers/e
 })
 export class DemoInputsComponent implements OnInit {
     list: string[];
+    textarea: string;
     // @ViewChild('test') test;
 
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
@@ -20,7 +21,7 @@ export class DemoInputsComponent implements OnInit {
     ngOnInit() {
         this.titleService.setTitle('Input - SMN UI Demos');
         this.toolbarService.set('Input');
-
+        this.textarea = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi asperiores aspernatur blanditiis cumque eligendi error excepturi expedita facilis fugit, in maxime minus modi omnis placeat porro quidem sit tenetur totam?';
         // setTimeout(() => {
         //     UiElement.focus(this.test.nativeElement);
         // }, 2000);

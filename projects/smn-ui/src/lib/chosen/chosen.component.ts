@@ -1,6 +1,6 @@
 import {
     AfterContentInit,
-    AfterViewInit,
+    AfterViewInit, ChangeDetectorRef,
     Component,
     ContentChildren,
     ElementRef,
@@ -67,7 +67,8 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     @ContentChildren(UiChosenGroupComponent, {descendants: true}) optionsGroup: QueryList<UiChosenGroupComponent>;
 
     constructor(private element: ElementRef,
-                private viewContainerRef: ViewContainerRef) {
+                private viewContainerRef: ViewContainerRef,
+                private changeDetectorRef: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -106,7 +107,6 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
             setTimeout(() => this.setValue(this.ngModel));
         }
     }
-
     writeValue() {
     }
 
@@ -133,7 +133,12 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
             return;
         }
 
-        if (this.focused || this.disabled) {
+        if (this.focused) {
+            return;
+        }
+
+        if (this.disabled) {
+            this.element.nativeElement.blur();
             return;
         }
 
@@ -271,5 +276,16 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
 
     trackByValue(index, option) {
         return option.value;
+    }
+
+    updateOptionLabel(label) {
+        this.value = label;
+    }
+
+    loadOption(option: UiChosenOptionComponent) {
+        if (this.ngModel && option.value === this.ngModel) {
+            this.value = option.label;
+        }
+        this.changeDetectorRef.detectChanges();
     }
 }

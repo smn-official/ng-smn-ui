@@ -10,6 +10,11 @@
         text-overflow: ellipsis;
         overflow: hidden;
 
+        &.disabled {
+            color: rgba(0, 0, 0, .54);
+            cursor: not-allowed;
+        }
+
         span {
             white-space: nowrap;
             text-overflow: ellipsis;
