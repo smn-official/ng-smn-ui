@@ -51,7 +51,8 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
             this.control.markAsDirty();
         }
         if (!this.input) {
-            this.elementRef.nativeElement.value = this.cpfPipe.transform(this.ngModel);
+            this.ngModel = this.ngModel.toString().padStart(11, '0');
+            this.elementRef.nativeElement.value = this.cpfPipe.transform(this.ngModel, true);
         }
         this.input = false;
     }
@@ -62,7 +63,7 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
         }
         this.ngModel = this.format(rawValue);
         this.ngModelChange.emit(this.ngModel);
-        this.elementRef.nativeElement.value = this.cpfPipe.transform(this.elementRef.nativeElement.value);
+        this.elementRef.nativeElement.value = this.cpfPipe.transform(this.elementRef.nativeElement.value, true);
     }
 
     registerOnChange(fn: any): void {
