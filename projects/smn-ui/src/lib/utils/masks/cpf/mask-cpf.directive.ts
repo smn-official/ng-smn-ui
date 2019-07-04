@@ -50,7 +50,7 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
         if (this.control && this.loaded && rawValue) {
             this.control.markAsDirty();
         }
-        if (!this.input) {
+        if (!this.input && this.ngModel) {
             this.ngModel = this.ngModel.toString().padStart(11, '0');
             this.elementRef.nativeElement.value = this.cpfPipe.transform(this.ngModel, true);
         }
