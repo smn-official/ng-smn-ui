@@ -101,6 +101,11 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
         return null;
     }
 
+    setDisabledState(isDisabled: boolean) {
+        const method = isDisabled ? 'setAttribute' : 'removeAttribute';
+        this.elementRef.nativeElement[method]('disabled', 'disabled');
+    }
+
     @HostListener('keydown') onKeydown() {
         this.beforeSelIndex = UiElement.caretPosition.get(this.elementRef.nativeElement);
     }
