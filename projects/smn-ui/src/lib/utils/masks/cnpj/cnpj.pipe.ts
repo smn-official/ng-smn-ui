@@ -10,6 +10,10 @@ export class UiCnpjPipe implements PipeTransform {
             return '';
         }
 
+        if(!args) {
+            value = value.padStart(14, '0');
+        }
+
         value = value.toString().replace(/[^0-9]+/g, '');
         if (value.length > 2) {
             value = value.substring(0, 2) + '.' + value.substring(2);
