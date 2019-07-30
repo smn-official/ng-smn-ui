@@ -1,6 +1,10 @@
 <div class="ui-expansion-panel-wrap">
 
-    <div class="ui-expansion-panel-header" (click)="toggle()" [ngStyle]="{'opacity': disabled ? '.5' : '1'}" uiRipple [ripple-disable]="disabled">
+    <div class="ui-expansion-panel-header" 
+        (click)="toggle()" 
+        [ngStyle]="{'opacity': disabled ? '.5' : '1'}" 
+        uiRipple 
+        [ripple-disable]="disabled">
         <span class="ui-expansion-panel-title">
             <ui-subheader class="primary">
                 {{ label }}
@@ -10,16 +14,18 @@
             {{ description }}
         </span>
         <span>
-            <i class="material-icons" [ngStyle]="{
-                'transform': state ? 'rotateZ(0deg)' : 'rotateZ(180deg)',
-                'display' : disabled ? 'none' : 'block' 
+            <i class="material-icons" 
+                [ngStyle]="{
+                    'transform': state ? 'rotateZ(0deg)' : 'rotateZ(180deg)',
+                    'display' : disabled ? 'none' : 'block' 
                 }">
                 keyboard_arrow_down
             </i>
         </span>
     </div>
 
-    <div class="ui-expansion-panel-body" [ngStyle]="{'height': state ? contentHeight + 'px' : '0px'}">
+    <div class="ui-expansion-panel-body" 
+        [ngStyle]="{'height': state ? contentHeight + 'px' : '0px'}">
         <div #painelBody>
             <ng-content selector="ui-expansion-panel-content"></ng-content>
         </div>
