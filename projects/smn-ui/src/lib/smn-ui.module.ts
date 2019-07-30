@@ -93,6 +93,7 @@ import { UiChosenOptionComponent } from './chosen/chosen-option/chosen-option.co
 import { UiChosenGroupComponent } from './chosen/chosen-group/chosen-group.component';
 import { UiCreditCardPipe } from './utils/masks/credit-card/credit-card.pipe';
 import { UiMaskCreditCard } from './utils/masks/credit-card/credit-card-mask.directive';
+import { ExpansionPanelComponent } from './expansion-panel/expansion-panel.component';
 
 export {
     debounce,
@@ -201,7 +202,8 @@ const lib: any[] = [
     UiChosenOptionComponent,
     UiChosenGroupComponent,
     UiCreditCardPipe,
-    UiMaskCreditCard
+    UiMaskCreditCard,
+    ExpansionPanelComponent
 ];
 
 @NgModule({
