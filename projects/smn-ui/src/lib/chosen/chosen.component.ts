@@ -1,3 +1,4 @@
+// @ts-ignore
 import {
     AfterContentInit,
     AfterViewInit, ChangeDetectorRef,
@@ -269,9 +270,11 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     }
 
     changeNativeSelect() {
-        this.control.markAsDirty();
-        this.control.markAsTouched();
-        this.ngModelChange.emit(this.ngModel);
+        setTimeout(() => {
+            this.control.markAsDirty();
+            this.control.markAsTouched();
+            this.ngModelChange.emit(this.ngModel);
+        });
     }
 
     trackByValue(index, option) {
