@@ -52,8 +52,9 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator, Aft
         if (this.control && this.loaded && rawValue) {
             this.control.markAsDirty();
         }
-        if (!this.input) {
-            this.elementRef.nativeElement.value = this.cnpjPipe.transform(this.ngModel);
+        if (!this.input && this.ngModel) {
+            this.ngModel = this.ngModel.toString().padStart(14, '0');
+            this.elementRef.nativeElement.value = this.cnpjPipe.transform(this.ngModel, true);
         }
         this.input = false;
     }
@@ -64,7 +65,7 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator, Aft
         }
         this.ngModel = this.format(rawValue);
         this.ngModelChange.emit(this.ngModel);
-        this.elementRef.nativeElement.value = this.cnpjPipe.transform(this.elementRef.nativeElement.value);
+        this.elementRef.nativeElement.value = this.cnpjPipe.transform(this.elementRef.nativeElement.value, true);
     }
 
     registerOnChange(fn: any): void {
