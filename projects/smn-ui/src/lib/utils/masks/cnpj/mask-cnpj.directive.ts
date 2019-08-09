@@ -27,9 +27,8 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator, Aft
     onTouched: Function;
     control: FormControl;
     symbolsPositions: number[] = [2, 6, 10, 15, 18];
-    @Input() minDate: Date;
-    @Input() maxDate: Date;
     @Input() ngModel: any;
+    @Input() padOnPaste: boolean = true;
     @Input('uiMaskCnpj') uiMaskCnpj;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
@@ -150,4 +149,13 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator, Aft
         UiElement.caretPosition.set(this.elementRef.nativeElement, this.beforeSelIndex, afterSelIndex, this.symbolsPositions);
     }
 
+    @HostListener('paste', ['$event'])
+    padLeft(event: ClipboardEvent) {
+        if (this.padOnPaste) {
+            event.preventDefault();
+            const data = event.clipboardData;
+            const text = data.getData('text').toString().replace(/[^0-9]+/g, '');
+            this.renderViaInput(text.padStart(14, '0'));
+        }
+    }
 }
