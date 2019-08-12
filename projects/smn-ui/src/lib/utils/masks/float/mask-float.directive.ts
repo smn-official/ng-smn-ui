@@ -3,6 +3,8 @@ import {
     Output, OnChanges, OnInit
 } from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { UiElement } from '../../providers/element.provider';
+import { UiFloatPipe } from './float.pipe';
 
 @Directive({
     selector: '[uiMaskFloat][ngModel]',
@@ -14,26 +16,32 @@ import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR} fro
         provide: NG_VALIDATORS,
         useExisting: forwardRef(() => UiMaskFloatDirective),
         multi: true
-    }]
+    }, UiFloatPipe]
 })
 export class UiMaskFloatDirective implements ControlValueAccessor, AfterViewInit, OnChanges {
+
     loaded: boolean;
     input: boolean;
+    beforeViewValue;
+    beforeSelIndex;
     onChange: Function;
     onTouched: Function;
     control: FormControl;
+    @Input() decimal: number;
+    @Input() max: number;
+    @Input() min: number;
     @Input() ngModel: any;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
-    @Input() uiMaskFloat: any;
-    @Input() min: number;
-    @Input() max: number;
 
-    constructor(public elementRef: ElementRef) {
+    constructor(public elementRef: ElementRef, public floatPipe: UiFloatPipe) {
     }
 
     ngOnChanges(changes): void {
         if (changes.ngModel && !changes.ngModel.firstChange && (changes.ngModel.currentValue === null || changes.ngModel.currentValue === undefined)) {
             this.elementRef.nativeElement.value = '';
+        }
+        if (typeof changes.decimal !== 'undefined') {
+            this.decimal = changes.decimal.currentValue;
         }
         if (typeof changes.max !== 'undefined') {
             this.max = changes.max.currentValue;
@@ -54,7 +62,7 @@ export class UiMaskFloatDirective implements ControlValueAccessor, AfterViewInit
             this.control.markAsDirty();
         }
         if (!this.input) {
-            this.elementRef.nativeElement.value = this.ngModel || '';
+            this.elementRef.nativeElement.value = this.formatViewValue(this.ngModel);
         }
         this.input = false;
     }
@@ -65,7 +73,7 @@ export class UiMaskFloatDirective implements ControlValueAccessor, AfterViewInit
         }
         this.ngModel = this.format(rawValue);
         this.ngModelChange.emit(this.ngModel);
-        this.elementRef.nativeElement.value = this.ngModel || '';
+        this.elementRef.nativeElement.value = this.formatViewValue(this.elementRef.nativeElement.value);
     }
 
     registerOnChange(fn: any): void {
@@ -77,26 +85,33 @@ export class UiMaskFloatDirective implements ControlValueAccessor, AfterViewInit
     }
 
     format(value) {
-        const newValue = value.toString().replace(/[^0-9.]+/g, '');
-        return newValue || undefined;
+        value = this.floatPipe.transform(value, this.decimal);
+        const removeGroupSep = new RegExp('[^\\d\\,-]+', 'g');
+        value = value.toString().replace(removeGroupSep, '');
+        value = parseFloat(value.replace(',', '.'));
+        return typeof value === 'number' && !isNaN(value) ? value : null;
+    }
+
+    formatViewValue(value) {
+        let standard = '0,';
+        standard = standard.padEnd(this.decimal + 2, '0');
+        const isDeletingZero = this.beforeViewValue === (standard) && value.length < this.beforeViewValue.length;
+        value = isDeletingZero ? '' : value;
+        return this.floatPipe.transform(value, this.decimal);
     }
 
     validate(control: FormControl): { [key: string]: any } {
         this.control = control;
 
         if (typeof this.min !== 'undefined' && control.value && this.format(control.value) < this.min) {
-            return {min: true};
+            return { min: true };
         }
 
         if (typeof this.max !== 'undefined' && control.value && this.format(control.value) > this.max) {
-            return {max: true};
+            return { max: true };
         }
 
         return null;
-    }
-
-    isNumber(value) {
-        return !(!value && value != 0);
     }
 
     setDisabledState(isDisabled: boolean) {
@@ -104,10 +119,14 @@ export class UiMaskFloatDirective implements ControlValueAccessor, AfterViewInit
         this.elementRef.nativeElement[method]('disabled', 'disabled');
     }
 
-    @HostListener('input', ['$event'])
-    onInput($event): void {
-        const rawValue = this.elementRef.nativeElement.value;
+    @HostListener('keydown') onKeydown() {
+        this.beforeSelIndex = UiElement.caretPosition.get(this.elementRef.nativeElement);
+    }
+
+    @HostListener('input', ['$event']) onInput($event): void {
+        const rawValue: string = this.elementRef.nativeElement.value;
         this.input = true;
+        this.beforeViewValue = rawValue;
         this.renderViaInput(rawValue);
     }
 

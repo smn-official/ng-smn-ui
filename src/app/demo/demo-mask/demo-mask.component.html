@@ -101,6 +101,14 @@
                     <div class="ui-message helper">Model: {{interger}}; View: {{interger}}</div>
                 </div>
             </ui-input-container>
+
+            <ui-input-container>
+                <input type="text" name="float" [(ngModel)]="float" uiInput uiMaskFloat [decimal]="4">
+                <label>Float</label>
+                <div class="ui-messages">
+                    <div class="ui-message helper">Model: {{float}}; View: {{float}}</div>
+                </div>
+            </ui-input-container>
         </ui-card-content>
         <div class="ui-button-container cover">
             <button class="ui-button primary" uiRipple>Test Submit</button>
