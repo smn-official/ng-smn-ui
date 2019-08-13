@@ -13,6 +13,10 @@ export class UiFloatPipe implements PipeTransform {
             value = value.toFixed(decimal);
         }
 
+        if (isNaN(decimal) || decimal < 1) {
+            decimal = 1;
+        }
+
         const isNegative = !(value.toString().match(/[+]/) || !value.toString().match(/[-]/));
 
         // Verifica se há valor no model (permite remover o '0,00')

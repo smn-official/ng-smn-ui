@@ -85,7 +85,7 @@ export class UiMaskFloatDirective implements ControlValueAccessor, AfterViewInit
     }
 
     format(value) {
-        value = this.floatPipe.transform(value, this.decimal);
+        value = this.floatPipe.transform(value, +this.decimal);
         const removeGroupSep = new RegExp('[^\\d\\,-]+', 'g');
         value = value.toString().replace(removeGroupSep, '');
         value = parseFloat(value.replace(',', '.'));
@@ -94,10 +94,10 @@ export class UiMaskFloatDirective implements ControlValueAccessor, AfterViewInit
 
     formatViewValue(value) {
         let standard = '0,';
-        standard = standard.padEnd(this.decimal + 2, '0');
+        standard = standard.padEnd(+this.decimal + 2, '0');
         const isDeletingZero = this.beforeViewValue === (standard) && value.length < this.beforeViewValue.length;
         value = isDeletingZero ? '' : value;
-        return this.floatPipe.transform(value, this.decimal);
+        return this.floatPipe.transform(value, +this.decimal);
     }
 
     validate(control: FormControl): { [key: string]: any } {
