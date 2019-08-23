@@ -28,6 +28,7 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
     control: FormControl;
     symbolsPositions: number[] = [3, 7, 11, 14];
     @Input() ngModel: any;
+    @Input() padOnPaste: boolean = true;
     @Input('uiMaskCpf') uiMaskCpf;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
@@ -138,6 +139,16 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
         this.input = true;
         this.renderViaInput(rawValue);
         UiElement.caretPosition.set(this.elementRef.nativeElement, this.beforeSelIndex, afterSelIndex, this.symbolsPositions);
+    }
+
+    @HostListener('paste', ['$event'])
+    padLeft(event: ClipboardEvent) {
+        if (this.padOnPaste) {
+            event.preventDefault();
+            const data = event.clipboardData;
+            const text = data.getData('text').toString().replace(/[^0-9]+/g, '');
+            this.renderViaInput(text.padStart(11, '0'));
+        }
     }
 
 }
