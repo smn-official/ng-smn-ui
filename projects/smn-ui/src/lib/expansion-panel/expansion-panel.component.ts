@@ -14,6 +14,7 @@ export class ExpansionPanelComponent implements OnInit, AfterViewChecked {
     element: any;
 
     @Input() disabled: boolean;
+    @Input() noArrow: boolean;
     @ViewChild('painelBody') painelBody: ElementRef;
 
     constructor(
@@ -31,7 +32,6 @@ export class ExpansionPanelComponent implements OnInit, AfterViewChecked {
             this.label = elements[0].innerText;
             elements.forEach((item: HTMLElement) => item.remove());
         }
-
 
         // Carrega o label e remove possiveis redundancias
         elements = Array.from(this.element.querySelectorAll('ui-expansion-panel-description'));

@@ -17,7 +17,7 @@
             <i class="material-icons" 
                 [ngStyle]="{
                     'transform': state ? 'rotateZ(0deg)' : 'rotateZ(180deg)',
-                    'display' : disabled ? 'none' : 'block' 
+                    'display' : disabled || noArrow ? 'none' : 'block' 
                 }">
                 keyboard_arrow_down
             </i>
