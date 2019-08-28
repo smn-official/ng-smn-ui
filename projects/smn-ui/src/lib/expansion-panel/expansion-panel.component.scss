@@ -17,17 +17,21 @@
 } 
 
 .ui-expansion-panel-header span i {
-    transition: .3s transform cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: 300ms transform cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .ui-expansion-panel-body {
-    transition: .3s height cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: 300ms height cubic-bezier(0.4, 0.0, 0.2, 1);
     overflow-y: hidden;
 }
 
 .ui-expansion-panel-description {
     font-size: 14px;
     font-weight: 500;
+}
+
+.ui-expansion-panel-collapsed {
+    transform: rotateZ(180deg);
 }
 
 @media screen and (max-width: 480px) {

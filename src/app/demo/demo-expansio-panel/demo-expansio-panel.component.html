@@ -1,8 +1,5 @@
 <ui-card>
-    <ui-expansion-panel>
-        <ui-expansion-panel-label>
-            Ui Expansion Panel
-        </ui-expansion-panel-label>
+    <ui-expansion-panel label="Ui Expansion Panel">
         <ui-expansion-panel-content>
             <ui-card-content>
                 A sample, but smart demo content<br />
@@ -19,13 +16,32 @@
 </ui-card>
 
 <ui-card>
-    <ui-expansion-panel [noArrow]="true">
-        <ui-expansion-panel-label>
-            Ui Expansion Panel
-        </ui-expansion-panel-label>
-        <ui-expansion-panel-description>
-            Panel with no arrow
-        </ui-expansion-panel-description>
+        <ui-expansion-panel 
+            label="Ui Expansion Panel" 
+            description="Controlled panel"
+            [open]="true"
+        >
+            <ui-expansion-panel-content>
+                <ui-card-content>
+                    A sample, but smart demo content<br />
+                    A sample, but smart demo content<br />
+                    A sample, but smart demo content<br />
+                    A sample, but smart demo content<br />
+                    A sample, but smart demo content<br />
+                    A sample, but smart demo content<br />
+                    A sample, but smart demo content<br />
+                    A sample, but smart demo content<br />
+                </ui-card-content>
+            </ui-expansion-panel-content>
+        </ui-expansion-panel>
+    </ui-card>
+
+<ui-card>
+    <ui-expansion-panel 
+        [noArrow]="true" 
+        label="Ui Expansion Panel" 
+        description="Panel with no arrow"
+    >
         <ui-expansion-panel-content>
             <ui-card-content>
                 A sample, but smart demo content<br />
@@ -45,13 +61,11 @@
 </ui-card>
 
 <ui-card>
-    <ui-expansion-panel [disabled]='true'>
-        <ui-expansion-panel-label>
-            Ui Expansion Panel [Disabled]
-        </ui-expansion-panel-label>
-        <ui-expansion-panel-description>
-            A Sample Description About Panel Man
-        </ui-expansion-panel-description>
+    <ui-expansion-panel 
+        [disabled]='true' 
+        label="Ui Expansion Panel [Disabled]"
+        description="A Sample Description About Panel Man"
+    >
         <ui-expansion-panel-content>
             <ui-card-content>
                 A sample, but smart demo content<br />

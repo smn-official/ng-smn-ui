@@ -1,4 +1,5 @@
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule,} from '@angular/platform-browser';
+import {BrowserAnimationsModule,} from '@angular/platform-browser/animations';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';

@@ -15,8 +15,8 @@
         </span>
         <span>
             <i class="material-icons" 
+                [ngClass]="{'ui-expansion-panel-collapsed': !open}"
                 [ngStyle]="{
-                    'transform': state ? 'rotateZ(0deg)' : 'rotateZ(180deg)',
                     'display' : disabled || noArrow ? 'none' : 'block' 
                 }">
                 keyboard_arrow_down
@@ -24,10 +24,10 @@
         </span>
     </div>
 
-    <div class="ui-expansion-panel-body" 
-        [ngStyle]="{'height': state ? contentHeight + 'px' : '0px'}">
+    <div class="ui-expansion-panel-body" [@expandAnimation] *ngIf="open">
         <div #painelBody>
-            <ng-content selector="ui-expansion-panel-content"></ng-content>
+            <ng-content selector="ui-expansion-panel-content" >
+            </ng-content>
         </div>
     </div>
 

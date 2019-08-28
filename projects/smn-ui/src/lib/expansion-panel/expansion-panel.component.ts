@@ -1,53 +1,30 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
-
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { expandAnimation } from './axpansion-panel.animation';
 @Component({
     selector: 'ui-expansion-panel',
     templateUrl: './expansion-panel.component.html',
-    styleUrls: ['./expansion-panel.component.scss']
+    styleUrls: ['./expansion-panel.component.scss'],
+    animations: [expandAnimation]
 })
-export class ExpansionPanelComponent implements OnInit, AfterViewChecked {
+export class ExpansionPanelComponent implements OnInit {
 
     contentHeight: number;
-    state = false;
-    label: string;
-    description: string;
     element: any;
 
+    @Input() open: boolean;
     @Input() disabled: boolean;
     @Input() noArrow: boolean;
-    @ViewChild('painelBody') painelBody: ElementRef;
+    @Input() label: string;
+    @Input() description: string;
 
-    constructor(
-        private elementRef: ElementRef
-    ) { }
+    constructor() { }
 
     ngOnInit() {
-        let elements: Array<HTMLElement>;
-        this.element = this.elementRef.nativeElement;
-        this.contentHeight = this.painelBody.nativeElement.clientHeight;
-
-        // Carrega o label e remove possiveis redundancias
-        elements = Array.from(this.element.querySelectorAll('ui-expansion-panel-label'));
-        if (elements.length) {
-            this.label = elements[0].innerText;
-            elements.forEach((item: HTMLElement) => item.remove());
-        }
-
-        // Carrega o label e remove possiveis redundancias
-        elements = Array.from(this.element.querySelectorAll('ui-expansion-panel-description'));
-        if (elements.length) {
-            this.description = this.element.querySelector('ui-expansion-panel-description').innerText;
-            elements.forEach((item: HTMLElement) => item.remove());
-        }
-    }
-
-    ngAfterViewChecked() {
-        this.contentHeight = this.painelBody.nativeElement.clientHeight;
     }
 
     toggle() {
         if (!this.disabled) {
-            this.state = !this.state;
+            this.open = !this.open;
         }
     }
 
