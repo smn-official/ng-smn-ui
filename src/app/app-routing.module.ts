@@ -38,6 +38,7 @@ import {DemoAvatarComponent} from './demo/demo-avatar/demo-avatar.component';
 import {DemoTooltipComponent} from "./demo/demo-tooltip/demo-tooltip.component";
 import {DemoGridComponent} from './demo/demo-grid/demo-grid.component';
 import {DemoChosenComponent} from './demo/demo-chosen/demo-chosen.component';
+import { DemoExpansioPanelComponent } from './demo/demo-expansio-panel/demo-expansio-panel.component';
 
 const routes: Routes = [
     {
@@ -82,6 +83,7 @@ const routes: Routes = [
             {path: 'infinite-load', component: DemoInfiniteLoadComponent},
             {path: 'select', component: DemoSelectComponent},
             {path: 'chosen', component: DemoChosenComponent},
+            {path: 'expansion-panel', component: DemoExpansioPanelComponent},
         ]
     },
     {path: '**', redirectTo: ''}

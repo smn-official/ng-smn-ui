@@ -1,0 +1,32 @@
+<div class="ui-expansion-panel-wrap">
+
+    <div class="ui-expansion-panel-header" 
+        (click)="toggle()" 
+        [ngStyle]="{'opacity': disabled ? '.5' : '1'}" 
+        uiRipple 
+        [ripple-disable]="disabled">
+        <span class="ui-expansion-panel-title">
+            <ui-subheader class="primary">
+                {{ label }}
+            </ui-subheader>
+        </span>
+        <span class="ui-expansion-panel-description label secondary-text">
+            {{ description }}
+        </span>
+        <span>
+            <i class="material-icons" 
+                [ngClass]="{'ui-expansion-panel-collapsed': !open}"
+                [ngStyle]="{
+                    'display' : disabled || noArrow ? 'none' : 'block' 
+                }">
+                keyboard_arrow_down
+            </i>
+        </span>
+    </div>
+
+    <div class="ui-expansion-panel-body" [@expandAnimation] *ngIf="open">
+        <ng-content selector="ui-expansion-panel-content" >
+        </ng-content>
+    </div>
+
+</div>
