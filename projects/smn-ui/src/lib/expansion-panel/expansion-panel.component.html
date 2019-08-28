@@ -25,10 +25,8 @@
     </div>
 
     <div class="ui-expansion-panel-body" [@expandAnimation] *ngIf="open">
-        <div #painelBody>
-            <ng-content selector="ui-expansion-panel-content" >
-            </ng-content>
-        </div>
+        <ng-content selector="ui-expansion-panel-content" >
+        </ng-content>
     </div>
 
 </div>

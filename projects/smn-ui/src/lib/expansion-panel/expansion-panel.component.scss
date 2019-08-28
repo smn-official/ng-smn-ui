@@ -1,3 +1,5 @@
+@import "../core/variables.scss";
+
 .ui-expansion-panel-header { 
     display: flex; 
     flex-direction: row;
@@ -17,11 +19,11 @@
 } 
 
 .ui-expansion-panel-header span i {
-    transition: 300ms transform cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: 300ms transform ui-easing('acceleration');
 }
 
 .ui-expansion-panel-body {
-    transition: 300ms height cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: 300ms height ui-easing('acceleration');
     overflow-y: hidden;
 }
 

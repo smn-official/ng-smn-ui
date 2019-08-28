@@ -206,7 +206,7 @@ const lib: any[] = [
     UiChosenGroupComponent,
     UiCreditCardPipe,
     UiMaskCreditCard,
-    ExpansionPanelComponent
+    ExpansionPanelComponent,
     UiFloatPipe,
 ];
 
