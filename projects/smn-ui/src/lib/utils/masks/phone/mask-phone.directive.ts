@@ -38,7 +38,6 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
     ngOnInit() {
         switch (this.uiMaskPhone) {
             case 'ddi':
-                
                 this.symbolsPositions = [0, 12, 14, 17];
                 break;
             default:
