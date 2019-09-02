@@ -16,6 +16,10 @@
         </div>
     </div>
 </ui-tab-header>
-<div>
-    <ng-content></ng-content>
+<div style="position: relative; transition: all 280ms ease-in-out" #tabsContentElement>
+    <div *ngFor="let tab of tabs" [@tabTransform]="tab.index < activatedTab?.index ? 'left' : tab.index > activatedTab?.index ? 'right' : 'active'" style="left: 0; right: 0; top: 0" (@tabTransform.start)="startTranslateAnimation($event)" (@tabTransform.done)="doneTranslateAnimation($event)">
+        <div *ngIf="tab.templateContent && tab.templateContent.template && tab.isActive" [@tabAnimation]>
+            <ng-container *ngTemplateOutlet="tab.templateContent.template"></ng-container>
+        </div>
+    </div>
 </div>

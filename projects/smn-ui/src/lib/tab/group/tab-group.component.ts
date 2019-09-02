@@ -4,15 +4,45 @@ import {
 } from '@angular/core';
 import {UiTabComponent} from '../tab.component';
 import {UiTabHeaderComponent} from '../header/tab-header.component';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+
+const animation = trigger('tabAnimation',
+    [
+        transition(':enter', animate('280ms cubic-bezier(0.0, 0.0, 0.2, 1)')),
+        transition(':leave', animate('280ms cubic-bezier(0.0, 0.0, 0.2, 1)')),
+    ]
+);
+
+const animationTeste = trigger('tabTransform',
+    [
+        state('left', style({
+            transform: 'translateX(-100%)',
+            position: 'absolute'
+        })),
+        state('right', style({
+            transform: 'translateX(100%)',
+            position: 'absolute'
+        })),
+        state('active', style({
+            transform: 'translateX(0)',
+            position: 'relative'
+        })),
+        transition('left <=> right', animate(280)),
+        transition('active <=> right', animate(280)),
+        transition('left <=> active', animate(280)),
+    ]
+);
 
 @Component({
     selector: 'ui-tab-group',
     templateUrl: './tab-group.component.html',
-    styleUrls: ['./tab-group.component.scss']
+    styleUrls: ['./tab-group.component.scss'],
+    animations: [animation, animationTeste]
 })
 export class UiTabGroupComponent implements OnInit, AfterViewInit {
     @ContentChildren(UiTabComponent) tabsQueryList: QueryList<UiTabComponent>;
     @ViewChild(UiTabHeaderComponent) tabHeader: UiTabHeaderComponent;
+    @ViewChild('tabsContentElement') tabsContentElement: ElementRef;
     @Input() active: number;
     @Input() fillBackground: boolean;
     @Input() themeInkBar: boolean;
@@ -31,6 +61,7 @@ export class UiTabGroupComponent implements OnInit, AfterViewInit {
         // Transformando a QueryList em um array de component(UiTabComponent)
         this.tabs = this.tabsQueryList.toArray();
         this.changeDetectorRef.detectChanges();
+        console.log(this.tabs)
         this.generateIndexes();
 
         // Ativa uma tab através do index passado com Input ou a primeira tab
@@ -47,6 +78,11 @@ export class UiTabGroupComponent implements OnInit, AfterViewInit {
                 const newTab = this.tabs[this.activatedTab.index] || this.tabs[this.tabs.length - 1];
                 this.activateTab(newTab, this.getTabRef(tab));
             }
+        });
+
+
+        this.tabsContentElement.nativeElement.addEventListener('transitionend', () => {
+            // this.tabsContentElement.nativeElement.style.height = '';
         });
     }
 
@@ -93,13 +129,14 @@ export class UiTabGroupComponent implements OnInit, AfterViewInit {
      * @return {void}
      * */
     activateTab(tab: UiTabComponent, tabRef: HTMLElement) {
-        if (tab.disabled) {
+        if (tab.disabled || tab === this.activatedTab) {
             return;
         }
 
         if (this.activatedTab) {
             this.activatedTab.tabChange.emit(false);
         }
+        this.tabsContentElement.nativeElement.style.height = this.tabsContentElement.nativeElement.scrollHeight + 'px';
 
         tab.tabChange.emit(true);
         this.changeDetectorRef.detectChanges();
@@ -116,5 +153,18 @@ export class UiTabGroupComponent implements OnInit, AfterViewInit {
      **/
     updateActivatedTab() {
         this.tabs.map(tab => tab.indexActivatedTab = this.activatedTab.index);
+    }
+
+    startTranslateAnimation(event) {
+        if (event.toState === 'active') {
+            console.log(event.element.scrollHeight)
+            this.tabsContentElement.nativeElement.style.height = event.element.scrollHeight + 'px';
+        }
+    }
+
+    doneTranslateAnimation(event) {
+        if (event.toState !== 'active') {
+            this.tabsContentElement.nativeElement.style.height = '';
+        }
     }
 }

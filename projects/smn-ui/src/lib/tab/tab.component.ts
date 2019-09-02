@@ -37,6 +37,7 @@ export class UiTabComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
+        console.log(this.templateContent)
     }
 
     /**

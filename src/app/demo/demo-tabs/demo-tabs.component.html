@@ -1,38 +1,42 @@
-<ui-tab-group [lazy-load]="true"
-              [accent]="accent"
-              [fillBackground]="fillBackground"
-              [themeInkBar]="themeInkBar" class="scrollable">
-    <ui-tab label="Oliver Queen" #tab [disabled]="true">
-        <ng-template uiTabLabel>
-            <a [routerLink]="['/', 'old-tabs']" class="tab">{{tab.label}}</a>
-        </ng-template>
-        <ng-template uiTabContent>
-            this go to lazy load
-        </ng-template>
-        <div>teste</div>
-    </ui-tab>
-    <ui-tab label="Barry Allen" icon="directions_run">
-        <ng-template uiTabContent>
-            <form #primaryForm="ngForm">
-                <ui-input-container>
-                    <input type="text" name="nome" uiInput required [(ngModel)]="info.nome">
-                    <label>Nome</label>
-                </ui-input-container>
-            </form>
-        </ng-template>
-    </ui-tab>
-    <ui-tab label="Bruce Wayne">
-        <ng-template uiTabContent>
-            <form #phoneForm="ngForm">
-                <ui-input-container>
-                    <input type="text" name="telefone" uiInput required [(ngModel)]="info.telefone" uiMaskPhone [disabled]="primaryForm?.invalid">
-                    <label>Telefone</label>
-                </ui-input-container>
-            </form>
-        </ng-template>
-    </ui-tab>
-    <ui-tab label="SarahLance" *ngIf="loading">teste4</ui-tab>
-</ui-tab-group>
+<ui-card>
+    <ui-tab-group [lazy-load]="true"
+                  [accent]="accent"
+                  [fillBackground]="fillBackground"
+                  [themeInkBar]="themeInkBar" class="scrollable">
+        <ui-tab label="Oliver Queen" #tab>
+            <ng-template uiTabContent>
+                this go to lazy load
+            </ng-template>
+            <div>teste</div>
+        </ui-tab>
+        <ui-tab label="Barry Allen" icon="directions_run">
+            <ng-template uiTabContent>
+                <form #primaryForm="ngForm">
+                    <ui-input-container>
+                        <input type="text" name="nome" uiInput required [(ngModel)]="info.nome">
+                        <label>Nome</label>
+                    </ui-input-container>
+                </form>
+            </ng-template>
+        </ui-tab>
+        <ui-tab label="Bruce Wayne">
+            <ng-template uiTabContent>
+                <form #phoneForm="ngForm">
+                    <ui-input-container>
+                        <input type="text" name="telefone" uiInput required [(ngModel)]="info.telefone" uiMaskPhone [disabled]="primaryForm?.invalid">
+                        <label>Telefone</label>
+                    </ui-input-container>
+                </form>
+            </ng-template>
+        </ui-tab>
+        <ui-tab label="Sarah Lance" *ngIf="loading">teste4</ui-tab>
+        <ui-tab [disabled]="true">
+            <ng-template uiTabLabel>
+                <a [routerLink]="['/', 'old-tabs']" class="tab" target="_blank">Deprecated tabs</a>
+            </ng-template>
+        </ui-tab>
+    </ui-tab-group>
+</ui-card>
 
 <ui-option-container class="v-space-4 b-space-16">
     <ui-option>
