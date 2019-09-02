@@ -317,7 +317,7 @@ export function setCaretPosition(el, beforeSelIndex, afterSelIndex, symbolsPosit
     // https://javascriptexamples.info/snippet/getset-cursor-in-html-textarea
 
     let futureSelIndex;
-    symbolsPositions = symbolsPositions ? symbolsPositions : [];
+    symbolsPositions = symbolsPositions || [];
     if (el.selectionStart || el.selectionStart === '0') {
 
         futureSelIndex = afterSelIndex;

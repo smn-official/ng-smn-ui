@@ -95,6 +95,13 @@
                 </div>
             </ui-input-container>
             <ui-input-container>
+                <input type="text" name="phoneInter" [(ngModel)]="phonei" uiInput uiMaskPhone="ddi">
+                <label>Internacional Phone(uiMaskPhone)</label>
+                <div class="ui-messages">
+                    <div class="ui-message helper">Model: {{phonei}}; View: {{phonei | uiPhone: 'ddi'}}</div>
+                </div>
+            </ui-input-container>
+            <ui-input-container>
                 <input type="text" name="interger" [(ngModel)]="interger" uiInput uiMaskInteger [max]="2018">
                 <label>Interger</label>
                 <div class="ui-messages">

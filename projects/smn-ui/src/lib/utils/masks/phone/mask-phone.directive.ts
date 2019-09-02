@@ -38,7 +38,6 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
     ngOnInit() {
         switch (this.uiMaskPhone) {
             case 'ddi':
-                this.maxLength = 13;
                 this.symbolsPositions = [0, 12, 14, 17];
                 break;
             default:
@@ -64,7 +63,7 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
             this.control.markAsDirty();
         }
 
-        this.elementRef.nativeElement.value = this.phonePipe.transform(this.ngModel, { type: this.uiMaskPhone || '' });
+        this.elementRef.nativeElement.value = this.phonePipe.transform(this.ngModel, this.uiMaskPhone || '');
         this.input = false;
     }
 
@@ -74,7 +73,7 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
         }
         this.ngModel = this.format(rawValue);
         this.ngModelChange.emit(this.ngModel);
-        this.elementRef.nativeElement.value = this.phonePipe.transform(this.elementRef.nativeElement.value, { type: this.uiMaskPhone || '' });
+        this.elementRef.nativeElement.value = this.phonePipe.transform(this.elementRef.nativeElement.value, this.uiMaskPhone || '');
     }
 
     registerOnChange(fn: any): void {
@@ -117,9 +116,17 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
         this.renderViaInput(rawValue);
 
         if (this.uiMaskPhone === 'ddi') {
-            if (afterSelIndex === 4) {
-                this.beforeSelIndex = 5;
-                afterSelIndex = 6;
+            if (this.ngModel && this.ngModel.substring(0, 1) === '1') {
+                this.maxLength = 11;
+                if (afterSelIndex === 3) {
+                    this.beforeSelIndex = 4;
+                    afterSelIndex = 5;
+                }
+            } else {
+                if (afterSelIndex === 4) {
+                    this.beforeSelIndex = 5;
+                    afterSelIndex = 6;
+                }
             }
 
             if (afterSelIndex === 8) {
@@ -127,6 +134,7 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
                 afterSelIndex = 10;
             }
         } else {
+            this.maxLength = 13;
             if (afterSelIndex === 4) {
                 this.beforeSelIndex = 5;
                 afterSelIndex = 6;
