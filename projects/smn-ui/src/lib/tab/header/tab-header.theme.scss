@@ -75,8 +75,14 @@
                 background-color: rgba($primary-color, .7);
             }
 
-            &.theme-ink-bar .ink-bar {
-                background-color: $accent-color;
+            &.theme-ink-bar {
+                .tab-wrap.active .tab {
+                    border-color: $accent-color;
+                }
+
+                .ink-bar {
+                    background-color: $accent-color;
+                }
             }
 
             &.accent {
@@ -107,8 +113,14 @@
                     background-color: $accent-text-color;
                 }
 
-                &.theme-ink-bar .ink-bar {
-                    background-color: $primary-color;
+                &.theme-ink-bar {
+                    .tab-wrap.active .tab {
+                        border-color: $primary-color;
+                    }
+
+                    .ink-bar {
+                        background-color: $primary-color;
+                    }
                 }
 
                 .navigation .ui-button:not(.success):not(.warning):not(.error):not(:disabled).flat {
