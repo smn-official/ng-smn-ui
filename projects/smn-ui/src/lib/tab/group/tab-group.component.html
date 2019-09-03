@@ -1,14 +1,15 @@
 <ui-tab-header [ngClass]="{
                 'fill-background': fillBackground,
                 'accent': accent,
-                'theme-ink-bar': themeInkBar}">
+                'theme-ink-bar': themeInkBar}"
+               [topIcon]="topIcon">
     <div class="tab-wrap"
          *ngFor="let tab of tabs"
          [ngClass]="{'active': tab.isActive, 'disabled': tab.disabled}"
          (click)="activateTab(tab, tabRef)"
          #tabRef>
         <div *ngIf="!tab.templateLabel" class="tab" uiRipple="!tab.disabled">
-            <i class="material-icons" *ngIf="tab.icon">{{tab.icon}}</i>
+            <i class="material-icons icon" *ngIf="tab.icon">{{tab.icon}}</i>
             {{tab.label}}
         </div>
         <div *ngIf="tab.templateLabel">
@@ -16,9 +17,13 @@
         </div>
     </div>
 </ui-tab-header>
-<div style="position: relative; transition: all 280ms ease-in-out" #tabsContentElement>
-    <div *ngFor="let tab of tabs" [@tabTransform]="tab.index < activatedTab?.index ? 'left' : tab.index > activatedTab?.index ? 'right' : 'active'" style="left: 0; right: 0; top: 0" (@tabTransform.start)="startTranslateAnimation($event)" (@tabTransform.done)="doneTranslateAnimation($event)">
-        <div *ngIf="tab.templateContent && tab.templateContent.template && tab.isActive" [@tabAnimation]>
+<div class="wrap-content" #tabsContentElement>
+    <div *ngFor="let tab of tabs"
+         [@tabTransform]="tab.index < activatedTab?.index ? 'left' : tab.index > activatedTab?.index ? 'right' : 'active'"
+         class="tab-content"
+         (@tabTransform.start)="startTranslateAnimation($event)"
+         (@tabTransform.done)="doneTranslateAnimation($event)">
+        <div *ngIf="tab.templateContent && tab.templateContent.template && tab.isActive" [@tabFakeAnimation]>
             <ng-container *ngTemplateOutlet="tab.templateContent.template"></ng-container>
         </div>
     </div>

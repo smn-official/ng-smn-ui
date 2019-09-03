@@ -2,7 +2,7 @@
     <ui-tab-group [lazy-load]="true"
                   [accent]="accent"
                   [fillBackground]="fillBackground"
-                  [themeInkBar]="themeInkBar" class="scrollable">
+                  [themeInkBar]="themeInkBar" class="scrollable" [topIcon]="topIcon">
         <ui-tab label="Oliver Queen" #tab>
             <ng-template uiTabContent>
                 this go to lazy load
@@ -50,6 +50,10 @@
     <ui-option>
         <input type="checkbox" [(ngModel)]="themeInkBar" [checked]="themeInkBar">
         <span>Theme ink bar</span>
+    </ui-option>
+    <ui-option>
+        <input type="checkbox" [(ngModel)]="topIcon" [checked]="topIcon">
+        <span>Top icon</span>
     </ui-option>
 </ui-option-container>
 

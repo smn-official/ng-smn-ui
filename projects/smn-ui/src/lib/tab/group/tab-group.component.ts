@@ -1,45 +1,18 @@
 import {
-    AfterViewInit, ChangeDetectorRef, Component, ContentChildren, ElementRef, Input, OnInit,
-    QueryList, ViewChild
+    AfterViewInit, ChangeDetectorRef, Component, ContentChildren, ElementRef, Input, QueryList, ViewChild
 } from '@angular/core';
 import {UiTabComponent} from '../tab.component';
 import {UiTabHeaderComponent} from '../header/tab-header.component';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-
-const animation = trigger('tabAnimation',
-    [
-        transition(':enter', animate('280ms cubic-bezier(0.0, 0.0, 0.2, 1)')),
-        transition(':leave', animate('280ms cubic-bezier(0.0, 0.0, 0.2, 1)')),
-    ]
-);
-
-const animationTeste = trigger('tabTransform',
-    [
-        state('left', style({
-            transform: 'translateX(-100%)',
-            position: 'absolute'
-        })),
-        state('right', style({
-            transform: 'translateX(100%)',
-            position: 'absolute'
-        })),
-        state('active', style({
-            transform: 'translateX(0)',
-            position: 'relative'
-        })),
-        transition('left <=> right', animate(280)),
-        transition('active <=> right', animate(280)),
-        transition('left <=> active', animate(280)),
-    ]
-);
+import {AnimationEvent} from '@angular/animations';
+import {tabFakeAnimation, tabTransform} from './tab-group.animation';
 
 @Component({
     selector: 'ui-tab-group',
     templateUrl: './tab-group.component.html',
     styleUrls: ['./tab-group.component.scss'],
-    animations: [animation, animationTeste]
+    animations: [tabFakeAnimation, tabTransform]
 })
-export class UiTabGroupComponent implements OnInit, AfterViewInit {
+export class UiTabGroupComponent implements AfterViewInit {
     @ContentChildren(UiTabComponent) tabsQueryList: QueryList<UiTabComponent>;
     @ViewChild(UiTabHeaderComponent) tabHeader: UiTabHeaderComponent;
     @ViewChild('tabsContentElement') tabsContentElement: ElementRef;
@@ -47,6 +20,7 @@ export class UiTabGroupComponent implements OnInit, AfterViewInit {
     @Input() fillBackground: boolean;
     @Input() themeInkBar: boolean;
     @Input() accent: boolean;
+    @Input() topIcon: boolean;
 
     tabs: any[];
     activatedTab: UiTabComponent;
@@ -54,20 +28,17 @@ export class UiTabGroupComponent implements OnInit, AfterViewInit {
     constructor(private changeDetectorRef: ChangeDetectorRef, private element: ElementRef) {
     }
 
-    ngOnInit() {
-    }
-
     ngAfterViewInit() {
         // Transformando a QueryList em um array de component(UiTabComponent)
         this.tabs = this.tabsQueryList.toArray();
         this.changeDetectorRef.detectChanges();
-        console.log(this.tabs)
         this.generateIndexes();
 
         // Ativa uma tab através do index passado com Input ou a primeira tab
         const tab = this.getFirstTab(this.active);
         this.activateTab(tab, this.getTabRef(tab));
 
+        console.log(this.tabs)
         this.tabsQueryList.changes.subscribe(newTabs => {
             this.tabs = newTabs.toArray();
             this.generateIndexes();
@@ -78,11 +49,6 @@ export class UiTabGroupComponent implements OnInit, AfterViewInit {
                 const newTab = this.tabs[this.activatedTab.index] || this.tabs[this.tabs.length - 1];
                 this.activateTab(newTab, this.getTabRef(tab));
             }
-        });
-
-
-        this.tabsContentElement.nativeElement.addEventListener('transitionend', () => {
-            // this.tabsContentElement.nativeElement.style.height = '';
         });
     }
 
@@ -155,14 +121,21 @@ export class UiTabGroupComponent implements OnInit, AfterViewInit {
         this.tabs.map(tab => tab.indexActivatedTab = this.activatedTab.index);
     }
 
-    startTranslateAnimation(event) {
+    /**
+     * Callback para quando a animação do conteúdo da tab iniciar
+     * @param {AnimationEvent} event - evento da animação
+     * */
+    startTranslateAnimation(event: AnimationEvent) {
         if (event.toState === 'active') {
-            console.log(event.element.scrollHeight)
             this.tabsContentElement.nativeElement.style.height = event.element.scrollHeight + 'px';
         }
     }
 
-    doneTranslateAnimation(event) {
+    /**
+     * Callback para quando a animação do conteúdo da tab terminar
+     * @param {AnimationEvent} event - evento da animação
+     * */
+    doneTranslateAnimation(event: AnimationEvent) {
         if (event.toState !== 'active') {
             this.tabsContentElement.nativeElement.style.height = '';
         }

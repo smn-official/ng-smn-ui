@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit} from '@angular/core';
 import {UiTabComponent} from '../tab.component';
 import {UiElement} from '../../utils/providers/element.provider';
 
@@ -8,6 +8,7 @@ import {UiElement} from '../../utils/providers/element.provider';
     styleUrls: ['./tab-header.component.scss']
 })
 export class UiTabHeaderComponent implements OnInit, AfterViewInit {
+    @Input() topIcon: boolean;
 
     tabsContainer: HTMLElement;
     inkBar: HTMLElement;
