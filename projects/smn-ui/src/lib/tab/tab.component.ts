@@ -1,5 +1,5 @@
 import {
-    ChangeDetectorRef, Component, ContentChild, EventEmitter, Input, OnInit, TemplateRef, ViewContainerRef
+    ChangeDetectorRef, Component, ContentChild, EventEmitter, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef
 } from '@angular/core';
 import {UiTabContentDirective} from './tab-content.directive';
 import {UiTabLabelDirective} from './tab-label.directive';
@@ -10,6 +10,7 @@ import {UiTabLabelDirective} from './tab-label.directive';
     styleUrls: ['./tab.component.scss']
 })
 export class UiTabComponent implements OnInit {
+    @ViewChild('tabContent') tabContent: TemplateRef<any>;
     @ContentChild(UiTabContentDirective) templateContent: TemplateRef<any>;
     @ContentChild(UiTabLabelDirective) templateLabel: TemplateRef<any>;
     @Input() label: string;
@@ -29,6 +30,7 @@ export class UiTabComponent implements OnInit {
             if (value) {
                 this.loaded = true;
             }
+            console.log(this.loaded)
             this.isActive = value;
             this.changeDetectorRef.detectChanges();
         });
