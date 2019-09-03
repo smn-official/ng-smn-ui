@@ -7,7 +7,7 @@
     <div class="tabs" [class.top-icon]="topIcon">
         <ng-content></ng-content>
     </div>
-    <div class="ink-bar"></div>
+    <div class="ink-bar" [hidden]="!showInkBar"></div>
 </div>
 <div class="navigation right" *ngIf="hasRightScroll()">
     <button type="button" class="ui-button icon flat" (click)="updateScroll(increment)">

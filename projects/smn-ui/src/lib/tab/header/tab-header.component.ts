@@ -12,6 +12,7 @@ export class UiTabHeaderComponent implements OnInit, AfterViewInit {
 
     tabsContainer: HTMLElement;
     inkBar: HTMLElement;
+    showInkBar: boolean;
     increment: number;
 
     constructor(private element: ElementRef) {
@@ -24,6 +25,9 @@ export class UiTabHeaderComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
+        this.inkBar.addEventListener('transitionend', () => {
+            this.showInkBar = false;
+        });
     }
 
     /**
@@ -32,6 +36,8 @@ export class UiTabHeaderComponent implements OnInit, AfterViewInit {
      * @return {void}
      **/
     moveInkBarTo(tabRef) {
+        this.showInkBar = true;
+
         setTimeout(() => {
             UiElement.css(this.inkBar, 'left', `${tabRef.offsetLeft}px`);
             UiElement.css(this.inkBar, 'width', `${tabRef.clientWidth}px`);
