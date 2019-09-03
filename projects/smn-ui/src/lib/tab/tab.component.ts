@@ -30,7 +30,6 @@ export class UiTabComponent implements OnInit {
             if (value) {
                 this.loaded = true;
             }
-            console.log(this.loaded)
             this.isActive = value;
             this.changeDetectorRef.detectChanges();
         });

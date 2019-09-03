@@ -38,7 +38,6 @@ export class UiTabGroupComponent implements AfterViewInit {
         const tab = this.getFirstTab(this.active);
         this.activateTab(tab, this.getTabRef(tab));
 
-        console.log(this.tabs)
         this.tabsQueryList.changes.subscribe(newTabs => {
             this.tabs = newTabs.toArray();
             this.generateIndexes();
