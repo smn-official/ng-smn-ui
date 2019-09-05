@@ -2,14 +2,19 @@ const gulp = require('gulp');
 const bump = require('gulp-bump');
 const util = require('gulp-util');
 const git = require('gulp-git');
+const tag = require('gulp-tag-version');
 const runSequence = require('run-sequence');
-const version = require('./package.json').version;
 
 // Paths
 const packages = ['**/package.json', '!node_modules/**/*.json', '!dist/**/*.json'];
 gulp.task('copy:scss', () => {
     gulp.src('projects/smn-ui/src/lib/**/*.scss').pipe(gulp.dest('dist/smn-ui/lib'))
 });
+
+// utils
+function getVersion() {
+    return require('./package.json').version
+}
 
 gulp.task('version:bump', () => {
     let type;
@@ -30,7 +35,7 @@ gulp.task('version:bump', () => {
 });
 
 gulp.task('version:tag', () => {
-    return git.tag(version);
+    return git.tag(getVersion())
 });
 
 gulp.task('version:add', () => {
@@ -40,7 +45,7 @@ gulp.task('version:add', () => {
 
 gulp.task('version:commit', () => {
     return gulp.src(packages)
-        .pipe(git.commit(`Automatic bumps to version ${version}`));
+        .pipe(git.commit(`Automatic bumps to version ${getVersion()}`));
 });
 
 gulp.task('version:push', () => {
