@@ -1,11 +1,13 @@
 {
   "name": "ng-smn-ui",
-  "version": "2.13.8",
+  "version": "2.13.1",
   "license": "MIT",
   "scripts": {
     "start": "ng serve --port 4000 --host=0.0.0.0 --disable-host-check",
     "build": "ng build smn-ui --prod && gulp copy:scss",
-    "publish-patch": "gulp version --patch && npm run build && gulp"
+    "publish-patch": "gulp release --patch && npm run build && npm publish dist/smn-ui",
+    "publish-minor": "gulp release --minor && npm run build && npm publish dist/smn-ui",
+    "publish-major": "gulp release --major && npm run build && npm publish dist/smn-ui"
   },
   "dependencies": {
     "@angular/animations": "6.0.2",
@@ -36,7 +38,6 @@
     "gulp-git": "^2.9.0",
     "gulp-load-plugins": "^1.5.0",
     "gulp-rename": "^1.2.3",
-    "gulp-tag-version": "^1.3.1",
     "gulp-util": "^3.0.8",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",

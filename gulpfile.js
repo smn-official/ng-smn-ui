@@ -2,19 +2,19 @@ const gulp = require('gulp');
 const bump = require('gulp-bump');
 const util = require('gulp-util');
 const git = require('gulp-git');
-const tag = require('gulp-tag-version');
 const runSequence = require('run-sequence');
 
 // Paths
 const packages = ['**/package.json', '!node_modules/**/*.json', '!dist/**/*.json'];
-gulp.task('copy:scss', () => {
-    gulp.src('projects/smn-ui/src/lib/**/*.scss').pipe(gulp.dest('dist/smn-ui/lib'))
-});
 
 // utils
 function getVersion() {
     return require('./package.json').version
 }
+
+gulp.task('copy:scss', () => {
+    gulp.src('projects/smn-ui/src/lib/**/*.scss').pipe(gulp.dest('dist/smn-ui/lib'))
+});
 
 gulp.task('version:bump', () => {
     let type;
