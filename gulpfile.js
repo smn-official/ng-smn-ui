@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const bump = require('gulp-bump');
 const util = require('gulp-util');
 const git = require('gulp-git');
+const runSequence = require('run-sequence');
 const version = require('./package.json').version;
 
 // Paths
@@ -10,7 +11,7 @@ gulp.task('copy:scss', () => {
     gulp.src('projects/smn-ui/src/lib/**/*.scss').pipe(gulp.dest('dist/smn-ui/lib'))
 });
 
-gulp.task('version', () => {
+gulp.task('version:bump', () => {
     let type;
 
     if (util.env.patch) {
@@ -43,6 +44,9 @@ gulp.task('version:commit', () => {
 });
 
 gulp.task('version:push', () => {
-    return gulp.src(packages)
-        .pipe(git.push('origin', 'automate-publish'));
+    return git.push('origin', 'automate-publish', {args: " --tags"});
+});
+
+gulp.task('release', () => {
+    runSequence('version:bump', 'version:tag', 'version:add', 'version:commit', 'version:push');
 });
