@@ -30,9 +30,6 @@ gulp.task('version', () => {
 
 gulp.task('version:tag', () => {
     return git.tag(version);
-
-    // return
-    //     .pipe(git.push('origin', 'automate-publish', {args: " --tags"}));
 });
 
 gulp.task('version:add', () => {
@@ -43,4 +40,9 @@ gulp.task('version:add', () => {
 gulp.task('version:commit', () => {
     return gulp.src(packages)
         .pipe(git.commit(`Automatic bumps to version ${version}`));
+});
+
+gulp.task('version:push', () => {
+    return gulp.src(packages)
+        .pipe(git.push('origin', 'automate-publish'));
 });
