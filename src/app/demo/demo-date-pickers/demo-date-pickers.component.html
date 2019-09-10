@@ -11,6 +11,33 @@
                     </button>
                 </div>
             </ui-input-container>
+
+            <ui-input-container>
+                <input type="text" uiInput
+                       [(ngModel)]="event"
+                       [minDate]="minDate"
+                       name="date"
+                       [uiDatePicker]="'event' + 1"
+                       uiMaskDate
+                       #date="ngModel"
+                       [events]="events">
+                <label>Calendário com eventos</label>
+                <div class="icon">
+                    <button class="ui-button icon flat" [uiDatePickerCaller]="'event' + 1">
+                        <i class="material-icons">today</i>
+                    </button>
+                </div>
+                <div class="ui-messages">
+                    <div class="ui-message helper">
+                        Inicia o calendário com eventos marcados
+                    </div>
+                </div>
+            </ui-input-container>
+
+            <p style="color: rgba(0,0,0,.54)">Para usar o calendario com marcações de eventos é necessário passar um array com a seguinte estrutura:</p>
+
+            <pre style="color: rgba(0,0,0,.54)">{{events | json}}</pre>
+
             <ui-input-container>
                 <input type="text" uiInput [(ngModel)]="minAndMax" name="minAndMax" uiDatePicker="minAndMax" [maxDate]="simple">
                 <label>Min e max</label>
@@ -57,7 +84,6 @@
                     </div>
                 </div>
             </ui-input-container>
-            <!--<ui-calendar [minDate]="today" [(ngModel)]="date" ngDefaultControl></ui-calendar>-->
         </ui-card-content>
     </ui-card>
     <div class="dark" style="margin-top: 16px">

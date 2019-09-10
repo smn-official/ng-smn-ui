@@ -1,8 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Title} from '@angular/platform-browser';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
-import {UiToolbarService} from '../../../../projects/smn-ui/src/lib/smn-ui.module';
-import {UiElement} from '../../../../projects/smn-ui/src/lib/utils/providers/element.provider';
+import { UiToolbarService } from '../../../../projects/smn-ui/src/lib/smn-ui.module';
+import { UiElement } from '../../../../projects/smn-ui/src/lib/utils/providers/element.provider';
 
 @Component({
     selector: 'demo-inputs',
@@ -10,8 +10,8 @@ import {UiElement} from '../../../../projects/smn-ui/src/lib/utils/providers/ele
     styleUrls: ['./demo-inputs.component.scss']
 })
 export class DemoInputsComponent implements OnInit {
-
     list: string[];
+    textarea: string;
     // @ViewChild('test') test;
 
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
@@ -21,7 +21,7 @@ export class DemoInputsComponent implements OnInit {
     ngOnInit() {
         this.titleService.setTitle('Input - SMN UI Demos');
         this.toolbarService.set('Input');
-
+        this.textarea = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi asperiores aspernatur blanditiis cumque eligendi error excepturi expedita facilis fugit, in maxime minus modi omnis placeat porro quidem sit tenetur totam?';
         // setTimeout(() => {
         //     UiElement.focus(this.test.nativeElement);
         // }, 2000);

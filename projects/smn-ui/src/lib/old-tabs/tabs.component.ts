@@ -16,9 +16,11 @@ export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
     onScroll;
     @Input('infinite-load') infiniteLoad;
     @Input() watch;
+    @Input() disabled;
 
     constructor(private element: ElementRef) {
         this.onScroll = () => this.tabsScroll(0);
+        this.disabled = [];
     }
 
     ngOnInit() {
@@ -27,6 +29,16 @@ export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
     ngAfterViewInit() {
         const tabs = this.element.nativeElement.querySelectorAll('.tab');
         const indicator = this.element.nativeElement.querySelector('.indicator');
+
+        for (let i = 0; i < tabs.length; i++) {
+            if (tabs[i].classList.contains('disabled')) {
+                tabs[i].classList.remove('disabled');
+            }
+        }
+
+        for (let i = 0; i < this.disabled.length; i++) {
+            tabs[this.disabled[i]].classList.add('disabled');
+        }
 
         const self = this;
 
@@ -60,7 +72,7 @@ export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
         for (let i = 0; i < tabs.length; i++) {
             const tab = tabs[i];
             this.element.nativeElement.addEventListener('click', (e) => {
-                if (e.target === tab) {
+                if (e.target === tab && !e.target.classList.contains('disabled')) {
                     scrollToTab(tab);
                 }
             });

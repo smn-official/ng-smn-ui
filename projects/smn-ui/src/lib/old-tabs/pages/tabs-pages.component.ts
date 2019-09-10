@@ -111,7 +111,7 @@ export class UiTabsPagesComponent implements AfterViewInit {
             const isNegative = (nextPage - 1) > 0 ? -1 : 1;
             const newPosition = (nextPage - 1) * 100 * isNegative;
 
-            const pages = this.element.nativeElement.querySelectorAll('.page-container .page');
+            const pages = this.element.nativeElement.children[0].children;
             for (let i = 0; i < pages.length; i++) {
                 const page = pages[i];
                 page.style.transform = `translate(${newPosition}%)`;
@@ -123,16 +123,17 @@ export class UiTabsPagesComponent implements AfterViewInit {
         }
 
         const pageContainer = new UiElementRef(this.element.nativeElement);
-        const elNextPage = pageContainer.querySelector('.page-container .page')[nextPage - 1];
-        const pages = pageContainer.querySelector('.page-container .page');
+        const elNextPage = new UiElementRef(this.element.nativeElement.children[0].children[nextPage - 1]);
+        const pages = this.element.nativeElement.children[0].children;
         for (let i = 0; i < pages.length; i++) {
             if (nextPage - 1 === i) {
-                pages[i].css('height', '');
+                const pageRef = new UiElementRef(pages[i]);
+                pageRef.css('height', '');
             }
         }
 
         if (this.firstLoad) {
-            const elCurrentPage = pageContainer.querySelector('.page-container .page')[this.currentPage - 1];
+            const elCurrentPage = new UiElementRef(this.element.nativeElement.children[0].children[this.currentPage - 1]);
             pageContainer.css('height', elCurrentPage.nativeElement.clientHeight + 'px');
         } else {
             this.firstLoad = true;
@@ -144,10 +145,10 @@ export class UiTabsPagesComponent implements AfterViewInit {
                 clearTimeout(this.timeOutTurnBack);
                 this.timeOutTurnBack = setTimeout(() => {
 
-                    const pages2 = pageContainer.querySelector('.page-container .page');
                     for (let i = 0; i < pages.length; i++) {
                         if (nextPage - 1 !== i) {
-                            pages[i].css('height', 0);
+                            const pageRef = new UiElementRef(pages[i]);
+                            pageRef.css('height', 0);
                         }
                     }
                     pageContainer.css('height', '');

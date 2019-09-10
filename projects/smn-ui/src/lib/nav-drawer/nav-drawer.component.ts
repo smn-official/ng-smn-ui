@@ -23,6 +23,9 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges, OnDestroy
     @Output() openChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     public openNav: Function;
     public closeNav: Function;
+    onTouchStart: Function;
+    onTouchMove: Function;
+    onTouchEnd: Function;
 
     constructor(private element: ElementRef) {
         this.openNav = () => {
@@ -88,17 +91,17 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges, OnDestroy
         let mouseX;
         let mouseXMovement;
 
-        if (this.element.nativeElement.classList.contains('.right')) {
-            return;
-        }
-
-        UiElement.on(window, 'touchstart', (e) => {
+        this.onTouchStart = (e) => {
+            if (this.element.nativeElement.classList.contains('.right')) {
+                return;
+            }
+          
             mouseX = e.touches[0].pageX;
             navDrawerTouch = (mouseX > 0 && mouseX < 40) ? 'open' : navDrawerTouch;
             navDrawerTouch = (mouseX > 320 && mouseX < 360) ? 'close' : navDrawerTouch;
-        });
+        };
 
-        UiElement.on(window, 'touchmove', (e) => {
+        this.onTouchMove = (e) => {
             if (navDrawerTouch) {
                 mouseXMovement = e.touches[0].pageX - mouseX;
                 if (navDrawerTouch === 'open' && !this.open) {
@@ -110,9 +113,9 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges, OnDestroy
                     UiElement.css(navDrawer, 'transform', 'translateX(' + (mouseXMovement) + 'px)');
                 }
             }
-        });
+        };
 
-        UiElement.on(window, 'touchend', () => {
+        this.onTouchEnd = (e) => {
             if (navDrawerTouch) {
                 if (navDrawerTouch === 'open' && mouseXMovement > 20) {
                     UiElement.css(navDrawer, 'transform', '');
@@ -130,7 +133,11 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges, OnDestroy
             }
 
             navDrawerTouch = undefined;
-        });
+        };
+
+        UiElement.on(window, 'touchstart', this.onTouchStart);
+        UiElement.on(window, 'touchmove', this.onTouchMove);
+        UiElement.on(window, 'touchend', this.onTouchEnd);
     }
 
     ngOnChanges(changes) {
@@ -171,6 +178,9 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges, OnDestroy
     }
 
     ngOnDestroy() {
+        UiElement.off(window, 'touchstart', this.onTouchStart);
+        UiElement.off(window, 'touchmove', this.onTouchMove);
+        UiElement.off(window, 'touchend', this.onTouchEnd);
         document.body.classList.add('notransition');
         document.body.classList.remove('ui-nav-drawer-persistent');
         setTimeout(() => {

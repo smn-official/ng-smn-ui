@@ -1,0 +1,41 @@
+@import "../core/variables.scss";
+
+.ui-expansion-panel-header { 
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 4px 16px ;
+    cursor: default;
+}
+
+.ui-expansion-panel-header span { 
+    margin: auto 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+} 
+
+.ui-expansion-panel-header span i {
+    transition: 300ms transform ui-easing('acceleration');
+}
+
+.ui-expansion-panel-body {
+    transition: 300ms height ui-easing('acceleration');
+    overflow-y: hidden;
+}
+
+.ui-expansion-panel-description {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.ui-expansion-panel-collapsed {
+    transform: rotateZ(180deg);
+}
+
+@media screen and (max-width: 480px) {
+    .ui-expansion-panel-description {display: none;}
+}

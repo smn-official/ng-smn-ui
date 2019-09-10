@@ -1,0 +1,71 @@
+@import "../core/variables";
+
+:host {
+    &.mobile.ui-control {
+        padding: 0;
+        border-width: 0;
+    }
+
+    .value {
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        &.disabled {
+            color: rgba(0, 0, 0, .54);
+            cursor: not-allowed;
+        }
+
+        span {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+}
+
+.wrap-chosen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 7;
+}
+
+.wrap-chosen {
+    position: absolute;
+    transition: transform 280ms ui-easing('aceleration'), opacity 280ms ui-easing('aceleration');
+    transform-origin: top left;
+    transform: scale(0);
+    opacity: 0;
+    z-index: 7;
+
+    &.open {
+        transition: transform 280ms ui-easing('deceleration'), opacity 280ms ui-easing('deceleration');
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    ui-card {
+        box-shadow: ui-shadow('4dp');
+        overflow: hidden;
+
+        .search {
+            padding: 8px 16px;
+
+            input {
+                width: 100%;
+            }
+        }
+
+        .content {
+            max-height: 235px;
+            overflow-y: auto;
+        }
+    }
+
+}
+
+body.ui-nav-drawer-persistent .wrap-chosen {
+    z-index: 6;
+}

@@ -2,9 +2,9 @@ import {
     AfterViewInit, Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges,
     Output
 } from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
-import {UiElement} from '../../providers/element.provider';
-import {UiCurrencyPipe} from './currency.pipe';
+import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator } from '@angular/forms';
+import { UiElement } from '../../providers/element.provider';
+import { UiCurrencyPipe } from './currency.pipe';
 
 @Directive({
     selector: '[uiMaskCurrency][ngModel]',
@@ -85,7 +85,7 @@ export class UiMaskCurrencyDirective implements ControlValueAccessor, Validator,
         const removeGroupSep = new RegExp('[^\\d\\,-]+', 'g');
         value = value.toString().replace(removeGroupSep, '');
         value = parseFloat(value.replace(',', '.'));
-        return typeof value === 'number' ? value : null;
+        return typeof value === 'number' && !isNaN(value) ? value : null;
     }
 
     formatViewValue(value) {
@@ -103,11 +103,11 @@ export class UiMaskCurrencyDirective implements ControlValueAccessor, Validator,
         // }
 
         if (typeof this.min !== 'undefined' && control.value && this.format(control.value) < this.min) {
-            return {min: true};
+            return { min: true };
         }
 
         if (typeof this.max !== 'undefined' && control.value && this.format(control.value) > this.max) {
-            return {max: true};
+            return { max: true };
         }
 
         return null;

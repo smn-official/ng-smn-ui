@@ -1,7 +1,7 @@
-import {Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, Output, AfterViewInit, OnChanges} from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
-import {UiTimePipe} from './time.pipe';
-import {UiElement} from '../../providers/element.provider';
+import { Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, Output, AfterViewInit, OnChanges } from '@angular/core';
+import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator } from '@angular/forms';
+import { UiTimePipe } from './time.pipe';
+import { UiElement } from '../../providers/element.provider';
 
 @Directive({
     selector: '[uiMaskTime][ngModel]',
@@ -27,6 +27,7 @@ export class UiMaskTimeDirective implements ControlValueAccessor, Validator, Aft
     @Input() ngModel: any;
     @Input() minTime: string;
     @Input() maxTime: string;
+    @Input() customTime: boolean;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
     constructor(public elementRef: ElementRef, public timePipe: UiTimePipe) {
@@ -45,9 +46,9 @@ export class UiMaskTimeDirective implements ControlValueAccessor, Validator, Aft
     }
 
     ngAfterViewInit() {
-       setTimeout(() => {
+        setTimeout(() => {
             this.loaded = true;
-       });
+        });
     }
 
     writeValue(rawValue: any): void {
@@ -87,31 +88,36 @@ export class UiMaskTimeDirective implements ControlValueAccessor, Validator, Aft
         this.control = control;
 
         if (control.value && this.format(control.value).length < 4) {
-            return {parse: true};
+            return { parse: true };
         }
 
         if (control.value) {
             const time = control.value.split(':');
 
-            if (time[0] > 23) {
-                return {hour: true};
+            if (!this.customTime && time[0] > 23) {
+                return { hour: true };
             }
 
-            if (time[1] > 59) {
-                return {minute: true};
+            if (!this.customTime && time[1] > 59) {
+                return { minute: true };
             }
 
             if (this.minTime && this.format(this.minTime).length === 4 && this.format(control.value) < this.format(this.minTime)) {
-                return {minTime: true};
+                return { minTime: true };
             }
 
             if (this.maxTime && this.format(this.maxTime).length === 4 && this.format(control.value) > this.format(this.maxTime)) {
-                return {maxTime: true};
+                return { maxTime: true };
             }
 
         }
 
         return null;
+    }
+
+    setDisabledState(isDisabled: boolean) {
+        const method = isDisabled ? 'setAttribute' : 'removeAttribute';
+        this.elementRef.nativeElement[method]('disabled', 'disabled');
     }
 
     @HostListener('keydown') onKeydown() {

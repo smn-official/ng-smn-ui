@@ -7,10 +7,14 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DemoMaskComponent implements OnInit {
 
+    cpf: number;
+    cnpj: number;
     constructor() {
     }
 
     ngOnInit() {
+        this.cpf = 99999999;
+        this.cnpj = 888888;
     }
 
     testSubmit(form) {

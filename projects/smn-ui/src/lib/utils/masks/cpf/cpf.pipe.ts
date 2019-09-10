@@ -5,12 +5,17 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class UiCpfPipe implements PipeTransform {
 
-    transform(value: any, args?: any): any {
+    transform(value: any, mask?: any): any {
         if (!value) {
             return '';
         }
 
         value = value.toString().replace(/[^0-9]+/g, '');
+
+        if (!mask) {
+            value = value.padStart(11, '0');
+        }
+
         if (value.length > 3) {
             value = value.substring(0, 3) + '.' + value.substring(3);
         }

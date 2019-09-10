@@ -47,6 +47,10 @@ textarea {
     }
 }
 
+input::-ms-clear {
+    display: none;
+}
+
 /* Icons*/
 
 .material-icons {

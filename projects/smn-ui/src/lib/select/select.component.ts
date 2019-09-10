@@ -20,6 +20,7 @@ import {UiSelectFilterPipe} from './select-filter.pipe';
 export class UiSelectComponent implements OnInit, AfterViewInit, OnChanges {
     @Input('dark-class') darkClass;
     @Input() input;
+    @Input() disabled;
     @Input() chosen;
     @Output() ngModelChange = new EventEmitter();
     selected;
@@ -50,6 +51,7 @@ export class UiSelectComponent implements OnInit, AfterViewInit, OnChanges {
     }
 
     ngOnChanges(changes) {
+        this.element.nativeElement.setAttribute('disabled', this.disabled);
         if (changes.options || changes.ngModel) {
             this.selectOption();
         }
@@ -70,7 +72,7 @@ export class UiSelectComponent implements OnInit, AfterViewInit, OnChanges {
 
         const closestFieldset = UiElement.closest(this.element.nativeElement, 'fieldset:disabled');
 
-        if (!this.element.nativeElement.disabled && !closestFieldset) {
+        if (!this.disabled && !closestFieldset) {
             if (this.isMobile()) {
                 this.selectNative.nativeElement.focus();
             } else {
@@ -83,6 +85,8 @@ export class UiSelectComponent implements OnInit, AfterViewInit, OnChanges {
                     this.render(coordinate);
                 });
             }
+        } else {
+            this.element.nativeElement.blur();
         }
     }
 

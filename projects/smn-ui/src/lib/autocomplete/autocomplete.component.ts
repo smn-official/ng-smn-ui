@@ -13,6 +13,7 @@ export class UiAutocompleteComponent {
     secondary: string;
     accentClass: boolean;
     focusedIndex: number;
+    hideNotFound: boolean;
     selectChange: EventEmitter<any>;
     loadMore: EventEmitter<any>;
 

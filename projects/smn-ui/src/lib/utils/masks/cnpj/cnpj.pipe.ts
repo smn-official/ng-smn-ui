@@ -5,9 +5,15 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class UiCnpjPipe implements PipeTransform {
 
-    transform(value: any, args?: any): any {
+    transform(value: any, mask?: any): any {
         if (!value) {
             return '';
+        }
+
+        value = value.toString().replace(/[^0-9]+/g, '');
+
+        if(!mask) {
+            value = value.padStart(14, '0');
         }
 
         value = value.toString().replace(/[^0-9]+/g, '');

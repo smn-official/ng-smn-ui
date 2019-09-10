@@ -1,18 +1,19 @@
 import {Injectable, EventEmitter} from '@angular/core';
-import {UiWindowRef} from '../utils/providers/window.provider';
 import {UiElement} from '../utils/providers/element.provider';
 
 let mainToolbar: HTMLElement;
 let defaultBreakpoint: any;
+const change: EventEmitter<any> = new EventEmitter();
 
 const sizes: any[] = [480, 600, 840, 960, 1280, 1440, 1600];
 
 @Injectable()
 export class UiToolbarService {
     sharedValue: String;
-    change: EventEmitter<any> = new EventEmitter();
+    change: EventEmitter<any>;
 
     constructor() {
+        this.change = change;
     }
 
     public get() {
@@ -44,6 +45,10 @@ export class UiToolbarService {
     }
 
     public activateExtendedToolbar(breakpoint?: any) {
+        if (!mainToolbar) {
+            return;
+        }
+
         if (breakpoint) {
             if (!sizes.includes(breakpoint)) {
                 console.error(`O tamanho do "breakpoint" tem que ser um dos tamanhos suportados: ${sizes.join(', ')}`);
@@ -64,6 +69,10 @@ export class UiToolbarService {
     }
 
     public deactivateExtendedToolbar() {
+        if (!mainToolbar) {
+            return;
+        }
+
         sizes.forEach(size => this.getMainToolbar().classList.remove(`elevate-on-s${size}`));
         defaultBreakpoint.forEach(size => this.getMainToolbar().classList.add(`elevate-on-s${size}`));
 

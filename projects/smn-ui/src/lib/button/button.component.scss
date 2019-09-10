@@ -72,6 +72,7 @@
 .ui-button {
     padding-left: 16px;
     padding-right: 16px;
+    height: 36px;
     min-height: 36px;
     border-radius: 2px;
     font-size: 14px;
@@ -177,7 +178,6 @@
     }
     &.fab {
         width: 56px;
-        height: 56px;
         min-height: 56px;
         margin: 5px;
 
@@ -187,7 +187,6 @@
 
         &.mini {
             width: 40px;
-            height: 40px;
             min-height: 40px;
         }
 
@@ -244,6 +243,10 @@
         ui-progress-radial.indeterminate .spinner-container .path {
             stroke: ui-text-color('green', '600');
         }
+
+        &.flat ui-progress-radial.indeterminate .spinner-container .path {
+            stroke: ui-color('green', '600');
+        }
     }
 
     &.warning:not(:disabled) {
@@ -266,6 +269,10 @@
         ui-progress-radial.indeterminate .spinner-container .path {
             stroke: ui-text-color('orange');
         }
+
+        &.flat ui-progress-radial.indeterminate .spinner-container .path {
+            stroke: ui-color('orange');
+        }
     }
 
     &.error:not(:disabled) {
@@ -287,6 +294,10 @@
 
         ui-progress-radial.indeterminate .spinner-container .path {
             stroke: ui-text-color('red');
+        }
+
+        &.flat ui-progress-radial.indeterminate .spinner-container .path {
+            stroke: ui-color('red');
         }
     }
 
@@ -427,4 +438,3 @@ body.ui-nav-drawer-persistent {
         }
     }
 }
-/**/

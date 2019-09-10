@@ -1,10 +1,14 @@
-import {AfterViewInit, Component, ViewEncapsulation, ElementRef} from '@angular/core';
+import {AfterViewInit, Component, ViewEncapsulation, ElementRef, Input} from '@angular/core';
 
 @Component({
   selector: 'ui-input-container',
   template: `
     <div class="ui-input-wrap">
       <ng-content></ng-content>
+        
+        <div *ngIf="loading" class="ui-progress input">
+            <div class="indeterminate"></div>
+        </div>
     </div>
   `,
   styleUrls: ['input.component.scss'],
@@ -12,6 +16,8 @@ import {AfterViewInit, Component, ViewEncapsulation, ElementRef} from '@angular/
 })
 
 export class UiInputContainerComponent implements AfterViewInit {
+
+    @Input() loading;
 
   constructor(private element: ElementRef) {
   }

@@ -1,0 +1,20 @@
+:host {
+    display: block;
+
+    ::ng-deep ui-chosen-option .option {
+        padding-left: 32px;
+    }
+}
+
+.label {
+    font-size: 16px;
+    padding: 14px 16px;
+    user-select: none;
+    cursor: default;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-weight: 500;
+}
+
+

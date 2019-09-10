@@ -1,0 +1,39 @@
+@mixin ui-grid($className, $columns, $gutter) {
+
+    .ui-grid.spacing {
+        padding: $gutter / 2;
+    }
+
+    @for $i from 1 through $columns {
+        $width: 100% / $columns * $i;
+
+        .#{$className}-#{$i} {
+            width: $width;
+        }
+
+        .ui-grid.spacing .#{$className}-#{$i} {
+            width: calc(#{$width} - #{$gutter});
+            margin: $gutter / 2;
+        }
+    }
+}
+
+.ui-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+@include ui-grid('xsmall', 4, 16px);
+
+@media (min-width: 600px) {
+    @include ui-grid('small', 8, 16px);
+}
+
+@media (min-width: 960px) {
+    @include ui-grid('medium', 12, 16px);
+}
+
+@media (min-width: 1440px) {
+    @include ui-grid('large', 12, 24px);
+}

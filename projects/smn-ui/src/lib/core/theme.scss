@@ -31,6 +31,8 @@
 @import "../select/select.theme";
 @import "../menu/menu.theme";
 @import "../tab/header/tab-header.theme";
+@import "../chosen/chosen-option/chosen-option.theme";
+@import "../chosen/chosen-group/chosen-group.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -109,4 +111,6 @@
     @include ui-select($theme);
     @include ui-menu($theme);
     @include ui-tab-header($theme);
+    @include ui-chosen-option($theme);
+    @include ui-chosen-group($theme);
 }

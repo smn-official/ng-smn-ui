@@ -28,6 +28,8 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
     control: FormControl;
     symbolsPositions: number[] = [3, 7, 11, 14];
     @Input() ngModel: any;
+    @Input() padOnPaste: boolean = true;
+    @Input('uiMaskCpf') uiMaskCpf;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
     constructor(public elementRef: ElementRef, public cpfPipe: UiCpfPipe) {
@@ -49,8 +51,9 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
         if (this.control && this.loaded && rawValue) {
             this.control.markAsDirty();
         }
-        if (!this.input) {
-            this.elementRef.nativeElement.value = this.cpfPipe.transform(this.ngModel);
+        if (!this.input && this.ngModel) {
+            this.ngModel = this.ngModel.toString().padStart(11, '0');
+            this.elementRef.nativeElement.value = this.cpfPipe.transform(this.ngModel, true);
         }
         this.input = false;
     }
@@ -61,7 +64,7 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
         }
         this.ngModel = this.format(rawValue);
         this.ngModelChange.emit(this.ngModel);
-        this.elementRef.nativeElement.value = this.cpfPipe.transform(this.elementRef.nativeElement.value);
+        this.elementRef.nativeElement.value = this.cpfPipe.transform(this.elementRef.nativeElement.value, true);
     }
 
     registerOnChange(fn: any): void {
@@ -84,12 +87,46 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
             return {parse: true};
         }
 
+        if (this.uiMaskCpf === true && control.value && !this.cpfIsValid(control.value)) {
+            return {parse: true};
+        }
+
         return null;
     }
 
     setDisabledState(isDisabled: boolean) {
         const method = isDisabled ? 'setAttribute' : 'removeAttribute';
         this.elementRef.nativeElement[method]('disabled', 'disabled');
+    }
+
+    cpfIsValid(cpf) {
+        if (cpf && cpf.length === 11) {
+            let sum;
+            let rest;
+            sum = 0;
+            if (cpf === '00000000000') {
+                return false;
+            }
+            for (let i = 1; i <= 9; i++) {
+                sum = sum + parseInt(cpf.substring(i - 1, i), 10) * (11 - i);
+            }
+            rest = (sum * 10) % 11;
+            if ((rest === 10) || (rest === 11)) {
+                rest = 0;
+            }
+            if (rest !== parseInt(cpf.substring(9, 10), 10)) {
+                return false;
+            }
+            sum = 0;
+            for (let i = 1; i <= 10; i++) {
+                sum = sum + parseInt(cpf.substring(i - 1, i), 20) * (12 - i);
+            }
+            rest = (sum * 10) % 11;
+            if ((rest === 10) || (rest === 11)) {
+                rest = 0;
+            }
+            return rest === parseInt(cpf.substring(10, 11), 10);
+        }
     }
 
     @HostListener('keydown') onKeydown() {
@@ -102,6 +139,16 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
         this.input = true;
         this.renderViaInput(rawValue);
         UiElement.caretPosition.set(this.elementRef.nativeElement, this.beforeSelIndex, afterSelIndex, this.symbolsPositions);
+    }
+
+    @HostListener('paste', ['$event'])
+    padLeft(event: ClipboardEvent) {
+        if (this.padOnPaste) {
+            event.preventDefault();
+            const data = event.clipboardData;
+            const text = data.getData('text').toString().replace(/[^0-9]+/g, '');
+            this.renderViaInput(text.padStart(11, '0'));
+        }
     }
 
 }

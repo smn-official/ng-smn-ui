@@ -29,8 +29,10 @@ export class UiCalendarComponent implements OnInit, OnChanges {
     @Input() initOnSelected: Date;
     @Input() confirmSelection: boolean;
     @Output() select: EventEmitter<any> = new EventEmitter();
+    @Output() selectDateChange: EventEmitter<any> = new EventEmitter();
     @Output() cancel: EventEmitter<any> = new EventEmitter();
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
+    @Output() updateMonth: EventEmitter<any> = new EventEmitter();
     @ViewChild(UiAddCalendarDirective) addCalendar: UiAddCalendarDirective;
     chosen: Subject<any> = new Subject();
 
@@ -78,11 +80,13 @@ export class UiCalendarComponent implements OnInit, OnChanges {
 
     public prevMonth(): void {
         this.viewDate.setMonth(this.viewDate.getMonth() - 1);
+        this.updateMonth.emit();
         this.renderCalendar(this.viewDate);
     }
 
     public nextMonth(): void {
         this.viewDate.setMonth(this.viewDate.getMonth() + 1);
+        this.updateMonth.emit();
         this.renderCalendar(this.viewDate);
     }
 
@@ -90,6 +94,7 @@ export class UiCalendarComponent implements OnInit, OnChanges {
         this.ngModel = this.componentRef.instance.ngModel = value;
         this.ngModelChange.emit(this.ngModel);
         this.select.emit(this.ngModel);
+        this.selectDateChange.emit(this.ngModel);
         this.chosen.next(this.ngModel);
     }
 
@@ -141,7 +146,7 @@ export class UiCalendarComponent implements OnInit, OnChanges {
 
         this.calendar = calendar;
 
-        const keysComponent = ['calendar', 'ngModel', 'minDate', 'maxDate', 'chosenDate', 'confirmSelection'];
+        const keysComponent = ['calendar', 'ngModel', 'minDate', 'maxDate', 'chosenDate', 'confirmSelection', 'events'];
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UiCalendarContentComponent);
         const viewContainerRef = this.addCalendar.viewContainerRef;
         viewContainerRef.clear();

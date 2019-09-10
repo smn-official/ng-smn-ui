@@ -8,6 +8,14 @@
     }
 }
 
+.wrap-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 .wrap-menu {
     position: absolute;
     transition: transform 280ms ui-easing('aceleration'), opacity 280ms ui-easing('aceleration');

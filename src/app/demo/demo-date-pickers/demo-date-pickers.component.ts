@@ -15,6 +15,7 @@ export class DemoDatePickersComponent implements OnInit {
     minDate: any;
     maxDate: Date;
     worldWarII: Date;
+    events: any;
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
         this.today = new Date();
         this.minDate = new Date();
@@ -22,6 +23,18 @@ export class DemoDatePickersComponent implements OnInit {
         this.maxDate = new Date();
         this.maxDate.setDate(this.maxDate.getDate() + 20);
         this.worldWarII = new Date('1939-09-01T03:00:00.000Z');
+        this.events = [
+            {
+                date: '2018-12-11',
+                color: '#EF9A9A',
+                blocked: true
+            },
+            {
+                date: '2018-12-15',
+                color: '#A5D6A7',
+                blocked: false
+            },
+        ];
 
         setTimeout(() => this.minDate = this.minDate.toISOString(), 3000);
     }

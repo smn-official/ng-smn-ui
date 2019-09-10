@@ -2,7 +2,13 @@
     <ui-card>
         <ui-card-content>
             <div>
-                <button class="ui-button icon flat" uiRipple [uiMenuTrigger]="testeMenu" [click-overlay-to-close]="true">
+                <button class="ui-button icon flat" uiRipple [uiMenuTrigger]="menuLong" [fixed]="true">
+                    <i class="material-icons">more_vert</i>
+                </button>
+                <span>Fixed menu</span>
+            </div>
+            <div>
+                <button class="ui-button icon flat" uiRipple [uiMenuTrigger]="testeMenu" [click-overlay-to-close]="true" [overlay]="true">
                     <i class="material-icons">more_vert</i>
                 </button>
                 <span>Menu left aligned</span>
@@ -98,5 +104,60 @@
     <div class="ui-menu-content">
         <div class="ui-menu-item" uiRipple>Counter: {{counter}}</div>
         <div class="ui-menu-item" uiRipple (click)="menuDirectPersistent.close()">CLOSE</div>
+    </div>
+</ui-menu>
+
+<ui-menu #menuLong>
+    <div class="ui-menu-content">
+        <div class="ui-menu-item">item-1</div>
+        <div class="ui-menu-item">item-2</div>
+        <div class="ui-menu-item">item-3</div>
+        <div class="ui-menu-item">item-4</div>
+        <div class="ui-menu-item">item-5</div>
+        <div class="ui-menu-item">item-6</div>
+        <div class="ui-menu-item">item-7</div>
+        <div class="ui-menu-item">item-8</div>
+        <div class="ui-menu-item">item-9</div>
+        <div class="ui-menu-item">item-10</div>
+        <div class="ui-menu-item">item-11</div>
+        <div class="ui-menu-item">item-12</div>
+        <div class="ui-menu-item">item-13</div>
+        <div class="ui-menu-item">item-14</div>
+        <div class="ui-menu-item">item-15</div>
+        <div class="ui-menu-item">item-16</div>
+        <div class="ui-menu-item">item-17</div>
+        <div class="ui-menu-item">item-18</div>
+        <div class="ui-menu-item">item-19</div>
+        <div class="ui-menu-item">item-20</div>
+        <div class="ui-menu-item">item-21</div>
+        <div class="ui-menu-item">item-22</div>
+        <div class="ui-menu-item">item-23</div>
+        <div class="ui-menu-item">item-24</div>
+        <div class="ui-menu-item">item-25</div>
+        <div class="ui-menu-item">item-26</div>
+        <div class="ui-menu-item">item-27</div>
+        <div class="ui-menu-item">item-28</div>
+        <div class="ui-menu-item">item-29</div>
+        <div class="ui-menu-item">item-30</div>
+        <div class="ui-menu-item">item-31</div>
+        <div class="ui-menu-item">item-32</div>
+        <div class="ui-menu-item">item-33</div>
+        <div class="ui-menu-item">item-34</div>
+        <div class="ui-menu-item">item-35</div>
+        <div class="ui-menu-item">item-36</div>
+        <div class="ui-menu-item">item-37</div>
+        <div class="ui-menu-item">item-38</div>
+        <div class="ui-menu-item">item-39</div>
+        <div class="ui-menu-item">item-40</div>
+        <div class="ui-menu-item">item-41</div>
+        <div class="ui-menu-item">item-42</div>
+        <div class="ui-menu-item">item-43</div>
+        <div class="ui-menu-item">item-44</div>
+        <div class="ui-menu-item">item-45</div>
+        <div class="ui-menu-item">item-46</div>
+        <div class="ui-menu-item">item-47</div>
+        <div class="ui-menu-item">item-48</div>
+        <div class="ui-menu-item">item-49</div>
+        <div class="ui-menu-item">item-50</div>
     </div>
 </ui-menu>

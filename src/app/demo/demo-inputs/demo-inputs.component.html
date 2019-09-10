@@ -6,6 +6,7 @@
                     <input type="text" [(ngModel)]="simple" uiInput>
                     <label>Simple</label>
                 </ui-input-container>
+
                 <ui-input-container>
                     <input type="text" [(ngModel)]="accent" uiInput class="accent">
                     <label>Accent</label>
@@ -39,15 +40,19 @@
                 <input [type]="type ? 'text' : 'password'" [(ngModel)]="password" uiInput #test>
                 <label>Password</label>
             </ui-input-container>
+            <ui-input-container [loading]="true">
+                <input type="text" [(ngModel)]="simple" uiInput>
+                <label>With loading</label>
+            </ui-input-container>
             <form #newTask="ngForm" class="ui-validate on-dirty on-submit">
                 <ui-input-container>
                     <input type="text" [(ngModel)]="validation" name="validation" uiInput required
-                           #fieldDescription="ngModel" uiMaxlength="20">
+                        #fieldDescription="ngModel" uiMaxlength="20">
                     <label>Validation</label>
                     <div class="ui-messages">
                         <div *ngIf="fieldDescription.errors && fieldDescription.dirty">
                             <div class="ui-message error"
-                                 [hidden]="!fieldDescription.pristine && !fieldDescription.errors.required">Validation
+                                [hidden]="!fieldDescription.pristine && !fieldDescription.errors.required">Validation
                                 is
                                 required
                             </div>
@@ -66,13 +71,13 @@
                     </div>
                 </ui-input-container>
                 <ui-input-container>
-                    <textarea [(ngModel)]="textarea" name="textarea" rows="2" uiInput required uiMaxlength="250"
-                          #fieldTextarea="ngModel"></textarea>
+                    <textarea [(ngModel)]="textarea" name="textarea" rows="1" uiInput required uiMaxlength="250"
+                        #fieldTextarea="ngModel" autosize></textarea>
                     <label>Textarea</label>
                     <div class="ui-messages">
                         <div *ngIf="fieldTextarea.errors && fieldTextarea.dirty">
                             <div class="ui-message error"
-                                 [hidden]="!fieldTextarea.pristine && !fieldTextarea.errors.required">Textarea is
+                                [hidden]="!fieldTextarea.pristine && !fieldTextarea.errors.required">Textarea is
                                 required
                             </div>
                             <div class="ui-message error" [hidden]="!fieldTextarea.errors.uiMaxlength">Textarea cannot
