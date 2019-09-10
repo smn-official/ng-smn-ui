@@ -49,7 +49,7 @@ gulp.task('version:commit', () => {
 });
 
 gulp.task('version:push', () => {
-    return git.push('origin', 'automate-publish', {args: " --tags"});
+    return git.push('origin', 'master', {args: " --tags"});
 });
 
 gulp.task('release', () => {
