@@ -45,8 +45,9 @@ export class UiTabGroupComponent implements AfterViewInit {
             // Verificando se a tab selecionada foi removida da lista
             if (!this.tabs.includes(this.activatedTab)) {
                 // Ativando a tab que ficou no mesmo index da última tab ativa
+                // TODO: Procurar uma tab que não esteja desabilitada
                 const newTab = this.tabs[this.activatedTab.index] || this.tabs[this.tabs.length - 1];
-                this.activateTab(newTab, this.getTabRef(tab));
+                this.activateTab(newTab, this.getTabRef(newTab));
             }
         });
     }

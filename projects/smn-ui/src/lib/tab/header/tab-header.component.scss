@@ -16,6 +16,12 @@ $tab-height: 48px;
     }
 }
 
+::ng-deep ui-tab-group.fixed ui-tab-header, :host.fixed {
+    ::ng-deep .tab-wrap, .tab-wrap {
+        flex: 1;
+    }
+}
+
 .tabs-container {
     flex: 1;
     position: relative;
