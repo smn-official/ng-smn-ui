@@ -75,10 +75,15 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy {
         let positionTop: number;
 
         if (this.top || this.bottom) {
-            positionLeft = (elementPosition.left + this.element.nativeElement.clientWidth / 2) - (this.wrap.clientWidth / 2);
+            const tempLeft = (elementPosition.left + this.element.nativeElement.clientWidth / 2) - (this.wrap.clientWidth / 2);
+            const tempTop = this.element.nativeElement.clientHeight;
+
+            positionLeft = tempLeft > 0 ? tempLeft : 0;
             positionTop = elementPosition.top;
 
-            if (this.bottom) {
+            const checkHeigh =  window.innerHeight - 32 >= tempTop + positionTop;
+
+            if (this.bottom && checkHeigh) {
                 positionTop += this.element.nativeElement.clientHeight;
             } else {
                 positionTop -= this.wrap.clientHeight;
@@ -89,7 +94,7 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy {
             positionTop = (elementPosition.top + this.element.nativeElement.clientHeight / 2) - (this.wrap.clientHeight / 2);
             positionLeft = elementPosition.left;
 
-            if (this.left) {
+            if (this.left && positionLeft >= this.wrap.clientWidth) {
                 positionLeft -= this.wrap.clientWidth;
             } else {
                 positionLeft += this.element.nativeElement.clientWidth;
