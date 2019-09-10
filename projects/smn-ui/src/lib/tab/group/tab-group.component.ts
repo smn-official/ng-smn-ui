@@ -53,7 +53,6 @@ export class UiTabGroupComponent implements AfterViewInit {
 
     /**
      * Atribuí os index para as tabs
-     * @return {void}
      **/
     generateIndexes() {
         this.tabs.map((tab, index) => tab.index = index);
@@ -61,10 +60,8 @@ export class UiTabGroupComponent implements AfterViewInit {
 
     /**
      * Retorna a primeira tab que não está desabilitada
-     * @param {number} tabIndex - Index da tab a ser procurada primeiro
-     * @return {UiTabComponent}
     **/
-    getFirstTab (tabIndex) {
+    getFirstTab (tabIndex: number) {
         if (typeof tabIndex === 'number' && !this.tabs[tabIndex].disabled) {
             return this.tabs[tabIndex];
         }
@@ -79,19 +76,14 @@ export class UiTabGroupComponent implements AfterViewInit {
 
     /**
      * Retorna a refencia da tab em HTML
-     * @param {UiTabComponent} tab - Class da tab a ser encontrada
-     * @return {void}
     **/
-    getTabRef (tab) {
+    getTabRef (tab: UiTabComponent) {
         const tabsRef = this.element.nativeElement.querySelectorAll('.tab');
         return tabsRef ? tabsRef[tab.index] : null;
     }
 
     /**
      * Ativa uma tab
-     * @param tab {UiTabComponent} - Tab a ser ativada
-     * @param tabRef {HTMLElement} - Referencia da tab em um elemento HTML
-     * @return {void}
      * */
     activateTab(tab: UiTabComponent, tabRef: HTMLElement) {
         if (tab.disabled || tab === this.activatedTab) {
@@ -114,7 +106,6 @@ export class UiTabGroupComponent implements AfterViewInit {
 
     /**
      * Altera em todos components(UiTabComponent) o index da nova tab ativada
-     * @return {void}
      **/
     updateActivatedTab() {
         this.tabs.map(tab => tab.indexActivatedTab = this.activatedTab.index);
@@ -122,7 +113,6 @@ export class UiTabGroupComponent implements AfterViewInit {
 
     /**
      * Callback para quando a animação do conteúdo da tab iniciar
-     * @param {AnimationEvent} event - evento da animação
      * */
     startTranslateAnimation(event: AnimationEvent) {
         if (event.toState === 'active') {
@@ -132,7 +122,6 @@ export class UiTabGroupComponent implements AfterViewInit {
 
     /**
      * Callback para quando a animação do conteúdo da tab terminar
-     * @param {AnimationEvent} event - evento da animação
      * */
     doneTranslateAnimation(event: AnimationEvent) {
         if (event.toState !== 'active') {

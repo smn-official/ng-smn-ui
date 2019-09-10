@@ -11,8 +11,8 @@ import {UiTabLabelDirective} from './tab-label.directive';
 })
 export class UiTabComponent implements OnInit {
     @ViewChild('tabContent') tabContent: TemplateRef<any>;
-    @ContentChild(UiTabContentDirective) templateContent: TemplateRef<any>;
-    @ContentChild(UiTabLabelDirective) templateLabel: TemplateRef<any>;
+    @ContentChild(UiTabContentDirective) templateContent: UiTabContentDirective;
+    @ContentChild(UiTabLabelDirective) templateLabel: UiTabLabelDirective;
     @Input() label: string;
     @Input() icon: string;
     @Input() disabled: string;

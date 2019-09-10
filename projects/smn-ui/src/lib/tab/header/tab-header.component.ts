@@ -31,7 +31,7 @@ export class UiTabHeaderComponent implements OnInit, AfterViewInit, AfterViewChe
             this.showInkBar = false;
         });
     }
-    
+
     ngAfterViewChecked() {
         this.hasRightScroll = this.checkRightScroll();
         this.hasLeftScroll = this.checkLeftScroll();
@@ -40,10 +40,8 @@ export class UiTabHeaderComponent implements OnInit, AfterViewInit, AfterViewChe
 
     /**
      * Move o ink bar para a tab que está ativa
-     * @param {UiTabComponent} tabRef - Referência da Tab que está ativa
-     * @return {void}
      **/
-    moveInkBarTo(tabRef) {
+    moveInkBarTo(tabRef: HTMLElement) {
         this.showInkBar = true;
         this.changeDetectorRef.detectChanges();
 
@@ -55,7 +53,6 @@ export class UiTabHeaderComponent implements OnInit, AfterViewInit, AfterViewChe
 
     /**
      * Retorna se o scroll left ja saiu da posição 0
-     * @return {number}
      * */
     checkLeftScroll() {
         return this.tabsContainer.scrollLeft > 0;
@@ -63,7 +60,6 @@ export class UiTabHeaderComponent implements OnInit, AfterViewInit, AfterViewChe
 
     /**
      * Retorna se deve exibir o control da direita
-     * @return {number}
      * */
     checkRightScroll() {
         const widthWithScroll = this.tabsContainer.scrollLeft + this.tabsContainer.clientWidth;
@@ -72,10 +68,8 @@ export class UiTabHeaderComponent implements OnInit, AfterViewInit, AfterViewChe
 
     /**
      * Altera o valor do scroll
-     * @param {number} value - Valor a ser incrementando ou decrementado do scroll
-     * @return {void}
      **/
-    updateScroll(value) {
+    updateScroll(value: number) {
         const scrollLeft = this.tabsContainer.scrollLeft;
         UiElement.animate(
             this.tabsContainer,
