@@ -60,8 +60,8 @@ import { UiInfiniteLoadService } from './utils/infinite-load/infinite-load.servi
 import { UiAutocompleteDirective } from './autocomplete/autocomplete.directive';
 import { UiAutocompleteComponent } from './autocomplete/autocomplete.component';
 import { UiMaskIntegerDirective } from './utils/masks/integer/mask-integer.directive';
-import { UiTabsComponent } from './tabs/tabs.component';
-import { UiTabsPagesComponent } from './tabs/pages/tabs-pages.component';
+import { UiTabsComponent } from './old-tabs/tabs.component';
+import { UiTabsPagesComponent } from './old-tabs/pages/tabs-pages.component';
 import { UiLazyLoadDirective } from './lazy-load/lazy-load.directive';
 import { UiDataTableComponent } from './data-table/data-table.component';
 import { UiBottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
