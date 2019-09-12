@@ -8,16 +8,16 @@ $tab-height: 48px;
     position: relative;
 }
 
-::ng-deep ui-tab-group.scrollable ui-tab-header, :host.scrollable {
+::ng-deep ui-tab-group.scrollable > ui-tab-header, :host.scrollable {
     @include desktop {
-        .tabs-container {
+        > .tabs-container {
             padding-left: 52px;
         }
     }
 }
 
-::ng-deep ui-tab-group.fixed ui-tab-header, :host.fixed {
-    ::ng-deep .tab-wrap, .tab-wrap {
+::ng-deep ui-tab-group.fixed > ui-tab-header, :host.fixed {
+    ::ng-deep > .tab-wrap, .tab-wrap {
         flex: 1;
     }
 }
