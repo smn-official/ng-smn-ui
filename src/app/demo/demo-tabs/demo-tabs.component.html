@@ -1,5 +1,5 @@
 <ui-card>
-    <ui-tab-group [lazy-load]="true"
+    <ui-tab-group [lazyLoad]="false"
                   [accent]="accent"
                   [fillBackground]="fillBackground"
                   [themeInkBar]="themeInkBar" class="scrollable" [topIcon]="topIcon">
@@ -23,7 +23,7 @@
             <ng-template uiTabContent>
                 <form #phoneForm="ngForm">
                     <ui-input-container>
-                        <input type="text" name="telefone" uiInput required [(ngModel)]="info.telefone" uiMaskPhone [disabled]="primaryForm?.invalid">
+                        <input type="text" name="telefone" uiInput required [(ngModel)]="info.telefone" uiMaskPhone>
                         <label>Telefone</label>
                     </ui-input-container>
                 </form>

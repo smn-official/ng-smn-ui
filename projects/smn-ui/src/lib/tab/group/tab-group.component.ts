@@ -21,6 +21,7 @@ export class UiTabGroupComponent implements AfterViewInit {
     @Input() themeInkBar: boolean;
     @Input() accent: boolean;
     @Input() topIcon: boolean;
+    @Input() lazyLoad: boolean;
 
     tabs: any[];
     activatedTab: UiTabComponent;

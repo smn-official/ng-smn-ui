@@ -23,7 +23,7 @@
          class="tab-content"
          (@tabTransform.start)="startTranslateAnimation($event)"
          (@tabTransform.done)="doneTranslateAnimation($event)">
-        <div *ngIf="tab.isActive" [@tabFakeAnimation]>
+        <div *ngIf="tab.isActive || !lazyLoad" [@tabFakeAnimation]>
             <ng-container [ngTemplateOutlet]="tab.tabContent"></ng-container>
         </div>
     </div>
