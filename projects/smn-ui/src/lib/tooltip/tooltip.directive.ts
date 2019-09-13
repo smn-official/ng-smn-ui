@@ -75,13 +75,12 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy {
         let positionTop: number;
 
         if (this.top || this.bottom) {
-            const tempLeft = (elementPosition.left + this.element.nativeElement.clientWidth / 2) - (this.wrap.clientWidth / 2);
-            const tempTop = this.element.nativeElement.clientHeight;
+            positionLeft = (elementPosition.left + this.element.nativeElement.clientWidth / 2) - (this.wrap.clientWidth / 2);
 
-            positionLeft = tempLeft > 0 ? tempLeft : 0;
+            positionLeft = positionLeft > 0 ? positionLeft : 0;
             positionTop = elementPosition.top;
 
-            const checkHeight =  window.innerHeight - 32 >= tempTop + positionTop;
+            const checkHeight =  window.innerHeight - 32 >= this.element.nativeElement.clientHeight + positionTop;
 
             if (this.bottom && checkHeight) {
                 positionTop += this.element.nativeElement.clientHeight;
