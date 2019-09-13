@@ -123,6 +123,7 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
                     afterSelIndex = 5;
                 }
             } else {
+                this.maxLength = 13;
                 if (afterSelIndex === 4) {
                     this.beforeSelIndex = 5;
                     afterSelIndex = 6;
@@ -134,7 +135,6 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
                 afterSelIndex = 10;
             }
         } else {
-            this.maxLength = 13;
             if (afterSelIndex === 4) {
                 this.beforeSelIndex = 5;
                 afterSelIndex = 6;

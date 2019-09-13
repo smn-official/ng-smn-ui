@@ -1,5 +1,5 @@
-import {AfterViewInit, Directive, ElementRef, Input, OnDestroy, OnInit} from '@angular/core';
-import {UiElement} from '../utils/providers/element.provider';
+import { AfterViewInit, Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { UiElement } from '../utils/providers/element.provider';
 
 /**
  * TODO: Persist tooltip.
@@ -64,9 +64,7 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy {
 
     show(event) {
         this.setClass();
-        if (this.wrap) {
-            this.hide();
-        }
+
         this.wrap = document.createElement('div');
         this.wrap.classList.add('wrap-tooltip', this.class);
         this.wrap.innerText = this.uiTooltip;
@@ -78,9 +76,13 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy {
 
         if (this.top || this.bottom) {
             positionLeft = (elementPosition.left + this.element.nativeElement.clientWidth / 2) - (this.wrap.clientWidth / 2);
+
+            positionLeft = positionLeft > 0 ? positionLeft : 0;
             positionTop = elementPosition.top;
 
-            if (this.bottom) {
+            const checkHeight =  window.innerHeight - 32 >= this.element.nativeElement.clientHeight + positionTop;
+
+            if (this.bottom && checkHeight) {
                 positionTop += this.element.nativeElement.clientHeight;
             } else {
                 positionTop -= this.wrap.clientHeight;
@@ -91,7 +93,7 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy {
             positionTop = (elementPosition.top + this.element.nativeElement.clientHeight / 2) - (this.wrap.clientHeight / 2);
             positionLeft = elementPosition.left;
 
-            if (this.left) {
+            if (this.left && positionLeft >= this.wrap.clientWidth) {
                 positionLeft -= this.wrap.clientWidth;
             } else {
                 positionLeft += this.element.nativeElement.clientWidth;
@@ -101,7 +103,7 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy {
         UiElement.css(this.wrap, 'left', `${Math.round(positionLeft)}px`);
         UiElement.css(this.wrap, 'top', `${Math.round(positionTop)}px`);
 
-        setTimeout(() => this.wrap.classList.add('show'));
+        setTimeout(() => this.wrap && this.wrap.classList.add('show'));
     }
 
     hide() {
@@ -109,12 +111,9 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy {
             return;
         }
         this.wrap.classList.add('hide');
-        setTimeout(() => {
-            if (!this.wrap) {
-                return;
-            }
-            document.body.removeChild(this.wrap);
-            this.wrap = null;
-        }, 75);
+        const tooltips = Array.from(document.querySelectorAll('.wrap-tooltip'));
+        tooltips.forEach(
+            tooltip => tooltip.remove()
+        );
     }
 }

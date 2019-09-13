@@ -19,6 +19,7 @@ $margin: 8px;
     opacity: 0;
     z-index: 5;
     top: 0;
+    white-space: nowrap;
 
     @include mobile() {
         $height: 32px;
