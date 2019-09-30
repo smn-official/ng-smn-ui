@@ -11,6 +11,6 @@
     }
 }
 
-/deep/ .wrap-autocomplete {
+::ng-deep .wrap-autocomplete {
     z-index: 2;
 }

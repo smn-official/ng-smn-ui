@@ -15,7 +15,7 @@ export class UiDialogComponent {
     opened: boolean;
     @Input('card-size') cardSize: number;
     @Output() closeChange: EventEmitter<any> = new EventEmitter();
-    @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
+    @ViewChild(TemplateRef, { static: true }) templateRef: TemplateRef<any>;
 
     constructor(public elementRef: ElementRef) {
     }

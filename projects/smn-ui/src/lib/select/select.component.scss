@@ -19,7 +19,7 @@
 //    color: ui-color('grey', '100');
 //}
 
-/deep/ .wrap-select {
+::ng-deep .wrap-select {
     display: block;
     //background-color: ui-color('grey', '100');
     border-radius: 2px;
@@ -70,7 +70,7 @@
     }
 }
 
-///deep/ .dark.wrap-select {
+//::ng-deep .dark.wrap-select {
 //    background-color: ui-color('grey', '700');
 //    color: ui-color('grey', '100');
 //}

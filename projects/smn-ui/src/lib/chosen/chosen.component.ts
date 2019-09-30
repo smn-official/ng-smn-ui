@@ -52,9 +52,9 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
 
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter<any>();
 
-    @ViewChild('optionTemplate') optionTemplate: TemplateRef<any>;
-    @ViewChild('inputSearch') inputSearch: ElementRef;
-    @ViewChild('nativeSelect') nativeSelect: ElementRef;
+    @ViewChild('optionTemplate', { static: true }) optionTemplate: TemplateRef<any>;
+    @ViewChild('inputSearch', { static: false }) inputSearch: ElementRef;
+    @ViewChild('nativeSelect', { static: false }) nativeSelect: ElementRef;
 
     /**
      * O param "descendants" fala para o @ContentChildren pegar todos components UiChosenOptionComponent

@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UiElement {
@@ -17,8 +17,9 @@ export class UiElement {
         if (window.addEventListener) { // older FF
             window.addEventListener('DOMMouseScroll', preventDefault, false);
         }
+
         window.onwheel = preventDefault; // modern standard
-        window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+        // window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
         window.ontouchmove = preventDefault; // mobile
         document.onkeydown = preventDefaultForScrollKeys;
     }
@@ -27,7 +28,7 @@ export class UiElement {
         if (window.removeEventListener) {
             window.removeEventListener('DOMMouseScroll', preventDefault, false);
         }
-        window.onmousewheel = document.onmousewheel = null;
+        // window.onmousewheel = document.onmousewheel = null;
         window.onwheel = null;
         window.ontouchmove = null;
         document.onkeydown = null;

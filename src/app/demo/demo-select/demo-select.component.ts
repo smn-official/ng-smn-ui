@@ -9,10 +9,9 @@ import {UiToolbarService} from '../../../../projects/smn-ui/src/lib/smn-ui.modul
     styleUrls: ['./demo-select.component.scss']
 })
 export class DemoSelectComponent implements OnInit {
-    test
-    ;
+    test;
     names;
-    @ViewChild('selectField') selectField;
+    @ViewChild('selectField', { static: true }) selectField;
 
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
         this.names = [

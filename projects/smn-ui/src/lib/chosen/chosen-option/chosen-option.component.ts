@@ -15,7 +15,7 @@ export class UiChosenOptionComponent implements AfterViewInit, OnChanges {
     active: boolean;
     hidden: boolean;
 
-    constructor(@Inject(forwardRef(() => UiChosenComponent)) private parent: UiChosenComponent) {
+    constructor(@Inject(forwardRef(() => UiChosenComponent)) private parent: any) {
     }
 
     ngAfterViewInit() {

@@ -20,9 +20,9 @@ import {Subscription} from 'rxjs';
     styleUrls: ['./tab.component.scss']
 })
 export class UiTabComponent implements OnInit, OnDestroy {
-    @ViewChild('tabContent') tabContent: TemplateRef<any>;
-    @ContentChild(UiTabContentDirective) templateContent: UiTabContentDirective;
-    @ContentChild(UiTabLabelDirective) templateLabel: UiTabLabelDirective;
+    @ViewChild('tabContent', { static: true }) tabContent: TemplateRef<any>;
+    @ContentChild(UiTabContentDirective, { static: false }) templateContent: UiTabContentDirective;
+    @ContentChild(UiTabLabelDirective, { static: false }) templateLabel: UiTabLabelDirective;
     @Input() label: string;
     @Input() icon: string;
     @Input() disabled: string;

@@ -17,7 +17,7 @@ import {
 })
 export class UiBottomSheetComponent {
     @Input('card-size') cardSize: number;
-    @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
+    @ViewChild(TemplateRef, { static: true }) templateRef: TemplateRef<any>;
     @Output() closeChange: EventEmitter<any> = new EventEmitter();
 
     constructor(public elementRef: ElementRef) {

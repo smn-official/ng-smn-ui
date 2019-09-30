@@ -14,8 +14,8 @@ import {tabFakeAnimation, tabTransform} from './tab-group.animation';
 })
 export class UiTabGroupComponent implements AfterViewInit {
     @ContentChildren(UiTabComponent) tabsQueryList: QueryList<UiTabComponent>;
-    @ViewChild(UiTabHeaderComponent) tabHeader: UiTabHeaderComponent;
-    @ViewChild('tabsContentElement') tabsContentElement: ElementRef;
+    @ViewChild(UiTabHeaderComponent, { static: true }) tabHeader: UiTabHeaderComponent;
+    @ViewChild('tabsContentElement', { static: true }) tabsContentElement: ElementRef;
     @Input() active: number;
     @Input() fillBackground: boolean;
     @Input() themeInkBar: boolean;

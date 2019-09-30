@@ -7,7 +7,7 @@ import {UiElementRef} from '../utils/providers/element-ref.provider';
 })
 
 export class UiDataTableComponent implements OnInit {
-    @ViewChild('tableFooter') tableFooter: any;
+    @ViewChild('tableFooter', { static: true }) tableFooter: any;
 
     constructor(private element: ElementRef) {
     }
