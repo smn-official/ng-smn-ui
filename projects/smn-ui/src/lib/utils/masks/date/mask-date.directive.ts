@@ -193,7 +193,7 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
 
     validate(control: FormControl): { [key: string]: any } {
         this.control = control;
-        const value = this.ngModel;
+        const value = this.ngModel && isDate(new Date(this.ngModel)) ? new Date(this.ngModel) : this.ngModel;
         const dateControl = isDate(control.value) ? control.value : new Date(control.value);
 
         if (value && (!isDate(value) || !checkDate(value.toLocaleDateString()))) {

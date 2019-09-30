@@ -9,12 +9,18 @@ export class DemoMaskComponent implements OnInit {
 
     cpf: number;
     cnpj: number;
+    date: Date | string;
+
     constructor() {
     }
 
     ngOnInit() {
         this.cpf = 99999999;
         this.cnpj = 888888;
+
+        setTimeout(() => {
+            this.date = new Date().toISOString();
+        }, 2000)
     }
 
     testSubmit(form) {
