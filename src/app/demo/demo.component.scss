@@ -5,7 +5,7 @@
 $primary: (color: 'indigo', hue: '500');
 $accent: (color: 'pink', hue: '500');
 
-$theme: ui-theme($primary, $accent, true);
+$theme: ui-theme($primary, $accent);
 $theme-dark: ui-theme($primary, $accent, true);
 
 @include ui-core();
