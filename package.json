@@ -5,9 +5,9 @@
   "scripts": {
     "start": "ng serve --port 4000 --host=0.0.0.0 --disable-host-check",
     "build": "ng build smn-ui --prod && gulp copy:scss",
-    "publish-patch": "gulp release --patch && npm run build && npm publish dist/smn-ui",
-    "publish-minor": "gulp release --minor && npm run build && npm publish dist/smn-ui",
-    "publish-major": "gulp release --major && npm run build && npm publish dist/smn-ui"
+    "publish-patch": "gulp release --patch && npm run build && npm publish dist/lib",
+    "publish-minor": "gulp release --minor && npm run build && npm publish dist/lib",
+    "publish-major": "gulp release --major && npm run build && npm publish dist/lib"
   },
   "dependencies": {
     "@angular/animations": "8.2.8",

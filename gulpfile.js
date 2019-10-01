@@ -13,7 +13,7 @@ function getVersion() {
 }
 
 gulp.task('copy:scss', () => {
-    gulp.src('projects/smn-ui/src/lib/**/*.scss').pipe(gulp.dest('dist/smn-ui/lib'))
+    gulp.src('projects/smn-ui/src/lib/**/*.scss').pipe(gulp.dest('dist/lib/lib'))
 });
 
 gulp.task('version:bump', () => {
