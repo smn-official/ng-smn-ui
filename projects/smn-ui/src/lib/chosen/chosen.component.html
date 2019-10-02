@@ -16,7 +16,7 @@
                 [disabled]="option.disabled"></option>
     </optgroup>
 </select>
-<div class="value" *ngIf="!isMobile" [class.disabled]="disabled">
+<div class="value" *ngIf="!isMobile" [class.disabled]="disabled" (click)="onFocus()">
     <span class="placeholder"
          *ngIf="placeholder && !value && ((!persistPlaceholder && focused) || persistPlaceholder)">
         {{placeholder}}
