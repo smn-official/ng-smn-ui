@@ -1,6 +1,6 @@
 {
   "name": "ng-smn-ui",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "license": "MIT",
   "scripts": {
     "start": "ng serve --port 4000 --host=0.0.0.0 --disable-host-check",
