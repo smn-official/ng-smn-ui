@@ -6,7 +6,7 @@
         uiRipple 
         [ripple-disable]="disabled">
         <span class="ui-expansion-panel-title">
-            <ui-subheader class="primary">
+            <ui-subheader [class]="color">
                 {{ label }}
             </ui-subheader>
         </span>
@@ -14,12 +14,12 @@
             {{ description }}
         </span>
         <span>
-            <i class="material-icons" 
+            <i [class]="'material-icons ui-expansion-panel-arrow ' + color" 
                 [ngClass]="{'ui-expansion-panel-collapsed': !open}"
                 [ngStyle]="{
                     'display' : disabled || noArrow ? 'none' : 'block' 
                 }">
-                keyboard_arrow_down
+                keyboard_arrow_up
             </i>
         </span>
     </div>

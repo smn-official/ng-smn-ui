@@ -7,6 +7,7 @@
 @import "../date-picker/date-picker-caller.theme";
 @import "../dialog/dialog.theme";
 @import "../divider/divider.theme";
+@import "../expansion-panel/expansion-panel-theme";
 @import "../input/input.theme";
 @import "../list/list.theme";
 @import "../nav-drawer/nav-drawer.theme";
@@ -86,6 +87,7 @@
     @include ui-date-picker-caller($theme);
     @include ui-dialog($theme);
     @include ui-divider($theme);
+    @include ui-expansion-panel($theme);
     @include ui-input($theme);
     @include ui-list($theme);
     @include ui-nav-drawer($theme);

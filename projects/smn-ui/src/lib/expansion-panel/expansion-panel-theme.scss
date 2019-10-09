@@ -1,0 +1,12 @@
+@import "../core/variables.scss";
+
+@mixin ui-expansion-panel($theme) {
+    .ui-expansion-panel-header ui-subheader,
+    .ui-expansion-panel-arrow {
+        color: ui-color(map_get($theme, primary));
+        
+        &.accent {
+            color: ui-color(map_get($theme, accent));
+        }
+    }
+}
