@@ -1,6 +1,6 @@
 import {
     Component, ElementRef, Output, TemplateRef, ViewChild,
-    ViewEncapsulation, EventEmitter, Input
+    ViewEncapsulation, EventEmitter, Input, ChangeDetectionStrategy
 } from '@angular/core';
 import {UiElementRef} from '../utils/providers/element-ref.provider';
 
@@ -8,7 +8,8 @@ import {UiElementRef} from '../utils/providers/element-ref.provider';
     selector: 'ui-dialog',
     templateUrl: './dialog.component.html',
     styleUrls: ['./dialog.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UiDialogComponent {
     viewRef: any;

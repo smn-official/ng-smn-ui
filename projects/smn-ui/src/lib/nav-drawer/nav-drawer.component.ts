@@ -6,7 +6,9 @@ import {
     EventEmitter,
     ElementRef,
     OnChanges,
-    Input, OnDestroy
+    Input,
+    OnDestroy,
+    ChangeDetectionStrategy
 } from '@angular/core';
 
 import { UiElement } from '../utils/providers/element.provider';
@@ -16,7 +18,8 @@ import { UiCookie } from '../utils/providers/cookie.provider';
     selector: 'ui-nav-drawer',
     templateUrl: './nav-drawer.component.html',
     styleUrls: ['./nav-drawer.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UiNavDrawerComponent implements AfterViewInit, OnChanges, OnDestroy {
     @Input() open: boolean;
@@ -95,7 +98,7 @@ export class UiNavDrawerComponent implements AfterViewInit, OnChanges, OnDestroy
             if (this.element.nativeElement.classList.contains('.right')) {
                 return;
             }
-          
+
             mouseX = e.touches[0].pageX;
             navDrawerTouch = (mouseX > 0 && mouseX < 40) ? 'open' : navDrawerTouch;
             navDrawerTouch = (mouseX > 320 && mouseX < 360) ? 'close' : navDrawerTouch;

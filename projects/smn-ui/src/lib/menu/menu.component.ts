@@ -1,15 +1,23 @@
 import {
-    Component, ElementRef, EventEmitter, OnDestroy, Output, TemplateRef, ViewChild, ViewContainerRef,
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    EventEmitter,
+    OnDestroy,
+    Output,
+    TemplateRef,
+    ViewChild,
+    ViewContainerRef,
     ViewEncapsulation
 } from '@angular/core';
-import {UiWindowRef} from '../utils/providers/window.provider';
 import {UiElement} from '../utils/providers/element.provider';
 
 @Component({
     selector: 'ui-menu',
     templateUrl: './menu.component.html',
     styleUrls: ['./menu.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UiMenuComponent implements OnDestroy {
     viewRef;
