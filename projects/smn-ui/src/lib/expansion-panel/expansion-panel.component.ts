@@ -39,6 +39,7 @@ export class ExpansionPanelComponent implements OnInit {
     @Input() noArrow: boolean;
     @Input() label: string;
     @Input() description: string;
+    @Input() color: string = 'primary';
 
     @Input() open: boolean;
     @Output() openChange: EventEmitter<boolean> = new EventEmitter();
