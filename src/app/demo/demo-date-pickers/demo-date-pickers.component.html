@@ -39,7 +39,7 @@
             <pre style="color: rgba(0,0,0,.54)">{{events | json}}</pre>
 
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="minAndMax" name="minAndMax" uiDatePicker="minAndMax" [maxDate]="simple">
+                <input type="text" uiInput [(ngModel)]="minAndMax" name="minAndMax" uiMaskDate uiDatePicker="minAndMax" [minDate]="minDate" [maxDate]="maxDate">
                 <label>Min e max</label>
                 <div class="icon">
                     <button class="ui-button icon flat" uiDatePickerCaller="minAndMax">
