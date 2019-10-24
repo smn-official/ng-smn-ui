@@ -109,6 +109,7 @@ export class UiChosenComponent
 
             this.element.nativeElement.classList.add("mobile");
         }
+        this.changeDetectorRef.detectChanges();
     }
 
     ngOnChanges(changes) {
