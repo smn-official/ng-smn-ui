@@ -207,11 +207,11 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
         const value = this.ngModel && this.regexiso.test(this.ngModel) ? new Date(this.ngModel) : this.ngModel;
         const dateControl = isDate(control.value) ? control.value : new Date(control.value);
 
-        if (value && (!isDate(value) || !checkDate(value.toLocaleDateString()))) {
+        if (value && (!isDate(value) || !checkDate(value.toLocaleDateString('pt-BR')))) {
             return { parse: true };
         }
 
-        if (value && (isDate(value) || checkDate(value.toLocaleDateString()))) {
+        if (value && (isDate(value) || checkDate(value.toLocaleDateString('pt-BR')))) {
             dateControl.setHours(0, 0, 0, 0);
 
             if (this.minDate && isDate(this.minDate)) {
