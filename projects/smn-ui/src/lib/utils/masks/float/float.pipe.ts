@@ -38,9 +38,12 @@ export class UiFloatPipe implements PipeTransform {
         value = value.split('');
         for (let i = 0; i < value.length; i++) {
             const valueChar = value[value.length - 1 - i];
-            if (i === decimal) {
+            if (decimal && i === decimal) {
                 newValue = ',' + newValue;
-            } else if (i > 3 && (i - decimal) > 0 && !((i - decimal) % 3)) {
+            } else if (
+                i > decimal &&
+                !((i - decimal) % 3)
+            ) {
                 newValue = '.' + newValue;
             }
             newValue = valueChar + newValue;
