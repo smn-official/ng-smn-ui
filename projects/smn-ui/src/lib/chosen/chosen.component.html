@@ -8,7 +8,7 @@
     <option *ngFor="let option of onlyOptions; trackBy: trackByValue"
             [label]="option.label"
             [ngValue]="option.value"
-            [disabled]="option.disabled"></option>
+            [disabled]="option.disabled">{{option.label}}</option>
     <optgroup *ngFor="let group of optionsGroup; trackBy: trackByValue" [label]="group.label">
         <option *ngFor="let option of group.options"
                 [label]="option.label"
