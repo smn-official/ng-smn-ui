@@ -1,12 +1,13 @@
-import {AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnChanges, OnInit} from '@angular/core';
 import {UiColor} from '../utils/providers/color.provider';
 import {UiElement} from '../utils/providers/element.provider';
-import {animate, style, transition, trigger} from "@angular/animations";
+import {animate, style, transition, trigger} from '@angular/animations';
 
 @Component({
     selector: 'ui-avatar',
     templateUrl: './avatar.component.html',
     styleUrls: ['./avatar.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [trigger(
         'image', [
             transition(':enter', [
