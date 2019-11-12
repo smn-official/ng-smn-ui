@@ -30,8 +30,13 @@
             <div class="search" *ngIf="search">
                 <ui-input-container class="no-space">
                     <input type="text" uiInput [(ngModel)]="searchText" (ngModelChange)="filterList()" #inputSearch>
-                    <button type="button" class="suffix ui-button flat icon" uiRipple (click)="clearFilter()">
-                        <i class="material-icons">close</i>
+                    <button type="button"
+                            class="suffix ui-button flat icon"
+                            uiRipple
+                            (click)="clearFilter()"
+                            [disabled]="!searchText"
+                            uiTooltip="Limpar busca">
+                        <i class="material-icons">{{searchText ? 'close' : 'search'}}</i>
                     </button>
                 </ui-input-container>
             </div>
