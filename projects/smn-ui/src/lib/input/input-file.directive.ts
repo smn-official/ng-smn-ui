@@ -2,7 +2,8 @@ import { Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, O
 import { FormControl, NgControl } from '@angular/forms';
 
 @Directive({
-    selector: '[uiInputFile]'
+    selector: '[uiInputFile]',
+    exportAs: 'uiInputFile'
 })
 export class UiInputFileDirective {
 
@@ -26,11 +27,14 @@ export class UiInputFileDirective {
         e.stopPropagation();
         e.preventDefault();
 
+        this.readFiles(e.target.files);
+    }
+
+    readFiles(files) {
         this.ngControl.control.markAsDirty();
         this.ngControl.control.setErrors(null);
 
         this.model = [];
-        const files = e.target.files;
         const accepts = this.accept ? this.accept.split(',') : [];
         const maxSize = this.maxSize ? this.toByte(this.maxSize) : null;
         const maxFileSize = this.maxFileSize ? this.toByte(this.maxFileSize) : null;
@@ -70,7 +74,7 @@ export class UiInputFileDirective {
             }
         }
 
-        this.files = e.target.files;
+        this.files = files;
         this.filesChange.emit(this.files);
 
         if (this.fileChange) {
