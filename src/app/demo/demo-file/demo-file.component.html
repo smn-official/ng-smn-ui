@@ -10,9 +10,11 @@
                [read]="read.bind(this)"
                [fileChange]="changeFile.bind(this)"
                [error]="error.bind(this)"
+               #validationElement
                #validationFile="ngModel">
         <p>Errors: {{validationFile ? (validationFile.errors | json) : ''}}</p>
         <p (click)="changeFile(files)">{{files | json}}</p>
+        <button class="ui-button primary raised" (click)="validationElement.click()">Click me!</button>
         <div *ngFor="let image of data">
             <img [src]="image.result" alt="">
         </div>

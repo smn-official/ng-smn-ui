@@ -16,11 +16,11 @@
         //noinspection CssOverwrittenProperties
         max-width: 100vw;
 
-        &:not(.no-transition) /deep/ .page {
+        &:not(.no-transition) ::ng-deep .page {
             transition: transform 280ms ui-easing('deceleration');
         }
 
-        /deep/ .page {
+        ::ng-deep .page {
             text-align: left;
             flex-shrink: 0;
             width: 100%;

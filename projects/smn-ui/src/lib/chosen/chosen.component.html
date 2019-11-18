@@ -8,7 +8,7 @@
     <option *ngFor="let option of onlyOptions; trackBy: trackByValue"
             [label]="option.label"
             [ngValue]="option.value"
-            [disabled]="option.disabled"></option>
+            [disabled]="option.disabled">{{option.label}}</option>
     <optgroup *ngFor="let group of optionsGroup; trackBy: trackByValue" [label]="group.label">
         <option *ngFor="let option of group.options"
                 [label]="option.label"
@@ -16,7 +16,7 @@
                 [disabled]="option.disabled"></option>
     </optgroup>
 </select>
-<div class="value" *ngIf="!isMobile" [class.disabled]="disabled">
+<div class="value" *ngIf="!isMobile" [class.disabled]="disabled" (click)="onFocus()">
     <span class="placeholder"
          *ngIf="placeholder && !value && ((!persistPlaceholder && focused) || persistPlaceholder)">
         {{placeholder}}
@@ -30,8 +30,13 @@
             <div class="search" *ngIf="search">
                 <ui-input-container class="no-space">
                     <input type="text" uiInput [(ngModel)]="searchText" (ngModelChange)="filterList()" #inputSearch>
-                    <button type="button" class="suffix ui-button flat icon" uiRipple (click)="clearFilter()">
-                        <i class="material-icons">close</i>
+                    <button type="button"
+                            class="suffix ui-button flat icon"
+                            uiRipple
+                            (click)="clearFilter()"
+                            [disabled]="!searchText"
+                            uiTooltip="Limpar busca">
+                        <i class="material-icons">{{searchText ? 'close' : 'search'}}</i>
                     </button>
                 </ui-input-container>
             </div>

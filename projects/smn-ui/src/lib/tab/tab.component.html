@@ -1,0 +1,6 @@
+<ng-template #tabContent>
+    <ng-content></ng-content>
+    <div *ngIf="templateContent && templateContent.template && loaded">
+        <ng-container *ngTemplateOutlet="templateContent.template"></ng-container>
+    </div>
+</ng-template>

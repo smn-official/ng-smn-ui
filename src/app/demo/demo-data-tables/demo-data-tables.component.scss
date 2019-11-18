@@ -4,14 +4,14 @@
     ui-card {
         position: relative;
         z-index: 2;
-        ///deep/ header {
+        //::ng-deep header {
         //    background-color: ui-color('white');
         //    color: ui-text-color('white');
         //}
         margin-bottom: 20px;
     }
 
-    /deep/ form[name="searchForm"] {
+    ::ng-deep form[name="searchForm"] {
         transition: all 280ms ui-easing('deceleration');
         position: absolute;
         right: 60px;

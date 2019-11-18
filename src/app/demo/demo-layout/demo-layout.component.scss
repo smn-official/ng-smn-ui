@@ -4,7 +4,7 @@
     ui-card {
         position: relative;
         z-index: 2;
-        /deep/ header {
+        ::ng-deep header {
             background-color: ui-color('white');
             color: ui-text-color('white');
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);

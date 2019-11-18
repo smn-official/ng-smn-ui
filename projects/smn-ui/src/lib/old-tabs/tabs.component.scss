@@ -20,7 +20,7 @@
             transition: transform 280ms ui-easing('deceleration'),
             padding-left 280ms ui-easing('deceleration');
 
-            /deep/ .tab {
+            ::ng-deep .tab {
                 height: 48px;
                 display: flex;
                 justify-content: center;
@@ -43,7 +43,7 @@
                     min-width: 72px;
                 }
 
-                @at-root :host:not(.scrollable) .tabs /deep/ .tab {
+                @at-root :host:not(.scrollable) .tabs ::ng-deep .tab {
                     width: 100%;
                 }
 
@@ -59,7 +59,7 @@
                         }
                     }
 
-                    .tabs .overflow /deep/ .tab {
+                    .tabs .overflow ::ng-deep .tab {
                         min-width: 160px;
                         max-width: 264px;
                     }

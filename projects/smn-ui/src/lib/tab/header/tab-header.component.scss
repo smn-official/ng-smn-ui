@@ -1,0 +1,111 @@
+@import "../../core/variables";
+
+$tab-height: 48px;
+
+:host {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+::ng-deep ui-tab-group.scrollable > ui-tab-header, :host.scrollable {
+    @include desktop {
+        > .tabs-container {
+            padding-left: 52px;
+        }
+    }
+}
+
+::ng-deep ui-tab-group.fixed > ui-tab-header, :host.fixed {
+    ::ng-deep > .tab-wrap, .tab-wrap {
+        flex: 1;
+    }
+}
+
+.tabs-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.tabs {
+    display: flex;
+    height: $tab-height;
+    align-items: center;
+
+    &.top-icon {
+        height: 72px;
+
+        ::ng-deep .tab-wrap, .tab-wrap {
+            height: 72px;
+
+            .tab {
+                flex-direction: column;
+                height: 72px;
+
+                > .icon {
+                    padding-right: 0;
+                    padding-bottom: 4px;
+                }
+            }
+        }
+    }
+}
+
+::ng-deep .tab-wrap, .tab-wrap {
+    .tab {
+        padding: 0 16px;
+        min-width: 90px;
+        max-width: 360px;
+        height: $tab-height;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        white-space: nowrap;
+        user-select: none;
+        border-bottom: 2px solid transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        cursor: default;
+        transition: color 280ms ui-easing('deceleration'), border-color 0ms ui-easing('deceleration');
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        > .icon {
+            padding-right: 4px;
+        }
+    }
+
+    &.active .tab {
+        transition: color 280ms ui-easing('deceleration'), border-color 0ms 280ms ui-easing('deceleration');
+    }
+}
+
+.ink-bar {
+    left: 0;
+    width: 0;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    transition: width 280ms ui-easing('deceleration'), left 280ms ui-easing('deceleration');
+}
+
+.navigation {
+    margin: 0 8px;
+    position: absolute;
+    z-index: 1;
+
+    &.left {
+        left: 0;
+    }
+
+    &.right {
+        right: 0;
+    }
+}

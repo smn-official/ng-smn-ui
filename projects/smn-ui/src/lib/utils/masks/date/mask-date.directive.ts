@@ -1,13 +1,11 @@
-import {
-    AfterViewInit, Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges,
-    Output,
-    OnInit
-} from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { AfterViewInit, Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator } from '@angular/forms';
+
+import { isDate } from 'rxjs/internal/util/isDate';
+
 import { UiElement } from '../../providers/element.provider';
 import { checkDate } from './check-date';
-import { isDate } from 'rxjs/internal/util/isDate';
 
 @Directive({
     selector: '[uiMaskDate][ngModel]',
@@ -29,35 +27,43 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
     onChange: Function;
     onTouched: Function;
     control: any;
+    maxlength = 10;
+    regex = /^\d\d\/\d\d\/\d\d\d\d$/g;
+    regexiso = /^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?(Z|(((\+|\-)[0-1][0-9]):([0-5][0-9])))?$/g;
     symbolsPositions: number[] = [2, 5];
     dateFormatsList = [
         {
-            symbolsPositions: [2, 5],
             format: 'dd/MM/yyyy',
-            maxlength: 10
+            maxlength: 10,
+            regex: /^(\d{2}\/){2}\d{4}$/g,
+            symbolsPositions: [2, 5]
         },
         {
-            symbolsPositions: [2],
             format: 'dd/MM',
-            maxlength: 5
+            maxlength: 5,
+            regex: /^(\d{2})\/(\d{2})$/g,
+            symbolsPositions: [2]
         },
         {
-            symbolsPositions: [2],
             format: 'MM/yyyy',
-            maxlength: 7
+            maxlength: 7,
+            regex: /^(\d{2})\/(\d{4})$/g,
+            symbolsPositions: [2]
         },
         {
-            symbolsPositions: [2, 5],
             format: 'dd/MM/yy',
-            maxlength: 8
+            maxlength: 8,
+            regex: /^(\d{2}\/){2}\d{2}$/g,
+            symbolsPositions: [2, 5]
         },
         {
-            symbolsPositions: [2],
             format: 'MM/yy',
-            maxlength: 5
+            maxlength: 5,
+            regex: /^(\d{2})\/(\d{2})$/g,
+            symbolsPositions: [2]
         }
     ];
-    maxlength = 10;
+
     @Input() minDate: Date;
     @Input() maxDate: Date;
     @Input() ngModel: any;
@@ -118,10 +124,10 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
 
         date = date.toString().replace(/[^0-9]+/g, '');
         if (date.length > this.symbolsPositions[0]) {
-            date = date.substring(0, 2) + '/' + date.substring(2);
+            date = date.substring(0, this.symbolsPositions[0]) + '/' + date.substring(this.symbolsPositions[0]);
         }
         if (date.length > this.symbolsPositions[1]) {
-            date = date.substring(0, 5) + '/' + date.substring(5, 9);
+            date = date.substring(0, this.symbolsPositions[1]) + '/' + date.substring(this.symbolsPositions[1], this.maxlength - 1);
         }
         return date.substring(0, this.maxlength);
     }
@@ -139,8 +145,9 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
 
         this.dateFormatsList.forEach(item => {
             if (item.format === this.dateFormat) {
-                this.symbolsPositions = item.symbolsPositions;
                 this.maxlength = item.maxlength;
+                this.regex = item.regex;
+                this.symbolsPositions = item.symbolsPositions;
                 valid = true;
             }
         });
@@ -156,9 +163,11 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
         }
         if (changes.minDate && !changes.minDate.firstChange) {
             this.minDate = changes.minDate.currentValue && isDate(new Date(this.minDate)) ? new Date(this.minDate) : this.minDate;
+            this.control.updateValueAndValidity(this.control);
         }
         if (changes.maxDate && !changes.maxDate.firstChange) {
             this.maxDate = changes.maxDate.currentValue && isDate(new Date(this.maxDate)) ? new Date(this.maxDate) : this.maxDate;
+            this.control.updateValueAndValidity(this.control);
         }
         if ((changes.minDate && !changes.minDate.firstChange) || (changes.maxDate && !changes.maxDate.firstChange)) {
             this.control.updateValueAndValidity(this.control);
@@ -170,20 +179,22 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
      * @param value { string } valor da view
      */
     getCorrectValue(value: string) {
-        if (this.dateFormat === 'MM/yyyy') {
+        const test = this.regex.test(value);
+
+        if (this.dateFormat === 'MM/yyyy' && test) {
             return `${this.day}/${value}`;
         }
 
-        if (this.dateFormat === 'dd/MM') {
+        if (this.dateFormat === 'dd/MM' && test) {
             return `${value}/${this.year}`;
         }
 
-        if (this.dateFormat === 'dd/MM/yy' && value.length > 7) {
+        if (this.dateFormat === 'dd/MM/yy' && test) {
             const valueSplitted = value.split('/');
             return `${valueSplitted[0]}/${valueSplitted[1]}/20${valueSplitted[2]}`;
         }
 
-        if (this.dateFormat === 'MM/yy' && value.length > 4) {
+        if (this.dateFormat === 'MM/yy' && test) {
             const valueSplitted = value.split('/');
             return `${this.day}/${valueSplitted[0]}/20${valueSplitted[1]}`;
         }
@@ -193,14 +204,14 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
 
     validate(control: FormControl): { [key: string]: any } {
         this.control = control;
-        const value = this.ngModel;
+        const value = this.ngModel && this.regexiso.test(this.ngModel) ? new Date(this.ngModel) : this.ngModel;
         const dateControl = isDate(control.value) ? control.value : new Date(control.value);
 
-        if (value && (!isDate(value) || !checkDate(value.toLocaleDateString()))) {
+        if (value && (!isDate(value) || !checkDate(value.toLocaleDateString('pt-BR')))) {
             return { parse: true };
         }
 
-        if (value && (isDate(value) || checkDate(value.toLocaleDateString()))) {
+        if (value && (isDate(value) || checkDate(value.toLocaleDateString('pt-BR')))) {
             dateControl.setHours(0, 0, 0, 0);
 
             if (this.minDate && isDate(this.minDate)) {

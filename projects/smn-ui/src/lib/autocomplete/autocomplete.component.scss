@@ -22,7 +22,7 @@
     }
 }
 
-/deep/ .wrap-autocomplete {
+::ng-deep .wrap-autocomplete {
     position: absolute;
     z-index: 2;
     transition: top 280ms ui-easing('decelaration'), left 280ms ui-easing('decelaration');
@@ -77,6 +77,6 @@
 
 }
 
-/deep/ .wrap-dialog + .wrap-autocomplete {
+::ng-deep .wrap-dialog + .wrap-autocomplete {
     z-index: 5;
 }

@@ -1,0 +1,18 @@
+@import "../../core/variables";
+
+:host {
+    overflow: hidden;
+    position: relative;
+    display: block;
+
+    .wrap-content {
+        position: relative;
+        transition: all 280ms ui-easing('deceleration');
+    }
+
+    .tab-content {
+        left: 0;
+        right: 0;
+        top: 0;
+    }
+}

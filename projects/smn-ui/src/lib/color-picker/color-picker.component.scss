@@ -48,7 +48,7 @@
         }
     }
 
-    /deep/ ui-slider:not(.nothing) {
+    ::ng-deep ui-slider:not(.nothing) {
 
         margin-top: 16px;
 
@@ -72,7 +72,7 @@
     }
 }
 
-/deep/ .wrap-color-picker {
+::ng-deep .wrap-color-picker {
     z-index: 5;
 
     .overlay {

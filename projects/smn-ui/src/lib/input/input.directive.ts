@@ -2,6 +2,7 @@ import {
     AfterViewInit, Directive, ElementRef, EventEmitter, HostListener, Input, OnChanges, Output,
     Renderer2
 } from '@angular/core';
+import { isNullOrUndefined } from 'util';
 
 @Directive({
     selector: '[uiInput]'
@@ -46,8 +47,8 @@ export class UiInputDirective implements AfterViewInit, OnChanges {
         // TODO: Try model e view value
         const self = this;
         function isEmpty() {
-            let action = !value && !self.element.nativeElement.value ? 'addClass' : 'removeClass';
-            if (self.ngModel && self.ngModel.trim && !self.ngModel.trim()) {
+            let action = isNullOrUndefined(value) && !self.element.nativeElement.value ? 'addClass' : 'removeClass';
+            if (!isNullOrUndefined(self.ngModel) && self.ngModel.trim && !self.ngModel.trim()) {
                 action = 'addClass';
             }
             self.renderer[action](self.element.nativeElement, 'ui-empty');

@@ -27,6 +27,7 @@ export class UiMaskFloatDirective implements ControlValueAccessor, AfterViewInit
     onChange: Function;
     onTouched: Function;
     control: FormControl;
+    @Input() uiMaskFloat: number = 2;
     @Input() decimal: number;
     @Input() max: number;
     @Input() min: number;
@@ -34,14 +35,20 @@ export class UiMaskFloatDirective implements ControlValueAccessor, AfterViewInit
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
     constructor(public elementRef: ElementRef, public floatPipe: UiFloatPipe) {
+        this.decimal = this.uiMaskFloat;
     }
 
     ngOnChanges(changes): void {
         if (changes.ngModel && !changes.ngModel.firstChange && (changes.ngModel.currentValue === null || changes.ngModel.currentValue === undefined)) {
             this.elementRef.nativeElement.value = '';
         }
+        if (typeof changes.uiMaskFloat !== 'undefined') {
+            this.uiMaskFloat = changes.uiMaskFloat.currentValue || 2;
+            this.decimal = this.uiMaskFloat;
+        }
         if (typeof changes.decimal !== 'undefined') {
-            this.decimal = changes.decimal.currentValue;
+            this.decimal = changes.decimal.currentValue || 2;
+            this.uiMaskFloat = this.decimal;
         }
         if (typeof changes.max !== 'undefined') {
             this.max = changes.max.currentValue;
@@ -73,7 +80,8 @@ export class UiMaskFloatDirective implements ControlValueAccessor, AfterViewInit
         }
         this.ngModel = this.format(rawValue);
         this.ngModelChange.emit(this.ngModel);
-        this.elementRef.nativeElement.value = this.formatViewValue(this.elementRef.nativeElement.value);
+        this.elementRef.nativeElement.value =
+            this.formatViewValue(this.elementRef.nativeElement.value);
     }
 
     registerOnChange(fn: any): void {

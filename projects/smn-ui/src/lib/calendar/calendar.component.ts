@@ -33,7 +33,7 @@ export class UiCalendarComponent implements OnInit, OnChanges {
     @Output() cancel: EventEmitter<any> = new EventEmitter();
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
     @Output() updateMonth: EventEmitter<any> = new EventEmitter();
-    @ViewChild(UiAddCalendarDirective) addCalendar: UiAddCalendarDirective;
+    @ViewChild(UiAddCalendarDirective, { static: true }) addCalendar: UiAddCalendarDirective;
     chosen: Subject<any> = new Subject();
 
     calendar: any;

@@ -22,7 +22,7 @@
 @import "../slider/slider.theme";
 @import "../data-table/data-table.theme";
 @import "../chip/chip.theme";
-@import "../tabs/tabs.theme";
+@import "../old-tabs/tabs.theme";
 @import "../autocomplete/autocomplete.theme";
 @import "../bottom-sheet/bottom-sheet.theme";
 @import "../input/input-file.directive";
@@ -31,6 +31,7 @@
 @import "../time-picker/time-picker-caller.theme";
 @import "../select/select.theme";
 @import "../menu/menu.theme";
+@import "../tab/header/tab-header.theme";
 @import "../chosen/chosen-option/chosen-option.theme";
 @import "../chosen/chosen-group/chosen-group.theme";
 @import "variables";
@@ -111,6 +112,7 @@
     @include ui-time-picker-caller($theme);
     @include ui-select($theme);
     @include ui-menu($theme);
+    @include ui-tab-header($theme);
     @include ui-chosen-option($theme);
     @include ui-chosen-group($theme);
 }

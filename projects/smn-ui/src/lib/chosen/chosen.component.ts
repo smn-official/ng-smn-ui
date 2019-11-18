@@ -1,41 +1,54 @@
 // @ts-ignore
 import {
     AfterContentInit,
-    AfterViewInit, ChangeDetectorRef,
+    AfterViewInit,
+    ChangeDetectorRef,
     Component,
     ContentChildren,
     ElementRef,
-    EventEmitter, forwardRef, HostListener,
-    Input, OnChanges,
+    EventEmitter,
+    forwardRef,
+    HostListener,
+    Input,
+    OnChanges,
     OnInit,
     Output,
-    QueryList, TemplateRef, ViewChild, ViewContainerRef
-} from '@angular/core';
-import {FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {UiChosenOptionComponent} from './chosen-option/chosen-option.component';
-import {UiElement} from '../utils/providers/element.provider';
-import {UiChosenGroupComponent} from './chosen-group/chosen-group.component';
-import {unaccent} from '../utils/functions/unaccent';
+    QueryList,
+    TemplateRef,
+    ViewChild,
+    ViewContainerRef
+} from "@angular/core";
+import { FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR } from "@angular/forms";
+
+import { isNullOrUndefined } from "util";
+
+import { unaccent } from "../utils/functions/unaccent";
+import { UiElement } from "../utils/providers/element.provider";
+import { UiChosenGroupComponent } from "./chosen-group/chosen-group.component";
+import { UiChosenOptionComponent } from "./chosen-option/chosen-option.component";
 
 // TODO: Animation
 // TODO: Export render, open, close
 
 @Component({
-    selector: 'ui-chosen',
-    templateUrl: './chosen.component.html',
-    styleUrls: ['./chosen.component.scss'],
-    providers: [{
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: UiChosenComponent,
-        multi: true,
-    }, {
-        provide: NG_VALIDATORS,
-        useExisting: forwardRef(() => UiChosenComponent),
-        multi: true
-    }]
+    selector: "ui-chosen",
+    templateUrl: "./chosen.component.html",
+    styleUrls: ["./chosen.component.scss"],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: UiChosenComponent,
+            multi: true
+        },
+        {
+            provide: NG_VALIDATORS,
+            useExisting: forwardRef(() => UiChosenComponent),
+            multi: true
+        }
+    ]
 })
-export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, AfterContentInit {
-
+export class UiChosenComponent
+    implements OnInit, AfterViewInit, OnChanges, AfterContentInit {
     viewRef: any;
     value: any;
     focused: boolean;
@@ -52,45 +65,58 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
 
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter<any>();
 
-    @ViewChild('optionTemplate') optionTemplate: TemplateRef<any>;
-    @ViewChild('inputSearch') inputSearch: ElementRef;
-    @ViewChild('nativeSelect') nativeSelect: ElementRef;
+    @ViewChild("optionTemplate", { static: true }) optionTemplate: TemplateRef<
+        any
+    >;
+    @ViewChild("inputSearch", { static: false }) inputSearch: ElementRef;
+    @ViewChild("nativeSelect", { static: false }) nativeSelect: ElementRef;
 
     /**
      * O param "descendants" fala para o @ContentChildren pegar todos components UiChosenOptionComponent
      * mesmo que eles estejam dentro de outros components(UiChosenGroupComponent)
      */
-    @ContentChildren(UiChosenOptionComponent, {descendants: true}) options: QueryList<UiChosenOptionComponent>;
+    @ContentChildren(UiChosenOptionComponent, { descendants: true })
+    options: QueryList<UiChosenOptionComponent>;
 
     // Pegando os options que foram colocados sem o group
-    @ContentChildren(UiChosenOptionComponent) onlyOptions: QueryList<UiChosenOptionComponent>;
+    @ContentChildren(UiChosenOptionComponent) onlyOptions: QueryList<
+        UiChosenOptionComponent
+    >;
 
-    @ContentChildren(UiChosenGroupComponent, {descendants: true}) optionsGroup: QueryList<UiChosenGroupComponent>;
+    @ContentChildren(UiChosenGroupComponent, { descendants: true })
+    optionsGroup: QueryList<UiChosenGroupComponent>;
 
-    constructor(private element: ElementRef,
-                private viewContainerRef: ViewContainerRef,
-                private changeDetectorRef: ChangeDetectorRef) {
-    }
+    constructor(
+        private element: ElementRef,
+        private viewContainerRef: ViewContainerRef,
+        private changeDetectorRef: ChangeDetectorRef
+    ) {}
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     ngAfterViewInit() {
-        this.element.nativeElement.setAttribute('tabindex', this.element.nativeElement.getAttribute('tabindex') || '0');
+        this.element.nativeElement.setAttribute(
+            "tabindex",
+            this.element.nativeElement.getAttribute("tabindex") || "0"
+        );
 
-        UiElement.on(window, 'resize scroll', () => {
+        UiElement.on(window, "resize scroll", () => {
             this.close();
         });
 
         if (/Mobi|Android/.test(navigator.userAgent)) {
             this.isMobile = true;
 
-            this.element.nativeElement.classList.add('mobile');
+            this.element.nativeElement.classList.add("mobile");
         }
+        this.changeDetectorRef.detectChanges();
     }
 
     ngOnChanges(changes) {
-        if (changes.ngModel && !changes.ngModel.firstChange) {
+        if (
+            !isNullOrUndefined(changes.ngModel) &&
+            !changes.ngModel.firstChange
+        ) {
             this.setValue(changes.ngModel.currentValue);
         }
 
@@ -104,30 +130,27 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     }
 
     ngAfterContentInit() {
-        if (this.ngModel) {
+        if (!isNullOrUndefined(this.ngModel)) {
             setTimeout(() => this.setValue(this.ngModel));
         }
     }
-    writeValue() {
-    }
+    writeValue() {}
 
-    registerOnChange() {
-    }
+    registerOnChange() {}
 
-    registerOnTouched() {
-    }
+    registerOnTouched() {}
 
     validate(control: FormControl): { [key: string]: any } {
         this.control = control;
 
         if (this.required && !control.value && control.value !== 0) {
-            return {required: true};
+            return { required: true };
         }
 
         return null;
     }
 
-    @HostListener('focus')
+    @HostListener("focus")
     onFocus() {
         if (this.isMobile) {
             this.nativeSelect.nativeElement.focus();
@@ -161,13 +184,18 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     }
 
     render(coordinate) {
-        this.viewRef = this.viewContainerRef.createEmbeddedView(this.optionTemplate);
+        this.viewRef = this.viewContainerRef.createEmbeddedView(
+            this.optionTemplate
+        );
         this.viewRef.detectChanges();
 
         this.viewRef.rootNodes.forEach(rootNode => {
             document.body.appendChild(rootNode);
 
-            if (rootNode.clientWidth && !rootNode.classList.contains('wrap-chosen-overlay')) {
+            if (
+                rootNode.clientWidth &&
+                !rootNode.classList.contains("wrap-chosen-overlay")
+            ) {
                 this.open(rootNode, coordinate);
             }
         });
@@ -177,36 +205,43 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
         element.style.top = 0;
 
         setTimeout(() => {
-            const verticalCoveringArea = UiElement.position(this.element.nativeElement, true).top + element.clientHeight;
+            const verticalCoveringArea =
+                UiElement.position(this.element.nativeElement, true).top +
+                element.clientHeight;
             const bodyHeight = document.body.clientHeight;
 
             if (verticalCoveringArea > bodyHeight) {
-                coordinate.y -= (verticalCoveringArea - bodyHeight + this.element.nativeElement.clientHeight);
+                coordinate.y -=
+                    verticalCoveringArea -
+                    bodyHeight +
+                    this.element.nativeElement.clientHeight;
             }
 
             if (coordinate.y <= 0) {
                 coordinate.y = 0;
             }
 
-            const content = element.querySelector('ui-card > .content');
+            const content = element.querySelector("ui-card > .content");
             const contentHeight = content.clientHeight;
 
-            const search = element.querySelector('ui-card > .search');
-            const searchHeight =  (search ? search.clientHeight : 0);
+            const search = element.querySelector("ui-card > .search");
+            const searchHeight = search ? search.clientHeight : 0;
 
-            content.style.maxHeight = (contentHeight > bodyHeight ? (bodyHeight - searchHeight) : contentHeight)  + 'px';
+            content.style.maxHeight =
+                (contentHeight > bodyHeight
+                    ? bodyHeight - searchHeight
+                    : contentHeight) + "px";
 
-            element.style.transform = '';
-            element.style.top = coordinate.y + 'px';
-            element.style.left = coordinate.x + 'px';
+            element.style.transform = "";
+            element.style.top = coordinate.y + "px";
+            element.style.left = coordinate.x + "px";
 
-            const card = element.querySelector('ui-card');
-            card.style.maxHeight = window.innerHeight + 'px';
-            card.style.maxWidth = (window.innerWidth - 16) + 'px';
-            card.style.width = this.element.nativeElement.clientWidth + 'px';
+            const card = element.querySelector("ui-card");
+            card.style.maxHeight = window.innerHeight + "px";
+            card.style.maxWidth = window.innerWidth - 16 + "px";
+            card.style.width = this.element.nativeElement.clientWidth + "px";
 
-
-            element.classList.add('open');
+            element.classList.add("open");
         });
     }
 
@@ -218,11 +253,17 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
 
             viewRef.rootNodes.forEach(rootNode => {
                 if (rootNode.classList) {
-                    rootNode.classList.remove('open');
+                    rootNode.classList.remove("open");
                 }
             });
 
-            setTimeout(() => this.viewContainerRef.remove(this.viewContainerRef.indexOf(viewRef)), 280);
+            setTimeout(
+                () =>
+                    this.viewContainerRef.remove(
+                        this.viewContainerRef.indexOf(viewRef)
+                    ),
+                280
+            );
         }
     }
 
@@ -230,7 +271,8 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
         let updated = false;
 
         this.options.map(option => {
-            if (option.value != value) { // tslint:disable-line
+            if (option.value != value) {
+                // tslint:disable-line
                 option.setActive(false);
                 return;
             }
@@ -256,11 +298,17 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
 
     filterList() {
         this.options.map(option => {
-            option.hidden = this.searchText ? !unaccent(option.label.toLowerCase()).includes(unaccent(this.searchText.toLowerCase())) : false;
+            option.hidden = this.searchText
+                ? !unaccent(option.label.toLowerCase()).includes(
+                      unaccent(this.searchText.toLowerCase())
+                  )
+                : false;
         });
 
-        this.optionsGroup.map(group =>
-            group.hidden = group.options.filter(option => !option.hidden).length === 0
+        this.optionsGroup.map(
+            group =>
+                (group.hidden =
+                    group.options.filter(option => !option.hidden).length === 0)
         );
     }
 
@@ -286,7 +334,7 @@ export class UiChosenComponent implements OnInit, AfterViewInit, OnChanges, Afte
     }
 
     loadOption(option: UiChosenOptionComponent) {
-        if (this.ngModel && option.value === this.ngModel) {
+        if (!isNullOrUndefined(this.ngModel) && option.value === this.ngModel) {
             this.value = option.label;
         }
         this.changeDetectorRef.detectChanges();
