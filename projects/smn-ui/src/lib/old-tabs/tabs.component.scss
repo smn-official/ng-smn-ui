@@ -114,4 +114,9 @@
             }
         }
     }
+
+    //Remoção das arrows caso a tab não seja .scrolable
+    &:not(.scrollable) .arrows {
+        display: none!important;
+    }
 }
