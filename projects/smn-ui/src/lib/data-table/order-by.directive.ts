@@ -1,9 +1,5 @@
 import {Directive, ElementRef, AfterViewInit, HostListener, Input, OnChanges} from '@angular/core';
 
-const icon: HTMLElement = document.createElement('i');
-icon.classList.add('material-icons');
-icon.innerHTML = 'arrow_downward';
-
 @Directive({selector: 'th[uiDataTableOrderBy]'})
 export class UiDataTableOrderByDirective implements AfterViewInit, OnChanges {
     @Input('withCondition') withCondition: boolean;
@@ -13,6 +9,10 @@ export class UiDataTableOrderByDirective implements AfterViewInit, OnChanges {
     }
 
     ngAfterViewInit() {
+        const icon: HTMLElement = document.createElement('i');
+        icon.classList.add('material-icons');
+        icon.innerHTML = 'arrow_downward';
+
         if (this.element.nativeElement.classList.contains('align-right')) {
             this.element.nativeElement.insertBefore(icon.cloneNode(true), this.element.nativeElement.firstChild);
         } else {

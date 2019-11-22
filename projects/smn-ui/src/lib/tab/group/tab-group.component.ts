@@ -25,6 +25,7 @@ export class UiTabGroupComponent implements AfterViewInit {
 
     tabs: any[];
     activatedTab: UiTabComponent;
+    animation: boolean;
 
     constructor(private changeDetectorRef: ChangeDetectorRef, private element: ElementRef) {
     }
@@ -38,6 +39,8 @@ export class UiTabGroupComponent implements AfterViewInit {
         // Ativa uma tab através do index passado com Input ou a primeira tab
         const tab = this.getFirstTab(this.active);
         this.activateTab(tab, this.getTabRef(tab));
+        this.animation = true;
+        this.changeDetectorRef.detectChanges();
 
         this.tabsQueryList.changes.subscribe(newTabs => {
             this.tabs = newTabs.toArray();
@@ -95,7 +98,7 @@ export class UiTabGroupComponent implements AfterViewInit {
         if (this.activatedTab) {
             this.activatedTab.tabChange.emit(false);
         }
-        this.tabsContentElement.nativeElement.style.height = this.tabsContentElement.nativeElement.scrollHeight + 'px';
+        this.tabsContentElement.nativeElement.style.height = this.tabsContentElement.nativeElement.clientHeight + 'px';
 
         tab.tabChange.emit(true);
         this.changeDetectorRef.detectChanges();
@@ -126,8 +129,6 @@ export class UiTabGroupComponent implements AfterViewInit {
      * Callback para quando a animação do conteúdo da tab terminar
      * */
     doneTranslateAnimation(event: AnimationEvent) {
-        if (event.toState !== 'active') {
-            this.tabsContentElement.nativeElement.style.height = '';
-        }
+        this.tabsContentElement.nativeElement.style.height = '';
     }
 }
