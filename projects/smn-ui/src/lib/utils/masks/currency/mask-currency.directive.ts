@@ -31,6 +31,7 @@ export class UiMaskCurrencyDirective implements ControlValueAccessor, Validator,
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
     @Input() min: number;
     @Input() max: number;
+    @Input() noNegative: boolean;
 
     constructor(public elementRef: ElementRef, public currencyPipe: UiCurrencyPipe) {
     }
@@ -81,7 +82,7 @@ export class UiMaskCurrencyDirective implements ControlValueAccessor, Validator,
     }
 
     format(value) {
-        value = this.currencyPipe.transform(value);
+        value = this.currencyPipe.transform(value, { noNegative: this.noNegative });
         const removeGroupSep = new RegExp('[^\\d\\,-]+', 'g');
         value = value.toString().replace(removeGroupSep, '');
         value = parseFloat(value.replace(',', '.'));
@@ -91,7 +92,7 @@ export class UiMaskCurrencyDirective implements ControlValueAccessor, Validator,
     formatViewValue(value) {
         const isDeletingZero = this.beforeViewValue === ('0,00') && value.length < this.beforeViewValue.length;
         value = isDeletingZero ? '' : value;
-        return this.currencyPipe.transform(value);
+        return this.currencyPipe.transform(value, { noNegative: this.noNegative });
     }
 
     validate(control: FormControl): { [key: string]: any } {
