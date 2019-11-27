@@ -9,10 +9,8 @@ import { Title } from '@angular/platform-browser';
 })
 export class DemoUploadComponent implements OnInit, AfterViewInit, OnDestroy {
     files: any;
-    formatos: string;
 
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
-        this.formatos = 'zip, png';
     }
 
     ngOnInit() {

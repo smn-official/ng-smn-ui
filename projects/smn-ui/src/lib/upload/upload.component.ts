@@ -1,8 +1,7 @@
 import { Component, OnInit, OnChanges, Input, forwardRef, Output, EventEmitter, HostListener, ViewChild } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-
 import { Upload } from './upload';
-import { enterLeaveViewAnimation } from './enter-leave-view.animations';
+import { enterLeaveViewAnimation } from '../utils/animations/enter-leave-view.animations';
 
 
 @Component({
@@ -22,7 +21,6 @@ export class UiUploadComponent extends Upload implements OnInit, OnChanges {
 
     @Input() ngModel: any;
     @Input() modelConfig: any;
-    @Input() accept: string;
     @Input() message: string;
     @Input() max: number;
     @Input() maxLength: number;

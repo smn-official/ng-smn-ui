@@ -7,9 +7,9 @@
                 [(ngModel)]="files"
                 name="upload"
                 [max]="5"
-                [multiple]="true"
+                [multiple]="false"
                 (ngModelChange)="file()"
-                [accept]="formatos"
+                accept="png, zip"
                 [maxSize]="'200MB'"
                 [maxFileSize]="'5MB'"></ui-upload>
         </ui-card-content>
@@ -28,7 +28,7 @@
                         [max]="5"
                         [multiple]="true"
                         (ngModelChange)="file()"
-                        [accept]="formatos"
+                        accept="png, zip"
                         [maxSize]="'200MB'"
                         [maxFileSize]="'5MB'"></ui-upload>
                 </div>

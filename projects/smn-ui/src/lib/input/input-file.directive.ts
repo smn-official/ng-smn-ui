@@ -143,10 +143,9 @@ export class UiInputFileDirective {
     }
 
     readFile(file, data, index) {
+        if (typeof (data) !== 'object') return;
+
         const reader = new FileReader();
-        if (typeof (data) !== 'object') {
-            return;
-        }
 
         data.resolved = 'false';
 
