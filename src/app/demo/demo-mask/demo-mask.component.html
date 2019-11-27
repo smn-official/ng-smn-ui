@@ -2,7 +2,7 @@
     <ui-card>
         <ui-card-content>
             <ui-input-container>
-                <input type="text" name="currency" [(ngModel)]="currency" uiInput uiMaskCurrency required
+                <input type="text" name="currency" [(ngModel)]="currency" uiInput uiMaskCurrency required [noNegative]="false"
                     #currencyField="ngModel">
                 <label>Currency(uiMaskCurrency)</label>
                 <div class="ui-messages">
