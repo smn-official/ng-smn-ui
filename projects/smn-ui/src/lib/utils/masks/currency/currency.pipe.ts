@@ -1,11 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+interface UiCurrencyPipeArgs {
+    noNegative?: boolean;
+}
+
 @Pipe({
     name: 'uiCurrency'
 })
 export class UiCurrencyPipe implements PipeTransform {
 
-    transform(value: any, args?: any): any {
+    transform(value: any, args?: UiCurrencyPipeArgs): any {
         if (!value && typeof value !== 'number') {
             return '';
         }
@@ -42,9 +46,11 @@ export class UiCurrencyPipe implements PipeTransform {
         }
 
         // ADICIONANDO O SINAL NEGATIVO
-        newCurrency = isNegative ? '-' + newCurrency : newCurrency;
+        if (args && args.noNegative) {
+            return newCurrency;
+        }
 
-        return newCurrency;
+        return isNegative ? '-' + newCurrency : newCurrency;
     }
 
 }
