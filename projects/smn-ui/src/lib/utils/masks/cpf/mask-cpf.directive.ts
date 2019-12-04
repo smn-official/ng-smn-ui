@@ -1,10 +1,7 @@
-import {
-    AfterViewInit, Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges,
-    Output
-} from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from '@angular/forms';
-import {UiCpfPipe} from './cpf.pipe';
-import {UiElement} from '../../providers/element.provider';
+import { AfterViewInit, Directive, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnChanges, Output } from '@angular/core';
+import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator } from '@angular/forms';
+import { UiElement } from '../../providers/element.provider';
+import { UiCpfPipe } from './cpf.pipe';
 
 @Directive({
     selector: '[uiMaskCpf][ngModel]',
@@ -20,20 +17,19 @@ import {UiElement} from '../../providers/element.provider';
 })
 export class UiMaskCpfDirective implements ControlValueAccessor, Validator, AfterViewInit, OnChanges {
 
-    loaded: boolean;
-    input: boolean;
     beforeSelIndex;
+    control: FormControl;
+    input: boolean;
+    loaded: boolean;
+    symbolsPositions: number[] = [3, 7, 11, 14];
     onChange: Function;
     onTouched: Function;
-    control: FormControl;
-    symbolsPositions: number[] = [3, 7, 11, 14];
     @Input() ngModel: any;
     @Input() padOnPaste: boolean = true;
     @Input('uiMaskCpf') uiMaskCpf;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
-    constructor(public elementRef: ElementRef, public cpfPipe: UiCpfPipe) {
-    }
+    constructor(public elementRef: ElementRef, public cpfPipe: UiCpfPipe) {}
 
     ngOnChanges(changes): void {
         if (!changes.ngModel.firstChange && (changes.ngModel.currentValue === null || changes.ngModel.currentValue === undefined)) {
@@ -51,8 +47,9 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
         if (this.control && this.loaded && rawValue) {
             this.control.markAsDirty();
         }
-        if (!this.input && this.ngModel) {
-            this.ngModel = this.ngModel.toString().padStart(11, '0');
+
+        if (!this.input) {
+            this.ngModel = this.ngModel ? this.ngModel.toString().padStart(11, '0') : '';
             this.elementRef.nativeElement.value = this.cpfPipe.transform(this.ngModel, true);
         }
         this.input = false;
@@ -83,14 +80,17 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
     validate(control: FormControl): { [key: string]: any } {
         this.control = control;
 
-        if (control.value && this.format(control.value).length < 11) {
-            return {parse: true};
+        if (this.input) {
+            if (control.value && this.format(control.value).length < 11) {
+                return {parse: true};
+            }
         }
 
         if (this.uiMaskCpf === true && control.value && !this.cpfIsValid(control.value)) {
             return {parse: true};
         }
 
+        this.input = false;
         return null;
     }
 
@@ -136,13 +136,13 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
     @HostListener('input', ['$event']) onInput($event): void {
         const afterSelIndex = UiElement.caretPosition.get(this.elementRef.nativeElement);
         const rawValue: string = this.elementRef.nativeElement.value;
-        this.input = true;
+        this.input = this.format(rawValue) !== this.ngModel;
         this.renderViaInput(rawValue);
         UiElement.caretPosition.set(this.elementRef.nativeElement, this.beforeSelIndex, afterSelIndex, this.symbolsPositions);
     }
 
     @HostListener('paste', ['$event'])
-    padLeft(event: ClipboardEvent) {
+    padLeft(event: ClipboardEvent): void {
         if (this.padOnPaste) {
             event.preventDefault();
             const data = event.clipboardData;
