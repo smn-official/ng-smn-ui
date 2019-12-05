@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class UiFloatPipe implements PipeTransform {
 
-    transform(value: any, decimal: number = null): any {
+    transform(value: any, decimal: number = null, noNegative?: boolean): any {
         if (!value && typeof value !== 'number') {
             return '';
         }
@@ -50,8 +50,10 @@ export class UiFloatPipe implements PipeTransform {
         }
 
         // ADICIONANDO O SINAL NEGATIVO
-        newValue = isNegative ? '-' + newValue : newValue;
+        if (noNegative) {
+            return newValue;
+        }
 
-        return newValue;
+        return isNegative ? '-' + newValue : newValue;
     }
 }
