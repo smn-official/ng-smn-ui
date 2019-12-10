@@ -44,7 +44,6 @@ import { DemoTabsComponent } from './demo-tabs/demo-tabs.component';
 import { DemoGridComponent } from './demo-grid/demo-grid.component';
 import { DemoChosenComponent } from './demo-chosen/demo-chosen.component';
 import { DemoExpansioPanelComponent } from './demo-expansio-panel/demo-expansio-panel.component';
-import { DemoUploadComponent } from './demo-upload/demo-upload.component';
 
 @NgModule({
     imports: [
@@ -98,7 +97,6 @@ import { DemoUploadComponent } from './demo-upload/demo-upload.component';
         DemoChosenComponent,
         DemoExpansioPanelComponent,
         DemoTabsComponent,
-        DemoUploadComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
