@@ -34,7 +34,6 @@
 @import "../tab/header/tab-header.theme";
 @import "../chosen/chosen-option/chosen-option.theme";
 @import "../chosen/chosen-group/chosen-group.theme";
-@import "../upload/upload.theme";
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
@@ -91,7 +90,6 @@
     @include ui-divider($theme);
     @include ui-expansion-panel($theme);
     @include ui-input($theme);
-    @include ui-upload($theme);
     @include ui-list($theme);
     @include ui-nav-drawer($theme);
     @include ui-option($theme);
