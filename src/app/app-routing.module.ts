@@ -35,11 +35,12 @@ import {DemoPagesComponent} from './demo/demo-tabs-pages/demo-pages/demo-pages.c
 import {DemoInfiniteLoadComponent} from './demo/demo-infinite-load/demo-infinite-load.component';
 import {DemoSelectComponent} from './demo/demo-select/demo-select.component';
 import {DemoAvatarComponent} from './demo/demo-avatar/demo-avatar.component';
-import {DemoTooltipComponent} from "./demo/demo-tooltip/demo-tooltip.component";
+import {DemoTooltipComponent} from './demo/demo-tooltip/demo-tooltip.component';
 import {DemoGridComponent} from './demo/demo-grid/demo-grid.component';
 import {DemoChosenComponent} from './demo/demo-chosen/demo-chosen.component';
 import { DemoExpansioPanelComponent } from './demo/demo-expansio-panel/demo-expansio-panel.component';
 import {DemoTabsComponent} from './demo/demo-tabs/demo-tabs.component';
+import { DemoUploadComponent } from './demo/demo-upload/demo-upload.component';
 
 const routes: Routes = [
     {
@@ -86,6 +87,7 @@ const routes: Routes = [
             {path: 'select', component: DemoSelectComponent},
             {path: 'chosen', component: DemoChosenComponent},
             {path: 'expansion-panel', component: DemoExpansioPanelComponent},
+            {path: 'upload', component: DemoUploadComponent},
         ]
     },
     {path: '**', redirectTo: ''}
