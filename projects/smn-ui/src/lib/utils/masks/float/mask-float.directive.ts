@@ -32,6 +32,7 @@ export class UiMaskFloatDirective implements ControlValueAccessor, AfterViewInit
     @Input() max: number;
     @Input() min: number;
     @Input() ngModel: any;
+    @Input() noNegative: boolean;
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
     constructor(public elementRef: ElementRef, public floatPipe: UiFloatPipe) {
@@ -93,7 +94,7 @@ export class UiMaskFloatDirective implements ControlValueAccessor, AfterViewInit
     }
 
     format(value) {
-        value = this.floatPipe.transform(value, +this.decimal);
+        value = this.floatPipe.transform(value, +this.decimal, this.noNegative);
         const removeGroupSep = new RegExp('[^\\d\\,-]+', 'g');
         value = value.toString().replace(removeGroupSep, '');
         value = parseFloat(value.replace(',', '.'));
@@ -105,7 +106,7 @@ export class UiMaskFloatDirective implements ControlValueAccessor, AfterViewInit
         standard = standard.padEnd(+this.decimal + 2, '0');
         const isDeletingZero = this.beforeViewValue === (standard) && value.length < this.beforeViewValue.length;
         value = isDeletingZero ? '' : value;
-        return this.floatPipe.transform(value, +this.decimal);
+        return this.floatPipe.transform(value, +this.decimal, this.noNegative);
     }
 
     validate(control: FormControl): { [key: string]: any } {
