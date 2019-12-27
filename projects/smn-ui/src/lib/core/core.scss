@@ -18,6 +18,11 @@
 @import "../tooltip/tooltip.directive";
 @import "../grid/grid";
 
-@mixin ui-core {
+// Density
+@import "../data-table/data-table.density";
 
+@mixin ui-core($density: '') {
+    @if($density == 'compact') {
+        @include ui-data-table-density();
+    }
 }

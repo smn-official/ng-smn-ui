@@ -69,6 +69,10 @@
             }
         }
 
+        tfoot tr:not(.disabled):hover td {
+            background-color: transparent;
+        }
+
         tbody:not(:last-child) {
             tr:last-child td {
                 border-color: $border;
