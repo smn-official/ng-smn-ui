@@ -11,7 +11,7 @@ import {AfterViewInit, Component, ViewEncapsulation, ElementRef, Input} from '@a
         </div>
     </div>
   `,
-  styleUrls: ['input.component.scss'],
+  // styleUrls: ['input.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 

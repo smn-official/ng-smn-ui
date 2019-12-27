@@ -17,12 +17,15 @@
 @import "../time-picker/time-picker-caller.directive";
 @import "../tooltip/tooltip.directive";
 @import "../grid/grid";
+@import "../input/input.component";
 
 // Density
 @import "../data-table/data-table.density";
+@import "../input/input.density";
 
 @mixin ui-core($density: '') {
     @if($density == 'compact') {
         @include ui-data-table-density();
+        @include ui-input-density();
     }
 }
