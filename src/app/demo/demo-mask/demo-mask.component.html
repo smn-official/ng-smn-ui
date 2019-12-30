@@ -38,12 +38,14 @@
             <pre>{{customTimeField.errors | json}}</pre>
 
             <ui-input-container>
-                <input type="text" name="cpf" [(ngModel)]="cpf" uiInput uiMaskCpf>
+                <input type="text" name="cpf" [(ngModel)]="cpf" uiInput uiMaskCpf #cpfField="ngModel">
                 <label>CPF(uiMaskCpf)</label>
                 <div class="ui-messages">
-                    <div class="ui-message helper">Model: {{cpf}}; View: {{cpf | uiCpf}}</div>
+                    <div class="ui-message helper">Model: {{cpf | json}}; View: {{cpf | uiCpf}}</div>
                 </div>
             </ui-input-container>
+            <pre>{{cpfField.errors | json}}</pre>
+
             <ui-input-container>
                 <input type="text" name="truecpf" [(ngModel)]="truecpf" uiInput [uiMaskCpf]="true">
                 <label>CPF(uiMaskCpf)</label>
@@ -76,7 +78,7 @@
                 <input type="text" name="padcnpj" [(ngModel)]="padcnpj" uiInput [uiMaskCnpj]="true" [padOnPaste]="false">
                 <label>CNPJ(uiMaskCnpj) - sem padding ao colar valor</label>
                 <div class="ui-messages">
-                    <div class="ui-message helper">Model: {{truecnpj}}; View: {{truecnpj | uiCnpj}}</div>
+                    <div class="ui-message helper">Model: {{padcnpj}}; View: {{padcnpj | uiCnpj}}</div>
                 </div>
             </ui-input-container>
             <ui-input-container>
@@ -102,10 +104,10 @@
                 </div>
             </ui-input-container>
             <ui-input-container>
-                <input type="text" name="interger" [(ngModel)]="interger" uiInput uiMaskInteger [max]="2018">
-                <label>Interger</label>
+                <input type="text" name="integer" [(ngModel)]="integer" uiInput uiMaskInteger [max]="2018">
+                <label>Integer</label>
                 <div class="ui-messages">
-                    <div class="ui-message helper">Model: {{interger}}; View: {{interger}}</div>
+                    <div class="ui-message helper">Model: {{integer}}; View: {{integer}}</div>
                 </div>
             </ui-input-container>
 

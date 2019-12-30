@@ -19,7 +19,7 @@
 </ui-tab-header>
 <div class="wrap-content" #tabsContentElement>
     <div *ngFor="let tab of tabs"
-         [@tabTransform]="tab.index < activatedTab?.index ? 'left' : tab.index > activatedTab?.index ? 'right' : 'active'"
+         [@tabTransform]="animation ? (tab.index < activatedTab?.index ? 'left' : tab.index > activatedTab?.index ? 'right' : 'active') : ''"
          class="tab-content"
          (@tabTransform.start)="startTranslateAnimation($event)"
          (@tabTransform.done)="doneTranslateAnimation($event)">
