@@ -22,10 +22,14 @@
 // Density
 @import "../data-table/data-table.density";
 @import "../input/input.density";
+@import "../card/card.density";
 
 @mixin ui-core($density: '') {
     @if($density == 'compact') {
         @include ui-data-table-density();
         @include ui-input-density();
+        @include ui-card-density();
+
+
     }
 }
