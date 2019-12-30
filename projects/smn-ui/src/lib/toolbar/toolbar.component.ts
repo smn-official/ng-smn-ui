@@ -6,7 +6,7 @@ import {UiElement} from '../utils/providers/element.provider';
 @Component({
     selector: 'ui-toolbar',
     templateUrl: './toolbar.component.html',
-    styleUrls: ['./toolbar.component.scss'],
+    // styleUrls: ['./toolbar.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class UiToolbarComponent implements AfterViewInit {

@@ -18,12 +18,14 @@
 @import "../tooltip/tooltip.directive";
 @import "../grid/grid";
 @import "../input/input.component";
+@import "../toolbar/toolbar.component";
 
 // Density
 @import "../data-table/data-table.density";
 @import "../input/input.density";
 @import "../card/card.density";
 @import "../subheader/subheader.density";
+@import "../toolbar/toolbar.density";
 
 @mixin ui-core($density: '') {
     @if($density == 'compact') {
@@ -31,5 +33,6 @@
         @include ui-input-density();
         @include ui-card-density();
         @include ui-subheader-density();
+        @include ui-toolbar-density();
     }
 }
