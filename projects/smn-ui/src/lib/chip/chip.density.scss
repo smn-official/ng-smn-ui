@@ -1,0 +1,21 @@
+@mixin ui-chip-density() {
+    .ui-chip {
+        height: 24px;
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            padding: 2px;
+
+            i {
+                font-size: 18px;
+            }
+        }
+
+        .close {
+            width: 24px;
+            height: 24px;
+            padding: 2px;
+        }
+    }
+}

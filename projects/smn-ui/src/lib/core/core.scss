@@ -20,12 +20,14 @@
 @import "../input/input.component";
 
 // Density
+@import "../chip/chip.density";
 @import "../data-table/data-table.density";
 @import "../button//button.density.scss";
 @import "../input/input.density";
 
 @mixin ui-core($density: '') {
     @if($density == 'compact') {
+        @include ui-chip-density();
         @include ui-data-table-density();
         @include ui-button-density();
         @include ui-input-density();
