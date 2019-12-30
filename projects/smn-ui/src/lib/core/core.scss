@@ -19,9 +19,12 @@
 @import "../grid/grid";
 @import "../input/input.component";
 @import "../toolbar/toolbar.component";
+@import "../typography/typography.scss";
 
 // Density
+@import "../chip/chip.density";
 @import "../data-table/data-table.density";
+@import "../button//button.density.scss";
 @import "../input/input.density";
 @import "../card/card.density";
 @import "../subheader/subheader.density";
@@ -29,7 +32,9 @@
 
 @mixin ui-core($density: '') {
     @if($density == 'compact') {
+        @include ui-chip-density();
         @include ui-data-table-density();
+        @include ui-button-density();
         @include ui-input-density();
         @include ui-card-density();
         @include ui-subheader-density();

@@ -1,0 +1,40 @@
+@mixin ui-button-density() {
+    .ui-button {
+        padding-left: 14px;
+        padding-right: 14px;
+        height: 28px;
+        min-height: 28px;
+        font-size: 14px;
+
+        &.icon {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+        }
+
+        &.fab {
+            width: 48px;
+            min-height: 48px;
+            margin: 5px;
+
+            &.hide {
+                transform: scale(0);
+            }
+
+            &.mini {
+                width: 32px;
+                min-height: 32px;
+            }
+        }
+
+        & > i {
+            font-size: 20px;
+        }
+
+        .badge {
+            width: 18px;
+            height: 18px;
+            line-height: 20px;
+        }
+    }
+}
