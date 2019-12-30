@@ -1,0 +1,31 @@
+
+@mixin ui-input-density() {
+    ui-input-container {
+        .ui-input-wrap {
+            margin-bottom: 18px;
+        }
+
+        .ui-control {
+            padding: 2px 0;
+            font-size: 15px;
+            min-height: 26px;
+
+            &::placeholder {
+                font-size: 15px;
+            }
+        }
+
+        label {
+            top: 21px;
+            font-size: 15px;
+        }
+
+        .ui-messages {
+            top: 2px;
+        }
+
+        .suffix {
+            margin-top: -9px;
+        }
+    }
+}
