@@ -1,0 +1,83 @@
+$light: 300;
+$regular: 500;
+$medium: 600;
+
+.ui-typo {
+    &-h1 {
+        font-weight: $light;
+        font-size: 96px;
+        letter-spacing: -1.5;
+    }
+
+    &-h2 {
+        font-weight: $light;
+        font-size: 60px;
+        letter-spacing: -0.5;
+    }
+
+    &-h3 {
+        font-size: 48px;
+        font-weight: $regular;
+    }
+
+    &-h4 {
+        font-weight: $regular;
+        font-size: 34px;
+        letter-spacing: 0.25;
+    }
+
+    &-h5 {
+        font-weight: $regular;
+        font-size: 24px;
+    }
+
+    &-h6 {
+        font-weight: $medium;
+        font-size: 20px;
+        letter-spacing: 0.15;
+    }
+
+    &-subtitle1 {
+        font-weight: $regular;
+        font-size: 16px;
+        letter-spacing: 0.15;
+    }
+
+    &-subtitle2 {
+        font-weight: $medium;
+        font-size: 14px;
+        letter-spacing: 0.1;
+    }
+
+    &-body1 {
+        font-weight: $regular;
+        font-size: 16px;
+        letter-spacing: 0.5;
+    }
+
+    &-body2 {
+        font-weight: $regular;
+        font-size: 14px;
+        letter-spacing: 0.25;
+    }
+
+    &-button {
+        font-weight: $medium;
+        font-size: 14px;
+        letter-spacing: 1.25;
+        text-transform: uppercase;
+    }
+
+    &-caption {
+        font-weight: $regular;
+        font-size: 12px;
+        letter-spacing: 0.4;
+    }
+
+    &-overline {
+        font-weight: $regular;
+        font-size: 10px;
+        letter-spacing: 1.5;
+        text-transform: uppercase;
+    }
+}

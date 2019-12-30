@@ -40,6 +40,7 @@ import {DemoGridComponent} from './demo/demo-grid/demo-grid.component';
 import {DemoChosenComponent} from './demo/demo-chosen/demo-chosen.component';
 import { DemoExpansioPanelComponent } from './demo/demo-expansio-panel/demo-expansio-panel.component';
 import {DemoTabsComponent} from './demo/demo-tabs/demo-tabs.component';
+import { DemoTypographyComponent } from './demo/demo-typography/demo-typography.component';
 
 const routes: Routes = [
     {
@@ -86,6 +87,7 @@ const routes: Routes = [
             {path: 'select', component: DemoSelectComponent},
             {path: 'chosen', component: DemoChosenComponent},
             {path: 'expansion-panel', component: DemoExpansioPanelComponent},
+            {path: 'typography', component: DemoTypographyComponent}
         ]
     },
     {path: '**', redirectTo: ''}
