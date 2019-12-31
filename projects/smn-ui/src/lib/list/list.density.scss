@@ -1,0 +1,21 @@
+@mixin ui-list-density() {
+    .ui-list {
+        li,
+        .ui-list-item {
+            height: 40px;
+
+            .avatar,
+            .icon:not(.ui-button) {
+                width: 32px;
+                height: 32px;
+            }
+
+            &.multi-line {
+                min-height: 40px;
+                .avatar {
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+}

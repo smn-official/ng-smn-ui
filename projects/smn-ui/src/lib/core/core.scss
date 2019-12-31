@@ -22,21 +22,23 @@
 @import "../typography/typography.scss";
 
 // Density
+@import "../button//button.density.scss";
+@import "../card/card.density";
 @import "../chip/chip.density";
 @import "../data-table/data-table.density";
-@import "../button//button.density.scss";
 @import "../input/input.density";
-@import "../card/card.density";
+@import "../list/list.density.scss";
 @import "../subheader/subheader.density";
 @import "../toolbar/toolbar.density";
 
 @mixin ui-core($density: '') {
     @if($density == 'compact') {
+        @include ui-button-density();
+        @include ui-card-density();
         @include ui-chip-density();
         @include ui-data-table-density();
-        @include ui-button-density();
         @include ui-input-density();
-        @include ui-card-density();
+        @include ui-list-density();
         @include ui-subheader-density();
         @include ui-toolbar-density();
     }
