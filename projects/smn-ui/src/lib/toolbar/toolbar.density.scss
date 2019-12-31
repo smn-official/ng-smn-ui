@@ -1,0 +1,33 @@
+@import "../core/variables";
+
+@mixin ui-toolbar-density() {
+    ui-card ui-toolbar {
+        header {
+            height: 48px;
+
+            @include desktop {
+                height: 48px;
+                min-height: 48px;
+            }
+
+            @include mobile-portrait {
+                height: 48px;
+                min-height: 48px;
+            }
+        }
+
+        .ui-toolbar-space {
+            height: 48px;
+
+            @include desktop {
+                height: 48px;
+                min-height: 48px;
+            }
+
+            @include mobile-portrait {
+                height: 48px;
+                min-height: 48px;
+            }
+        }
+    }
+}
