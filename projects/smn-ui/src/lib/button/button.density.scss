@@ -1,3 +1,5 @@
+@import "../core/variables";
+
 @mixin ui-button-density() {
     .ui-button {
         padding-left: 14px;
@@ -35,6 +37,49 @@
             width: 18px;
             height: 18px;
             line-height: 20px;
+        }
+    }
+
+    $sizes: 480 600 840 960 1280 1440 1600;
+
+    @each $size in $sizes {
+        .ui-s#{$size} {
+            .ui-fab-container {
+                top: 120px;
+
+                @include desktop {
+                    top: 132px;
+                }
+
+                @media (max-width: #{$size + 188}px) {
+                    margin-top: -70px;
+                    top: 100%;
+                }
+
+                &.scrolled {
+                    top: 100%;
+                    margin-top: -70px;
+                }
+            }
+        }
+    }
+
+    body.ui-nav-drawer-persistent {
+        @each $size in $sizes {
+            .ui-s#{$size} {
+                .ui-fab-container {
+                    @media (max-width: #{$size + 188 + 320}px) {
+                        top: 100%;
+                        margin-top: -70px;
+                    }
+
+                    &.scrolled {
+                        top: 100%;
+                        margin-top: -70px;
+                    }
+
+                }
+            }
         }
     }
 }
