@@ -1,7 +1,8 @@
-@mixin ui-grid($className, $columns, $gutter) {
+@mixin ui-grid($className, $columns, $gutter-height, $gutter-width) {
+    $gutter: ($gutter-height / 2) ($gutter-width / 2);
 
     .ui-grid.spacing {
-        padding: $gutter / 2;
+        padding: $gutter;
     }
 
     @for $i from 1 through $columns {
@@ -12,8 +13,8 @@
         }
 
         .ui-grid.spacing .#{$className}-#{$i} {
-            width: calc(#{$width} - #{$gutter});
-            margin: $gutter / 2;
+            width: calc(#{$width} - #{$gutter-width});
+            margin: $gutter;
         }
     }
 }
@@ -24,16 +25,3 @@
     align-items: flex-start;
 }
 
-@include ui-grid('xsmall', 4, 16px);
-
-@media (min-width: 600px) {
-    @include ui-grid('small', 8, 16px);
-}
-
-@media (min-width: 960px) {
-    @include ui-grid('medium', 12, 16px);
-}
-
-@media (min-width: 1440px) {
-    @include ui-grid('large', 12, 24px);
-}

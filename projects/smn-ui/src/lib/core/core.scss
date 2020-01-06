@@ -29,8 +29,11 @@
 @import "../card/card.density";
 @import "../subheader/subheader.density";
 @import "../toolbar/toolbar.density";
+@import "../grid/grid-density";
 
 @mixin ui-core($density: '') {
+    @include ui-grid-density($density);
+
     @if($density == 'compact') {
         @include ui-chip-density();
         @include ui-data-table-density();

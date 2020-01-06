@@ -1,0 +1,23 @@
+@import "../core/if";
+@import "grid";
+
+@mixin ui-grid-density($density) {
+    $gutter: ui-if($density == 'compact', 8px, 16px);
+    $gutter-large: ui-if($density == 'compact', 12px, 24px);
+
+    @include ui-grid('xsmall', 4, $gutter, 16px);
+
+    @media (min-width: 600px) {
+        @include ui-grid('small', 8, $gutter, 16px);
+    }
+
+    @media (min-width: 960px) {
+        @include ui-grid('medium', 12, $gutter, 16px);
+    }
+
+    @media (min-width: 1440px) {
+        @include ui-grid('large', 12, $gutter-large, 24px);
+    }
+}
+
+
