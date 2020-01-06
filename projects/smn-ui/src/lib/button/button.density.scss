@@ -1,4 +1,9 @@
 @mixin ui-button-density() {
+    .ui-button-container.cover {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
     .ui-button {
         padding-left: 14px;
         padding-right: 14px;
