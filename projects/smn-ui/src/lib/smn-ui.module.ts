@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, ElementRef, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -95,11 +95,12 @@ import { UiCreditCardPipe } from './utils/masks/credit-card/credit-card.pipe';
 import { UiMaskCreditCard } from './utils/masks/credit-card/credit-card-mask.directive';
 import { ExpansionPanelComponent } from './expansion-panel/expansion-panel.component';
 import { UiFloatPipe } from './utils/masks/float/float.pipe';
-import {UiTabComponent} from './tab/tab.component';
-import {UiTabGroupComponent} from './tab/group/tab-group.component';
-import {UiTabContentDirective} from './tab/tab-content.directive';
-import {UiTabLabelDirective} from './tab/tab-label.directive';
+import { UiTabComponent } from './tab/tab.component';
+import { UiTabGroupComponent } from './tab/group/tab-group.component';
+import { UiTabContentDirective } from './tab/tab-content.directive';
+import { UiTabLabelDirective } from './tab/tab-label.directive';
 import { UiTabHeaderComponent } from './tab/header/tab-header.component';
+import { UiLabelContentComponent } from './label-content/label-content.component';
 
 export {
     debounce,
@@ -217,6 +218,7 @@ const lib: any[] = [
     UiTabContentDirective,
     UiTabLabelDirective,
     UiTabHeaderComponent,
+    UiLabelContentComponent,
 ];
 
 @NgModule({

@@ -41,6 +41,7 @@ import {DemoChosenComponent} from './demo/demo-chosen/demo-chosen.component';
 import { DemoExpansioPanelComponent } from './demo/demo-expansio-panel/demo-expansio-panel.component';
 import {DemoTabsComponent} from './demo/demo-tabs/demo-tabs.component';
 import { DemoTypographyComponent } from './demo/demo-typography/demo-typography.component';
+import {DemoLabelContentComponent} from './demo/demo-label-content/demo-label-content.component';
 
 const routes: Routes = [
     {
@@ -63,6 +64,7 @@ const routes: Routes = [
             {path: 'grid', component: DemoGridComponent},
             {path: 'inputs', component: DemoInputsComponent},
             {path: 'chips', component: DemoChipsComponent},
+            {path: 'label-content', component: DemoLabelContentComponent},
             {path: 'layout', component: DemoLayoutComponent},
             {path: 'menus', component: DemoMenuComponent},
             {path: 'nav-drawer', component: DemoNavDrawerComponent},
