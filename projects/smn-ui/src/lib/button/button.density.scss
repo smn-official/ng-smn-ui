@@ -15,9 +15,12 @@
             width: 28px;
             height: 28px;
             min-width: 28px;
+            padding: 0;
         }
 
         &.fab {
+            padding-left: 0;
+            padding-right: 0;
             width: 48px;
             min-height: 48px;
             margin: 5px;
@@ -28,6 +31,7 @@
 
             &.mini {
                 width: 32px;
+                min-width: 32px;
                 min-height: 32px;
             }
         }
