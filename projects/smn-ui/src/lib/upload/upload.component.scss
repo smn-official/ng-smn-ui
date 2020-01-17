@@ -43,14 +43,14 @@ $orange-color: ui-color('yellow', '800');
     section {
         display: flex;
         justify-content: center;
-        padding: 3vh;
+        padding: 25px;
         align-items: center;
         i {
-            font-size: 6vh;
+            font-size: 55px;
         }
         .text-area {
             color: #afafaf;
-            padding: 1vh;
+            padding: 8px;
         }
     }
 }
