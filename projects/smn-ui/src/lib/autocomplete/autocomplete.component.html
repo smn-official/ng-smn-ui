@@ -4,7 +4,6 @@
             <div class="indeterminate"></div>
         </div>
         <ul class="ui-list">
-            {{loading}}
             <li class="multi-line" uiRipple
                 *ngFor="let item of list; let index = index"
                 (click)="selectItem(item)"

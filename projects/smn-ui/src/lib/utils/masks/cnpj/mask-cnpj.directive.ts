@@ -51,8 +51,8 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator, Aft
         if (this.control && this.loaded && rawValue) {
             this.control.markAsDirty();
         }
-        if (!this.input && this.ngModel) {
-            this.ngModel = this.ngModel.toString().padStart(14, '0');
+        if (!this.input) {
+            this.ngModel = this.ngModel ? this.ngModel.toString().padStart(14, '0') : '';
             this.elementRef.nativeElement.value = this.cnpjPipe.transform(this.ngModel, true);
         }
         this.input = false;
@@ -84,14 +84,17 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator, Aft
 
         this.control = control;
 
-        if (control.value && this.format(control.value).length < 14) {
-            return {parse: true};
+        if (this.input) {
+            if (control.value && this.format(control.value).length < 14) {
+                return {parse: true};
+            }
         }
 
         if (this.uiMaskCnpj === true && control.value && !this.cnpjIsValid(control.value)) {
             return {parse: true};
         }
 
+        this.input = false;
         return null;
     }
 
@@ -144,13 +147,13 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator, Aft
     onInput($event): void {
         const afterSelIndex = UiElement.caretPosition.get(this.elementRef.nativeElement);
         const rawValue: string = this.elementRef.nativeElement.value;
-        this.input = true;
+        this.input = this.format(rawValue) !== this.ngModel;
         this.renderViaInput(rawValue);
         UiElement.caretPosition.set(this.elementRef.nativeElement, this.beforeSelIndex, afterSelIndex, this.symbolsPositions);
     }
 
     @HostListener('paste', ['$event'])
-    padLeft(event: ClipboardEvent) {
+    padLeft(event: ClipboardEvent): void {
         if (this.padOnPaste) {
             event.preventDefault();
             const data = event.clipboardData;

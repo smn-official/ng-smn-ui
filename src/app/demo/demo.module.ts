@@ -1,5 +1,4 @@
-import {BrowserModule,} from '@angular/platform-browser';
-import {BrowserAnimationsModule,} from '@angular/platform-browser/animations';
+import {BrowserModule} from '@angular/platform-browser';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
@@ -44,7 +43,8 @@ import { DemoTabsComponent } from './demo-tabs/demo-tabs.component';
 import { DemoGridComponent } from './demo-grid/demo-grid.component';
 import { DemoChosenComponent } from './demo-chosen/demo-chosen.component';
 import { DemoExpansioPanelComponent } from './demo-expansio-panel/demo-expansio-panel.component';
-import { DemoUploadComponent } from './demo-upload/demo-upload.component';
+import { DemoTypographyComponent } from './demo-typography/demo-typography.component';
+import { DemoLabelContentComponent } from './demo-label-content/demo-label-content.component';
 
 @NgModule({
     imports: [
@@ -98,7 +98,8 @@ import { DemoUploadComponent } from './demo-upload/demo-upload.component';
         DemoChosenComponent,
         DemoExpansioPanelComponent,
         DemoTabsComponent,
-        DemoUploadComponent
+        DemoTypographyComponent,
+        DemoLabelContentComponent,
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

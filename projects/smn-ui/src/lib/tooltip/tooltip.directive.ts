@@ -63,6 +63,10 @@ export class TooltipDirective implements OnInit, AfterViewInit, OnDestroy {
     }
 
     show(event) {
+        if (!this.uiTooltip) {
+            return;
+        }
+
         this.setClass();
 
         this.wrap = document.createElement('div');

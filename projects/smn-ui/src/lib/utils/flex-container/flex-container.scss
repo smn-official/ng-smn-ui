@@ -1,4 +1,4 @@
-$sizes: 480 600 840 960 1280 1440 1600;
+$sizes: 480 600 720 840 960 1280 1440 1600;
 
 .ui-flex-container {
     display: flex;
@@ -22,6 +22,7 @@ $sizes: 480 600 840 960 1280 1440 1600;
     .flex,
     ui-select {
         flex: 1;
+        min-width: 0;
 
         & + *:not(.no-pad):not(label) {
             margin-left: 16px;

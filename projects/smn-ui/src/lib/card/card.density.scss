@@ -1,0 +1,18 @@
+
+@mixin ui-card-density() {
+    ui-card {
+        ui-card-title {
+            padding-top: 8px;
+            font-size: 20px;
+        }
+
+        ui-card-content {
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        ui-card-subtitle {
+            padding-top: 8px;
+        }
+    }
+}

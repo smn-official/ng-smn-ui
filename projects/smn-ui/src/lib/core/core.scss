@@ -17,9 +17,30 @@
 @import "../time-picker/time-picker-caller.directive";
 @import "../tooltip/tooltip.directive";
 @import "../grid/grid";
-@import "../upload/upload.component";
+@import "../input/input.component";
+@import "../toolbar/toolbar.component";
+@import "../typography/typography.scss";
 
+// Density
+@import "../chip/chip.density";
+@import "../data-table/data-table.density";
+@import "../button/button.density.scss";
+@import "../input/input.density";
+@import "../card/card.density";
+@import "../subheader/subheader.density";
+@import "../toolbar/toolbar.density";
+@import "../grid/grid-density";
 
-@mixin ui-core {
+@mixin ui-core($density: '') {
+    @include ui-grid-density($density);
 
+    @if($density == 'compact') {
+        @include ui-chip-density();
+        @include ui-data-table-density();
+        @include ui-button-density();
+        @include ui-input-density();
+        @include ui-card-density();
+        @include ui-subheader-density();
+        @include ui-toolbar-density();
+    }
 }

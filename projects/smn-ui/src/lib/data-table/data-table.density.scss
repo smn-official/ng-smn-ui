@@ -1,0 +1,18 @@
+
+@mixin ui-data-table-density() {
+    .ui-data-table {
+        th, td {
+            height: 36px;
+        }
+
+        tfoot td {
+            height: 36px;
+        }
+
+        .image, .letter {
+            width: 28px;
+            height: 28px;
+        }
+
+    }
+}

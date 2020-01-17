@@ -14,7 +14,6 @@ import {
 } from '@angular/core';
 import {UiElement} from '../utils/providers/element.provider';
 import {UiAutocompleteComponent} from './autocomplete.component';
-import {UiWindowRef} from '../utils/providers/window.provider';
 import {FormControl, NG_VALIDATORS} from '@angular/forms';
 
 @Directive({
@@ -37,6 +36,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     @Input() loading: boolean;
     @Input('theme-class') themeClass: string;
     @Input() hideNotFound: boolean;
+    @Input() hidePanel: boolean;
     @Output() loadMore: EventEmitter<any> = new EventEmitter();
     @Output() loadMoreEmmiter: EventEmitter<any> = new EventEmitter();
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
@@ -242,10 +242,18 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     }
 
     @HostListener('focus') onFocus() {
+        if (this.hidePanel) {
+            return;
+        }
+
         this.initialize();
     }
 
     @HostListener('click') onClick() {
+        if (this.hidePanel) {
+            return;
+        }
+
         this.initialize();
     }
 
