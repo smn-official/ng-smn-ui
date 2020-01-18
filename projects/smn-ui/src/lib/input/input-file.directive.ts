@@ -50,15 +50,15 @@ export class UiInputFileDirective {
             const validType = this.validateType(file, fileExtension, accepts);
 
             if (validMaxFileSize) {
-                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, { maxFileSize: true }));
+                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, {maxFileSize: true}));
             }
 
             if (!validType) {
-                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, { accept: true }));
+                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, {accept: true}));
             }
 
             if (this.validateMaxSize(sum, maxSize)) {
-                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, { maxSize: true }));
+                this.ngControl.control.setErrors(Object.assign(this.ngControl.errors || {}, {maxSize: true}));
             }
 
             if (validType && !validMaxFileSize && !validMaxSize) {
@@ -143,7 +143,10 @@ export class UiInputFileDirective {
     }
 
     readFile(file, data, index) {
+        if (typeof (data) !== 'object') return;
+
         const reader = new FileReader();
+
         data.resolved = 'false';
 
         reader.onload = (e: any) => {

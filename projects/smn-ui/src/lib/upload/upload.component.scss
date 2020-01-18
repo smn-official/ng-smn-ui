@@ -1,0 +1,56 @@
+@import "../core/variables";
+
+$primary-color: ui-color('blue', '500');
+$orange-color: ui-color('yellow', '800');
+
+:host.space {
+    margin: 8px 0;
+    display: block;
+}
+
+.border {
+    border-radius: 4px;
+    position: relative;
+    transition: border 280ms ui-easing('deceleration');
+    user-select: none;
+
+    .file-name, .message {
+        font-weight: 500;
+    }
+
+    .file-name {
+        font-size: 16px;
+    }
+
+    .message {
+        text-align: center;
+        font-size: 14px;
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        padding: 8px 8px 8px 16px;
+        cursor: pointer;
+        justify-content: space-between;
+
+        i {
+            cursor: pointer;
+        }
+
+    }
+
+    section {
+        display: flex;
+        justify-content: center;
+        padding: 25px;
+        align-items: center;
+        i {
+            font-size: 55px;
+        }
+        .text-area {
+            color: #afafaf;
+            padding: 8px;
+        }
+    }
+}
