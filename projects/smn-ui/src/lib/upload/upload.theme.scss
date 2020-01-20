@@ -1,0 +1,33 @@
+@import "../core/variables.scss";
+
+@mixin ui-upload($theme) {
+    .theme {
+        color: ui-color(map_get($theme, primary));
+
+        &.accent {
+            color: ui-color(map_get($theme, accent));
+        }
+    }
+    .border {
+        $color-background: ui-if(map-get($theme, is-dark) == true, #424242, #fff);
+        $color-font: ui-if(map-get($theme, is-dark) == true, #fff, #424242);
+        background-color: $color-background;
+        border: 2px dashed ui-color(map_get($theme, primary));
+
+        &.dragging {
+            border-color: ui-color(map_get($theme, accent));
+        }
+
+        .message {
+            color: ui-color(map_get($theme, accent));
+            span {
+                color: ui-color(map_get($theme, primary));
+            }
+        }
+
+        .file-name {
+            color: $color-font;
+        }
+
+    }
+}

@@ -1,8 +1,5 @@
 @import "../core/variables";
 
-$primary-color: ui-color('blue', '500');
-$orange-color: ui-color('yellow', '800');
-
 :host.space {
     margin: 8px 0;
     display: block;
@@ -20,6 +17,7 @@ $orange-color: ui-color('yellow', '800');
 
     .file-name {
         font-size: 16px;
+        word-break: break-all;
     }
 
     .message {
@@ -43,11 +41,13 @@ $orange-color: ui-color('yellow', '800');
     section {
         display: flex;
         justify-content: center;
-        padding: 25px;
+        padding: 32px;
         align-items: center;
+
         i {
             font-size: 55px;
         }
+
         .text-area {
             color: #afafaf;
             padding: 8px;

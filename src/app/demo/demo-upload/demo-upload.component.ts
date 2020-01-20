@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { UiSnackbar, UiToolbarService } from '../../../../projects/smn-ui/src/lib/smn-ui.module';
+import { UiToolbarService } from '../../../../projects/smn-ui/src/lib/smn-ui.module';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -11,6 +11,7 @@ export class DemoUploadComponent implements OnInit, AfterViewInit, OnDestroy {
     files: any;
 
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
+        this.files = [];
     }
 
     ngOnInit() {

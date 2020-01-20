@@ -42,6 +42,7 @@ import { DemoExpansioPanelComponent } from './demo/demo-expansio-panel/demo-expa
 import {DemoTabsComponent} from './demo/demo-tabs/demo-tabs.component';
 import { DemoTypographyComponent } from './demo/demo-typography/demo-typography.component';
 import {DemoLabelContentComponent} from './demo/demo-label-content/demo-label-content.component';
+import { DemoUploadComponent } from './demo/demo-upload/demo-upload.component';
 
 const routes: Routes = [
     {
@@ -89,7 +90,8 @@ const routes: Routes = [
             {path: 'select', component: DemoSelectComponent},
             {path: 'chosen', component: DemoChosenComponent},
             {path: 'expansion-panel', component: DemoExpansioPanelComponent},
-            {path: 'typography', component: DemoTypographyComponent}
+            {path: 'typography', component: DemoTypographyComponent},
+            {path: 'upload', component: DemoUploadComponent}
         ]
     },
     {path: '**', redirectTo: ''}
