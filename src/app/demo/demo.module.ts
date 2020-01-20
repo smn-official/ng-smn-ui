@@ -45,6 +45,7 @@ import { DemoChosenComponent } from './demo-chosen/demo-chosen.component';
 import { DemoExpansioPanelComponent } from './demo-expansio-panel/demo-expansio-panel.component';
 import { DemoTypographyComponent } from './demo-typography/demo-typography.component';
 import { DemoLabelContentComponent } from './demo-label-content/demo-label-content.component';
+import { DemoUploadComponent } from './demo-upload/demo-upload.component';
 
 @NgModule({
     imports: [
@@ -100,6 +101,7 @@ import { DemoLabelContentComponent } from './demo-label-content/demo-label-conte
         DemoTabsComponent,
         DemoTypographyComponent,
         DemoLabelContentComponent,
+        DemoUploadComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

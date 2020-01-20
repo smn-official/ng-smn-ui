@@ -101,6 +101,7 @@ import { UiTabContentDirective } from './tab/tab-content.directive';
 import { UiTabLabelDirective } from './tab/tab-label.directive';
 import { UiTabHeaderComponent } from './tab/header/tab-header.component';
 import { UiLabelContentComponent } from './label-content/label-content.component';
+import { UiUploadComponent } from './upload/upload.component';
 
 export {
     debounce,
@@ -219,6 +220,7 @@ const lib: any[] = [
     UiTabLabelDirective,
     UiTabHeaderComponent,
     UiLabelContentComponent,
+    UiUploadComponent
 ];
 
 @NgModule({

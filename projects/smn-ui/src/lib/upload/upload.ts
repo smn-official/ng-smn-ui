@@ -1,4 +1,4 @@
-import { EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { EventEmitter, Input, Output } from '@angular/core';
 import { UiSnackbar } from '../smn-ui.module';
 
 

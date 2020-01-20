@@ -1,4 +1,14 @@
-import { Component, OnInit, OnChanges, Input, forwardRef, Output, EventEmitter, HostListener, ViewChild } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    OnChanges,
+    Input,
+    forwardRef,
+    Output,
+    EventEmitter,
+    HostListener,
+    ViewChild
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Upload } from './upload';
 import { enterLeaveViewAnimation } from '../utils/animations/enter-leave-view.animations';
