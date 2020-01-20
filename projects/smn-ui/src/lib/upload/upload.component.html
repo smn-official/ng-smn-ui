@@ -25,7 +25,7 @@
                     <i class="material-icons">delete</i>
                 </button>
             </header>
-            <div class="ui-divider"></div>
+            <div class="ui-divider" style="margin: 0" *ngIf="multiple"></div>
         </div>
     </div>
     <section uiRipple (click)="inputFile.click()">
