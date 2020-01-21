@@ -12,7 +12,6 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Upload } from './upload';
 import { enterLeaveViewAnimation } from '../utils/animations/enter-leave-view.animations';
-import { UiSnackbar } from '../smn-ui.module';
 
 
 @Component({

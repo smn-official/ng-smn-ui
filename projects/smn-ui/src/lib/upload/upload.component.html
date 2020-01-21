@@ -1,21 +1,20 @@
-<input type="file"
-       name="input"
-       uiInputFile
-       [(ngModel)]="model"
-       [read]="readFile"
-       [error]="errorFile"
-       #inputFile
-       [multiple]="multiple"
-       #inputFileRef="uiInputFile"
-       #fieldNovaImagem="ngModel"
-       (filesChange)="filesChange($event)"
-       [accept]="accept"
-       [max-size]="maxSize"
-       [max]="5"
-       [max-file-size]="maxFileSize"
-       [disabled]="disabled"
-       class="ui-input-file-hidden"/>
 <fieldset [disabled]="disabled">
+    <input type="file"
+           name="input"
+           uiInputFile
+           [(ngModel)]="model"
+           [read]="readFile"
+           [error]="errorFile"
+           #inputFile
+           [multiple]="multiple"
+           #inputFileRef="uiInputFile"
+           #fieldNovaImagem="ngModel"
+           (filesChange)="filesChange($event)"
+           [accept]="accept"
+           [max-size]="maxSize"
+           [max]="max"
+           [max-file-size]="maxFileSize"
+           class="ui-input-file-hidden"/>
     <div class="border" [class.dragging]="isDragging" [ngClass]="disabled ? 'fade' : ''">
         <div [@enterLeaveViewAnimation]="ngModel.length === 1" *ngIf="ngModel && ngModel.length">
             <div [@enterLeaveViewAnimation] *ngFor="let file of ngModel; let i = index">
