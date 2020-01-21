@@ -12,6 +12,7 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Upload } from './upload';
 import { enterLeaveViewAnimation } from '../utils/animations/enter-leave-view.animations';
+import { UiSnackbar } from '../smn-ui.module';
 
 
 @Component({
@@ -105,6 +106,10 @@ export class UiUploadComponent extends Upload implements OnInit, OnChanges {
     }
 
     @HostListener('drop', ['$event']) onDrop(event) {
+        if (this.disabled) {
+            event.preventDefault();
+            return;
+        }
         event.preventDefault();
         event.stopPropagation();
         this.isDragging = false;
