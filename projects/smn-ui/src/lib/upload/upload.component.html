@@ -13,25 +13,29 @@
        [max-size]="maxSize"
        [max]="5"
        [max-file-size]="maxFileSize"
+       [disabled]="disabled"
        class="ui-input-file-hidden"/>
-<div class="border" [class.dragging]="isDragging">
-    <div [@enterLeaveViewAnimation]="ngModel.length === 1" *ngIf="ngModel && ngModel.length">
-        <div [@enterLeaveViewAnimation] *ngFor="let file of ngModel; let i = index">
-            <header>
-                <div class="file-name">
-                    {{getFileName(ngModel[i])}}
-                </div>
-                <button class="ui-button icon error flat" type="button" (click)="removeFile(ngModel[i], i)" uiRipple>
-                    <i class="material-icons">delete</i>
-                </button>
-            </header>
-            <div class="ui-divider" style="margin: 0" *ngIf="multiple"></div>
+<fieldset [disabled]="disabled">
+    <div class="border" [class.dragging]="isDragging" [ngClass]="disabled ? 'fade' : ''">
+        <div [@enterLeaveViewAnimation]="ngModel.length === 1" *ngIf="ngModel && ngModel.length">
+            <div [@enterLeaveViewAnimation] *ngFor="let file of ngModel; let i = index">
+                <header>
+                    <div class="file-name">
+                        {{getFileName(ngModel[i])}}
+                    </div>
+                    <button class="ui-button icon error flat" type="button" (click)="removeFile(ngModel[i], i)"
+                            uiRipple>
+                        <i class="material-icons">delete</i>
+                    </button>
+                </header>
+                <div class="ui-divider" *ngIf="multiple"></div>
+            </div>
         </div>
+        <section uiRipple (click)="inputFile.click()" [ripple-disable]="disabled">
+            <i class="material-icons theme">cloud_upload</i>
+            <div class="message text-area">
+                Arraste e solte seu arquivo aqui <br> ou <span class=theme>encontre na sua galeria</span>
+            </div>
+        </section>
     </div>
-    <section uiRipple (click)="inputFile.click()">
-        <i class="material-icons theme">cloud_upload</i>
-        <div class="message text-area">
-            Arraste e solte seu arquivo aqui <br> ou <span class= theme>encontre na sua galeria</span>
-        </div>
-    </section>
-</div>
+</fieldset>

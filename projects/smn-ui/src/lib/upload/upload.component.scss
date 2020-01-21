@@ -1,8 +1,40 @@
 @import "../core/variables";
 
+$fade-color: #afafaf;
+
 :host.space {
     margin: 8px 0;
     display: block;
+}
+
+fieldset:disabled {
+    cursor: not-allowed;
+
+    i {
+        color: $fade-color;
+        cursor: not-allowed !important;
+    }
+
+    header {
+        cursor: not-allowed;
+        button {
+            cursor: not-allowed;
+        }
+    }
+
+    .file-name {
+        cursor: not-allowed;
+    }
+
+    .fade {
+        color: $fade-color;
+        border-color: $fade-color;
+
+        span {
+            color: $fade-color;
+        }
+    }
+
 }
 
 .border {
@@ -18,6 +50,7 @@
     .file-name {
         font-size: 16px;
         word-break: break-all;
+        cursor: pointer;
     }
 
     .message {
@@ -29,13 +62,16 @@
         display: flex;
         align-items: center;
         padding: 8px 8px 8px 16px;
-        cursor: pointer;
         justify-content: space-between;
 
-        i {
+        button {
             cursor: pointer;
         }
 
+    }
+
+    .ui-divider {
+        margin: 0;
     }
 
     section {
@@ -49,7 +85,7 @@
         }
 
         .text-area {
-            color: #afafaf;
+            color: $fade-color;
             padding: 8px;
         }
     }

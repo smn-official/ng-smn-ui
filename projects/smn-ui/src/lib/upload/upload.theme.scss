@@ -8,6 +8,7 @@
             color: ui-color(map_get($theme, accent));
         }
     }
+
     .border {
         $color-background: ui-if(map-get($theme, is-dark) == true, #424242, #fff);
         $color-font: ui-if(map-get($theme, is-dark) == true, #fff, #424242);
@@ -20,6 +21,7 @@
 
         .message {
             color: ui-color(map_get($theme, accent));
+
             span {
                 color: ui-color(map_get($theme, primary));
             }

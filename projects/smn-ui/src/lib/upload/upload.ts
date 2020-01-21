@@ -6,6 +6,7 @@ export abstract class Upload {
 
     @Input() accept: string;
     @Input() multiple: boolean;
+    @Input() disabled: boolean;
 
 
     @Output() ngModelChange: EventEmitter<any>;

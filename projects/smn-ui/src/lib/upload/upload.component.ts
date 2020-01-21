@@ -37,6 +37,7 @@ export class UiUploadComponent extends Upload implements OnInit, OnChanges {
     @Input() maxSize: string;
     @Input() maxFileSize: string;
     @Input() multiple: boolean;
+    @Input() disabled: boolean;
 
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter<any>();
     @Output() remove: EventEmitter<any> = new EventEmitter<any>();

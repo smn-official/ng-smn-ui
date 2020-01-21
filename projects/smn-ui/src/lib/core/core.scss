@@ -20,6 +20,7 @@
 @import "../input/input.component";
 @import "../toolbar/toolbar.component";
 @import "../typography/typography.scss";
+@import "../upload/upload.component";
 
 // Density
 @import "../chip/chip.density";
@@ -30,6 +31,7 @@
 @import "../subheader/subheader.density";
 @import "../toolbar/toolbar.density";
 @import "../grid/grid-density";
+@import "../upload/upload.density";
 
 @mixin ui-core($density: '') {
     @include ui-grid-density($density);
@@ -42,5 +44,6 @@
         @include ui-card-density();
         @include ui-subheader-density();
         @include ui-toolbar-density();
+        @include ui-upload-density();
     }
 }
