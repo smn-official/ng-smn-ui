@@ -37,6 +37,7 @@ export class UiUploadComponent extends Upload implements OnInit, OnChanges {
     @Input() maxSize: string;
     @Input() maxFileSize: string;
     @Input() multiple: boolean;
+    @Input() disabled: boolean;
 
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter<any>();
     @Output() remove: EventEmitter<any> = new EventEmitter<any>();
@@ -104,6 +105,10 @@ export class UiUploadComponent extends Upload implements OnInit, OnChanges {
     }
 
     @HostListener('drop', ['$event']) onDrop(event) {
+        if (this.disabled) {
+            event.preventDefault();
+            return;
+        }
         event.preventDefault();
         event.stopPropagation();
         this.isDragging = false;

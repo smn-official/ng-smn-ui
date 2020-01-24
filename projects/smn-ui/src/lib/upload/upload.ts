@@ -6,12 +6,13 @@ export abstract class Upload {
 
     @Input() accept: string;
     @Input() multiple: boolean;
+    @Input() disabled: boolean;
+    @Input() max: number;
 
 
     @Output() ngModelChange: EventEmitter<any>;
     @Output() remove: EventEmitter<any>;
 
-    max: number;
     maxLength: number;
     ngModel: any;
     modelConfig: any;

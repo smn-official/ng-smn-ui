@@ -11,7 +11,8 @@
                 (ngModelChange)="file()"
                 accept="png, zip"
                 [maxSize]="'200MB'"
-                [maxFileSize]="'5MB'"></ui-upload>
+                [maxFileSize]="'5MB'"
+                [disabled]="false"></ui-upload>
         </ui-card-content>
     </ui-card>
 
@@ -30,6 +31,7 @@
                         (ngModelChange)="file()"
                         accept="png, zip"
                         [maxSize]="'200MB'"
+                        [disabled]="false"
                         [maxFileSize]="'5MB'"></ui-upload>
                 </div>
             </ui-card-content>
