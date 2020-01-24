@@ -17,23 +17,23 @@ import {
     TemplateRef,
     ViewChild,
     ViewContainerRef
-} from "@angular/core";
-import { FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR } from "@angular/forms";
+} from '@angular/core';
+import { FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { isNullOrUndefined } from "util";
+import { isNullOrUndefined } from 'util';
 
-import { unaccent } from "../utils/functions/unaccent";
-import { UiElement } from "../utils/providers/element.provider";
-import { UiChosenGroupComponent } from "./chosen-group/chosen-group.component";
-import { UiChosenOptionComponent } from "./chosen-option/chosen-option.component";
+import { unaccent } from '../utils/functions/unaccent';
+import { UiElement } from '../utils/providers/element.provider';
+import { UiChosenGroupComponent } from './chosen-group/chosen-group.component';
+import { UiChosenOptionComponent } from './chosen-option/chosen-option.component';
 
 // TODO: Animation
 // TODO: Export render, open, close
 
 @Component({
-    selector: "ui-chosen",
-    templateUrl: "./chosen.component.html",
-    styleUrls: ["./chosen.component.scss"],
+    selector: 'ui-chosen',
+    templateUrl: './chosen.component.html',
+    styleUrls: ['./chosen.component.scss'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -65,14 +65,12 @@ export class UiChosenComponent
 
     @Output() ngModelChange: EventEmitter<any> = new EventEmitter<any>();
 
-    @ViewChild("optionTemplate", { static: true }) optionTemplate: TemplateRef<
-        any
-    >;
-    @ViewChild("inputSearch", { static: false }) inputSearch: ElementRef;
-    @ViewChild("nativeSelect", { static: false }) nativeSelect: ElementRef;
+    @ViewChild('optionTemplate', { static: true }) optionTemplate: TemplateRef<any>;
+    @ViewChild('inputSearch', { static: false }) inputSearch: ElementRef;
+    @ViewChild('nativeSelect', { static: false }) nativeSelect: ElementRef;
 
     /**
-     * O param "descendants" fala para o @ContentChildren pegar todos components UiChosenOptionComponent
+     * O param 'descendants' fala para o @ContentChildren pegar todos components UiChosenOptionComponent
      * mesmo que eles estejam dentro de outros components(UiChosenGroupComponent)
      */
     @ContentChildren(UiChosenOptionComponent, { descendants: true })
@@ -96,18 +94,18 @@ export class UiChosenComponent
 
     ngAfterViewInit() {
         this.element.nativeElement.setAttribute(
-            "tabindex",
-            this.element.nativeElement.getAttribute("tabindex") || "0"
+            'tabindex',
+            this.element.nativeElement.getAttribute('tabindex') || '0'
         );
 
-        UiElement.on(window, "resize scroll", () => {
+        UiElement.on(window, 'resize scroll', () => {
             this.close();
         });
 
         if (/Mobi|Android/.test(navigator.userAgent)) {
             this.isMobile = true;
 
-            this.element.nativeElement.classList.add("mobile");
+            this.element.nativeElement.classList.add('mobile');
         }
         this.changeDetectorRef.detectChanges();
     }
@@ -150,7 +148,7 @@ export class UiChosenComponent
         return null;
     }
 
-    @HostListener("focus")
+    @HostListener('focus')
     onFocus() {
         if (this.isMobile) {
             this.nativeSelect.nativeElement.focus();
@@ -194,7 +192,7 @@ export class UiChosenComponent
 
             if (
                 rootNode.clientWidth &&
-                !rootNode.classList.contains("wrap-chosen-overlay")
+                !rootNode.classList.contains('wrap-chosen-overlay')
             ) {
                 this.open(rootNode, coordinate);
             }
@@ -210,7 +208,7 @@ export class UiChosenComponent
                 element.clientHeight;
             const bodyHeight = document.body.clientHeight;
 
-            if (verticalCoveringArea > bodyHeight) {
+            if (verticalCoveringArea + this.element.nativeElement.clientHeight > bodyHeight) {
                 coordinate.y -=
                     verticalCoveringArea -
                     bodyHeight +
@@ -221,27 +219,27 @@ export class UiChosenComponent
                 coordinate.y = 0;
             }
 
-            const content = element.querySelector("ui-card > .content");
+            const content = element.querySelector('ui-card > .content');
             const contentHeight = content.clientHeight;
 
-            const search = element.querySelector("ui-card > .search");
+            const search = element.querySelector('ui-card > .search');
             const searchHeight = search ? search.clientHeight : 0;
 
             content.style.maxHeight =
                 (contentHeight > bodyHeight
                     ? bodyHeight - searchHeight
-                    : contentHeight) + "px";
+                    : contentHeight) + 'px';
 
-            element.style.transform = "";
-            element.style.top = coordinate.y + "px";
-            element.style.left = coordinate.x + "px";
+            element.style.transform = '';
+            element.style.top = coordinate.y + 'px';
+            element.style.left = coordinate.x + 'px';
 
-            const card = element.querySelector("ui-card");
-            card.style.maxHeight = window.innerHeight + "px";
-            card.style.maxWidth = window.innerWidth - 16 + "px";
-            card.style.width = this.element.nativeElement.clientWidth + "px";
+            const card = element.querySelector('ui-card');
+            card.style.maxHeight = window.innerHeight + 'px';
+            card.style.maxWidth = window.innerWidth - 16 + 'px';
+            card.style.width = this.element.nativeElement.clientWidth + 'px';
 
-            element.classList.add("open");
+            element.classList.add('open');
         });
     }
 
@@ -253,7 +251,7 @@ export class UiChosenComponent
 
             viewRef.rootNodes.forEach(rootNode => {
                 if (rootNode.classList) {
-                    rootNode.classList.remove("open");
+                    rootNode.classList.remove('open');
                 }
             });
 
