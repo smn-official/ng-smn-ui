@@ -94,7 +94,7 @@ export class UiMaskDateDirective implements ControlValueAccessor, Validator, OnC
         if (this.control && this.loaded && rawValue) {
             this.control.markAsDirty();
         }
-        if (!this.input) {
+        if (!this.input && rawValue) {
             this.elementRef.nativeElement.value = this.format(this.datePipe.transform(this.ngModel, this.dateFormat));
         }
         this.input = false;
