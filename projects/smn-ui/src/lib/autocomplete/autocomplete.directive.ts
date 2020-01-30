@@ -258,7 +258,7 @@ export class UiAutocompleteDirective implements AfterViewInit, OnInit, OnChanges
     }
 
     @HostListener('blur', ['$event']) onBlur(e) {
-        if (e.relatedTarget !== this.componentElement.querySelector('ui-card.suggestions')) {
+        if (!this.hidePanel && e.relatedTarget !== this.componentElement.querySelector('ui-card.suggestions')) {
             this.close();
         }
     }
