@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {SMNUIModule} from '../../../projects/smn-ui/src/public_api';
 
@@ -51,6 +51,7 @@ import { DemoUploadComponent } from './demo-upload/demo-upload.component';
     imports: [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         RouterModule,
         SMNUIModule
     ],

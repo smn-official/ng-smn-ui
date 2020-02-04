@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 
 import { UiToolbarService } from '../../../../projects/smn-ui/src/lib/smn-ui.module';
 import { UiElement } from '../../../../projects/smn-ui/src/lib/utils/providers/element.provider';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'demo-inputs',
@@ -12,10 +13,16 @@ import { UiElement } from '../../../../projects/smn-ui/src/lib/utils/providers/e
 export class DemoInputsComponent implements OnInit {
     list: string[];
     textarea: string;
+    profileForm: FormGroup;
     // @ViewChild('test') test;
 
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
         this.list = ['São Paulo', 'Ohio', 'New York'];
+        this.profileForm = new FormGroup({
+            name: new FormControl(),
+            lastName: new FormControl(),
+            email: new FormControl(),
+        });
     }
 
     ngOnInit() {

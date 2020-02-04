@@ -92,6 +92,24 @@
                     </div>
                 </ui-input-container>
             </form>
+            <ui-subheader>Reactive forms</ui-subheader>
+            <form [formGroup]="profileForm">
+
+                <label>
+                    First Name:
+                    <input type="text" formControlName="firstName" uiInput>
+                </label>
+
+                <label>
+                    Last Name:
+                    <input type="text" formControlName="lastName">
+                </label>
+                <label>
+                    E-mail:
+                    <input type="text" formControlName="lastName">
+                </label>
+
+            </form>
         </ui-card-content>
     </ui-card>
 </div>
