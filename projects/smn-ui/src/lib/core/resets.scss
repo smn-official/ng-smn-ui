@@ -51,6 +51,11 @@ input::-ms-clear {
     display: none;
 }
 
+// Hack overflow content width
+fieldset {
+    min-width: 0;
+}
+
 /* Icons*/
 
 .material-icons {
