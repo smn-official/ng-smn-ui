@@ -339,6 +339,12 @@
         &:hover:not(:disabled)::before {
             opacity: 0.02;
         }
+
+        &.error {
+            .ui-ripple-wave {
+                background-color: rgba(33, 33, 33, 0.1);
+            }
+        }
     }
 
     &:disabled {
