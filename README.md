@@ -28,8 +28,8 @@ import SMNUIModule from 'ng-smn-ui';
 ##### Definindo nosso tema
 No arquivo styles.scss insira o seguinte código
 ```scss
-@import "~ng-smn-ui/core/core";
-@import "~ng-smn-ui/core/theme";
+@import "~ng-smn-ui/lib/core/core";
+@import "~ng-smn-ui/lib/core/theme";
 
 $primary: (color: 'blue', hue: '500');
 $accent: (color: 'green', hue: '50');

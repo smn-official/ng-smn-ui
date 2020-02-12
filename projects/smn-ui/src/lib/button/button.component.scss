@@ -273,6 +273,10 @@
         &.flat ui-progress-radial.indeterminate .spinner-container .path {
             stroke: ui-color('orange');
         }
+
+        &.stroked {
+            color: ui-color('orange');
+        }
     }
 
     &.error:not(:disabled) {
@@ -299,6 +303,10 @@
         &.flat ui-progress-radial.indeterminate .spinner-container .path {
             stroke: ui-color('red');
         }
+
+        &.stroked {
+            color: ui-color('red');
+        }
     }
 
     &.raised:not(:disabled) {
@@ -313,6 +321,23 @@
 
         &:active {
             box-shadow: ui-shadow('8dp');
+        }
+    }
+
+    &.stroked {
+        box-sizing: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+
+        &.border-warning:not(:disabled) {
+            border-color: ui-color('orange');
+        }
+
+        &.border-error:not(:disabled) {
+            border-color: ui-color('red');
+        }
+
+        &:hover:not(:disabled)::before {
+            opacity: 0.02;
         }
     }
 
