@@ -27,6 +27,10 @@
             }
         }
 
+        &.stroked {
+            color: ui-if(map_get($theme, is-dark) == true, rgba(255, 255, 255, 0.7), #000);
+        }
+
         &:disabled {
             background-color: $disabled-background-color;
             color: $disabled-text-color;
@@ -133,14 +137,13 @@
         &.stroked {
             background-color: transparent;
             border-color: ui-if(map_get($theme, is-dark) == true, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.12));
-            color: $text-color;
 
             &.primary:not(:disabled) {
                 color: ui-color(map_get($theme, primary));
             }
 
             &.accent:not(:disabled) {
-                color: ui-color(map_get($theme, accent));;
+                color: map_get($theme, accent-color);
             }
 
             &.border-primary:not(:disabled) {
@@ -148,7 +151,7 @@
             }
 
             &.border-accent:not(:disabled) {
-                border-color: ui-color(map_get($theme, accent));
+                border-color: map_get($theme, accent-color);
             }
         }
 
