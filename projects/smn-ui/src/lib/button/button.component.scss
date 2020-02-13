@@ -274,8 +274,12 @@
             stroke: ui-color('orange');
         }
 
-        &.stroked {
+        &.outlined {
             color: ui-color('orange');
+
+            &.border:not(:disabled) {
+                border: 1px solid ui-color('orange');
+            }
         }
     }
 
@@ -304,8 +308,12 @@
             stroke: ui-color('red');
         }
 
-        &.stroked {
+        &.outlined {
             color: ui-color('red');
+
+            &.border:not(:disabled) {
+                border: 1px solid ui-color('red');
+            }
         }
     }
 
@@ -324,17 +332,9 @@
         }
     }
 
-    &.stroked {
+    &.outlined {
         box-sizing: border-box;
         border: 1px solid rgba(0, 0, 0, 0.12);
-
-        &.border-warning:not(:disabled) {
-            border-color: ui-color('orange');
-        }
-
-        &.border-error:not(:disabled) {
-            border-color: ui-color('red');
-        }
 
         &:hover:not(:disabled)::before {
             opacity: 0.02;
