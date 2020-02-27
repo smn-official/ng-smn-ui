@@ -27,6 +27,14 @@
             }
         }
 
+        &.outlined {
+            color: ui-if(map_get($theme, is-dark) == true, rgba(255, 255, 255, 0.7), #000);
+
+            &::before {
+                background-color: ui-if(map-get($theme, is-dark) == true, #FFF, #000);
+            }
+        }
+
         &:disabled {
             background-color: $disabled-background-color;
             color: $disabled-text-color;
@@ -36,7 +44,7 @@
             }
         }
 
-        &:not(.success):not(.warning):not(.error):not(:disabled) {
+        &:not(.success):not(.warning):not(.error):not(:disabled):not(.outlined) {
             background-color: ui-color('grey', '300');
             color: ui-text-color('grey', '300');
 
@@ -127,6 +135,27 @@
 
             &.flat .ui-ripple-wave {
                 background-color: ui-if($hover-color == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+            }
+        }
+
+        &.outlined {
+            background-color: transparent;
+            border-color: ui-if(map_get($theme, is-dark) == true, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.12));
+
+            &.primary:not(:disabled) {
+                color: ui-color(map_get($theme, primary));
+
+                &.border {
+                    border: 1px solid map_get($theme, primary-color);
+                }
+            }
+
+            &.accent:not(:disabled) {
+                color: map_get($theme, accent-color);
+
+                &.border {
+                    border: 1px solid map_get($theme, accent-color);
+                }
             }
         }
 
