@@ -143,7 +143,7 @@
             border-color: ui-if(map_get($theme, is-dark) == true, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.12));
 
             &.primary:not(:disabled) {
-                color: ui-color(map_get($theme, primary));
+                color: map_get($theme, primary-color);
 
                 &.border {
                     border: 1px solid map_get($theme, primary-color);
