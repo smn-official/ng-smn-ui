@@ -3,16 +3,16 @@ $sizes: 480 600 720 840 960 1280 1440 1600;
 .ui-flex-container {
     display: flex;
 
-    .center {
+    &.center {
         align-items: center;
         justify-content: center;
     }
 
-    .vertical-center {
+    &.vertical-center {
         align-items: center;
     }
 
-    .horizontal-center {
+    &.horizontal-center {
         justify-content: center;
     }
 
