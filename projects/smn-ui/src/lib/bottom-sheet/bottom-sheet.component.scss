@@ -11,16 +11,17 @@
     align-items: flex-end;
     justify-content: center;
     max-height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
 
     ui-card {
         width: 100%;
+        max-height: 100%;
         transform: translateY(100%);
         box-shadow: ui-shadow('16dp');
         transition: transform 195ms ui-easing('acceleration');
         border-top-left-radius: 2px;
         border-top-right-radius: 2px;
+        overflow-y: auto;
 
         .header {
             padding: 0 16px;

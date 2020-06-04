@@ -11,6 +11,9 @@
     <button class="ui-button raised accent" [uiBottomSheetTrigger]="gridListBottomSheet" uiRipple>
         Open with Grid and List
     </button>
+    <button class="ui-button raised accent" (click)="openBottomSheet()" uiRipple>
+        Open in component
+    </button>
 </div>
 
 <ui-bottom-sheet #listBottomSheet card-size="480">
