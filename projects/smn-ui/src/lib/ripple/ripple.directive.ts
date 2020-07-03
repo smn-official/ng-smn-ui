@@ -10,13 +10,14 @@ import {debounce} from '../utils/functions/debounce';
     selector: '[uiRipple]'
 })
 export class UiRippleDirective implements AfterViewInit {
+    isIE: boolean;
     @Input('ripple-disable') rippleDisable;
     public elRippleContainerTemplate: HTMLElement;
     public elRippleTemplate: HTMLElement;
     public elRippleContainerTemplateClone: HTMLElement;
 
     constructor(public element: ElementRef) {
-
+        this.isIE = (navigator.userAgent.indexOf('MSIE') !== -1 );
     }
 
     ngAfterViewInit() {
@@ -30,90 +31,96 @@ export class UiRippleDirective implements AfterViewInit {
 
     @HostListener('mousedown', ['$event'])
     onMousedown(e) {
-        ripples = document.querySelectorAll('.ui-ripple-wave').length;
+        if (!this.isIE) {
+            ripples = document.querySelectorAll('.ui-ripple-wave').length;
 
-        if (!this.rippleDisable && !this.element.nativeElement.hasAttribute('disabled') && ripples < maxRipples) {
-            const elementWidth = this.element.nativeElement.offsetWidth;
-            const elementHeight = this.element.nativeElement.offsetHeight;
+            if (!this.rippleDisable && !this.element.nativeElement.hasAttribute('disabled') && ripples < maxRipples) {
+                const elementWidth = this.element.nativeElement.offsetWidth;
+                const elementHeight = this.element.nativeElement.offsetHeight;
 
-            const isIcon = this.element.nativeElement.classList.contains('icon');
-            const isFab = this.element.nativeElement.classList.contains('fab');
-            const isRounded = this.element.nativeElement.classList.contains('ripple-rounded');
+                const isIcon = this.element.nativeElement.classList.contains('icon');
+                const isFab = this.element.nativeElement.classList.contains('fab');
+                const isRounded = this.element.nativeElement.classList.contains('ripple-rounded');
 
-            if (isIcon || isFab || isRounded) {
-                this.elRippleContainerTemplateClone.style.borderRadius = '50%';
+                if (isIcon || isFab || isRounded) {
+                    this.elRippleContainerTemplateClone.style.borderRadius = '50%';
+                }
+                this.elRippleContainerTemplateClone.style.width = elementWidth + 'px';
+                this.elRippleContainerTemplateClone.style.height = elementHeight + 'px';
+
+                this.element.nativeElement.appendChild(this.elRippleContainerTemplateClone);
+
+                const elRippleTemplateClone = <HTMLElement>this.elRippleTemplate.cloneNode(true);
+
+                const isElementHorizontal = elementWidth > elementHeight;
+
+                let finalWidth;
+                let finalHeight;
+                let finalTop;
+                let finalLeft;
+
+                if (isElementHorizontal) {
+                    finalWidth = elementWidth * 3;
+                    finalHeight = elementWidth * 3;
+                } else {
+                    finalWidth = elementHeight * 3;
+                    finalHeight = elementHeight * 3;
+                }
+
+                finalTop = -(finalWidth / 2);
+                finalLeft = -(finalWidth / 2);
+
+                elRippleTemplateClone.style.width = finalWidth + 'px';
+                elRippleTemplateClone.style.height = finalHeight + 'px';
+
+                const mousePos = this.getMousePosition(e);
+                const elementPos = UiElement.position(this.element.nativeElement);
+
+                const pos = {
+                    y: mousePos.y - elementPos.top,
+                    x: mousePos.x - elementPos.left
+                };
+
+                if (isIcon || isFab || isRounded) {
+                    finalTop = finalTop + (elementWidth / 2);
+                    finalLeft = finalLeft + (elementWidth / 2);
+                } else {
+                    finalTop = finalTop + pos.y;
+                    finalLeft = finalLeft + pos.x;
+                }
+
+                elRippleTemplateClone.style.top = finalTop + 'px';
+                elRippleTemplateClone.style.left = finalLeft + 'px';
+
+                this.elRippleContainerTemplateClone.insertBefore(elRippleTemplateClone, this.elRippleContainerTemplateClone.firstChild);
+
+                this.elRippleContainerTemplateClone.classList.add('pressed');
+
+                UiElement.animate(this.elRippleContainerTemplateClone, 'border-spacing', 0, 1, 800, null, (tick) => {
+                    elRippleTemplateClone.style.transform = `scale(${tick})`;
+                });
+
+                ripples++;
             }
-            this.elRippleContainerTemplateClone.style.width = elementWidth + 'px';
-            this.elRippleContainerTemplateClone.style.height = elementHeight + 'px';
-
-            this.element.nativeElement.appendChild(this.elRippleContainerTemplateClone);
-
-            const elRippleTemplateClone = <HTMLElement>this.elRippleTemplate.cloneNode(true);
-
-            const isElementHorizontal = elementWidth > elementHeight;
-
-            let finalWidth;
-            let finalHeight;
-            let finalTop;
-            let finalLeft;
-
-            if (isElementHorizontal) {
-                finalWidth = elementWidth * 3;
-                finalHeight = elementWidth * 3;
-            } else {
-                finalWidth = elementHeight * 3;
-                finalHeight = elementHeight * 3;
-            }
-
-            finalTop = -(finalWidth / 2);
-            finalLeft = -(finalWidth / 2);
-
-            elRippleTemplateClone.style.width = finalWidth + 'px';
-            elRippleTemplateClone.style.height = finalHeight + 'px';
-
-            const mousePos = this.getMousePosition(e);
-            const elementPos = UiElement.position(this.element.nativeElement);
-
-            const pos = {
-                y: mousePos.y - elementPos.top,
-                x: mousePos.x - elementPos.left
-            };
-
-            if (isIcon || isFab || isRounded) {
-                finalTop = finalTop + (elementWidth / 2);
-                finalLeft = finalLeft + (elementWidth / 2);
-            } else {
-                finalTop = finalTop + pos.y;
-                finalLeft = finalLeft + pos.x;
-            }
-
-            elRippleTemplateClone.style.top = finalTop + 'px';
-            elRippleTemplateClone.style.left = finalLeft + 'px';
-
-            this.elRippleContainerTemplateClone.insertBefore(elRippleTemplateClone, this.elRippleContainerTemplateClone.firstChild);
-
-            this.elRippleContainerTemplateClone.classList.add('pressed');
-
-            UiElement.animate(this.elRippleContainerTemplateClone, 'border-spacing', 0, 1, 800, null, (tick) => {
-                elRippleTemplateClone.style.transform = `scale(${tick})`;
-            });
-
-            ripples++;
         }
     }
 
     @HostListener('mouseup')
     onMouseup() {
-        debounce(() => {
-            this.eraseRipples(this);
-        }, 800, true)();
+        if (!this.isIE) {
+            debounce(() => {
+                this.eraseRipples(this);
+            }, 800, true)();
+        }
     }
 
     @HostListener('mouseout')
     onMouseout() {
-        debounce(() => {
-            this.eraseRipples(this);
-        }, 2000, true)();
+        if (!this.isIE) {
+            debounce(() => {
+                this.eraseRipples(this);
+            }, 2000, true)();
+        }
     }
 
     eraseRipples(thiss?) {
