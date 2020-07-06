@@ -17,7 +17,7 @@ export class UiRippleDirective implements AfterViewInit {
     public elRippleContainerTemplateClone: HTMLElement;
 
     constructor(public element: ElementRef) {
-        this.isIE = (navigator.userAgent.indexOf('MSIE') !== -1 );
+        this.isIE = navigator.userAgent.indexOf('Trident') > -1;
     }
 
     ngAfterViewInit() {
