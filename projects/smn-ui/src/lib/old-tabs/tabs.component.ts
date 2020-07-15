@@ -14,6 +14,8 @@ export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
     showLeftArrow: boolean;
     showRightArrow: boolean;
     onScroll;
+    internetExplorer: boolean;
+
     @Input('infinite-load') infiniteLoad;
     @Input() watch;
     @Input() disabled;
@@ -24,6 +26,7 @@ export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
     }
 
     ngOnInit() {
+        this.internetExplorer = navigator.userAgent.includes('Trident');
     }
 
     ngAfterViewInit() {
@@ -105,8 +108,10 @@ export class UiTabsComponent implements OnInit, AfterViewInit, OnDestroy, OnChan
 
         const maxScrollLeft = overflow.scrollWidth - overflow.clientWidth;
 
+        const animationTiming = withoutAnimation || this.internetExplorer ? 1 : 280
+
         if (typeof value !== 'undefined') {
-            UiElement.animate(overflow, 'borderSpacing', scrollLeft, scrollLeft + value, withoutAnimation ? 1 : 280, null, (tick) => {
+            UiElement.animate(overflow, 'borderSpacing', scrollLeft, scrollLeft + value, animationTiming, null, (tick) => {
                 overflow.scrollLeft = tick;
 
                 scrollLeft = overflow.scrollLeft;
