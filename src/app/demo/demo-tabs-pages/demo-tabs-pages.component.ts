@@ -10,6 +10,7 @@ import {UiToolbarService} from '../../../../projects/smn-ui/src/lib/smn-ui.modul
 })
 export class DemoTabsPagesComponent implements OnInit {
 
+    lazyLoading: boolean;
     list: any;
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
     }
@@ -18,6 +19,11 @@ export class DemoTabsPagesComponent implements OnInit {
         this.titleService.setTitle('Tabs & Pages - SMN UI Demos');
         this.toolbarService.set('Tabs & Pages');
         this.list = [{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}, {id: 6}, {id: 7}, {id: 8}];
+
+        setTimeout(() => {
+            this.lazyLoading = true;
+            console.log(this.lazyLoading)
+        }, 2000);
     }
 
 }

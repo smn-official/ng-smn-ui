@@ -144,6 +144,7 @@ export class UiTabsPagesComponent implements AfterViewInit {
 
                 clearTimeout(this.timeOutTurnBack);
                 this.timeOutTurnBack = setTimeout(() => {
+                    pageContainer.css('height', '');
 
                     for (let i = 0; i < pages.length; i++) {
                         if (nextPage - 1 !== i) {
@@ -151,7 +152,6 @@ export class UiTabsPagesComponent implements AfterViewInit {
                             pageRef.css('height', 0);
                         }
                     }
-                    pageContainer.css('height', '');
                 }, 280);
             });
         }

@@ -142,10 +142,18 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
     }
 
     @HostListener('paste', ['$event'])
-    padLeft(event: ClipboardEvent): void {
+    padLeft(event: any): void {
         if (this.padOnPaste) {
             event.preventDefault();
-            const data = event.clipboardData;
+
+            let data: any;
+
+            if (window['clipboardData']) {
+                data = window['clipboardData'];
+            } else if (event.originalEvent.clipboardData && event.originalEvent.clipboardData.getData) {
+                data = event.originalEvent.clipboardData;
+            }
+
             const text = data.getData('text').toString().replace(/[^0-9]+/g, '');
             this.renderViaInput(text.padStart(11, '0'));
         }
