@@ -150,8 +150,8 @@ export class UiMaskCpfDirective implements ControlValueAccessor, Validator, Afte
 
             if (window['clipboardData']) {
                 data = window['clipboardData'];
-            } else if (event.originalEvent.clipboardData && event.originalEvent.clipboardData.getData) {
-                data = event.originalEvent.clipboardData;
+            } else if (event.clipboardData && event.clipboardData.getData) {
+                data = event.clipboardData;
             }
 
             const text = data.getData('text').toString().replace(/[^0-9]+/g, '');
