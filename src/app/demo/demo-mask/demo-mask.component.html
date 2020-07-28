@@ -38,12 +38,13 @@
             <pre>{{customTimeField.errors | json}}</pre>
 
             <ui-input-container>
-                <input type="text" name="cpf" [(ngModel)]="cpf" uiInput uiMaskCpf #cpfField="ngModel">
+                <input type="text" name="cpf" [(ngModel)]="testeCpf.cpf" uiInput uiMaskCpf #cpfField="ngModel">
                 <label>CPF(uiMaskCpf)</label>
                 <div class="ui-messages">
-                    <div class="ui-message helper">Model: {{cpf | json}}; View: {{cpf | uiCpf}}</div>
+                    <div class="ui-message helper">Model: {{testeCpf.cpf | json}}; View: {{testeCpf.cpf | uiCpf}}</div>
                 </div>
             </ui-input-container>
+            <pre>{{testeCpf | json}}</pre>
             <pre>{{cpfField.errors | json}}</pre>
 
             <ui-input-container>

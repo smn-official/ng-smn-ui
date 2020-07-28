@@ -22,6 +22,7 @@ export class DemoMaskComponent implements OnInit {
     timeCustom;
     truecnpj;
     truecpf;
+    testeCpf: any = {};
 
     constructor() {
     }
