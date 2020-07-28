@@ -9,5 +9,9 @@
         &.primary {
             color: map_get($theme, primary-color);
         }
+
+        &.accent {
+            color: map_get($theme, accent-color);
+        }
     }
 }
