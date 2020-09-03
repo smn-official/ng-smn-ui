@@ -8,7 +8,7 @@ import {Title} from '@angular/platform-browser';
     styleUrls: ['./demo-bottom-sheet.component.scss']
 })
 export class DemoBottomSheetComponent implements OnInit {
-    @ViewChild('listBottomSheet', { static: false }) listBottomSheet: any;
+    @ViewChild('listBottomSheet') listBottomSheet: any;
 
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
     }

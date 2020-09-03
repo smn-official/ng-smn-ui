@@ -21,8 +21,8 @@ import {Subscription} from 'rxjs';
 })
 export class UiTabComponent implements OnInit, OnDestroy {
     @ViewChild('tabContent', { static: true }) tabContent: TemplateRef<any>;
-    @ContentChild(UiTabContentDirective, { static: false }) templateContent: UiTabContentDirective;
-    @ContentChild(UiTabLabelDirective, { static: false }) templateLabel: UiTabLabelDirective;
+    @ContentChild(UiTabContentDirective) templateContent: UiTabContentDirective;
+    @ContentChild(UiTabLabelDirective) templateLabel: UiTabLabelDirective;
     @Input() label: string;
     @Input() icon: string;
     @Input() disabled: string;

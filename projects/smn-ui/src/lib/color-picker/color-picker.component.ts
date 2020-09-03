@@ -17,7 +17,7 @@ export class UiColorPickerComponent implements AfterViewInit {
     value: any;
     ngModelChange: EventEmitter<any>;
     @Output() valueChange: EventEmitter<any> = new EventEmitter();
-    @ViewChild('hueColor', { static: false }) hueColor: any;
+    @ViewChild('hueColor') hueColor: any;
 
     constructor(private ngControl: NgControl) {
         this.palette = palette;

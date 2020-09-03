@@ -21,7 +21,7 @@ export class UiMenuComponent implements OnDestroy {
     listenerExists;
     overlay;
 
-    @ViewChild(TemplateRef, { static: false }) templateRef: TemplateRef<any>;
+    @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
     @Output() closeChange: EventEmitter<any> = new EventEmitter(); // OLD VERSION
 
     constructor(public viewContainerRef: ViewContainerRef, public elementRef: ElementRef) {

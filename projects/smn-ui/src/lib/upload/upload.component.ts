@@ -27,7 +27,7 @@ import { enterLeaveViewAnimation } from '../utils/animations/enter-leave-view.an
 })
 export class UiUploadComponent extends Upload implements OnInit, OnChanges {
 
-    @ViewChild('inputFileRef', {static: false}) inputFileRef;
+    @ViewChild('inputFileRef') inputFileRef;
 
     @Input() ngModel: any;
     @Input() modelConfig: any;

@@ -12,6 +12,7 @@ export class DemoChosenComponent implements OnInit {
     vegetables: any;
     required: boolean;
     forma: string;
+    dialog: any;
 
     constructor() {
         this.forma = 'E';

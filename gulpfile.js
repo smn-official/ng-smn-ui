@@ -12,11 +12,11 @@ function getVersion() {
     return require('./package.json').version
 }
 
-gulp.task('copy:scss', () => {
+gulp.task('copy:scss', async () => {
     gulp.src('projects/smn-ui/src/lib/**/*.scss').pipe(gulp.dest('dist/lib/lib'))
 });
 
-gulp.task('version:bump', () => {
+gulp.task('version:bump', async () => {
     let type;
 
     if (util.env.patch) {
@@ -34,24 +34,24 @@ gulp.task('version:bump', () => {
         .pipe(gulp.dest('./'))
 });
 
-gulp.task('version:tag', () => {
+gulp.task('version:tag', async () => {
     return git.tag(getVersion())
 });
 
-gulp.task('version:add', () => {
+gulp.task('version:add', async () => {
     return gulp.src(packages)
         .pipe(git.add());
 });
 
-gulp.task('version:commit', () => {
+gulp.task('version:commit', async () => {
     return gulp.src(packages)
         .pipe(git.commit(`Automatic bumps to version ${getVersion()}`));
 });
 
-gulp.task('version:push', () => {
+gulp.task('version:push', async () => {
     return git.push('origin', 'master', {args: " --tags"});
 });
 
-gulp.task('release', () => {
+gulp.task('release', async () => {
     runSequence('version:bump', 'version:tag', 'version:add', 'version:commit', 'version:push');
 });

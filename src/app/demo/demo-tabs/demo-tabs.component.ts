@@ -8,8 +8,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 export class DemoTabsComponent implements OnInit {
     loading: boolean;
     info: any;
-    @ViewChild('primaryForm', { static: false }) primaryForm;
-    @ViewChild('phoneForm', { static: false }) phoneForm;
+    @ViewChild('primaryForm') primaryForm;
+    @ViewChild('phoneForm') phoneForm;
 
     constructor() {
         this.info = {};

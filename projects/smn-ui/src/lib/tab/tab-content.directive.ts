@@ -4,7 +4,7 @@ import {ContentChild, Directive, TemplateRef} from '@angular/core';
     selector: '[uiTabContent]'
 })
 export class UiTabContentDirective {
-    @ContentChild(TemplateRef, { static: false }) template: TemplateRef<any>;
+    @ContentChild(TemplateRef) template: TemplateRef<any>;
 
     constructor() { }
 }

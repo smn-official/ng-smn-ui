@@ -25,7 +25,7 @@ export class UiSelectComponent implements OnInit, AfterViewInit, OnChanges {
     @Output() ngModelChange = new EventEmitter();
     selected;
     viewRef;
-    @ViewChild(TemplateRef, { static: false }) templateRef: TemplateRef<any>;
+    @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
     @ViewChild('selectNative', { static: true }) selectNative;
     selectedNative;
     search;
@@ -34,7 +34,7 @@ export class UiSelectComponent implements OnInit, AfterViewInit, OnChanges {
     @Input() options;
     @Input() ngModel;
     optionsExternal;
-    @ViewChild(NgModel, { static: false }) model: NgModel;
+    @ViewChild(NgModel) model: NgModel;
     isMobile = UiElement.isMobile;
 
     constructor(public element: ElementRef, public viewContainerRef: ViewContainerRef) {
