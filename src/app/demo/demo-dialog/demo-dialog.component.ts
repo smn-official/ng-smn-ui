@@ -18,6 +18,8 @@ export class DemoDialogComponent implements OnInit, AfterViewInit {
     timing;
     allStatesFiltered: any[];
     teste;
+    searchAllState;
+    select;
 
     constructor(private titleService: Title,
                 private toolbarService: UiToolbarService) {

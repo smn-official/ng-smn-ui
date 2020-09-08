@@ -8,6 +8,9 @@ import {UiToolbarService} from '../../../../projects/smn-ui/src/lib/toolbar/tool
     styleUrls: ['./demo-file.component.scss']
 })
 export class DemoFileComponent implements OnInit {
+    teste: any;
+    files: any;
+    data: any;
 
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
     }

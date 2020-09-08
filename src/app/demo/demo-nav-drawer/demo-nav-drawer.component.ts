@@ -10,6 +10,8 @@ import {DemoComponent} from '../demo.component';
     styleUrls: ['./demo-nav-drawer.component.scss']
 })
 export class DemoNavDrawerComponent implements OnInit {
+    title;
+    menuOpen;
 
     constructor(private titleService: Title,
                 private toolbarService: UiToolbarService,

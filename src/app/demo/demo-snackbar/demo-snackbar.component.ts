@@ -14,7 +14,7 @@ export class DemoSnackbarComponent implements OnInit {
     ngOnInit() {
     }
 
-    showSnack(center) {
+    showSnack(center?) {
         UiSnackbar.hide();
         UiSnackbar.show({
             text: 'SMN UI compilado com sucesso',

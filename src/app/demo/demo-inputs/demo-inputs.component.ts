@@ -14,6 +14,17 @@ export class DemoInputsComponent implements OnInit {
     list: string[];
     textarea: string;
     profileForm: FormGroup;
+    primaryDark: any;
+    accentDark: any;
+    option: any;
+    validation: any;
+    simple: any;
+    password: any;
+    type: any;
+    dateReverse: any;
+    date: any;
+    hero: any;
+    accent: any;
     // @ViewChild('test') test;
 
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {

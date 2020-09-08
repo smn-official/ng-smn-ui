@@ -27,7 +27,7 @@
                 </div>
             </ui-input-container>
             <ui-input-container>
-                <input type="text" uiInput [(ngModel)]="functionSelect" name="functionSelect" uiTimePicker="functionSelect" uiMaskTime (select)="execFunctionSelect()">
+                <input type="text" uiInput [(ngModel)]="functionSelect" name="functionSelect" uiTimePicker="functionSelect" uiMaskTime (select)="execFunctionSelect($event)">
                 <label>Execute function select</label>
                 <div class="icon">
                     <button class="ui-button icon flat" uiTimePickerCaller="functionSelect">

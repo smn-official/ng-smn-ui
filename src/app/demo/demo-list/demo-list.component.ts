@@ -11,6 +11,8 @@ import {UiToolbarService} from '../../../../projects/smn-ui/src/lib/smn-ui.modul
 export class DemoListComponent implements OnInit {
     menuList: any[];
     itemModel: any;
+    switchTest: any;
+    checkboxTest: any;
 
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
         this.itemModel = {

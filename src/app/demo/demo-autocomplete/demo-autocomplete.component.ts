@@ -16,6 +16,8 @@ export class DemoAutocompleteComponent implements OnInit, AfterViewInit, OnDestr
     timing;
     allStatesFiltered: any[];
     teste;
+    searchAllState;
+    select;
 
     constructor(public toolbarService: UiToolbarService) {
         this.states = ['São Paulo', 'Rio de Janeiro', 'Brasília', 'Brasília Amarela'];

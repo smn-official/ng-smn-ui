@@ -7868,6 +7868,12 @@
                 }
             }
         },
+        "gulp4-run-sequence": {
+            "version": "1.0.1",
+            "resolved": "https://registry.npmjs.org/gulp4-run-sequence/-/gulp4-run-sequence-1.0.1.tgz",
+            "integrity": "sha512-6w845e/gi5TOc9OHmHtpEfumIiwKg7dj9vvapOeN9bzN4jPpSYlHNQ3TZzT9jyeafHVM4ALHFizSxQyRiZDIjw==",
+            "dev": true
+        },
         "gulplog": {
             "version": "1.0.0",
             "resolved": "https://registry.npmjs.org/gulplog/-/gulplog-1.0.0.tgz",

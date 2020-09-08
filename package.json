@@ -1,6 +1,6 @@
 {
   "name": "ng-smn-ui",
-  "version": "3.5.8",
+  "version": "4.0.0",
   "license": "MIT",
   "scripts": {
     "start": "ng serve --port 4000 --host=0.0.0.0 --disable-host-check",
@@ -39,6 +39,7 @@
     "gulp-load-plugins": "^1.5.0",
     "gulp-rename": "^1.2.3",
     "gulp-util": "^3.0.8",
+    "gulp4-run-sequence": "^1.0.1",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
     "karma": "~1.4.1",

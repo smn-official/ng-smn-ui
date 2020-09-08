@@ -2,7 +2,8 @@ const gulp = require('gulp');
 const bump = require('gulp-bump');
 const util = require('gulp-util');
 const git = require('gulp-git');
-const runSequence = require('run-sequence');
+// const runSequence = require('run-sequence');
+const runSequence = require('gulp4-run-sequence').use(gulp);
 
 // Paths
 const packages = ['**/package.json', '!node_modules/**/*.json', '!dist/**/*.json'];

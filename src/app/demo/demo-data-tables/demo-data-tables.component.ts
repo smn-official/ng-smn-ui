@@ -12,6 +12,7 @@ export class DemoDataTablesComponent implements OnInit, AfterViewInit, OnDestroy
     list: Array<any>;
     searchOpen: boolean;
     searchText: string;
+    checkboxTest: any;
 
     constructor(private titleService: Title, private toolbarService: UiToolbarService, private element: ElementRef) {
         this.list = [

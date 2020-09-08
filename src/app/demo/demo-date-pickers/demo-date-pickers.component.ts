@@ -16,6 +16,13 @@ export class DemoDatePickersComponent implements OnInit {
     maxDate: Date;
     worldWarII: Date;
     events: any;
+    dateDark: any;
+    initOnSelected: any;
+    functionSelect: any;
+    confirmSelect: any;
+    minAndMax: any;
+    event: any;
+
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
         this.today = new Date();
         this.minDate = new Date();

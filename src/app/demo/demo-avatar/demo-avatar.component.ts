@@ -10,6 +10,7 @@ import {UiToolbarService} from '../../../../projects/smn-ui/src/lib/toolbar/tool
 export class DemoAvatarComponent implements OnInit, OnDestroy {
 
     info: any;
+    size: number;
 
     constructor(private titleService: Title, private toolbarService: UiToolbarService) {
         this.info = {
