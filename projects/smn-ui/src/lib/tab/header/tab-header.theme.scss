@@ -2,9 +2,9 @@
 
 @mixin ui-tab-header($theme) {
     $primary-color: map_get($theme, primary-color);
-    $primary-text-color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+    $primary-text-color: map_get($theme, primary-color-text);
     $accent-color: map_get($theme, accent-color);
-    $accent-text-color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+    $accent-text-color: map_get($theme, accent-color-text);
     $is-dark: map_get($theme, is-dark);
     $color-tab-inactive: ui-if($is-dark, rgba(255, 255, 255, .87), rgba(0, 0, 0, .54));
     $color-button: ui-if($is-dark, #000, #FFF);

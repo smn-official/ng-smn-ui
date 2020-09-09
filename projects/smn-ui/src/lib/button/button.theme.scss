@@ -74,15 +74,15 @@
             }
 
             &.primary {
-                background-color: ui-color(map_get($theme, primary), map_get($theme, primary-hue));
-                color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+                background-color: map_get($theme, primary-color);
+                color: map_get($theme, primary-color-text);
 
                 .ui-ripple-wave {
-                    background-color: ui-if(ui-text-color(map_get($theme, primary), map_get($theme, primary-hue)) == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+                    background-color: ui-if(map_get($theme, primary-color-text) == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
                 }
 
                 &::before {
-                    background-color: ui-text-color(map_get($theme, primary));
+                    background-color: map_get($theme, primary-color-text);
                 }
 
                 &.flat {
@@ -95,24 +95,24 @@
                 }
 
                 ui-progress-radial.indeterminate .spinner-container .path {
-                    stroke: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+                    stroke: map_get($theme, primary-color-text);
                 }
 
                 &.flat ui-progress-radial.indeterminate .spinner-container .path {
-                    stroke: ui-color(map_get($theme, primary), map_get($theme, primary-hue));
+                    stroke: map_get($theme, primary-color);
                 }
             }
 
             &.accent {
                 background-color: map_get($theme, accent-color);
-                color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+                color: map_get($theme, accent-color-text);
 
                 .ui-ripple-wave {
-                    background-color: ui-if(ui-text-color(map_get($theme, accent), map_get($theme, accent-hue)) == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
+                    background-color: ui-if(map_get($theme, accent-color-text) == #fff, rgba(255, 255, 255, 0.1), rgba(33, 33, 33, 0.1));
                 }
 
                 &::before {
-                    background-color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+                    background-color: map_get($theme, accent-color-text);
                 }
 
                 &.flat {
@@ -125,11 +125,11 @@
                 }
 
                 ui-progress-radial.indeterminate .spinner-container .path {
-                    stroke: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+                    stroke: map_get($theme, accent-color-text);
                 }
 
                 &.flat ui-progress-radial.indeterminate .spinner-container .path {
-                    stroke: ui-color(map_get($theme, accent), map_get($theme, accent-hue));
+                    stroke: map_get($theme, accent-color);
                 }
             }
 
@@ -164,25 +164,25 @@
             border-color: ui-if(map_get($theme, is-dark) == true, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.12));
 
             &.primary:not(.success):not(.warning):not(.error):not(:disabled):not(.outlined) {
-                background-color: ui-color(map_get($theme, primary), '100');
-                color: ui-color(map_get($theme, primary), '500');
+                background-color: rgba(map_get($theme, primary-color), 0.2);
+                color: map_get($theme, primary-color);
             }
 
             &.accent:not(.success):not(.warning):not(.error):not(:disabled):not(.outlined) {
-                background-color: ui-color(map_get($theme, accent), '100');
-                color: ui-color(map_get($theme, accent), '500');
+                background-color: rgba(map_get($theme, accent-color), 0.2);
+                color: map_get($theme, accent-color);
             }
         }
 
         .badge {
             &.primary {
                 background-color: map_get($theme, primary-color);
-                color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+                color: map_get($theme, primary-color-text);
             }
 
             &.accent {
                 background-color: map_get($theme, accent-color);
-                color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+                color: map_get($theme, accent-color-text);
             }
         }
     }

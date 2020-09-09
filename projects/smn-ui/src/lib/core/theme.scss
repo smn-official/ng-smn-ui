@@ -51,12 +51,10 @@
     }
 
     $theme: (
-        primary: map_get($primary, color),
-        primary-hue: map_get($primary, hue),
         primary-color: ui-color(map_get($primary, color), map_get($primary, hue)),
-        accent: map_get($accent, color),
-        accent-hue: map_get($accent, hue),
+        primary-color-text: ui-text-color(map_get($primary, color), map_get($primary, hue)),
         accent-color: ui-color(map_get($accent, color), map_get($accent, hue)),
+        accent-color-text: ui-text-color(map_get($accent, color), map_get($accent, hue)),
         is-dark: $is-dark,
         primary-text-color: $primary-text-color,
         secondary-text-color: $secondary-text-color,
