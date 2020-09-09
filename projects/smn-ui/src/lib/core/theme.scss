@@ -38,6 +38,7 @@
 @import "variables";
 
 @function ui-theme($primary, $accent, $is-dark: false) {
+
     $primary-text-color: rgba(0, 0, 0, 0.87);
     $secondary-text-color: rgba(0, 0, 0, 0.54);
     $disabled-text-color: rgba(0, 0, 0, 0.38);
@@ -51,10 +52,10 @@
     }
 
     $theme: (
-        primary-color: ui-color(map_get($primary, color), map_get($primary, hue)),
-        primary-color-text: ui-text-color(map_get($primary, color), map_get($primary, hue)),
-        accent-color: ui-color(map_get($accent, color), map_get($accent, hue)),
-        accent-color-text: ui-text-color(map_get($accent, color), map_get($accent, hue)),
+        primary-color: getColor($primary),
+        primary-color-text: getTextColor($primary),
+        accent-color: getColor($accent),
+        accent-color-text: getTextColor($accent),
         is-dark: $is-dark,
         primary-text-color: $primary-text-color,
         secondary-text-color: $secondary-text-color,
@@ -63,6 +64,26 @@
     );
 
     @return $theme;
+}
+
+@function getColor($colorConfig) {
+    $color: map-get($colorConfig, color);
+
+    @if type-of($color) == 'color' {
+        @return $color;
+    }
+
+    @return ui-color($color, map-get($colorConfig, hue));
+}
+
+@function getTextColor($colorConfig) {
+    $color: map-get($colorConfig, color);
+
+    @if type-of($color) == 'color' {
+        @return map-get($colorConfig, text-color);
+    }
+
+    @return ui-text-color($color, map-get($colorConfig, hue));
 }
 
 @mixin ui-build-theme($theme) {
