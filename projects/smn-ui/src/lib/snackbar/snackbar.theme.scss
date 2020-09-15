@@ -2,6 +2,6 @@
 
 @mixin ui-snackbar($theme) {
     ui-snackbar .ui-button:not(.success):not(.warning):not(.error):not(:disabled).accent.flat {
-        color: ui-color(map_get($theme, primary), '300');
+        color: rgba(map_get($theme, primary-color), 0.5);
     }
 }

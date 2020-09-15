@@ -4,11 +4,11 @@
 
     ui-autocomplete .focused {
         background-color: map_get($theme, primary-color);
-        color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+        color: map_get($theme, primary-color-text);
     }
 
     ui-autocomplete .focused.accent {
         background-color: map_get($theme, accent-color);
-        color: ui-text-color(map_get($theme, accent), map_get($theme, accent-hue));
+        color: map_get($theme, accent-color-text);
     }
 }

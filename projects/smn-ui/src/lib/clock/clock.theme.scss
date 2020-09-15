@@ -2,7 +2,7 @@
 
 @mixin ui-clock($theme) {
     $is-dark: map_get($theme, is-dark);
-    $text-color: ui-text-color(map_get($theme, primary), map_get($theme, primary-hue));
+    $text-color: map_get($theme, primary-color-text);
     $primary-color: map_get($theme, primary-color);
     $background-opacity: rgba($primary-color, 0.54);
 
@@ -11,7 +11,7 @@
 
         header {
             background-color: ui-if($is-dark, ui-color('grey', '700'), $primary-color);
-            color: ui-if($is-dark, #FFF, ui-text-color(map_get($theme, primary), map_get($theme, primary-hue)));
+            color: ui-if($is-dark, #FFF, map_get($theme, primary-color-text));
 
             &.time-error {
                 background-color: ui-color('red');

@@ -3,10 +3,10 @@
 @mixin ui-expansion-panel($theme) {
     .ui-expansion-panel-header ui-subheader,
     .ui-expansion-panel-arrow {
-        color: ui-color(map_get($theme, primary));
-        
+        color: map_get($theme, primary-color);
+
         &.accent {
-            color: ui-color(map_get($theme, accent));
+            color: map_get($theme, accent-color);
         }
     }
 }
