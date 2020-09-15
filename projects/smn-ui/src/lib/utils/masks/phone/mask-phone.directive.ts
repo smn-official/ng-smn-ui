@@ -59,6 +59,11 @@ export class UiMaskPhoneDirective implements ControlValueAccessor, Validator, Af
     }
 
     writeValue(rawValue: any): void {
+        if (this.uiMaskPhone === 'ddi' && rawValue) {
+            const firstChar = rawValue.toString().substring(0, 1);
+            this.maxLength = firstChar === '1' ? 11 : 13;
+        }
+
         if (this.control && this.loaded && rawValue) {
             this.control.markAsDirty();
         }
