@@ -38,14 +38,15 @@ import {DemoPagesComponent} from './demo-tabs-pages/demo-pages/demo-pages.compon
 import {DemoInfiniteLoadComponent} from './demo-infinite-load/demo-infinite-load.component';
 import {DemoSelectComponent} from './demo-select/demo-select.component';
 import {DemoAvatarComponent} from './demo-avatar/demo-avatar.component';
-import { DemoTooltipComponent } from './demo-tooltip/demo-tooltip.component';
-import { DemoTabsComponent } from './demo-tabs/demo-tabs.component';
-import { DemoGridComponent } from './demo-grid/demo-grid.component';
-import { DemoChosenComponent } from './demo-chosen/demo-chosen.component';
-import { DemoExpansioPanelComponent } from './demo-expansio-panel/demo-expansio-panel.component';
-import { DemoTypographyComponent } from './demo-typography/demo-typography.component';
-import { DemoLabelContentComponent } from './demo-label-content/demo-label-content.component';
-import { DemoUploadComponent } from './demo-upload/demo-upload.component';
+import {DemoTooltipComponent} from './demo-tooltip/demo-tooltip.component';
+import {DemoTabsComponent} from './demo-tabs/demo-tabs.component';
+import {DemoGridComponent} from './demo-grid/demo-grid.component';
+import {DemoChosenComponent} from './demo-chosen/demo-chosen.component';
+import {DemoExpansioPanelComponent} from './demo-expansio-panel/demo-expansio-panel.component';
+import {DemoTypographyComponent} from './demo-typography/demo-typography.component';
+import {DemoLabelContentComponent} from './demo-label-content/demo-label-content.component';
+import {DemoUploadComponent} from './demo-upload/demo-upload.component';
+import {DemoShimmerComponent} from './demo-shimmer/demo-shimmer.component';
 
 @NgModule({
     imports: [
@@ -102,7 +103,8 @@ import { DemoUploadComponent } from './demo-upload/demo-upload.component';
         DemoTabsComponent,
         DemoTypographyComponent,
         DemoLabelContentComponent,
-        DemoUploadComponent
+        DemoUploadComponent,
+        DemoShimmerComponent
     ],
     exports: [DemoComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

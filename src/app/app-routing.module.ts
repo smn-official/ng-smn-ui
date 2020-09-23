@@ -35,14 +35,15 @@ import {DemoPagesComponent} from './demo/demo-tabs-pages/demo-pages/demo-pages.c
 import {DemoInfiniteLoadComponent} from './demo/demo-infinite-load/demo-infinite-load.component';
 import {DemoSelectComponent} from './demo/demo-select/demo-select.component';
 import {DemoAvatarComponent} from './demo/demo-avatar/demo-avatar.component';
-import {DemoTooltipComponent} from "./demo/demo-tooltip/demo-tooltip.component";
+import {DemoTooltipComponent} from './demo/demo-tooltip/demo-tooltip.component';
 import {DemoGridComponent} from './demo/demo-grid/demo-grid.component';
 import {DemoChosenComponent} from './demo/demo-chosen/demo-chosen.component';
-import { DemoExpansioPanelComponent } from './demo/demo-expansio-panel/demo-expansio-panel.component';
+import {DemoExpansioPanelComponent} from './demo/demo-expansio-panel/demo-expansio-panel.component';
 import {DemoTabsComponent} from './demo/demo-tabs/demo-tabs.component';
-import { DemoTypographyComponent } from './demo/demo-typography/demo-typography.component';
+import {DemoTypographyComponent} from './demo/demo-typography/demo-typography.component';
 import {DemoLabelContentComponent} from './demo/demo-label-content/demo-label-content.component';
-import { DemoUploadComponent } from './demo/demo-upload/demo-upload.component';
+import {DemoUploadComponent} from './demo/demo-upload/demo-upload.component';
+import {DemoShimmerComponent} from './demo/demo-shimmer/demo-shimmer.component';
 
 const routes: Routes = [
     {
@@ -55,41 +56,40 @@ const routes: Routes = [
             {path: 'bottom-sheets', component: DemoBottomSheetComponent},
             {path: 'buttons', component: DemoButtonsComponent},
             {path: 'cards', component: DemoCardsComponent},
+            {path: 'chips', component: DemoChipsComponent},
+            {path: 'chosen', component: DemoChosenComponent},
             {path: 'clocks', component: DemoClockComponent},
             {path: 'color-pickers', component: DemoColorPickersComponent},
             {path: 'data-tables', component: DemoDataTablesComponent},
             {path: 'date-pickers', component: DemoDatePickersComponent},
             {path: 'dialog', component: DemoDialogComponent},
             {path: 'dividers', component: DemoDividersComponent},
+            {path: 'expansion-panel', component: DemoExpansioPanelComponent},
             {path: 'files', component: DemoFileComponent},
             {path: 'grid', component: DemoGridComponent},
+            {path: 'infinite-load', component: DemoInfiniteLoadComponent},
             {path: 'inputs', component: DemoInputsComponent},
-            {path: 'chips', component: DemoChipsComponent},
             {path: 'label-content', component: DemoLabelContentComponent},
             {path: 'layout', component: DemoLayoutComponent},
-            {path: 'menus', component: DemoMenuComponent},
-            {path: 'nav-drawer', component: DemoNavDrawerComponent},
-            {path: 'progress', component: DemoProgressComponent},
-            {path: 'selection-controls', component: DemoSelectionControlsComponent},
-            {path: 'smart-list', component: DemoSmartListComponent},
-            {path: 'snackbars', component: DemoSnackbarComponent},
+            {path: 'list', component: DemoListComponent},
             {path: 'masks', component: DemoMaskComponent},
             {path: 'menus', component: DemoMenuComponent},
+            {path: 'nav-drawer', component: DemoNavDrawerComponent},
+            {path: 'old-tabs', component: DemoOldTabsComponent},
+            {path: 'pages', component: DemoPagesComponent},
+            {path: 'progress', component: DemoProgressComponent},
+            {path: 'select', component: DemoSelectComponent},
+            {path: 'selection-controls', component: DemoSelectionControlsComponent},
+            {path: 'shimmer-effect', component: DemoShimmerComponent},
             {path: 'sliders', component: DemoSliderComponent},
             {path: 'smart-list', component: DemoSmartListComponent},
+            {path: 'snackbars', component: DemoSnackbarComponent},
             {path: 'subheader', component: DemoSubheaderComponent},
             {path: 'tabs', component: DemoTabsComponent},
+            {path: 'tabs-pages', component: DemoTabsPagesComponent},
             {path: 'time-pickers', component: DemoTimePickersComponent},
             {path: 'toolbars', component: DemoToolbarsComponent},
             {path: 'tooltips', component: DemoTooltipComponent},
-            {path: 'list', component: DemoListComponent},
-            {path: 'tabs-pages', component: DemoTabsPagesComponent},
-            {path: 'old-tabs', component: DemoOldTabsComponent},
-            {path: 'pages', component: DemoPagesComponent},
-            {path: 'infinite-load', component: DemoInfiniteLoadComponent},
-            {path: 'select', component: DemoSelectComponent},
-            {path: 'chosen', component: DemoChosenComponent},
-            {path: 'expansion-panel', component: DemoExpansioPanelComponent},
             {path: 'typography', component: DemoTypographyComponent},
             {path: 'upload', component: DemoUploadComponent}
         ]

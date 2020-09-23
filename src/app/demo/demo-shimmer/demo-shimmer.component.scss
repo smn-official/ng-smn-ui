@@ -1,0 +1,15 @@
+:host {
+    ui-card {
+        position: relative;
+        z-index: 2;
+        margin-bottom: 10px;
+    }
+
+    .example2 {
+        display: flex;
+
+        > :first-child {
+            margin-right: 10px;
+        }
+    }
+}
