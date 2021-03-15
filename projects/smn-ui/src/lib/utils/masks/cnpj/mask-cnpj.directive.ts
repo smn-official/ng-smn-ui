@@ -104,7 +104,7 @@ export class UiMaskCnpjDirective implements ControlValueAccessor, Validator, Aft
     }
 
     cnpjIsValid(cnpj) {
-        if (!cnpj || cnpj.length !== 14) {
+        if (!(+cnpj) || cnpj.length !== 14) {
             return false;
         }
         let size = cnpj.length - 2;
