@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 // @dynamic
 @Injectable()
@@ -22,11 +22,11 @@ export class UiCookie {
         return !!this.get(name);
     }
 
-    static delete(name) {
-        this.set(name, '', -1);
+    static delete(name: string, domain?: string) {
+        this.set(name, '', -1, null, domain);
     }
 
-    static set(name: string, value: string, expireDays: number = 365, path: string = '/', domain: string = '') {
+    static set(name: string, value: string, expireDays: number = 365, path: string = '/', domain?: string) {
         const d: Date = new Date();
         d.setTime(d.getTime() + expireDays * 24 * 60 * 60 * 1000);
         const expires: string = 'expires=' + d.toUTCString();
