@@ -89,6 +89,13 @@
                     <div class="ui-message helper">Model: {{cep}}; View: {{cep | uiCep}}</div>
                 </div>
             </ui-input-container>
+            <ui-input-container>
+                <input type="text" name="cepNovo" [(ngModel)]="cepNovo" uiInput uiMaskCepNovo required #teste2="ngModel">
+                <label>CEP(uiMaskCepNovo)</label>
+                <div class="ui-messages">
+                    <div class="ui-message helper">Model: {{cepNovo}}; View: {{cepNovo | uiCepNovo}}</div>
+                </div>
+            </ui-input-container>
             <pre>{{teste2.errors | json}}</pre>
             <ui-input-container>
                 <input type="text" name="phone" [(ngModel)]="phone" uiInput uiMaskPhone>

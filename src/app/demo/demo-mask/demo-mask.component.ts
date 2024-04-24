@@ -8,6 +8,7 @@ import {Component, OnInit} from '@angular/core';
 export class DemoMaskComponent implements OnInit {
 
     cep: number;
+    cepNovo: number | string;
     cpf: number | string;
     cnpj: number | string;
     currency;

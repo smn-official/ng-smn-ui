@@ -48,6 +48,8 @@ import { UiMaskCnpjDirective } from './utils/masks/cnpj/mask-cnpj.directive';
 import { UiCnpjPipe } from './utils/masks/cnpj/cnpj.pipe';
 import { UiMaskCepDirective } from './utils/masks/cep/mask-cep.directive';
 import { UiCepPipe } from './utils/masks/cep/cep.pipe';
+import { UiMaskCepNovoDirective } from './utils/masks/cep-novo/mask-cep-novo.directive';
+import { UiCepNovoPipe } from './utils/masks/cep-novo/cep-novo.pipe';
 import { UiPhonePipe } from './utils/masks/phone/phone.pipe';
 import { UiMaskPhoneDirective } from './utils/masks/phone/mask-phone.directive';
 import { UiListComponent } from './list/list.component';
@@ -116,6 +118,7 @@ export {
     UiCpfPipe,
     UiCnpjPipe,
     UiCepPipe,
+    UiCepNovoPipe,
     UiPhonePipe,
     UiInfiniteLoadService,
     UiDatetimeService,
@@ -167,6 +170,8 @@ const lib: any[] = [
     UiCnpjPipe,
     UiMaskCepDirective,
     UiCepPipe,
+    UiMaskCepNovoDirective,
+    UiCepNovoPipe,
     UiMaskPhoneDirective,
     UiPhonePipe,
     UiListComponent,
