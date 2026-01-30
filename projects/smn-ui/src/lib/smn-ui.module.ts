@@ -46,6 +46,8 @@ import { UiMaskCpfDirective } from './utils/masks/cpf/mask-cpf.directive';
 import { UiCpfPipe } from './utils/masks/cpf/cpf.pipe';
 import { UiMaskCnpjDirective } from './utils/masks/cnpj/mask-cnpj.directive';
 import { UiCnpjPipe } from './utils/masks/cnpj/cnpj.pipe';
+import { UiMaskCnpjNovoDirective } from './utils/masks/cnpj-novo/mask-cnpj-novo.directive';
+import { UiCnpjNovoPipe } from './utils/masks/cnpj-novo/cnpj-novo.pipe';
 import { UiMaskCepDirective } from './utils/masks/cep/mask-cep.directive';
 import { UiCepPipe } from './utils/masks/cep/cep.pipe';
 import { UiMaskCepNovoDirective } from './utils/masks/cep-novo/mask-cep-novo.directive';
@@ -117,6 +119,7 @@ export {
     UiWindowRef,
     UiCpfPipe,
     UiCnpjPipe,
+    UiCnpjNovoPipe,
     UiCepPipe,
     UiCepNovoPipe,
     UiPhonePipe,
@@ -168,6 +171,8 @@ const lib: any[] = [
     UiCpfPipe,
     UiMaskCnpjDirective,
     UiCnpjPipe,
+    UiMaskCnpjNovoDirective,
+    UiCnpjNovoPipe,
     UiMaskCepDirective,
     UiCepPipe,
     UiMaskCepNovoDirective,

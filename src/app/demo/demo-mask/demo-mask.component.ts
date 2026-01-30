@@ -11,6 +11,8 @@ export class DemoMaskComponent implements OnInit {
     cepNovo: number | string;
     cpf: number | string;
     cnpj: number | string;
+    cnpjNovo: string;
+    cnpjNovoValidado: string;
     currency;
     date: Date | string;
     float: number;

@@ -82,6 +82,24 @@
                     <div class="ui-message helper">Model: {{padcnpj}}; View: {{padcnpj | uiCnpj}}</div>
                 </div>
             </ui-input-container>
+
+            <h3 style="margin: 24px 0 8px;">CNPJ Alfanumérico (Novo formato 2026)</h3>
+            <ui-input-container>
+                <input type="text" name="cnpjNovo" [(ngModel)]="cnpjNovo" uiInput uiMaskCnpjNovo>
+                <label>CNPJ Novo (uiMaskCnpjNovo) - apenas máscara</label>
+                <div class="ui-messages">
+                    <div class="ui-message helper">Model: {{cnpjNovo}}; View: {{cnpjNovo | uiCnpjNovo}}</div>
+                </div>
+            </ui-input-container>
+            <ui-input-container>
+                <input type="text" name="cnpjNovoValidado" [(ngModel)]="cnpjNovoValidado" uiInput [uiMaskCnpjNovo]="true" #cnpjNovoField="ngModel">
+                <label>CNPJ Novo (uiMaskCnpjNovo) - com validação</label>
+                <div class="ui-messages">
+                    <div class="ui-message helper">Model: {{cnpjNovoValidado}}; View: {{cnpjNovoValidado | uiCnpjNovo}}</div>
+                </div>
+            </ui-input-container>
+            <pre>{{cnpjNovoField.errors | json}}</pre>
+
             <ui-input-container>
                 <input type="text" name="cep" [(ngModel)]="cep" uiInput uiMaskCep required #teste2="ngModel">
                 <label>CEP(uiMaskCep)</label>
