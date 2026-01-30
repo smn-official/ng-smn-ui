@@ -61,5 +61,20 @@ License
 
 MIT
 
+---
+
+### Publish
+
+Após desenvolver novas features ou correções, é preciso:
+
+- Subir a versão do package no [package.json](./package.json#L3)
+- Rodar o comando `npm run build`
+- Criar um token na conta da `smn-official-org` com permissões de escrita e com opção de bypass 2FA
+  - Na sua máquina, crie/edite a variável de ambiente `NPM_TOKEN` com o novo token criado
+  - Na root do projeto, crie o arquivo `.npmrc` com o conteúdo `//registry.npmjs.org/:_authToken=${NPM_TOKEN}`
+- Por fim, executar o comando `npm publish dist/lib`
+
+---
+
 
 **Feito com ❤️ pelos Devs da [SMN](http://smn.com.br/)**
