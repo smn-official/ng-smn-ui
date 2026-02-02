@@ -113,25 +113,19 @@ export class UiMaskCnpjNovoDirective implements ControlValueAccessor, Validator,
 
     /**
      * Converte um caractere para seu valor numérico.
-     * Dígitos 0-9 retornam seu valor numérico (0-9).
-     * Letras A-Z retornam 10-35 (A=10, B=11, ..., Z=35).
+     * Usa código ASCII - 48 para todos os caracteres:
+     * - Dígitos 0-9 retornam 0-9
+     * - Letras A-Z retornam 17-42 (A=17, B=18, ..., Z=42)
+     * Referência: https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/perguntas-e-respostas/cnpj/cnpj-alfanumerico.pdf
      */
     charToValue(char: string): number {
-        const code = char.toUpperCase().charCodeAt(0);
-        if (code >= 48 && code <= 57) { // 0-9
-            return code - 48;
-        }
-        if (code >= 65 && code <= 90) { // A-Z
-            return code - 55; // A=10, B=11, ..., Z=35
-        }
-        return 0;
+        return char.toUpperCase().charCodeAt(0) - 48;
     }
 
     /**
-     * Valida CNPJ novo.
+     * Valida CNPJ alfanumérico conforme especificação.
      * Suporta tanto CNPJs numéricos tradicionais quanto os novos alfanuméricos.
-     * O algoritmo de validação dos dígitos verificadores usa conversão de letras
-     * onde A=10, B=11, ..., Z=35.
+     * A conversão usa ASCII - 48 para todos os caracteres (A=17, B=18, ..., Z=42).
      */
     cnpjIsValid(cnpj: string): boolean {
         if (!cnpj || cnpj.length !== 14) {
