@@ -83,16 +83,17 @@
                 </div>
             </ui-input-container>
 
-            <h3 style="margin: 24px 0 8px;">CNPJ Alfanumérico (Novo formato 2026)</h3>
+            <h3 style="margin: 24px 0 8px;">CNPJ Alfanumérico</h3>
             <ui-input-container>
-                <input type="text" name="cnpjNovo" [(ngModel)]="cnpjNovo" uiInput uiMaskCnpjNovo>
+                <input type="text" name="cnpjNovo" [(ngModel)]="cnpjNovo" uiInput uiMaskCnpjNovo [padOnPaste]="true">
                 <label>CNPJ Novo (uiMaskCnpjNovo) - apenas máscara</label>
                 <div class="ui-messages">
                     <div class="ui-message helper">Model: {{cnpjNovo}}; View: {{cnpjNovo | uiCnpjNovo}}</div>
                 </div>
             </ui-input-container>
             <ui-input-container>
-                <input type="text" name="cnpjNovoValidado" [(ngModel)]="cnpjNovoValidado" uiInput [uiMaskCnpjNovo]="true" #cnpjNovoField="ngModel">
+                <input type="text" name="cnpjNovoValidado" [(ngModel)]="cnpjNovoValidado" uiInput [uiMaskCnpjNovo]="true" 
+                    #cnpjNovoField="ngModel" [padOnPaste]="true">
                 <label>CNPJ Novo (uiMaskCnpjNovo) - com validação</label>
                 <div class="ui-messages">
                     <div class="ui-message helper">Model: {{cnpjNovoValidado}}; View: {{cnpjNovoValidado | uiCnpjNovo}}</div>

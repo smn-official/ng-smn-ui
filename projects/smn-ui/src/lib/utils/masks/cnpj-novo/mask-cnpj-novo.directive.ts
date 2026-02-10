@@ -56,7 +56,13 @@ export class UiMaskCnpjNovoDirective implements ControlValueAccessor, Validator,
                 const value = this.ngModel.toString().toUpperCase();
                 const cleanValue = value.replace(/[^0-9A-Z]+/g, '');
                 const isNumericOnly = /^[0-9]*$/.test(cleanValue);
-                this.ngModel = isNumericOnly ? cleanValue.padStart(14, '0') : cleanValue;
+                const paddedValue = isNumericOnly ? cleanValue.padStart(14, '0') : cleanValue;
+                if (paddedValue !== cleanValue) {
+                    this.ngModel = paddedValue;
+                    setTimeout(() => this.ngModelChange.emit(this.ngModel));
+                } else {
+                    this.ngModel = paddedValue;
+                }
             } else {
                 this.ngModel = '';
             }
@@ -69,6 +75,7 @@ export class UiMaskCnpjNovoDirective implements ControlValueAccessor, Validator,
         if (rawValue) {
             this.control.markAsDirty();
         }
+
         this.ngModel = this.format(rawValue);
         this.ngModelChange.emit(this.ngModel);
         this.elementRef.nativeElement.value = this.cnpjPipe.transform(this.elementRef.nativeElement.value, true);
@@ -98,8 +105,15 @@ export class UiMaskCnpjNovoDirective implements ControlValueAccessor, Validator,
             }
         }
 
-        if (this.uiMaskCnpjNovo === true && control.value && !this.cnpjIsValid(control.value)) {
-            return { parse: true };
+        if (this.uiMaskCnpjNovo === true && control.value) {
+            let value = control.value.toString().toUpperCase().replace(/[^0-9A-Z]+/g, '');
+            const isNumericOnly = /^[0-9]*$/.test(value);
+            if (isNumericOnly) {
+                value = value.padStart(14, '0');
+            }
+            if (!this.cnpjIsValid(value)) {
+                return { parse: true };
+            }
         }
 
         this.input = false;
