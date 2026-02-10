@@ -1,6 +1,6 @@
 {
     "name": "ng-smn-ui",
-    "version": "4.2.11",
+    "version": "4.2.12",
     "peerDependencies": {
         "@angular/common": "^9.1.12-rc.0 || ^9.1.12",
         "@angular/core": "^9.1.12-rc.0 || ^9.1.12"
